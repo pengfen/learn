@@ -1,0 +1,16 @@
+# 每分钟向 test.log 文件中输出文字
+[root@apeng ~]# mkdir test
+[root@apeng ~]# cd test
+[root@apeng test]# touch test.log
+[root@apeng test]#
+[root@apeng test]# pwd
+/root/test
+[root@apeng test]# crontab -l
+0 1 * * * /usr/sbin/ntpdate cn.pool.ntp.org
+[root@apeng test]# crontab -e
+crontab: installing new crontab
+[root@apeng test]# crontab -l
+0 1 * * * /usr/sbin/ntpdate cn.pool.ntp.org
+*/1 * * * * echo welcome >> /root/test/test.log
+[root@apeng test]#
+[root@apeng test]# vi test.log
