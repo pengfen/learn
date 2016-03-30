@@ -1,0 +1,22 @@
+<form class="form-horizontal" id="add-assoc">
+    <div class="form-group">
+        <label for="tablename" class="col-sm-2 control-label">权限名</label>
+        <div class="col-sm-8">{$info.name}</div>
+    </div>
+    <if condition="$info[controller] neq ''">
+    <div class="form-group">
+        <label for="tablename" class="col-sm-2 control-label">权限控制器</label>
+        <div class="col-sm-8">{$info.controller}</div>
+    </div>
+    <div class="form-group">
+        <label for="tablename" class="col-sm-2 control-label">权限操作方法</label>
+        <div class="col-sm-8">{$info.action}</div>
+    </div>
+    </if>
+    <if condition="$info[image] neq ''">
+    <div class="form-group">
+        <label for="tablename" class="col-sm-2 control-label">权限关联图</label>
+        <img src="__PUBLIC__/{$info.image}" />
+    </div>
+    </if>
+</form>

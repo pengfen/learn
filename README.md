@@ -29,7 +29,8 @@ php
 ext php 扩展
 frame php框架包
 shop php 学习时第一个项目
-project php 项目
+blog php 学习时第二个项目
+resource 学习资料整理
 
 python
 ===================================

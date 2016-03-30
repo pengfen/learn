@@ -1,0 +1,29 @@
+<extend name='Layout/index'/>
+<block name='resource'>
+</block>
+<block name='main'>
+<div id = 'right' class="col-md-10">
+	<table class="table table-striped">
+	    <thead>
+	    	<tr>
+	    		<th>编号</th>
+	    		<th>用户名</th>
+	    		<th>好友名</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    	<foreach name='info' item='v'>
+	    	<tr>
+	    		<td>{$key + 1}</td>
+	    		<td>{$name}</td>
+	    		<td>{$v}</td>
+	    	</tr>
+	    	</foreach>
+	    </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+	// click($('.update')); // 修改会员状态
+	// click($('.detail')); // 显示会员详情
+</script>
+</block>

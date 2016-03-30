@@ -1,0 +1,515 @@
+[ 2015-08-19T15:02:59+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.022001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.022001s ]
+
+[ 2015-08-19T15:02:59+08:00 ] 127.0.0.1 /blog/index.php/Home/Register/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.107006s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.107006s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.017001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.017001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.005000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005000s ]
+
+[ 2015-08-19T15:03:00+08:00 ] 127.0.0.1 /blog/index.php/Home/Register/verifyImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2015-08-19T15:03:14+08:00 ] 127.0.0.1 /blog/index.php/Home/Login/dologin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0480s ]
+SQL: SELECT * FROM `blog_user` WHERE `email` = 'apeng@qq.com' LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.036002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.037002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:03:53+08:00 ] 127.0.0.1 /blog/index.php/Home/Login/dologin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_user` WHERE `email` = 'apeng1@qq.com' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `blog_user` SET `experience`='120' WHERE `id` = 52 [ RunTime:0.1490s ]
+
+[ 2015-08-19T15:03:54+08:00 ] 127.0.0.1 /blog/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.013001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.013001s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0240s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `blog_visitor` [ RunTime:0.0230s ]
+SQL: SELECT * FROM `blog_visitor` WHERE `uid` = 52 GROUP BY visitor ORDER BY addtime desc LIMIT 9   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_news` [ RunTime:0.0150s ]
+SQL: SELECT * FROM `blog_news` ORDER BY addtime desc LIMIT 6   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.094006s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.094006s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:03:54+08:00 ] 127.0.0.1 /blog/index.php/Home/Mydong/friend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+NOTIC: [8] Undefined index: uid D:\files\wamp\www\blog\Application\Home\Controller\MydongController.class.php 第 71 行.
+SQL: SHOW COLUMNS FROM `blog_friend` [ RunTime:0.0380s ]
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_record` [ RunTime:0.0330s ]
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ) ORDER BY addtime desc LIMIT 10' at line 1
+
+[ 2015-08-19T15:03:59+08:00 ] 127.0.0.1 /blog/index.php/Home/Mood/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.014001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.014001s ]
+SQL: SHOW COLUMNS FROM `blog_mood` [ RunTime:0.0700s ]
+NOTIC: [8] Undefined index: uid D:\files\wamp\www\blog\Application\Home\Controller\MoodController.class.php 第 12 行.
+SQL: SELECT * FROM `blog_mood` WHERE `uid` = 52 ORDER BY addtime desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_review` [ RunTime:0.0170s ]
+SQL: SELECT * FROM `blog_review` WHERE `cateid` = 0 AND `pid` = 1 AND `path` = '0'  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\blog\Application\Runtime\Cache\Home\8a1f092113666de7340ec3842232c21f.php 第 7 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.080004s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.082005s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:04:01+08:00 ] 127.0.0.1 /blog/index.php/Home/Log/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.036003s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.036003s ]
+NOTIC: [2048] Declaration of Home\Controller\LogController::theme() should be compatible with Think\Controller::theme($theme) D:\files\wamp\www\blog\Application\Home\Controller\LogController.class.php 第 9 行.
+NOTIC: [8] Undefined index: uid D:\files\wamp\www\blog\Application\Home\Controller\LogController.class.php 第 15 行.
+SQL: SHOW COLUMNS FROM `blog_log_cate` [ RunTime:0.0160s ]
+SQL: SELECT * FROM `blog_log_cate` WHERE `uid` = 52  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `blog_log` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_log` WHERE ( cid in (38) and flag=0 )  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 139 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 143 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 151 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 156 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 176 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 191 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.065003s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.065003s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-08-19T15:04:03+08:00 ] 127.0.0.1 /blog/index.php/Home/Log/add.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [2048] Declaration of Home\Controller\LogController::theme() should be compatible with Think\Controller::theme($theme) D:\files\wamp\www\blog\Application\Home\Controller\LogController.class.php 第 9 行.
+SQL: SHOW COLUMNS FROM `blog_log_cate` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_log_cate` WHERE `uid` = 52  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001001s ]
+NOTIC: [8] Use of undefined constant GROUP_NAME - assumed 'GROUP_NAME' D:\files\wamp\www\blog\Application\Runtime\Cache\Home\54d6c08644885ee84d247f6b63b9d3eb.php 第 17 行.
+NOTIC: [8] Undefined variable: info D:\files\wamp\www\blog\Application\Runtime\Cache\Home\54d6c08644885ee84d247f6b63b9d3eb.php 第 27 行.
+NOTIC: [8] Undefined variable: info D:\files\wamp\www\blog\Application\Runtime\Cache\Home\54d6c08644885ee84d247f6b63b9d3eb.php 第 29 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.026002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-08-19T15:05:11+08:00 ] 127.0.0.1 /blog/index.php/Home/Log/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+
+[ 2015-08-19T15:05:13+08:00 ] 127.0.0.1 /blog/index.php/Home/Log/add.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2048] Declaration of Home\Controller\LogController::theme() should be compatible with Think\Controller::theme($theme) D:\files\wamp\www\blog\Application\Home\Controller\LogController.class.php 第 9 行.
+SQL: SHOW COLUMNS FROM `blog_log_cate` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_log_cate` WHERE `uid` = 52  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001001s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001001s ]
+NOTIC: [8] Use of undefined constant GROUP_NAME - assumed 'GROUP_NAME' D:\files\wamp\www\blog\Application\Runtime\Cache\Home\54d6c08644885ee84d247f6b63b9d3eb.php 第 17 行.
+NOTIC: [8] Undefined variable: info D:\files\wamp\www\blog\Application\Runtime\Cache\Home\54d6c08644885ee84d247f6b63b9d3eb.php 第 27 行.
+NOTIC: [8] Undefined variable: info D:\files\wamp\www\blog\Application\Runtime\Cache\Home\54d6c08644885ee84d247f6b63b9d3eb.php 第 29 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:45:48+08:00 ] 127.0.0.1 /blog/index.php/Home/Log/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+
+[ 2015-08-19T15:45:51+08:00 ] 127.0.0.1 /blog/index.php/Home/Log/seclist.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2048] Declaration of Home\Controller\LogController::theme() should be compatible with Think\Controller::theme($theme) D:\files\wamp\www\blog\Application\Home\Controller\LogController.class.php 第 9 行.
+SQL: SHOW COLUMNS FROM `blog_log_cate` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_log_cate` WHERE `uid` = 52  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_log` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_log` WHERE ( cid in (38) and auth=3 )  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 139 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 143 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 151 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 156 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 176 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 191 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.034002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.034002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:45:53+08:00 ] 127.0.0.1 /blog/index.php/Home/Record/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `blog_record` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_record` WHERE `uid` = 52  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant oper - assumed 'oper' D:\files\wamp\www\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 15 行.
+NOTIC: [8] Use of undefined constant addtime - assumed 'addtime' D:\files\wamp\www\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 16 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.035002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.036002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:45:56+08:00 ] 127.0.0.1 /blog/index.php/Home/Log/friend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2048] Declaration of Home\Controller\LogController::theme() should be compatible with Think\Controller::theme($theme) D:\files\wamp\www\blog\Application\Home\Controller\LogController.class.php 第 9 行.
+SQL: SHOW COLUMNS FROM `blog_friend` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `blog_friend` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_log_cate` [ RunTime:0.0020s ]
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') )' at line 1
+
+[ 2015-08-19T15:46:03+08:00 ] 127.0.0.1 /blog/index.php/Home/Log/trash.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2048] Declaration of Home\Controller\LogController::theme() should be compatible with Think\Controller::theme($theme) D:\files\wamp\www\blog\Application\Home\Controller\LogController.class.php 第 9 行.
+SQL: SHOW COLUMNS FROM `blog_log_cate` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_log_cate` WHERE `uid` = 52  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `blog_log` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_log` WHERE ( cid in (38) and flag=1 )  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 139 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 143 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 151 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 156 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 176 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 191 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.034002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.034002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:46:06+08:00 ] 127.0.0.1 /blog/index.php/Home/Advice/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0170s ]
+SQL: SELECT * FROM `blog_advice` WHERE `uid` = 52  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: mess D:\files\wamp\www\blog\Application\Runtime\Cache\Home\5a791fb4c4fad1b8692ab68339b89436.php 第 1 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:46:10+08:00 ] 127.0.0.1 /blog/index.php/Home/User/myhome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_message` [ RunTime:0.0210s ]
+SQL: SELECT * FROM `blog_message` WHERE `uid` = 52 AND `pid` = 0 ORDER BY addtime desc LIMIT 4   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.052003s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.052003s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:46:10+08:00 ] 127.0.0.1 /blog/index.php/Home/Mydong/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `blog_record` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `blog_record` WHERE `uid` = 52 ORDER BY addtime desc LIMIT 10   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `blog_mood` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `blog_mood` WHERE `uid` = 52 ORDER BY addtime desc LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: info D:\files\wamp\www\blog\Application\Home\Controller\MydongController.class.php 第 56 行.
+NOTIC: [2] array_merge(): Argument #2 is not an array D:\files\wamp\www\blog\Application\Home\Controller\MydongController.class.php 第 123 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: username D:\files\wamp\www\blog\Application\Runtime\Cache\Home\6fcc33eadbb72cc334effaf83fb52dae.php 第 12 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\files\wamp\www\blog\Application\Runtime\Cache\Home\6fcc33eadbb72cc334effaf83fb52dae.php 第 12 行.
+NOTIC: [8] Undefined index: title D:\files\wamp\www\blog\Application\Runtime\Cache\Home\6fcc33eadbb72cc334effaf83fb52dae.php 第 12 行.
+NOTIC: [8] Undefined index: review D:\files\wamp\www\blog\Application\Runtime\Cache\Home\6fcc33eadbb72cc334effaf83fb52dae.php 第 18 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.032002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:46:33+08:00 ] 127.0.0.1 /blog/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+
+[ 2015-08-19T15:46:33+08:00 ] 127.0.0.1 /blog/index.php/Home/Mydong/friend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `blog_friend` [ RunTime:0.0050s ]
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `blog_record` [ RunTime:0.0040s ]
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ) ORDER BY addtime desc LIMIT 10' at line 1
+
+[ 2015-08-19T15:46:35+08:00 ] 127.0.0.1 /blog/index.php/Home/Index/headupload.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\blog\Application\Runtime\Cache\Home\b617985e5edddc033e65bc247d23b320.php 第 7 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.073004s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.074005s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:46:49+08:00 ] 127.0.0.1 /blog/index.php/Home/Index/uploadImg.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] array_merge(): Argument #2 is not an array D:\files\wamp\www\blog\ThinkPHP\Library\Think\Upload.class.php 第 53 行.
+
+[ 2015-08-19T15:47:06+08:00 ] 127.0.0.1 /blog/index.php/Home/Index/uploadImg.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [2] array_merge(): Argument #2 is not an array D:\files\wamp\www\blog\ThinkPHP\Library\Think\Upload.class.php 第 53 行.
+
+[ 2015-08-19T15:49:44+08:00 ] 127.0.0.1 /blog/index.php/Home/User/myhome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_message` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_message` WHERE `uid` = 52 AND `pid` = 0 ORDER BY addtime desc LIMIT 4   [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.025002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-08-19T15:49:44+08:00 ] 127.0.0.1 /blog/index.php/Home/Mydong/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+
+[ 2015-08-19T15:49:47+08:00 ] 127.0.0.1 /blog/index.php/Home/Log/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+

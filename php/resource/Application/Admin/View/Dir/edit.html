@@ -1,0 +1,25 @@
+<extend name='Dir/add'/>
+<block name='head'>
+<!-- <form class="form-horizontal" action="{:U('Dir/update')}" method="post"> -->
+<form class="form-horizontal" id="upd-dir">
+<input type='hidden' name='id' value="{$info.id}"/>
+</block>
+<block name="pro">
+<foreach name='pro' item='v'>
+<option value="{$key}" <if condition="$info['pid'] eq $key">selected</if>>{$v}</option>
+</foreach>
+</block>
+<block name="main">
+<foreach name='data' item='v'>
+<option value="{$key}" <if condition="$info['aid'] eq $key">selected</if>>{$v}</option>
+</foreach>
+</block>
+<block name='foot'>
+  <button type="button" id="updbtn" class="btn btn-default">修改目录</button>
+  <input type="hidden" value="{:U('Dir/update')}">
+</block>
+<block name='tail'>
+<script>
+clickForm($('#updbtn'), $('#upd-dir'))
+</script>
+</block>

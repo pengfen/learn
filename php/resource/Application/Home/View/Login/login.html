@@ -1,0 +1,33 @@
+<extend name="Layout/mini"/>
+<block name="main">
+<div class="w content">
+    <div class='admin-success'>
+	<!-- 回馈信息 -->
+	</div>
+	<img src="__PUBLIC__/Home/Images/CgQDslU95J6AT-nqAAC5aJ07N3Q55000.jpg"/>
+	
+	<div class="contFr fr">
+	<form action="{:U('Login/checkLogin')}" method="post">
+	    <div class="login-user">
+	        <em class='icon-github-alt'></em>
+	        <!-- 邮箱/手机/用户名 -->
+	    	<input type='text' autofocus name='username' placeholder='请输入您的邮箱/用户名'/>
+	    </div>
+		<div class="login-pass">
+			<em class='icon-key'></em>
+			<input type='password' name='password' placeholder='请输入密码'/>
+		</div>
+		<em class='user-login'>1号店用户登录</em>
+		<em class='icon-sort-up decor-up'></em>
+		<a class='user-regist' href="{:U('Login/reg')}">注册新账号</a>
+		<button class="loginBtn">登&nbsp;录</button>
+	</form>
+
+	<div class='error-text'>
+	<!-- 错误回显 -->
+	</div>
+	</div>
+		
+	</div>
+	<div class="clear"></div>
+</block>

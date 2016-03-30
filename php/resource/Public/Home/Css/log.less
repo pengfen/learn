@@ -1,0 +1,23 @@
+@margin-top:300px; // 项部间隔
+#log{margin-top:@margin-top;padding:10px;
+    #nav{height:50px; line-height: 50px; margin: 0px 20px; border-bottom: 2px solid #f90;
+	    #nav-left{width:700px;float:left; height:48px; line-height: 48px;
+		    a{margin-right: 40px; display:inline-block;
+		    &:hover{color: #f30; border-bottom: 2px solid #f30;}
+		    }
+	    }
+	    #nav-right{width:330px; float:right; height:48px; line-height: 48px;
+		    a{margin-right: 40px; display:inline-block;
+		    &:hover{color: #f30; border-bottom: 2px solid #f30;}
+		    }
+	    }
+    }
+
+    #content{width: 830px; float:left; margin: 0px 20px; padding: 10px 0px;
+        #write-log,#theme-log{padding: 8px 12px; background: #f90; color: #fff; margin:10px 0px; border-radius: 6px; display:inline-block;}
+        #log-cate{width:100%; border: 1px solid #f90; margin: 20px 0px; padding: 0px; list-style:none;
+            li{padding: 5px 10px 5px 20px; border-bottom: 1px solid #f90; font-size: 16px; &:last-child{border-bottom: none;}}
+        }
+    }
+    #cate{margin: 0px 20px; width: 200px; float:right; height:28px; line-height:28px;}
+}

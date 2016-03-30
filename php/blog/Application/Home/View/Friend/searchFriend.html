@@ -1,0 +1,314 @@
+<extend name="Layout/tpl"/>
+
+<block name='main'>
+	<div class="container" style="margin-top:250px;">
+		<div class='row'>
+			<div class="col-md-9">
+				 <ul class="nav nav-tabs" role="tablist">
+			    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">为你推荐</a></li>
+			    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">我的好友</a></li>
+			    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">精确查找</a></li>
+			    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">好友请求</a></li>
+			  </ul>
+
+			  <!-- Tab panes -->
+			  <div class="tab-content container" style="margin:10px 0px;">
+			    <div role="tabpanel" class="tab-pane active" id="home">
+			    <style type="text/css">
+				#recomend,ul{
+					list-style:none;
+					margin:0;
+					padding:0;
+				}
+				#recomend li{
+					float:left;
+					padding-right:20px;
+				}
+				#recomend li ul li{
+					float:none;
+					
+				}
+				.userlist{
+					width:150px;
+					height:220px;
+					text-align: center;
+					padding-right:10px; 
+				}
+				.list li{
+					float: left;
+					padding: 20px 20px 0 0;
+				}
+			    </style>
+			    <ul id='recomend'>
+								
+			    	<volist name='list' id='vo'>
+			    		<li>
+			    		<div class="userlist">
+			    			<ul>
+
+			    				<li>
+			    					<img src='__ROOT__/Avatar/{$vo.src}'/>
+			    				</li>
+			    				<input type="hidden" value="{:U('Visitor/addVisitor')}" id='visitor_url'>
+			    				<input type="hidden" value="{$vo.id}" id='v_{$vo.id}'>
+			    				
+			    				<li >
+			    				<!--<a href='__ROOT__/index.php/Home/User/myhome/id/{$vo.id}'>-->
+			    				<a id='visitor_{$vo.id}' href='__ROOT__/index.php/Home/User/myhome/id/{$vo.id}'>
+
+			    				{$vo.username}</a>
+			    				</li>
+			    				
+			    				<li>{$vo.department}</li>
+			    				<input type="hidden" value="{:U('Notice/add')}" name='h_url'>
+			    				<script type="text/javascript">
+			    					$(function(){
+			    						$('#u_{$vo.id}').click(function(){
+			    							$.ajax({
+			    								url:$("input[name=h_url]").val(),
+			    								type:'post',
+			    								data:{flag:3,uid:{$vo.id},sid:{$_SESSION['user']['id']},message:'我想加你为好友'},
+			    								success:function(data){
+			    									$('#u_{$vo.id}').html(data).attr('disabled',true);
+			    								},
+			    							})
+
+			    						})
+			    						
+			    					})
+			    				</script>
+			    				<li><button type="button" id='u_{$vo.id}' class="btn btn-success">
+								加为好友
+			    				</button>
+</li>
+			    			</ul>
+			    		
+			    			
+			    		</div>
+							
+			    		
+
+			    		</li>
+			    	</volist>
+
+			    </ul>
+			    </div>
+			    <div role="tabpanel" class="tab-pane" id="profile">
+			    	<ul class="list">
+			    	<volist name='friendlist' id='vo'>
+			    	
+			    		<li><div class="userlist">
+			    		<input type="hidden" id='del_url' value="{:U('Friend/delFriend')}">
+			    					<if condition="$vo['head_img'] eq '' ">
+			    						<img src='__ROOT__/Avatar/default.jpg'/>
+
+			    						<a id='visitor_{$vo.id}' href='__ROOT__/index.php/Home/User/myhome/id/{$vo.uid}'>
+
+			    				{$vo.username}</a>
+
+			    					<else/>
+			    						<img src='__ROOT__/Avatar/{$vo.head_img}'/>
+
+			    						<a id='visitor_{$vo.id}' href='__ROOT__/index.php/Home/User/myhome/id/{$vo.uid}'>
+
+			    				{$vo.username}</a>
+			    					</if>
+			    					<button id='delfriend_{$vo.uid}' class="btn btn-success" >解除好友关系</button>
+			    					</div>
+			    					<script type="text/javascript">
+			    						$(function(){
+			    							$('#delfriend_{$vo.uid}').click(function(){
+			    								$.ajax({
+			    									url:$('#del_url').val(),
+			    									data:{uid:{$vo.uid} },
+			    									type:'post',
+			    									success:function(data){
+			    										$('#delfriend_{$vo.uid}').html(data).attr('disabled',true);
+			    									}
+			    							
+			    								})
+			    							})
+			    						})
+			    					</script>
+			    		</li>
+			    	</volist>
+			    	</ul>
+			    </div>
+<!--找人-->
+				<style type="text/css">
+					#search_result{
+						border: 1px solid #ccc;
+						background: #fff;
+						width: 500px;
+						height: 400px;
+						margin: 25px;
+					}
+				</style>
+				<div role="tabpanel" class="tab-pane" id="messages">
+			    <div class="row">
+			    	<div class="col-md-4">
+			    		  <div class="form-group">
+							    <label for="exampleInputEmail1">用户名</label>
+							    <input type="text" name='username' class="form-control" id="exampleInputEmail1" placeholder="输入您要查找的用户名">
+							  </div>
+							  <div class="form-group">
+							    <label for="exampleInputPassword1">地区</label>
+							    <input type="text" name='department' class="form-control" id="exampleInputPassword1" placeholder="输入地区名称或所在单位">
+							  </div>
+							   <div class="form-group">
+							    <label for="exampleInputPassword1">职业</label>
+							    <input type="text" class="form-control" name='vocation' id="exampleInputPassword1" placeholder="输入您所要查找的职业">
+							  </div>
+							 
+							  <input type="hidden" value="{:U('User/search')}" name='s_url'>
+							  <button type="button" id='search' class="btn btn-default">搜索</button>
+			    	</div>
+			    	<script type="text/javascript">
+			    	//获取所有的图片
+					var imgs = document.getElementsByTagName('img');
+					//遍历(处理第一次没有上传图片)
+					for (var i = 0; i < imgs.length; i ++) {
+						imgs[i].onerror = function(){
+						    this.src = "__ROOT__/Avatar/default.jpg";
+						}
+					}
+			    		$(function(){
+
+			    			$('#search').click(function(){
+			    				$.ajax({
+			    					url:$("input[name=s_url]").val(),
+			    					type:'post',
+			    					
+			    					data:{username:$("input[name=username]").val(),
+			    						  department:$("input[name=department]").val(),
+			    						  vocation:$("input[name=vocation]").val()},
+			    					success:function(data){
+			    						$("#result").val(data);
+			    						var data = eval(data);
+							    		$("#s_result").css('display','block');
+										$("#headimg").attr('src','__ROOT__/Avatar/'+data[0].head_img);
+										$("#username_li").html(data[0].username);
+										$("#department_li").html(data[0].department);
+										$('#f_href').attr('href','__ROOT__/index.php/Home/User/myhome/id/'+data[0].id);
+										$('#s_id').val(data[0].id);
+
+			    					},
+			    					
+			    				
+			    				})
+			    			})
+			    		})
+			    	</script>
+			    	<div class="col-md-6">
+			    
+			    	<style type="text/css">
+						#s_result{
+							display:none;
+							height: 300px;
+							width: 300px;
+							padding: 50px;
+						}
+			    	</style>
+			    	<input type="hidden" id='result'>
+			    		<div id="search_result">
+			    			<div id='s_result'>
+			    				<ul>
+			    				<input type="hidden" id='s_id' >
+			    					<li ><a href="" id='f_href'><img id='headimg' src=''></a></li>
+			    					<li id='username_li'></li>
+			    					<li id='sex_li'></li>
+			    					<li id='department_li'></li>
+			    					<button id='s_addfriend' type="button" >加为好友</button>
+			    				</ul>
+								<script type="text/javascript">
+			    					$(function(){
+			    						$('#s_addfriend').click(function(){
+			    							$.ajax({
+			    								url:$("input[name=h_url]").val(),
+			    								type:'post',
+			    								data:{flag:3,uid:$('#s_id').val(),sid:{$_SESSION['user']['id']},message:'我想加你为好友'},
+			    								success:function(data){
+			    									$('#s_addfriend').html(data).attr('disabled',true);
+			    								},
+			    							})
+
+			    						})
+			    						
+			    					})
+			    				</script>
+
+			    			</div>
+			    		</div>
+			    	</div>
+			    </div>
+
+
+
+
+			    </div>
+<!--找人结束-->
+			    <div role="tabpanel" class="tab-pane" id="settings">
+			    <div class="row">
+
+			    	<div class="col-md-6">
+			    		 <table class="table table-striped" width=400>
+			    	<volist name='msglist' id='vo'>
+			    	
+  						<TBODY>
+  							<TR>
+  								<td>{$vo['name']}</td>
+  								<td>{$vo.message}</td>
+  								<td><input type="button" id='s_{$vo.sid}' class="btn btn-success" 
+					<if condition="$vo[state] eq 1">value='已处理' disabled <else/>value='同意'</if>
+
+					></td>
+  							</TR>
+  						</TBODY>
+					
+				
+					
+
+					
+					<script type="text/javascript">
+						$(function(){
+										   
+										    $('#s_{$vo.sid}').click(function(){
+			    							$.ajax({
+			    								url:$("input[name=m_url]").val(),
+			    								type:'post',
+			    								data:{fid:{$vo.sid},nid:{$vo.id}},
+			    								success:function(data){
+			    									$('#s_{$vo.sid}').val(data).attr('disabled',true);
+			    								},
+			    							})
+			    						})
+										    
+						})
+					</script>
+				
+			    	</volist><input type="hidden" value="{:U('Friend/makefriend')}" name='m_url'>
+				</table>
+			    	</div>
+			    	<div class="col-md-6"></div>
+			    </div>
+
+			   
+			 
+			    </div>
+			  </div>
+			</div>
+			<div class="col-md-3"></div>
+				<script type="text/javascript">
+			$('#myTabs a').click(function (e) {
+			  e.preventDefault()
+			  $(this).tab('show')
+			})
+			
+			</script>
+			  <!-- Nav tabs -->
+			 
+
+	</div>
+	</div>
+
+</block>

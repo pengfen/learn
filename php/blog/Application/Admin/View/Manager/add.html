@@ -1,0 +1,50 @@
+<extend name='Layout/index'/>
+<block name="resource">
+    <link href="__PUBLIC__/Admin/Css/managerAdd.css" rel='stylesheet'>
+	<script src="__PUBLIC__/Admin/Js/managerAdd.js"></script>
+</block>
+<block name='main'>
+	<div class="container containerDiv">
+		<div class="row">
+			<div class='col-md-2'></div>
+			<div class="col-md-8">	
+				<form action="{:U('Manager/insert')}" method="post" id="myform">
+					<div class="form-group">
+						<div class='int'>
+							<lable for='username'>用 &nbsp;户 &nbsp;名：</lable>
+							<input type='text' id='username' class='required' name='username' placeholder="请输入真实姓名"/>
+						</div>
+						<script> var url="{:U('Manager/checkEmail')}" </script>
+						<div class='int'>
+							邮 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;箱：
+							<input type='text' id='email' class='required' name='email' placeholder="请输入邮箱"/>
+						</div>
+						<div class='int'>
+							职 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位：
+								&nbsp;&nbsp;
+								<select name='rid'>
+									<volist name='list' id='vo'>
+										<option value={$vo.rid}>{$vo.name}</option>
+									</volist>
+								</select>
+						</div>
+						<div class='int'>
+							密 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：
+							<input type='password' id='password' name='password' class='required'
+							placeholder='密码6-12位'>
+						</div>
+						<div class='int'>
+							确认密码：
+							<input type='password' id='repassword' name='repassword' class='required' placeholder='两次密码一致'>
+						</div>
+						<div class='sub'>
+							<button class='btn btn-primary addButton' id="send">添&nbsp; 加</button>
+
+						</div>
+					</div>
+				</form>
+		</div>
+		<div class="col-md-2"></div>
+		</div>
+	</div>
+</block>

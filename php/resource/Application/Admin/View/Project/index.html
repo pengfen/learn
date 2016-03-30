@@ -1,0 +1,54 @@
+<extend name='Layout/index'/>
+<block name='resource'>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/apeng.css"/>
+</block>
+<block name='main'>
+<div id="add">
+    <a href="javascript:void(0)">添加项目记录</a>
+    <input type='hidden' value="{:U('Project/add')}"/>
+    <a href="{:U('Project/index')}">返回项目记录列表</a>
+</div>
+<div class='admin-mess'>{$_GET['mess']}</div>
+<div id = 'right' class="col-md-10">
+	<table class="table table-striped">
+	    <thead>
+	    	<tr>
+	    		<th>编号</th>
+	    		<th>项目名</th>
+	    		<th>开始时间</th>
+	    		<th>结束时间</th>
+	    		<th>操作</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    	<foreach name='info' item='v'>
+	    	<tr style="height:35px; line-height: 35px; overflow:hidden;">
+	    		<td>{$key + 1}</td>
+	    		<td>
+	    		    <a class="detail" href="javascript:void(0)">{$v.name}</a>
+	    			<input type="hidden" value="{:U('Project/detail', array('id'=>$v[id]))}">
+	    		</td>
+	    		<td>{:date('Y-m-d H:i:s', $info[starttime])}</td>
+	    		<td>{:date('Y-m-d H:i:s', $info[endtime])}</td>
+	    		<td>
+	    			<a class="detail" href="javascript:void(0)">详情</a>
+	    			<input type="hidden" value="{:U('Project/detail', array('id'=>$v[id]))}">
+	    			<a href="{:U('Dir/index', array('pid'=>$v[id],'name'=>$v[name]))}">后台目录列表</a>
+	    			<!-- <a href="javascript:void(0)">前台目录列表</a> -->
+	    			<a href="{:U('Assoc/index', array('pid'=>$v[id]))}">目录关联列表</a>
+	    			<a class="upd" href="javascript:void(0);">修改</a>
+				  	<input type="hidden" value="{:U('Project/edit', array('id'=>$v[id]))}"/>
+				  	<a href="{:U('Project/delete', array('id'=>$v[id]))}">删除</a>
+	    		</td>
+	    	</tr>
+	    	</foreach>
+	    	<tr><td colspan="5" id='page'><if condition="$count neq ''">共有 {$count} 条记录 {$page}<else />没有数据</if></td></tr>
+	    </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+	click($('#add a'));  // 动态加载添加界面模板
+	click($('.upd'));    // 动态加载修改界面模板
+	click($('.detail')); // 动态加载详情界面
+</script>
+</block>

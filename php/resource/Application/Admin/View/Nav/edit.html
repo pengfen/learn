@@ -1,0 +1,20 @@
+<extend name="Nav/add"/>
+<block name="head">
+<!-- <form class="form-horizontal" action="{:U('Assoc/insert')}" method="post"> -->
+<form class="form-horizontal" id="upd-nav">
+<input type="hidden" name="id" value="{$info.id}"/>
+</block>
+<block name="bid">
+<foreach name="data" item="v">
+<option value="{$key}" <if condition="$info['bid'] eq $key">selected</if>>{$v}</option>
+</foreach>
+</block>
+<block name="foot">
+<button type="button" id="updbtn" class="btn btn-default">修改导航</button>
+<input type="hidden" value="{:U('Nav/update')}"/>
+</block>
+<block name='tail'>
+<script type="text/javascript">
+	clickForm($('#updbtn'), $('#upd-nav'));
+</script>
+</block>

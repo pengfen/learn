@@ -1,0 +1,51 @@
+<extend name='Layout/index'/>
+<block name='resource'>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/apeng.css"/>
+</block>
+<block name='main'>
+<div id="add">
+    <a href="javascript:void(0)">添加技术方向</a>
+    <input type='hidden' value="{:U('Direct/add')}"/>
+    <a href="{:U('Direct/index')}">返回技术方向列表</a>
+</div>
+<div class='admin-mess'>{$_GET['mess']}</div>
+<div id = 'right' class="col-md-10">
+	<table class="table table-striped">
+	    <thead>
+	    	<tr>
+	    		<th>编号</th>
+	    		<th>技术方向名</th>
+	    		<!-- <th>表结构名</th>
+	    		<th>表备注</th> -->
+	    		<th>操作</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    	<foreach name='info' item='v'>
+	    	<tr style="height:35px; line-height: 35px; overflow:hidden;">
+	    		<td>{$key + 1}</td>
+	    		<td>
+	    		    <a class="detail" href="javascript:void(0)">{$v.name}</a>
+	    			<input type="hidden" value="{:U('Direct/detail', array('id'=>$v[id]))}">
+	    		</td>
+	    		<!-- <td style="width:400px; height:35px; line-height: 35px; overflow:hidden;">{$v.struct}</td>
+	    		<td style="width:200px; height:35px; line-height: 35px; overflow:hidden;">{$v.note}</td> -->
+	    		<td>
+	    			<a class="detail" href="javascript:void(0)">详情</a>
+	    			<input type="hidden" value="{:U('Direct/detail', array('id'=>$v[id]))}">
+	    			<a class="upd" href="javascript:void(0);">修改</a>
+				  	<input type="hidden" name="" value="{:U('Direct/edit', array('id'=>$v[id]))}"/>
+				  	<a href="{:U('Direct/delete', array('id'=>$v[id]))}">删除</a>
+	    		</td>
+	    	</tr>
+	    	</foreach>
+	    	<tr><td colspan="5" id='page'><if condition="$count neq ''">共有 {$count} 条记录 {$page}<else />没有数据</if></td></tr>
+	    </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+	click($('#add a'));  // 动态加载添加界面模板
+	click($('.upd'));    // 动态加载修改界面模板
+	click($('.detail')); // 动态加载详情界面
+</script>
+</block>

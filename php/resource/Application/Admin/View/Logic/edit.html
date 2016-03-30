@@ -1,0 +1,16 @@
+<extend name="Logic/add"/>
+<block name='head'>
+<form class="form-horizontal" id="upd-logic">
+<input type="hidden" name="id" value="{$info.id}"/>
+</block>
+<block name='main'></block>
+<block name='foot'>
+<button type="button" class="btn btn-default" id='updbtn'>修改方法逻辑</button>
+<input type="hidden" value="{:U('Logic/update')}"/>
+</block>
+
+<block name='tail'>
+<script>
+clickForm($('#updbtn'), $('#upd-logic'));
+</script>
+</block>

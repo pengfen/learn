@@ -1,0 +1,5 @@
+创建blog 数据库
+create database blog
+
+将817_blog.sql 文件拷入到blog 数据库中
+ 

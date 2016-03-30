@@ -1,0 +1,28 @@
+
+ .containerDiv{
+	margin-top:30px;
+}
+.containerDiv input{
+width:300px;
+}
+.sub{
+	font-family: '微软雅黑';
+	font-size:28px;
+	text-align: center;
+}
+.int{
+
+	height:38px;
+	font-size:18px;
+	font-family: "微软雅黑";
+	color:#286090;
+}
+#myform{
+	background-image:url("../Images/1.jpg");
+	margin:10px;
+	padding:20px;
+	box-shadow: 2px 2px 3px 3px #ccc;
+}
+#myform input{
+	border:none;
+}

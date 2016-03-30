@@ -1,0 +1,42 @@
+<extend name="Layout/index"/>
+<block name="main">
+<div class="w mt20">
+    <div class="fl mt20" id="uc-silder">
+        <div class="uc-info">
+            <div class="fl uc-img">
+                <img src="__PUBLIC__/Home/Images/01.jpg" width="100%" height="100%" />
+            </div>
+            <div class="fl" style="padding: 4px 0px 4px 20px;">
+                <div class="uc-name">用户名</div>
+                <div class="uc-voc">用户职位</div>
+                <div class="uc-set"><a href="{:U('UserSetting/index')}">用户设置</a></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+
+        <div class="uc-sign">
+        	<strong>个人签名</strong>
+        </div>
+        <div class="fl uc-credit">
+            <span>0</span>
+            <div>学分</div>
+        </div>
+        <div class="fl uc-exprience">
+        	<span>0</span>
+            <div>经验</div>
+        </div>
+        <div class="clear"></div>
+        
+        <div class="fl mt20" id="uc-set-silder">
+        <foreach name="data" item="v">
+        <a href="javascript:void(0);" class="nav">{$v['name']}</a>
+        <input type="hidden" value="{:U($v['href'])}">
+        </foreach>
+    </div>
+
+    </div>
+    <div class="fl mt20" id="uc-content">
+    	加载内容
+    </div>
+</div>
+</block>

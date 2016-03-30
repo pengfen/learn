@@ -1,0 +1,44 @@
+<div>
+	<ul style="list-style:none;">
+		<li>项目名 {$name}</li>
+		<li>{$info.name}</li>
+		<li>|--- {$info.controller}</li>
+		<foreach name='method' item='v'>
+		<li>|------ 
+		    <a href="javascript:void(0);" class="method">{$v}</a>
+		    <input type="hidden" value="{:U('Logic/detail', array('controller'=>$info[controller], 'action'=>$v, 'pid'=>$pid, 'name'=>$name))}">
+		</li>
+		</foreach>
+		<if condition="$info['model'] neq ''">
+			<li>|--- {$info.model}</li>
+			<foreach name='mod' item='mv'>
+			<li>|------ {$mv}</li>
+		    </foreach>
+		</if>
+		<if condition="$info['template'] neq ''">
+			<li>|--- 模板</li>
+			<foreach name='template' item='tv'>
+			<li>|------ {$tv}</li>
+			</foreach>
+		</if>
+		<if condition="$assoc neq ''">
+			<li>|--- 表名</li>
+			<li>|------ {$assoc.name}</li>
+			<li>|--- 表结构</li>
+			<li>|------ {:nl2br($assoc[struct])}</li>
+			<li>|--- 备注</li>
+			<li>|------ {:nl2br($assoc[note])}</li>
+		</if>
+		<if condition="$info['note'] neq ''">
+			<li>|--- 备注</li>
+			<li>|------ {$info.note}</li>
+		</if>
+		<if condition="$info['des'] neq ''">
+			<li>|--- 描述</li>
+			<li>|------ {$info.des}</li>
+		</if>
+	</ul>
+</div>
+<script>
+	click($('.method'));
+</script>

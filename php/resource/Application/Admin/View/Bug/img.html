@@ -1,0 +1,30 @@
+<form class="form-horizontal" action="{:U('Bug/updateImg')}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="{$info.id}"/>
+    <div class="form-group">
+        <label for="tablename" class="col-sm-2 control-label">Bug 名</label>
+        <div class="col-sm-8">{$info.name}</div>
+    </div>
+    <div class="form-group">
+        <label for="tablename" class="col-sm-2 control-label">bug 图</label>
+        <div class="col-sm-8">
+            <img src="__PUBLIC__/{$info['image']}"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="tablename" class="col-sm-2 control-label">修改后的 bug 图</label>
+        <div class="col-sm-8">
+            <input type="file" class="form-control" name='image' id="tablename" placeholder="请输入bug 名">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-8">
+        <block name='foot'>
+        <button type="submit" class="btn btn-default" id='addbtn'>修改bug</button>
+        <!-- <input type="hidden" value="{:U('Bug/updateImg')}"/> -->
+        </block>
+        </div>
+    </div>
+</form>
+<script>
+    //clickForm($('#addbtn'), $('#add-bug'));
+</script>

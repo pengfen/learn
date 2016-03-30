@@ -1,0 +1,43 @@
+<extend name='Layout/index'/>
+<block name='resource'>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/apeng.css"/>
+</block>
+<block name='main'>
+<div id = 'right' class="col-md-10">
+	<table class="table table-striped">
+	    <thead>
+	    	<tr>
+	    		<th>编号</th>
+	    		<if condition="$name neq ''">
+	    		<th>用户名</th>
+	    		</if>
+	    		<th>说说内容</th>
+	    		<th>添加时间</th>
+	    		<th>状态</th>
+	    		<th>操作</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    	<foreach name='info' item='v'>
+	    	<tr>
+	    		<td>{$v.id}</td>
+	    		<if condition="$name neq ''">
+	    		<td>{$name}</td>
+	    		</if>
+	    		<td>{$v.content}</td>
+	    		<td>{:date('Y-m-d H:i:s', $v[addtime])}</td>
+	    		<td><if condition='$v[state] eq 0'>启用<else />禁用</if></td>
+	    		<td>
+	    			<a class="update" href="javascript:void(0)">修改</a>
+	    			<input type="hidden" name="" value="{:U('User/edit', array('id'=>$v[id], 'state'=>$v['state'], 'name'=>$name))}" />
+	    		</td>
+	    	</tr>
+	    	</foreach>
+	    	<tr><td colspan="5" id='page'><if condition="$count neq '0'">共有 {$count} 条记录 {$page}<else />没有数据</if></td></tr>
+	    </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+	click($('.update'));
+</script>
+</block>

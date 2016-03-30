@@ -1,0 +1,35 @@
+[ 2015-09-21T20:37:06+08:00 ] 127.0.0.1 /resource/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000057s ]
+INFO: [ app_init ] --END-- [ RunTime:0.121333s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.038703s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.038950s ]
+SQL: SHOW COLUMNS FROM `resource_business_logic` [ RunTime:0.7285s ]
+SQL: SELECT * FROM `resource_business_logic` LIMIT 1   [ RunTime:0.0375s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000133s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000375s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.1150s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.1343s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000109s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.320941s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009265s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009564s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.025209s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.025421s ]
+NOTIC: [8] Use of undefined constant image - assumed 'image' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 26 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.035266s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009564s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000042s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000453s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.014693s ]
+INFO: [ app_end ] --END-- [ RunTime:0.014854s ]
+

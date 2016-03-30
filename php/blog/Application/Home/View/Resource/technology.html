@@ -1,0 +1,68 @@
+<script type="text/javascript">
+	//点击下载调用此自定义函数
+	function load($id){	
+	    var $url="{:U('Resource/download')}";
+		$.ajax({
+			url:$url,
+			data:{id:$id},
+			success:function(demo){
+				if(demo){
+					var path=$('#test').attr('data')+'/Uploads/'+demo;
+					location.href = path;
+				 }else{
+				 	alert('您的积分不够，请分享资源！');	 
+				 }	
+			}
+		});
+	}
+</script>
+<div id='test' data="__ROOT__"></div>
+<h1 class="label label-info">技术共享</h1><br/><br/>
+<!--author:lishuo;time:2015-8-2-->
+<volist name="data" id="vo">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">题目：{$vo.header}
+				&nbsp;&nbsp;<span class="badge">{$vo.score}</span> 
+				<small><span>&nbsp;&nbsp;&nbsp;&nbsp;分享者:{$vo.username} &nbsp; 分享时间:{:date('Y-m-d',$vo['addtime'])} &nbsp;下载: {$vo.download} 次</span></small>
+			</h3>
+		</div>
+		<div class="panel-body">
+			简介：{:htmlspecialchars_decode($vo['main'])}
+			<nav>
+			  <ul class="pager" style="margin:0px">  
+			    <li class="next"><a><button onclick="load({$vo.id})">下载 <span aria-hidden="true">&rarr;</span></button></a></li>
+			  </ul>
+			</nav>
+		</div>
+	</div>
+</volist>
+<center>
+	<nav>
+		<ul class="pagination">
+			<li>
+				<a href="#" aria-label="Previous">
+					<span aria-hidden="true"><<</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">1</a>
+			</li>
+			<li>
+				<a href="#">2</a>
+			</li>
+			<li>
+				<a href="#">3</a>
+			</li>
+			<li>
+				<a href="#">4</a>
+			</li>
+			<li>
+				<a href="#" aria-label="Next">
+					<span aria-hidden="true">>></span>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</center>
+

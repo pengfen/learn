@@ -1,0 +1,69 @@
+<li class="green" id="message">
+	<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+		<i class="icon-envelope icon-animated-vertical"></i>
+		<span class="badge badge-success"></span>
+	</a>
+
+	<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close" id="message-ul">
+		<li class="dropdown-header">
+			<i class="icon-envelope-alt"></i>
+		</li>
+	</ul>
+</li>
+<script type="text/javascript">
+var $url = "{:U('Index/message')}";
+var setting = {
+	url:$url,
+	dataType:'json',
+	success:function(data){
+		//$('#message-ul').remove($("li:gt(1)")); 
+		$('#message-ul li:gt(0)').empty(); // 清除上一次加载的所有的li 用empty 而不能用remove
+		$len = data.length;
+		if ($len) {
+			$('#message a:first').children('span').text($len);
+		    $('#message ul:first').children('li:first').text($len + " 条消息");
+		    for (var i = 0; i < $len; i ++) {
+				if (i == 3) {
+					break; // 只显示三条记录
+				}
+				$id = data[i].id;
+				//console.log($id);
+				$url = "__MODULE__/Advice/detail/id/" + parseInt($id);
+				//console.log($url);
+				$title = data[i].title;
+				// $date = new Date();
+				// $date = $date - data[i].addtime;
+				// $hours = $date.getHours();
+				// $min = $date.getMinutes();
+				// $sec = $date.getSeconds();
+				// console.log($hours);
+				$li = "<li><a href='javascript:void(0);' class='send-message'><span class='msg-body'><span class='msg-title'><span class='blue'>"+ $title +"</span></span></span></a><input type='hidden' value='"+ $url +"'/></li>";
+				$('#message ul').append($li);
+			}
+			click($('.send-message'));
+			$url = "__MODULE__/Advice/read/flag/" + parseInt(1); 
+		    $li = "<li><a href='"+ $url +"'>查看所有消息<i class='icon-arrow-right'></i></a></li>";
+		    //alert($('#message-ul li:eq(1)'));
+		    $('#message ul').append($li);
+		} else {
+			$li = "<li>暂无消息</li>";
+			$('#message ul').append($li);
+		}
+		setTimeout(function(){$.ajax(setting)}, 2000);
+		// $len = data.length;
+		// $('#message a:first').children('span').text($len);
+		// $('#message ul:first').children('li:first').text($len + " 条消息");
+		// $('#message').text('');
+		//$('#message').text(data);
+		// <li><a href="#">
+		// <img src="assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+	    // <span class="msg-body"><span class="msg-title">
+		// <span class="blue">Alex:</span>不知道写啥 ...</span>
+		// <span class="msg-time"><i class="icon-time"></i>
+		// <span>1分钟以前</span></span></span></a></li>
+		
+		// <li><a href="inbox.html">查看所有消息<i class="icon-arrow-right"></i></a></li>
+	}
+}
+$.ajax(setting);
+</script>

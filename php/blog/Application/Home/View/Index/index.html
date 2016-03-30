@@ -1,0 +1,299 @@
+ <extend  name='Layout/tpl'/>
+ <block name='style'>
+   <style>
+      body{
+        background: #fff;
+      }
+      .font_style{
+        color: #fff;
+      }
+      #user_head{
+        height:180px;
+       
+      }
+      #shuoshuo{
+        margin-top: 10px;
+        border: 0px solid #ccc;
+        height: 128px;
+        padding:5px;
+      }
+      .myactive{
+        background: #9c3;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Css/featured_slider.css"  /> 
+    <script type='text/javascript' src='__PUBLIC__/Home/Js/jquery.min.js'></script> 
+        <script type="text/javascript"> 
+    $(window).load(function() {
+        $('#slider').nivoSlider({
+
+        controlNav:false,
+            effect:'random', //Specify sets like: 'fold,fade,sliceDown'
+            animSpeed:500, //Slide transition speed
+        captionOpacity:0.9,
+            directionNav:true, //Next &amp; Prev
+        controlNav:true, // 1,2,3... navigation
+        pauseTime: 3000, // How long each slide will show
+        directionNavHide: true,
+            pauseOnHover:true //Stop animation while hovering
+        });
+    });
+    </script> 
+    <script type='text/javascript' src="__PUBLIC__/Home/Js/jquery.nivo.slider.js"></script> 
+
+
+ </block>
+ <block name='banner'>
+    <div class="" style="margin-top:20px;">
+      <div class="featured_slider"> 
+      <div id="featured_slider_bg" class="featured_slider_pattern"> 
+      <div id="slider-wrapper"> 
+        <div id="slider" class="nivoSlider"> 
+                <a href="#" title="Featured Slide" target="_blank"><img src="__PUBLIC__/Home/Images/1.jpg" alt=""  title="来畅享玩冒险"  /> </a> 
+                    <a href="#" title="Slide With Caption" target="_blank"><img src="__PUBLIC__/Home/Images/2.jpg" alt=""  title="来畅享看奇闻 "  /> </a> 
+                    <a href="#" title="Aenean sagittis aliquam leo ut aliquet" target="_blank"><img src="__PUBLIC__/Home/Images/3.jpg" alt=""  title="来畅享品美食"  /> </a> 
+                    <a href="#" title="Lorem Ipsum" target="_blank"><img src="__PUBLIC__/Home/Images/4.jpg" alt=""  title="来畅享看美女"  /> </a>
+                  </div> 
+                  <div class="slider_border"></div> 
+        </div> 
+      </div> 
+    </div>
+ </div> 
+
+ </block>
+
+
+
+
+
+
+
+
+<block name='main'>
+<!--banner-->
+ 
+  <!--end banner-->
+<style type="text/css">
+  #user_head{
+       
+        width:150px;
+        height:150px;
+        position:relative;
+      }
+      #cp{
+        border:1px solid #ccc;
+        width:150px;
+        height:150px;
+        background:#fc0;
+        position:absolute;
+        display:none;
+        text-decoration: middle;
+        text-align: center;
+        padding: 50px 0;
+      }
+      #head_img{
+        position:absolute;
+      }
+
+</style>
+
+<script>
+    $(function(){
+    $('#user_head').mouseenter(function(){
+       $('#cp').slideDown().css('z-index',1).css('opacity','0.5');;
+    })
+
+     $('#user_head').mouseleave(function(){
+       $('#cp').slideUp().css('z-index',1).css('opacity','0.5');;
+    })
+
+    })
+    
+    </script>
+
+      <!--内容 main-->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2" id='con_left'>
+        <div class="row " >
+          <div class="col-md-12" id='user_head'>
+
+          <div id="cp"><a href="{:U('Index/headupload')}" style="color:#000"><b>编辑头像</b></a></div>
+          <img src="__ROOT__/Avatar/{$src}" alt="..." class="img-circle" id='head_img' width=150/>
+          
+          </div>
+          <div class="col-md-12" style='margin-top:5px;'>
+<div class="panel panel-default">
+  <div class="panel-heading">经验成长值</div>
+  <div class="panel-body">
+    {$user['experience']}
+  </div>
+</div>
+      </div>
+          <style type="text/css">
+          .list-group a{
+              cursor: pointer;
+              text-decoration: none;
+
+          }
+          </style>
+           <div class="col-md-12" id=''>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <span class="glyphicon glyphicon-ok-circle"></span>
+                 <a href="{:U('User/editInfo')}">资料编辑</a>
+                </li>
+                <li class="list-group-item">
+                  <span class="glyphicon glyphicon-user"></span>
+                  好友动态
+                </li>
+                <li class="list-group-item">
+                  <span class="glyphicon glyphicon-eye-open"></span>
+                  与我相关
+                </li>
+                <li class="list-group-item">
+                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                 我的收藏
+                </li>
+                <li class="list-group-item">
+                  <span class="glyphicon glyphicon-th-large"></span>
+                 应用中心
+                </li>
+                <li class="list-group-item">
+                  <span class="glyphicon glyphicon-heart"></span>
+                  特别关心
+                </li>
+                
+              </ul>
+           </div>
+        </div>
+       
+      </div>
+      <div class="col-md-7">
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="nav nav-tabs">
+              <li role="presentation" class="active"><a href="#">新鲜事</a></li>
+              <li role="presentation"><a href="{:U('Mood/index')}">说说</a></li>
+              <li role="presentation"><a href="{:U('Log/index')}">日志</a></li>
+              <li role="presentation"><a href="{:U('Album/index')}">相册</a></li>
+              <li role="presentation"><a href="{:U('Message/index')}">留言板</a></li>
+            
+              <li role="presentation"><a href="{:U('Resource/index')}">资料库</a></li>
+            </ul>
+          </div>
+          <div class="col-md-12">
+            <div  class="panel panel-default">
+            <div class="panel-body">
+              <textarea class="form-control" rows="3" id='mood_content'>说点什么吧</textarea>
+              <script type="text/javascript">
+                  $(function(){
+                    $('#btn_shuo').click(function(){
+                     
+                      $.ajax({
+                        url:$('#addmood').val(),
+                        data:{content:$('#mood_content').val(),uid:{$_SESSION['user']['id']}},
+                        type:'post',
+                        success:function(data){
+                               alert(data);
+                        }
+                       
+                      })
+                    })
+                  })
+              </script></div>
+              <div class="panel-footer"> <button type="button" class="btn btn-default btn-sm" id='btn_shuo' >发表</button></div>
+             
+              <input type="hidden" id='addmood' value='{:U('Mood/addMood')}'>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+           <div class="panel panel-default" id="friend-dong">
+            
+
+          </div>
+          </div>
+
+        </div>
+        <script type="text/javascript">
+            $url = "{:U('Mydong/friend')}";
+            $.ajax({
+              url:$url,
+              success:function(data){
+                $('#friend-dong').html(data);
+              }
+            });
+            
+        </script>
+
+        
+      </div>
+      <div class="col-md-3">
+      <div class="row">
+        <div class="col-md-12" >
+          <div>
+            <div class="panel panel-default">
+              <div class="panel-heading">最近来访&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
+              <a href="#" class="navbar-link"></a>
+              </div>
+              <div class="panel-body">
+                      <style type="text/css">
+                      #visitor {
+                        margin-left: -20px;
+                      }
+                       #visitor li{
+                        list-style: none;
+                        margin: 0px;
+                        float: left;
+                        padding: 10px;
+                       }
+                     </style>
+        <ul id='visitor'> 
+        <volist name='vlist' id='vo'>
+            <li>
+             
+              <img src='__ROOT__/Avatar/{$vo.head}' width="40" /><br>
+              <a href='__ROOT__/index.php/Home/User/myhome/id/{$vo.visitor}'>{$vo.username}</a>
+          </li>      
+        </volist>
+      </ul>
+      </div>
+    </div>
+          </div>
+         
+       
+        </div>
+        <div class="col-md-12" >
+          <div class="panel panel-default">
+            <div class="panel-heading">站点公告</div>
+            <div class="panel-body">
+              <ul class="list-group" >
+              <volist name='newslist' id='vo'>
+                <li class="list-group-item">
+                  <a href="__ROOT__/index.php/Home/News/index/newsid/{$vo.id}.html">{$vo.title}</a>
+                </li>
+              </volist>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        </div>
+
+      </div>
+
+    </div>
+    
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container">
+    <ul>
+      
+    </ul>
+  </div>
+</nav>
+  </div>   
+  </block>   
+  </body>
+</html>

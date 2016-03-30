@@ -1,0 +1,221 @@
+<extend name='Layout/tpl'/>
+<block name='style'>
+<style type="text/css">
+	.main{
+	margin-top:235px;
+	}
+	.btn-log, #write-log, #theme-log {
+	  padding: 8px 12px;
+	  background: #f90;
+	  color: #fff;
+	  margin: 10px 5px 10px 0px;
+	  border-radius: 6px;
+	  display: inline-block;
+	}
+</style>
+</block>
+<block name='main'>
+	<div class="row main">	
+		<div class="col-md-12">
+			<ul class="nav nav-tabs" style="margin: 10px 0px">
+	          <li  ><a href="{:U('User/myhome')}">我的动态</a></li>
+	          <li role="presentation"><a href='{:U('Mood/index')}'>说说</a></li>
+	          <input id='mood_url' type='hidden' value="{:U('Mood/showMoodListById')}">
+	          <li role="presentation"><a href="{:U('Log/index')}">日志</a></li>
+	          <li role="presentation"><a href="{:U('Album/index')}">相册</a></li>
+	          <li role="presentation"><a href="{:U('Message/index')}">留言板</a></li>
+	          <!-- <li  id='userinfo'><a>个人档</a></li>
+	          <input id='userinfo_url' type='hidden' value="{:U('User/info')}"> -->
+	          <li role="presentation"><a href="{:U('Resource/index')}">资料库</a></li>
+	        </ul>
+		</div>
+		<div class="col-md-12">
+			<div class="col-md-3">
+				<div class="panel panel-default">
+				    <div class="panel-heading">欢迎光临我的空间</div>
+				    <div class="panel-body">
+				    	<ul class="list-group">
+					 	    <li class="list-group-item">
+					 	        <if condition="$flag neq 1">
+			        	        <a href="{:U('Log/index')}">我的日志</a>
+			        	        <else />
+					        	<a href="{:U('Log/index')}">他的日志</a>
+					        	</if>
+					        </li>
+					        <if condition="$flag neq 1">
+					 	    <li class="list-group-item">
+					        	<a href="{:U('Log/seclist')}">私密日志</a>
+					 	    </li>
+					 	    </if>
+					 	    <li class="list-group-item">
+					 	    	<a href="javascript:void(0);" id="record">生活记录</a>
+			        	        <input type="hidden" value="{:U('Record/index')}"/>
+					 	    </li>
+					 	    <li class="list-group-item">
+					 	    	<if condition="$flag neq 1">
+					        	<a href="javascript:void(0);" id='friend-log'>好友日志</a>
+					        	<else />
+					        	<a href="javascript:void(0);" id='friend-log'>他的好友日志</a>
+					        	</if>
+					        	<input type="hidden" value="{:U('Log/friend')}"/>
+					 	    </li>
+					 	    <if condition="$flag neq 1">
+					 	    <li class="list-group-item">
+					        	<!-- <a href=''>草稿箱</a> -->
+					        	<a href="{:U('Log/trash')}">回收站</a>
+					        	
+					 	    </li>
+					 	    <li class="list-group-item">
+					 	    	<a href="javascript:void(0);" id='advice'>建议</a>
+			        	        <input type="hidden" value="{:U('Advice/index')}"/>
+					 	    </li>
+					 	    </if>
+					    </ul>
+				    </div>
+		        </div>
+
+		        <div class="panel panel-default">
+				<div class="panel-heading">日志分类</div>
+					<div class="panel-body">
+					
+			        <ul class="list-group">
+			            <li class="list-group-item" id="cate">
+			                <h4>日志分类 
+					            <if condition="$flag neq 1">
+					            <a href="javascript:void(0);" style="float:right">管理</a>
+					            <input type='hidden' value="{:U('LogCate/index')}"/>
+					            </if>
+					        </h4>
+			            </li>
+			            <foreach name='list' item='v'>
+				    	<li class="list-group-item">
+				    		{$v.name}<span style='float:right;'>({$v.total})</span>
+				    	</li>
+			    	    </foreach>
+			    	</ul>
+					</div>  
+		        </div>
+			</div>
+			<div class="col-md-8">
+				<div class="panel panel-default">
+					<div class="panel-heading">{$title}</div>
+						<div class="panel-body" id="content">
+						<if condition="$flag neq 1">
+				    	<a href='javascript:void(0);' id='write-log'>写日志</a>
+				    	<input type="hidden" value="{:U('Log/add')}"/>
+				    	<!-- <a href='javascript:void(0);' id='theme-log'>模板日志</a>
+				    	<input type="hidden" value="{:U('Log/theme')}"/> -->
+				    	</if>
+				    	<ul class="list-group">
+				    	    <foreach name='log' item='lv'>
+				    	    <li class="list-group-item" style="position:relative;list-style:none;">
+				    	    <a href="javascript:void(0);" class="detail">{$lv.title}</a><input type="hidden" value="{:U('Log/detail', array('id'=>$lv[id]))}" /><span style='float:right;'>{:date('Y-m-d H:i:s', $lv[addtime])} (0/{$lv.views}) <if condition="$flag neq 1"><a href='javascript:void(0)' class="update">编辑</a><input type="hidden" value="{:U('Log/edit', array('id'=>$lv[id]))}">
+				    		    <a class="dropdown" >
+			                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style='color:'><b>更多</b> <span class="caret"></span></a>
+			                    <ul class="dropdown-menu" style="position:absolute; top:30px; left:538px">
+					                <if condition="$trash eq 1">
+					                <li><a href="javascripd:void(0)" class="delete-log">删除日志</a><input type="hidden" value="{:U('Log/delete', array('id'=>$lv[id],'trash'=>$trash))}"/></li>
+					                <else />
+					                <li><a href="javascripd:void(0)" class="delete-log">删除日志</a><input type="hidden" value="{:U('Log/delete', array('id'=>$lv[id]))}"/></li>
+					                </if>
+					                <li><input type='hidden' value="{:U('Log/updAuth', array('id'=>$lv[cid]))}"/><a href="javascript:void(0)" class='set-auth'>设置权限</a><input type="hidden" value="{$lv.auth}"/></li>
+					                <li><a href="javascript:void(0)" class="set-cate">修改分类</a><input type="hidden" value="{:U('Log/updCate', array('id'=>$lv[id]))}" /></li>
+					                <li><a href="javascript:void(0)" class='secret-log'>转为私密日志</a><input type='hidden' value="{:U('Log/secret', array('id'=>$lv[id]))}"/></li>
+					              </ul>
+			                    </a></if></span>
+				    	    </li>
+				    	    </foreach>
+				    	</ul>
+						</div>  
+					</div>
+				</div>
+				<div id='cover' style="position:absolute; left:0px; top:0px; width:100%; height: 100%; background:rgba(0,0,0,0.3); z-index: 1; display:none;">
+	            </div>
+	            <div id='upd-auth' style="position:absolute; left: 350px; top:200px; width: 482px; height:150px; z-index:2; background:red; display:none; border-radius:6px; padding:20px;">
+			        <h3 style="margin: 0px; margin-bottom: 10px;">权限设置</h3>
+			        <form id='auth-form' action="1.html">
+			        <input type="radio" name='auth' value="0"/> 公开
+			        <!-- <input type="radio" name='auth' value="1"/> 好友可见
+			        <input type="radio" name='auth' value="2"/> 指定好友可见 -->
+			        <input type="radio" name='auth' value="3"/> 仅自己可见<br/>
+			        <button class="btn-log">确定</button><button class="btn-log" type="reset">取消</button>
+			        </form>
+			    </div>
+			    <div id='upd-cate' style="position:absolute; left: 350px; top:200px; width: 482px; height:150px; z-index:2; background:red; display:none; border-radius:6px; padding:20px;">
+			        <h3>修改分类</h3>
+			        <form id='cate-form' action="">
+			        <select name='cid'>
+			            <foreach name='list' item='v'>
+			        	<option value="{$v.id}">{$v.name}</option>
+			        	</foreach>
+			        </select>
+			        <button class="btn-log">确定</button><button class="btn-log" type="reset">取消</button>
+			        </form>
+			    </div>
+
+			</div>
+		</div>
+		<script type="text/javascript">
+		    $(function(){
+		    	$('.set-auth').click(function(){
+		    		var $value = $(this).next('input')[0].value; // 获取日志当前权限
+		    		// var $str = $value.split('/');
+		    		// $value = $str[0];
+		    		// var $id = $str[1];
+		    		$url = $(this).prev('input')[0].value;
+		    		$('#auth-form').attr('action', $url) ;
+		    		//alert($url);
+		    		$length = $(':input[name=auth]').length; 
+		    		for(var i = 0; i < $length; i ++) {
+		    			$val = $(':input[name=auth]')[i].value; // 获取选取项中的值
+		    			if ($value == $val) {
+		    				$(':input[name=auth]')[i].checked = true;
+		    			}
+		    		}
+		    		$('#cover').slideDown(1000);
+		    		$('#upd-auth').show();
+		    		$(':input[type=reset]').click(function(){
+		    			$('#upd-auth').hide();
+		    			$('#cover').slideUp(1000);
+		    		});
+		    	});
+		    	$('.set-cate').click(function(){
+		    		var $url = $(this).next('input')[0].value; // 获取修改日志分类的操作方法
+		    		$('#cate-form').attr('action', $url) ;
+		    		$('#cover').slideDown(1000);
+		    		$('#upd-cate').show();
+		    		$(':input[type=reset]').click(function(){
+		    			$('#upd-cate').hide();
+		    			$('#cover').slideUp(1000);
+		    		});
+		    	});
+		    	// click($('#userinfo')); // 个人档
+		    	click($('#cate a')); // 日志分类管理异步加载
+		    	click($('#write-log')); // 写日志异步加载
+		    	click($('#theme-log')); // 模板日志异步加载
+		    	click($('.update')); // 编辑日志
+		    	click($('.delete-log')); // 删除日志
+		    	click($('.secret-log')); // 转换为私密日志
+		    	click($('.detail')); // 日志详情
+		    	click($('#friend-log')); // 好友日志
+		    	click($('#record')); // 生活记录
+		    	click($('#advice')); // 建议列表
+		    	function click(click){
+		    		click.click(function(){
+		    			$url = $(this).next('input')[0].value;
+		    		    ajax($url);
+		    		});
+		    	}
+		    	function ajax($url){
+		    		$.ajax({
+		    			url:$url,
+		    			success:function(data){
+		    				$('#content').text('');
+		    				$('#content').html(data);
+		    			}
+		    		});
+		    	}
+		    });
+		</script>
+	</div>
+</block>

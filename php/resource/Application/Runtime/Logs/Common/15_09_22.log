@@ -1,0 +1,6 @@
+[ 2015-09-22T22:16:27+08:00 ] 127.0.0.1 /resource/index.php/common/code.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000673s ]
+ERR: 无法加载模块:Common
+

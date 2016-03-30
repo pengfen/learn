@@ -1,0 +1,45 @@
+<extend name='Layout/index'/>
+<block name='resource'>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/apeng.css"/>
+</block>
+<block name='main'>
+<div class='admin-mess'>{$_GET['mess']}</div>
+<div id = 'right' class="col-md-10">
+	<table class="table table-striped">
+	    <thead>
+	    	<tr>
+	    		<th>编号</th>
+	    		<th>标题</th>
+	    		<th>作者</th>
+	    		<th>发布时间</th>
+	    		<th>公开权限</th>
+	    		<th>操作</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    	<foreach name='info' item='v'>
+	    	<tr>
+	    		<td>{$v.id}</td>
+	    		<td>{$v.title}</td>
+	    		<td>{$name}</td>
+	    		<td>{:date('Y-m-d H:i:s', $v[addtime])}</td>
+	    		<td><if condition='$v[auth] eq 0'>所有人可见<elseif condition='$v[auth] eq 1' />仅好友可见<elseif condition='$v[auth] eq 2' />指定好友可见<else />仅自己可见</if></td>
+	    		<td>
+	    			<a class="upd" href="javascript:void(0);">查看详情</a>
+				  	<input type="hidden" name="" value="{:U('Log/detail', array('id'=>$v[id], 'name'=>$name, 'cate'=>$cate))}"/>
+				  	<if condition="$v['flag'] eq 1">
+				  	<a href="javascript:void(0)">已删除</a>
+				  	<else />
+				  	<a href="{:U('Log/delete', array('id'=>$v[id], 'name'=>$name, 'cate'=>$cate))}">删除</a>
+				  	</if>
+	    		</td>
+	    	</tr>
+	    	</foreach>
+	    </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+	// 动态加载查看详情界面模板
+	click($('.upd'));
+</script>
+</block>

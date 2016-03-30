@@ -1,0 +1,41 @@
+<ul class="list-group">
+<foreach name='info' item='v'>
+<li class="list-group-item">
+	<p>
+	    <a href="javascript:void(0);" class="detail">{$v.title}</a>
+	    <input type="hidden" value="{:U('Log/detail', array('id'=>$v[id]))}" />
+	    <span>于 {:date('Y-m-d H:i:s', $v['issuetime'])} 发布</span>
+	</p>
+	<span>阅读({$v.views})</span>
+	<!-- 原创:{$username} -->
+</li>
+</foreach>
+</ul>
+<script>
+    click($('.detail')); // 建议列表
+	function click(click){
+		click.click(function(){
+			$url = $(this).next('input')[0].value;
+		    ajax($url);
+		});
+	}
+	function ajax($url){
+		$.ajax({
+			url:$url,
+			success:function(data){
+				clearTimeout($timer);
+				$('#content').text('');
+				$('#content').html(data);
+			}
+		});
+	}
+    var $url = "{:U('Log/friend')}";
+	var setting = {
+		url:$url,
+		success:function(data){
+			$('#content').text('');
+	    	$('#content').append(data);
+		}
+	};
+	var $timer = setTimeout(function(){$.ajax(setting)}, 2000);
+</script>
