@@ -1,0 +1,16 @@
+[ 2015-08-12T19:56:04+08:00 ] 192.168.80.199 /shop/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000640s ]
+
+[ 2015-08-12T19:56:07+08:00 ] 192.168.80.199 /shop/index.php/Home/Program/index/id/328
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000558s ]
+
+[ 2015-08-12T19:56:12+08:00 ] 192.168.80.199 /shop/index.php/Home/Program/showlist/id/333
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000585s ]
+
+[ 2015-08-12T19:56:14+08:00 ] 192.168.80.199 /shop/index.php/Home/Program/detail/id/80
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000672s ]
+

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>商城管理系统</title>
+		<link rel="stylesheet" type="text/css" href="{$smarty.const.__ROOT__}/Public/css/admin.css">
+	</head>
+	<body class='bgimg'>
+	    <div class="main-header">正在为角色 <span style='color:red;'>{$name}</span> 分配权限</div>
+
+	    <form action="{$smarty.const.__SELF__}" method="post">
+	    <div class="distribute">
+	    	<ul>
+		    {foreach $pinfo as $pk => $pv}
+		    	<li class='plist'>
+		    	    <label>
+		    	    	<input type='checkbox' name='authname[]' value="{$pv.id}" {if in_array($pv.id, $auth_ids_arr)} checked="checked" {/if} /> {$pv.name}
+		    	    </label>
+		    		<ul>
+		    		{foreach $sinfo as $sk => $sv}
+		    		    {if $sv.pid == $pv.id}
+		    		    <li class="slist">
+		    		    	<input type='checkbox' name='authname[]' value="{$sv.id}" {if in_array($sv.id, $auth_ids_arr)} checked="checked" {/if}/> {$sv.name}
+		    		    	<ul>
+	    		    		{foreach $tinfo as $tk => $tv}
+	    		    		    {if $tv.pid == $sv.id}
+	    		    		    <li class="tlist">
+	    		    		    	<input type='checkbox' name='authname[]' value="{$tv.id}" {if in_array($tv.id, $auth_ids_arr)} checked="checked" {/if}/> {$tv.name}
+	    		    		    </li>
+	    		    		    {/if}
+	    		    		{/foreach}
+		    		    	</ul>
+		    		    </li>
+		    		    {/if}
+		    		{/foreach}
+		    		</ul>
+		    	</li>
+		    {/foreach}
+		    </ul>
+		</div>
+		<div class="clear"></div>
+		<input type='submit' class="submitbtn disbtn" value="分配权限" />
+	    </form>
+	    
+	</body>
+</html>

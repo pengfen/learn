@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>商城管理系统</title>
+		<link rel="stylesheet" type="text/css" href="{$smarty.const.__ROOT__}/Public/css/admin.css">
+	</head>
+	<body bgcolor="#004288">
+		<ul class="menu">
+	    {foreach $pinfo as $pk => $pv}
+		    <li class="block">
+		    	<!--
+			    <a href="../power/index.php?name=权限管理" target="main"><small class='show'>+</small><small class='hidden'>-</small>{$pv.name}</a>-->
+			    <span><small class='show'>+</small><small class='hidden'>-</small>{$pv.name}</span>
+			    <ul class="box">
+			    {foreach $sinfo as $sk => $sv}
+			        {if $sv.pid == $pv.id}
+			        	<li>
+			        		<a href="{$smarty.const.__MODULE__}/{$sv.cont}/{$sv.action}" target="main"><small>></small>{$sv.name}</a>
+			        	</li>
+			        {/if}
+			    {/foreach}
+		    	</ul>
+			</li>
+		{/foreach}
+		</ul>
+	</body>
+</html>

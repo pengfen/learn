@@ -1,0 +1,1661 @@
+[ 2015-06-07T09:52:22+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.037002s ]
+
+[ 2015-06-07T09:52:27+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T09:52:27+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T09:52:27+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T09:52:27+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.005001s ]
+
+[ 2015-06-07T09:53:00+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.033002s ]
+
+[ 2015-06-07T09:55:53+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.011001s ]
+
+[ 2015-06-07T09:56:00+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T09:56:03+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:05:31+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.011001s ]
+
+[ 2015-06-07T10:05:32+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:05:32+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:05:32+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:05:32+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:05:34+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:05:36+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:06:06+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:08:25+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.010000s ]
+
+[ 2015-06-07T10:08:33+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T10:08:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:12:38+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:12:39+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:12:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:12:58+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:13:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.114007s ]
+
+[ 2015-06-07T10:18:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.010000s ]
+
+[ 2015-06-07T10:18:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:18:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:18:06+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:18:06+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T10:18:08+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:18:35+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/upd/id/1
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.010000s ]
+ERR: 模板不存在:./APP/Admin/View/Manager/upd.html
+
+[ 2015-06-07T10:28:21+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.011001s ]
+
+[ 2015-06-07T10:28:21+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T10:28:21+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:28:21+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T10:28:21+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T10:28:24+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:28:31+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/mod/id/2
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T10:28:49+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/mod/id/__CONSTROLLER__/upd/id/$info['id']
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:28:59+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:30:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/upd/id/1
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.019001s ]
+
+[ 2015-06-07T10:30:09+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/list.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:30:17+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/mod/id/2
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T10:30:24+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/mod/id/__CONSTROLLER__/upd/id/$info['id']
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:31:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/mod/id/__CONSTROLLER__/upd/id/$info['id']
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.010001s ]
+
+[ 2015-06-07T10:32:09+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/mod/id/2
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:32:17+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/upd/id/$info['id']
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:32:20+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/list.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.003000s ]
+
+[ 2015-06-07T10:32:52+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/mod/id/2
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:32:58+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/upd/id/2
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:33:01+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/list.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T10:33:58+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/mod/id/2
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.010000s ]
+
+[ 2015-06-07T10:34:16+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/mod/id/2
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:34:21+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/upd/id/2
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:35:42+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/upd/id/2
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.010000s ]
+
+[ 2015-06-07T10:35:53+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/mod/id/2
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T10:36:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/upd/id/2
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:37:42+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/mod/id/2
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.011000s ]
+
+[ 2015-06-07T10:37:57+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/upd/id/2
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:38:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/mod/id/2
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T10:38:40+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/upd/id/2
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:51:16+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/mod/id/2
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.010000s ]
+
+[ 2015-06-07T10:51:19+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:51:20+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:51:56+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.009000s ]
+
+[ 2015-06-07T10:51:57+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T10:51:57+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T10:51:57+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:51:57+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:52:00+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-06-07T10:52:00+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-06-07T10:52:01+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:52:03+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T10:52:03+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T11:13:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.011000s ]
+
+[ 2015-06-07T11:13:48+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:13:50+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:15:21+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.011001s ]
+
+[ 2015-06-07T11:15:22+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:15:28+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:15:28+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:15:28+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T11:15:36+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:15:36+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:15:43+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:15:43+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:15:43+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T11:16:00+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.005000s ]
+
+[ 2015-06-07T11:16:00+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:16:01+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:16:58+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.011000s ]
+
+[ 2015-06-07T11:17:01+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T11:17:06+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:17:06+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:21:19+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.011001s ]
+
+[ 2015-06-07T11:21:19+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:22:36+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.055003s ]
+
+[ 2015-06-07T11:22:36+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:22:36+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:25:19+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.016001s ]
+
+[ 2015-06-07T11:25:19+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-06-07T11:25:24+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: Think\Controller:auth方法不存在！
+
+[ 2015-06-07T11:25:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T11:27:58+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.011001s ]
+
+[ 2015-06-07T11:28:36+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.013001s ]
+
+[ 2015-06-07T11:28:36+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:28:36+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-06-07T11:28:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T11:28:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:28:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:29:40+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.010000s ]
+
+[ 2015-06-07T11:29:40+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T11:29:41+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.054003s ]
+
+[ 2015-06-07T11:29:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:29:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:29:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-06-07T11:41:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.011000s ]
+
+[ 2015-06-07T11:41:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-06-07T11:41:06+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T11:41:06+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:41:46+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T11:41:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-06-07T11:42:18+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:42:18+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:42:24+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:42:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002001s ]
+
+[ 2015-06-07T11:42:32+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:42:32+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:42:37+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T11:42:37+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:42:40+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:42:40+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T11:43:30+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.010000s ]
+
+[ 2015-06-07T11:44:01+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T14:47:20+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.010000s ]
+
+[ 2015-06-07T14:47:21+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T14:47:22+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T14:47:23+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.003000s ]
+
+[ 2015-06-07T14:47:30+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T14:47:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T14:48:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T14:48:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T14:48:09+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T14:52:01+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+ERR: Think\Model:assign方法不存在！
+
+[ 2015-06-07T14:52:27+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T14:58:04+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.011001s ]
+
+[ 2015-06-07T14:58:04+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T14:59:15+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T14:59:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T14:59:48+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:00:17+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:00:18+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:00:25+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:00:25+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:00:38+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.04284607921727002
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:00:46+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:00:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:00:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:00:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T15:01:40+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:01:40+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:01:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.7636830802075565
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.004000s ]
+
+[ 2015-06-07T15:01:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:01:55+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:01:55+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:01:55+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:02:00+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:02:00+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.011000s ]
+
+[ 2015-06-07T15:02:38+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:02:39+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:02:59+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:03:46+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:03:46+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:03:56+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.6977310033980757
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:04:02+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:04:02+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:04:13+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.8427825525868684
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:04:19+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:05:00+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.004000s ]
+
+[ 2015-06-07T15:05:00+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:05:12+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:05:14+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:05:33+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:05:44+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:05:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:05:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:05:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:05:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:19:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T15:20:02+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:20:08+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.42944282037205994
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:20:16+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:20:17+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:20:17+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:20:17+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:20:18+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:20:18+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:20:19+08:00 ] 127.0.0.1 /shop/index.php/Admin/Role/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:21:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:21:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T15:21:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.041002s ]
+
+[ 2015-06-07T15:21:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:21:52+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:21:56+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:22:08+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:22:08+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:22:08+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:22:08+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.039003s ]
+
+[ 2015-06-07T15:22:08+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:22:42+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:22:43+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:22:43+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:22:43+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:22:43+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:22:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:23:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-06-07T15:23:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:23:06+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:23:06+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:23:06+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:23:07+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:23:07+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:23:07+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:23:07+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:23:07+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:23:09+08:00 ] 127.0.0.1 /shop/index.php/Admin/Role/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:26:19+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:26:19+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:26:19+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:26:19+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002001s ]
+
+[ 2015-06-07T15:26:21+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:26:23+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:26:34+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:26:35+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T15:26:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:26:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:26:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.043002s ]
+
+[ 2015-06-07T15:26:46+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.096006s ]
+
+[ 2015-06-07T15:26:46+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:26:46+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:26:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:26:49+08:00 ] 127.0.0.1 /shop/index.php/Admin/Role/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:26:50+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:38:57+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.010000s ]
+
+[ 2015-06-07T15:38:59+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:39:21+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:39:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:39:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:39:27+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:39:27+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T15:39:27+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T15:39:29+08:00 ] 127.0.0.1 /shop/index.php/Admin/Log/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:Log
+
+[ 2015-06-07T16:13:27+08:00 ] 127.0.0.1 /shop/index.php/Admin/Log/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.011000s ]
+ERR: 无法加载控制器:Log
+
+[ 2015-06-07T16:13:32+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:13:32+08:00 ] 127.0.0.1 /shop/index.php/Admin/Log/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:Log
+
+[ 2015-06-07T16:13:32+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:13:32+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:13:32+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:13:32+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:13:34+08:00 ] 127.0.0.1 /shop/index.php/Admin/Log/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载控制器:Log
+
+[ 2015-06-07T16:14:02+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:14:03+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:14:03+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:14:03+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:14:03+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.070004s ]
+
+[ 2015-06-07T16:14:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Log/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:14:49+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002001s ]
+
+[ 2015-06-07T16:14:49+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:14:49+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:14:49+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T16:14:49+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:14:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T16:14:53+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T16:15:16+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:18:01+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:18:02+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:18:02+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:18:02+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-06-07T16:18:02+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:18:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Log/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:20:56+08:00 ] 127.0.0.1 /shop/index.php/Admin/Log/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.010001s ]
+
+[ 2015-06-07T16:22:14+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:22:15+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:22:15+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:22:15+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:22:15+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T16:22:17+08:00 ] 127.0.0.1 /shop/index.php/Admin/Log/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T16:26:03+08:00 ] 127.0.0.1 /shop/index.php/Admin/Log/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.028002s ]
+
+[ 2015-06-07T19:43:11+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.064004s ]
+
+[ 2015-06-07T19:44:59+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:45:20+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:45:24+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-06-07T19:45:25+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:45:25+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:45:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:45:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:45:33+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:45:35+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T19:45:46+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:45:52+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:46:48+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:46:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:46:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:46:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:46:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:46:52+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:46:57+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:46:59+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T19:47:17+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T19:47:20+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T19:48:01+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:48:04+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T19:48:28+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:49:04+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:49:21+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:49:24+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:49:24+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:49:24+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T19:49:24+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:49:24+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T19:49:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T19:49:35+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T19:50:25+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:50:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:50:44+08:00 ] 127.0.0.1 /shop/index.php/Admin/Auth/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:51:12+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:51:13+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T19:51:13+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:51:13+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T19:51:13+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T19:51:17+08:00 ] 127.0.0.1 /shop/index.php/Admin/Article/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:Article
+
+[ 2015-06-07T19:53:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:53:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T19:53:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:53:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:53:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:53:59+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:Cate
+
+[ 2015-06-07T19:54:20+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:54:20+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:54:20+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:54:20+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:54:20+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:54:25+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:54:39+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:59:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.011001s ]
+
+[ 2015-06-07T19:59:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T19:59:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T19:59:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T19:59:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:00:00+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:00:02+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T20:01:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:01:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:01:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T20:01:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T20:01:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:01:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 参数错误或者未定义:id
+
+[ 2015-06-07T20:01:58+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 参数错误或者未定义:id
+
+[ 2015-06-07T20:04:25+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:04:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002001s ]
+
+[ 2015-06-07T20:04:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:04:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:04:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:04:33+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:04:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T20:04:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:04:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.019001s ]
+
+[ 2015-06-07T20:04:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:04:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T20:04:57+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:05:01+08:00 ] 127.0.0.1 /shop/index.php/Admin/Log/add/id/0
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T20:05:15+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:05:16+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T20:05:16+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:05:16+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T20:05:16+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:05:20+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:05:23+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/add/id/0
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-06-07T20:07:40+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T20:07:41+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T20:07:41+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:07:41+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:07:41+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:07:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 参数错误或者未定义:id
+
+[ 2015-06-07T20:07:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:07:49+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/add/id/0
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T20:08:29+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 参数错误或者未定义:id
+
+[ 2015-06-07T20:11:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-07T20:11:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:11:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:11:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:11:46+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:11:50+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:11:52+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/add/id/0
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:24:09+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.011001s ]
+
+[ 2015-06-07T20:25:02+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:25:02+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-07T20:25:03+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:25:03+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:25:03+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:25:07+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:25:10+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/add/id/0
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:25:23+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:27:58+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.055003s ]
+
+[ 2015-06-07T20:27:58+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:27:58+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:27:58+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:27:58+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:28:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/showlist
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:28:07+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/add/id/0
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-07T20:28:40+08:00 ] 127.0.0.1 /shop/index.php/Admin/Cate/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+

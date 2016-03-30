@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>商城管理系统</title>
+		<link rel="stylesheet" type="text/css" href="{$smarty.const.__ROOT__}/Public/css/admin.css">
+	</head>
+	<body class="bgimg">
+
+		<form action="{$smarty.const.__CONTROLLER__}/insert" method="post">
+		<ul class="exec">
+		    <li>
+				<span class='add-text'>标题</span>
+				<input type='text' name='tit' placeholder='请输入标题' />
+			</li>
+			<li>
+				<span class='add-text'>提问者</span>
+				<input type='prob' name='text' value="" />
+			</li>
+			<li style="height:200px;">
+				<span class='add-text' style='vertical-align:middle'>内容</span>
+				<textarea cols="60" rows="10" name="content"></textarea>
+			</li>
+			<li>
+				<span class='add-text'></span>
+				<input type='submit' class='submitbtn' value="添加文章" />
+			</li>
+		</ul>
+		</form>
+	</body>
+</html>

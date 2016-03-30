@@ -1,0 +1,233 @@
+[ 2015-07-08T08:32:28+08:00 ] 192.168.80.200 /shop/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.029775s ]
+
+[ 2015-07-08T08:32:32+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/index/id/328
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000597s ]
+
+[ 2015-07-08T08:32:35+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/329
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000546s ]
+
+[ 2015-07-08T08:32:37+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/330
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000613s ]
+
+[ 2015-07-08T08:32:40+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/331
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000544s ]
+
+[ 2015-07-08T08:32:41+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/332
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000642s ]
+
+[ 2015-07-08T08:32:44+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/333
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001200s ]
+
+[ 2015-07-08T08:32:49+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/71
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000550s ]
+
+[ 2015-07-08T08:32:55+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/78
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000571s ]
+
+[ 2015-07-08T08:33:05+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/334
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000568s ]
+
+[ 2015-07-08T08:33:07+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/335
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000585s ]
+
+[ 2015-07-08T08:33:08+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/336
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001223s ]
+
+[ 2015-07-08T08:33:10+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/62
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001186s ]
+
+[ 2015-07-08T08:33:16+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/337
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000575s ]
+
+[ 2015-07-08T08:34:20+08:00 ] 192.168.80.200 /shop/index.php/Admin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000540s ]
+
+[ 2015-07-08T08:34:21+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000542s ]
+
+[ 2015-07-08T08:34:21+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000615s ]
+
+[ 2015-07-08T08:34:33+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000604s ]
+
+[ 2015-07-08T08:34:33+08:00 ] 192.168.80.200 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000541s ]
+
+[ 2015-07-08T08:34:33+08:00 ] 192.168.80.200 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000967s ]
+
+[ 2015-07-08T08:34:33+08:00 ] 192.168.80.200 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000613s ]
+
+[ 2015-07-08T08:34:34+08:00 ] 192.168.80.200 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000606s ]
+
+[ 2015-07-08T08:34:34+08:00 ] 192.168.80.200 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000633s ]
+
+[ 2015-07-08T08:34:36+08:00 ] 192.168.80.200 /shop/index.php/Admin/Article/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001219s ]
+
+[ 2015-07-08T08:35:24+08:00 ] 192.168.80.200 /shop/index.php/Admin/Article/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000793s ]
+
+[ 2015-07-08T08:35:49+08:00 ] 192.168.80.200 /shop/index.php/Admin/power/index.php?name=%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000951s ]
+ERR: 无法加载控制器:power
+
+[ 2015-07-08T08:35:50+08:00 ] 192.168.80.200 /shop/index.php/Admin/Article/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000932s ]
+
+[ 2015-07-08T08:36:13+08:00 ] 192.168.80.200 /shop/index.php/Admin/Article/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001301s ]
+
+[ 2015-07-08T08:36:16+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/337
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000958s ]
+
+[ 2015-07-08T08:36:18+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/334
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000552s ]
+
+[ 2015-07-08T08:36:19+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/81
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000549s ]
+
+[ 2015-07-08T08:36:27+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/333
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000627s ]
+
+[ 2015-07-08T08:36:30+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/334
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000574s ]
+
+[ 2015-07-08T08:36:33+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/333
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001199s ]
+
+[ 2015-07-08T08:36:36+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/343
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000608s ]
+
+[ 2015-07-08T08:36:43+08:00 ] 192.168.80.200 /shop/index.php/Admin/Article/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001185s ]
+
+[ 2015-07-08T08:37:56+08:00 ] 192.168.80.200 /shop/index.php/Admin/Article/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000576s ]
+
+[ 2015-07-08T08:37:59+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/343
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000964s ]
+
+[ 2015-07-08T08:38:00+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/343
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000845s ]
+
+[ 2015-07-08T08:38:02+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/82
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000832s ]
+
+[ 2015-07-08T10:46:17+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/343
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000739s ]
+
+[ 2015-07-08T10:46:20+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/82
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000769s ]
+
+[ 2015-07-08T10:52:35+08:00 ] 192.168.80.200 /shop/index.php/Admin/Article/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000820s ]
+
+[ 2015-07-08T11:44:15+08:00 ] 192.168.80.200 /shop/index.php/Admin/Article/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000655s ]
+
+[ 2015-07-08T11:44:41+08:00 ] 192.168.80.200 /shop/index.php/Admin/Article/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000658s ]
+
+[ 2015-07-08T11:44:44+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/334
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000652s ]
+
+[ 2015-07-08T11:44:45+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/335
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000677s ]
+
+[ 2015-07-08T11:44:47+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/83
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000753s ]
+
+[ 2015-07-08T11:44:52+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/336
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000859s ]
+
+[ 2015-07-08T11:44:54+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/62
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000716s ]
+
+[ 2015-07-08T21:21:29+08:00 ] 192.168.80.200 /shop/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000716s ]
+
+[ 2015-07-08T21:21:32+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/index/id/328
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000621s ]
+
+[ 2015-07-08T21:21:34+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/343
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000630s ]
+
+[ 2015-07-08T21:21:37+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/330
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000625s ]
+
+[ 2015-07-08T21:21:39+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/329
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000622s ]
+
+[ 2015-07-08T21:21:40+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/331
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000632s ]
+
+[ 2015-07-08T21:21:43+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/332
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000636s ]
+
+[ 2015-07-08T21:21:46+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/65
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000707s ]
+

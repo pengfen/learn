@@ -1,0 +1,42 @@
+[ 2016-02-28T10:13:53+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.003000s ]
+
+[ 2016-02-28T10:14:03+08:00 ] 127.0.0.1 /index.php/Home/Program/index/id/328
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: Access denied for user 'root'@'localhost' (using password: YES)
+
+[ 2016-02-28T10:14:18+08:00 ] 127.0.0.1 /index.php/Home/Program/index/id/328
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: Access denied for user 'root'@'localhost' (using password: YES)
+
+[ 2016-02-28T10:17:52+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-02-28T10:28:13+08:00 ] 127.0.0.1 /index.php/Home/Program/index/id/328
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: Access denied for user 'root'@'localhost' (using password: YES)
+
+[ 2016-02-28T10:28:59+08:00 ] 127.0.0.1 /index.php/Home/Program/index/id/328
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: Access denied for user 'root'@'localhost' (using password: YES)
+
+[ 2016-02-28T10:29:01+08:00 ] 127.0.0.1 /index.php/Home/Program/index/id/328
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+ERR: Access denied for user 'root'@'localhost' (using password: YES)
+
+[ 2016-02-28T10:30:38+08:00 ] 127.0.0.1 /index.php/Home/Program/index/id/328
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-02-28T10:30:40+08:00 ] 127.0.0.1 /index.php/Home/Program/showlist/id/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 参数错误或者未定义:id
+

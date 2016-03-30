@@ -1,0 +1,82 @@
+[ 2015-07-30T08:46:53+08:00 ] 192.168.80.200 /shop/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001142s ]
+
+[ 2015-07-30T08:47:05+08:00 ] 192.168.80.200 /shop/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000882s ]
+
+[ 2015-07-30T08:59:44+08:00 ] 192.168.80.200 /shop/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000693s ]
+
+[ 2015-07-30T09:00:14+08:00 ] 192.168.80.200 /shop/index.php/Admin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000689s ]
+ERR: Access denied for user 'root'@'localhost' (using password: NO)
+
+[ 2015-07-30T09:01:38+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/index/id/328
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000681s ]
+ERR: Access denied for user 'root'@'localhost' (using password: NO)
+
+[ 2015-07-30T09:02:13+08:00 ] 192.168.80.200 /shop/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000575s ]
+
+[ 2015-07-30T09:02:14+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/index/id/328
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000632s ]
+
+[ 2015-07-30T09:02:26+08:00 ] 192.168.80.200 /shop/index.php/Admin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000768s ]
+
+[ 2015-07-30T09:02:27+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000573s ]
+
+[ 2015-07-30T09:02:27+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000570s ]
+
+[ 2015-07-30T09:09:39+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/verify?time=0.33188823983073235
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000710s ]
+
+[ 2015-07-30T09:09:39+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/verify?time=0.48790477961301804
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000594s ]
+
+[ 2015-07-30T09:09:40+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/verify?time=0.48522576806135476
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001290s ]
+
+[ 2015-07-30T09:09:40+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/verify?time=0.45572464843280613
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000679s ]
+
+[ 2015-07-30T09:09:41+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/verify?time=0.4884742384310812
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000649s ]
+
+[ 2015-07-30T09:09:42+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/verify?time=0.8362373956479132
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000599s ]
+
+[ 2015-07-30T09:09:42+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/verify?time=0.5197854046709836
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000636s ]
+
+[ 2015-07-30T09:09:43+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/verify?time=0.08887334214523435
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000670s ]
+
+[ 2015-07-30T09:09:44+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/verify?time=0.015058090910315514
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001254s ]
+
+[ 2015-07-30T09:09:44+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/verify?time=0.9451090598013252
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000600s ]
+

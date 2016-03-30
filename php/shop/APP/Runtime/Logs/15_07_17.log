@@ -1,0 +1,148 @@
+[ 2015-07-17T10:29:24+08:00 ] 192.168.80.200 /shop/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000753s ]
+
+[ 2015-07-17T10:29:27+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/index/id/328
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000629s ]
+
+[ 2015-07-17T10:29:29+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/342
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000555s ]
+
+[ 2015-07-17T10:29:31+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/54
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001204s ]
+
+[ 2015-07-17T10:58:03+08:00 ] 192.168.80.200 /shop/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000663s ]
+
+[ 2015-07-17T10:58:15+08:00 ] 192.168.80.200 /shop/index.php/Admin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001212s ]
+
+[ 2015-07-17T10:58:15+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/login.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000578s ]
+
+[ 2015-07-17T10:58:15+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000592s ]
+
+[ 2015-07-17T10:58:28+08:00 ] 192.168.80.200 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000534s ]
+
+[ 2015-07-17T10:58:28+08:00 ] 192.168.80.200 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000552s ]
+
+[ 2015-07-17T10:58:28+08:00 ] 192.168.80.200 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000532s ]
+
+[ 2015-07-17T10:58:28+08:00 ] 192.168.80.200 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000547s ]
+
+[ 2015-07-17T10:58:28+08:00 ] 192.168.80.200 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000622s ]
+
+[ 2015-07-17T10:58:28+08:00 ] 192.168.80.200 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000616s ]
+
+[ 2015-07-17T10:58:32+08:00 ] 192.168.80.200 /shop/index.php/Admin/Article/add
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000575s ]
+
+[ 2015-07-17T10:58:58+08:00 ] 192.168.80.200 /shop/index.php/Admin/Article/insert
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000692s ]
+
+[ 2015-07-17T10:59:03+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/342
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000936s ]
+
+[ 2015-07-17T10:59:13+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/333
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001055s ]
+
+[ 2015-07-17T10:59:15+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/94
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000549s ]
+
+[ 2015-07-17T11:17:00+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/329
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001107s ]
+
+[ 2015-07-17T11:21:42+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/8
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000640s ]
+
+[ 2015-07-17T11:22:16+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/329
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000639s ]
+
+[ 2015-07-17T11:22:19+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/9
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000562s ]
+
+[ 2015-07-17T11:23:06+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/10
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000685s ]
+
+[ 2015-07-17T11:23:19+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/11
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000662s ]
+
+[ 2015-07-17T11:23:29+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/19
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000572s ]
+
+[ 2015-07-17T11:23:40+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/330
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000827s ]
+
+[ 2015-07-17T11:23:42+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/63
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000763s ]
+
+[ 2015-07-17T11:23:54+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/331
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000558s ]
+
+[ 2015-07-17T11:23:57+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/331
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000670s ]
+
+[ 2015-07-17T11:23:58+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/332
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000547s ]
+
+[ 2015-07-17T11:24:01+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/74
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000559s ]
+
+[ 2015-07-17T11:24:10+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/333
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000585s ]
+
+[ 2015-07-17T11:24:15+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/334
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000656s ]
+
+[ 2015-07-17T11:41:22+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/81
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000626s ]
+
+[ 2015-07-17T11:42:13+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/showlist/id/342
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000556s ]
+
+[ 2015-07-17T11:42:14+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/detail/id/93
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001296s ]
+

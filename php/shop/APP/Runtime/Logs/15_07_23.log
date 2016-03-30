@@ -1,0 +1,8 @@
+[ 2015-07-23T11:05:03+08:00 ] 192.168.80.200 /shop/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002377s ]
+
+[ 2015-07-23T11:20:30+08:00 ] 192.168.80.200 /shop/index.php/Home/Program/index/id/328
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000862s ]
+

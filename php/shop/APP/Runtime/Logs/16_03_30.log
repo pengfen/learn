@@ -1,0 +1,49 @@
+[ 2016-03-30T21:05:12+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-03-30T21:05:29+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-03-30T21:05:30+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-03-30T21:05:50+08:00 ] 127.0.0.1 /index.php/Home/Program/index/id/328
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: Unknown database 'shop'
+
+[ 2016-03-30T21:07:16+08:00 ] 127.0.0.1 /index.php/Home/Program/index/id/328
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-03-30T21:07:18+08:00 ] 127.0.0.1 /index.php/Home/Program/showlist/id/329
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-03-30T21:07:19+08:00 ] 127.0.0.1 /index.php/Home/Program/showlist/id/330
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-03-30T21:07:20+08:00 ] 127.0.0.1 /index.php/Home/Program/showlist/id/331
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-03-30T21:07:21+08:00 ] 127.0.0.1 /index.php/Home/Program/showlist/id/332
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-03-30T21:07:22+08:00 ] 127.0.0.1 /index.php/Home/Program/showlist/id/333
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-03-30T21:07:23+08:00 ] 127.0.0.1 /index.php/Home/Program/showlist/id/334
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-03-30T21:07:24+08:00 ] 127.0.0.1 /index.php/Home/Program/showlist/id/335
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+

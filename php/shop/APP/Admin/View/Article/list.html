@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>商城管理系统</title>
+		<link rel="stylesheet" type="text/css" href="{$smarty.const.__ROOT__}/Public/css/admin.css">
+	</head>
+	<body class='bgimg'>
+	<div class="main-header"><a href="{$smarty.const.__MODULE__}/Acticle/add"></a></div>
+	<div class='admin-mess'>{$mess}</div>
+	    <ul class="showlist">
+	        <li class="header">
+	        	<span>编号</span>
+				<span>作者</span>
+				<span>标题</span>
+				<span>日期</span>
+				<span>操作</span>
+	        </li>
+	        {foreach $info as $k => $v}
+	        <li class="text">
+	            <!--<span>{$v.id}</span>-->
+	            <span>{$v@iteration}</span>
+	            <span>{$v.uid}</span>
+	            <span><a href="{$smarty.const.__CONTROLLER__}/detail/id/{$v.id}">{$v.title}</a></span>
+	            <span>{$v.addtime}</span>
+	            <span>
+	            	<a href="{$smarty.const.__CONTROLLER__}/mod/id/{$v.id}">修改</a>
+	            	<a href="{$smarty.const.__CONTROLLER__}/del/id/{$v.id}">删除</a>
+	            </span>
+	        </li>
+	        {/foreach}
+	    </ul>
+	</body>
+</html>

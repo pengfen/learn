@@ -1,0 +1,40 @@
+[ 2015-08-24T14:14:23+08:00 ] 127.0.0.1 /shop/index.php/Home/Program/detail/id/119
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-24T14:15:05+08:00 ] 127.0.0.1 /shop/index.php/Home/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-24T14:15:08+08:00 ] 127.0.0.1 /shop/index.php/Home/Program/index/id/328
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-24T14:15:14+08:00 ] 127.0.0.1 /shop/index.php/Home/Program/showlist/id/345
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-24T14:15:16+08:00 ] 127.0.0.1 /shop/index.php/Home/Program/detail/id/99
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-24T14:16:05+08:00 ] 127.0.0.1 /shop/index.php/Home/Program/detail/id/100
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-24T14:16:33+08:00 ] 127.0.0.1 /shop/index.php/Home/Program/detail/id/101
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-24T14:17:10+08:00 ] 127.0.0.1 /shop/index.php/Home/Program/detail/id/102
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-24T14:17:55+08:00 ] 127.0.0.1 /shop/index.php/Home/Program/detail/id/103
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-24T14:18:22+08:00 ] 127.0.0.1 /shop/index.php/Home/Program/detail/id/104
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+

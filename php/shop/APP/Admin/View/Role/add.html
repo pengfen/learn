@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>商城管理系统</title>
+		<link rel="stylesheet" type="text/css" href="{$smarty.const.__ROOT__}/Public/css/admin.css">
+	</head>
+	<body class="bgimg">
+
+		<form action="{$smarty.const.__CONTROLLER__}/insert" method="post">
+		<ul class="exec">
+			<li>
+				<span class='add-text'>角色名称</span>
+				<input type='text' name='name' placeholder='请输入角色名' value="" />
+				<span class='error-text'></span>
+			</li>
+			<li>
+				<span class='add-text'></span>
+				<input type='submit' class='submitbtn' value="添加角色" />
+			</li>
+		</ul>
+		</form>
+
+	</body>
+</html>

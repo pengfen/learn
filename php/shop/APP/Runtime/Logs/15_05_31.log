@@ -1,0 +1,2321 @@
+[ 2015-05-31T11:31:13+08:00 ] 127.0.0.1 /shop/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: Run Behavior\ParseTemplate [ RunTime:0.004000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001001s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T11:52:25+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.007000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:Index
+
+[ 2015-05-31T11:52:56+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.005000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:Index
+
+[ 2015-05-31T12:01:29+08:00 ] 127.0.0.1 /shop/index.php/Home/Index/index.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+ERR: 非法操作:index.php
+
+[ 2015-05-31T12:01:58+08:00 ] 127.0.0.1 /shop/index.php/Home/Index/index
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: Run Behavior\ParseTemplate [ RunTime:0.004000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-05-31T12:02:44+08:00 ] 127.0.0.1 /shop/index.php/Home/Index/index
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: Run Behavior\ParseTemplate [ RunTime:0.002000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T12:04:28+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:Index
+
+[ 2015-05-31T12:05:23+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.110006s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.110006s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T12:15:11+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+ERR: 模板不存在:./APP/Admin/View/Manager/login.html
+
+[ 2015-05-31T12:15:46+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 模板不存在:./APP/Admin/View/Manager/login.html
+
+[ 2015-05-31T12:15:49+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+ERR: 模板不存在:./APP/Admin/View/Manager/login.html
+
+[ 2015-05-31T12:18:14+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.022001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T12:18:14+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/include/css/style.css
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+ERR: 非法操作:include
+
+[ 2015-05-31T12:18:14+08:00 ] 127.0.0.1 /shop/index.php/Admin/common/code.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.028002s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:common
+
+[ 2015-05-31T12:33:04+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.023001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-05-31T12:33:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/include/css/style.css
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.005000s ]
+ERR: 非法操作:include
+
+[ 2015-05-31T12:33:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/common/code.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:common
+
+[ 2015-05-31T12:35:22+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002001s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.021002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T12:35:23+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/include/css/style.css
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+ERR: 非法操作:include
+
+[ 2015-05-31T12:35:23+08:00 ] 127.0.0.1 /shop/index.php/Admin/common/code.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.010001s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:common
+
+[ 2015-05-31T12:36:08+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.023001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2015-05-31T12:36:08+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/include/css/style.css
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 非法操作:include
+
+[ 2015-05-31T12:36:08+08:00 ] 127.0.0.1 /shop/index.php/Admin/common/code.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:common
+
+[ 2015-05-31T14:40:29+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.006000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.062003s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.062003s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T14:40:29+08:00 ] 127.0.0.1 /shop/index.php/Admin/common/code.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:common
+
+[ 2015-05-31T14:43:27+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.020001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T14:43:27+08:00 ] 127.0.0.1 /shop/index.php/Admin/common/code.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:common
+
+[ 2015-05-31T14:43:57+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.019001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-05-31T14:43:57+08:00 ] 127.0.0.1 /shop/index.php/Admin/common/code.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.012001s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+ERR: 无法加载控制器:common
+
+[ 2015-05-31T14:44:22+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.002001s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.002001s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.020001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T14:44:22+08:00 ] 127.0.0.1 /shop/index.php/Admin/common/code.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:common
+
+[ 2015-05-31T14:45:15+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T14:45:15+08:00 ] 127.0.0.1 /shop/index.php/Admin/common/code.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:common
+
+[ 2015-05-31T14:45:43+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.019002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T14:45:43+08:00 ] 127.0.0.1 /shop/index.php/Admin/common/code.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:common
+
+[ 2015-05-31T14:45:59+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/dologin.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+ERR: 非法操作:dologin.php
+
+[ 2015-05-31T14:46:02+08:00 ] 127.0.0.1 /shop/index.php/Admin/common/code.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:common
+
+[ 2015-05-31T15:34:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.007000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001001s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.062004s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.063004s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T15:34:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:35:35+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.021001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:35:35+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:36:30+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.020001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.002001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T15:36:31+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.012001s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-05-31T15:36:41+08:00 ] 127.0.0.1 /shop/index.php/Admin/common/code.php?time=0.8992823848966509
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:common
+
+[ 2015-05-31T15:36:44+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.003000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:36:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T15:44:28+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.019001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:44:28+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-05-31T15:44:32+08:00 ] 127.0.0.1 /shop/index.php/Admin/common/code.php?time=0.330117444973439
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:common
+
+[ 2015-05-31T15:44:35+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.020001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T15:44:35+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:44:41+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.021001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:44:41+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2015-05-31T15:45:15+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.021001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:45:15+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:45:25+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.019001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T15:45:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:45:36+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:45:37+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:45:50+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.020002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:45:50+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:49:15+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.023002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:49:15+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-05-31T15:49:18+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.8387341634370387
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T15:49:19+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.3399593613576144
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:49:21+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.15047303424216807
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:49:22+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.5768046400044113
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T15:49:27+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.8624042014125735
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:49:30+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.7273194899316877
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:49:34+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.37939134961925447
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:49:41+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.6002485344652086
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:49:43+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.19966498133726418
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T15:49:45+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.5774834621697664
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T16:00:48+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-05-31T16:26:32+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T16:26:40+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.591034s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.593034s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:26:41+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.004000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:26:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.020001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:26:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:26:58+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.5290219176094979
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-05-31T16:27:00+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.7555627399124205
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-05-31T16:27:02+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.38938825903460383
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:27:04+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.23774459632113576
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T16:27:05+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.18420098978094757
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:27:25+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.017001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T16:27:25+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:27:27+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.8397022772114724
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T16:27:29+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.8589320757891983
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:27:31+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.22878208756446838
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T16:27:32+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.6455101335886866
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T16:27:33+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.428051691967994
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T16:27:35+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.7467004044447094
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:27:37+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify?time=0.3645640630275011
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:27:53+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.020001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T16:27:53+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.011000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-05-31T16:27:56+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.001001s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001001s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:27:56+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:33:23+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/dologin.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+ERR: 非法操作:dologin.php
+
+[ 2015-05-31T16:45:12+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002001s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.425024s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.425024s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001001s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:45:13+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/include/css/style.css
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+ERR: 非法操作:include
+
+[ 2015-05-31T16:45:13+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/include/left.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+ERR: 非法操作:include
+
+[ 2015-05-31T16:45:13+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/include/header.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+ERR: 非法操作:include
+
+[ 2015-05-31T16:45:13+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/include/main.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+ERR: 非法操作:include
+
+[ 2015-05-31T16:45:14+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/include/footer.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+ERR: 非法操作:include
+
+[ 2015-05-31T16:57:22+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.030002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.030002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:57:22+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.011001s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.031001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.029001s ]
+
+[ 2015-05-31T16:57:22+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.028002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.032002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:57:23+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.064004s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.065004s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T16:57:23+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.042002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.044002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:57:31+08:00 ] 127.0.0.1 /shop/index.php/Admin/power/index.php?name=%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:power
+
+[ 2015-05-31T16:57:36+08:00 ] 127.0.0.1 /shop/index.php/Admin/power/index.php?name=%E7%AE%A1%E7%90%86%E5%91%98%E5%88%97%E8%A1%A8
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:power
+
+[ 2015-05-31T16:57:37+08:00 ] 127.0.0.1 /shop/index.php/Admin/log/index.php?name=%E7%AE%A1%E7%90%86%E5%91%98%E6%97%A5%E5%BF%97
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:log
+
+[ 2015-05-31T16:57:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.017001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:57:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.034002s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.057003s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.057003s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.072005s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.072005s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:57:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.022001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-05-31T16:57:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002001s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.017001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:57:47+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.023002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-05-31T16:59:50+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.001001s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T16:59:50+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.037002s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.040002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T16:59:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.019001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T16:59:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.151009s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.017001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T16:59:51+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ path_info ] --START--
+INFO: [ path_info ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_begin ] --START--
+INFO: [ view_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.020001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_end ] --START--
+INFO: [ view_end ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.004001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005001s ]
+
+[ 2015-05-31T17:23:53+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:23:53+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-05-31T17:23:53+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:23:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:23:54+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:27:15+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:27:16+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:27:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:27:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:27:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:27:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-05-31T17:27:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:27:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:39:01+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.007000s ]
+
+[ 2015-05-31T17:39:01+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:39:24+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/login
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:39:25+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:39:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.002001s ]
+
+[ 2015-05-31T17:39:26+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:39:35+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:39:35+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/verify
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:39:41+08:00 ] 127.0.0.1 /shop/index.php/Admin/Manager/checklogin
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:39:42+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:39:42+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/head
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.003000s ]
+
+[ 2015-05-31T17:39:42+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/left
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:39:42+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/right
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T17:39:42+08:00 ] 127.0.0.1 /shop/index.php/Admin/Index/foot
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-05-31T21:20:21+08:00 ] 127.0.0.1 /shop/index.php/Admin/logout.php
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.006000s ]
+ERR: 无法加载控制器:logout.php
+

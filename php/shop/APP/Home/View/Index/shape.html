@@ -1,0 +1,147 @@
+<!doctype thml>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>形状</title>
+	<style type="text/css">
+	div{
+		width: 100px;
+		height: 100px;
+		background-color: red;
+		margin: 100px;
+		text-align: center;
+		line-height: 100px;
+	}
+	.box{
+		/* 50% 100px 都可以*/
+		border-radius: 100px; 
+	}
+	.semi-circle{
+		border-radius: 100px 100px 0 0;
+		height: 50px;
+	}
+	.sector{
+		border-radius: 100px 0 0 0;
+	}
+	.arc{
+		/* 先画出弧形 再旋转*/
+		border-radius: 100px 0;
+		-webkit-transform:rotate(45deg);
+		-ms-transform:rotate(45deg);
+		-o-transform:rotate(45deg);
+		-transform:rotate(45deg);
+	}
+	.triangle{
+		border: 10px solid green;
+		width: 0;
+		height: 0;
+		border-left-color: red;
+		border-right-color: green;
+		border-bottom-color: blue;
+		border-top-color: pink;
+	}
+	.arrow{
+		background: none;
+		height: 0;
+		width: 0;
+		border: 50px solid red;
+		border-color: red transparent transparent transparent;
+	}
+	/* After Before 不属于伪类 叫做伪元素 pseudo 希腊语 说谎的 伪元素 虚假的元素 
+	伪类 a:link a:hover div:nth-child(1){}
+	伪元素 before after first-letter first-line
+	自己创建一个元素 用双冒号(推荐)
+	使用before after 时 里面必须写content 属性
+	before 在内容的前面插入
+	after 在内容的后面插入
+	默认的是行内元素 加了浮动或者绝对定位之后 默认转换为行内块*/
+	.rectangle{
+		width: 200px;
+		border-radius: 15px;
+		position: relative;
+	}
+	.rectangle::first-letter{
+		color: white;
+	}
+	.rectangle::before{
+		content: "";
+		width: 0;
+		height: 0;
+		border: 15px solid green;
+		border-color: transparent transparent transparent red;
+		position: absolute;
+		right: -30px;
+		top: 35px;
+	}
+	.heart{
+		width: 100px;
+		height: 150px;
+		background: none;
+		position: relative;
+	}
+	.heart::before, .heart::after{
+		content: "";
+		width: 100%;
+		height: 100%;
+		background-color: red;
+		position: absolute;
+		border-radius: 100px 100px 0 0;
+		-webkit-transform:rotate(-45deg);
+		-ms-transform:rotate(-45deg);
+		-o-transform:rotate(-45deg);
+		-transform:rotate(-45deg);
+	}
+	.heart::after{
+		-webkit-transform:rotate(45deg);
+		-ms-transform:rotate(45deg);
+		-o-transform:rotate(45deg);
+		-transform:rotate(45deg);
+		left: 85px;
+	}
+	.boxF, .boxS, .boxT{
+		margin: 0;
+		visibility: hidden;
+	}
+	.boxF{
+		width: 200px;
+		height: 250px;
+		margin: 200px;
+		background-color: red;
+		transform: rotate(120deg);
+	}
+	.boxF, .boxS{
+		overflow: hidden;
+	}
+	.boxS{
+		width: 100%;
+		height: 100%;
+		background-color: green;
+		transform: rotate(-60deg);
+	}
+	.boxT{
+		width: 100%;
+		height: 100%;
+		background-color: blue;
+		transform: rotate(-60deg);
+		visibility: visible;
+		background-size: cover;
+	}
+	</style>
+</head>
+<body>
+    <div></div>
+	<div class="box">圆形</div>
+	<div class="semi-circle">半圆形</div>
+	<div class="sector">扇形</div>
+	<div class="arc">弧形</div>
+	<div class="triangle"></div>
+	<div class="arrow"></div>
+	<div class="rectangle">特效效果</div>
+	<div class="heart"></div>
+	<div class="boxF">
+		<div class="boxS">
+			<div class="boxT" style="background-image:url(./1.jpg);"></div>
+		</div>
+	</div>
+</body>
+</html>
