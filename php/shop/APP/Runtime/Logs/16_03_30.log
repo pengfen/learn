@@ -47,3 +47,7 @@ INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
 INFO: [ app_init ] --START--
 INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
 
+[ 2016-03-30T21:15:50+08:00 ] 127.0.0.1 /index.php/Home/Program/showlist/id/335
+INFO: [ app_init ] --START--
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
