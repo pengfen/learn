@@ -1,0 +1,133 @@
+    循环
+    循环的类型  for 循环语句  while 循环语句  until 循环语句
+    循环的控制语句 break 和 continue  其工作机制和 Java C 语言等是一样
+
+
+    [root@peng1 shell]# vi for.sh
+    #!/bin/bash
+    #for item in 0 1 2 3 4 5 6 7 8 9
+    for item in {0..10}
+    #for item in {0 .. 10} # 中间不能加空格 否则只会当做元素输出 0 .. 10
+
+    do
+        echo "The current item is : $item "
+    done
+
+    [root@peng1 shell]# chmod u+x for.sh
+    [root@peng1 shell]# ./for.sh
+    The current item is : 0
+    The current item is : 1
+    The current item is : 2
+    The current item is : 3
+    The current item is : 4
+    The current item is : 5
+    The current item is : 6
+    The current item is : 7
+    The current item is : 8
+    The current item is : 9
+
+
+    [root@peng1 shell]# vi for.sh
+    #!/bin/bash
+    #for item in 0 1 2 3 4 5 6 7 8 9
+    for item in {0..10}
+    #for item in {0 .. 10} # 中间不能加空格 否则只会当做元素输出 0 .. 10
+
+    # 输出 0 1 2 ...
+    #do
+    #    echo "The current item is : $item "
+    #done
+
+
+    # 输出 1 + 2 + ... + 10 之和  55
+    #for item in {0..10}
+    #do
+    #    let "sum += item"
+    #done
+
+    #echo "1 + 2 + ... + 10 = $sum"
+
+    # 输出 0 + 2 + 4 + ... + 10 偶数之和  30
+    #for item in {0..10..2}
+    #do
+    #    let "sum += item"
+    #done
+
+    #echo "0 + 2 + ... + 10  = $sum"
+
+    # 输出 1 + 3 + ... + 9 奇数之和  25
+    for item in {1..9..2}
+    do
+        let "sum += item"
+    done
+
+    echo "1 + 3 + ... + 9 = $sum"
+
+
+    # 遍历 1 2 3 4 5
+    [root@peng1 shell]# vi for-num.sh
+    #!/bin/bash
+
+    for i in 1 2 3 4 5
+    do
+        echo $i
+    done
+
+    [root@peng1 shell]# chmod 755 for-num.sh
+    [root@peng1 shell]# ./for-num.sh
+    1
+    2
+    3
+    4
+    5
+
+
+    #!/bin/bash #批量解压缩脚本
+    cd /root/test
+    ls *.tar.gz > ls.log
+    for i in $(cat ls.log)
+    do
+    tar -zxf $i &>/dev/null
+    done
+    rm -rf /lamp/ls.log
+
+    for ((初始值;循环控制条件;变量变化))
+    do
+    程序
+    done
+
+
+    #从1 加到 100
+    #!/bin/bash 
+    s=0
+    for ((i=1;i<=100;i=i+1))
+    do
+    s=$(($s+$i))
+    done
+    echo "The sum of 1+2+...+100 is: $s"
+
+    #!/bin/bash
+    #批量添加指定数量的用户
+    read -p "Please input user name: " -t 30 name
+    read -p "Please input the number of users: " -t 30 num
+    read -p "Please input the password of users: " -t 30 pass
+    if [! -z "$name" -a ! -z "$num" -a ! -z "$pass"]
+    then
+    y=$(echo $num | sed 's/[0-9]//g')
+    if [-z "$y"]
+    then
+    for ((i=1;i<=$num;i=i+1))
+    do
+    for((i=1;i<=$num;i=i+1))
+    do
+    /usr/sbin/useradd $name$i&>/dev/null
+    echo $pass | /usr/bin/passwd --stdin $name$i&>/dev/null
+    done
+    fi
+    fi
+
+    #!/bin/bash
+    for i in $(cat /etc/passwd | grep /bin/bash | grep -v root | cut -d ":" -fl)
+    do
+    userdel -r $i
+    done

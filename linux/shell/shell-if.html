@@ -1,0 +1,75 @@
+    单分支
+    使用 if 基本语法  if ... then ... fi  注意 if 条件判断后如果没有 ";" 则需要把 then 换行, 如果 if 和 then 处于同一行的话 则需要在 then 前面加上 ";"  要终止 if 语句使用 "fi" 即可
+
+    单分支 if 条件语句
+    if [条件判断式]; then
+    程序
+    fi
+
+    或者
+    if [条件判断式]
+    then
+    程序
+    fi
+
+    单分支条件语句需要注意几个点
+    if 语句使用 fi 结尾 和一般语言使用大括号结尾不同
+    [条件判断式] 就是使用 test 命令判断 所以中括号和条件判断式之间必须有空格
+    then 后面跟符合条件之后执行的程序 可以放在 [] 之后 用 ':' 分割 也可以换行驶写入 就不需要 ";" 了
+
+    例子1 判断登录的用户是否 root
+	[root@peng1 shell]# vi if-root.sh
+	#!/bin/bash
+
+	test=$(env | grep "USER" | cut -d "=" -f2)
+	if [ "$test" == root ]
+	then
+	    echo "Current user is root."
+	fi
+
+	[root@peng1 shell]# chmod 755 if-root.sh
+	[root@peng1 shell]# ./if-root.sh
+	Current user is root.
+
+
+    例子2 判断分区使用率
+    #!/bin/bash
+    #统计根分区使用率
+    rate=$(df -h | grep "/dev/sda3" | awk '{print $5}' | cut -d "%" -f1) #把根分区使用率作为变量值赋予变量rate
+
+    if [$rate -ge 80]
+    then 
+    echo "Warning! /dev/sda3 is full!!"
+    fi
+
+
+
+
+    [root@peng1 ~]# mkdir shell
+	[root@peng1 ~]# cd shell
+
+	# 判断输入的值是否大于 10
+	[root@peng1 shell]# vi if.sh
+	#!/bin/bash
+	echo "Please input your content : "
+	read content
+
+	#if [ "$content" -lt 10 ]  # 要么换行 要么加 ";" [] 中加空格会作为指定去执行
+	#then echo "The content is smaller than 10"
+	#fi
+
+	if [ "$content" -lt 10 ]; then echo "The content is smaller then 10"
+	fi
+
+	[root@peng1 shell]# ./if.sh # 权限不够时可以使用 chmod 或使用 bash 来执行
+	-bash: ./if.sh: 权限不够
+	[root@peng1 shell]# bash ./if.sh
+	Please input your content :
+	1
+	The content is smaller than 10
+
+	[root@peng1 shell]# chmod 755 if.sh
+	[root@peng1 shell]# ./if.sh
+	Please input your content :
+	2
+	The content is smaller than 10
