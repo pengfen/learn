@@ -20,6 +20,7 @@ linux
 ===================================
 git git github 相关技术
 commend linux 命令
+shell shell 脚本编辑
 
 java
 ===================================
