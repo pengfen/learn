@@ -1,0 +1,118 @@
+    字符串截取命令
+    cut printf awk sed
+
+
+    cut
+    =====================================================
+    [root@localhost ~]# cut [选项] 文件名
+    -f 列号 提取第几列
+    -d 分隔符 按照指定分隔符分割列 (默认以tab 作为分隔符)
+
+    [root@peng1 ~]# vi /etc/passwd
+    [root@peng1 ~]# grep "/bin/bash" /etc/passwd # 获取 /etc/passwd 文件中 /bin/bash 行记录
+    root:x:0:0:root:/root:/bin/bash
+    mysql:x:27:27:MySQL Server:/var/lib/mysql:/bin/bash
+    [root@peng1 ~]# grep "/bin/bash" /etc/passwd | grep "root" # 从 /bin/bash 行记录中获取带有 root 的行记录
+    root:x:0:0:root:/root:/bin/bash
+    [root@peng1 ~]# grep "/bin/bash" /etc/passwd | grep -v "root" # -v 取反
+    mysql:x:27:27:MySQL Server:/var/lib/mysql:/bin/bash
+    [root@peng1 ~]# cd shell
+    [root@peng1 shell]# vi student.txt
+    id      name    gender  mark
+    1       apeng   f       85
+    2       cao     f       60
+    3       peng    f       70
+    [root@peng1 shell]# cut -f 2 student.txt # 截取第二列
+    name
+    apeng
+    cao
+    peng
+    [root@peng1 shell]# cut -f 2,4 student.txt # 截取第二四列
+    name    mark
+    apeng   85
+    cao     60
+    peng    70
+
+    [root@peng1 shell]# grep "/bin/bash" /etc/passwd | grep -v "root" | cut -f 1 -d ":" # -f 1 截取第一列 -d ":" 以 : 作为分隔符                    
+    mysql
+
+
+    cut 命令的局限 (对于空格分隔的文档可能无效)
+    df -h #人性化显示
+    df -h | cut -f 5
+    df -h | cut -f 1,3 -d " "
+
+    [root@peng1 shell]# df
+    文件系统                 1K-块      已用      可用 已用% 挂载点
+    /dev/sda3             19923216   4294664  14616484  23% /
+    tmpfs                   515396         0    515396   0% /dev/shm
+    /dev/sda1               198337     26376    161721  15% /boot
+    [root@peng1 shell]# df -h
+    文件系统              容量  已用  可用 已用%% 挂载点
+    /dev/sda3              20G  4.1G   14G  23% /
+    tmpfs                 504M     0  504M   0% /dev/shm
+    /dev/sda1             194M   26M  158M  15% /boot
+    [root@peng1 shell]# df -h | cut -f 5
+
+    /dev/sda3              20G  4.1G   14G  23% /
+    tmpfs                 504M     0  504M   0% /dev/shm
+    /dev/sda1             194M   26M  158M  15% /boot
+
+
+
+    printf
+    =====================================================
+    printf 命令
+    printf '输出类型输出格式'　输出内容
+
+    输出类型
+    %ns 输出字符串 n 是数字指代输出几个字符
+    %ni 输出整数 n 是数字指代输出几个数字
+    %m.nf 输出浮点数 m 和 n 是数字 指代输出的整数位数和小数位数 如 %8.2f 代表共输出 8 位数 其中 2 位是小数 6 位是整数
+
+    输出格式
+    \a 输出警告声音
+    \b 输出退格键 也就是 backspace 键
+    \f 清除屏幕
+    \n 换行
+    \r 回车 也就是 enter 键
+    \t 水平输出退格键 也就是 tab 键
+    \v 垂直输出退格键 也就是 tab 键
+
+    [root@peng1 shell]# printf %s 1 2 3 4 5
+    12345[root@peng1 shell]# printf %s %s %s 1 2 3 4 5
+    %s%s12345You have new mail in /var/spool/mail/root
+    [root@peng1 shell]# printf '%s %s %s' 1 2 3 4 5
+    1 2 34 5 [root@peng1 shell]# printf '%s\t%s\t%s\n' 1 2 3 4 5 6
+    1       2       3
+    4       5       6
+
+
+    [root@peng1 shell]# cat student.txt
+    id      name    gender  mark
+    1       apeng   f       85
+    2       cao     f       60
+    3       peng    f       70
+    [root@peng1 shell]# printf '%s\t%s\t%s\t%s\n' $(cat student.txt)
+    id      name    gender  mark
+    1       apeng   f       85
+    2       cao     f       60
+    3       peng    f       70
+
+
+    printf '%s' $(cat student.txt) #不调整输出格式
+    printf '%s\t %s\t %s\t %s\n' $(cat student.txt) #调整格式输出
+
+    在 awk 命令的输出中支持 print 和 printf 命令
+    print print 会在每个输出之后自动加入一个换行符 (linux 默认没有 print 命令)
+    printf printf 是标准格式输出命令　并不会自动加入换行符 如果需要换行 需要手工加入换行符
+
+
+    awk
+    =====================================================
+    参见 shell-awk.html
+
+
+    sed
+    =====================================================
+    参见 shell-sed.html
