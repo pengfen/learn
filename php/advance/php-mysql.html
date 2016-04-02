@@ -1,0 +1,38 @@
+PHP访问MySQL的扩展函数
+=============================================================
+1. PHP访问 MySQL数据库服务器 的流程
+	MySQL采用的是“客户机/服务器”体系结构。可以使用PHP脚本去处理数据库中的数据，则PHP充当了MySQL“客户机”的角色
+	PHP访问MySQL数据库服务器是通过安装相应的扩展模块完成的
+	使用PHP安装的mysql扩展函数，和直接使用客户端软件去访问MySQL数据库服务器，原理及操作步骤是相同的。
+2. 在PHP脚本中操作MySQL数据库
+	2.1 连接MySQL数据库服务器
+		  mysql_connect()
+	2.2 判断是否连接正确
+		  mysql_errno()
+		  mysql_error()
+	2.3 选择数据库
+		  mysql_select_db()
+	2.4 设置字符集
+		  mysql_set_charset()
+		  mysql_query('set names utf8');
+	2.5 准备SQL语句
+	2.6 发送SQL语句到MySQL服务器
+	      mysql_query()
+	2.7 处理结果集
+		  mysql_num_rows()			取得结果集中行的数目
+		  mysql_num_fields()			取得结果集中字段的数目	
+		  
+		  mysql_fetch_array()			 从结果集中取出一个数组 可以是索引也可以是关联可以是混合
+		  mysql_fetch_assoc()		最常用  从结果集中取出一条关联数组 !!!
+		  mysql_fetch_row()			从结果集中取出一条索引数组
+		  mysql_fetch_object()		从结果集中取出对象
+		  
+		  mysql_result()    				从结果集中取出 指定第几行第几列的数据             
+		  mysql_fetch_field()			取出一条字段信息返回数组
+		  
+		  
+		  mysql_affected_rows()   	 取得最近一次与 link_identifier 关联的 INSERT，UPDATE 或 DELETE 查询所影响的记录行数。sql错误返回-1
+		  mysql_insert_id()				 取得上一步 INSERT 操作产生的 ID 
+	2.8 释放结果集资源，关闭数据库连接
+		  mysql_free_result()
+		  mysql_close()

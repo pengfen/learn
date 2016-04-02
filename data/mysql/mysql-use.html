@@ -1,0 +1,22 @@
+1, 删除一个普通用户
+	① 使用root 进入mysql服务器
+		mysql -u root -p
+		密码
+	② 进入 'mysql' 数据库  use mysql;
+	③ 删除user表中的记录  delete from user where User = '';
+	③ 刷新权限  flush privileges;
+2. 修改root 的密码
+	① 使用root 进入mysql服务器
+		mysql -u root -p
+		密码
+	② 进入 'mysql' 数据库  use mysql;
+	③ 修改user表中 root 的密码  update user set Password=password(123456) where User='root';
+	④ 刷新权限
+		flush privileges
+3. 忘记root密码的时候
+	① 关闭 mysql服务
+	② 安全模式 开启mysql服务 mysqld --skip-grant-tables
+	③ root用户登录mysql服务器  mysql -u root
+	④ 修改 mysql数据库 下user表
+	⑤ 加载权限表 FLUSH PRIVILEGES
+	⑥ 退出mysql安全模式 mysqladmin -u root -p shutdown

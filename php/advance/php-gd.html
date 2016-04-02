@@ -1,0 +1,72 @@
+PHP GD库图像处理
+=====================================================================
+1. PHP中GD库的使用
+	1.1 GD简介
+		PHP 不仅限于只产生 HTML 的输出，还可以创建及操作多种不同格式的图像文件。							
+		PHP提供了一些内置的图像信息函数，也可以使用GD函数库创建新图像或处理已有的图像。			
+		目前GD2库支持GIF、JPEG、PNG和WBMP等格式。此外还支持一些FreeType、Type1等字体库。
+			JPEG 	是一种压缩标准的名字，通常是用来存储照片或者存储具有丰富色彩和色彩层次的图像。这种格式使用了有损压缩。
+			PNG 	是可移植的网络图像，对图像采用了无损压缩标准。
+			GIF 		原义是“图像互换格式”，是一种基于LZW算法的连续色调的无损压缩格式 。
+		在PHP中创建一个图像应该完成如下所示的4个步骤：
+			1.创建一个背景图像（也叫画布），以后的操作都基于此背景图像。
+			2.在背景上绘制图像轮廓或输入文本。
+			3.输出最终图形
+			4.释放资源
+	1.2 画布管理
+		imagecreate()											创建基于调色板的画布
+		imagecreatetruecolor()								创建基于真彩的画布
+		imagedestroy() 										销毁图像的资源
+	1.3 设置颜色
+		imagecolorallocate()									为图像分配颜色
+	1.4 生成图像		把图像输出到浏览器上	把图像另存为
+		imagegif()													 把图像输出或另存为gif格式																			
+		imagepng()  												 把图像输出或另存为png格式					
+		imagejpeg()								                 把图像输出或另存为jpeg格式					
+		如果两个参数 就是另存		
+		如果一个参数 就是输出		图像输出 要设置header  如:  header("Content-type:image/jpeg")
+	1.5 绘制图像
+		区域填充: 	imagefill()
+		画点：		imagesetpixel()
+		画线：		imageline()
+		画矩形：	imagerectangle()
+						imagefilledrectangle()
+		多边形：	imagepolygon()
+						imagefilledpolygon()
+		椭圆：		imageellipse()
+						imagefilledellipse()
+		弧线：		imagearc()
+						imagefilledarc()
+	1.6 在图像中绘制文字
+		imagestring()
+		imagesstringup()
+		imagechar()
+		imagecharup()
+		imagettftext()
+
+2. 验证码的绘制和使用
+
+3. PHP图片处理（缩放、裁剪、水印、旋转和翻转）
+	3.1  图片背景管理
+		从指定的图片文件或 URL地址来新建一个图像。
+			imagecreatefrompng()
+			imagecreatefromjpeg()
+			imagecreatefromgif()
+		其他图像处理函数
+			imagesx ()
+			imagesy () 
+			getimagesize ()
+	3.2  图片缩放和裁剪
+			imagecopyresampled()
+			imagecopyresized()
+	3.3  添加图片水印
+			imagecopy()
+			imagecopymerge()
+	3.4  图片旋转和翻转
+			imagerotate()
+			
+			
+			bool imagecopyresampled ( resource $dst_image , resource $src_image , int $dst_x , int $dst_y , int $src_x , int $src_y , int $dst_w , int $dst_h , int $src_w , int $src_h )
+			bool imagecopy 				 ( resource $dst_im , resource $src_im , int $dst_x , int $dst_y , int $src_x , int $src_y , int $src_w , int $src_h )
+			bool imagecopymerge 		 ( resource $dst_im , resource $src_im , int $dst_x , int $dst_y , int $src_x , int $src_y , int $src_w , int $src_h , int $pct )
+			bool imagecopyresized 	 ( resource $dst_image , resource $src_image , int $dst_x , int $dst_y , int $src_x , int $src_y , int $dst_w , int $dst_h , int $src_w , int $src_h )
