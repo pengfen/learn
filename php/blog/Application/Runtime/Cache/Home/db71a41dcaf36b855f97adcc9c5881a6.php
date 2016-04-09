@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo ($title); ?></title>
-    <link href="/blog/Public/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/blog/Public/Home/Js/jquery-2.1.4.min.js"></script>
-    <script src="/blog/Public/Bootstrap/js/bootstrap.min.js"></script>
+    <link href="/Public/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/Public/Home/Js/jquery-2.1.4.min.js"></script>
+    <script src="/Public/Bootstrap/js/bootstrap.min.js"></script>
     <style type="text/css">
 		body{
-			background: url('/blog/Public/Home/Images/bg.jpg') repeat-x;
+			background: url('/Public/Home/Images/bg.jpg') repeat-x;
 			background-position:10px 50px;
 			background-color:#F1E9D6;
 		}
@@ -138,8 +138,8 @@
 				    <br/>
 				    <button class="btn btn-primary">提交</button>
 				</form>
-				<script type="text/javascript" charset="utf-8" src="/blog/Public/Home/Js/ueditor.config.js"></script>
-				<script type="text/javascript" charset="utf-8" src="/blog/Public/Home/Js/ueditor.all.min.js"></script>
+				<script type="text/javascript" charset="utf-8" src="/Public/Home/Js/ueditor.config.js"></script>
+				<script type="text/javascript" charset="utf-8" src="/Public/Home/Js/ueditor.all.min.js"></script>
 				<script type="text/javascript">
 					var ue = UE.getEditor('container');
 				</script>

@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo ($title); ?></title>
-    <link href="/blog/Public/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/blog/Public/Home/Js/jquery-2.1.4.min.js"></script>
-    <script src="/blog/Public/Bootstrap/js/bootstrap.min.js"></script>
+    <link href="/Public/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/Public/Home/Js/jquery-2.1.4.min.js"></script>
+    <script src="/Public/Bootstrap/js/bootstrap.min.js"></script>
     <style type="text/css">
 		body{
-			background: url('/blog/Public/Home/Images/bg.jpg') repeat-x;
+			background: url('/Public/Home/Images/bg.jpg') repeat-x;
 			background-position:10px 50px;
 			background-color:#F1E9D6;
 		}
@@ -159,12 +159,12 @@
 				   	<tbody>
 				   		<tr><td rowspan ="4" width="100"><div class="col-md-1">
 
-				   			<img src='/blog/Avatar/<?php echo ($vo["headimg"]); ?>'/>
+				   			<img src='/Avatar/<?php echo ($vo["headimg"]); ?>'/>
 				   		
 				   		</div></td>
 				   		<td>
 				   		<div class="col-md-11">
-				   			<a  href='/blog/index.php/Home/User/myhome/id/<?php echo ($vo["vid"]); ?>'><?php echo ($vo["username"]); ?></a>
+				   			<a  href='/index.php/Home/User/myhome/id/<?php echo ($vo["vid"]); ?>'><?php echo ($vo["username"]); ?></a>
 				   		</div></td>
 				   		</tr>
 				   		<tr><td><?php echo ($vo["content"]); ?></td></tr>
@@ -178,8 +178,8 @@
 								</style>
 								<table >
 								
-									<tr><td rowspan="2" width='80'><img src='/blog/Avatar/<?php echo ($voc["headimg"]); ?>'/></td><td>
-									<a  href='/blog/index.php/Home/User/myhome/id/<?php echo ($voc["vid"]); ?>'><?php echo ($voc['username']); ?></a>: <?php echo ($voc['content']); ?></td></tr>
+									<tr><td rowspan="2" width='80'><img src='/Avatar/<?php echo ($voc["headimg"]); ?>'/></td><td>
+									<a  href='/index.php/Home/User/myhome/id/<?php echo ($voc["vid"]); ?>'><?php echo ($voc['username']); ?></a>: <?php echo ($voc['content']); ?></td></tr>
 									
 									<tr><td><?php echo date('Y-m-d H:i:s',$voc['addtime']);?></td></tr>
 								</table><?php endforeach; endif; else: echo "" ;endif; ?>

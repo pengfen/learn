@@ -1,0 +1,25 @@
+编写 Java 的 HelloWorld 程序
+
+通过 Eclipse 创建 Java 工程
+创建 Java 的包
+创建 Java 的 Class
+在 Class 的入口方法 main 中编写代码
+
+public class Wel {
+	
+	public static void main(String[] args) {
+	    System.out.println("welcome to java world");
+	}
+}
+
+运行程序
+Run As ---- Java Application
+
+项目下 "bin" 目录下就是 Eclipse 自动帮助我们编译(其实是调用Java安装的bin目录中的"javac"来进行编译的) 的Java 字节码
+
+Java 中所有的操作都是基于 Class 来完成 (Java 8 以前的 Java 版本)
+在 Java 中使用 "public class" 定义的类的名称必须和文件名一致 否则程序无法编译通过
+声明类型的两种基本方式 "public class" 及 "class"  如果使用的只是 "class"  此时类的名称可以和文件的名称不一致
+public static void main(String[] args) 是程序所有功能的起点 (包括并发的多线程的执行)
+变量就是利用声明的方式将内存中的某个内存块保留下来以供程序使用
+第个类型的变量都有最大值 超出最大值会产生溢出 造成程序功能的紊乱 所有操作必须在最大值的范围内进行

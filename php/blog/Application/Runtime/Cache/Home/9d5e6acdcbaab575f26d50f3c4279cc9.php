@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo ($title); ?></title>
-    <link href="/blog/Public/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/blog/Public/Home/Js/jquery-2.1.4.min.js"></script>
-    <script src="/blog/Public/Bootstrap/js/bootstrap.min.js"></script>
+    <link href="/Public/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/Public/Home/Js/jquery-2.1.4.min.js"></script>
+    <script src="/Public/Bootstrap/js/bootstrap.min.js"></script>
     <style type="text/css">
 		body{
-			background: url('/blog/Public/Home/Images/bg.jpg') repeat-x;
+			background: url('/Public/Home/Images/bg.jpg') repeat-x;
 			background-position:10px 50px;
 			background-color:#F1E9D6;
 		}
@@ -148,14 +148,14 @@
 			    			<ul>
 
 			    				<li>
-			    					<img src='/blog/Avatar/<?php echo ($vo["src"]); ?>'/>
+			    					<img src='/Avatar/<?php echo ($vo["src"]); ?>'/>
 			    				</li>
 			    				<input type="hidden" value="<?php echo U('Visitor/addVisitor');?>" id='visitor_url'>
 			    				<input type="hidden" value="<?php echo ($vo["id"]); ?>" id='v_<?php echo ($vo["id"]); ?>'>
 			    				
 			    				<li >
-			    				<!--<a href='/blog/index.php/Home/User/myhome/id/<?php echo ($vo["id"]); ?>'>-->
-			    				<a id='visitor_<?php echo ($vo["id"]); ?>' href='/blog/index.php/Home/User/myhome/id/<?php echo ($vo["id"]); ?>'>
+			    				<!--<a href='/index.php/Home/User/myhome/id/<?php echo ($vo["id"]); ?>'>-->
+			    				<a id='visitor_<?php echo ($vo["id"]); ?>' href='/index.php/Home/User/myhome/id/<?php echo ($vo["id"]); ?>'>
 
 			    				<?php echo ($vo["username"]); ?></a>
 			    				</li>
@@ -197,16 +197,16 @@
 			    	<ul class="list">
 			    	<?php if(is_array($friendlist)): $i = 0; $__LIST__ = $friendlist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><div class="userlist">
 			    		<input type="hidden" id='del_url' value="<?php echo U('Friend/delFriend');?>">
-			    					<?php if($vo['head_img'] == '' ): ?><img src='/blog/Avatar/default.jpg'/>
+			    					<?php if($vo['head_img'] == '' ): ?><img src='/Avatar/default.jpg'/>
 
-			    						<a id='visitor_<?php echo ($vo["id"]); ?>' href='/blog/index.php/Home/User/myhome/id/<?php echo ($vo["uid"]); ?>'>
+			    						<a id='visitor_<?php echo ($vo["id"]); ?>' href='/index.php/Home/User/myhome/id/<?php echo ($vo["uid"]); ?>'>
 
 			    				<?php echo ($vo["username"]); ?></a>
 
 			    					<?php else: ?>
-			    						<img src='/blog/Avatar/<?php echo ($vo["head_img"]); ?>'/>
+			    						<img src='/Avatar/<?php echo ($vo["head_img"]); ?>'/>
 
-			    						<a id='visitor_<?php echo ($vo["id"]); ?>' href='/blog/index.php/Home/User/myhome/id/<?php echo ($vo["uid"]); ?>'>
+			    						<a id='visitor_<?php echo ($vo["id"]); ?>' href='/index.php/Home/User/myhome/id/<?php echo ($vo["uid"]); ?>'>
 
 			    				<?php echo ($vo["username"]); ?></a><?php endif; ?>
 			    					<button id='delfriend_<?php echo ($vo["uid"]); ?>' class="btn btn-success" >解除好友关系</button>
@@ -264,7 +264,7 @@
 					//遍历(处理第一次没有上传图片)
 					for (var i = 0; i < imgs.length; i ++) {
 						imgs[i].onerror = function(){
-						    this.src = "/blog/Avatar/default.jpg";
+						    this.src = "/Avatar/default.jpg";
 						}
 					}
 			    		$(function(){
@@ -281,10 +281,10 @@
 			    						$("#result").val(data);
 			    						var data = eval(data);
 							    		$("#s_result").css('display','block');
-										$("#headimg").attr('src','/blog/Avatar/'+data[0].head_img);
+										$("#headimg").attr('src','/Avatar/'+data[0].head_img);
 										$("#username_li").html(data[0].username);
 										$("#department_li").html(data[0].department);
-										$('#f_href').attr('href','/blog/index.php/Home/User/myhome/id/'+data[0].id);
+										$('#f_href').attr('href','/index.php/Home/User/myhome/id/'+data[0].id);
 										$('#s_id').val(data[0].id);
 
 			    					},

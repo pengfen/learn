@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo ($title); ?></title>
-    <link href="/blog/Public/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/blog/Public/Home/Js/jquery-2.1.4.min.js"></script>
-    <script src="/blog/Public/Bootstrap/js/bootstrap.min.js"></script>
+    <link href="/Public/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/Public/Home/Js/jquery-2.1.4.min.js"></script>
+    <script src="/Public/Bootstrap/js/bootstrap.min.js"></script>
     <style type="text/css">
 		body{
-			background: url('/blog/Public/Home/Images/bg.jpg') repeat-x;
+			background: url('/Public/Home/Images/bg.jpg') repeat-x;
 			background-position:10px 50px;
 			background-color:#F1E9D6;
 		}
@@ -160,7 +160,7 @@
 			  <div class="panel-heading">欢迎光临我的空间</div>
 			  <div class="panel-body">
 			    <p>
-			    	<img src="/blog/Avatar/<?php echo ($head_img); ?>">
+			    	<img src="/Avatar/<?php echo ($head_img); ?>">
 			    </p>
 			  </div>
 

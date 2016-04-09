@@ -3,12 +3,12 @@
     <script id='container' name='content' type="text/plain"></script>
     <button>提交</button>
 </form>
-<script type="text/javascript" charset="utf-8" src="/blog/Public/Home/Js/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="/blog/Public/Home/Js/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/Public/Home/Js/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/Public/Home/Js/ueditor.all.min.js"></script>
 <script type="text/javascript">
 	var ue = UE.getEditor('container');
 	// var ue = UE.getEditor('container',{
-    //         UEDITOR_HOME_URL:'/blog/Public/Baidu/',
+    //         UEDITOR_HOME_URL:'/Public/Baidu/',
     //         serverUrl:'<?php echo U('Home/Edit/upload');?>'
     //     });
     window.onload = function () {
@@ -16,14 +16,14 @@
     window.UEDITOR_CONFIG.savePath= ['upload','upload1'];
     window.UEDITOR_CONFIG.imageUrl="<?php echo U(GROUP_NAME.'/Blog/upload');?>"
     //图片上传提交地址
-    window.UEDITOR_CONFIG.imagePath=" /blog/Uploads/";
+    window.UEDITOR_CONFIG.imagePath=" /Uploads/";
     //图片修正地址，引用了fixedImagePath,
     UE.getEditor('container');
 }
 </script>-->
 
-<script charset="utf-8" src="/blog/Public/Home/Js/ueditor.config.js"></script>
-<script charset="utf-8" src="/blog/Public/Home/Js/ueditor.all.min.js"></script>
+<script charset="utf-8" src="/Public/Home/Js/ueditor.config.js"></script>
+<script charset="utf-8" src="/Public/Home/Js/ueditor.all.min.js"></script>
 标题: <input type='text' name='title' value="<?php echo ($info["title"]); ?>"/>
 <textarea name="dcontent" id="dcont" style="margin:10px 0px;">
 <?php echo ($info["content"]); ?>

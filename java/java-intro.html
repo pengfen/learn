@@ -1,0 +1,47 @@
+一 Java 语言精要介绿及其重大价值
+称霸企业级开发 基于企业应用场景的解决方案非常多 推出各种框架 如 Spring myBatis Struts2 JBoss
+称霸移动端开发 以 Android 为核心 (Dalvik ART)  Smart Card 等
+绝对称霸大数据领域 大数据两代核心技术 Hadoop 和 Spark 都是基于 Java 的  其中 Hadoop 是直接使用 Java 开发的 而 Spark 使用的 Scala 其实是基于 Java 的 (Scala 底层会编译成为 Java 的字节码) 另外最为流行的大数据流计算框架 Storm 采用 Clojure 语言也是基于 JVM 的
+云计算领域 很多产品 ...
+桌面领域 到处都是 Java 程序
+
+总结 Java 是全生态 全行业称霸 而且这种霸主地位至少未来 10 年是不可撼动
+
+本身 Java 包含四个不同的发行版本
+Java SE
+Java EE
+Java ME
+Java Card
+
+二 Java 之所有彻底称霸大数据领域的核心原因
+JVM 以及 Java API 最为强大的网络支持  JVM 屏蔽掉了不同机器之间的差异  JVM 把对机器的访问变成了对对象的访问 另外强大 API 编程强大的简化分布式编程
+JVM 屏蔽掉了底层 OS 和硬件系统 基于高层 API 接口可以让大数据框架专注于分布式调度 而分布式调度系统正式大数据框架的核心之所在
+IT 界 Java 开发群体具备最大规模 人才(尤其是精通 Java)供应非常充足 为企业和组织使用 Java 打下了非常坚实的基础
+强大 Library 功能
+
+三 Java 语言的特性
+可移植性 (在各个平台按照 JVM 规范实现具体的 Java 平台支持)
+简洁易用 简化和省略 C++ 中晦涩的内容 同时采用 "面向对象" 的理念来设计和实现
+面向对象 对面向对象的支持非常强大 (面向对象的三大核心特征  第一 不用关心消息从哪里来 也不用关心消息到哪里去 只关注对消息本身的处理 第二 一个对象的行为不直接影响另外一个对象的行为 第三 多态 包容现在和未来变化)
+结论 Java 不是面向对象的  Java 只是支持面向对象的一门语言
+适合于分布于计算 强大的网络功能以及丰富的 API
+对象级别的多线程支持能力 但由于 Java 多线程编程的理念是基于全局数据共享的多线程加锁机制 这就对实际的大规模项目直接基于原生的 Java 多线程开发带来了灾难性的麻烦
+
+四 Java 语言的运行机制
+基本流程 编写好 java 文件后会被编译成为 JVM 的字节码 
+然后通过 JVM 解释执行  解释执行的过程其实是通过 C/C++ 变成本地机器的二进制  
+其具体对 OS 和硬件功能的使用也都是靠 C/C++ 实现  其基于的规范是 JNI
+
+Java 的安装
+到 http://www.oracle.com/technetwork/java/javase/downloads/index.html 上下载最新版本的 JDK (建议使用 Java 8 因为有 lambda 函数式编程的支持  同时 JVM 本身也有非常大的改进) 下载 64位版本
+下载后点击直接安装即可 可以一直下一步 当然也可以改变安装的目录
+配置 配置 Java 的系统环境变量 类库以及具体的执行程序目录
+a) 设置 JAVA_HOME 来指定 Java 具体安装的目录
+b) 设置 CLASSPATH 把通用的类设置进系统目录 
+CLASSPATH:.;%JAVA_HOME%/lib/dt.jar;%JAVA_HOME%/lib/tools.jar
+c) 设置 PATH  通过在 PATH 中加入%JAVA_HOME%/bin;%JAVA_HOME%/jre/bin; 来把 JDK 中的执行程序目录加入到系统中 这样可以使得任何目录下面都可以直接访问 Java 具体的执行程序的功能
+验证 Java 安装的正确性  使用命令行 windows 键 + R  弹出命令行  cmd  java -version
+
+开发环境的安装
+一般开发都是使用 Eclipse 或者 IDEA 在企业使用最多的是 Eclipse
+下载 Eclipse : http://www.eclipse.org/downloads/

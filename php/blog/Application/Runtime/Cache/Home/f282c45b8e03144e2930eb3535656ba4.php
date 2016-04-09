@@ -16,7 +16,7 @@
 		});
 	}
 </script>
-<div id='test' data="/blog"></div>
+<div id='test' data=""></div>
 <h1 class="label label-info">技术共享</h1><br/><br/>
 <!--author:lishuo;time:2015-8-2-->
 <?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="panel panel-info">

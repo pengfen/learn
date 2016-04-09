@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo ($title); ?></title>
-    <link href="/blog/Public/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/blog/Public/Home/Js/jquery-2.1.4.min.js"></script>
-    <script src="/blog/Public/Bootstrap/js/bootstrap.min.js"></script>
+    <link href="/Public/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/Public/Home/Js/jquery-2.1.4.min.js"></script>
+    <script src="/Public/Bootstrap/js/bootstrap.min.js"></script>
     <style type="text/css">
 		body{
-			background: url('/blog/Public/Home/Images/bg.jpg') repeat-x;
+			background: url('/Public/Home/Images/bg.jpg') repeat-x;
 			background-position:10px 50px;
 			background-color:#F1E9D6;
 		}
@@ -190,7 +190,7 @@
 							});
 						}
 					</script>
-					<div id='test' data="/blog"></div>
+					<div id='test' data=""></div>
 					<h1 class="label label-success">高下载量</h1><br/><br/>
 					<?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="panel panel-success">
 							<div class="panel-heading">
@@ -243,16 +243,16 @@
 	   		<div>
 	   			<ul class='Jsimg' style="padding-left:0px;">
 	   				<li style="display:block">
-	   					<img src='/blog/Public/Home/Images/resource/r1.jpg'>
+	   					<img src='/Public/Home/Images/resource/r1.jpg'>
 	   				</li >
 	   				<li>
-	   					<img src='/blog/Public/Home/Images/resource/r2.jpg'>
+	   					<img src='/Public/Home/Images/resource/r2.jpg'>
 	   				</li>
 	   				<li>
-	   					<img src='/blog/Public/Home/Images/resource/r3.jpg'>
+	   					<img src='/Public/Home/Images/resource/r3.jpg'>
 	   				</li>
 	   				<li>
-	   					<img src='/blog/Public/Home/Images/resource/r4.jpg'>
+	   					<img src='/Public/Home/Images/resource/r4.jpg'>
 	   				</li>
 	   			</ul>
 			</div>

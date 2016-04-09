@@ -7,7 +7,7 @@
 		    <table class='table table-bordered '>
 		    	<tr>
 		    		<td rowspan="4" width="60">
-		    			<img src="/blog/Avatar/<?php echo ($headimg); ?>">
+		    			<img src="/Avatar/<?php echo ($headimg); ?>">
 		    		</td>
 		    		<td><?php echo ($vo["username"]); ?> : <?php if($vo[title] != ''): echo ($vo["title"]); else: ?> <?php echo ($vo["content"]); endif; ?></td>
 		    	</tr>
@@ -17,7 +17,7 @@
 		    			<ul>
 			    			<?php if(is_array($vo['review'])): $i = 0; $__LIST__ = $vo['review'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$voc): $mod = ($i % 2 );++$i;?><li>
 			    				<table>
-			    					<tr><td rowspan="2"><img src="/blog/Avatar/<?php echo ($voc["headimg"]); ?>"></td><td><?php echo ($voc["username"]); ?>: 	<?php echo ($voc["content"]); ?></td></tr>
+			    					<tr><td rowspan="2"><img src="/Avatar/<?php echo ($voc["headimg"]); ?>"></td><td><?php echo ($voc["username"]); ?>: 	<?php echo ($voc["content"]); ?></td></tr>
 			    					<tr><td>
 			    						<?php echo date('Y-m-d H:i:s',$vo['addtime']);?>
 			    						<input type="hidden" class='username' value="回复<?php echo ($voc["username"]); ?>">
@@ -29,7 +29,7 @@
 					         			<input type="hidden"  value='<?php echo ($voc["path"]); ?>,<?php echo ($voc["id"]); ?>'>
 					         			<ul>
 										<?php if(is_array($voc['nr'])): $i = 0; $__LIST__ = $voc['nr'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vod): $mod = ($i % 2 );++$i;?><table>
-			    					<tr><td rowspan="2"><img src="/blog/Avatar/<?php echo ($vod["headimg"]); ?>"></td><td><?php echo ($vod["username"]); ?>: 	<?php echo ($vod["content"]); ?></td></tr>
+			    					<tr><td rowspan="2"><img src="/Avatar/<?php echo ($vod["headimg"]); ?>"></td><td><?php echo ($vod["username"]); ?>: 	<?php echo ($vod["content"]); ?></td></tr>
 			    					<tr><td>
 			    						<?php echo date('Y-m-d H:i:s',$vo['addtime']);?>
 			    						<input type="hidden" class='username' value="回复<?php echo ($vod["username"]); ?>">
