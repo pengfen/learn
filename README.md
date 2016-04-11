@@ -19,6 +19,7 @@ vm         虚拟化 (docker)
 linux
 ===================================
 git        git github 相关技术
+basic      linux 基础
 commend    linux 命令
 shell      shell 脚本编辑
 server     linux 服务 (lnmp 等)
