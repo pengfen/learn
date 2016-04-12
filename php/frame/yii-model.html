@@ -1,0 +1,22 @@
+yii 数据模型
+
+kiehls_customer 表 --- 对应于 Customer 模型
+
+1) 在 models 创建模型类 Customer.php
+2) 编写代码
+namespace app\models;
+use yii\db\ActiveRecord;
+class Customer extends ActiveRecord
+{
+    public static function tableName()
+    {
+        return '{{%kiehls_customer}}';
+    }
+}
+3) 可以模型类中编写 增删改查
+4) 在 controllers 中创建控制器类 CustomerController.php
+5) 在控制器类中使用模型类
+use app\models\Customer;
+use app\models\Areas;
+$customer = new Customer();
+$name = Areas::getName($id);

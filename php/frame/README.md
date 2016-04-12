@@ -9,3 +9,4 @@ yii-crud.html    Yii 增删改查
 yii-part.html    Yii 片段
 yii-cache.html   Yii 缓存
 yii-extends.html Yii 扩展
+yii-model.html   Yii 模型
