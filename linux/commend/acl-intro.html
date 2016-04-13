@@ -1,0 +1,90 @@
+    权限管理之特殊权限 acl
+
+    ACL权限简介与开启
+
+    ACL 权限简介
+    权限 rwx (所有者) ---
+    权限 rws (所属组) --- /共享目录
+    无权限   (其他人) ---
+
+    查看分区 ACL 权限是否开启
+    [root@localhost ~]# dumpe2fs -h /dev/sda5 #dumpe2fs 命令是查询指定分区详细文件系统信息的命令
+    -h 仅显示超级块中信息 而不显示磁盘块组的详细信息
+
+    df 查年当前分区
+    dumpe2fs -h /dev/sda3
+    Default mount options: user_xattr acl #默认有 acl 权限
+
+    临时开启分区 ACL 权限
+    [root@localhost ~]# mount -o remount,acl / #重新挂载根分区 并挂载加入 acl 权限
+    -o 是特殊挂载
+    remount 是重新挂载
+
+    永久开启分区 ACL 权限
+    [root@localhost ~]# vi /etc/fstab
+    UUID=... / ext4
+    defaults,acl 1 1 #加入 acl
+
+    [root@localhost ~]# mount -o remount / #重新挂载文件系统或重新启动系统 使修改生效
+
+
+
+    查看与设定 ACL 权限
+
+    查看 ACL 命令
+    [root@localhost ~]# getfacl 文件名 #查看 acl 权限
+
+    设定 ACL 权限的命令
+    [root@localhost ~]# setfacl 选项 文件名
+    -m 设定 ACL 权限
+    -x 删除指定的 ACL 权限
+    -b 删除默认 ACL 权限
+    -d 设定默认 ACL 权限
+    -k 删除默认 ACL 权限
+    -R 递归设定 ACL 权限
+
+    mkdir test
+    useradd apeng
+    groupadd stu
+    chown apeng:stu test
+    ll
+    useradd bose
+    passwd bose
+    ll
+    su -d bose
+
+    [root@localhost ~]# useradd apeng
+    [root@localhost ~]# groupadd stu
+    [root@localhost ~]# mkdir /test
+    [root@localhost ~]# chown apeng:stu /test
+    [root@localhost ~]# chmod 770 /test
+    [root@localhost ~]# useradd bose
+    [root@localhost ~]# setfacl -m u:bose:rx /test #给用户 bose 赋予 r-x 权限 使用 "u:用户名:权限" 格式
+
+    给用户组设定 ACL 权限
+    [root@localhost /]# groupadd tgroup
+    [root@localhost /]# setfacl -m g:tgroup:rwx /test #为组 tgroup 分配 ACL 权限 使用 "g:组名:权限" 格式 
+
+    最大有效权限与删除 ACL 权限
+    最大有效权限 mask
+    mask 是用来指定最大有效权限的 如果我给用户赋予了 ACL 是需要和 mask 的权限 "相与" 才能得到用户的真正权限
+
+    修改最大有效权限
+    [root@localhost /]# setfacl -m m:rx 文件名 #设定 mask 权限为 r-x 使用 "m:权限" 格式
+
+    删除 ACL 权限
+    [root@localhost /]# setfacl -x u:用户名 文件名 #删除指定用户的 ACL 权限
+    [root@localhost /]# setfacl -x g:组名 文件名 #删除指定用户的 ACL 权限
+
+    [root@localhost /]# setfacl -b 文件名 #会删除文件的所有的 ACL 权限
+
+    默认 ACL 权限和递归 ACL 权限
+
+    递归 ACL 权限
+    递归是父目录在设定 ACL 权限时 所有的子文件和子目录也会拥有相同的 ACL 权限
+    setfacl -m u:用户名:权限 -R 文件名
+    递归权限仅能赋予目录 不能赋予文件
+
+    默认 ACL 权限
+    默认 ACL 权限的作用是如果给父目录设定了默认 ACL 权限 那么父目录中所有新建的子文件都会继承父目录的 ACL 权限
+    setfacl -m d:u:用户名:权限 文件名

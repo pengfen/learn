@@ -92,3 +92,10 @@
 2) docker
 3) 私有云部署 OpenStack
    OpenStack 社区和总体架构搭建  安装 OpenStack  Keystone 的架构和原理  Glance 的架构和原理  Keystone 和 Glance 的环境搭建讲解  windows 和 linux 模版的构建  Cinder 的架构和原理  讲解 Nova 的原理和使用  讲解 Quantum 的原理和使用  HA 高可用部署  日志和监控  备份和恢复
+
+
+basic   linux 基础
+comment linux 命令
+git     git 操作
+server  linux 服务
+shell   linux 脚本
