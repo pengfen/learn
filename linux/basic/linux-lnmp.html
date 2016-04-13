@@ -1,0 +1,18 @@
+lnmp 环境搭建 (一键安装包)
+
+wget -c http://soft.vpser.net/lnmp/lnmp1.1-full.tar.gz && tar zxf lnmp1.1-full.tar.gz && cd lnmp1.1-full && ./centos.sh
+please input the root password of mysql 输入mysql 的 root 密码
+do you want to install the innoDB storage engine 是否启用 mysql innodb 启用输入 y
+install php 5.3.28, please input y 选择 php 5.3.28
+install mysql 5.5.37, please input y
+install mariaDB 5.5.37, please input md
+
+进入mysql 服务器
+mysql -hlocalhost -uroot -p
+
+版本升级
+http://www.php.net/downloads.php 查看版本
+进入 lnmp1.1-full 目录下
+./upgrade_php.sh 输入查到的版本号 
+5.6.15
+5.5.30
