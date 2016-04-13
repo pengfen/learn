@@ -1,0 +1,89 @@
+    利用 iptables 防 cc 攻击
+
+    connlimit 模块
+
+    作用 用于限制每一个客户端 ip 的并发连接数
+    参数 -connlimit-above n #限制并发个数
+    iptables -I INPUT -p tcp --syn --dport 80 -m connlimit --connlimit-above 100 -j REJECT
+    iptables -L
+
+    limit 模块
+    作用 限速 控制流量
+    iptables -A INPUT -m limit --limit 3/hour
+    --limit-burst 默认值为 5
+
+    iptables -A INPUT -p icmp -m limit --Limit 1/m --limit-burst 10 -j ACCEPT
+    iptables -A INPUT -p icmp -j DROP
+    iptables -nL
+
+    iptables 实例脚本
+    系统化的介绍 iptables 规则配置
+    相应介绍 iptables 中的其它模块
+    防攻击策略补充
+
+    vim example_iptables.sh -R
+    #iptables rules
+    ###### 清理 iptables 规则
+    modprode ipt_MASQUERADE
+    modprode ip_conntrack_ftp
+    modprode ip_nat_ftp
+    iptables -F
+    iptables -t nat -F
+    iptables -X
+    iptables -t nat -X
+
+    #########
+    iptables -P INPUT DROP
+    iptables -A INPUT -m state --state ESTABLISHED,RELATEED -j ACCEPT
+
+    iptables -A INPUT -i lo -j ACCEPT
+
+    iptables -A INPUT -p tcp -m multiport --dports 110,80,25 -j ACCEPT
+    iptables -A INPUT -p tcp -s 10.10.0.0/24 --dport 139 -j ACCEPT #pop3 端口 110 smtp 端口 25
+
+    iptables -A INPUT -i eth1 -p udp -m multiport --dports 53 -j ACCEPT
+
+    iptables -A INPUT -p tcp --dport 1723 -j ACCEPT
+    iptables -A INPUT -p gre -j ACCEPT
+
+    iptables -A INPUT -s 192.186.0.0/24 -p tcp -m state --state ESTABLISHED,RELATED -j ACCEPT
+    iptables -A INPUT -i ppp0 -p tcp --syn -m connlimit --connlimit-above 15 -j DROP #使用 iptables 的 connlimit 模块来限制同一个 ip 发起的连接个数
+
+    iptables -A INPUT -p icmp -j DROP
+
+    iptables -t nat -A POSTROUTING -o ppp0 -s 10.10.0.0/24 -j MASQUERADE #nat 转发
+
+    ####### 防syn 攻击
+    iptables -N syn-flood
+    iptables -A INPUT -p tcp --syn -j syn-flood
+    iptables -I syn-flood -p tcp -m limit --limit 3/s --limit-burst 6 -j RETURN
+    iptables -A syn-flood -j REJECT
+
+    iptables -P FORWARD DROP
+    iptables -A FORWARD -p tcp -s 10.10.0.0/24 -m multiport --dports 80,110,21,25,1723 -j ACCEPT
+    iptables -A FORWARD -p udp -s 10.10.0.0/24 --dport 53 -j ACCEPT
+    iptables -A FORWARD -p gre -s 10.10.0.0/24 -j ACCEPT
+    iptables -A FORWARD -p icmp -s 10.10.0.0/24 -j ACCEPT
+    
+    iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+    iptables -I FORWARD -p udp --dport 53 -m string --string "tencent" -m time --timestart 8:15 --timestop 12:30 --days Mon,Tue,Wed,Thu,Fri,Sat -j DROP #防止上QQ
+
+    iptables -I FORWARD -p udp --dport 53 -m string --string "TENCENT" -m time --timestart 8:15 --timestop 12:30 --days Mon,Tue,Wed,Thu,Fri,Sat -j DROP
+
+    iptables -I FORWARD -p udp --dport 53 -m string --string "tencent" -m time --timestart 13:30 --timestop 20:30 --days Mon,Tue,Wed,Thu,Fri,Sat -j DROP
+
+    iptables -I FORWARD -p udp --dport 53 -m string --string "TENCENT" -m time --timestart 13:30 --timestop 20:30 --days Mon,Tue,Wed,Thu,Fri,Sat -j DROP
+
+    iptables -I FORWARD -p udp --dport 53 -m string --string "qq.com" -m time --timestart 8:15 --timestop 12:30 --days Mon,Tue,Wed,Thu,Fri,Sat -j DROP
+    iptables -I FORWARD -p udp --dport 53 -m string --string "qq.com" -m time --timestart 13:30 --timestop 20:30 --days Mon,Tue,Wed,Thu,Fri,Sat -j DROP
+
+    iptables -I FORWARD -s 10.10.0.0/24 -m string --string "ay2000.net" -j DROP
+    iptables -I FOREARD -d 10.10.0.0/24 -m string --string "eroticism" -j DROP
+
+    iptables -A FOREARD -m ipp2p --edk --kazaa --bit -j DROP
+
+    sysctl -w net.ipv4.ip_forward=1 &>/dev/null
+    sysctl -w net.ipv4.tcp_syncookies=1 &>/dev/null
+
+    iptables -I INPUT -s 10.10.0.50 -j ACCEPT
+    iptables -I FORWARD -s 10.10.0.50 -j ACCEPT
