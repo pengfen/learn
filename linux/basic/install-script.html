@@ -1,0 +1,37 @@
+    脚本安装包
+
+    强大的 nginx 服务器
+    nginx 是一款轻量级的 web 服务器 / 反向代理服务器及电子邮件 (IMAP/POP3) 代理服务器 2004年发布
+
+    web服务器    nginx  apache lighttpd
+    反回代理     非常好 好     一般
+    rewrite 规则 非常好 好     一般
+    fastcgi      好     差     非常好
+    热部署       支持   不支付 不支持
+    系统压力比较 很小   小     很大
+    稳定性       非常好 好     一般
+    安全性       一般   好     一般
+    技术资料     很少   非常多 一般
+    静态文件处理 非常好 一般   好
+    虚拟主机     支持   支持   支持
+    内存消耗     非常小 很大   非常小
+
+    nginx 在反向代理 rewrite 规则 稳定性 静态文件处理 内存消耗等方面 表现出了很强的优势 选用 nginx 取代传统的 apache 服务器 将会获得多方面的性能提升
+
+    准备工作
+    关闭 RPM 包安装的 httpd 和 mysql
+    保证 yum 源正常使用
+    关闭 selinux 和防火墙 (vi /etc/selinux/config SELINUX=enforcing => SELINUX=disabled)
+
+    centos.sh 脚本分析
+    所谓的一键安装包 实际上还是安装的源码包与 RPM 包 只是把安装过程写成了脚本 便于初学者安装
+    优点 简单 快速 方便
+    缺点
+    不能定义安装软件的版本
+    不能定义所需要的软件功能
+    源码包的优势丧失
+
+    ps aux 查看进程
+    php-fpm 在虚拟机中常常卡出导致出错
+    pkill -9 php-fpm #杀死 php-fpm 进程
+    /etc/rc.d/init/init.d/php-fpm start #重启
