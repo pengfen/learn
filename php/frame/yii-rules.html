@@ -1,0 +1,26 @@
+校验规则 
+1) 数据模型中编写校验规则
+public function rules() {
+    // required 校验字段是否为空
+    // length 校验字符长度
+    // pattern 使用正则校验
+    // email 校验是否为邮箱
+	return [
+	    [['name', 'mobile', 'email'], 'required', 'message' => '字段不能为空'],
+	    ['name', 'string', 'length' => [6, 20], 'message' => '用户名必须是 6-20 个字符'],
+	    ['mobile', 'match', 'pattern' => '/^1[3|4|5|7|8][0-9]\d{8}$/', 'message' => '请输入正确的手机号码'],
+	    ['email', 'email', 'message' => '请输入正确的邮箱名']
+	]
+}
+2) 控制器中使用数据模型
+public function actionInsert() {
+	$customer = new Customer(); // 实例化
+	$customer->name = ''; // 收集数据
+
+	if ($customer->validate()) {
+	    // 校验成功
+	    $customer->save(); // 执行添加操作
+	} else {
+	    var_dump($customer->getErrors()); // 打印规则失败信息
+	}
+}

@@ -1,0 +1,18 @@
+配置 restful 接口
+
+1) 继承 ActiveController (use yii\rest\ActiveController)
+2) config/web.php 中添加配置
+   'request' => ['parsers' => ['application/json' => 'yii\web\JsonParser']]
+3) 添加 modelClass 
+   public $modelClass = 'app\models\Customer';
+4) 添加 behaviors 方法
+   public function behaviors() {
+       $behaviors = parent::behaviors();
+       $behaviors['contnetNegotiator']['formats']['text/html'] = Response::FORMAT_JSON; // use yii\web\Response;
+       return $behaviors;
+   }
+5) 编写 action 方法
+public function actionXxx() {
+	...
+	return ['is_Error' => true, 'message' => '消息'];
+}
