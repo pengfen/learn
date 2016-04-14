@@ -18,3 +18,4 @@ yii-form.html    Yii 表单
 
 yii-ajax.html    Yii ajax 请求
 yii-chat.html    Yii ajax 长轮询
+tp-chat.html     TP ajax 长轮询
