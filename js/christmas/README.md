@@ -8,7 +8,7 @@ christ-adapt.html    自适应雪碧图
 christ-element.html  元素运动实现
 christ-3d.html       3D变换的梳理
 christ-asyn.html     异步编程梳理
-christ-观察者模式的理解
+christ-observer.html 观察者模式的理解
 christ-svg.html      SVG 概述
 christ-canvas.html   CANVAS 概述
 christ-layout.html   布局结构
