@@ -8,6 +8,8 @@ python     python 语言
 
 scala      scala 语言
 
+javascript js 语言
+
 data       数据库 (redis mongodb mysql)
 
 hadoop     hadoop 体系
@@ -52,6 +54,10 @@ python
 
 scala
 ===================================
+
+javascript
+===================================
+christmas  圣诞情缘
 
 data
 ===================================

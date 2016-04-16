@@ -10,3 +10,5 @@ install-rpm.html    rpm 安装方式
 install-script.html 脚本安装方式
 install-source.html 源码包安装方式
 install-yum.html    yum 安装方式
+linux-ab.html       apache ab 命令
+linux-ip.html       IP 方式访问应用

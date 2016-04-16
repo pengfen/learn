@@ -1,0 +1,134 @@
+函数式编程 就是只用纯函数来编写程序
+
+in compute science, functional programming is a programming paradigm
+
+函数式编程和重要概念
+纯函数 (pure function)
+函数的纯粹性 (purity)
+没有副作用 (side effect)
+
+副作用是状态的变化 (mutation)
+例子
+修改全局变量
+抛出异常
+IO 读写
+调用有副作用的函数
+
+例子： 副作用
+var x = 1
+def XplusY_V1(y: Int) = x + y;
+def XplusY_V2(y: int) = {x += y; x}
+
+引用透明 (referential transparency)
+对于相同的输入 总是得到相同的输出
+如果 f(x) 的参数x 和函数体都是引用透明的 那么函数 f 是纯函数
+
+违反引用透明
+var x = new StringBuilder("Hello");
+> x : StringBuilder = Hello
+
+不变化 (Immutability)
+为了获得引用透明性 任何值都不能变化
+
+函数是一等公民 (first-class function)
+一切都是计算 函数式编程中只有表达式 变量 函数都是表达式
+
+高阶函数 (Higher order function)
+
+闭包 (closure)
+
+表达式求值策略 严格求值和非严格求值
+call by value vs. call by name
+
+惰性求值 (lazy evaluation)
+
+递归函数 (recursive function)
+递归实现循环
+
+尾递归 (tail recursion)
+
+函数式编程的优点
+
+生产效率高
+
+同样功能的程序 lisp 代码的长度可能是 c 代码的 1/7 ~ 1/10
+
+易于推理 (reasoning)
+
+适用于 并行编程 多核计算 云计算
+
+函数式编程的崛起
+摩尔定律 (失效)
+多核处理器
+云计算时代
+
+Block
+
+{exp1;exp2}
+
+{
+exp1
+exp2
+}
+
+Block 也是一个表达式 其最终的求得的值是最后一个表达式的值
+
+函数
+def functionName( param : ParamType): Return Type = {
+	//function body : expressions
+}
+
+Object func_examples {
+	def hello(name : String) : String = {
+	    s"Hello, ${name}"
+	}
+
+	hello("Fang")
+
+	def hello2(name : String) = {
+	    s"Hello, ${name}"
+	}
+
+	hello2("Fang")
+
+	def add(x:Int, y:Int) = x + y
+
+	add(1, 2)
+}
+
+
+函数是第一等公民
+
+Scala 语言支持
+把函数作为实参传递给另外一个函数
+把函数作为返回值
+把函数赋值给变量
+把函数存储在数据结构里
+
+在 Scala 中 函数就像普通变量一样 同样也具有函数的类型
+
+函数类型
+
+在 Scala 语言中 函数类型的格式为 A => B 表示一个接受类型 A 的参数 并返回类型 B 的函数
+
+例子 Int => String 是把整型映射为字符串的函数类型
+
+高阶函数
+
+用函数作为形参或返回值的函数 称为高阶函数
+
+def operate (f: (Int, Int) => Int) = {
+	f (4, 4)
+}
+
+def greeting() = (name : String) => { "hello" + " " + name }
+
+匿名函数
+
+匿名函数 (Anonymous Function)  就是函数常量 也称为函数文字量 (Function Literal)
+
+在 Scala 里 匿名函数的定义格式 (形参列表) => {函数体}
+
+匿名函数的例子
+
+(x: Int, y: Int) => x + y
