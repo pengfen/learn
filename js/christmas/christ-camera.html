@@ -1,0 +1,42 @@
+镜头效果
+在圣诞主题中切换方式上采用了镜头式的拉伸方式
+
+看似高大上其实原理很简单，无非就是把页面给缩小方法，然后附带一些改变透明度的效果
+
+CSS3增加了很多新的属性，其中有一个变形（transform）的scale属性可以针对元素进行缩放
+
+例如：让一个元素放大2倍，注意浏览器兼容加前缀
+
+-webkit-transform: scale(2);
+-moz-transform: scale(2);
+就这样简单的给元素赋予css属性就可以了
+
+变化的方式有了，如果让其运动呢？
+
+特别注意：transform只是一个静态属性，它并不能让元素进行运动变化
+这里继续引入css3的animation动画，通过animation与transform配合就能达到镜头的效果，参考代码区域common.css
+
+一般来说都会通过对元素增加样式的方式来调用css3动画。在css文件中定义2个样式，effect-out与effect-in
+
+.effect-out{
+    animation: effectOut 8s ease-in-out forwards;
+}
+@keyframes effectOut{
+    0% { opacity:1; }
+    100% {transform: scale(20); opacity:0; }
+}
+在effect-out中定义一条规则，8秒的时间运行keyframes ，将元素透明度从1变成0，同时还要让元素放大20倍， 反之亦然
+
+然后还要注意缩放默认情况下是按照元素的中心位置的，有时候需要改掉这个中心x(50%) y(50%)参考点可以单独设置
+
+ -webkit-transform-origin:71% 72%;
+最终通过给元素element.addClass("effect-out") 让元素产生镜头的切换效果
+
+具体的animation与transform使用可以查阅相关资料，实际的镜头切换下请参考右边的代码的实现
+
+任务
+镜头拉伸的样式实现，请在右边common.css代码区域补充effect-out与effect-in的css3关键帧实现
+
+effectOut: 0-1%%变化中透明度从1-0变化，并且图片要放大20倍
+
+effect-in: 0-1%%变化中透明度从0-1变化，并且图片还原到原始尺寸
