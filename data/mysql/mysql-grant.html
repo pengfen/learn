@@ -5,6 +5,9 @@ select * from user \G;
 delete from user where user != 'root'; # 删除匿名用户
 flush privileges;
 
+update user set password=password('123456') where user='root';
+flush privileges;
+
 grant all on *.* to kiehls@'192.168.2.198' identified by '0412kiehls'; # 使用 IP 连接时需要使用新用户
 grant all on *.* to kiehls@'%' identified by '0412kiehls'; # % 允许所有用户 写 IP 就限定了特定的 IP 访问
 grant all on *.* to peng@'%' identified by '0418peng';
