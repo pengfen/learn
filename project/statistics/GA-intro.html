@@ -1,0 +1,24 @@
+GA 统计
+1) 添加脚本
+2) 添加事件
+3) 渠道区分
+
+使用 VPN 进行登录
+修改个人设置
+用户设置 (右边 设置 图标) --- Google 帐户设置 --- your personal info
+
+媒体资源 --- 新建网络媒体资源 --- (网站名称 网站网址 行业类别) --- 获取跟踪 ID --- 自动生成 js 代码
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-75778613-3', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+html 中添加代码
+_trackEvent(category, action, opt_label, opt_value, opt_noninteraction)
+onclick="_gaq.push(['_trackEvent', 'category', 'action', 'label', 'value', 'true']);"
