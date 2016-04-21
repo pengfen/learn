@@ -19,3 +19,9 @@ yii-form.html    Yii 表单
 yii-ajax.html    Yii ajax 请求
 yii-chat.html    Yii ajax 长轮询
 tp-chat.html     TP ajax 长轮询
+
+drupal 框架
+====================================================================
+drupal-install.html drupal 安装
+drupal-article.html drupal 文章
+drupal-struct.html  drupal 目录结构
