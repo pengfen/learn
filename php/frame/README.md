@@ -25,3 +25,4 @@ drupal 框架
 drupal-install.html drupal 安装
 drupal-article.html drupal 文章
 drupal-struct.html  drupal 目录结构
+drupal-module.html  drupal 模块
