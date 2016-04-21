@@ -16,8 +16,8 @@ function floodlight(){
 
     $(".PC_1").click(function(){
         var a =Returna();
-        floodCode(tus+"cat=khl_d000;ord="+ a + "?",tus+"cat=khl_d000;ord=1");
-        floodCode(tus+"cat=khl_d001;ord=1;num=" + a + "?",tus+"cat=khl_d001;ord=1;num=1");
+        floodCode(tus+"cat=khl_d000;ord="+ a + "?",tus+"cat=khl_d000;ord=1"); // 一个对应 PV
+        floodCode(tus+"cat=khl_d001;ord=1;num=" + a + "?",tus+"cat=khl_d001;ord=1;num=1"); // 一个对应 UV
 
     })
     $(".PC_2").click(function(){
