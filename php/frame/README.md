@@ -22,7 +22,10 @@ tp-chat.html     TP ajax 长轮询
 
 drupal 框架
 ====================================================================
-drupal-install.html drupal 安装
-drupal-article.html drupal 文章
-drupal-struct.html  drupal 目录结构
-drupal-module.html  drupal 模块
+drupal-install.html   drupal 安装
+drupal-article.html   drupal 文章
+drupal-struct.html    drupal 目录结构
+drupal-module.html    drupal 模块
+drupal-dashboard.html drupal 管理面板
+drupal-content.html   drupal 内容
+drupal-structure.html drupal 结构
