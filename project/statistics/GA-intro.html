@@ -21,4 +21,65 @@ GA 统计
 
 html 中添加代码
 _trackEvent(category, action, opt_label, opt_value, opt_noninteraction)
-onclick="_gaq.push(['_trackEvent', 'category', 'action', 'label', 'value', 'true']);"
+
+
+js 代码
+ga('send', 'event', [eventCategory], [eventAction], [eventLabel], [eventValue], [fieldsObject]);
+使用 send 命令并将 hitType 指定为 event 来发送事件匹配
+
+eventCategory  通常是用户与之互动的对象
+eventAction    互动类型
+eventLabel     用于对事件进行分类
+eventValue     与事件相关的数值
+
+ga('send', 'event', 'Videos', 'play', 'Fall Campaign');
+ga('send', {
+hitType: 'event',
+eventCategory: 'Videos',
+eventAction: 'play',
+eventLabel: 'Fall Campaign'
+});
+
+非互动事件
+ga('send', 'event', 'Videos', 'play', 'Fall Campaign', {
+nonInteraction: true
+});
+
+
+
+Android 安卓事件跟踪
+要向 Google Analytics（分析）发送事件，请使用 HitBuilders.EventBuilder 并发送匹配，如下例所示：
+
+// Get tracker.
+Tracker t = ((AnalyticsSampleApp) getActivity().getApplication()).getTracker(
+TrackerName.APP_TRACKER);
+// Build and send an Event.
+t.send(new HitBuilders.EventBuilder()
+.setCategory(getString(categoryId))
+.setAction(getString(actionId))
+.setLabel(getString(labelId))
+.build());
+
+
+IOS 事件跟踪
+要向 Google Analytics（分析）发送事件，请使用 GAIDictionaryBuilder.createEventWithCategory:action:label:value: 并发送匹配，如下例所示：
+
+// May return nil if a tracker has not already been initialized with a property
+// ID.
+id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+    action:@"button_press"  // Event action (required)
+    label:@"play"          // Event label
+    value:nil] build]];    // Event value
+
+
+    $(function(){ // 通过 JQuery 添加跟踪事件
+        $('#ga1').click(function(){
+        ga('send', 'event', 'website', 'click', 'ga1');
+        });
+    });
+
+    document.getElementById('ga1').addEventListener("click", function(){ // 通过原生 JS 添加跟踪事件
+        ga('send', 'event', 'kiehls', 'PC_Click', 'ga_js');
+    });
