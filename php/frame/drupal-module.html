@@ -28,3 +28,88 @@ node 内容节点
 node type 同 content type
 rss 内容订阅
 teaser 摘要
+
+
+安装 captcha module 模块
+https://www.drupal.org/project/captcha
+
+https://ftp.drupal.org/files/projects/captcha-7.x-1.3.tar.gz
+
+Modules 模块 --- Install new modul 安装新的模块
+install from a URL Or Upload a module or theme archive to install
+从URL路径上安装或是上传一个安装包
+
+Install 安装
+
+安装模块后需要继续
+设置模块的相关权限 自身的设置
+
+ENABLED 启用后才可以进行操作
+Permissions 权限操作
+Configure   配置操作
+
+配置操作 (也可以从 Configuration --- Captcha 进入配置界面)
+
+Default challenge type
+Math (from module captcha) 数学问题模式
+Image (from module image_captcha) 图片验证模式
+
+FORM_ID 添加一个 FORM 表单ID
+CHALLENGE TYPE 有四种
+No challenge 无
+Default challenge type 默认的模式
+Math (from module captcha) 数学问题模式
+Image (from module image_captcha) 图片验证模式
+
+Add CAPTCHA administration links to forms 添加管理链接
+Allow CAPTCHA and CAPTCHA administration links on administrative pages 管理界面添加管理链接
+
+Default CAPTCHA validation  默认验证码验证 (是否忽略字母的大小写)
+
+Persistence 设置次数 (每次都添加 还是一次会话添加一次)
+
+
+讨论区模块
+Modules 模块 --- Forum 讨论区
+设置权限
+Forum topic: create new content 创建新的内容
+Forum topic: edit own content 编辑自己的内容
+Forum topic: delete own content 删除自己的内容
+
+Structure 架构 --- Forums 讨论区 --- SETTINGS 设定
+Hot topic threshold 热门主题门槛 15 The number of replies a topic must have to be considered 'hot'
+Topics per page 每页主题数 25 Default number of forum topics displayed per page
+
+Default order
+Date --- newest first
+Date --- oldest first
+Posts --- most active first
+Posts --- least active first
+
+Add container 添加讨论区
+Add forum 添加讨论版
+Parent <root> 最顶层
+
+
+Poll 投票模块
+Poll: create new content 创建新的内容
+Poll: edit new content 编辑自己的内容
+Poll: delete new content 删除自己的内容
+
+structure 架构 --- content types 内容类型 --- Poll 投票 --- edit
+Submission form settings
+Publishing options
+Display settings
+Comment settings
+Menu settings (Main menu 主菜单  Navigation 导航  User menu 用户菜单)
+右上角选项Edit 编辑 MANAGE FIELDS 管理栏位  MANAGE DISPLAY 管理显示  COMMENT FIELDS 评论栏位  COMMENT DISPLAY 评论显示
+
+RSS 订阅
+Modules 模块 --- Aggregator 
+设定权限
+
+内容管理
+contemplate
+Panels
+display suite
+版型设计
