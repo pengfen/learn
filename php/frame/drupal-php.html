@@ -1,0 +1,49 @@
+安装 Devel 模块
+
+安装 pHp filter 模块
+php filter php 过滤器 (内嵌PHP程序)
+
+This is a <strong>test</strong>
+print "welcome to drupal world";
+
+<?php
+print "welcome to drupal world";
+?>
+
+<?php
+print $user->name;
+?>
+
+<?php
+global $user;
+print "welcome to drupal world ".$user->name;
+?>
+
+<?php
+global $user;
+if (empty($user->uid)) $user->name = "匿名用户";
+print "welcome to drupal world ".$user->name;
+?>
+
+<?php
+global $user;
+if (empty($user->uid)) $user->name = "匿名用户";
+print "welcome to drupal world ".$user->name;
+
+var_dump($user);
+?>
+
+<?php
+global $user;
+if (empty($user->uid)) $user->name = "匿名用户";
+print "welcome to drupal world ".$user->name;
+
+var_dump_pre($user);
+
+function var_dump_pre($mixed = null) {
+	echo '<pre>';
+	var_dump($mixed);
+	echo '</pre>';
+	return null;
+}
+?>
