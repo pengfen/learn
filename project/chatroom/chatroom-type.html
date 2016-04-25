@@ -1,0 +1,10 @@
+JS 判断客户端类型 (PC 端   手机端)
+var u = navigator.userAgent;
+$(function(){
+    if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
+        // Android 手机端
+    } else if (u.indexOf('iPhone') > -1) {
+        // iPhone 手机端
+    }else{ // 电脑端
+    }
+});
