@@ -30,3 +30,7 @@ drupal-module.html    drupal 模块
 drupal-dashboard.html drupal 管理面板
 drupal-content.html   drupal 内容
 drupal-structure.html drupal 结构
+drupal-ch.html        drupal 中文翻译包
+drupal-people.html    drupal 用户管理
+drupal-config.html    drupal 设置
+drupal-php.html       drupal 开发
