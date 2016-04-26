@@ -1,0 +1,23 @@
+$prize = $name[0]['xiamen_prize']; // 获取当前中奖数
+// 计算数据库中概率
+$flag = false; // 放行标志
+if ($prize != 0) {
+    $prob = round(intval($prize / ($prize + $name[0]['xiamen_noprize'])), 2) * 100;
+    if ($prob < 25) { // 判断概率是否小于规定概率
+    $flag = true;
+    }
+}
+
+if ($prize < 400) { // 判断奖品是否全部中完
+    $randName = mt_rand(1, 100); // 随机生成概率数
+    if ($randName <= 25 || $flag) { // 判断百分之二十五中奖概率
+    // 中奖
+    $sql = "update chow_prize set xiamen_prize=xiamen_prize + 1 where id=1";
+    \Yii::$app->db->createCommand($sql)->execute();
+
+    return $this->render('prize', [
+    'addr'=>$this->shopping[$postData['shopping']],
+    'mobile' => $postData['mobile'],
+    ]);
+    }
+}

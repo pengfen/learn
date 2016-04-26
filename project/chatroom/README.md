@@ -6,3 +6,4 @@ chatroom-type.html     判断客户端类型
 
 chow-error.html        yii 错误回显
 chow-html.html         yii 原生 html
+chow-prize.html        中奖概率控制
