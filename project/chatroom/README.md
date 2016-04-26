@@ -3,3 +3,6 @@ chatroom-color.html    弹屏颜色控制
 chatroom-index.html    弹屏显示数据
 chatroom-insert.html   弹屏添加数据
 chatroom-type.html     判断客户端类型
+
+chow-error.html        yii 错误回显
+chow-html.html         yii 原生 html
