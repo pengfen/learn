@@ -9,3 +9,4 @@ chow-html.html         yii 原生 html
 chow-prize.html        中奖概率控制
 chow-excel.html        PHP 生成 excel文件
 chow-admin.html        yii 后台
+chow-pattern.html      PHP 正则
