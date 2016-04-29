@@ -34,3 +34,4 @@ drupal-ch.html        drupal 中文翻译包
 drupal-people.html    drupal 用户管理
 drupal-config.html    drupal 设置
 drupal-php.html       drupal 开发
+drupal-sql.html       drupal 操作数据库实例

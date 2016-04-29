@@ -7,4 +7,15 @@ drupal 的安装
 3) 根据配置访问
 
 4) 修改 drupal安装目录\sites\default\settings.php
-   添加 ini_set('max_execution_time', '300'); 如果出现错误 Maximum execution time of 30 seconds exceeded 
+   添加 ini_set('max_execution_time', '300'); 如果出现错误 Maximum execution time of 30 seconds exceeded
+
+获取发送邮件服务的 SMTP 地址
+php.ini --- ;extension=php_smtp.dll (取消注释)
+
+修改配置
+[mail function]
+; For Win32 only
+SMTP = localhost
+smtp_port =  25
+
+Yii::$app->getResponse()->redirect('/index.php?r=admin/download');
