@@ -35,3 +35,7 @@ drupal-people.html    drupal 用户管理
 drupal-config.html    drupal 设置
 drupal-php.html       drupal 开发
 drupal-sql.html       drupal 操作数据库实例
+drupal-zed.html       drupal 主题设计
+drupal-temp.html      drupal 版型
+drupal-intro.html     drupal 介绍
+drupal-form.html      drupal 表单
