@@ -1,0 +1,27 @@
+下载安装 nodequeue 模块
+
+设定 (需要安装 views 模块)
+A contextual link to edit the nodequeue will be displayed on Views that have a nodequeue relationship.
+nodequeue 中一个节点关联一个视图(views)
+
+LIST (选项)
+add new nodequeue
+Title : 新闻与活动
+Link "add to queue" text : 加入新闻与活动
+Link "remove from queue" test : 退出新闻与活动
+
+Types 类型 选择文章 Article
+
+将文章添加到 queue 中
+content  选择文章
+
+将 queue 添加到 block 中
+structure --- block
+Queue '新闻与活动' --- configure 设定
+block title : 新闻与活动
+放置位置 : sidebar 首侧页
+
+
+手动关联
+structure --- view --- add new view
+再关联

@@ -63,3 +63,113 @@ $nid 节点id
 node 节点表 (节点的标题 基础信息)
 node_type 内容类型表
 node_revision 节点版本表 (节点内容及对应版本信息)
+
+网址 = drupal 命令 = 选单(menu)  多数情况下午 网址代表的就是一个网页
+网址名称 使用在非网址可代表的单元 如区块 分类词表 view
+id 分类项目 (term id) $tid  内容节点 (node id) $nid  使用者账号 (user id) $uid
+
+
+hook 函数
+hook_menu() api.drupal.org 中搜索hook_menu()
+模块 Devel 模块机器名称 devel devel_menu()
+模块 MyTracer 模块机器名称 mytracer mytracer_menu()
+
+定义操作分离
+function mytracer_menu() {
+	$items = array();
+	$items['user/1/mytracer'] = array(
+	    'title' => 'my tracer',
+	    'descriptaion' => '浏览记录',
+	    'access callback' => true,
+	    'page callback' => 'mytracer_records',
+	    'page arguments' => array(1),
+	    'type' => MENU_NORMAL_ITEM,
+	);
+	return $items;
+}
+
+function mytracer_records($uid) {
+	$output = $uid;
+}
+
+日期时间型的使用
+timestamp 可转换时区
+drupal 核心末使用的 datetime time
+
+模块 my tracer
+追踪使用者资讯被浏览的记录
+版本零 空模块 并利用此空模块 练习相关 drupal 程序设计
+版本一 变量版本 被浏览的记录 使用 drupal 永久变量作记录
+版本二 资料库版本 记录所有 user 被浏览的记录 使用资料库作记录
+
+sites/all/modules/mytracer
+mytracer.info
+name = My Tracer #模组名
+description = My Tracer #追踪记录使用者资讯被浏览的资料
+core = 7.x #当前 drupal 版本
+package = 我的模组
+dependencies[] = views #此模块所依赖的模块
+files[] = mytracer.module #调用此模块之前加载的程序
+configure = admin/config/mytracer #配置目录
+
+mytracer.module
+function mystracer_menu(){
+    $items = array();
+    $items['admin/config/mytracer'] = array(
+        ...
+    )
+	...
+} 
+
+function mystrcer_admin() {
+	return '这里是 My Tracer 的管理界面';
+}
+
+drupal 变量
+
+全局变量
+永久变量 (简称为 drupal 变量)
+
+$base_path
+$base_url
+$user 当前用户名
+
+function mytracer_admin() {
+	global $base_path;
+	global $base_url;
+	global $user;
+
+	$output = '';
+
+	$output .= '<p>'.$base_path;
+	$output .= '</p>'.$base_url;
+	dmp($user);
+	return $output;
+}
+
+variable_get($name, $default = NULL)
+variable_set($name, $value)
+variable_del($name);
+
+function mytracer_admin() {
+	$var1 = variable_get('mytracer_setting1', 10);
+	$output = '';
+	$output .= '<p>'.'永久变量 mytracer_setting1 的值为'.$var1;
+	variable_set('mytracer_setting1'.$var1 + 1);
+	return $output;
+}
+
+url ($path = NULL, array $options = array())
+
+function mytracer_admin() {
+	global $user;
+
+	$output = '';
+	$output .= '<p>'.'1.user 2 的网址是'.url('user/', 2);
+	$output .= '<p>'.'2.user 2 的网址是'.url('user/', $user->uid);
+	$output .= '<p>'.'3.user 2 的网址是'.url('user/', $user->uid, array('absolute' => true));
+	$output .= '<p>'.'1.user 2 的网址是'.url('user/', 2);
+	$output .= '<p>'.'1.user 2 的网址是'.url('user/', 2);
+	return $output;
+
+}
