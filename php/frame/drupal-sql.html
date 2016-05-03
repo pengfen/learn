@@ -42,3 +42,23 @@ db_update('example_table')
 $query = db_select('node', 'n');
 $query->addField('n', 'name', 'label');
 $query->addField('n', 'name', 'value');
+
+直接使用 PHP 开发
+$conn = mysql_connect("localhost", "root", "123456");
+if (!$conn) { die('连接数据库失败 '.mysql_error());}
+$db_selected = mysql_select_db("drupal_db", $conn);
+$sql = "select n.nid, n.title, n.created from node n where n.uid = ".$uid." limit 0,10";
+$result = mysql_query($sql, $conn);
+while ($row = mysql_fetch_object($result)) {
+echo $row->firstName."<br/>";}
+mysql_close($conn);
+
+使用 drupal API 开发
+$resullt = db_query_range('select n.nid, n.title, n.created from {node} n where n.uid = %d', $uid, 0, 10);
+while ($node = db_fetch_object($result)) {
+// 对节点的操作在此进行 可以使用节点操作的相关API}
+
+// 查询 nid 为 1 的记录
+$nid = 1;
+$result = db_query('select title form {node} where nid = %d', $nid);
+select title from drupal_node where nid = 1;
