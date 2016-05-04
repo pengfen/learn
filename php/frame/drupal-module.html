@@ -132,10 +132,24 @@ devel php 开发辅助工具
 3) 创建 mytracer.module 文件
 4) 访问 域名/admin/modules 或是点击后台工具栏 modules  可以看到 .info 文件中定义的 package 对应的名称
 5) 编辑 mytracer.module
+function mytracer_menu() {
+    $items = array();
+    $items['admin/config/mytracer'] = array(
+        'title' => '追踪浏览记录',
+        'description' => '浏览记录',
+        'access callback' => true, #访问回调不设置 就没有权限访问
+        'page callback' => 'mytracer_admin',
+    );
+    return $items;
+}
+
+function mytracer_admin() {
+    return '这里是 My Tracer 的管理界面';
+}
 6) 访问 域名/admin/modules 搜索 My Tracer
-7)
-8)
-9)
+7) 访问 域名/admin/config/mytracer
+8) 编写 测试相关函数代码
+9) 页面上测试
 10)
 11)
 12)

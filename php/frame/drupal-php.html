@@ -114,11 +114,14 @@ configure = admin/config/mytracer #配置目录
 
 mytracer.module
 function mystracer_menu(){
-    $items = array();
-    $items['admin/config/mytracer'] = array(
-        ...
-    )
-	...
+	$items = array();
+	$items['admin/config/mytracer'] = array(
+		'title' => '追踪浏览记录',
+		'description' => '浏览记录',
+		'access callback' => true,
+		'page callback' => 'mytracer_admin',
+	);
+	return $items;
 } 
 
 function mystrcer_admin() {
@@ -130,19 +133,19 @@ drupal 变量
 全局变量
 永久变量 (简称为 drupal 变量)
 
-$base_path
-$base_url
+$base_path 获取根目录
+$base_url 获取域名
 $user 当前用户名
 
-function mytracer_admin() {
+function mytracer_admin() { // 使用全局变量
 	global $base_path;
 	global $base_url;
 	global $user;
 
 	$output = '';
 
-	$output .= '<p>'.$base_path;
-	$output .= '</p>'.$base_url;
+	$output .= '<p>'.$base_path; // / 根目录
+	$output .= '</p>'.$base_url; // http://dev... 域名
 	dmp($user);
 	return $output;
 }
@@ -151,7 +154,7 @@ variable_get($name, $default = NULL)
 variable_set($name, $value)
 variable_del($name);
 
-function mytracer_admin() {
+function mytracer_admin() { // 使用长久变量
 	$var1 = variable_get('mytracer_setting1', 10);
 	$output = '';
 	$output .= '<p>'.'永久变量 mytracer_setting1 的值为'.$var1;
@@ -161,15 +164,81 @@ function mytracer_admin() {
 
 url ($path = NULL, array $options = array())
 
-function mytracer_admin() {
+function mytracer_admin() { // 使用 url
 	global $user;
 
 	$output = '';
-	$output .= '<p>'.'1.user 2 的网址是'.url('user/', 2);
-	$output .= '<p>'.'2.user 2 的网址是'.url('user/', $user->uid);
-	$output .= '<p>'.'3.user 2 的网址是'.url('user/', $user->uid, array('absolute' => true));
-	$output .= '<p>'.'1.user 2 的网址是'.url('user/', 2);
-	$output .= '<p>'.'1.user 2 的网址是'.url('user/', 2);
+	$output .= '<p>'.'1.user 的网址是 '.url('user/'.'2'); // /?q=user/2
+	$output .= '<p>'.'2. 目前 user 的网址是 '.url('user/'.$user->uid); // /?q=user/1
+	$output .= '<p>'.'3. 目前 user 的网址是 '.url('user/'.$user->uid, array('absolute' => true)); // http://dev.drupall.com/?q=user/1
+	$output .= '<p>'.'4. 指向 user 1 的绝对网址 并且提供参数 '.url('user/1',
+	array('absolute' => true, 'query' => array('key1' => 'this-value', 'key2' => 10))); // http://dev.drupall.com/?q=user/1&key1=this-value&key2=10
+	$output .= '<p>'.'5. 指向 google 的外部链接 '.url('http://www.baidu.com'); // http://www.baidu.com
+	$output .= '<p>'.'6. mytracer 模块的 help 说明在 '.url('admin/help', array('fragment' => 'mytracer')); // /?q=admin/help#mytracer
+	$output .= '<p>'.'7. 最后比较难的确 url 作法所得到的结果是 '.url('user/'.$user->uid,
+	array('absolute' => true,
+	'fragment' => 'part1',
+	'query' => array('key1' => 'value1', 'key2' => 10))); // http://dev.drupall.com/?q=user/1&key1=value1&key2=10#part1
 	return $output;
-
 }
+
+function mytracer_admin() { // 使用 l() 链接函数
+	global $user;
+
+	$output = '';
+	$output .= '<p>'.'1.user 的网址是 '.l('user/'.'2'); // /?q=user/2
+	$output .= '<p>'.'2. 目前 user 的网址是 '.l('user/'.$user->uid); // /?q=user/1
+	$output .= '<p>'.'3. 目前 user 的网址是 '.l('user/'.$user->uid, array('absolute' => true)); // http://dev.drupall.com/?q=user/1
+	$output .= '<p>'.'4. 指向 user 1 的绝对网址 并且提供参数 '.l('user/1',
+	array('absolute' => true, 'query' => array('key1' => 'this-value', 'key2' => 10))); // http://dev.drupall.com/?q=user/1&key1=this-value&key2=10
+	$output .= '<p>'.'5. 指向 google 的外部链接 '.l('http://www.baidu.com'); // http://www.baidu.com
+	$output .= '<p>'.'6. mytracer 模块的 help 说明在 '.l('admin/help', array('fragment' => 'mytracer')); // /?q=admin/help#mytracer
+	$output .= '<p>'.'7. 最后比较难的确 url 作法所得到的结果是 '.l('user/'.$user->uid,
+	array('absolute' => true,
+	'fragment' => 'part1',
+	'query' => array('key1' => 'value1', 'key2' => 10))); // http://dev.drupall.com/?q=user/1&key1=value1&key2=10#part1
+	return $output;
+}
+
+t() 把文本翻译成和页面设置的语言或特定的语言
+	通过这个方法可以得到便于阅读并能够在页面上显示的文本
+function mytracer_admin(){// 使用 t 函数
+	$txt = '<p style="color:red;">A String</p>';
+	$output = '';
+
+	$output .= '<p>'.t('Title');
+	$output .= '<p>'.t('title');
+
+	$output .= '<p>'.t('use ! as a placeholder : !str', array('!str' => $txt));
+	$output .= '<p>'.t('use @ as a placeholder : @str', array('@str' => $txt));
+	$output .= '<p>'.t('use % as a placeholder : %str', array('%str' => $txt));
+
+	return $output;
+}
+
+arg 路径参数函数
+function mytracer_admin() { // 使用 arg() 函数 arg(0) --- admin  arg(1) --- config  arg(2) --- mytracer
+	$args = arg();
+	$output = '';
+	$output .= '<p>Current url\'s arguments -> '.implode(',', $args);
+	$output .= '<p> arg(0) = '.arg(0);
+	$output .= '<p> arg(1) in http://www.baidu.com/search = '.arg(1, 'http://www.baidu.com/search');
+	$output .= '<p> arg(1) in admin/config/mytracer = '.arg(1, 'admin/config/mytracer');
+	return $output;
+}
+
+function mytracer_admin() { //watchdog() 函数 提供了一个日志机制 收集所有必要的日志信息或事件
+	// 使用 watchdog() 函数
+	global $user;
+	dpm($user);
+
+	watchdog('mytracer', 'current user is @username, id = @id',
+	array('@username' => $user->name, '@id' => $user->uid));
+	watchdog('mytracer', 'current user is @username, id = @id',
+	array('@username' => $user->name, '@id' => $user->uid), WATCHDOG_NOTICE);
+	watchdog('mytracer', 'current user is @username, id = @id',
+	array('@username' => $user->name, '@id' => $user->uid), WATCHDOG_NOTICE,
+	l('mytracer 管理', 'admin/config/mytracer'));
+	return '';
+}
+日志访问地址 域名/admin/reports/dblog
