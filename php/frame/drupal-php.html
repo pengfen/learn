@@ -243,6 +243,63 @@ function mytracer_admin() { //watchdog() 函数 提供了一个日志机制 收�
 }
 日志访问地址 域名/admin/reports/dblog
 
+
+function mytracer_admin() { // 设置 drupal 消息
+	// 使用 drupal_set_message() 函数设置 drupal 消息
+	global $user;
+	$s = format_string('User: "@username" has entered this page',
+	array('@username' => $user->name));
+	drupal_set_message($s);
+	drupal_set_message($s, 'status', FALSE);
+
+	return '';
+}
+
+hook_init 初始化
+// 实现 hook_init()
+//function mytracer_init() {
+//    //$p = arg();
+//    $p = $_GET['q'];
+//    if ($p == 'admin/config/mytracer') {
+//        drupal_add_css(drupal_get_path('module', 'mytracer').'/mytracer.css');
+//    }
+//    return ;
+//}
+
+hook_help 帮助文档
+//function mytracer_help($path, $arg) {
+//    switch ($path) {
+//        case 'admin/setting/mytracer':
+//            return t('The administration menu module provides a dropdown menu arrangged for on');
+//
+//        case 'admin/help#mytracer':
+//            $output = '';
+//            $output .= '<p>'.t('自定义模块');
+//            $output .= '<p>'.t('管理菜单<a href="@settings">设置页</a>');
+//            return $output;
+//    }
+//}
+
+// 建立自己的权限检查函数
+function mytracer_permission_admin() {
+// 请注意 函数中 只可以检查是否有权限 勿变更任何的值 因为这个权限检查函数以及其它的权限检查函数可能随时被调用
+// 条件 有 administer blocks 以及 access administration menu 的人有权限
+// 在权限管理界面的限时定义 都可以利用 user_access() 来检查这个 user 有没有权限 请注意 权限 id 字串
+if (user_access('administer blocks') && user_access('access administration menu')) {
+return true;
+}
+return false;
+}
+
+// 实现 hook_permission
+function mytracer_permission() {
+$items['administer my tracer'] = array(
+'title' => t('Administer My Tracer'),
+);
+
+return $items;
+}
+
 	页面
 
 	城市有三种  标准 微信 手动
