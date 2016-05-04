@@ -260,7 +260,7 @@ hook_init 初始化
 //function mytracer_init() {
 //    //$p = arg();
 //    $p = $_GET['q'];
-//    if ($p == 'admin/config/mytracer') {
+//    if ($p == 'admin/config/mytracer') { // drupal_add_css 动态加载 css 文件 drupal_get_path 返回一个系统项(模块 主题...)的路径
 //        drupal_add_css(drupal_get_path('module', 'mytracer').'/mytracer.css');
 //    }
 //    return ;
@@ -299,7 +299,7 @@ $items['administer my tracer'] = array(
 
 return $items;
 }
-	
+
 function mytracer_admin(){
 // 创建表单
 $output = drupal_get_form('mytracer_admin_form');
@@ -336,6 +336,18 @@ form_set_error('mytracer_list_max', '数字需介于 5 到 20 之间.');
 }
 return;
 }
+
+登录与注册
+<?php if($user->uid); ?>
+	<aside class="login-bar c4">
+		<span>Welcome:<?php print l($user->name, 'user/'.$user->uid);?></span>
+		<?php print l('logout', 'user/logout');?>
+	</aside>
+	<?php else ?>
+	<aside class="login-bar c4">
+		<?php print l("Login|Register", "user/login");?>
+	</aside>
+	<?php endif; ?>
 
 	页面
 
