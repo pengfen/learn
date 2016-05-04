@@ -300,6 +300,43 @@ $items['administer my tracer'] = array(
 return $items;
 }
 
+function mytracer_admin(){
+// 创建表单
+$output = drupal_get_form('mytracer_admin_form');
+return $output;
+}
+
+function mytracer_admin_form($form, &$form_state) {
+$form['foo'] = array(
+'#type' => 'textfield',
+'#title' => t('文本字段表单'),
+'#default_value' => t('foo'),
+'#size' => 60,
+'#maxlength' => 64,
+'#description' => t('字段描述'),
+'#required' => TRUE,
+);
+
+$form['submit'] = array(
+'#type' => 'submit',
+'#value' => t('Save'),
+);
+return $form;
+}
+
+// form 的验证函数 名称是在原来 form 建立函后面加上 _validate
+function mytracer_admin_form_validate($form, &$form_state) {
+dmp($form_state);
+
+// 检查输入的值是否介于 5 到 20
+$max_count = intval($form_state['values']['mytracer_list_max']);
+
+if ($max_count < 5 || $max_count > 20) {
+form_set_error('mytracer_list_max', '数字需介于 5 到 20 之间.');
+}
+return;
+}
+
 	页面
 
 	城市有三种  标准 微信 手动
