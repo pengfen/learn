@@ -113,3 +113,18 @@ composer
 使用 composer 安装 httpclient 扩展
 
 手动添加 ---> 在 vendor/yiisoft 下添加插件包 ---> 修改 extensions.php 文件 ---> 手动配置 ---> 控制器中使用类 ---> use YII ---> use yii\httpclient\Client;
+
+
+redis 扩展安装
+phpinfo 查看当前版本
+http://pecl.php.net/package/redis/2.2.7/windows 下载对应扩展包
+将 php_redis.dll 文件复制到 php安装目录/php/ext 目录下
+修改 php安装目录/php/php.ini
+extension=php_redis.dll
+
+安装 xampp 后报403 错误 修改 httpd.conf 文件
+<Directory />
+AllowOverride none
+#Require all denied
+Allow from all
+</Directory>
