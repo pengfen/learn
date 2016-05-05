@@ -40,3 +40,4 @@ drupal-zed.html       drupal 主题设计
 drupal-temp.html      drupal 版型
 drupal-intro.html     drupal 介绍
 drupal-form.html      drupal 表单
+drupal-procedure.html drupal 流程

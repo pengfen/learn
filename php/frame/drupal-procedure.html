@@ -1,0 +1,80 @@
+sites/default/modules/lancome_wechat/lancome_member_card/lancome_member_card.info
+name = Lancome Member Card
+description = Lancome Member Card Module
+package = Lancome
+version = VERSION
+core = 7.x
+
+sites/default/modules/lancome_wechat/lancome_member_card/lancome_member_card.module
+<?php
+
+/**
+ * Implements of hook_menu()
+ */
+function lancome_member_card_menu() {
+  $items['lancome/membercard'] = array(
+    'page callback' => '_lancome_member_card',
+'page arguments' => array(),
+'access callback' => TRUE,
+'type' => MENU_CALLBACK,
+);
+return $items;
+}
+
+/**
+* Implementations of hook_theme().
+*/
+function lancome_member_card_theme() {
+return array(
+'member-card' => array(
+'path' => drupal_get_path('theme', 'lancome_wechat') . '/templates',
+'template' => 'member-card',
+),
+);
+}
+
+function _lancome_member_card(){
+global $user;
+$user = user_load($user->uid);
+return theme('member-card', array('a' => 'dersdffsddff'));
+}
+
+function lancome_member_card_preprocess_html(&$variables) {
+
+//var_dump($variables);exit;
+//drupal_add_js(drupal_get_path('theme', 'lancome_wechat') . '/js/jquery-1.7.2.min.js', array('group' => JS_THEME));
+//drupal_static_reset('drupal_add_css');
+//drupal_static_reset('drupal_add_js');
+// handle css different landing pages
+// $node = $variables['node'];
+// if (in_array($node->type, get_landing_pages())) {
+//   drupal_add_css(drupal_get_path('theme', 'ddms'). "/css/{$node->type}.less",array('group' => JS_THEME));
+
+//   // javascript
+//   drupal_add_js(drupal_get_path('theme', 'ddms') . '/js/jquery-1.8.3.min.js', array('group' => JS_THEME));
+//   drupal_add_js(drupal_get_path('theme', 'ddms') . '/js/common.js', array('group' => JS_THEME));
+
+//   drupal_add_js(drupal_get_path('theme', 'ddms') . "/js/{$node->type}.js", array('group' => JS_THEME, 'weight' => 98));
+//   drupal_add_js(drupal_get_path('theme', 'ddms') . '/js/switch.js', array('group' => JS_THEME, 'weight' => 99));
+// }
+
+}
+
+sites/default/modules/lancome_wechat/lancome_member_card/lancome_member_card.pages.inc
+<?php?>
+
+sites/default/themes/lancome_wechat/templates/html--lancome--membercard.tpl.php
+<html>
+<?php print $page; ?>
+</html>
+
+sites/default/themes/lancome_wechat/templates/member-card.tpl.php
+<?php
+drupal_add_js(drupal_get_path('theme', 'lancome_wechat') . '/js/jquery.cxselect.min.js', array('group' => JS_THEME));
+?>
+<h1><?php print $a;?></h1>
+
+sites/default/themes/lancome_wechat/templates/page--lancome--membercard.tpl.php
+<div>
+    <?php print render($page['content']); ?>
+</div>
