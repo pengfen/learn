@@ -308,15 +308,121 @@ $items['administer my tracer'] = array(
 return $items;
 }
 
+	权限
+	function mytracer_menu() {
+	$items['admin/config/mytracer'] = array(
+	'title' => 'My Tracer',
+	'description' => 'My Tracer Settings',
+	// 不用 access callback 时 默认使用 user_access() 函数 直接使用 access arguments 给定的值 进行权限检查
+	'access arguments' => array('administer my tracer'),
+	'page callback' => 'mytracer_admin',
+	);
+	return $items;
+	}
+
+	权限设置 实现 hook_permission 钩子
+	function mytracer_permission() {
+	$items['administer my tracer'] = array(
+	'title' => t('Administer My Tracer'),
+	);
+	return $items;
+	}
+
+	user/1 --- admin
+	清除所有的缓存
+	Flush all caches --- Menu
+
+	增加第二个菜单
+	function mytracer_menu() {
+	$items['admin/config/mytracer']
+	$items['user/1/mytracer'] = array(
+	    'title' => 'My Tracer',
+	    'description' => 'User 1 的管理界面',
+	    'access arguments' => array('view mytracer records'),
+	    'page callback' => 'mytracer_records',
+	);
+	return $items;
+	}
+
+	// 权限中添加第二个菜单
+	function mytracer_permission(){
+	    ...
+
+	    // 增加 mytracer 模组中的第二个权限定义
+	    $items['view mytracer records'] = array(
+	        'title' => t('View MyTracer Records'),
+	    );
+	    return $items;
+	}
+
+	function mytracer_records() {
+	    $output = '<p>Here is the records of who reviewed your profile';
+	    return $output;
+	}
+
+	function mytracer_records($uid) { // 建立带参数的菜单
+	$account = user_load($uid);
+
+	$output = '<p>Here is the records of who reviewed your profile';
+	if ($account) { // 改变本页的 title 由 api.drupal.org 中查询 title 相关的函数
+	    drupal_set_title(format_string('My Tracer = User: @username',
+	        array('@username' => $account=>name))
+	    );
+	    $output .= '<p>'.format_string('User id = @uid, User name = @username',
+	    array('@uid' => $account->uid, '@username' => $account->name);
+	}
+	return $output;
+	}
+
+	function mystracer_menu() { // 建立带参数的菜单 --- 自动载入菜单
+	    ...
+	    // 增加第二个菜单 使用带参数的作法 让每个 user 都有自己的追踪记录 本次 参数部份改为自动载入的作法
+	    // 因为参数带有名字 user, 它回调 user_load
+	// 1 如果没有这个 user id 那后台自动传回 html 404 错误
+	// 2 如果有这个 user id 它会载入这个 user id 的 user 物件 并传给定义的 callback
+	    $items['user/%user/mytracer'] = array(
+	        'title' => 'My Tracer',
+	        'description' => 'user 的追踪记录',
+	        'access arguments' => array('view mytracer records'),
+	        'page callback' => 'mytracer_records',
+	        'page arguments' => array(1),
+	    );
+	    return $items;
+	}
+
+	// 这一次 因为 menu 传过来时有带参数 所以我们这里的 callback 函数也要接收一个参数
+	// 同时 因为我们使用自动载入的 menu 参数 因此这里的参数是载入后的 user 物件
+	// 因为经过了 自动载入参数的函数的执行 在执行过程中 已检查了是否有这个 user 物件
+	// 如果没有的话 代表无此网页 drupal 会转到 http 404 的指定网页
+	function mytracer_records($account) { // 建立带参数的菜单
+	$account = user_load($uid);
+
+	$output = '<p>Here is the records of who reviewed your profile';
+	if ($account) { // 改变本页的 title 由 api.drupal.org 中查询 title 相关的函数
+	drupal_set_title(format_string('My Tracer = User: @username',
+	array('@username' => $account=>name))
+	);
+	$output .= '<p>'.format_string('User id = @uid, User name = @username',
+	array('@uid' => $account->uid, '@username' => $account->name);
+	}
+	return $output;
+	}
+
+	// 建立子页菜单
+	// 在 $item['user/%user/mytracer'] = array(...
+	'type' => MENU_LOCAL_TASK, // 建立子页签 'weight' => 10, // 权重 进行排序)
+
+	// 使用额外程序文件
+	// 在 $item['user/%user/mytracer'] = array(...
+	'file' => 'mytracer.additional.inc', // 把指定 page callback 函数程序放在指定文件中);
+
+
 function mytracer_admin(){
 // 创建表单
 $output = drupal_get_form('mytracer_admin_form');
 return $output;
 }
 
-user/1 --- admin
-清除所有的缓存
-Flush all caches --- Menu
 
 function mytracer_admin_form($form, &$form_state) {
 $form['foo'] = array(
@@ -360,6 +466,9 @@ return;
 		<?php print l("Login|Register", "user/login");?>
 	</aside>
 	<?php endif; ?>
+
+
+
 
 	页面
 
