@@ -72,9 +72,69 @@ print_r($user); // 获取用户相关信息 (主从表信息)
 $cellphone = $user->field_user_wechat_bind_cellphone[LANGUAGE_NONE][0]['value'];
 $data = _lancome_haihui_login(array('cellPhone' => $cellphone));
 if($data->success) {
-$theme = theme('ajax-member-redemption-check-points', array('data' => $data->data));
-drupal_json_output(array('status' => '1', 'data' => $theme));
+    $theme = theme('ajax-member-redemption-check-points', array('data' => $data->data));
+    drupal_json_output(array('status' => '1', 'data' => $theme));
 } else {
-$error = _haihui_error_code();
-drupal_json_output(array('status' => '100', 'msg' => $error[$data->errorCode]));
+    $error = _haihui_error_code();
+    drupal_json_output(array('status' => '100', 'msg' => $error[$data->errorCode]));
+}
+
+ajax 的使用
+member-redemption.tpl.php 中使用 redemption.js
+var url = "/ajax/wechat/member/redemption/" + router; // 请求路径 --- lancome-redemption.module
+var xhr = $.ajax({
+    "url" : url,
+    "cache" : false,
+    "dataType" : 'json',
+    "type" : "GET",
+    "data" : {}
+});
+xhr.done(function(data){
+    if(data.status == '1') {
+        $(".redemption .main").html(data.data);
+        $(".loading").hide();
+    }
+    if(data.status == '100') {
+        $(".loading").hide();
+        alert(data.msg);
+        return;
+    }
+    addClickEvent();
+});
+
+lancome-redemption.module
+$items['ajax/wechat/member/redemption/%'] = array(
+    'page callback' => '_ajax_wechat_member_redemption',
+    'page arguments' => array(4),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+);
+
+function lancome_redemption_theme() { // 设置模板加载路径
+    return array(
+        'ajax-member-redemption-check-points' => array(
+        'path' => drupal_get_path('theme', 'lancome_wechat') . '/templates',
+        'template' => 'ajax-member-redemption-check-points',
+        ),
+    );
+}
+
+function _ajax_wechat_member_redemption($router) {
+    global $user;
+    if(!$user->uid)
+    _data_print('999');
+    $user = user_load($user->uid);
+
+    if(!isset($user->field_user_wechat_bind_cellphone[LANGUAGE_NONE][0]['value']))
+    _data_print('100', '您还未绑定');
+    $cellphone = $user->field_user_wechat_bind_cellphone[LANGUAGE_NONE][0]['value'];
+    $data = _lancome_haihui_login(array('cellPhone' => $cellphone));
+
+    if($data->success) {
+        $theme = theme('ajax-member-redemption-check-points', array('data' => $data->data));
+        drupal_json_output(array('status' => '1', 'data' => $theme));
+    } else {
+        $error = _haihui_error_code();
+        drupal_json_output(array('status' => '100', 'msg' => $error[$data->errorCode]));
+    }
 }
