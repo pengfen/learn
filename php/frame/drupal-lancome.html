@@ -22,3 +22,59 @@ member/yours/bind.html 绑定微信会员
 member/yours/rights.html 普卡入会规则
 member/yours/rules.html 普卡积分细则
 member/yours/welcome.html 普卡入会指南
+
+微信菜单
+遇见兰蔻 会员福利 美丽专享
+遇见兰蔻 --- 热点活动 护肤有道 美妆课堂 香水奇遇 品牌故事
+会员福利 --- 我的会员节 我的会员卡 微信绑定 会员权益 积分兑礼
+美丽专享 --- 美丽有约 我要试用 试用报告 专柜导航 微客服
+
+微信菜单
+wechat/wechat/wechat_menu
+生成菜单 _wechat_menu_generate() { // 通过 taxonomy 生成}
+
+structure --- taxonomy --- wechat_menu
+
+base_function  基础函数库， 公用函数量
+lancome_avato 用户修改信息
+lancome_data 处理数据 module_load_include('inc', 'phpexcel');
+module_load_include('inc', 'lancome_sms', 'sms') 加载 lancome_sms 下 sms.inc
+lancome_kefu 会员信息 模块 lancome_kefu.module --- kefu-account-edit.tpl.php 修改会员信息 kefu-account-edit-not-member.tpl.php 修改非会员信息 kefu-account-merge.tpl.php 合并多账号
+if(count($data) == 1) {
+    $data = array_shift($data); // 取出数组中的第一下标对应的值
+    return theme('kefu-account-edit', array('data' => $data));
+    } else {
+    return theme('kefu-account-merge', array('data' => $data));
+}
+drupal_goto 常用于用户输入信息有误时 重定向到指定页
+global $user;
+print_r($user); // 获取用户相关信息 (主表信息)
+$user = user_load($user->uid);
+print_r($user); // 获取用户相关信息 (主从表信息)
+[field_user_wechat_openid] // 是否绑定微信
+[field_user_wechat_bind_cellphone] // 是否绑定会员
+[field_user_wechat_language]
+[field_user_wechat_subscribe]
+[field_user_wechat_gender]
+[field_user_wechat_region]
+[field_user_wechat_group]
+[field_user_wechat_headimgurl]
+[field_user_register_from]
+[field_user_wechat_nickname]
+[field_user_wechat_subscribe_time]
+[field_user_wechat_unsubscribe_t]
+[field_user_group]
+[field_user_member_level]
+[field_user_siebel_member_number]
+[field_user_siebel_mars_person_id]
+
+判断用户是否绑定会员
+$cellphone = $user->field_user_wechat_bind_cellphone[LANGUAGE_NONE][0]['value'];
+$data = _lancome_haihui_login(array('cellPhone' => $cellphone));
+if($data->success) {
+$theme = theme('ajax-member-redemption-check-points', array('data' => $data->data));
+drupal_json_output(array('status' => '1', 'data' => $theme));
+} else {
+$error = _haihui_error_code();
+drupal_json_output(array('status' => '100', 'msg' => $error[$data->errorCode]));
+}
