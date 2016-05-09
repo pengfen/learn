@@ -42,3 +42,15 @@ drupal-intro.html     drupal 介绍
 drupal-form.html      drupal 表单
 drupal-procedure.html drupal 流程
 drupal-lancome.html   drupal 项目分析
+drupal-basic.html     drupal 基础安装与管理
+drupal-block.html     drupal 整合区块的版面管理
+drupal-modules.html   drupal 模块开发
+drupal-webform.html   drupal 表单设计
+drupal-zen.html       drupal 主题设计
+drupal-devel.html     drupal 整合程式的应用
+drupal-content2.html  drupal 内容展现应用
+drupal-content3.html  drupal 内容应用
+drupal-comp.html      drupal 迁移组件功能
+drupal-business.html  drupal 商业应用
+drupal-paper.html     drupal7 电子报
+drupal-magic.html     drupal7 views 组织与展示内容的魔法师
