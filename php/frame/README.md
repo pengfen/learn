@@ -41,3 +41,4 @@ drupal-temp.html      drupal 版型
 drupal-intro.html     drupal 介绍
 drupal-form.html      drupal 表单
 drupal-procedure.html drupal 流程
+drupal-lancome.html   drupal 项目分析
