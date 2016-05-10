@@ -138,3 +138,24 @@ function _ajax_wechat_member_redemption($router) {
         drupal_json_output(array('status' => '100', 'msg' => $error[$data->errorCode]));
     }
 }
+
+CURLOPT_SSL_VERIFYPEER 禁用后cURL将终止从服务端进行验证。使用CURLOPT_CAINFO选项设置证书使用CURLOPT_CAPATH选项设置证书目录
+如果CURLOPT_SSL_VERIFYPEER(默认值为2)被启用，CURLOPT_SSL_VERIFYHOST需要被设置成TRUE否则设置为 FALSE
+function _retrieve_member_level($phone) {
+    $input = array(
+        'consultantCode' => 'wx',
+        'tel' => $phone,
+    );
+    $url = 'https://rosebeautybj.chinacloudapp.cn:8443/lancome_sec/appws/searchUser';
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($input));
+    $ret = curl_exec($ch);
+    curl_close($ch);
+    return json_decode($ret);
+}
