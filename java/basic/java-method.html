@@ -1,0 +1,20 @@
+方法的重载
+
+是指一个类中可以定义有相同的名字 但参数不同的多个方法  调用时 会根据不同的参数表选择对应的方法
+例如 在 Person 类中添加如下方法
+void info() {
+	System.out.println("My id is " + id);
+}
+void info(String t) {
+	System.out.println(t + " " + id + " " + age);
+}
+
+public class Test {
+	public static void main(String args[]) {
+	    Person p = new Person(1, 20);
+	    p.info();
+	    p.into("hello");
+	}
+}
+
+参考 ../basic-code/Override.java

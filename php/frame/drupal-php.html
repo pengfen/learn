@@ -455,6 +455,32 @@ form_set_error('mytracer_list_max', '数字需介于 5 到 20 之间.');
 return;
 }
 
+制作浏览记录的程序 hook_user_view()
+function mytracer_user_view($account, $view_mode, $langcode) {
+	// $account 被浏览的使用者  global $user 目前正在操作的使用者
+	global $user;
+	if ($view_mode <> 'full') {
+	    return;
+	}
+	if ($account->uid <> 1) {
+	    return;
+	}
+	// 取出放在永久变量中的浏览记录
+	$visits = variable_get('mytracer_user1_visits', array());
+
+	// 建立本次的浏览记录
+	$v = array('uid' => $user->uid, 'time' => time());
+
+	// 因为 array 后面的资料可能会被砍掉 因此 使用 array_unshift() 将新的记录放在 array 前面
+	array_unshift($visits, $v);
+
+	// 只保留 'mytracer_list_max' 笔数
+	$list_max = variable_get('mytracer_list_max', 5);
+	array_splice($visits, $list_max);
+
+	variable_set('mytracer_user1_visits', $visits);
+}
+
 登录与注册
 <?php if($user->uid); ?>
 	<aside class="login-bar c4">

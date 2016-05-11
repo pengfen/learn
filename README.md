@@ -33,6 +33,8 @@ intro.html linux 系统介绍
 
 java
 ===================================
+basic      java 基础
+jdbc       java database connection
 
 php
 ===================================

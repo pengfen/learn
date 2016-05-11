@@ -1,0 +1,40 @@
+// 显示浏览记录
+
+// 实现 hook_help()
+function mytracer_help($path, $arg) {
+	switch($path) {
+	    case 'admin/config/people/mytracer':
+	        return '模块帮助';
+	    case 'admin/help#mytracer':
+	        $output = '';
+	        $output .= 'xxxx';
+	        return $output;
+	}
+}
+
+// 实现 hook_menu()
+function mytracer_menu() {
+	$items = array();
+	$items['admin/config/people/mytracer'] = array(
+	    'title' => '',
+	    'description' => '',
+	    'access arguments' => array('administer my tracer'),
+	    'page callback' => 'drupal_get_form',
+	    'page arguments' => array('mytracer_admin_form')
+	);
+	$items['user/%/mytracer'] = array(
+	    'title' => '',
+	    'description' => '',
+	    'access arguments' => array('administer my tracer'),
+	    'page callback' => 'mytracer_records',
+	    'page arguments' => array(1)
+	);
+	return $items;
+}
+
+
+function mytracer_records($uid) {
+	$account = user_load($uid);
+
+	drupal_set_ti
+}
