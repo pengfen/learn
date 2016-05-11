@@ -41,7 +41,8 @@ drupal-temp.html      drupal 版型
 drupal-intro.html     drupal 介绍
 drupal-form.html      drupal 表单
 drupal-procedure.html drupal 流程
-drupal-lancome.html   drupal 项目分析
+drupal-lancome.html   drupal 兰蔻项目分析
+drupal-kiehls.html    drupal 科颜氏项目分析
 drupal-basic.html     drupal 基础安装与管理
 drupal-block.html     drupal 整合区块的版面管理
 drupal-modules.html   drupal 模块开发
