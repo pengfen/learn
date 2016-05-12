@@ -47,3 +47,24 @@ public function getPoints($cellphone) { // 根据手机号来查询积分
     $re = file_get_contents($url);
     return json_decode($re);
 }
+
+function _kiehls_card() {
+    drupal_set_title('科颜氏'); // 设置显示标题
+    global $user; // 获取当前用户
+    $user = user_load($user->uid); // 加载所有从表数据
+    $notice = '';
+    $userinfo= '';
+    if($user->field_user_wechat_bind_cellphone) {
+    $cellphone = $user->field_user_wechat_bind_cellphone[LANGUAGE_NONE][0]['value'];
+    //$cellphone = '13818715331'; // 测试号 IVY
+    //$cellphone = '15821666705'; // 测试号 陈立康
+    $url = "http://kiehlsclub.kiehls.com.cn/get_point.ashx?mobile={$cellphone}";
+    $re = file_get_contents($url); // 获取接口返回数据
+    $result =  json_decode($re);
+    if($result->result == 'success') {
+    $userinfo = $result->jsonResponse;
+    $notice = "调用成功";
+    }
+    }
+    return theme('kstar-card', array('notice' => $notice, 'userinfo' => $userinfo));
+}
