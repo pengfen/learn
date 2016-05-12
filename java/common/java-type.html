@@ -1,0 +1,25 @@
+基本数据类型的封装类
+
+如何查看 API
+
+byte     Byte
+char     Character
+int      Integer
+long     Long
+float    Float
+double   Double
+boolean  Boolean
+
+自动装箱和拆箱
+基本数据类型 转换为 封装类型 装箱
+封装类型 转换为 基本类型 拆箱
+// 拆箱示例
+Integer i1 = new Integer(10);
+		int i2 = i1;
+		int i2 = (int) i1; // 如没有拆箱则需要自己转换
+
+// 装箱示例
+int i3 = 9;
+Integer i4 = i3;
+
+参见 common/TestByte.java
