@@ -167,3 +167,28 @@ if (!member) {
 alert('很抱歉，数据加载失败，请稍后再试');
 window.location.href="/wechat/bind";
 }
+
+module 中处理逻辑 不在页面处理
+if ($member->data->memberLvl == '金卡会员') {
+    $member->data->memberImg = '2.jpg';
+    $member->data->memberClub = '兰蔻金纯私享荟';
+    $member->data->memberGrade = '金卡';
+} else if ($member->data->memberLvl == '银卡会员') {
+    $member->data->img = '1.jpg';
+    $member->data->memberClub = '兰蔻银卡俱乐部';
+    $member->data->memberGrade = '银卡';
+} else if ($member->data->memberLvl == '普通会员') {
+    $member->data->img = '3.jpg';
+    $member->data->memberClub = '兰蔻唯你俱乐部';
+    $member->data->memberGrade = '普通';
+}
+
+模板页可以使用变量代替
+print drupal_get_path('theme', 'lancome_wechat')."/img/member/member".$member->memberImg;
+if ($member->memberLvl  == '金卡会员') {
+//print drupal_get_path('theme', 'lancome_wechat')."/img/member/member2.jpg";
+} else if ($member->memberLvl == '普通') {
+//print drupal_get_path('theme', 'lancome_wechat')."/img/member/member3.jpg";
+} else {
+//print drupal_get_path('theme', 'lancome_wechat')."/img/member/member1.jpg";
+}?>
