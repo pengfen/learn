@@ -1,0 +1,22 @@
+java 异常
+
+异常简介 (异常处理的作用  Java 异常体系结构简介)
+处理异常 (try-catch 以及 try-catch-finally  抛出异常  自定义异常  异常链)
+
+有异于常态 和正常情况不一样 有错误出现
+阻止当前方法或作用域 称之为异常
+
+Throwable (Error Exception)
+Error (虚拟机错误 VirtualMachineError  线程死锁 ThreadDeath)
+Exception 编码 环境 用户操作输入出现问题
+Exception (非检查异常 RuntimeException  检查异常)
+
+非检查异常 (空指针异常 NullPointerException 数组下标越界异常 ArrayIndexOutOfBoundsException  类型转换异常 ClassCastException  算术异常 ArithmeticException)
+空指针异常 NullPointerException (String str = null; System.out.print(str.length());)
+数组下标越界异常 ArrayIndexOutOfBoundsException (int[] ary = {1, 2, 3}; for (int i = 0; i <= 3; i ++) {System.out.println(arr[i]);})
+类型转换异常 ClassCastException (class Animal {} class Dog extends Animal {} class Cat extends Animal {} public class Test {public static void main(String[] args) {Animal a1 = new Dog(); Animal a2 = new Cat(); Dag d1 = (Dog) a1; Dog d2 = (Dog) a2;}})
+算术异常 ArithmeticException (int one = 12; int two = 0; System.out.println(one / two);)
+
+
+
+检查异常 (文件异常 IOException  SQL异常 SQLExcpetion)
