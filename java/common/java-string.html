@@ -1,0 +1,126 @@
+什么是 Java 中的字符串
+在程序开发中字符串无处不在 如用户登录时输入的用户名 密码等使用的就是字符串
+
+在 Java 中 字符串被作为 String 类型的对象处理
+String 类位于 java.lang 包中 默认情况下 该包被自动导入所有的程序
+
+创建 String 对象的方法
+String s1 = "peng"; // 创建一个字符串对象 peng 名为 s1
+String s2 = new String(); // 创建一个字符串对象 名为 s2
+String s3 = new String("peng"); // 创建一个字符串对象 peng 名为 s3
+
+String 对象创建后则不能被修改 是不可变的 所谓的修改其实是创建了新的对象 所指向的内存空间不同
+
+String s1 = "peng";
+String s2 = "peng";
+String s3 = new String("peng");
+String s4 = new String("peng");
+
+// 多次出现的字符常量 Java 编译程序只创建一个 所以返回 true
+System.out.println(s1 == s2);
+// s1 和 s3 是不同的对象 所以返回 false
+System.out.println(s1 == s3);
+// s3 和 s4 是不同的对象 所以返回 false
+System.out.println(s3 == s4);
+
+s1 = "欢迎来到: " + s1;
+System.out.println(s1); // 字符串 s1 被修改 指向新的内存空间
+
+上面代码在内存中的变化
+通过 String s1 = "peng"; 声明了一个字符串对象 s1存放了字符串对象的引用 在内存中引用关系
+s1 ---- 堆内存 peng
+然后通过 s1 = "欢迎来到: " + s1; 改变了字符串 s1 其实是创建了新的字符串对象 变量s1指向了新创建的字符串对象
+s1 ---- 堆内存 欢迎来到: peng
+
+一旦一个字符串在内存中创建 则这个字符串将不可改变 如果需要一个可以改变的字符串 我们可以使用 StringBuffer 或者 StringBuilder
+
+每次 new 一个字符串就是产生一个新的对象 即便两个字符串的内容相同 使用 "==" 比较时也为 "false" 如果只需比较内容是否相同 应使用 "equals()" 方法
+
+
+String 类的常用方法
+String 类提供了许多用来处理字符串的方法 
+int length() 返回当前字符串的长度
+int indexOf(int ch) 查找 ch 字符在该字符串中第一次出现的位置
+int indexOf(String str) 查找 str 字符串在该字符中第一次出现的位置
+int lastIndexOf(int ch) 查找 ch 字符在该字符串中最后一次出现的位置
+int lastIndexOf(String str) 查找 str 子字符串在该字符串中最后一次出现的位置
+String substring(int beginIndex) 获取从 beginIndex 位置开始到结束的子字符串
+String substring(int beginIndex, int endIndex) 获取从 beginIndex 位置开始到 endIndex 位置的子字符串
+String trim() 返回去除了前后空格的字符串
+boolean equals(Object obj) 将该字符串与指定对象比较 返回 true 或 false
+String toLowerCase() 将字符串转换为小写
+String toUpperCase() 将字符串转换为大写
+char charAt(int index) 获取字符串指定位置的字符
+String[] split(String regex, int limit) 将字符串分割为子字符串 返回字符串数组
+byte[] getBytes() 将该字符串转换为 byte 数组
+
+代码
+// 定义一个字符串 "学习 Java 编程"
+String str = "学习 Java 编程"
+System.out.println("字符串长度: " + str.length()); // 打印字符串长度
+char c = "编";
+System.out.println("字符‘编’的位置: " + str.indexOf(c)); // 查找字符 '编' 的位置
+System.out.println("子字符串'Java'的位置: " + str.indexOf("Java")); // 查询子字符串 'Java' 的位置
+System.out.println("子字符串'peng'的位置: " + str.indexOf("peng")); // 查询子字符串 'peng' 的位置
+String[] arr = str.split(" "); // 按空格把字符串拆分成一个数组 并输出数组元素
+System.out.print("按空格拆分成数组: " + Arrays.toString(arr));
+System.out.println();
+System.out.println("获取位置(3,7)之间的子串: " + str.substring(3,7)); // 获取索引位置 (3,7) 之间的子串
+
+字符串 str 中字符的索引从 0 开始 范围为 0 到 str.length() -  1
+使用 indexOf 进行字符或字符串查找时 如果匹配返回位置索引 如果没有匹配结果 返回 -1
+使用 substring(beginIndex, endIndex) 进行字符串截取时 包括 beginIndex 位置的字符 不包括 endIndex 位置的字符
+
+String str = "学习 JAVA 编程"; // 定义一个字符串
+System.out.println("转换为小写: " + str.toLowerCase()); // 将字符串转换为小写
+System.out.println("获取索引为1位置的字符: " + str.charAt(1)); // 获取索引位置为 1 的字符
+byte[] b = str.getBytes(); // 将字符串转换为 byte[] 并打印输出
+System.out.println();
+String str2 = new String("学习 JAVA 编程");
+System.out.println("str 和 str2 的内存地址相同? " + (str == str2));
+System.out.println("str 和 str2 的内容相同? " + str.equals(str2));
+
+== 和 equals() 有什么区别呢
+== 判断两个字符串在内存中首地址是否相同 即判断是否是同一个字符串对象
+equals() 比较存储在两个字符串对象中的内容是否一致
+
+字节是计算机存储信息的基本单位 1 个字节等于 8 位 gbk 编码中 1 个汉字字符存储需要 2 个字节，1 个英文字符存储需要 1 个字节。所以我们看到上面的程序运行结果中，每个汉字对应两个字节值，如“学”对应 “-47 -89” ，而英文字母 “J” 对应 “74” 。同时，我们还发现汉字对应的字节值为负数，原因在于每个字节是 8 位，最大值不能超过 127，而汉字转换为字节后超过 127，如果超过就会溢出，以负数的形式显示
+
+StringBuilder 类
+可以使用 String 类来存储字符串 还可以使用 StringBuilder 类或 StringBuffer 类存储字符串
+String 类具有不可变性
+String str = "hello";
+System.out.println(str + 'world');
+System.out.println(str);
+
+从上面的程序可以看到 程序运行时会额外创建一个对象 保存 "helloworld" 当频繁操作字符串时 就会额外产生很多临时变量
+使用 StringBuilder 或 StringBuffer 就可以避免这个问题
+StringBuffer 是线程安全的
+StringBuilder 则没有实现线程安全功能 性能略高
+一般情况下，如果需要创建一个内容可变的字符串对象，应优先考虑使用 StringBuilder 类
+
+StringBuilder str1 = new StringBuilder(); // 创建一个空的 StringBuilder 对象
+StringBuilder str2 = new StringBuilder("peng"); // 创建一个字符串 peng
+System.out.println(str2);
+
+StringBuilder 类的常用方法
+StringBuilder 类提供了很多方法来操作字符串
+StringBuilder append(参数) 追加内容到当前 StringBuilder 对象的末尾
+StringBuilder insert(位置, 参数) 将内容插入到 StringBuilder 对象的指定位置
+String toString() 将 StringBuilder 对象转换为 String 对象
+int length() 获取字符串的长度
+
+StringBuilder str = new StringBuilder("peng"); // 创建 StringBuilder 对象 存储字符串
+str.append("peng"); // 在字符串后面追加字符串
+str.append(520); // 在字符串后面追加整数
+System.out.println("字符串长度 " + str.length()); // 字符串长度
+System.out.println("数据添加前 " + str);
+
+str.insert(11, "1"); // 在指定位置插入内容
+String str2 = str.toString(); // 转换为 String 对象
+System.out.println("数据添加后 " + str2);
+
+在需要频繁对字符串进行修改操作时使用 StringBuilder 的效率比 String 要高
+字符串是对象
+字符串具有不变性
+String 类提供了许多用来操作字符串的方法 连接 提取 查询等
