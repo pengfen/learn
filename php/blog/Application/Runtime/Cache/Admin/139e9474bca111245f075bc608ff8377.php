@@ -4,15 +4,15 @@
 		<meta charset="utf-8" />
 		<title><?php echo ($title); ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="/blog/Public/Assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="/blog/Public/Assets/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="/blog/Public/Assets/css/ace.min.css" />
-		<link rel="stylesheet" href="/blog/Public/Assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="/blog/Public/Assets/css/ace-skins.min.css" />
-		<script type="text/javascript" src="/blog/Public/Bootstrap/js/jquery-2.1.4.min.js"></script>
-		<script src="/blog/Public/Assets/js/ace-extra.min.js"></script>
+		<link href="/Public/Assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="/Public/Assets/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="/Public/Assets/css/ace.min.css" />
+		<link rel="stylesheet" href="/Public/Assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="/Public/Assets/css/ace-skins.min.css" />
+		<script type="text/javascript" src="/Public/Bootstrap/js/jquery-2.1.4.min.js"></script>
+		<script src="/Public/Assets/js/ace-extra.min.js"></script>
 		
-<link rel="stylesheet" type="text/css" href="/blog/Public/Admin/Css/apeng.css"/>
+<link rel="stylesheet" type="text/css" href="/Public/Admin/Css/apeng.css"/>
 
 	</head>
 
@@ -38,7 +38,7 @@
 					    <?php echo W('Nav/message');?> 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="/blog/Public/Assets/avatars/user.jpg" alt="<?php echo ($_SESSION['manager']['username']); ?>'s Photo" />
+								<img class="nav-user-photo" src="/Public/Assets/avatars/user.jpg" alt="<?php echo ($_SESSION['manager']['username']); ?>'s Photo" />
 								<span class="user-info">
 									<small>欢迎光临,</small>
 									<?php echo ($_SESSION['manager']['username']); ?>
@@ -284,19 +284,19 @@
 			</a>
 		</div> 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='/blog/Public/Assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+			if("ontouchend" in document) document.write("<script src='/Public/Assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
 		</script>
-		<script src="/blog/Public/Assets/js/bootstrap.min.js"></script>
-		<script src="/blog/Public/Assets/js/typeahead-bs2.min.js"></script>
-		<script src="/blog/Public/Assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-		<script src="/blog/Public/Assets/js/jquery.ui.touch-punch.min.js"></script>
-		<script src="/blog/Public/Assets/js/jquery.slimscroll.min.js"></script>
-		<script src="/blog/Public/Assets/js/jquery.easy-pie-chart.min.js"></script>
-		<script src="/blog/Public/Assets/js/jquery.sparkline.min.js"></script>
-		<script src="/blog/Public/Assets/js/flot/jquery.flot.min.js"></script>
-		<script src="/blog/Public/Assets/js/flot/jquery.flot.pie.min.js"></script>
-		<script src="/blog/Public/Assets/js/flot/jquery.flot.resize.min.js"></script>
-		<script src="/blog/Public/Assets/js/ace-elements.min.js"></script>
-		<script src="/blog/Public/Assets/js/ace.min.js"></script>
+		<script src="/Public/Assets/js/bootstrap.min.js"></script>
+		<script src="/Public/Assets/js/typeahead-bs2.min.js"></script>
+		<script src="/Public/Assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="/Public/Assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="/Public/Assets/js/jquery.slimscroll.min.js"></script>
+		<script src="/Public/Assets/js/jquery.easy-pie-chart.min.js"></script>
+		<script src="/Public/Assets/js/jquery.sparkline.min.js"></script>
+		<script src="/Public/Assets/js/flot/jquery.flot.min.js"></script>
+		<script src="/Public/Assets/js/flot/jquery.flot.pie.min.js"></script>
+		<script src="/Public/Assets/js/flot/jquery.flot.resize.min.js"></script>
+		<script src="/Public/Assets/js/ace-elements.min.js"></script>
+		<script src="/Public/Assets/js/ace.min.js"></script>
 </body>
 </html>
