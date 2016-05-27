@@ -1,6 +1,6 @@
 lnmp 环境搭建 (一键安装包)
 
-wget -c http://soft.vpser.net/lnmp/lnmp1.1-full.tar.gz && tar zxf lnmp1.1-full.tar.gz && cd lnmp1.1-full && ./centos.sh
+wget -c http://soft.vpser.net/lnmp/lnmp1.2-full.tar.gz && tar zxf lnmp1.2-full.tar.gz && cd lnmp1.2-full && ./centos.sh
 please input the root password of mysql 输入mysql 的 root 密码
 do you want to install the innoDB storage engine 是否启用 mysql innodb 启用输入 y
 install php 5.3.28, please input y 选择 php 5.3.28
@@ -16,3 +16,55 @@ http://www.php.net/downloads.php 查看版本
 ./upgrade_php.sh 输入查到的版本号 
 5.6.15
 5.5.30
+
+开启 (peng4 --- 192.168.129.131 --- peng0313)
+安装 lnmp
+数据库密码 peng0521
+
+配置目录
+/usr/local/mysql
+/usr/local/php
+/usr/local/nginx
+
+cd /root/lnmp
+./lnmp restart
+
+
+[root@peng4 lnmp]# mysql -uroot -p
+Enter password:
+
+注意 composer 需要 php 5.6 以上版本
+
+更新 php 版本
+
+    cd ./lnmp
+    cd ./lnmp1.2-full
+    ./upgrade.sh php
+    http://www.php.net/downloads.php #找要更新的版本号
+    输入要更新的版本号
+
+    token 过期
+    创建一个新的token
+    composer config --global github-oauth.github.com token值
+    composer config --global github-oauth.github.com dedeef5aafd16f05d2ca1901a8a92b8fa584b93d
+
+    删除 composer
+    rm -rf ./composer
+    rm -rf /usr/local/bin/composer
+
+    cd
+    ls
+    mkdir composer
+    ls
+    cd ./composer
+    安装目录 /root/composer/composer.phar
+    mv ./composer.phar /usr/local/bin/composer
+
+    composer create-project yiisoft/yii2-app-advanced /home/wwwroot/default/yii2
+
+    如果遇到 your requirements could not be resolved to an installable set of packages
+    删除对应的缓存
+安装 yii 框架
+[root@peng4 ~]# mkdir composer
+[root@peng4 ~]# cd composer/
+[root@peng4 composer]# curl -sS https://getcomposer.org/installer | php

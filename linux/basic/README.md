@@ -12,3 +12,4 @@ install-source.html 源码包安装方式
 install-yum.html    yum 安装方式
 linux-ab.html       apache ab 命令
 linux-ip.html       IP 方式访问应用
+linux-php.html      php 环境
