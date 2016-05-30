@@ -1,3 +1,7 @@
+使用curl时会出现 call to undefined function curl_init() 错误
+修改 extension=php_curl;
+注意64位电脑使用 xampp(64位)
+
 cmd
 cd 进入文件所在目录
 php -f 文件名
@@ -35,3 +39,39 @@ php 中使用 cURL
 向服务器发送请求 curl_exec()
 接收服务器数据
 关闭cURL curl_close()
+
+采集数据
+采集百度首页中所有的a标签及内容
+
+// 获取百度源代码
+$html = file_get_contents('http://www.baidu.com/index.php');
+
+// 定义正则
+$pattern = "/<a.*>.*<\/a>/U";
+
+// 匹配数据
+preg_match_all($pattern, $html, $matches);
+
+// var_dump($matches);
+
+foreach ($matches[0] as $v) {
+	echo $v.'<br/>';
+}
+
+采集输入框的数据
+// $html = file_get_contents('http://dev.xqs221.com/index.php?s=/Admin/Public/login.html');
+// $pattern = "/<p.*><input.*<\/p>/U";
+// preg_match_all($pattern, $html, $matches);
+// foreach ($matches[0] as $v){
+// 	echo $v.'<br>';
+// }
+
+$curl=curl_init('http://dev.xqs221.com/index.php?s=/Admin/Public/login.html'); // 初始化
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+$content = curl_exec($curl); // 执行
+curl_close($curl); // 关闭
+$pattern = "/<p.*><input.*<\/p>/U";
+preg_match_all($pattern,$content,$matches);
+foreach ($matches[0] as $v){
+	echo $v.'<br>';
+}
