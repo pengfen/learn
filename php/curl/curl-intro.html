@@ -1,6 +1,7 @@
 使用curl时会出现 call to undefined function curl_init() 错误
 修改 extension=php_curl;
 注意64位电脑使用 xampp(64位)
+安装xampp后 修改httpd.conf21
 
 cmd
 cd 进入文件所在目录
@@ -47,7 +48,7 @@ php 中使用 cURL
 $html = file_get_contents('http://www.baidu.com/index.php');
 
 // 定义正则
-$pattern = "/<a.*>.*<\/a>/U";
+$pattern = "/<a.*>.*<\/a>/U"; // 获取a标签的内容 /<a.*>(.*?)<\/a>/U
 
 // 匹配数据
 preg_match_all($pattern, $html, $matches);
@@ -140,6 +141,14 @@ print_r($matches);
 $matches a标签的相关信息
 $matches[1] a标签对应href值
 $matches[1] a标签对应的内容
+
+采集手机号之后再匹配是否是正确的手机号
+$phonenumber = '13712345678';
+if(preg_match("/^1[34578]{1}\d{9}$/",$phonenumber)){
+    echo "是手机号码";
+}else{
+    echo "不是手机号码";
+}
 
 发送 get数据
 $array = array(
