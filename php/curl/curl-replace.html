@@ -1,0 +1,14 @@
+<?php
+// 在网络上下载一个网页并把内容中的 百度 替换为 吊丝 之后输出
+
+$curl = curl_init(); // 初始化
+curl_setopt($curl, CURLOPT_URL, "http://www.baidu.com"); // 设置访问网页的 URL
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // 执行之后不直接打印出来
+$output = curl_exec($curl); // 执行
+curl_close($curl); // 关闭curl
+echo str_replace("百度", "吊丝", $output);
+
+cmd 中执行
+php -f 文件名 > baidu02.html
+
+打开baidu02.html

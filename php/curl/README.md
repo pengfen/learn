@@ -4,3 +4,11 @@ curl-ftp.html        curl 操作ftp
 curl-user.html       curl 操作个人空间
 curl-webservice.html curl 操作webservice
 php-pattern.html     php 正则
+curl-basic.html      curl 简单爬虫
+curl-replace.html    curl 替换内容
+curl-wather.html     curl 查询天气
+curl-login.html      curl 登录后操作
+curl-download.html   curl 下载文件(ftp)
+curl-upload.html     curl 上传文件(ftp)
+
+PHP文件 http://www.php.net/manual/zh/book.curl.php
