@@ -55,7 +55,7 @@ preg_match_all($pattern, $html, $matches);
 // var_dump($matches);
 
 foreach ($matches[0] as $v) {
-	echo $v.'<br/>';
+	echo $v.'<br/>'; // 打印出所有的 a 标签
 }
 
 采集输入框的数据
@@ -75,3 +75,21 @@ preg_match_all($pattern,$content,$matches);
 foreach ($matches[0] as $v){
 	echo $v.'<br>';
 }
+
+$matches[1] 的数据 [1] => Array ( [0] => text" name ="username" class="login_input username" value="请填写用户名 [1] => password" name="password" class="login_input password" value="请填写密码 [2] => submit" class="login_btn" value=" ) )
+
+采集input 中的value值
+preg_match_all('|value="(.*)"|isU',$content,$arr); //匹配到数组$arr中；
+print_r($arr); 
+
+Array ( [0] => Array ( [0] => value="请填写用户名" [1] => value="请填写密码" [2] => value="" ) [1] => Array ( [0] => 请填写用户名 [1] => 请填写密码 [2] => ) )
+
+print_r($arr[1]); 
+Array ( [0] => 请填写用户名 [1] => 请填写密码 [2] => )
+
+采集图片src的数据
+$str = '<img width="100" src="1.gif" height="100">';
+preg_match_all('/<img.*?src="(.*?)".*?>/is',$str,$array);
+print_r($array);
+
+Array ( [0] => Array ( [0] =>  ) [1] => Array ( [0] => 1.gif ) )
