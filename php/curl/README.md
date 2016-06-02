@@ -11,5 +11,6 @@ curl-login.html      curl 登录后操作
 curl-download.html   curl 下载文件(ftp)
 curl-upload.html     curl 上传文件(ftp)
 curl-redirect.html   curl 重定向
+curl-http.html       http 请求
 
 PHP文件 http://php.net/manual/zh/book.curl.php
