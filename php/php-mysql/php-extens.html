@@ -1,0 +1,24 @@
+PHP 中一个数据库可能有一个或者多个扩展 其中既有官方的 也有第三方提供的 像 MySQL 常用的扩展有原生的 MySQL 库 也可以使用增强版的 MySQLi 扩展 还可以使用 PDO 进行连接与操作
+
+
+不同的扩展提供基本相近的操作方法 不同的是可能具备一些新特性 以及操作性能可能会有所不同
+
+MySQL 扩展进行数据库连接的方法
+$link = mysql_connect('mysql_host', 'mysql_user', 'mysql_password');
+
+mysqli 扩展
+$link = mysqli_connect('mysql_host', 'mysql_user', 'mysql_password');
+
+PDO 扩展
+$dsn = 'mysql:dbname=testdb;host=127.0.0.1';
+$user = 'dbuser';
+$password = 'dbpass';
+$dbh = new PDO($dsn, $user, $password);
+
+<?php
+$link = mysql_connect('127.0.0.1', '', '') or die('数据库连接失败');
+mysql_select_db('');
+mysql_query("set names 'utf8'");
+$result = mysql_query('select * from user limit 1');
+$row = mysql_fetch_assoc($result);
+print_r($row);

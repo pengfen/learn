@@ -1,0 +1,27 @@
+连接 MySQL 数据库
+
+PHP 要对数据库进行操作 首先要做的是与数据库建立连接 
+通常我们使用 mysql_connect 函数进行数据库连接
+该函数需要指定数据库的地址 用户名及密码
+
+$host = 'localhost';
+$user = '';
+$pass = '';
+$link = mysql_connect($host, $user, $pass);
+
+PHP 连接数据库的方式类似于直接在命令行下通过进行连接 类似
+mysql -hlocalhost -uapeng -p
+当连接成功以后 我们需要选择一个操作的数据库 通过 mysql_select_db 函数来选择数据库
+mysql_select_db('');
+
+通常我们会先设置一下 当前连接使用的字符编码 一般的我们会使用 utf8 编码
+mysql_query("set names 'utf8'");
+通过上面的步骤 我们就与数据库建立了连接 可以进行数据操作了
+
+<?php
+$host = '127.0.0.1';
+$user = '';
+$pass = '';
+$link = mysql_connect($host, $user, $pass) or die("数据库连接失败");
+mysql_select_db('');
+mysql_query("set names 'utf8'");

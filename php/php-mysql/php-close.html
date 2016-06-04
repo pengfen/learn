@@ -1,0 +1,21 @@
+关闭MySQL连接
+
+当数据库操作完成以后 可以使用mysql_close关闭数据库连接 默认的 当PHP执行完毕以后 会自动的关闭数据库连接
+
+mysql_close();
+
+虽然PHP会自动关闭数据库连接 一般情况下已经满足请求 但是在对性能要求比较高的情况下 可以在进行完数据库操作之后尽快关闭数据库连接 以节省资源 提高性能
+
+在存在多个数据库连接的情况下 可以设定连接资源参数来关闭指定的数据库连接
+
+$link = mysql_connect($host, $user, $pass);
+mysql_close($link);
+
+<?php
+// 连接数据库
+mysql_connect("127.0.0.1", 'root', '');
+mysql_select_db('');
+mysql_query("set names 'utf8'");
+
+// 关闭数据库连接
+mysql_close();
