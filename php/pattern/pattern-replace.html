@@ -1,0 +1,33 @@
+正则表达式的搜索和替换
+
+正则表达式的搜索与替换在某些方面具有重要用途 比如调整目标字符串的格式 改变目标字符串匹配字符串的顺序等
+
+例如我们可以简单的调用字符串的日期格式
+$string = 'april 15, 2014';
+$pattern = '/(\w+)(\d+),(\d+)/i';
+$replacement = '$3, ${1} $2';
+echo preg_replace($pattern, $replacement, $string);
+
+其中${1}与$1的写法是等效的 表示第一个匹配的字串 $2代表第二个匹配的
+
+通过复杂的模式 我们可以更加精确的替换目标字符串的内容
+
+$patterns = array('/(19|20)(\d{2})-(\d{1,2})-(\d{1,2})/', '/^\s*{(\w+)}\s*=/');
+$replace = array('\3/\4/\1\2', '$\1 ='); // \3 等效于 $3  \4等效于$4 依次类推
+echo preg_replace($patterns, $replace, '{strartDate} = 1999-5-27'); // $startDate = 5/27/1999
+// (19|20) 表示取19 或者20中任意一个数字
+(\d{2}) 表示两个数字
+(\d{1, 2}) 表示1个或2个数字
+^\s*{(\w+)\s*=} 表示以任意空格开头的 并且包含在{}中的字符 并且以任意空格结尾 最后有个=号的
+
+用正则替换来去掉多余的空格与字符
+$str = 'one    two';
+$str = preg_replace('/\s+/', ' ', $str);
+echo $str; // one two
+
+<?php
+$str = '主要有以下几个文件: index.php, style.css, common.js';
+// 文件名替换后增加em标签
+$p = '/\w+\.\w+/i';
+$str = preg_replace($p, '<em>$0</em>', $str);
+echo $str;
