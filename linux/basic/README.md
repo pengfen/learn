@@ -13,3 +13,4 @@ install-yum.html    yum 安装方式
 linux-ab.html       apache ab 命令
 linux-ip.html       IP 方式访问应用
 linux-php.html      php 环境
+linux-phpcom.html   linux 执行php命令

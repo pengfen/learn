@@ -8,3 +8,8 @@ PHP 通过安装相应的扩展来实现数据库操作 现代应用程序的设
 if (function_exists('mysql_connect')) {
 	echo 'MySQL扩展已经安装';
 }
+
+注意 使用 mysqli 时 相关函数也使用 mysqli
+mysql_query --- mysqli_query
+mysql_fetch_row --- mysqli_fetch_row
+...

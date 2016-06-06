@@ -1,0 +1,17 @@
+linux 后台
+public function index(){
+	$file       = I('post.file');
+    $filePath   = I('post.filePath');
+    $jobNumber  = I('post.jobNumber');
+    $server     = I('post.server');
+    $command = "/opt/php-5.6.8/bin/php $file/handle.php $filePath $jobNumber $server > /tmp/tmplog.log 2>&1 &";
+    exec($command); // 执行linux命令
+}
+
+public function test(){
+	echo iconv("UTF-8", "gbk", "调用成功");
+	exit;
+}
+
+cmd --- cd /d 项目目录
+php index.php Admin/Gather/test
