@@ -198,3 +198,15 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, $post_string);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $data = curl_exec($ch);
 curl_close($ch);
+
+$o="";
+foreach ($post_data as $k=>$v)
+{
+    $o.= "$k=".urlencode($v)."&";
+}
+
+// 拼接一个字符串 $o username=peng&password=1234&
+// 去掉最后一个 & 
+// 以前常用 trim($o, '&');
+// substr($o, 0, -1);
+$post_data=substr($o,0,-1);
