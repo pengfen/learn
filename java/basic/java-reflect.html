@@ -1,0 +1,127 @@
+类加载器
+反射
+动态代理
+
+类的加载
+类的加载
+当程序要使用某个类时 如果该类还未被加载到内存中 则系统会通过加载 连接 初始化三步来实现对这个类进行初始化
+加载
+就是指将class文件读入内存 并为之创建一个Class对象
+任何类被使用时系统都会建立一个Class对象
+连接
+验证 是否有正确的内部结构 并和其他类协调一致
+准备 负责为类的静态成员分配内存 并设置默认初始化值
+解析 将类的二进制数据中的符号引用替换为直接引用
+初始化 就是我们以前讲过的初始化步骤
+
+类初始化时机
+创建类的实例
+访问类的静态变量 或者为静态变量赋值
+调用类的静态方法
+使用反射方式来强制创建某个类或接口对应的java.lang.Class对象
+初始化某个类的子类
+直接使用java.exe命令来运行某个主类
+
+类加载器
+负责将.class文件加载到内存中 并为之生成对应的Class对象
+虽然我们不需要关心类加载机制 但是了解这个机制 我们就能更好的理解程序的运行
+类加载器的组成
+Bootstrap ClassLoader 根类加载器
+Extension ClassLoader 扩展类加载器
+System ClassLoader 系统类加载器
+
+类加载器的作用
+Bootstrap ClassLoader 根类加载器
+也被称为引导类加载器 负责Java核心类的加载 比如System String等 在JDK中JRE的lib目录下rt.jar文件中
+Extension ClassLoader 扩展类加载器
+负责JRE的扩展目录中jar包的加载 在JDK中JRE的lib目录下ext目录
+System ClassLoader 系统类加载器
+负责在JVM启动时加载来自java命令的class文件 以及classpath环境变量所指定的jar包和类路径
+
+通过这些描述我们就可以知道我们常用的东西的加载都是由谁来完成的。
+到目前为止我们已经知道把class文件加载到内存了，那么，如果我们仅仅站在这些class文件的角度，我们如何来使用这些class文件中的内容呢?
+这就是我们反射要研究的内容。
+
+
+反射
+JAVA反射机制是在运行状态中 对于任意一个类 都能够知道这个类的所有属性和方法 对于任意一个对象 都能够调用它的任意一个方法和属性 这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制
+要想解剖一个类 必须先要获取到该类的字节码文件对象 而解剖使用的就是Class类中的方法 所以先要获取到每一个字节码文件对应的Class类型的对象
+
+A:三种获取Class对象的方式
+1:Person p = new Person();
+  Class c = p.getClass();
+
+2:Class c2 = Person.class;
+  任意数据类型都具备一个class静态属性,看上去要比第一种方式简单.
+
+3:将类名作为字符串传递给Class类中的静态方法forName即可
+  Class c3 = Class.forName("Person");
+	
+4:第三种和前两种的区别		
+前两种你必须明确Person类型.
+后面是你我这种类型的字符串就行.这种扩展更强.我不需要知道你的类.我只提供字符串,按照配置文件加载就可以了
+
+通过反射获取构造方法并使用
+获取构造方法
+getConstructors
+getDeclaredConstructors
+创建对象
+newInstance()
+con.newInstance("peng", 20);
+
+通过反射获取成员变量并使用
+获取所有成员
+getFields getDeclaredFields
+获取单个成员
+getField getDeclaredField
+修改成员的值
+set(Object obj, Object value)
+将指定对象变量上此 Field 对象表示的字段设置为指定的新值
+
+通过反射获取成员方法并使用
+获取所有方法
+getMethods
+getDeclaredMethods
+获取单个方法
+getMethod
+getDeclaredMethod
+暴力访问
+method.setAccessible(true);
+
+反射应用举例
+通过配置文件运行类中的方法
+我给你ArrayList<Integer>的一个对象 我想在这个集合中添加一个字符串数据 如何实现呢
+写一个方法
+public void setProperty(Object obj, Strint propertyName, Object value){}
+此方法可将obj对象中名为propertyName的属性的值设置为value
+
+动态代理
+代理 本来应该自己做的事情 却请别人来做 被请的人就是代理对象
+举例 春季回家买票让人代买
+动态代理 在程序运行过程中产生的这个对象
+而程序运行过程中产生对象其实就是我们刚才反射讲解的内容 所以 动态代理其实就是通过反射来生成一个代理
+
+在Java中java.lang.reflect包下提供了一个Proxy类和一个InvocationHandler接口 通过使用这个类和接口就可以生成动态代理对象 JDK提供的代理只能针对接口做代理 我们有更强大的代理cglib
+Proxy类中的方法创建动态代理类对象
+public static Object newProxyInstance(ClassLoader loader, Class<?>[] interfaces, InvocationHandler h)
+最终会调用 InvocationHandler 的方法
+InvocationHandler
+Object invoke(Object proxy, Method method, Object[] args)
+
+Proxy类中创建动态代理对象的方法的三个参数；
+ClassLoader对象，定义了由哪个ClassLoader对象来对生成的代理对象进行加载
+Interface对象的数组，表示的是我将要给我需要代理的对象提供一组什么接口，如果我提供了一组接口给它，那么这个代理对象就宣称实现了该接口(多态)，这样我就能调用这组接口中的方法了
+InvocationHandler对象，表示的是当我这个动态代理对象在调用方法的时候，会关联到哪一个InvocationHandler对象上
+
+每一个动态代理类都必须要实现InvocationHandler这个接口，并且每个代理类的实例都关联到了一个handler，当我们通过代理对象调用一个方法的时候，这个方法的调用就会被转发为由InvocationHandler这个接口的invoke 方法来进行调用。
+
+InvocationHandler接口中invoke方法的三个参数：
+proxy:代表动态代理对象
+method:代表正在执行的方法
+args:代表调用目标方法时传入的实参
+
+Proxy.newProxyInstance
+创建的代理对象是在jvm运行时动态生成的一个对象，它并不是我们的InvocationHandler类型，
+也不是我们定义的那组接口的类型，而是在运行是动态生成的一个对象，并且命名方式都是这样的形式，
+以$开头，proxy为中，最后一个数字表示对象的标号。
+System.out.println(u.getClass().getName());
