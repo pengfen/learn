@@ -14,3 +14,27 @@ phpinfo(); 查看 php 版本 查看版本对应的位数
 将 rabbitmq.1.dll 复制到 ext 的父目录中
 
 在 php.ini 文件中添加 extension=php_amqp.dll
+
+
+
+AMQP ( Advanced Message Queuing Protocol   高级消息队列协议)
+
+1.Broker
+
+简单来说就是消息队列服务器的实体。
+
+2.Exchange
+
+接收消息，转发消息到绑定的队列上，指定消息按什么规则，路由到哪个队列。
+
+3.Queue
+
+消息队列载体，用来存储消息，相同属性的 queue 可以重复定义，每个消息都会被投入到一个或多个队列。
+
+4.Binding
+
+绑定，它的作用就是把 Exchange 和 Queue 按照路由规则绑定起来。
+
+5.RoutingKey
+
+路由关键字，Exchange 根据这个关键字进行消息投递。
