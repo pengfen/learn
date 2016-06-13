@@ -1,0 +1,52 @@
+<div id='Dept' >
+    <div>
+	    <input type='checkbox' value=""/>
+	    <input type="hidden" value=""/>
+    </div>
+     <div>
+	    <input type='checkbox' value=""/>
+	    <input type="hidden" value=""/>
+    </div>
+     <div>
+	    <input type='checkbox' value=""/>
+	    <input type="hidden" value=""/>
+    </div>
+     <div>
+	    <input type='checkbox' value=""/>
+	    <input type="hidden" value=""/>
+    </div>
+</div>
+
+<div id='Team' >
+    <div>
+	    <input type='checkbox' value=""/>
+	    <input type="hidden" value=""/>
+    </div>
+     <div>
+	    <input type='checkbox' value=""/>
+	    <input type="hidden" value=""/>
+    </div>
+     <div>
+	    <input type='checkbox' value=""/>
+	    <input type="hidden" value=""/>
+    </div>
+     <div>
+	    <input type='checkbox' value=""/>
+	    <input type="hidden" value=""/>
+    </div>
+</div>
+
+check_box.click(function(e){ 
+    temp=""; 
+    ids = "";
+    $('#' + flag).find("input:checked").each(function(i){ // 根据ID获取div下的选中框
+		id = $(this).next("input").val();
+		if(i == 0){ 
+		    temp = $(this).val(); 
+		    ids = id;
+		} else { 
+		    temp += "," + $(this).val(); 
+		    ids += "," + id;
+		} 
+	});
+});
