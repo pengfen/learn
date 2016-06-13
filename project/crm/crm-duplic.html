@@ -1,0 +1,22 @@
+$max = trim(strip_tags($datetime[0]), '&nbsp;'); // 获取最大时间点
+
+$mobile = array();
+foreach ($datetime as $key => $value) { // 比较时间点 获取最大时间点的手机号
+	$val = trim(strip_tags($value), '&nbsp;');
+	if ($max == $val) {
+		$mobile[$key] = trim($phone[$key]);
+	}
+}
+sort($mobile); // 对手机号数组重新排序
+
+$str = ''; // 把数据变为字符串 implode(',', $mobile); 手机号1,手机号2... 下面拼接后 '手机号1,手机号2...'
+foreach ($mobile as $key => $value) {
+	$str .= "'$value',";
+}
+$str = substr($str, 0, -1); // 
+
+$filename = './config.php'; 
+$conf = file_get_contents($filename);
+$nextmobile = '';
+preg_match('/mobile\'=>.*\)/i', $conf, $mobilephone);
+preg_match_all('/\d{11}/', $mobilephone[0], $m); // 匹配多个手机号
