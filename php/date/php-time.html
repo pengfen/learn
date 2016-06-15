@@ -1,0 +1,8 @@
+获取零点时间
+
+$time = mktime(0,0,0,date('m'),date('d'),date('Y'))
+
+$time = strtotime(date('Y-m-d', time()).' 00:00:00');
+
+转换为时间
+date('Y-m-d H:i:s', $time);
