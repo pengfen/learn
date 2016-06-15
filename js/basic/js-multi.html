@@ -71,16 +71,50 @@ var options = {
     <?php foreach ($depArr as $key => $dep) {?> <?php echo $key;?>:"<?php echo $dep;?>",<?php }?>
 };
 var options = {11:"市场一部",12:"市场二部",13:"市场三部"};
-
-//$("#DeptMsg").checks_select(options, '—请选择部门—', '#DeptID', '#DeptMsg', 'DeptMsgShow'); 
 $('#DeptMsg').val('—请选择部门—');
-$("#DeptMsg").click(function(e){
-    if ($('#TeamMsgShow').css('display') == 'block') {
-        $('#TeamMsgShow').css('display', 'none');
-    }
+
+// 鼠标移入移出事件
+$("#Dept").mouseenter(function(e){ //鼠标移入 
     $("#DeptID").val('');
     $('#TeamMsg').val('—请选择属组—');
     $("#DeptMsg").checks_select(options, '—请选择部门—', '#DeptID', '#DeptMsg', 'DeptMsgShow', e); 
+    $('#DeptMsgShow').css('display', 'block');
+}).mouseleave(function(e){ //鼠标移出 
+    $('#DeptMsgShow').css('display', 'none');
+});   
+$("#Team").mouseenter(function(e){ //鼠标移入 
+    var depId = $("#DeptID").val();
+    if (depId) {
+        $.post("{:U('')}", {"depId": depId, 'getDepTeams': 1},
+        function(data){
+            var resData = data.data;
+            var option = {};
+            for (var i = 0; i < resData.length; i++) {
+                option[resData[i].DeptID + '-' + resData[i].TID] = resData[i].TeamName;
+            }
+            
+            $("#TeamMsg").checks_select(option, '—请选择属组—', '#TeamID', '#TeamMsg', 'TeamMsgShow', e); 
+            $('#TeamMsgShow').css('display', 'block');
+                
+        }, 'json');
+    } else {
+        alert('请选择部门');
+    }
+}).mouseleave(function(e){ //鼠标移出 
+    $('#TeamMsgShow').css('display', 'none');
+}); 
+
+
+// 鼠标单击事件
+//$("#DeptMsg").checks_select(options, '—请选择部门—', '#DeptID', '#DeptMsg', 'DeptMsgShow'); 
+$("#DeptMsg").click(function(e){
+    if ($('#TeamMsgShow').css('display') == 'block') {
+        $('#TeamMsgShow').css('display', 'none');
+    } 
+    $("#DeptID").val('');
+    $('#TeamMsg').val('—请选择属组—');
+    $("#DeptMsg").checks_select(options, '—请选择部门—', '#DeptID', '#DeptMsg', 'DeptMsgShow', e); 
+    $('#DeptMsgShow').css('display', 'block');
 });
 $('#TeamMsg').click(function(e){
     if ($('#DeptMsgShow').css('display') == 'block') {
@@ -97,11 +131,17 @@ $('#TeamMsg').click(function(e){
             }
             
             $("#TeamMsg").checks_select(option, '—请选择属组—', '#TeamID', '#TeamMsg', 'TeamMsgShow', e); 
+            $('#TeamMsgShow').css('display', 'block');
                 
         }, 'json');
     } else {
         alert('请选择部门');
     }
     
+});
+
+$(document).click(function () { // 单击其它元素时就隐藏
+    $('#TeamMsgShow').css('display', 'none');
+    $('#DeptMsgShow').css('display', 'none');
 });
 </script>
