@@ -29,3 +29,39 @@ SELECT DISTINCT  `AgainKewords` FROM `info` WHERE ( (`CatOneName` is NULL) OR (`
 
 // 更新数据时使用 is NULL
 update info set CatOneName=1,CatTwoName=2 where Keywords is NULL
+
+mysqli 的使用
+$host = ''; // 服务器地址
+$username = ''; // 用户名
+$password = ''; // 密码
+$database = ''; //数据库名
+
+$conn = mysqli_connect($host,$username,$password,$database) or die("error connecting") ; //连接数据库
+mysqli_query($conn,"set names utf8");    //数据库输出编码
+
+$sql = "SELECT DISTINCT  ex.CustomerKeywords FROM info c INNER JOIN infoexten ex on c.CID = ex.CID  WHERE ( (c.CatOneName is NULL or c.CatOneName='') and (c.CatTwoName is NULL or c.CatTwoName='') )";
+$res = mysqli_query($conn, $sql);
+
+if ($res) {
+	$rows = array();
+	while ($row = mysqli_fetch_assoc($res)) {
+		$rows[] = $row;
+	}
+	foreach ($rows as $k => $v) {
+		$info[$k]['Keywords'] = $v['CustomerKeywords'];
+	}
+} 
+
+
+$sql = "SELECT DISTINCT  `AgainKewords` FROM `info` WHERE ( (`CatOneName` is NULL) OR (`CatOneName` = '') ) AND ( (`CatTwoName` is NULL) OR (`CatTwoName` = '') )";
+$res = mysqli_query($conn, $sql);
+
+if ($res) {
+	$rows = array();
+	while ($row = mysqli_fetch_assoc($res)) {
+		$rows[] = $row;
+	}
+	foreach ($rows as $k => $v) {
+		$info[$k]['Keywords'] = $v['AgainKewords'];
+	}
+} 
