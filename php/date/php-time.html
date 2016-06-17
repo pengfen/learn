@@ -6,3 +6,23 @@ $time = strtotime(date('Y-m-d', time()).' 00:00:00');
 
 转换为时间
 date('Y-m-d H:i:s', $time);
+
+
+比较时间 注意本地需要添加 date_default_timezone_set('PRC'); 
+
+// 根据时间比较
+$currtime = time();
+$mintime = date('Y-m-d', $currtime).' 06:00:00';
+$maxtime = date('Y-m-d', $currtime).' 19:00:00';
+$currtime = date('Y-m-d H:i:s', $currtime);
+
+// 根据时间戳比较
+$currtime = time();
+$mintime = strtotime(date('Y-m-d', $currtime).' 06:00:00');
+$maxtime = strtotime(date('Y-m-d', $currtime).' 19:00:00');
+
+if ($currtime > $mintime && $currtime < $maxtime) {
+    echo '请在早上 06:00 之前,晚上 19:00 以后执行此脚本';
+    echo PHP_EOL;
+    exit;
+}

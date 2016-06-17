@@ -38,3 +38,51 @@ AMQP ( Advanced Message Queuing Protocol   高级消息队列协议)
 5.RoutingKey
 
 路由关键字，Exchange 根据这个关键字进行消息投递。
+
+
+mq 的相关代码
+$amqp_config = array(
+	'host'=>'rabbitServer' ,
+	'port'=> '5672',
+	'login'=>'' ,
+	'password'=> '',
+	'vhost' =>'/'
+);
+
+$samInfo = array();   //要丢到mq中的数组
+try{
+	//连接RabbitMQ
+	$conn_args = $amqp_config;
+	$conn = new \AMQPConnection($conn_args);
+	$conn->connect();
+	//创建exchange名称和类型
+	$channel = new \AMQPChannel($conn);
+
+	$ex = new \AMQPExchange($channel);
+	$ex->setName('crm_exchange');
+	$ex->setType(AMQP_EX_TYPE_DIRECT);
+	$ex->setFlags(AMQP_DURABLE);
+	$ex->declareExchange();
+
+	//创建queue名称，使用exchange，绑定routingkey
+	$q = new \AMQPQueue($channel);
+	$q->setName('CRM');
+	$q->setFlags(AMQP_DURABLE);
+	$q->declareQueue();
+	$q->bind('crm_exchange', 'crm_routingkey');
+	//消息发布
+	$channel->startTransaction();
+	$message = json_encode($samInfo);
+	$ex->publish($message, 'crm_routingkey',AMQP_NOPARAM, array('delivery_mode' => 2));
+	$channel->commitTransaction();
+	$conn->disconnect();
+
+}catch (\Exception $e){
+	//将日志记录至服务器指定目录
+	$linuxLog = array(
+		'website'=>'m.gdzt99.com',
+		'data'=>$samInfo,
+		'error'=>$e
+	);
+	file_put_contents('/data/zabbixapi/zabbixapi_m_gdzt99_com.log',json_encode($linuxLog).PHP_EOL,FILE_APPEND);
+}

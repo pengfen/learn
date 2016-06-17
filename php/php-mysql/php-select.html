@@ -22,3 +22,10 @@ mysql_query("set names 'utf-8'");
 
 // 数据查询
 $res = mysql_query('select * from user limit 1', $link);
+
+
+// 注意 NULL 查询时使用 is NULL
+SELECT DISTINCT  `AgainKewords` FROM `info` WHERE ( (`CatOneName` is NULL) OR (`CatOneName` = '') ) AND ( (`CatTwoName` is NULL) OR (`CatTwoName` = '') );
+
+// 更新数据时使用 is NULL
+update info set CatOneName=1,CatTwoName=2 where Keywords is NULL
