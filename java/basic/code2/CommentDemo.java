@@ -21,6 +21,12 @@ public class CommentDemo {
 		 * 可以帮助我们调试程序  后面讲解更高级的调试
 		 */
 		
+		/* 注释调试
+		 * 全部注释 然后一行一行放行进行调试
+		 * 
+		 * PHP 一行一行进行echo 输出 进行调试
+		 */
+		
 		System.out.println("林青霞");
 		System.out.println("王祖贤");
 		System.out.println("刘亦菲");
