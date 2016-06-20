@@ -65,3 +65,13 @@ if ($res) {
 		$info[$k]['Keywords'] = $v['AgainKewords'];
 	}
 } 
+
+// 只查一个字段一个值
+$info = mysqli_query($conn, "select val from info where attr='gather_time' limit 1");
+$row = mysqli_fetch_row($info);
+
+if ($row[0] == '') {
+	// 无值时
+} else {
+	// 有数据时
+}
