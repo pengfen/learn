@@ -26,3 +26,15 @@ if ($currtime > $mintime && $currtime < $maxtime) {
     echo PHP_EOL;
     exit;
 }
+
+// 时间比较
+$fromtime = strtotime("2016-06-20 17:41:00");
+$totime = strtotime("2016-06-20 17:46:00");
+echo $totime - $fromtime; // 300 = 5 * 60
+
+判断是否大于五分钟
+if (($totime - $fromtime) > 300) {
+	// 处理大于五分钟的情况
+} else {
+	// 处理小于等于五分钟的情况
+}
