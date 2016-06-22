@@ -1,0 +1,10 @@
+php 判断是否包含字符串
+
+json 返回后判断 (常用于调用第三方接口时处理)
+if (Strpos($respose, '000000')) { // 处理成功返回的代码 }
+if (strpos($response, 'SUCCESS')) { // 处理成功返回的代码 }
+
+处理单个字符串
+if (strstr($str, "SC")) { 
+    $str = substr($str, 2);
+}
