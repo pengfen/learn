@@ -8,6 +8,21 @@ public function index(){
     exec($command); // 执行linux命令
 }
 
+handle.php 文件中获取对应的参数
+$filePath = $argv[1]; --- $filePath
+$jobNumber = $argv[2]; --- $jobNumber
+$server = $argv[3]; --- $server
+
+cmd 窗口测试
+D:\>php D:\crm\branches\221\Application\Admin\Controller\Employees\updatesource.php 100
+
+var_dump($argv);
+
+array(2) {
+	[0] => '....php'
+	[1] => '101'
+}
+
 public function test(){
 	echo iconv("UTF-8", "gbk", "调用成功");
 	exit;
@@ -16,3 +31,5 @@ public function test(){
 cmd --- cd /d 项目目录
 php index.php Admin/Gather/test
 php index.php Admin/UpdateCatName/test
+
+执行批处理时 变量用完 马上释放 unset($var);
