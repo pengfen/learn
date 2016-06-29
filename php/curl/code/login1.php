@@ -4,7 +4,7 @@
   
 
 //-----登录要提交的表单数据---------------
-$vars['username'] = 'e002041';
+$vars['username'] = '';
 $vars['pwd'] = '';
 //-------------------------------------
 $method_post = true;
@@ -37,7 +37,7 @@ $url = 'http://pp.d1jd.com/member/my.php?mid=21&status=3';
 // exit;
 
 
-$fields['username'] = "e002041";
+$fields['username'] = "";
 $fields['password'] = "";
 $fields['forward'] = "/";
 $fields['submit'] = "submit";
