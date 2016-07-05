@@ -25,11 +25,10 @@ cBcSolqKbtfzeQOrmQJBAKSS79hxJjK7KHa2wgFRx9tH/LgRqgBl7467SSlOL+TT
 BKU0Jx1KD78LA1314Wax98O6c0GThbO9uJOQ0o58lRQ=
 -----END RSA PRIVATE KEY-----';
 
-	// public $config = require_once('config.php');
-
+    // 公钥 私钥可以直接赋值 也可以在构造方法中通过 file_get_contents 来加载
 	// function __construct() {
-	// 	$this->pubkey = $config['pub_key'];
-	// 	$this->privkey = $config['pri_key'];
+	// 	$this->pubkey = file_get_contents('/home/openssl/public.key');  
+	// 	$this->privkey = file_get_contents('/home/openssl/private.key');  
 	// }
 
     // 使用公钥对data数据进行加密
