@@ -1,0 +1,42 @@
+<?php
+
+//设置cookie
+setcookie('username');
+setcookie('user', 'admin');
+setcookie('userinfo', 'xiaoyanyan', 0);			
+setcookie('name', 'xiaojingjing 1hous', time()+3600);			// cookie 设置有效时间为一小时
+setcookie('age', '10year ', time()+3600*24*365*10);			    // cookie 设置有效时间为十年
+setcookie('address', '中国·上海', time()+3600, '/');				//作用域  / 网站根目录
+setcookie('phone', '13838385438', time()+3600, '/s25');				//作用域  / 网站根目录
+setcookie('sex', 'woman', time()+3600, '/', '127.0.0.1');				//更改域名范围
+
+//数组形态的cookie
+setcookie('info[name]', 'small yanyan', time()+3600, '/');
+setcookie('info[sex]', 'woman', time()+3600, '/');
+
+
+//获取cookie
+var_dump($_COOKIE); // 第一次访问不会打印, 第二次访问会打印出 cookie 相关设置
+// array(6) {
+//   ["user"]=>
+//   string(5) "admin"
+//   ["userinfo"]=>
+//   string(10) "xiaoyanyan"
+//   ["name"]=>
+//   string(18) "xiaojingjing 1hous"
+//   ["age"]=>
+//   string(7) "10year "
+//   ["address"]=>
+//   string(14) "中国·上海"
+//   ["info"]=>
+//   array(2) {
+//     ["name"]=>
+//     string(12) "small yanyan"
+//     ["sex"]=>
+//     string(5) "woman"
+//   }
+// }
+
+//setcookie('address', '中国·日本', time()+3600, '/25');				//作用域  / 网站根目录
+//真正的删除cookie  把cookie的有效期设置为 过去时  设置 cookie  path 和 domain 要统一
+setcookie('age', '', time()-1);

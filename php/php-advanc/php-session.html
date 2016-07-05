@@ -1,0 +1,47 @@
+<?php
+//session_使用
+
+//使用sesion 之前 必须要开启session
+session_start();
+
+echo "session_name : ".session_name().'<br>';
+echo "session_id : ".session_id().'<br>';
+//设置 session id 在cookie中保存时间
+setcookie(session_name(), session_id(), time()+3600, '/');
+
+//向session放入数据  设置session
+$_SESSION['username'] = "small yanyan";
+$_SESSION['age'] = "19";
+$_SESSION['info'] = array(1, 2, 3, 4);
+$_SESSION['child'] = array(
+	array('a', 'b', 'name'=>'c'),
+	array('A', 'B', 'C'),
+);
+
+//读取sessino
+var_dump($_SESSION);
+// session_name : PHPSESSID
+// session_id : cpvtjv6bvfmn0c18j9jinoc802
+// array(4) { ["username"]=> string(12) "small yanyan" ["age"]=> string(2) "19" ["info"]=> array(4) { [0]=> int(1) [1]=> int(2) [2]=> int(3) [3]=> int(4) } ["child"]=> array(2) { [0]=> array(3) { [0]=> string(1) "a" [1]=> string(1) "b" ["name"]=> string(1) "c" } [1]=> array(3) { [0]=> string(1) "A" [1]=> string(1) "B" [2]=> string(1) "C" } } }
+
+echo "<hr>";
+var_dump($_COOKIE);
+// array(6) { ["user"]=> string(5) "admin" ["userinfo"]=> string(10) "xiaoyanyan" ["name"]=> string(18) "xiaojingjing 1hous" ["age"]=> string(7) "10year " ["address"]=> string(14) "中国·上海" ["info"]=> array(2) { ["name"]=> string(12) "small yanyan" ["sex"]=> string(5) "woman" } }
+
+//执行sessin 删除
+//删除 session 中某个成员
+unset($_SESSION['username']);
+unset($_SESSION['child']);
+
+//删除所有的sessino
+session_destroy();		//销毁sessino
+
+
+var_dump($_SESSION);
+
+============================================================
+// 使用url来传递 session id
+ini_set('session.use_only_cookies', 0);
+
+<a href='1.php?<?php echo session_name()?>=<?php echo session_id()?>'>1.php</a>
+<a href="1.php?PHPSESSID=cpvtjv6bvfmn0c18j9jinoc802">1.php</a>
