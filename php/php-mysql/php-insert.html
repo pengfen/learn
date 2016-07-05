@@ -33,3 +33,6 @@ $class = '高三一班';
 $sql = "insert into user(name, age, class) values('$name', '$age', '$class')";
 mysql_query($sql);
 $uid = mysql_insert_id();
+
+// 将查询的数据添加到另一张表中 注意字段匹配
+INSERT INTO zt_grabagesource_discard SELECT * FROM zt_grabagesource n WHERE n.CID = 1000026149

@@ -15,6 +15,10 @@ public class ProgDemo1 {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("请输入月份");
 		int in = sc.nextInt();
+		if (in < 1) {
+			System.out.println("请输入大于0的数");
+			System.exit(0); // 错误时退出 PHP exit() 退出
+		}
 
 		System.out.println("第" + in + "个月兔子总数是" + fun(in) + "对");
 	}
