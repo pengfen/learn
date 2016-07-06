@@ -1,0 +1,656 @@
+MySQL03 SQL语句设计
+======================================================
+一 	操作数据表中的数据记录（DML语句）
+		1.	使用INSERT语句向数据表中添加数据
+			格式：
+			INSERT INTO 表名 [(字段名1,字段名2,…字段名n)] VALUES(‘值1’,‘值2’,…,’值n’);
+			或者
+			INSERT INTO 表名 [(字段名1,字段名2,…字段名n)] VALUES(‘值1’,‘值2’，…，‘值n’),VALUES(‘值1’,‘值2’,…,’值n’);
+			
+		2.	使用UPDATE语句更新数据表中已存在的数据
+			格式：
+			UPDATE 表名 SET 字段名=表达式 [,…][WHERE 条件]
+
+		3.	使用DELETE语句删除数据表中不需要的数据记录
+			格式：
+			DELETE FROM 表名 [WHERE 条件][ORDER BY 字段][LIMIT 行数]
+			
+二		通过DQL命令查询数据表中的数据
+		1. 格式
+			SELECT [ALL|DISTINCT]{*|table.*|[table.]field1[AS alias1][,[table.]field2[AS alias2][,…]]}FROM 表名
+			 [WHERE子句]
+			[GROUP BY..][HAVING..][ORDER BY..][LIMIT count];
+		2. 选择特定的字段
+		3. 使用AS子句为字段取别名
+		4. DISTINCT关键字的使用
+		5. 在SELECT语句中使用表达式的列
+			对查询结果 进行运算
+			使用mysql函数 concat()  md5() password()
+		6. 使用WHERE子句按条件检索
+		
+		7. 根据空值（NULL）确定检索条件
+			is null
+			is not null
+		8. 使用BEETWEEN AND进行范围比较查询
+			between and
+			not between and
+		9. 使用IN进行范围比对查询
+			in
+			not in
+		10. 使用LIKE进行模糊查询
+			占位符：  _   一个任意字符    
+			              %	任何数量的任意字符
+						  
+						  
+		11. 多表查询（连接查询）
+		12. 嵌套查询（子查询）
+			把一张表中查询结果 作为 另一张表中 的查询条件
+		
+		
+		13. 使用统计函数
+				COUNT()		查询总数
+				SUM()			和
+				AVG()			平均
+				MAX()			最大
+				MIN()			最小
+				
+		14. 使用ORDER BY对查询结果排序  
+			DESC 降序操作
+			ASC  升序操作 （默认）
+		15. 使用LIMIT
+			
+		16. 使用 GROUP BY 进行 分组
+			配合 having 对分组后的数据 进行查
+
+三 	MySQL 运算符
+		1. 算术运算符
+			+	  -	   *	  /		 DIV 	 % 	  MOD
+		2. 比较运算符
+			数据列类型						说明										取值范围
+			=										a=b										若操作数a与操作数b相等，则为真
+			<=>									a<=>b									若a与b相等，则为真，可以用于NULL值比较
+			!=或<>								a!=b或a<>b							若操作数a与b不相等，为真
+			<										a<b										若操作数a小于b，为真
+			<=									a<=b									若操作数a大于b，为真
+			>										a>b										若操作数a大于b，为真
+			>=									a>=b									若操作数a大于等于b，为真
+			IS NULL							a IS NULL								若操作数a为NULL，为真
+			IS NOT NULL					a IS NOT NULL						若操作数a不为NULL，为真
+			BETWEEN							a BETWEEN b AND c				若a在b和c之间，为真
+			NOT BETWEEN					a NOT BETWEEN b AND c	若操作数a不在b和c之间，为真
+			LIKE									a LIKE b								SQL模式匹配，若a匹配b，为真
+			NOT LIKE							a NOT LIKE b						SQL模式匹配，若a不匹配b，则为真
+			IN									a IN (b1,b2….)						若a等于b1,b2,b3,…中的某一个，则为真
+		3. 逻辑运算符
+			操作符								语法										描述
+			AND 或 &&						a AND b 或 a && b				逻辑与，若两个操作数同时为真，则为真
+			OR 或 ||								a OR b 或 a||b						逻辑或，只要有一个操作数为真，则为真
+			XOR									a XOR b								逻辑异或，若有且仅有一个操作数为真，则为真
+			NOT 或 ！							NOT a 或 ！a						逻辑非，若操作数为假，则为真
+
+=====================================================================================
+MySQL04 MySQL数据库高级管理
+==============================================================
+1.	MySQL用户管理
+	1.1 权限表
+		user表
+		db表	host表
+		tables_priv 表 和 columns_priv表
+		procs_priv 表
+	1.2 账户管理
+		1.2.1 mysql服务器的登陆和退出
+		1.2.2 新建普通用户
+			1. 使用CREATE USER 语句来新建
+				CREATE USER 用户名 IDENTIFIED BY 密码	
+			2 使用INSERT子句新建普通用户
+				INSERT INTO mysql.user(Host, User, Password) VALUE(主机名, 用户名,  PASSWORD(密码))
+				flush privileges;
+			3 使用GRANT来新建普通用户
+				GRANT 权限 ON 数据库.数据表 TO 用户名@登录主机 IDENTIFIED BY “密码”
+		1.2.3 删除普通用户
+			1 使用DROP USER 
+				DROP USER 用户名
+			2 使用DELETE语句
+				DELETE FROM mysql.user WHERE User='' AND Password=''
+				flush privileges
+		1.2.4 root 用户修改自己的密码
+			1 使用mysqladmin 命令来修改root 用户的密码
+				mysqladmin -u 用户名 -p password '新密码'
+				注意:新密码必须用双引号
+				!! 可能会不成功
+			2 修改mysql数据库下的user表
+				UPDATE mysql.user SET Password=password(新密码) WHERE User='' AND Host=''
+				FLUSH PRIVILEGES
+			3 使用SET语句
+				SET PASSWORD = PASSWORD(新密码)
+				FLUSH PRIVILEGES
+		1.2.5 root 修改普通用户密码
+			1 使用set语句
+				SET PASSWORD FOR 'username'@'hostname'=PASSWORD(新密码)
+			2 修改mysql数据库user表
+			3 用CRANT 语句
+				GRANT 权限 ON 数据库.数据表 TO 用户名@登录主机 IDENTIFIED BY “密码”
+		1.2.6 普通用户修改密码
+			SET PASSWORD = PASSWORD(新密码)
+		1.2.7 root 用户丢失的解决方法
+			① 关闭 mysql服务
+			② 安全模式 开启mysql服务 mysqld --skip-grant-tables
+			③ root用户登录mysql服务器  mysql -u root
+			④ 修改 mysql数据库 下user表
+			⑤ 加载权限表 FLUSH PRIVILEGES
+			⑥ 退出mysql安全模式 mysqladmin -u root -p shutdown
+	1.3 权限管理
+		1.3.1 MySQL 的各种权限
+		1.3.2 授权
+			GRANT priv_type[(column_list)] ON database.table
+			TO user [IDENTIFIED BY [PASSWORD] 'password']
+			[, [IDENTIFIED BY [PASSWORD] 'password']] ....
+			[WITH with_option [with_option] ...]
+		1.3.2 收回权限
+			REVOKE priv_type[(column_list)]...
+			ON database.table
+			FORM 'user'@'host' [,'user'@'host']....
+		1.3.3 查看权限
+			SHOW GRANTS FOR 'username'@'hostname'
+			
+			
+2. 数据备份与还原
+	2.1 数据备份
+		2.1.1 使用 mysqldump 命令备份
+			1 备份一个数据库 
+				mysqldump -u username -p dbname table1 table2 ... > backupName.sql
+				dbname 表示数据库名 table是表名 没有改参数备份整个数据库
+			2 备份多个数据库
+				mysqldump -u username -p --database dbname1 dbname2 ... > backupName.sql
+			3 备份全部数据库
+				mysqldump -u username -p --all-databases > backupName.sql
+		2.1.2 复制数据库目录
+	2.2 数据还原
+		2.2.1 使用mysql命令还原
+			mysql -u root -p [dbname] < backup.sql
+		2.2.2 复制复制库目录
+		2.2.3 source命令
+				USER database;
+				SOURCE backup.sql	
+
+表分区
+=======================================================================================
+此文从以下几个方面来整理关于分区表的概念及操作: 
+        1.表空间及分区表的概念 
+        2.表分区的具体作用 
+        3.表分区的优缺点 
+        4.表分区的几种类型及操作方法 
+        5.对表分区的维护性操作. 
+(1.) 表空间及分区表的概念 
+表空间： 
+　　是一个或多个数据文件的集合，所有的数据对象都存放在指定的表空间中，但主要存放的是表， 所以称作表空间。 
+
+分区表： 
+当表中的数据量不断增大，查询数据的速度就会变慢，应用程序的性能就会下降，这时就应该考虑对表进行分区。表进行分区后，逻辑上表仍然是一张完整的表，只是将表中的数据在物理上存放到多个表空间(物理文件上)，这样查询数据时，不至于每次都扫描整张表。 
+
+( 2).表分区的具体作用 
+Oracle的表分区功能通过改善可管理性、性能和可用性，从而为各式应用程序带来了极大的好处。通常，分区可以使某些查询以及维护操作的性能大大提高。此外,分区还可以极大简化常见的管理任务，分区是构建千兆字节数据系统或超高可用性系统的关键工具。 
+
+分区功能能够将表、索引或索引组织表进一步细分为段，这些数据库对象的段叫做分区。每个分区有自己的名称，还可以选择自己的存储特性。从数据库管理员的角度来看，一个分区后的对象具有多个段，这些段既可进行集体管理，也可单独管理，这就使数据库管理员在管理分区后的对象时有相当大的灵活性。但是，从应用程序的角度来看，分区后的表与非分区表完全相同，使用 SQL DML 命令访问分区后的表时，无需任何修改。 
+
+什么时候使用分区表： 
+1、表的大小超过2GB。 
+2、表中包含历史数据，新的数据被增加都新的分区中。 
+
+(3).表分区的优缺点 
+表分区有以下优点： 
+1、改善查询性能：对分区对象的查询可以仅搜索自己关心的分区，提高检索速度。 
+2、增强可用性：如果表的某个分区出现故障，表在其他分区的数据仍然可用； 
+3、维护方便：如果表的某个分区出现故障，需要修复数据，只修复该分区即可； 
+4、均衡I/O：可以把不同的分区映射到磁盘以平衡I/O，改善整个系统性能。 
+
+缺点： 
+分区表相关：已经存在的表没有方法可以直接转化为分区表。不过 Oracle 提供了在线重定义表的功能。 
+
+(4).表分区的几种类型及操作方法 
+一.范围分区： 
+范围分区将数据基于范围映射到每一个分区，这个范围是你在创建分区时指定的分区键决定的。这种分区方式是最为常用的，并且分区键经常采用日期。举个例子：你可能会将销售数据按照月份进行分区。 
+当使用范围分区时，请考虑以下几个规则： 
+1、每一个分区都必须有一个VALUES LESS THEN子句，它指定了一个不包括在该分区中的上限值。分区键的任何值等于或者大于这个上限值的记录都会被加入到下一个高一些的分区中。 
+2、所有分区，除了第一个，都会有一个隐式的下限值，这个值就是此分区的前一个分区的上限值。 
+3、在最高的分区中，MAXVALUE被定义。MAXVALUE代表了一个不确定的值。这个值高于其它分区中的任何分区键的值，也可以理解为高于任何分区中指定的VALUE LESS THEN的值，同时包括空值。 
+例一： 
+假设有一个CUSTOMER表，表中有数据200000行，我们将此表通过CUSTOMER_ID进行分区，每个分区存储100000行，我们将每个分区保存到单独的表空间中，这样数据文件就可以跨越多个物理磁盘。下面是创建表和分区的代码，如下： 
+CREATE TABLE CUSTOMER 
+( 
+    CUSTOMER_ID NUMBER NOT NULL PRIMARY KEY, 
+    FIRST_NAME  VARCHAR2(30) NOT NULL, 
+    LAST_NAME   VARCHAR2(30) NOT NULL, 
+    PHONE        VARCHAR2(15) NOT NULL, 
+    EMAIL        VARCHAR2(80), 
+    STATUS       CHAR(1) 
+) 
+PARTITION BY RANGE (CUSTOMER_ID) 
+( 
+    PARTITION CUS_PART1 VALUES LESS THAN (100000) TABLESPACE CUS_TS01, 
+    PARTITION CUS_PART2 VALUES LESS THAN (200000) TABLESPACE CUS_TS02 
+) 
+例二：按时间划分 
+CREATE TABLE ORDER_ACTIVITIES 
+( 
+    ORDER_ID      NUMBER(7) NOT NULL, 
+    ORDER_DATE    DATE, 
+    TOTAL_AMOUNT NUMBER, 
+    CUSTOTMER_ID NUMBER(7), 
+    PAID           CHAR(1) 
+) 
+PARTITION BY RANGE (ORDER_DATE) 
+( 
+  PARTITION ORD_ACT_PART01 VALUES LESS THAN (TO_DATE('01- MAY -2003','DD-MON-YYYY')) TABLESPACEORD_TS01, 
+  PARTITION ORD_ACT_PART02 VALUES LESS THAN (TO_DATE('01-JUN-2003','DD-MON-YYYY')) TABLESPACE ORD_TS02, 
+  PARTITION ORD_ACT_PART02 VALUES LESS THAN (TO_DATE('01-JUL-2003','DD-MON-YYYY')) TABLESPACE ORD_TS03 
+) 
+例三：MAXVALUE 
+CREATE TABLE RangeTable 
+( 
+  idd   INT PRIMARY KEY , 
+  iNAME VARCHAR(10), 
+  grade INT  
+) 
+PARTITION  BY  RANGE (grade) 
+( 
+      PARTITION  part1 VALUES  LESS  THEN (1000) TABLESPACE  Part1_tb, 
+      PARTITION  part2 VALUES  LESS  THEN (MAXVALUE) TABLESPACE  Part2_tb 
+); 
+
+二.列表分区： 
+该分区的特点是某列的值只有几个，基于这样的特点我们可以采用列表分区。 
+例一 
+CREATE TABLE PROBLEM_TICKETS 
+( 
+    PROBLEM_ID   NUMBER(7) NOT NULL PRIMARY KEY, 
+    DESCRIPTION  VARCHAR2(2000), 
+    CUSTOMER_ID  NUMBER(7) NOT NULL, 
+    DATE_ENTERED DATE NOT NULL, 
+    STATUS       VARCHAR2(20) 
+) 
+PARTITION BY LIST (STATUS) 
+( 
+      PARTITION PROB_ACTIVE   VALUES ('ACTIVE') TABLESPACE PROB_TS01, 
+      PARTITION PROB_INACTIVE VALUES ('INACTIVE') TABLESPACE PROB_TS02 
+例二 
+CREATE  TABLE  ListTable 
+( 
+    id    INT  PRIMARY  KEY , 
+    name  VARCHAR (20), 
+    area  VARCHAR (10) 
+) 
+PARTITION  BY  LIST (area) 
+( 
+    PARTITION  part1 VALUES ('guangdong','beijing') TABLESPACE  Part1_tb, 
+    PARTITION  part2 VALUES ('shanghai','nanjing')  TABLESPACE  Part2_tb 
+); 
+) 
+
+三.散列分区： 
+这类分区是在列值上使用散列算法，以确定将行放入哪个分区中。当列的值没有合适的条件时，建议使用散列分区。 
+散列分区为通过指定分区编号来均匀分布数据的一种分区类型，因为通过在I/O设备上进行散列分区，使得这些分区大小一致。 
+例一： 
+CREATE TABLE HASH_TABLE 
+( 
+  COL NUMBER(8), 
+  INF VARCHAR2(100) 
+) 
+PARTITION BY HASH (COL) 
+( 
+  PARTITION PART01 TABLESPACE HASH_TS01, 
+  PARTITION PART02 TABLESPACE HASH_TS02, 
+  PARTITION PART03 TABLESPACE HASH_TS03 
+) 
+简写： 
+CREATE TABLE emp 
+( 
+    empno NUMBER (4), 
+    ename VARCHAR2 (30), 
+    sal   NUMBER 
+) 
+PARTITION BY  HASH (empno) PARTITIONS 8 
+STORE IN (emp1,emp2,emp3,emp4,emp5,emp6,emp7,emp8); 
+
+hash分区最主要的机制是根据hash算法来计算具体某条纪录应该插入到哪个分区中,hash算法中最重要的是hash函数，Oracle中如果你要使用hash分区，只需指定分区的数量即可。建议分区的数量采用2的n次方，这样可以使得各个分区间数据分布更加均匀。 
+
+四.组合范围散列分区 
+这种分区是基于范围分区和列表分区，表首先按某列进行范围分区，然后再按某列进行列表分区，分区之中的分区被称为子分区。 
+CREATE TABLE SALES 
+( 
+PRODUCT_ID VARCHAR2(5), 
+SALES_DATE DATE, 
+SALES_COST NUMBER(10), 
+STATUS VARCHAR2(20) 
+) 
+PARTITION BY RANGE(SALES_DATE) SUBPARTITION BY LIST (STATUS) 
+( 
+   PARTITION P1 VALUES LESS THAN(TO_DATE('2003-01-01','YYYY-MM-DD'))TABLESPACE rptfact2009 
+          ( 
+              SUBPARTITION P1SUB1 VALUES ('ACTIVE') TABLESPACE rptfact2009, 
+              SUBPARTITION P1SUB2 VALUES ('INACTIVE') TABLESPACE rptfact2009 
+          ), 
+   PARTITION P2 VALUES LESS THAN (TO_DATE('2003-03-01','YYYY-MM-DD')) TABLESPACE rptfact2009 
+          ( 
+              SUBPARTITION P2SUB1 VALUES ('ACTIVE') TABLESPACE rptfact2009, 
+              SUBPARTITION P2SUB2 VALUES ('INACTIVE') TABLESPACE rptfact2009 
+          ) 
+) 
+
+五.复合范围散列分区： 
+这种分区是基于范围分区和散列分区，表首先按某列进行范围分区，然后再按某列进行散列分区。 
+create table dinya_test 
+( 
+transaction_id number primary key, 
+item_id number(8) not null, 
+item_description varchar2(300), 
+transaction_date date 
+) 
+partition by range(transaction_date)subpartition by hash(transaction_id)  subpartitions 3 store in (dinya_space01,dinya_space02,dinya_space03) 
+( 
+     partition part_01 values less than(to_date(‘2006-01-01’,’yyyy-mm-dd’)), 
+     partition part_02 values less than(to_date(‘2010-01-01’,’yyyy-mm-dd’)), 
+     partition part_03 values less than(maxvalue) 
+); 
+
+定时任务
+================================================================================
+MySQL计划任务(事件调度器)(Event Scheduler)
+
+MySQL5.1.x版本中引入了一项新特性EVENT，顾名思义就是事件、定时任务机制，在指定的时间单元内执行特定的任务，因此今后一些对数据定时性操作不再依赖外部程序，而直接使用数据库本身提供的功能。
+
+要查看当前是否已开启事件调度器，可执行如下SQL：
+
+SHOW VARIABLES LIKE 'event_scheduler';
+或
+
+SELECT @@event_scheduler;
+或
+
+SHOW PROCESSLIST;
+若显示：
+
++-----------------+-------+
+| Variable_name   | Value |
++-----------------+-------+
+| event_scheduler | OFF   |
++-----------------+-------+
+则可执行
+
+SET GLOBAL event_scheduler = 1;
+或
+
+SET GLOBAL event_scheduler = ON;
+来开启，也可以直接在启动命令加上“–event_scheduler=1”，例如：
+
+mysqld ... --event_scheduler=1
+
+my.ini or my.cnf 中的
+[mysqld]
+添加 event_scheduler=ON
+
+创建事件(CREATE EVENT)
+先来看一下它的语法：
+
+CREATE EVENT [IF NOT EXISTS] event_name
+ON SCHEDULE schedule
+[ON COMPLETION [NOT] PRESERVE]
+[ENABLE | DISABLE]
+[COMMENT 'comment']
+DO sql_statement;
+
+schedule:
+AT TIMESTAMP [+ INTERVAL INTERVAL]
+| EVERY INTERVAL [STARTS TIMESTAMP] [ENDS TIMESTAMP]
+
+INTERVAL:
+quantity {YEAR | QUARTER | MONTH | DAY | HOUR | MINUTE |
+            WEEK | SECOND | YEAR_MONTH | DAY_HOUR | DAY_MINUTE |
+            DAY_SECOND | HOUR_MINUTE | HOUR_SECOND | MINUTE_SECOND}
+
+1)首先来看一个简单的例子来演示每秒插入一条记录到数据表
+
+USE test;
+CREATE TABLE aaa (timeline TIMESTAMP);
+CREATE EVENT e_test_insert
+ON SCHEDULE EVERY 1 SECOND 
+DO INSERT INTO test.aaa VALUES (CURRENT_TIMESTAMP);
+等待3秒钟后，再执行查询成功。
+
+2) 5天后清空test表：
+
+CREATE EVENT e_test
+ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 5 DAY
+DO TRUNCATE TABLE test.aaa;
+3) 2007年7月20日12点整清空test表：
+
+CREATE EVENT e_test
+ON SCHEDULE AT TIMESTAMP '2007-07-20 12:00:00'
+DO TRUNCATE TABLE test.aaa;
+4) 每天定时清空test表：
+
+CREATE EVENT e_test
+ON SCHEDULE EVERY 1 DAY
+DO TRUNCATE TABLE test.aaa;
+5) 5天后开启每天定时清空test表：
+
+CREATE EVENT e_test
+ON SCHEDULE EVERY 1 DAY
+STARTS CURRENT_TIMESTAMP + INTERVAL 5 DAY
+DO TRUNCATE TABLE test.aaa;
+6) 每天定时清空test表，5天后停止执行：
+
+CREATE EVENT e_test
+ON SCHEDULE EVERY 1 DAY
+ENDS CURRENT_TIMESTAMP + INTERVAL 5 DAY
+DO TRUNCATE TABLE test.aaa;
+7) 5天后开启每天定时清空test表，一个月后停止执行：
+
+CREATE EVENT e_test
+ON SCHEDULE EVERY 1 DAY
+STARTS CURRENT_TIMESTAMP + INTERVAL 5 DAY
+ENDS CURRENT_TIMESTAMP + INTERVAL 1 MONTH
+DO TRUNCATE TABLE test.aaa;
+[ON COMPLETION [NOT] PRESERVE]可以设置这个事件是执行一次还是持久执行，默认为NOT PRESERVE。
+8) 每天定时清空test表(只执行一次，任务完成后就终止该事件)：
+
+CREATE EVENT e_test
+ON SCHEDULE EVERY 1 DAY
+ON COMPLETION NOT PRESERVE
+DO TRUNCATE TABLE test.aaa;
+[ENABLE | DISABLE]可是设置该事件创建后状态是否开启或关闭，默认为ENABLE。
+[COMMENT ‘comment’]可以给该事件加上注释。
+
+修改事件(ALTER EVENT)
+ALTER EVENT event_name
+[ON SCHEDULE schedule]
+[RENAME TO new_event_name]
+[ON COMPLETION [NOT] PRESERVE]
+[COMMENT 'comment']
+[ENABLE | DISABLE]
+[DO sql_statement]
+1) 临时关闭事件
+
+ALTER EVENT e_test DISABLE;
+2) 开启事件
+
+ALTER EVENT e_test ENABLE;
+3) 将每天清空test表改为5天清空一次：
+
+ALTER EVENT e_test
+ON SCHEDULE EVERY 5 DAY;
+
+删除事件(DROP EVENT)
+语法很简单，如下所示：
+
+DROP EVENT [IF EXISTS] event_name
+例如删除前面创建的e_test事件
+
+DROP EVENT e_test;
+当然前提是这个事件存在，否则会产生ERROR 1513 (HY000): Unknown event错误，因此最好加上IF EXISTS
+
+DROP EVENT IF EXISTS e_test;
+
+
+----------------------------------------------------------
+
+让MYSQL定期执行指定的一条命令。功能类似于crontab。
+
+1、 检查你的MYSQL是否开了这个功能
+
+SHOW VARIABLES LIKE 'event_scheduler';
+
+我执行了一遍发现记录为空说明我的MYSQL没有开呢。OK解决办法
+
+2、  打开你的MYSQL的计划任务功能
+
+使用这个功能之前必须确保event_scheduler已开启，可执行
+
+SET GLOBAL event_scheduler = 1;
+或SET GLOBAL event_scheduler = ON;
+来开启，也可以直接在启动命令加上 “–event_scheduler=1”，例如：mysqld ... --event_scheduler=1
+
+my.ini or my.cnf 中的
+[mysqld]
+添加 event_scheduler=ON
+
+二、创建事件(CREATE EVENT)
+先来看一下它的语法：
+
+CREATE EVENT [IF NOT EXISTS] event_name
+  ON SCHEDULE schedule
+  [ON COMPLETION [NOT] PRESERVE]
+  [ENABLE | DISABLE]
+  [COMMENT 'comment']
+  DO sql_statement;
+
+schedule:
+  AT TIMESTAMP [+ INTERVAL INTERVAL]
+| EVERY INTERVAL [STARTS TIMESTAMP] [ENDS TIMESTAMP]
+
+INTERVAL:
+  quantity {YEAR | QUARTER | MONTH | DAY | HOUR | MINUTE |
+            WEEK | SECOND | YEAR_MONTH | DAY_HOUR | DAY_MINUTE |
+            DAY_SECOND | HOUR_MINUTE | HOUR_SECOND | MINUTE_SECOND}
+
+#单次计划任务: AT 时戳 
+#重复的计划任务 EVERY 时间(单位)的数量 时间单位 [STARTS 时戳][ENDS 时戳] 
+在两种计划任务中，时戳可以是任意的TIMESTAMP 和DATETIME 数据类型,要求提供的是将来的时间（大于CURRENT_TIMESTAMP），而且小于Unix时间的最后时间（等于或小于'2037-12-31 23:59:59'） 
+时间单位是关键词：YEAR，MONTH，DAY，HOUR，MINUTE 或者SECOND 
+3.[ON COMPLETION [NOT] PRESERVE] COMPLETION 当单次计划任务执行完毕后或当重复性的计划任务执行到了ENDS阶段。而声明PRESERVE的作用是使事件在执行完毕后不会被Drop掉 
+4.[ENABLE|DESABLE] ENABLE  开启事件 DESABLE 关闭事件 
+5.COMMENT 注释 
+6.DO sql_statement 执行的sql语句
+
+1) 首先来看一个简单的例子来演示每秒插入一条记录到数据表
+
+USE test;
+CREATE TABLE aaa (timeline TIMESTAMP);
+CREATE EVENT e_test_insert
+ON SCHEDULE EVERY 1 SECOND 
+DO INSERT INTO test.aaa VALUES (CURRENT_TIMESTAMP);
+等待3秒钟后，再执行查询看看：
+
+mysql> SELECT * FROM aaa;
++---------------------+ 
+| timeline            | 
++---------------------+ 
+| 2007-07-18 20:44:26 | 
+| 2007-07-18 20:44:27 | 
+| 2007-07-18 20:44:28 | 
++---------------------+
+2) 5天后清空test表：
+
+CREATE EVENT e_test
+ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 5 DAY
+DO TRUNCATE TABLE test.aaa;
+3) 2007年7月20日12点整清空test表：
+
+CREATE EVENT e_test
+ON SCHEDULE AT TIMESTAMP '2007-07-20 12:00:00'
+DO TRUNCATE TABLE test.aaa;
+4) 每天定时清空test表：
+
+CREATE EVENT e_test
+ON SCHEDULE EVERY 1 DAY
+DO TRUNCATE TABLE test.aaa;
+5) 5天后开启每天定时清空test表：
+
+CREATE EVENT e_test
+ON SCHEDULE EVERY 1 DAY
+STARTS CURRENT_TIMESTAMP + INTERVAL 5 DAY
+DO TRUNCATE TABLE test.aaa;
+6) 每天定时清空test表，5天后停止执行：
+
+CREATE EVENT e_test
+ON SCHEDULE EVERY 1 DAY
+ENDS CURRENT_TIMESTAMP + INTERVAL 5 DAY
+DO TRUNCATE TABLE test.aaa;
+7) 5天后开启每天定时清空test表，一个月后停止执行：
+
+CREATE EVENT e_test
+ON SCHEDULE EVERY 1 DAY
+STARTS CURRENT_TIMESTAMP + INTERVAL 5 DAY
+ENDS CURRENT_TIMESTAMP + INTERVAL 1 MONTH
+DO TRUNCATE TABLE test.aaa;
+[ON COMPLETION [NOT] PRESERVE]可以设置这个事件是执行一次还是持久执行，默认为NOT PRESERVE。
+8) 每天定时清空test表(只执行一次，任务完成后就终止该事件)：
+
+CREATE EVENT e_test
+ON SCHEDULE EVERY 1 DAY
+ON COMPLETION NOT PRESERVE
+DO TRUNCATE TABLE test.aaa;
+[ENABLE | DISABLE]可是设置该事件创建后状态是否开启或关闭，默认为ENABLE。
+[COMMENT ‘comment’]可以给该事件加上注释。
+
+三、修改事件(ALTER EVENT)
+ALTER EVENT event_name
+  [ON SCHEDULE schedule]
+  [RENAME TO new_event_name]
+  [ON COMPLETION [NOT] PRESERVE]
+  [COMMENT 'comment']
+  [ENABLE | DISABLE]
+  [DO sql_statement]
+1) 临时关闭事件
+
+ALTER EVENT e_test DISABLE;
+2) 开启事件
+
+ALTER EVENT e_test ENABLE;
+3) 将每天清空test表改为5天清空一次：
+
+ALTER EVENT e_test
+ON SCHEDULE EVERY 5 DAY;
+四、删除事件(DROP EVENT)
+语 法很简单，如下所示：
+
+DROP EVENT [IF EXISTS] event_name
+例如删除前面创建的e_test事件
+
+DROP EVENT e_test;
+当然前提是这个事件存在，否则会产生ERROR 1513 (HY000): Unknown event错误，因此最好加上IF EXISTS
+
+DROP EVENT IF EXISTS e_test;
+
+create event test
+ON SCHEDULE AT '2007-09-01 12:00:00' + INTERVAL 1 DAY
+on completion not preserve 
+do insert into yyy values('hhh','uuu');
+
+解释：从2007-09-01开始，每天对表yyy在12：00：00进行一个插入操作。而且只执行一次（on completion not preserve ）
+
+我的计划任务为：
+
+create event sysplan
+ON SCHEDULE AT '2010-05-22 23:00:00' + INTERVAL 1 DAY
+on completion not preserve 
+do truncate table bjproj.ae_tmp;
+
+
+
+三、通过设定全局变量event_scheduler 的值即可动态的控制事件调度器是否启用。  
+查看是否event_scheduler开启 mysql> SHOW VARIABLES LIKE '%event%'; 
+设置开启 mysql> SET GLOBAL event_scheduler=ON; 
+四、例子: 
+每分钟插入一条日志: DELIMITER // CREATE EVENT `user_log_event` ON SCHEDULE EVERY 1 MINUTE STARTS '2010-12-27 00:00:00'  ON COMPLETION NOT PRESERVE ENABLE DO  BEGIN  INSERT INTO log SET addtime=NOW(); END // 
+调用存储过程: DELIMITER // CREATE EVENT `user_log_event` ON SCHEDULE EVERY 1 DAY STARTS '2010-00-00 00:00:00'  ON COMPLETION NOT PRESERVE ENABLE DO  BEGIN         CALL user_log_prov(); END
