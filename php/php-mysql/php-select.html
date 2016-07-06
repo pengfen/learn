@@ -75,3 +75,43 @@ if ($row[0] == '') {
 } else {
 	// 有数据时
 }
+
+
+拼接查询条件
+
+// 处理资源类型
+$table = "newsource";
+$where = " and n.SourceType = $sourceType ";
+if ($sourceType == 4) {
+    $table = "grabagesource";
+    $where = '';
+}
+
+// 处理月份
+// $mon = " n.Month != ''";
+if ($month) {
+	$where = $where." and n.Month in ($month) ";
+}
+
+// 处理关键词
+if ($keyword) {
+    $where = $where." and n.CatTwoName = '{$keyword}'";
+}
+
+// $sql = "SELECT a.telphone,n.CID,n.CustomerName,n.CustomerSex,n.CustomerAtt,n.CustomerUrl,n.UsedPhone,n.FromTime,n.Type,n.Channel,n.Page,n.Keywords,n.searchCoName,n.urlfromDisplay,n.pdtypeDisplay,n.SourceType,n.Month FROM ".$table." n left join `zt_allphone` a on n.UsedPhone = a.UsedPhone WHERE ($where and a.telphone != '') limit $num";
+$sql = "SELECT a.telphone,n.* FROM ".$table." n left join `allphone` a on n.UsedPhone = a.UsedPhone WHERE (a.telphone != '' $where) limit $num";
+
+
+-----
+sourceType = 4 month为空
+SELECT a.telphone,n.* FROM grabagesource n left join `allphone` a on n.UsedPhone = a.UsedPhone WHERE (a.telphone != ''  and n.CatTwoName = '无关键词') limit 2
+
+month 有值
+SELECT a.telphone,n.* FROM grabagesource n left join `allphone` a on n.UsedPhone = a.UsedPhone WHERE (a.telphone != ''  and n.Month in (1,2,3)  and n.CatTwoName = '无关键词') limit 2
+
+
+sourceType != 4 month 为空
+SELECT a.telphone,n.* FROM newsource n left join `allphone` a on n.UsedPhone = a.UsedPhone WHERE (a.telphone != ''  and n.SourceType = 3  and n.CatTwoName = '无关键词') limit 2
+
+month 有值
+SELECT a.telphone,n.* FROM newsource n left join `allphone` a on n.UsedPhone = a.UsedPhone WHERE (a.telphone != ''  and n.SourceType = 3  and n.Month in (1,2,3)  and n.CatTwoName = '无关键词') limit 2

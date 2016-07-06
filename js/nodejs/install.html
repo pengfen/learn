@@ -1,0 +1,21 @@
+https://nodejs.org/en/download/ 下载node.js
+
+安装 (点击下一步)
+
+node.js command prompt # 进入到nodejs命令窗口
+
+在 F:\nodejs目录下编写js文件
+var http = require("http"); 
+http.createServer(function(request, response) { 
+response.writeHead(200, {"Content-Type": "text/plain"}); 
+response.write("test nodjs"); 
+response.end(); 
+}).listen(8899); 
+console.log("nodejs start listen 8899 port!");
+
+C:\Users\Administrator>f:
+
+F:\>cd nodejs
+
+F:\nodejs>node test.js
+nodejs start listen 8899 port!
