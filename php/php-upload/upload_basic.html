@@ -1,0 +1,13 @@
+页面表单(最简单上传案例)
+<h1>文件上传</h1>
+<form action="1.php" method='post' enctype='multipart/form-data'>
+	<input type="file" name="files">
+	<button>上传</button>
+</form>
+
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+var_dump($_FILES); //用来获取上传后的文件信息
+// files 信息 name文件名 type文件类型 tmp_name文件上传后临时文件名 error错误信息 size文件大小
+array(1) { ["files"]=> array(5) { ["name"]=> string(17) "554993efe7bac.jpg" ["type"]=> string(10) "image/jpeg" ["tmp_name"]=> string(30) "E:\files\xampp\tmp\php42CA.tmp" ["error"]=> int(0) ["size"]=> int(595284) } }
