@@ -1,0 +1,27 @@
+node.js加载html文件
+
+html文件
+<meta charset='utf8'/>
+欢迎使用nodejs开发
+
+js文件
+var http = require('http');
+url = require('url');
+fs = require('fs');
+http.createServer(function(req, res) {
+	// 写http head返回html 因此 Content-Type为html
+	res.writeHead(200, {'Content-Type' : 'text/html'});
+
+	// 获取当前 index.html的路径
+	var readPath = __dirname + '/' + url.parse('index.html').pathname;
+	var indexPage = fs.readFileSync(readPath);
+
+	res.end(indexPage);
+}).listen(3000, '127.0.0.1');
+
+// res.writeHead 添加HTTP响应的头信息
+// var readPath 获取html文件路径
+// var indexPage 读取html文件数据
+// res.end(indexPage) 执行HTTP响应返回到web客户端
+node test.js
+http://127.0.0.1:3000

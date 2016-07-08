@@ -1,0 +1,57 @@
+exports.name ='aa';
+exports.happy = function() {console.log("mm")}
+console.log(module.exports);
+
+// exports.name = 'aa' 使用exports将name属性暴露给require返回对象
+// exports.happy = function(){console.log('mm')} 使用exports将happy方法暴露给require返回对象
+// console.log(module.exports) 打印出module.exports对象
+
+F:\nodejs>node test.js
+{ name: 'aa', happy: [Function]}
+
+=======================================================
+export.js
+exports.name ='aa';
+exports.happy = function() {console.log("mm")}
+console.log(module.exports);
+
+test.js
+var obj = require('./export.js');
+console.log(obj);
+
+F:\nodejs>node test.js
+{ name: 'aa', happy: [Function]}
+{ name: 'aa', happy: [Function]}
+
+============================================
+export.js
+module.exports = ['apeng', 'is', 'my', 'name'];
+
+test.js
+var msgArr = require('./export.js');
+console.log(msgArr.join(' '));
+
+F:\nodejs>node test.js
+apeng is my name
+
+===============================================
+export.js
+module.exports = 'test for module.exports ignore'; // 使用module.exports返回一个字符串
+exports.name = 'apeng'; // 使用exports返回一个字符串
+// 定义showName函数 并暴露给外部接口
+exports.showName = function () {
+	console.log('My name is apeng');
+}
+console.log(module.exports);
+// exports.showName = function(){} 使用exports返回一个函数showName
+// showName报错 因为exports之前执行了module.exports方法 导致exports失效
+
+test.js
+var book = require('./export.js');
+console.log(book);
+console.log(book.name);
+
+F:\nodejs>node test.js
+test for module.exports ignore
+test for module.exports ignore
+undefined
