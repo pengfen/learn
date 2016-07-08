@@ -1,0 +1,50 @@
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+//设置时区
+date_default_timezone_set('PRC');
+
+//PHP的文件处理函数
+
+//file_exists()
+if (file_exists('data.txt')){
+	echo "data.txt存在！<br>";
+}else {
+	echo "data.txt不存在！<br>";
+}
+
+if (file_exists('activepian')){
+	echo "activepian存在！<br>";
+}else {
+	echo "activepian不存在！<br>";
+}
+
+if (file_exists('active')){
+	echo "active存在！<br>";
+}else {
+	echo "active不存在！<br>";
+}
+
+
+echo "<hr>";
+
+//filesize  取得文件大小
+echo "data.txt的大小： ".filesize('./data.txt').'<br>';
+echo "data.txt的大小： ".filesize('C:\Program Files\Windows Sidebar\sidebar.exe').'<br>';
+echo "data.txt的大小： ".(filesize('C:\Program Files\Windows Sidebar\sidebar.exe')/1024/1024).' MB<br>';
+
+echo "<hr>";
+
+//文件的 创建时间  filectime  filemtime  fileatime()
+
+echo "data.txt的创建时间 : ".filectime('data.txt').'<br>';
+echo "data.txt的创建时间 : ".date('Y:m:d H:i:s', filectime('data.txt')).'<br>';
+echo "data.txt最后一次修改时间 : ".date('Y:m:d H:i:s', filemtime('data.txt')).'<br>';  //常用
+echo "data.txt最后一次访问时间 : ".date('Y:m:d H:i:s', fileatime('data.txt')).'<br>';
+
+echo "<hr>";
+
+//返回文件信息(创建时间 访问时间 ...) stat
+$info = stat('data.txt');
+
+var_dump($info);

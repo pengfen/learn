@@ -1,0 +1,96 @@
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+// 文件 打开方式的不同
+/**
+	r 和 w： 
+	r+  w+: 
+		相同点： 读写
+		不同点： 如果文件不存在 r+报警告  w+尝试创建
+		
+
+*/
+
+//新建文件名
+$filename = "data.xml";
+
+
+
+
+//写入文件
+for ($i = 97; $i <= 122; $i ++){
+	//打开 文件 
+	$fp = fopen($filename, 'r+');
+	fwrite($fp, chr($i)."\n");
+	//关闭文件
+	fclose($fp);
+}
+
+echo "<hr>";
+
+
+$file = "data.txt";
+
+$fp = fopen($file, 'w+');
+
+echo fread($fp, 1000);
+
+fclose($fp);
+
+
+/*
+//打开 文件 
+$fp = fopen($filename, 'w+');
+
+//写入文件
+for ($i = 97; $i <= 122; $i ++){
+	fwrite($fp, chr($i)."\n");
+}
+
+//关闭文件
+fclose($fp);
+*/
+
+=====================================
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+// 文件 打开方式的不同
+/**
+	a 和 w：  
+		相同点： 写入
+		不同点： 
+		
+
+*/
+
+//新建文件名
+$filename = "data2.xml";
+
+
+
+
+//写入文件
+for ($i = 97; $i <= 122; $i ++){
+	//打开 文件 
+	$fp = fopen($filename, 'a');
+	fwrite($fp, chr($i)."\n");
+	//关闭文件
+	fclose($fp);
+}
+
+=======================================
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+// 文件 打开方式的不同
+/**
+	x
+	x+
+*/
+
+//新建文件名
+$filename = "data5.xml";
+
+
+fopen($filename, 'x');

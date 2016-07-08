@@ -1,0 +1,52 @@
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+//遍历目录
+
+//打开目录 opendir()
+$dir_handler = opendir('./content');
+
+echo readdir($dir_handler).'<br>';
+echo readdir($dir_handler).'<br>';
+echo readdir($dir_handler).'<br>';
+echo readdir($dir_handler).'<br>';
+rewinddir($dir_handler);
+echo readdir($dir_handler).'<br>';
+echo readdir($dir_handler).'<br>';
+
+//关闭资源
+closedir($dir_handler);
+
+===============================================================
+date_default_timezone_set('PRC');
+//遍历目录
+
+$dir = "./content";
+//打开目录 opendir()
+$dir_handler = opendir($dir);
+
+echo "<table width=800 border=1 cellspacing=0 cellpadding=5>";
+echo "<tr>";
+echo "<th>文件名</th>";
+echo "<th>文件类型</th>";
+echo "<th>文件大小</th>";
+echo "<th>文件创建时间</th>";
+echo "<th>文件修改时间</th>";
+echo "<th>文件最后访问时间</th>";
+echo "</tr>";
+//使用while循环来遍历 目录
+while ($filename = readdir($dir_handler)){
+	$file = $dir.'/'.$filename;
+	echo "<tr>";
+	echo "<td>{$filename}</td>";
+	echo "<td>".filetype($file)."</td>";
+	echo "<td>".filesize($file)."</td>";
+	echo "<td>".date('Y-m-d H:i:s', filectime($file))."</td>";
+	echo "<td>".date('Y-m-d H:i:s', filemtime($file))."</td>";
+	echo "<td>".date('Y-m-d H:i:s', fileatime($file))."</td>";
+	echo "</tr>";
+}
+echo "</table>";
+
+//关闭资源
+closedir($dir_handler);

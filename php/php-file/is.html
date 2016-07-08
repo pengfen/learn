@@ -1,0 +1,19 @@
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+// filetype 获取 文件的类型
+// echo "1.exe的类型： ".filetype('1.exe').'<br>'; // 不存在的类型会报错 Lstat failed for 1.exe
+echo "data.txt的类型： ".filetype('data.txt').'<br>';
+echo "文件夹的类型： ".filetype('activepian').'<br>';
+echo "<hr>";
+
+//判断文件的类型
+var_dump(is_dir('1.exe')); // false 判断给定文件是否是目录
+var_dump(is_file('1.exe')); // false 判断给定文件是否是文件
+var_dump(is_executable('1.exe')); // false 判断给定文件是否可执行
+var_dump(is_executable('sidebar.exe')); // true 判断给定文件是否可执行
+var_dump(is_link('sidebar1.exe')); // false 判断给定文件是否有链接
+echo "<hr>";
+
+var_dump(is_readable('data.txt')); // true 判断给定文件是否可读
+var_dump(is_writeable('data.txt')); // true 判断给定文件是否可写

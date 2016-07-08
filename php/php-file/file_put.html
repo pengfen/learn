@@ -1,0 +1,37 @@
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+// 文件的写入
+$filename = "data.txt";
+
+$fp = fopen($filename, 'w');
+fwrite($fp, '锄禾日当午， 城春草木深');
+fclose($fp);
+
+
+//file_put_contents()  不需要 fopen打开
+
+file_put_contents($filename, '清明上河图');
+file_put_contents($filename, '清明上河图', FILE_APPEND);
+
+====================================
+
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+//访问远程文件
+$fp = fopen('http://www.baidu.com/index.php', 'r');
+
+//读取文件
+while ($content = fread($fp, 1000)){
+	echo $content;
+	//echo htmlentities($content);
+}
+
+//关闭文件
+fclose($fp);
+
+
+echo "<hr>";
+
+echo file_get_contents('http://www.so.com');

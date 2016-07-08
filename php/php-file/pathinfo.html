@@ -1,0 +1,36 @@
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+//PHP的路径相关函数
+
+//basename() 返回文件路径中 的文件名部分
+echo "basename : ".basename('./data.txt').'<br>';
+echo "basename : ".basename('data.txt').'<br>';
+echo "basename : ".basename('C:\Program Files\Windows Sidebar\Gadgets\Calendar.Gadget\logo.png').'<br>';
+
+echo "<hr>";
+
+//dirname()  返回路径中目录部分
+echo "dirname : ".dirname('C:\Program Files\Windows Sidebar\Gadgets\Calendar.Gadget\logo.png').'<br>';
+echo "dirname : ".dirname('./data.txt').'<br>';
+echo "dirname : ".dirname('data.txt').'<br>';
+
+echo "<hr>";
+
+//pathinfo()  返回文件路径的信息
+$info = pathinfo('C:\Program Files\Windows Sidebar\Gadgets\Calendar.Gadget\logo.png');
+var_dump($info);
+
+echo $info['dirname'].'<br>';
+echo "路径中的目录部分：".pathinfo('C:\Program Files\Windows Sidebar\Gadgets\Calendar.Gadget\logo.png', PATHINFO_DIRNAME).'<br>';
+echo "路径中的文件名部分：".pathinfo('C:\Program Files\Windows Sidebar\Gadgets\Calendar.Gadget\logo.png', PATHINFO_BASENAME).'<br>'; // logo.png
+echo "路径中的文件后缀：".pathinfo('C:\Program Files\Windows Sidebar\Gadgets\Calendar.Gadget\logo.png', PATHINFO_EXTENSION).'<br>'; // png
+echo "路径中的文件去掉后缀的部分：".pathinfo('C:\Program Files\Windows Sidebar\Gadgets\Calendar.Gadget\logo.png', PATHINFO_FILENAME).'<br>'; // logo
+
+echo PATHINFO_EXTENSION.'<br>';
+
+echo "<hr>";
+
+//readpath  返回绝对路径（规范）
+echo realpath('data.txt').'<br>';
+echo realpath('C:\Program Files\Windows Sidebar\Gadgets\Calendar.Gadget\logo.png').'<br>';

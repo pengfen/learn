@@ -1,0 +1,45 @@
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+//写入 文件 要使用文件锁， 必须fopen  
+//打开文件
+$fp = fopen('data.txt', 'w');
+
+//给文件上锁
+flock($fp, LOCK_EX);
+
+// 写入文件
+fwrite($fp, "abc\n");
+
+sleep(10);
+
+//写入文件
+fwrite($fp, "小艳艳\n");
+
+
+//解锁
+flock($fp, LOCK_UN);
+
+//关闭文件
+fclose($fp);
+
+====================================
+
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+//写入 文件 要使用文件锁， 必须fopen  
+//打开文件
+$fp = fopen('data.txt', 'r');
+
+//添加共享锁
+flock($fp, LOCK_SH | LOCK_NB);
+
+//读取文件
+echo fread($fp, filesize('data.txt'));
+
+//解锁
+flock($fp, LOCK_UN);
+
+//关闭文件
+fclose($fp);

@@ -1,0 +1,49 @@
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+//文件指针的 操作
+
+//打开文件
+$fp = fopen('data2.xml', 'r');
+
+echo "当前文件指针：".ftell($fp).'<br>';
+
+fread($fp, 10);
+
+echo "当前文件指针：".ftell($fp).'<br>';
+
+fread($fp, 10);
+
+echo "当前文件指针：".ftell($fp).'<br>';
+
+fread($fp, 100);
+
+echo "当前文件指针：".ftell($fp).'<br>';
+
+
+echo "<hr>";
+
+
+//重置指针
+rewind($fp);
+
+echo "当前文件指针：".ftell($fp).'<br>';
+
+fread($fp, 10);
+
+echo "当前文件指针：".ftell($fp).'<br>';
+
+//fseek($fp, 23, SEEK_CUR);  //默认从0开始偏移，
+fseek($fp, -3, SEEK_CUR);  //默认从0开始偏移，
+
+echo "当前文件指针：".ftell($fp).'<br>';
+
+echo fgetc($fp).'<br>';
+
+
+
+
+
+
+//关闭文件指针
+fclose($fp);

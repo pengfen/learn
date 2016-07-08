@@ -1,0 +1,49 @@
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+//copy 复制文件
+
+//copy('./1.php', './sb.php');
+//copy('./content', './sb');
+
+/**
+ * 复制目录
+ * @param string dirsrc  源目录
+ * @param string dirdst  目标目录
+*/
+function copyDir($dirsrc, $dirdst){
+	//判断函数的有效性
+	if (!file_exists($dirsrc) || !is_dir($dirsrc)){
+		exit('源目录无效！');
+	}
+	if (!file_exists($dirdst) || !is_dir($dirdst)){
+		//创建新目录
+		@mkdir($dirdst);
+	}
+	
+	//打开源 目录
+	$dir_handler = opendir($dirsrc);
+	//遍历
+	while ($file = readdir($dir_handler)){
+		if ($file == '.' || $file == '..'){
+			continue;
+		}
+		//拼装路径
+		$filesrc = rtrim($dirsrc, '/').'/'.$file;
+		$filedst = rtrim($dirdst, '/').'/'.$file;
+		//判断是否是文件
+		if (is_file($filesrc)){
+			copy($filesrc, $filedst);
+		}
+		//如果是目录
+		if (is_dir($filesrc)){
+			copyDir($filesrc, $filedst);
+		}
+
+	}
+	//关闭
+	closedir($dir_handler);
+	
+}
+
+copyDir('./content', './dsts');
