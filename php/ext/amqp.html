@@ -1,0 +1,91 @@
+
+安装erlang rabbitmq的依赖
+[root@iZ94f2imuwkZ ~]# mkdir rabbit
+[root@iZ94f2imuwkZ ~]# cd rabbit
+[root@iZ94f2imuwkZ rabbit]# wget http://www.erlang.org/download/otp_src_17.4.tar.gz  
+[root@iZ94f2imuwkZ rabbit]# ls
+otp_src_17.4.tar.gz
+[root@iZ94f2imuwkZ rabbit]# tar -zxvf otp_src_17.4.tar.gz
+[root@iZ94f2imuwkZ rabbit]# ls
+otp_src_17.4  otp_src_17.4.tar.gz
+[root@iZ94f2imuwkZ rabbit]# cd otp_src_17.4
+[root@iZ94f2imuwkZ otp_src_17.4]# ./configure --prefix=/usr/local/erlang
+[root@iZ94f2imuwkZ otp_src_17.4]# make && make install
+[root@iZ94f2imuwkZ otp_src_17.4]# cd /usr/local/erlang/
+[root@iZ94f2imuwkZ erlang]# ls
+bin  lib
+[root@iZ94f2imuwkZ erlang]# export PATH=$PATH:/usr/local/erlang/bin/
+[root@iZ94f2imuwkZ erlang]# vim ~/.bash_profile
+[root@iZ94f2imuwkZ erlang]# source ~/.bash_profile
+
+
+
+[root@iZ94f2imuwkZ rabbit]# mkdir simplejson
+[root@iZ94f2imuwkZ rabbit]# cd simplejson/
+[root@iZ94f2imuwkZ simplejson]# wget https://pypi.python.org/packages/source/s/simplejson/simplejson-3.6.5.tar.gz
+
+[root@iZ94f2imuwkZ simplejson]# tar -zxvf simplejson-3.6.5.tar.gz
+[root@iZ94f2imuwkZ simplejson]# cd simplejson-3.6.5
+[root@iZ94f2imuwkZ simplejson-3.6.5]# python setup.py install
+[root@iZ94f2imuwkZ rabbit]# mkdir rabbitmq
+[root@iZ94f2imuwkZ rabbit]# cd rabbitmq/
+[root@iZ94f2imuwkZ rabbitmq]# wget http://www.rabbitmq.com/releases/rabbitmq-server/v3.4.2/rabbitmq-server-generic-unix-3.4.2.tar.gz 
+
+[root@iZ94f2imuwkZ rabbitmq]# tar -zxvf rabbitmq-server-generic-unix-3.4.2.tar.gz
+
+[root@iZ94f2imuwkZ rabbitmq]# cd rabbitmq_server-3.4.2/
+[root@iZ94f2imuwkZ rabbitmq_server-3.4.2]# cd sbin/
+[root@iZ94f2imuwkZ sbin]# ls
+rabbitmqctl  rabbitmq-defaults  rabbitmq-env  rabbitmq-plugins  rabbitmq-server
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-server
+
+
+
+====================
+./rabbitmq-server #启动rabbitmq的服务
+
+./rabbitmq-plugins enable rabbitmq_management #进入管理模式web
+访问地址：http://127.0.0.1:15672/ guest guest
+用户配置： http://www.rabbitmq.com/man/rabbitmqctl.1.man.html#
+rabbitmqctl add_user konglj 123456 #设定用户名
+rabbitmqctl set_user_tags konglj administrator #设定用户类型
+
+ 
+
+第三步 先安装rabbitmq-c 随后安装amqp扩展
+
+通过浏览器下载rabbitmq-c-0.5.2.tar.gz https://github.com/alanxz/rabbitmq-c/
+cd rabbitmq-c-0.5.2
+./configure 
+make && make install
+./examples/amqp_listen localhost 5672 amq.direct test
+./examples/amqp_sendstring localhost 5672 amq.direct test "hello world"
+./examples/amqp_sendstring localhost 5672 amq.direct test "hello world"
+./examples/amqp_sendstring 127.0.0.1 5672 amq.direct test "hello world"
+
+紧接上步安装php-amqp的扩张 
+wget http://pecl.php.net/get/amqp-1.3.0.tgz
+tar -zxvf amqp-1.3.0.tgz 
+cd amqp-1.3.0
+/data/klj/php/bin/phpize 
+./configure --with-php-config=/data/klj/php/bin/php-config --with-amqp
+make 
+make install
+
+
+错误：Please reinstall the librabbit-mq distribution http://jingyan.baidu.com/article/e4511cf3362b872b845eafb9.html 解决librabbit-mq安装问题
+#./configure --with-php-config=/data/klj/php/bin/php-config --with-amqp --with-librabbitmq-dir=/data/source/rabbitmq-c-0.5.2
+
+第四步 使用官网提供的php-amqplib 
+下载php-amqplib https://github.com/videlalvaro/php-amqplib
+通过git没有下载完成，下载压缩包解压
+安装文档 修改couposer.json 
+随后执行 composer.phar install 替换为 /usr/local/bin/composer install #没有composer需要先安装composer
+
+
+安装composer php-amqplib的依赖环境 
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+
+php-amqplib 环境搭建 
+整个环境已经搭建完成，可以测试开发了。
