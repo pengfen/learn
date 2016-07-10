@@ -1,0 +1,116 @@
+分析程序看有没有问题，如果有，说出原因即可。
+1.
+abstract class Name {
+   private String name;
+   public abstract boolean isStupidName(String name) {}
+}
+     
+2.
+public class Something {
+   void doSomething () {
+       private String s = "";
+       int l = s.length();
+   }
+}
+ 
+3.
+abstract class Something {
+   private abstract String doSomething ();
+}
+    
+4.
+public class Something {
+   public int addOne(final int x) {
+       return ++x;
+   }
+}
+    
+5.
+public class Something {
+   public static void main(String[] args) {
+       Other o = new Other();
+       new Something().addOne(o);
+   }
+   public void addOne(final Other o) {
+       o.i++;
+   }
+}
+class Other {
+   public int i;
+}
+    
+6.
+class Something {
+    int i;
+    public void doSomething() {
+        System.out.println("i = " + i);
+    }
+} 
+
+7.
+class Something {
+    final int i;
+    public void doSomething() {
+        System.out.println("i = " + i);
+    }
+}
+    
+8.
+public class Something {
+     public static void main(String[] args) {
+        Something s = new Something();
+        System.out.println("s.doSomething() returns " + doSomething());
+    }
+     public String doSomething() {
+        return "Do something ...";
+    }
+}
+    
+9.
+此处，Something类的文件名叫OtherThing.java
+class Something {
+    private static void main(String[] something_to_do) {        
+        System.out.println("Do something ...");
+    }
+}
+ 
+10．
+interface  A{
+   int x = 0;
+}
+class B{
+   int x =1;
+}
+class C extends B implements A {
+   public void pX(){
+      System.out.println(x);
+   }
+   public static void main(String[] args) {
+      new C().pX();
+   }
+}
+     
+11.
+interface Playable {
+    void play();
+}
+interface Bounceable {
+    void play();
+}
+interface Rollable extends Playable, Bounceable {
+    Ball ball = new Ball("PingPang");
+}
+class Ball implements Rollable {
+    private String name;
+    public String getName() {
+        return name;
+    }
+    public Ball(String name) {
+        this.name = name;        
+    }
+   public void play() {
+        ball = new Ball("Football");
+        System.out.println(ball.getName());
+    }
+}
+ 
