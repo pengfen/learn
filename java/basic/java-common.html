@@ -866,3 +866,138 @@ Character(了解)
         把给定的字符转成小写
     案例
         统计字符串中大写 小写及数字字符出现的次数
+
+======================================================================
+
+正则表达式(理解)
+    就是符合一定规则的字符串
+    常见规则
+        字符
+            x 字符 x 举例 'a'表示字符a
+            \\ 反斜线字符
+            \n 新行(换行)符('\u00A')
+            \r 回车符('\u000D')
+
+        字符类
+            [abc] a b 或 c (简单类)
+            [^abc] 任何字符 除了 a b 或 c (否定)
+            [a-zA-Z] a 到 z 或 A 到 Z 两头的字母包括在内 (范围)
+            [0-9] 0到9的字符都包括
+
+        预定义字符类
+            . 任何字符 我的就是.字符本身 怎么表示呢 \.
+            \d 数字 [0-9]
+            \w 单词字符 [a-zA-Z_0-9] 在正则表达式里面组成单词的东西必须有这些东西组成
+
+        边界匹配器
+            ^ 行的开头
+            $ 行的结尾
+            \b 单词边界 就是不是单词字符的地方
+
+        Greedy 数量词
+            X? X 一次或一次也没有
+            X* X 零次或多次
+            X+ X 一次或多次
+            X{n} X 恰好 n 次
+            X{n,} X 至少 n 次
+            X{n,m} X 至少 n 次 但是不超过 m 次
+
+    常见功能(分别用的是谁呢)
+        判断功能 String类的public boolean matches(String regex)
+        分割功能 String类的public String[] split(String regex)
+        替换功能 String类的public String replaceAll(String regex, String replacement)
+        获取功能 
+            Pattern和Matcher
+                Pattern p = Pattern.compile("a * b");
+                Matcher m = p.matcher("aaaa");
+
+                find() 查找存不存在
+                group() 获取刚才查找过的数据
+
+    案例
+        判断电话号码和邮箱
+        按照不同的规则分割数据
+        把论坛中的数字替换为*
+        获取字符串中由3个字符组成的单词
+Math(掌握)
+    针对数学运算进行操作的类
+    常见方法(自己补齐)
+        绝对值
+        向上取整
+        向下取整
+        两个数据中的大值
+        a的b次幂
+        随机数
+        四舍五入
+        正平方根
+    案例
+        猜数字小游戏
+        获取任意范围的随机数
+
+Random(理解)
+    用于产生随机数的类
+    构造方法
+        Random() 默认种子 每次产生的随机数不同
+        Random(long seed) 指定种子 每次种子相同 随机数就相同
+    成员方法
+        int nextInt() 返回int范围内的随机数
+        int nextInt(int n) 返回[0, n)范围内的随机数
+
+System(掌握)
+    系统类 提供了一些有用的字段和方法论
+    成员方法(自己补齐)
+        运行垃圾回收器
+        退出jvm
+        获取当前时间的毫秒值
+        数组复制
+
+BigInteger(理解)
+    针对大整数的运算
+    构造方法 BigInteger(String s)
+    成员方法(自己补齐)
+        加
+        减
+        乘
+        除
+        商和余数
+
+BigDecimal(理解)
+    浮点数据做运算 会丢失精度 所以 针对浮点数据的操作建议采用 BigDecimal (金融相关的项目)
+    构造方法 BigDecimal(String s)
+    成员方法
+        加
+        减
+        乘
+        除
+        自己保留小数几位
+
+Date/DateFormat(掌握)
+    Date是日期类 可以精确到毫秒
+        构造方法
+            Date()
+            Date(long time)
+        成员方法
+            getTime()
+            setTime(long time)
+        日期和毫秒值的相互转换 案例 你来到这个世界多少天了
+
+    DateFormat针对日期进行格式化和针对字符串进行解析的类 但是是抽象类 所以使用其子类 SimpleDateFormat
+        SimpleDateFormat(String pattern) 给定模式
+            yyyy-MM-dd HH:mm:ss
+        日期和字符串的转换
+            Date --- String
+                format()
+            String --- Date
+                parse()
+        案例 制作了一个针对日期操作的工具类
+
+Calendar(掌握)
+    日历类 封装了所有的日历字段值 通过统一的方法根据传入不同的日历字段可以获取值
+    如何得到一个日历对象呢
+        Calendar rightNow = Calendar.getInstance();
+        本质返回的是子类对象
+    成员方法
+        根据日历字段得到对应的值
+        根据日历字段和一个正负数确定是添加还是减去对应日历字段的值
+        设置日历对象的年月日
+    案例 计算任意一年的2月份有多少天
