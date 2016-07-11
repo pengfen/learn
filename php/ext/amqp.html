@@ -37,20 +37,40 @@ bin  lib
 [root@iZ94f2imuwkZ rabbitmq_server-3.4.2]# cd sbin/
 [root@iZ94f2imuwkZ sbin]# ls
 rabbitmqctl  rabbitmq-defaults  rabbitmq-env  rabbitmq-plugins  rabbitmq-server
-[root@iZ94f2imuwkZ sbin]# ./rabbitmq-server
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-server #启动rabbitmq的服务
 
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-server 
+./rabbitmq-server: line 50: erl: command not found
+[root@iZ94f2imuwkZ sbin]# export PATH=$PATH:/usr/local/erlang/bin/
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-server 
 
+              RabbitMQ 3.4.2. Copyright (C) 2007-2014 GoPivotal, Inc.
+  ##  ##      Licensed under the MPL.  See http://www.rabbitmq.com/
+  ##  ##
+  ##########  Logs: ./../var/log/rabbitmq/rabbit@iZ94f2imuwkZ.log
+  ######  ##        ./../var/log/rabbitmq/rabbit@iZ94f2imuwkZ-sasl.log
+  ##########
+              Starting broker... completed with 0 plugins.
 
-====================
-./rabbitmq-server #启动rabbitmq的服务
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-plugins enable rabbitmq_management # 进入管理模式web 后可以通过http://ip.24.36.66:15672/ 访问
+./rabbitmq-plugins: line 22: exec: erl: not found
+[root@iZ94f2imuwkZ sbin]# 
+[root@iZ94f2imuwkZ sbin]# export PATH=$PATH:/usr/local/erlang/bin/
+[root@iZ94f2imuwkZ sbin]# 
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-plugins enable rabbitmq_management
+The following plugins have been enabled:
+  mochiweb
+  webmachine
+  rabbitmq_web_dispatch
+  amqp_client
+  rabbitmq_management_agent
+  rabbitmq_management
 
-./rabbitmq-plugins enable rabbitmq_management #进入管理模式web
-访问地址：http://127.0.0.1:15672/ guest guest
-用户配置： http://www.rabbitmq.com/man/rabbitmqctl.1.man.html#
-rabbitmqctl add_user konglj 123456 #设定用户名
-rabbitmqctl set_user_tags konglj administrator #设定用户类型
-
- 
+Applying plugin configuration to rabbit@iZ94f2imuwkZ... started 6 plugins.
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl add_user peng0711 peng0711 # 设定用户名
+Creating user "peng0711" ...
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl set_user_tags peng0711 administrator # 设定用户类型
+Setting tags for user "peng0711" to [administrator] ...
 
 第三步 先安装rabbitmq-c 随后安装amqp扩展
 
