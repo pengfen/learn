@@ -1,0 +1,6 @@
+    window.location.href = window.location.protocol + '//' + window.location.hostname + '/' + 'search.html?max_price' + highMoney +  '&min_price' + lowerMoney;
+//    if (url.indexOf('&') != -1) {
+//        window.location.href = window.location.href + '&spot_goods=' + obj.value;
+//    } else {
+//        window.location.href = window.location.href + '&spot_goods=' + obj.value;
+//    }

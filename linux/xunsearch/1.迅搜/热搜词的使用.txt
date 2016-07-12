@@ -1,0 +1,34 @@
+搜索日志管理
+
+对于搜索的词实现实时更新
+./util/Logger.php --flush goods #--flush 强制提交搜索日志变动
+./util/Logger.php goods --flush
+
+# 查看 demo 项目中 热门搜索词
+./util/Logger.php goods #所有热门搜索词
+./util/Logger.php goods --hot=cur #当前
+./util/Logger.php goods --hot=curr
+./util/Logger.php goods --hot=last
+
+# 查询 demo 项目中 "管理" 相关搜索词汇
+util/Logger.php goods 管理
+util/Logger.php goods 管理 --limit 5
+
+# 把日志文件 words.txt 导入 dmeo 项目中
+util/Logger.php --import=words.txt demo
+
+# 清空 demo 项目中 全部搜索日志索引，通常在重建搜索项目或日志数据过于混乱时才需调用
+util/Logger.php --clean demo
+
+
+
+# 列出 demo 项目中以 "i" 开头的搜索建议
+util/Quest.php --suggest goods i
+util/Quest.php --suggest goods m
+util/Quest.php --suggest goods w
+
+# 在 demo 中列出和 "管理" 相关的搜索词
+util/Quest.php --related goods 管理
+
+# 查看 demo 项目上周的 5 条最热门搜索词
+util/Quest.php --hot=last --limit=5 goods

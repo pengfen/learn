@@ -1,0 +1,48 @@
+$('#searchInput').bind('input propertychange', function() { // 给搜索框绑定事件
+    var relate = $('#searchInput').val(); // 获取搜索值
+    var url = "{url:/site/relate}"; // 搜索方法
+    var search = function(){
+        $.ajax({ // 异步根据搜索词获取相对应的建议词
+            url:url,
+            dataType:'json',
+            data:{relate:relate},
+            success:function(data){
+                if (data.is_Error == false) {
+                    var word = data.data;
+                    var getWord = new Array;
+                    for (var i = 0; i < word.length; i++) {
+                        getWord.push('<li>'+word[i]+'</li>');
+                    }
+                    $('#wordList').html(getWord.join(""));
+                    $('#wordList li').click(function(){ // 选择内容时单击事件
+                        $('#searchInput').val($(this).text());
+                    });
+                }
+            }
+        });
+    }
+    setTimeout(search,500);
+});
+});
+
+site/relate 方法
+使用 curl 工具调用 api 地址
+
+
+api 获取与搜索词相匹配的建议词
+public function actionExpandword() {
+    $request = Yii::$app->request;
+    $postData = $request->post();
+    $expand = isset($postData['expand'])?$postData['expand']:'';
+    if ($expand) {
+        $model = new Se_goods();
+        $db = $model->getDb();
+        $search = $db->getSearch(); // 获取搜索对象
+        $words = $search->getExpandedQuery($expand); // 获取 10 个和搜索相关的词
+        $result = self::isResult($words);
+    } else {
+        $result = ['is_Error' => true, 'message' => '搜索词不存在'];
+    }
+
+    return $result;
+}

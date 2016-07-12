@@ -17,8 +17,7 @@ bin  lib
 [root@iZ94f2imuwkZ erlang]# export PATH=$PATH:/usr/local/erlang/bin/
 [root@iZ94f2imuwkZ erlang]# vim ~/.bash_profile
 [root@iZ94f2imuwkZ erlang]# source ~/.bash_profile
-
-
+ 
 
 [root@iZ94f2imuwkZ rabbit]# mkdir simplejson
 [root@iZ94f2imuwkZ rabbit]# cd simplejson/
@@ -72,12 +71,42 @@ Creating user "peng0711" ...
 [root@iZ94f2imuwkZ sbin]# ./rabbitmqctl set_user_tags peng0711 administrator # 设定用户类型
 Setting tags for user "peng0711" to [administrator] ...
 
-第三步 先安装rabbitmq-c 随后安装amqp扩展
+[root@iZ94f2imuwkZ rabbit]# mkdir ext
+[root@iZ94f2imuwkZ rabbit]# cd ext
+[root@iZ94f2imuwkZ ext]# mkdir mqc
+[root@iZ94f2imuwkZ ext]# cd mqc
 
-通过浏览器下载rabbitmq-c-0.5.2.tar.gz https://github.com/alanxz/rabbitmq-c/
-cd rabbitmq-c-0.5.2
-./configure 
-make && make install
+--------------------------------------------------------------------------------
+
+https://github.com/alanxz/rabbitmq-c/ 下载 rabbitmq-c-master.zip 包
+[root@iZ94f2imuwkZ mqc]# unzip rabbitmq-c-master.zip 
+[root@iZ94f2imuwkZ rabbitmq-c-master]# autoreconf -i && ./configure && make && sudo make install
+
+
+[root@iZ94f2imuwkZ ext]# mkdir amqp
+[root@iZ94f2imuwkZ ext]# cd amqp
+http://pecl.php.net/package/amqp # 下载ampq扩展包
+[root@iZ94f2imuwkZ amqp]# tar -zxvf amqp-1.6.0.tgz 
+[root@iZ94f2imuwkZ amqp-1.6.0]# /usr/local/php/bin/phpize
+Configuring for:
+PHP Api Version:         20041225
+Zend Module Api No:      20060613
+Zend Extension Api No:   220060519
+[root@iZ94f2imuwkZ amqp-1.6.0]# ./configure --with-php-config=/usr/local/php/bin/php-config --with-amqp
+[root@iZ94f2imuwkZ amqp-1.6.0]# make && make install
+[root@iZ94f2imuwkZ amqp-1.6.0]# vim /usr/local/php/etc/php.ini
+extension=amqp.so
+
+[root@iZ94f2imuwkZ amqp-1.6.0]# cd /root/lnmp
+[root@iZ94f2imuwkZ lnmp]# ./lnmp restart
+
+
+
+
+
+==================================================================
+
+
 ./examples/amqp_listen localhost 5672 amq.direct test
 ./examples/amqp_sendstring localhost 5672 amq.direct test "hello world"
 ./examples/amqp_sendstring localhost 5672 amq.direct test "hello world"
