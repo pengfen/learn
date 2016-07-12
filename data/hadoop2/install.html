@@ -1,0 +1,136 @@
+下载 hadoop-2.5.1
+
+tar -zxvf hadoop-2.5.1
+ln -sf /root/hadoop-2.5.1 /home/hadoop-2.5
+cd /home/
+rm -rf hadoop-1.2
+cd hadoop2.5
+
+
+vi hadoop-env.sh
+vi hdfs-site.xml
+<property>
+    <name>dfs.nameservices</name>
+    <value>peng</value>
+</property>
+<property>
+    <name>dfs.ha.namenodes.peng</name>
+    <value>nn1,nn2</value>
+</property>
+<property>
+    <name>dfs.namenode.rpc-address.peng.nn1</name>
+    <value>node1:8020</value>
+</property>
+<property>
+    <name>dfs.namenode.rpc-address.peng.nn2</name>
+    <value>node2:8020</value>
+</property>
+<property>
+    <name>dfs.namenode.http-address.peng.nn1</name>
+    <value>node1:50070</value>
+</property>
+<property>
+    <name>dfs.namenode.http-address.peng.nn2</name>
+    <value>node2:50070</value>
+</property>
+<property>
+    <name>dfs.namenode.shared.edits.dir</name>
+    <value>qjournal://node2:8485;node3:8485;node4:8485/peng</value>
+</property>
+<property>
+    <name>dfs.client.failover.proxy...</name>
+    <value></value>
+</property>
+<property>
+    <name>dfs.ha.fencing.methods</name>
+    <value>sshfence</value>
+</property>
+<property>
+    <name>dfs.ha.fencing.ssh.private-key-files</name>
+    <value>/root/.ssh/id_dsa</value>
+</property>
+<property>
+    <name>dfs.journalnode.edits.dir</name>
+    <value>/opt/jn/data</value>
+</property>
+<property>
+    <name>dfs.ha.automatic-failover.enabled</name>
+    <value>true</value>
+</property>
+
+vi core-site.xml
+<property>
+    <name>dfs.defaultFS</name>
+    <value>hdfs://peng</value>
+</property>
+<property>
+    <name>ha.zookeeper.quorum</name>
+    <value>node1:2181,node2:2181,node3:2181</value>
+</property>
+<property>
+    <name>hadoop.tmp.dir</name>
+    <value>/opt/hadoop2</value>
+</property>
+
+tar -zxvf zookeeper-
+ln -sf /root/zookeeper-3.4.6 /home/zk
+cd /home/zk
+ls
+cd conf/
+cp -a zoo_sample.cfg zoo.cfg
+vi zoo.cfg
+server.1:node1:8002:..
+mkdir /opt/zookeeper
+cd /opt/zookeeper
+ls
+vi myid
+1
+scp -r /opt/zookeeper/ root@node2:/opt/
+scp -r /opt/zookeeper/ root@node3:/opt/
+
+登录 node3
+vi /opt/zookeeper/myid
+3
+
+scp -r zookeeper 解压包
+登录 node2
+ln -sf /root/zookeeper-3.4.6 /home/zk
+
+export PATH=$PATH:/home/zk/bin
+
+zkServer.sh start
+jps
+QuorumPeerMain
+
+vi slaves
+node2
+node3
+node4
+
+scp hadoop2.5
+
+node2 node3 node4 上启动
+./hadoop-daemon.sh start journalnode (JN)
+source /etc/profile
+
+./bin/hdfs namenode -format
+
+cd /opt/hadoop2/dfs/current/... 元数据文件
+复制元数据到第二个 nodename
+
+./hadoop-daemon.sh start namenode
+
+...
+
+./stop-dfs.sh #停止所有dfs 所有的服务
+
+初始化 zkfc
+./hdfs zkfc -formatZK
+./start-dfs.sh 
+
+#二个 namenode 都可以
+http://node1:50070
+http://node2:50070
+
+./hdfs dfs -mkdir ...
+./hdfs dfs -put ...

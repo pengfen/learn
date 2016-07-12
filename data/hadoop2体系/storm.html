@@ -1,0 +1,68 @@
+apache storm 课程规划
+
+分布式的起源
+hadoop 不能解决 (流式计算)
+
+storm 产生的背景
+storm 基本组件介绍
+storm 环境搭建
+storm API 详解
+
+
+分清流式计算与批量计算各自己的适用场景
+适用 storm 开发流式计算程序
+知道流式计算中时效性和正确性的取舍
+
+开源的 分布式 流式计算系统
+把一个任务拆解给多个计算机去执行对外只提供一个接口
+
+apache storm    spark streaming
+
+         批量计算               流式计算
+数据到达 计算开始前数据已准备好 计算进行中数据持续到来
+计算周期 计算完成后会结束计算   一般会作为服务持续运行
+使用场景 时效性要求低的场景     时效性要求高的场景
+
+开源 cloudDataflow
+
+
+storm 有哪些基本组件
+storm 用户作业是如何运行起来的
+
+分布式计算框架
+nimbus --- zookeeper --- supervisor
+
+主从结构 简单 高效 但主结点存在单点问题
+对称结构 复杂 效率较低 但无单点问题 更加可靠
+
+nimbus 主结头 只负责整体分配工作 不具体干活 老板
+supervisor 从结点 直接管理干活的 Worker  小组经理
+
+Worker 真正干活儿 (TASK) 的进程
+
+heron 改进
+storm 由 worker 直接通信
+heron 由中间层统一管理
+
+storm DRPC 组件
+storm ui # storm 浏览器后台
+
+storm 作业提交运行流程
+用户编写 storm topology
+使用 client 提交 topology 给 nimbus
+nimbus 指派 task 给 supervisor
+supervisor 为 task 启动 worker
+worker 执行 task
+
+
+storm 搭建
+storm.apache.org/downloads.html
+
+maven
+加maven 到 path
+maven -version
+
+cd apache-storm...
+ls
+mvn test
+mvn exec:java "-Dstorm.tepology=storm.starter.WordCountTopology"

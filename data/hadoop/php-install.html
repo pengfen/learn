@@ -1,0 +1,85 @@
+阿里云服务器 (重置)
+
+进入后台
+
+云服务器 ECS ---> 实例 ---> 更多 ---> 停止 ---> 重新初始化磁盘 ---> 实例 ---> 重新初始化磁盘
+
+yum 的使用
+yum -y install  软件包
+yum update  软件包
+yum info 软件包
+yum list
+yum list 软件包
+yum remove 软件包
+yum clean 软件包
+
+安装 gcc gcc-c++
+yum -y install gcc gcc-c++
+
+下载 php
+进入阿里云服务器
+mkdir lnmp
+ll
+cd ./lnmp
+wget -c http://cn2.php.net/distributions/php-5.6.18.tar.gz
+tar -xvf php-5.6.18.tar.gz
+cd php-5.6.18
+
+./configure --prefix=/usr/local/php --with-config-file-path=/usr/local/php/etc --enable-inline-optimization --disable-debug --disable-rpath --enable-shared --enable-opcache --enable-fpm --with-fpm-user=www --with-fpm-group=www --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-gettext --enable-mbstring --with-iconv --with-mcrypt --with-mhash --with-openssl --enable-bcmath --enable-soap --with-libxml-dir --enable-pcntl --enable-shmop --enable-sysvmsg --enable-sysvsem --enable-sysvshm --enable-sockets --with-curl --with-zlib --enable-zip --with-bz2 --with-readline --without-sqlite3 --without-pdo-sqlite --with-pear
+
+yum -y install libxml2-devel
+yum -y install openssl openssl-devel
+ln -s /usr/lib64/libssl.so /usr/lib/
+yum -y install bzip2 bzip2-devel
+yum -y install curl-devel
+yum -y install libmcrypt libmcrypt-devel
+yum -y install mcrypt mhash
+yum -y install readline-devel
+make && make install
+要求内存1G以上
+
+php 7
+wget -c http://cn2.php.net/distributions/php-7.0.3.tar.gz
+tar -xvf php-7.0.3.tar.gz
+cd ./php-7.0.3
+
+./configure --prefix=/usr/local/php \
+ --with-curl \
+ --with-freetype-dir \
+ --with-gd \
+ --with-gettext \
+ --with-iconv-dir \
+ --with-kerberos \
+ --with-libdir=lib64 \
+ --with-libxml-dir \
+ --with-mysqli \
+ --with-openssl \
+ --with-pcre-regex \
+ --with-pdo-mysql \
+ --with-pdo-sqlite \
+ --with-pear \
+ --with-png-dir \
+ --with-xmlrpc \
+ --with-xsl \
+ --with-zlib \
+ --enable-fpm \
+ --enable-bcmath \
+ --enable-libxml \
+ --enable-inline-optimization \
+ --enable-gd-native-ttf \
+ --enable-mbregex \
+ --enable-mbstring \
+ --enable-opcache \
+ --enable-pcntl \
+ --enable-shmop \
+ --enable-soap \
+ --enable-sockets \
+ --enable-sysvsem \
+ --enable-xml \
+ --enable-zip
+ --disable-fileinfo
+
+yum -y install libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel mysql pcre-devel
+
+configure: error: xslt-config not found. Please reinstall the libxslt >= 1.1.0 distribution
+yum install -y libxslt libxslt-devel libxml2 libxml2-devel

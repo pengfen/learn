@@ -1,0 +1,73 @@
+启动 eclipse  --- File --- New --- Project --- Java Project --- temper
+
+导包
+hadoop 解压包 --- share --- hadoop ---
+common 下的包 
+common/lib
+mapred
+yarn
+hdfs
+将以上文件中的 jar 包 复制到 /e/jar/hadoop2.5
+
+右击 --- properties --- Java Build Path --- Add External JARs...
+
+
+气温
+1949-10-01 14:21:02 34C
+1949-10-02 14:01:02 36C
+1950-01-01 11:21:02 32C
+1950-10-01 12:21:02 37C
+1951-12-01 12:21:02 23C
+1950-10-02 12:21:02 41C
+1950-10-03 13:21:02 27C
+1951-07-01 12:21:02 45C
+1951-07-02 12:21:02 46C
+
+readme.txt
+计算在 1949-1955年 每年温度最高的时间
+计算在 1949-1955年 每年温度最高前十天
+
+思路
+    按照年份的升序排序 同时每一年中温度按降序排序
+    按照年份分组 每一年对应一个 reduce 任务
+
+    mapper 输出 key 为封装对象
+
+目的
+    自定义排序
+    自定义分区
+    自定义分组
+
+编写 Temper 类 对年份和气温二字段进行封装
+
+编写 SortTemper 类 用于自定义排序
+
+编写 FirstPartition 类 用于自定义分区
+
+编写 GroupYear 类 用于自定义分组
+
+编写 TemperMapper 类 
+
+编写 TemperReducer 类
+
+编写 RunJob 类 用于运行 mapreduce
+
+#peng1 peng2 peng3 先启动 zk
+[root@peng1 hadoop2]# cd /home/zk/
+[root@peng1 zk]# ./bin/zkServer.sh start
+
+[root@peng1 zk]# cd /home/hadoop2
+[root@peng1 hadoop2]# ./sbin/start-all.sh
+[root@peng1 hadoop2]# ./bin/hdfs dfs -mkdir -p /usr/input/temper
+[root@peng1 hadoop2]# ./bin/hdfs dfs -put /root/tem /usr/input/temper
+[root@peng1 hadoop2]# ./bin/hdfs dfs -ls /usr/input/temper
+-rw-r--r--   1 root root        223 2016-03-15 21:02 /usr/input/temper/tem
+[root@peng1 hadoop2]# ./bin/hadoop jar /root/temper.jar temper.peng.com.RunJob
+
+
+测试 计算例子
+[root@peng1 hadoop2]# ./bin/hdfs dfs -mkdir /usr/input/wc
+[root@peng1 hadoop2]# ./bin/hdfs dfs -ls /usr/input/
+drwxr-xr-x   - root root       4096 2016-03-15 21:02 /usr/input/temper
+drwxr-xr-x   - root root       4096 2016-03-16 18:36 /usr/input/wc
+[root@peng1 hadoop2]# ./bin/hdfs dfs -put /root/test /usr/input/wc/

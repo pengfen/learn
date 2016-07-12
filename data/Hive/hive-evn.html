@@ -1,0 +1,155 @@
+hive 官网 hive.apache.org
+
+下载  http://hive.apache.org/downloads.html 
+--- Download a release now!
+--- http://apache.fayea.com/hive/ 
+--- hive-1.0.1/
+--- apache-hive-1.0.1-bin.tar.gz
+
+service iptables stop
+# 启动 zookeeper
+[root@peng1 ~]# cd /home/zk/
+[root@peng1 zk]# ./bin/zkServer.sh start
+
+# 启动 hadoop 集群
+[root@peng1 ~]# cd /home/hadoop2
+[root@peng1 hadoop2]# ./sbin/start-all.sh
+
+# jps 查看所有节点是否全部正常启动
+
+# 页面访问
+peng1:8088/cluster
+peng1:50070
+
+[root@peng1 ~]# mkdir hive
+上传 apache-hive0... 至 /root/hive/
+[root@peng1 ~]# cd hive
+[root@peng1 hive]# ls
+apache-hive-1.0.1-bin.tar.gz
+[root@peng1 hive]# tar -zxvf apache-hive-1.0.1-bin.tar.gz
+[root@peng1 hive]# ln -sf /root/hive/apache-hive-1.0.1-bin /home/hive
+[root@peng1 hive]# cd /home/hive
+
+# 进入 hive 客户端
+[root@peng1 hive]# ./bin/hive
+hive>
+
+# 安装 mysql 数据库
+[root@peng1 ~]# yum install mysql-server
+[root@peng1 ~]# service mysqld start
+[root@peng1 ~]# netstat -nplt | grep 3306
+tcp        0      0 0.0.0.0:3306                0.0.0.0:*                   LISTEN      8212/mysqld
+
+# 修改 mysql 密码
+[root@peng1 ~]# mysql
+mysql> use mysql
+mysql> select * from user \G;
+共五条数据 user password 都为空有二条 主机是 host: localhost host: peng1
+user:root password 为空有三条 主机是  host: localhost host: peng1 host: 127.0.0.1
+
+mysql> grant all on *.* to root@'%' identified by '123456'; #此语句有错误
+mysql> update user set password=password('123456') where user='root';
+mysql> flush privileges;
+mysql> delete from user where user != 'root';
+Query OK, 2 rows affected (0.00 sec)
+mysql> flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> create database hive;
+
+
+# 安装 mysql 驱动 jar 包
+[root@peng1 ~]# mkdir mysqldriver
+上传 mysql 驱动包至 /root/mysqldriver
+
+[root@peng1 mysqldriver]# tar -zxvf mysql...
+[root@peng1 mysqldriver]# cp -a mysql-connector-java-5.1.7-bin.jar /home/hive/lib/
+[root@peng1 mysqldriver]# cd /home/hive/lib/
+[root@peng1 lib]# ls
+
+# 修改 hive 配置文件
+
+[root@peng1 ~]# cd /home/hive/conf/
+[root@peng1 conf]# cp -a hive-default.xml.template hive-site.xml
+
+<name>javax.jdo.option.ConnectionURL</name>
+<value>jdbc:mysql://peng1/hive</value>
+
+<name>javax.jdo.option.ConnectionDriverName</name>
+<value>com.mysql.jdbc.Driver</value>
+
+<name>javax.jdo.option.ConnectionUserName</name>
+<value>root</value>    
+
+<name>javax.jdo.option.ConnectionPassword</name>
+<value>123456</value>
+[root@peng1 hive]# mkdir -p /home/grid/hive/intmp
+[root@peng1 hive]# cd  conf
+[root@peng1 conf]# vi hive-site.xml
+将 System:java.io.tmpdir 修改 /home/grid/hive/intmp
+[root@peng1 ~]# cd /home/hive/
+[root@peng1 hive]# ./bin/hive
+
+create table t_emp(
+id int,
+name string,
+age int,
+dept_name string
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',';
+
+
+hive> create table t_emp(
+    > id int,
+    > name string,
+    > age int,
+    > dept_name string
+    > )
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ',';
+OK
+Time taken: 0.551 seconds
+
+
+[root@peng1 ~]# mkdir hivesql # 存放 hivesql 脚本文件
+[root@peng1 ~]# cd hivesql
+[root@peng1 hivesql]# vi emp
+1,张三,32,销售部
+2,李四,31,销售部
+3,王五,33,销售部
+4,孙六,34,销售部
+
+hive> load data local inpath '/root/hivesql/emp' into table t_emp;
+
+
+hive> show tables;
+OK
+t_emp
+Time taken: 0.613 seconds, Fetched: 1 row(s)
+hive> select * from t_emp;
+OK
+1       张三    32      销售部
+2       李四    31      销售部
+3       王五    33      销售部
+4       孙六    34      销售部
+Time taken: 0.524 seconds, Fetched: 4 row(s)
+hive> desc t_emp;
+OK
+id                      int
+name                    string
+age                     int
+dept_name               string
+
+create table t_person (
+id int,
+name string,
+like array<string>,
+tedian map<string,string>
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+COLLECTION ITEMS TERMINATED BY '_'
+MAP KEYS TERMINATED BY ':';
+
+1,zhangsan,sports_books_tv,sex:男_color:red

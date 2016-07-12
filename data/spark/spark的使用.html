@@ -1,0 +1,32 @@
+
+[root@peng1 ~]# cd /home/spark/
+[root@peng1 spark]# ./bin/spark-shell
+
+[root@peng1 ~]# mkdir input
+[root@peng1 ~]# cd input
+[root@peng1 input]# vi wc
+
+welcome to php world
+welcome to java world
+welcome to mysql world
+welcome to hadoop world
+welcome to spark world
+
+[root@peng1 input]# hadoop dfs -mkdir -p /usr/input/wc
+[root@peng1 input]# hadoop dfs -ls /usr/input/
+[root@peng1 input]# hadoop dfs -put /root/input/wc /usr/input/wc/
+[root@peng1 input]# hadoop dfs -cat /usr/input/wc/wc
+http://peng1:50070/explorer.html#/usr/input/wc
+scala> val textFile = sc.textFile("hdfs://peng1:9000/usr/input/wc/wc")
+scala> textFile.count
+res1: Long = 5
+scala> textFile.first
+res2: String = welcome to php world
+
+scala> textFile.flatMap(line => line.split(" ")).map(word => (word, 1)).reduceByKey((a,b) => a + b).collect
+scala> textFile.flatMap(_.split(" ")).map((_, 1)).reduceByKey(_ + _).collect
+res5: Array[(String, Int)] = Array((spark,1), (hadoop,1), (php,1), (to,5), (mysql,1), (java,1), (welcome,5), (world,5))
+
+
+scala> textFile.flatMap(_.split(" ")).map((_, 1)).reduceByKey(_ + _).sortByKey(true).collect
+res7: Array[(String, Int)] = Array((hadoop,1), (java,1), (mysql,1), (php,1), (spark,1), (to,5), (welcome,5), (world,5))

@@ -1,0 +1,163 @@
+./bin/spark-submit --class org.apache.spark.examples.SparkPi --master spark://peng1:7077 ./lib/spark-examples-1.6.0-hadoop2.6.jar 1000
+
+Coarse Grained 粗粒度
+粗粒度 先分配资源以后再复用资源  作业多复用度高 如果一个任务没完就会 这样造成其它机器资源闲置
+ 
+细粒度 计算时分配资源计算完回收资源
+
+./spark-shell --master spark://peng1:7077
+
+/  hdfs://peng1:9000/ 绑定不利于弹性
+sc.textFile("/").flatMap(_.split(" ")).map((_,1)).reduceByKey(_+_).map(pair => (pair._2, pair._1)).sortByKey(false).map(pair => (pair._2, pair._1)).saveAsTextFile("");
+
+sortByKey(false, 2) 第二个参数 设置并行度
+
+IBM 2015年 六七月 投入 1500 人员进行 spark
+
+data.toDebugString 查看依赖关系
+
+data.count 计算 --- action
+
+node_local 磁盘
+process_local 内存
+partition size = block size 默认情况下 (但是最后一个不一定是标准的 128 M)
+
+val flatted = data.flatMap(_.split(" "))
+flatted.toDebugString
+val mapped = flatted.map(word => (word, 1))
+mapped.toDebugString
+val reduced = mapped.reduceByKey(_+_)
+reduced.toDebugString
+reduced.saveAsTextFile("/")
+reduced.toDebugString
+
+eclipse 开发 测试 运行
+注意 scala 版本问题
+第一步 修改依赖的 scala 版本 (查看安装的版本)
+第二步 加入 spark 1.6.0 的 jar 文件依赖
+第三步 找到依赖的 spark jar 文件并导入到 eclipse 中的 jar 依赖
+第四步 在 src 下建立 spark 工程包
+第五步 创建 scala 入口类
+第六步 编写 main 入口方法
+/**
+* 使用 scala 开发本地测试的 spark WordCount 程序
+object WordCount {
+	def main(args : Array[String]) {
+	    /*
+	    * 第一步 创建 spark 的配置对象 sparkConf 
+	    设置 spark 程序的运行时的配置信息 
+	    例如说通过 setMaster 来设置程序要链接的 spark 集群的 master 的 URL 
+	    如果设置为 local 则代表 spark 程序在本地运行 特别适合于机器配置条件非常差 (例如 只有 1G 的内存) 的初学者
+
+	    val conf = new SparkConf() //ctrl + shift + o 补全 创建sparkConf 对象
+	    conf.setAppName("My First Spark App")// 设置应用程序的名称 在程序运行的监控界面可以看到名称
+	    conf.setMaster("local") // 此时 程序在本地运行 不需要安装 spark 集群
+
+	    /**
+	    第二步 创建 SparkContext 对象
+	    SparkContext 是 Spark 程序所有功能的唯一入口 无论是采用 Scala Java Python R 等都必须有一个 SparkContext
+	    SparkContext 核心作用 初始化 Spark 应用程序运行所需要的核心组件 包括 DAGScheduler TaskScheduler SchedulerBackend
+	    同时还会负责 Spark 程序往 master 注册程序等
+	    SparkContext 是整个 Spark 应用程序中最为至关重要的一个对象
+
+	    val sc = new SparkContext(conf) // 创建 SparkContext对象 通过传入 SparkConf 实例来定制 Spark 运行的具体参数和配置信息
+
+	    第三步 根据具体的数据来源 (HDFS HBase Local FS DB) 通过 SparkContext 来创建 RDD 
+	    RDD 的创建基本有三种方式 根据外部的数据来源 (例如 HDFS) 根据 scala 集合 由其它的 RDD 操作数据会被 RDD 划分成为一系列的 Partitions 分配到每个 Partition 的数据属于一个 Task 的处理范畴
+
+	    // val lines : RDD[String] = sc.textFile("D://...//README.md", 1) // 读取本地文件并设置为一个 Partitions
+	    val lines = sc.textFile("D://...//README.md", 1) // 读取本地文件并设置为一个 Partitions
+
+	    /*
+	    第四步 对初始的 RDD 进行 TransFormation 级别的处理 例如 map filter 等高阶函数等的编程 来进行具体的数据计算
+	    每一行的字符串拆分成单个的单词
+
+	    val words = lines.flatMap { line => line.split(" ")} // 对每一行的字符串进行单词拆分并把所有行的拆分结果通过 flat 合并成为一个大的单词集合
+
+	    在单词拆分的基础上对每个单词实例计数为 1 也就是 word => (word, 1)
+	    val pairs = words.map { word => (word, 1)}
+
+	    在每个单词实例计数为 1 基础之上统计每个单词在文件中出现的总次数
+	    val wordCounts = pairs.reduceByKey(_+_) // 对相同的 key 进行 value 的累计 (包括 Local 和 Reducer 级别同时 Reduce)
+
+	    wordCounts.foreach(wordNumberPair => println(wordNumberPair._1 + " : " + wordNumberPair._2))
+
+	    sc.stop()
+	}
+}
+
+Run As --- Scala Application
+
+作业 添加排序
+
+/**
+* 使用 scala 开发集群开发测试的 spark WordCount 程序
+object WordCount {
+	def main(args : Array[String]) {
+	    /*
+	    * 第一步 创建 spark 的配置对象 sparkConf 
+	    设置 spark 程序的运行时的配置信息 
+	    例如说通过 setMaster 来设置程序要链接的 spark 集群的 master 的 URL 
+	    如果设置为 local 则代表 spark 程序在本地运行 特别适合于机器配置条件非常差 (例如 只有 1G 的内存) 的初学者
+
+	    val conf = new SparkConf() //ctrl + shift + o 补全 创建sparkConf 对象
+	    conf.setAppName("My First Spark App")// 设置应用程序的名称 在程序运行的监控界面可以看到名称
+	    conf.setMaster("spark://peng1:7077") // spark 集群
+
+	    /**
+	    第二步 创建 SparkContext 对象
+	    SparkContext 是 Spark 程序所有功能的唯一入口 无论是采用 Scala Java Python R 等都必须有一个 SparkContext
+	    SparkContext 核心作用 初始化 Spark 应用程序运行所需要的核心组件 包括 DAGScheduler TaskScheduler SchedulerBackend
+	    同时还会负责 Spark 程序往 master 注册程序等
+	    SparkContext 是整个 Spark 应用程序中最为至关重要的一个对象
+
+	    val sc = new SparkContext(conf) // 创建 SparkContext对象 通过传入 SparkConf 实例来定制 Spark 运行的具体参数和配置信息
+
+	    第三步 根据具体的数据来源 (HDFS HBase Local FS DB) 通过 SparkContext 来创建 RDD 
+	    RDD 的创建基本有三种方式 根据外部的数据来源 (例如 HDFS) 根据 scala 集合 由其它的 RDD 操作数据会被 RDD 划分成为一系列的 Partitions 分配到每个 Partition 的数据属于一个 Task 的处理范畴
+
+	    //val lines = sc.textFile("hdfs:9000/") // 读取 HDFS 文件 并切分成不同的 partitions
+	    val lines = sc.textFile("/")
+
+	    /*
+	    第四步 对初始的 RDD 进行 TransFormation 级别的处理 例如 map filter 等高阶函数等的编程 来进行具体的数据计算
+	    每一行的字符串拆分成单个的单词
+
+	    val words = lines.flatMap { line => line.split(" ")} // 对每一行的字符串进行单词拆分并把所有行的拆分结果通过 flat 合并成为一个大的单词集合
+
+	    在单词拆分的基础上对每个单词实例计数为 1 也就是 word => (word, 1)
+	    val pairs = words.map { word => (word, 1)}
+
+	    在每个单词实例计数为 1 基础之上统计每个单词在文件中出现的总次数
+	    val wordCounts = pairs.reduceByKey(_+_) // 对相同的 key 进行 value 的累计 (包括 Local 和 Reducer 级别同时 Reduce)
+
+	    wordCounts.collect.foreach(wordNumberPair => println(wordNumberPair._1 + " : " + wordNumberPair._2))
+
+	    sc.stop()
+	}
+}
+打 jar 包
+./bin/spark-submit --class com.peng.WordCount --master spark://peng1:7077 /root/word.jar
+
+HA
+zookeeper 中包含的内容有哪些
+所有的 worker driver application
+
+zk
+dataDir 必须修改 /tmp 是临时目录 主机一重启就会删除
+
+spark-env.sh 中配置支持 zookeeper 信息 spark 主机 spark 无数据
+#export SPARD_MASTET_IP=
+export SPARK_DAEMON_JAVA_OPTS="-Dspark.deploy.recoveryNode=ZOOKEEPER -Dspark.deploy.zookeeper.url=peng1:2181,peng2:2181,peng3:2181 -Dspark.deploy.zookeeper.dir=/spark"
+
+启动 spark
+./sbin/stall-all.sh
+./sbin/start-master.sh
+./bin/spark-shell --master spark://peng1:7077,peng2:7077,peng3:7077
+
+master 出现故障切换时 不会影响job
+因为 job 一开始就分配资源, 正在进行时并不需要 master 参与
+spark 性能优化核心基石
+spark 是采用 master-slaves 的模式进行资源管理和任务执行的管理
+资源管理 master-workers 在一台机器上可以有多个 workers
+任务执行 driver-executors 当在一台机器上分配多个 workers 的时候那么默认情况下每个 worker 都会为当前运行的应用程序分配一个 executor 但是我们可以修改配置来让每个 worker 为我们当前的应用程序分配若干个 executors 程序运行的时候

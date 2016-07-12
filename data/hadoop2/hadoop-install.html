@@ -1,0 +1,405 @@
+       NN  DN  ZK  ZKFC  JN  RM   DM
+peng1  1       1   1         1    
+peng2  1   1   1   1     1        1
+peng3      1   1         1        1
+peng4      1             1        1
+
+NN namenode
+DN datanode
+ZK zookeeper
+ZKFC zookeeper failover controller
+JN journalnode
+RM resource manager
+DM node manager
+
+http://hadoop.apache.org/docs/r2.5.2/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithQJM.html
+
+登录 peng1
+
+[root@peng1 ~]# mkdir hadoop2
+[root@peng1 ~]# cd hadoop2
+
+使用 ssh 上传 hadoop-2.5.2.tar.gz /root/hadoop2
+
+[root@peng1 hadoop2]# tar -zxvf hadoop-2.5.2.tar.gz
+[root@peng1 hadoop2]# ln -sf /root/hadoop2/hadoop-2.5.2 /home/hadoop2
+[root@peng1 hadoop2]# cd /home/hadoop2
+[root@peng1 hadoop2]# cd ./etc/hadoop
+[root@peng1 hadoop]# cd /home/hadoop2
+
+修改配置文件
+[root@peng1 hadoop]# vi hadoop-env.sh
+export JAVA_HOME=/usr/local/java/jdk1.8.0_73
+
+[root@peng1 hadoop]# vi hdfs-site.xml
+<property>
+    <name>dfs.nameservices</name>
+    <value>peng</value>
+</property>
+<property>
+    <name>dfs.ha.namenodes.peng</name>
+    <value>nn1,nn2</value>
+</property>
+<property>
+    <name>dfs.namenode.rpc-address.peng.nn1</name>
+    <value>peng1:8020</value>
+</property>
+<property>
+    <name>dfs.namenode.rpc-address.peng.nn2</name>
+    <value>peng2:8020</value>
+</property>
+<property>
+    <name>dfs.namenode.http-address.peng.nn1</name>
+    <value>peng1:50070</value>
+</property>
+<property>
+    <name>dfs.namenode.http-address.peng.nn2</name>
+    <value>peng2:50070</value>
+</property>
+<property>
+    <name>dfs.namenode.shared.edits.dir</name>
+    <value>qjournal://peng2:8485;peng3:8485;peng4:8485/peng</value>
+</property>
+<property>
+  <name>dfs.client.failover.proxy.provider.peng</name>
+  <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+</property>
+<property>
+    <name>dfs.ha.fencing.methods</name>
+    <value>sshfence</value>
+</property>
+<property>
+    <name>dfs.ha.fencing.ssh.private-key-files</name>
+    <value>/root/.ssh/id_dsa</value>
+</property>
+<property>
+    <name>dfs.journalnode.edits.dir</name>
+    <value>/opt/jn/data</value>
+</property>
+<property>
+    <name>dfs.ha.automatic-failover.enabled</name>
+    <value>true</value>
+</property>
+
+
+[root@peng1 hadoop]# vi core-site.xml
+<property>
+    <name>dfs.defaultFS</name>
+    <value>hdfs://peng</value>
+</property>
+<property>
+    <name>ha.zookeeper.quorum</name>
+    <value>peng1:2181,peng2:2181,peng3:2181</value>
+</property>
+<property>
+    <name>hadoop.tmp.dir</name>
+    <value>/opt/hadoop2</value>
+</property>
+
+[root@peng1 hadoop]# vi slaves
+peng2
+peng3
+peng4
+
+安装 Zookeeper 
+zookeeper.apache.org 
+--- download (http://zookeeper.apache.org/releases.html)
+--- download (http://www.apache.org/dyn/closer.cgi/zookeeper/)
+--- http://apache.fayea.com/zookeeper/
+--- zookeeper-3.4.6
+--- http://apache.fayea.com/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
+wget http://apache.fayea.com/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
+
+
+[root@peng1 hadoop]# cd
+[root@peng1 ~]# mkdir zk
+[root@peng1 ~]# cd zk
+
+使用 ssh 工具上传 zookeeper-3.4.6.tar.gz 到 /root/zk
+
+[root@peng1 zk]# tar -zxvf zookeeper-3.4.6.tar.gz
+[root@peng1 zk]# ln -sf /root/zk/zookeeper-3.4.6 /home/zk
+[root@peng1 zk]# cd /home/zk
+
+
+[root@peng1 zk]# cd conf
+[root@peng1 conf]# cp -a zoo_sample.cfg zoo.cfg
+[root@peng1 conf]# vi zoo.cfg
+dataDir=/opt/zookeeper
+
+server.1=peng1:2888:3888
+server.2=peng2:2888:3888
+server.3=peng3:2888:3888
+
+[root@peng1 conf]# mkdir /opt/zookeeper
+[root@peng1 conf]# cd /opt/zookeeper/
+[root@peng1 zookeeper]# vi myid
+1
+
+登录 peng2 peng3 创建 zk 目录
+[root@peng2 ~]# mkdir zk
+[root@peng3 ~]# mkdir zk
+
+[root@peng1 zookeeper]# scp -r /opt/zookeeper/ root@peng2:/opt/
+myid                                          100%    2     0.0KB/s   00:00
+[root@peng1 zookeeper]# scp -r /opt/zookeeper/ root@peng3:/opt/
+myid                                          100%    2     0.0KB/s   00:00
+[root@peng1 zookeeper]# scp -r /root/zk/zookeeper-3.4.6 root@peng2:/root/zk/
+[root@peng1 zookeeper]# scp -r /root/zk/zookeeper-3.4.6 root@peng3:/root/zk/
+
+登录 peng2
+
+[root@peng2 zk]# ln -sf /root/zk/zookeeper-3.4.6/ /home/zk
+[root@peng2 zk]# cd /home/zk/conf
+[root@peng2 conf]# vi zoo.cfg
+[root@peng2 conf]# vi /opt/zookeeper/myid
+2
+
+登录 peng3 操作同上
+
+[root@peng1 zookeeper]# vi /etc/profile
+
+export PATH=$JAVA_HOME/bin:/home/zk/bin:$PATH
+
+[root@peng1 zookeeper]# source /etc/profile
+[root@peng1 zookeeper]# scp -r /etc/profile root@peng2:/etc/
+[root@peng1 zookeeper]# scp -r /etc/profile root@peng3:/etc/
+[root@peng1 zookeeper]# service iptables stop
+
+[root@peng1 bin]# scp -r /etc/profile root@peng2:/etc/
+profile                                       100% 1986     1.9KB/s   00:00
+[root@peng1 bin]# scp -r /etc/profile root@peng3:/etc/
+profile                                       100% 1986     1.9KB/s   00:00
+[root@peng1 bin]#
+[root@peng1 bin]# service iptables stop
+iptables：清除防火墙规则：                                 [确定]
+iptables：将链设置为政策 ACCEPT：filter                    [确定]
+iptables：正在卸载模块：                                   [确定]
+
+
+登录 peng2 
+[root@peng2 conf]# source /etc/profile
+[root@peng2 conf]# service iptables stop
+
+登录 peng3 操作同上
+
+
+
+[root@peng3 bin]# ls
+README.txt    zkCli.cmd  zkEnv.cmd  zkServer.cmd  zookeeper.out
+zkCleanup.sh  zkCli.sh   zkEnv.sh   zkServer.sh
+[root@peng3 bin]#
+[root@peng3 bin]# zkServer.sh start
+JMX enabled by default
+Using config: /home/zk/bin/../conf/zoo.cfg
+Starting zookeeper ... STARTED
+[root@peng3 bin]#
+[root@peng3 bin]#
+[root@peng3 bin]# jps
+2934 QuorumPeerMain
+2951 Jps
+
+
+[root@peng2 zk]# cd bin
+[root@peng2 bin]#
+[root@peng2 bin]# zkServer.sh start
+JMX enabled by default
+Using config: /home/zk/bin/../conf/zoo.cfg
+Starting zookeeper ... STARTED
+[root@peng2 bin]# jps
+2919 QuorumPeerMain
+2941 Jps
+
+
+[root@peng1 zk]# cd bin
+[root@peng1 bin]#
+[root@peng1 bin]# zkServer.sh start
+JMX enabled by default
+Using config: /home/zk/bin/../conf/zoo.cfg
+Starting zookeeper ... STARTED
+[root@peng1 bin]# jps
+3094 QuorumPeerMain
+3118 Jps
+
+
+复制 hadoop 环境
+
+[root@peng2 ~]# mkdir hadoop2
+[root@peng3 ~]# mkdir hadoop2
+[root@peng4 ~]# mkdir hadoop2
+
+
+[root@peng1 ~]# scp -r /root/hadoop2/hadoop-2.5.2 root@peng2:/root/hadoop2/
+[root@peng1 ~]# scp -r /root/hadoop2/hadoop-2.5.2 root@peng3:/root/hadoop2/
+[root@peng1 ~]# scp -r /root/hadoop2/hadoop-2.5.2 root@peng4:/root/hadoop2/
+[root@peng1 ~]# scp -r /etc/hosts root@peng4:/etc/
+hosts                                                                            100%  246     0.2KB/s   00:00
+[root@peng1 ~]# scp -r /etc/hosts root@peng3:/etc/
+hosts                                                                            100%  246     0.2KB/s   00:00
+[root@peng1 ~]# scp -r /etc/hosts root@peng2:/etc/
+hosts                                                                            100%  246     0.2KB/s   00:00
+
+
+登录 peng4
+
+[root@peng4 ~]# cd hadoop2/
+[root@peng4 hadoop2]#
+[root@peng4 hadoop2]# ln -sf /root/hadoop2/hadoop-2.5.2/ /home/hadoop2
+[root@peng4 hadoop2]# cd /home/hadoop2/etc/hadoop/
+[root@peng4 hadoop]# vi slaves
+
+
+登录 peng2 peng3 操作同上
+
+测试 JN
+[root@peng2 hadoop2]# cd ./sbin
+[root@peng2 sbin]# ./hadoop-daemon.sh start journalnode
+starting journalnode, logging to /root/hadoop2/hadoop-2.5.2/logs/hadoop-root-journalnode-peng2.out
+[root@peng2 sbin]#
+[root@peng2 sbin]# jps
+3188 Jps
+2919 QuorumPeerMain
+3143 JournalNode
+
+
+[root@peng3 ~]# cd /home/hadoop2/sbin/
+[root@peng3 sbin]# ./hadoop-daemon.sh start journalnode
+starting journalnode, logging to /root/hadoop2/hadoop-2.5.2/logs/hadoop-root-journalnode-peng3.out
+[root@peng3 sbin]# jps
+3248 Jps
+3203 JournalNode
+2934 QuorumPeerMain
+
+
+[root@peng4 ~]# cd /home/hadoop2/sbin/
+[root@peng4 sbin]# ./hadoop-daemon.sh start journalnode
+starting journalnode, logging to /root/hadoop2/hadoop-2.5.2/logs/hadoop-root-journalnode-peng4.out
+[root@peng4 sbin]# jps
+25899 Jps
+25853 JournalNode
+
+
+测试 NN (二三四 JN 都得启动 否则连接不上)
+
+[root@peng1 ~]# cd /home/hadoop2/bin
+[root@peng1 bin]# ./hdfs namenode -foramt
+
+# 查看元数据
+[root@peng1 bin]# cd /opt/hadoop2
+[root@peng1 hadoop2]# ls
+dfs
+[root@peng1 hadoop2]# cd dfs
+[root@peng1 dfs]# ls
+name
+[root@peng1 dfs]# cd name
+[root@peng1 name]# ls
+current
+[root@peng1 name]# cd current
+[root@peng1 current]# ls
+fsimage_0000000000000000000  fsimage_0000000000000000000.md5  seen_txid  VERSION
+
+[root@peng1 ~]# cd /home/hadoop2/sbin/
+[root@peng1 sbin]# ./hadoop-daemon.sh start namenode
+starting namenode, logging to /root/hadoop2/hadoop-2.5.2/logs/hadoop-root-namenode-peng1.out
+[root@peng1 sbin]# jps
+3522 NameNode
+3590 Jps
+3094 QuorumPeerMain
+
+[root@peng1 sbin]# cd ../logs/
+[root@peng1 logs]# tail -n50 hadoop-root-namenode-peng1.log #查看日志
+
+登录 peng2 
+[root@peng2 bin]# ./hdfs namenode -bootstrapStandby
+[root@peng2 bin]# cd /opt/hadoop2
+[root@peng2 hadoop2]# ls
+dfs
+[root@peng2 hadoop2]# cd dfs
+[root@peng2 dfs]# ls
+name
+[root@peng2 dfs]# cd name
+[root@peng2 name]# ls
+current
+[root@peng2 name]# cd current
+[root@peng2 current]# ls
+fsimage_0000000000000000000      seen_txid
+fsimage_0000000000000000000.md5  VERSION
+
+
+[root@peng1 sbin]# ./stop-dfs.sh #停止所有dfs 所有的服务
+
+
+测试 ZKFC
+
+[root@peng1 bin]# ./hdfs zkfc -formatZK
+[root@peng1 bin]# cd ../sbin/
+[root@peng1 sbin]# ./start-dfs.sh
+
+
+[root@peng1 sbin]# jps
+3094 QuorumPeerMain
+4999 NameNode
+5337 Jps
+5274 DFSZKFailoverController
+
+
+[root@peng2 hadoop]# jps
+4116 JournalNode
+4212 DFSZKFailoverController
+2919 QuorumPeerMain
+4284 Jps
+3965 NameNode
+4031 DataNode
+
+
+[root@peng3 sbin]# jps
+3776 JournalNode
+2934 QuorumPeerMain
+3691 DataNode
+3835 Jps
+
+
+[root@peng4 sbin]# jps
+26338 DataNode
+26482 Jps
+26402 JournalNode
+
+
+
+
+配置 hadoop 中的 slaves
+启动三个 zookeeper ./zkServer.sh start
+启动三个 JournalNode ./hadoop-daemon.sh start journalnode
+在其中一个 namenode 上格式化 hdfs namenode -format
+把刚刚格式化之后的元数据拷贝到另外一个 namenode 上
+a) 启动刚刚格式的 namenode
+b) 在没有格式化的 namenode 上执行 hdfs namenode -bootstrapStandby
+c) 启动第二个 namenode
+在其中一个 namenode 上初始化 zkfc hdfs zkfc -formatZK
+停止上面节点 stop-dfs.sh
+全面启动 start-dfs.sh
+
+
+mapred-site.xml
+<property>
+<name>mapreduce.framework.name</name>
+<value>yarn</value>
+</property>
+
+
+yarn-site.xml
+<property>
+<name>yarn.resourcemanager.hostname</name>
+<value>peng1</value>
+</property>
+<property>
+<name>yarn.nodemanager.aux-services</name>
+<value>mapreduce_shuffle</value>
+</property>
+<property>
+<name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+<value>org.apache.hadoop.mapred.ShuffleHandler</value>
+</property>
+
+http://peng1:8080
+

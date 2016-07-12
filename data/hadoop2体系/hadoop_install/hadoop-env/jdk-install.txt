@@ -1,0 +1,19 @@
+安装 JDK 环境 (注意查看 linux 系统信息)
+
+[root@peng1 ~]# uname -a
+Linux peng1 2.6.32-279.el6.i686 #1 SMP Fri Jun 22 10:59:55 UTC 2012 i686 i686 i386 GNU/Linux
+
+使用 ssh 工具上传 jdk-8u73-linux-i586.gz (与 linux 系统对应)
+
+
+[root@peng1 ~]# mkdir /usr/local/java/
+[root@peng1 ~]# mv jdk-8... /usr/local/java/
+[root@peng1 ~]# cd /usr/local/java/
+[root@peng1 ~]# tar -zxvf jdk-8...
+[root@peng1 ~]# vi /etc/profile
+export JAVA_HOME=/usr/local/java/jdk1.8.0_73
+export JRE_HOME=/usr/local/java/jdk1.8.0_73/jre
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH=./:$JAVA_HOME/lib:$JAVA_HOME/jre/lib
+[root@peng1 ~]# source /etc/profile
+[root@peng1 ~]# java -version

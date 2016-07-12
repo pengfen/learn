@@ -1,0 +1,106 @@
+配置无密码登录
+
+peng1 --- peng20160307 --- 192.168.209.129
+peng2 --- peng20307    --- 192.168.209.130
+peng3 --- peng30307    --- 192.168.209.131
+
+登录 peng1
+[root@peng1 ~]# ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa #可以官网复制 (http://hadoop.apache.org/docs/r1.2.1/single_node_setup.html)
+Generating public/private dsa key pair.
+Created directory '/root/.ssh'.
+Your identification has been saved in /root/.ssh/id_dsa.
+Your public key has been saved in /root/.ssh/id_dsa.pub.
+The key fingerprint is:
+70:a1:79:83:ab:db:4e:1a:b8:d5:7c:8e:fd:4d:7f:54 root@peng1
+The key's randomart image is:
++--[ DSA 1024]----+
+|        .        |
+|       + .       |
+|      = +        |
+|       = .      E|
+|      . S       .|
+|   . +          .|
+|  . + + .   .  . |
+|   o * =   o .  .|
+|  . o.+ o.. . .. |
++-----------------+
+
+
+[root@peng1 ~]# cd ./.ssh/
+[root@peng1 .ssh]# ls
+id_dsa  id_dsa.pub
+[root@peng1 .ssh]# scp id_dsa.pub root@peng2:~
+ssh: Could not resolve hostname peng2: Name or service not known
+lost connection
+
+配置主机
+[root@peng1 .ssh]# vim /etc/hosts
+
+192.168.209.130 peng2
+
+[root@peng1 .ssh]# scp id_dsa.pub root@peng2:~
+The authenticity of host 'peng2 (192.168.209.130)' can't be established.
+RSA key fingerprint is 7e:f8:a0:fe:de:e1:99:37:54:75:c7:2d:c9:ea:f1:c8.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'peng2,192.168.209.130' (RSA) to the list of known hosts.
+root@peng2's password:
+id_dsa.pub                                                                     100%  600     0.6KB/s   00:00
+
+登录到peng2
+
+[root@peng2 ~]# ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
+Generating public/private dsa key pair.
+Created directory '/root/.ssh'.
+Your identification has been saved in /root/.ssh/id_dsa.
+Your public key has been saved in /root/.ssh/id_dsa.pub.
+The key fingerprint is:
+c5:7c:9b:08:9a:e0:b9:93:45:95:85:c8:55:a3:50:76 root@peng2
+The key's randomart image is:
++--[ DSA 1024]----+
+|     ..+==E      |
+|      o+o= .     |
+|    . . o + .    |
+|   . + o o o o   |
+|    o + S . o    |
+|     +           |
+|    +            |
+|     .           |
+|                 |
++-----------------+
+[root@peng2 ~]# cd ./.ssh/
+[root@peng2 .ssh]# ls
+id_dsa  id_dsa.pub
+[root@peng2 .ssh]# cd
+[root@peng2 ~]# ls
+anaconda-ks.cfg  id_dsa.pub  install.log  install.log.syslog
+[root@peng2 ~]# cat id_dsa.pub >> ~/.ssh/authorized_keys
+[root@peng2 ~]# more /root/.ssh/authorized_keys
+ssh-dss AAAAB3NzaC1kc3MAAACBAKH0Ln1PXgILT0+eYhVrogeVpjXpFhkQsMhCTR/xw1aqDAfhq74a
+qeI35IPOG9GS9095b5V3CximiWKb91JoRIItzQ6tvZz2n7WvqW/tMUZ37ZBMOwtXQFkl/Uyq41/cSp3y
+lkI+Kav+lcg+aIEdU8CAtEnqVwO7el1LC09XWj3NAAAAFQDSpz3ljYOz9RhIAvz4c+LSq/i9tQAAAIEA
+i6YGX07x5bHDWS+geKbwM3+38PVYvNpUb1BH6axwJmSzCyCdrh7yz1i24bFkuHSnD5UHrjolwQX9BDJT
+GnHu2AmmZ7P7kaKW0QneiKPKKAkBI51CU3Xx/x7pVA2+Hm7lWEK1aAuhERglo8v5tXmm5zDRV/h6h5Eo
+FZT9UobVpWwAAACBAIJZOOCy/fI1IwvvxJSTHWNBPqrgdIg6yHd5v3TxRD0i8T7lVIU+cP57EVXwD3wQ
+kCsHMwH2Pvg2MsRKzSUeqMmOUYOS5D0Asj+cU3l7PW7q17NED7h9txVAXreDabyXxZRG1XkPEntl4bNC
+cEM0Kex/E/0vM/7lLzsqq9GeijzX root@peng1
+
+登录到 peng1 将 hadoop 复制到 peng2 服务器上
+[root@peng1 ~]# scp hadoop/ root@peng2:~
+
+hadoop: not a regular file #是文件夹时要加 -r
+
+[root@peng1 ~]# scp -r hadoop/ root@peng2:~ #此时不再需要密码
+
+登录到 peng2 查看目录
+[root@peng2 ~]# ls
+anaconda-ks.cfg  hadoop  id_dsa.pub  install.log  install.log.syslog
+
+
+配置本地无密码
+
+[root@peng1 ~]# cd ./.ssh/
+[root@peng1 .ssh]# ls
+id_dsa  id_dsa.pub  known_hosts
+[root@peng1 .ssh]# cat id_dsa >>  ~/.ssh/authorized_keys
+[root@peng1 .ssh]# ssh peng1
+

@@ -1,0 +1,137 @@
+------------- 配置系统环境 -------------
+配置 ip 和用户 hostname 本地DNS 服务 /etc/hosts
+配置 ssh 无密钥登录 (setup SSH key exchange)
+安装 JDK 配置环境变量 (install JDK)
+
+------------- 配置 hadoop 环境 -------------
+下载软件 (Download Hadoop Source Package)
+配置 hadoop 环境变量 (Configure hadoop-env.sh)
+export JAVA_HOME=/usr/java/jdk1
+
+配置 hadoop 配置 (Configure core-site.xml hdfs-site.xml)
+Set Namenode to hdfs//master:9000
+setJobtracker to master:9001
+
+Format HDFS
+格式化文件系统 bin/hadoop namenode -format
+
+Start Hadoop 启动 Hadoop 集群
+bin/start-all.sh
+
+检查 Hadoop 状态
+检查任务 http://master:50070/
+检查任务 http://master.50030/
+
+--------------------------
+配置时间同步
+crontab -e
+0 1 * * * /usr/sbin/ntpdate cn.pool.ntp.org
+
+手动同步时间
+/usr/sbin/ntpdate cn.pool.ntp.org
+
+配置机器网络环境
+/sbin/service network restart
+
+配置主机名 hostname
+vi /etc/sysconfig/network
+NETWORKING=yes
+HOSTNAME=iZ94f2imuwkZ
+NETWORKING_IPV6=no
+PEERNTP=no
+GATEWAY=120.24.39.247
+
+HOSTNAME=apeng
+hostname apeng
+hostname
+
+cat /etc/hosts
+ping localhost
+vi /etc/hosts
+10.44.128.179
+120.24.36.66
+
+10.44.128.179 apeng
+
+whereis java
+java: /usr/bin/java /usr/share/java /usr/share/man/man1/java.1
+
+----------- itcast 版本 hadoop 安装 ------------
+vi /etc/etc/profile.d/java.sh
+#!/bin/sh
+export JAVA_HOME=/usr/java/jdk1.8.0_73
+export HADOOP_HOME=/opt/modules/hadoop
+export PATH=$JAVA_HOME/bin:$HADOOP_HOME/bin:$PATH
+source /etc/porfile
+jps
+hadoop
+mkdir -p /opt/modules/hadoop/
+cp hadoop-1.0.3.tar.gz /opt/modules/hadoop/
+cd /opt/modules/hadoop/
+ll
+tar -xzvf hadoop-1.0.3.tar.gz
+
+
+ll
+cd ./hadoop
+ls
+cd hadoop-1.2.1
+ls
+cd conf
+ls
+vi hadoop-evn.sh
+export HADOOP_HEAPSIZE=32 #设置最大内存32M
+
+vi core-site.xml
+
+    <property>
+    <name>fs.default.name</name>
+    <value>hdfs://apeng:9000</value>
+    <!--hadoop namenode 服务器地址和端口 以域名形式-->
+    </property>
+
+    <property>
+    <name>fs.checkpoint.dir</name>
+    <value>/opt/data/hadoop/hdfs/namesecondary</value>
+    <!-- hadoop secondary 数据存储路径 可以配置或多个目录 用逗号分隔 -->
+    </property>
+
+    <property>
+    <name>fs.checkpoint.period</name>
+    <value>1800</value>
+    <!-- editlog 每隔 30 分钟 触发一次合并 -->
+    </property>
+
+    <property>
+    <name>fs.checkpoint.size</name>
+    <value>33554432</value>
+    <!-- editlog 达到 32m 的时候触发一次合并 -->
+    </property>
+
+    <property>
+    <name>dfs.name.dir</name>
+    <value>/hadoop/name</value>
+    </property>
+
+iZ94f2imuwkZ
+
+
+配置好配置文件
+
+mkdir -p /data/
+mkdir -p /data/hadoop/
+chown -R hadoop:hadop /data/hadoop/
+
+ll /data/
+mkdir -p /data/hadoop/hdfs/namesecondary
+
+su master
+mkdir -p /data/hadoop/hdfs/name
+mkdir -p /data/hadoop/hdfs/data
+ll /data/hadoop/hdfs/
+
+hadoop-daemon.sh start namenode
+
+chmod go-w /data/hadoop/hdfs/data
+
+http://iZ94f2imuwkZ:9000/dfshealth.jsp

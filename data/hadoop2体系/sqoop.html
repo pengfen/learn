@@ -1,0 +1,27 @@
+sqoop 2 的使用
+
+# 配置客户端使用你的服务
+sqoop:000> set server --host peng1 --port 12000 --webapp sqoop
+Server is set successfully
+
+使用 sqoop 实现数据的导入
+
+export HADOOP_COMMON_HOME=/home/hadoop
+export HADOOP_MAPRED_HOME=/home/hadoop
+
+使用 sqoop 导入 mysql 数据到 HDFS 中
+./sqoop import --connect jdbc:mysql:peng1:hive --username root --password 123456 --table emp --columns 'ename,job,sal' -m 1 --target-dir '/usr/sqoop'
+-m 1 只属一个 mapreduce 进程
+--target-dir hdfs 目录
+
+使用 sqoop 导入 mysql 数据到 hive 中
+./sqoop import --hive-import --connect jdbc:mysql:peng1:hive --username root --password 123456 --table emp -m 1 --columns 'ename,sal' --hive-table emp1
+
+使用 sqoop 导入 mysql 数据到 hive 中 并使用 where 条件 
+./sqoop import --hive-import --connect jdbc:mysql:peng1:hive --username root --password 123456 --table emp -m 1 --columns 'ename,sal' --hive-table emp2 --where 'id=10'
+
+使用 sqoop 导入 mysql 数据到 hive 中 并使用查询语句
+./sqoop import --hive-import --connect jdbc:mysql:peng1:hive --username root --password 123456 --table emp -m 1 --query 'select * from emp where sal < 2000' --target-dir '/usr/sqoop' --hive-table emp5
+
+使用 sqoop 将 hive 中的数据导出到 mysql 中
+./sqoop export --connect jdbc:mysql:peng1:hive --username root --password 123456 -m 1 --table myemp --deport-dir '/usr/sqoop'

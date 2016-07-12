@@ -1,0 +1,33 @@
+
+06 第六次课：RDD操作详解 06-22 20:30-21:30
+	1、RDD 创建
+		a）外部数据源
+			HDFS
+		b）集合Parallelized Collections
+		
+		RDD 分区partition
+			sc.textFile("",4)：RDD有四个分区，手动的指定分区个数
+	
+    2、RDD Tansformation
+		从一个RDD变为另外一个RDD，
+		WordCount:
+								map						reduceByKey
+			text -> RDD[String]   -> RDD[(String,Int)]  ->  RDD[(String,Int)]  ->  collect
+						wordRDD			kvRDD					resultRDD
+					一行一行的数据
+			lazy，懒执行
+			
+			lineage，生命周期，转换
+    3、RDD action
+		触发计算，进行实际的数据处理
+		
+    4、RDD cache
+	
+		cache方法，是延迟执行，需要在一个action执行以后，进行缓存RDD
+		
+		cache是persistent特殊缓存方式，将RDD放到内存中
+	
+
+	
+	
+	

@@ -1,0 +1,293 @@
+spark 介绍
+
+spark 是类 Hadoop MapReduce 的通用并行框架
+中间输出结果可以保存在内存中
+适用于数据挖掘与机器学习等需要迭代的 MapReduce 的算法
+启用了内存分布数据集 优代迭代工作负载
+spark 是在 scala 语言中实现的
+spark 和 scala 能够紧密集成 像操作本地集合对象一样操作分布式数据集
+对 hadoop 的补充 可以在 hadoop 文件系统中并行运行
+
+spark 目标
+目标是使用分布式数据上使用 "变换" 轻松操纵大规模数据
+传统分布式计算平台扩展性好但受限于 API(MR)
+spark 突破的单机的限制
+有快速 Data API 编写大规模数据处理程序很轻松
+
+spark scala python
+spark 最初由 scala 编写 支持简洁语法和交互式使用
+添加 Java API 是为了支持独立的应用程序
+python 的添加是为了交互式 shell
+
+spark 安装
+安装 tar -zxvf spark...
+配置
+export SPARK_HOME=
+export PATH
+
+运行 (本地模式)
+spark-shell --master local(n) # n 线程数
+
+下载
+预编译版本
+源码编译版本
+wget --help # wget 命令帮助
+
+安装
+tar
+建立软链接
+配置环境变量 profile envirement
+spark-shell local(n) n --- 计算机几核这里就常常写几核
+
+spark 体验
+使用 shell
+shell 时间简单的数据分析工具 是学习 API 的快捷手段 可以使用 scala 语言
+${spark_home}/bin/spark-shell
+
+新建 RDD 对象
+val file = sc.textFile("")
+
+hadoop  --- maxtemp wordcount
+spark-shell --- sc(SparkContext)
+
+file = sc.textFile
+file.count
+flie.first
+file.filter(_.contains("spark"))
+file.filter(_.contains("hadoop")) # 过滤包含此单词的行数
+
+使用 shell 
+每行按空格分割成数组 取出大小
+形成新的 rdd 集合 然后再所有行上进行对比 找出最大行
+reduce 是纵向所有行比较
+file.map(_.split(" ").size).filter((a,b) => if (a > b) a else b)
+....filter(Math.max(_, _))
+
+Spark RDD
+Resilient Distibuted Dataset
+弹性分布式数据集 spark 的核心抽象 只读的对象集合 按照集群主机进行分区 多个 RDD 作为 input 进行加载并进行一些列变换转变成新的 RDD 弹性 是指 spark 可以根据计算的来源方式 通过重新计算后进行的自动重构丢失的分区
+
+加载数据或执行变换并不会触发数据的处理 只是生成执行计划 直到 action 动作执行时 才进行数据处理 比如 foreach
+sc.text
+
+spark 变换
+val res = lines.map(_.split("\t"))
+val filtered = res.filter(rec => (rec(1) != "9999") && rec(2).matches("[01459]"))
+val tuples = filtered.map(rec => (rec(0).toInt,rec(1),toInt)) 
+
+安装 maven
+下载 maven
+解压 tar
+配置环境变量 PATH M2_HOME
+验证 maven 是否成功能 mvn -v
+
+通过源码编译安装 spark
+下载源代码
+解压 tgz 文件
+使用 maven 编译源码 (需先安装 maven)
+mvn -Dhadoop.version= -Phadoop-2.6 -DskipTests clean package
+
+maven 搭建本地仓库
+所需软件
+nexus.war
+JDK
+Tomcat
+
+在Tomcat 中部署
+复制 nexus.war 到 ${tomcat_home}/webapps
+修改 tomcat 的监呼端口 9090 ${tomcat_home}/conf/server.xml
+启动 Tomcat ./bin/startup.sh
+jps bootstrap
+成功后会创建 ~/senatype-work/nexus 目录
+peng1:9090/nexus/welcome
+
+配置 maven 使用本地仓库服务器 ../conf/setting.xml
+
+spark 安装 (源码 maven 编译安装)
+设置 maven 的虚拟机参数 否则可能出现内存溢出
+export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=128m"
+使用 mvn 编译
+hadoop.version 和 profile 需要对应上 
+-D 系统属性 -P profile 文件
+mvn -Pyarn -Phadoop-2.6 -Dhadoop.version=2.6.2 DskipTests clean package
+
+<servers>
+	<server>
+		<id>releases</id>
+		<username>admin</username>
+		<password>admin123</password>
+	</server>
+	<server>
+		<id></id>
+	</server>
+</servers>
+
+spark 官方 doc
+
+轻量级高速集群计算
+针对大规模的数据处理快速通用引擎
+比 hadoop 的 mr 的内存计算快 100 倍    磁盘运算快 10 倍
+
+易于使用  可以使用 java scala ptyhon r 语言
+
+提供了 80 多个高级操作符 可以使用scala python R shell 与之交互
+
+通用性 combin SQL, Streaming 复杂计算
+
+
+spark 独立集群模式部署
+peng1:8080/jobs
+
+spark 独立集群模式部署
+spark-shell ---- spark submit ---- 4040 webui
+local 本地模式 不是集群
+独立集群模式 standalone clustor mode
+配置 conf/slaves
+同步 conf 文件到所有集群节点
+在 master 节点上启动 start-master.sh
+分别到 slaves 节点启动 start-slaves.sh
+
+独立部署实质上就是手动通过脚本 -- 启动所需要的进程 例如 master 进程  work 进程等等
+在 spark/sbin 目录下    提供了相应的脚本
+start-master.sh // 启动 master 进程
+start-slave.sh  // 启动单个 work 进程
+start-slaves.sh // 启动所有 work 进程
+start-all.sh    // 启动所有进程 在 master 上执行
+stop-xxx.sh     // 对应的停止进程
+
+./sbin/start-slave.sh spark://peng1:7077 (可以在 web 页查到具到端口)
+
+spark 集群默认调度 job 的机制
+FIFO :  fist in first out 队列模式
+
+spark 的端口等参数配置
+spark-env.sh
+SPARK_MASTER_PORT=7077  // spark 对内端口
+SPARK_MASTER_WEBUI_PORT=8080 // web 访问端口
+SPARK_WORKER_PORT=            // worker 端口
+SPARK_WORDER_WEBUI_PORT=      // worker 访问端口
+
+
+export MASTER=spark://peng1:7077
+spark-shell
+sc.master
+sc.appName
+sc.version
+
+spark cluster: master(1) + worker(n)
+application(1) --- work(1)
+
+加载 File
+val file = sc.textFile();
+该命令将每行文本作为 RDD 元素
+连接到 spark master 后 如果集群不是分布式文件系统 spark 会在每个 node 上加载数据
+通常选择从 hdfs 上加载数据
+local 模式下 文件从本地加载
+
+app(1) --- (n)job
+job(1) --- (n) task
+每一个 action 的执行都对应一个 job 典型的是 first count
+
+备份文件
+该命令在所在机器上都进行文件备份
+val file = sc.addFile("");
+
+map 按照空格拆分行 将元素转换成 double 值
+file.map(_.split(" ")).map(_.toDouble)
+
+spark 编译
+scala   : sbt(simple build tool 编译)
+          maven
+java    : maven
+eclipse : maven
+
+使用 maven 编译 spark 应用 (java)
+创建目录存放项目 mkdir myspark
+通过 mvn 的初始化命令进行项目初始化工作(创建相应的目录和配置文件) mvn 初始化目录结构 mvn archetype:generate
+
+-DarchetypeGroupId=org.apache.maven.archetypes
+-DgroupId=com.peng # 公司名
+-DartifactId=Java # 项目名
+-Dfilter=org.apache.maven.archetypes.maven-archetype-quickstart
+
+使用 maven build
+准备 java 源文件
+find . | grep Java.java | cp 'xargs' /dist/
+
+修改 pom.xml 文件  准备编译并打包 添加 spark 依赖项目
+pom.xml 配置 org.apache.spark 而且版本也需要和自己的 maven 仓库服务器中的工件 id 和版本号分别对应上
+
+修改 pom.xml 文件 添加依赖项和插件
+
+使用 maven build
+编译并打包
+通过 pom.xml 文件配置寻找仓库中对应的项目和类库
+cd ${pom.xml} 所在目录
+mvn package
+成功后生成如下目录结构
+find .
+
+使用 java 命令运行程序
+java -cp project.jar:spark-assembly-1.5.2-hadoop2.6.2.jar com.peng.JavaWordCount /root/input/wc
+
+使用 mvn 命令运行程序
+在 pom.xml 中加入 exec 插件  使用以下命令执行程序
+mvn exec:java -Dexec.mainClass="com.peng.JavaWordCount" -Dexec.args="/root/input/wc"
+
+
+eclipse
+配置 eclipse 的 maven 仓库使用本地 maven 仓库服务器
+windows ---- preferences ---- maven ---- settings
+${M2_HOME}/conf/settings.xml
+
+使用 maven 在 eclipse 中项目开发
+创建 maven 项目  考查项目结构
+创建 Java 类
+配置 pom.xml 添加依赖项
+
+eclipse 下进行 scala 程序
+下载 scala 插件
+eclipse ----> markerplace ----> scala ----> install
+首选项 ----> scala
+
+scala 执行过程
+scalac 编译
+*.scala ----> *.class ---->
+
+创建文件夹 myscala
+创建目录
+编译 scala 源文件
+-d 指定 class 文件存放目录
+-classpath 指定类路径
+源代码文件
+scalac -d target/classes -classpath target/classes:/spark.../spark-assembly-1.5.2-hadoop2.6.2.jar src/main.../MyScala.scala
+生成对应的 class 文件
+运行 class 文件
+java -classpath
+scala -classpath
+运行
+
+maven 编译 scala 程序
+创建项目
+编写 scala 文件
+配置 pom.xml 文件  添加一个 scala maven 插件  编译插件
+<build>
+    <sourceDirectory>src/main/java</sourceDirectory>
+    <testSourceDirectory>src/test/java</testSourceDirectory>
+    <plugins>
+    	<plugin>
+    		<groupId>net.alchim31.maven</groupId>
+    		<artifactId>scala-maven-plugin</artifactId>
+    		<version>3.2.1</version>
+    	</plugin>
+    </plugins>
+</build>
+
+
+使用 eclipse 开发 scala 程序
+创建 maven 项目
+导入依赖包 例如 spark
+添加 scala 特性
+添加 scala 特性会引入 scala 类库 默认是最高版本 2.11.x  但是报错 因为 spark 支持的是 2.10.x 版本 需要修改构建路径的 scala 编译器到 2.10.3
+编写 scala 文件
+运行 scala 应用

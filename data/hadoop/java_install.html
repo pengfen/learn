@@ -1,0 +1,126 @@
+在 www.oracle.com 上下载 jdk
+
+CentOS 6.5 64位 解压版本
+jdk-8u73-linux-x64.gz
+
+使用 ssh 上传 jdk-8u73-linux-x64.gz
+
+tar -vxf jdk-8u73-linux-x64.gz
+
+cd ./jdk1.8.0_73/bin
+java
+
+rm -rf ./jdk1.8.0_73
+下载 rpm 安装包 jdk-8u73-linux-x64.rpm
+rpm -ivh jdk-8u73-linux-x64.rpm
+安装目录 /usr/java
+java
+javac
+java -version
+mkdir java
+cd ./java
+vim H.java
+
+public class H{
+	public static void main(String[] args){
+	    System.out.println("wel to java world");
+	}
+}
+javac H.java
+java H
+
+下载 tomcat 软件包
+http://tomcat.apache.org 下载 apache-tomcat-8.0.32.tar.gz
+
+tar 或 gzip -d
+
+tar -vxf apache-tomcat-8.0.32.tar.gz
+
+mv apache-tomcat-8.0.32.tar.gz /tomcat8
+
+cd /tomcat8
+
+ll
+
+cd ./bin
+
+./startup.sh
+如果 JAVA_HOME 不存在
+JAVA_HOME=/usr/java/jdk1.
+export JAVA_HOME #输出 让其它所有人都可以使用此java_home
+http://120.24.36.66:8080 访问
+ps -ef | grep tomcat
+ps (progrss 进程)
+
+service iptables stop #停止 iptables 防火墙
+chkconfig iptables off #iptables 默认不启动
+
+echo $JAVA_HOME
+
+rpm -qa | grep jdk
+rpm -e jdk-... #rpm 删除软件包
+
+cd /etc
+more profile #所有用户的 profile 档案 环境
+系统级的环境变量在这设置 
+每个用户自己的环境变量修改 home/.bash_profile文件
+执行文件在 home/.bashrc 文件中设置
+
+开机自启动tomcat
+JAVA_HOME=/usr/java/jdk1.8.0_73
+export JAVA_HOME
+/tomcat8/bin/startup.sh
+
+
+安装 mysql 5.6
+# 安装MySQL				
+ groupadd mysql
+ useradd -g mysql mysql
+* 添加用户组mysql ，将mysql用户默认组设置为mysql用户组
+yum -y install cmake
+
+cd ./mysql-5.5.23
+cmake  -DCMAKE_INSTALL_PREFIX=/usr/local/mysql    -DMYSQL_UNIX_ADDR=/tmp/mysql.sock  -DEXTRA_CHARSETS=all   -DDEFAULT_CHARSET=utf8    -DDEFAULT_COLLATION=utf8_general_ci    -DWITH_MYISAM_STORAGE_ENGINE=1   -DWITH_INNOBASE_STORAGE_ENGINE=1    -DWITH_MEMORY_STORAGE_ENGINE=1  -DWITH_READLINE=1    -DENABLED_LOCAL_INFILE=1   -DMYSQL_USER=mysql  -DMYSQL_TCP_PORT=3306    
+
+	-DCMAKE_INSTALL_PREFIX=/usr/local/mysql		安装位置
+	-DMYSQL_UNIX_ADDR=/tmp/mysql.sock			指定socket（套接字）文件位置
+	-DEXTRA_CHARSETS=all						扩展字符支持
+	-DDEFAULT_CHARSET=utf8    					默认字符集
+	-DDEFAULT_COLLATION=utf8_general_ci    		默认字符校对
+	-DWITH_MYISAM_STORAGE_ENGINE=1   			安装myisam存储引擎
+	-DWITH_INNOBASE_STORAGE_ENGINE=1    		安装innodb存储引擎
+	-DWITH_MEMORY_STORAGE_ENGINE=1  			安装memory存储引擎
+	-DWITH_READLINE=1    						支持readline库
+	-DENABLED_LOCAL_INFILE=1   					启用加载本地数据
+	-DMYSQL_USER=mysql  						指定mysql运行用户
+	-DMYSQL_TCP_PORT=3306						指定mysql端口
+
+make && make install
+
+ps -ef | grep mysql
+rpm -qa | grep MySQL
+
+cd /usr/local/mysql/
+chown -R mysql .
+chgrp -R mysql .
+#修改mysql目录权限
+/usr/local/mysql/scripts/mysql_install_db --user=mysql
+#创建数据库授权表，初始化数据库
+chown -R root .
+chown -R mysql data
+#修改mysql目录权限
+
+cp support-files/my-medium.cnf /etc/my.cnf
+#复制mysql配置文件
+
+/usr/local/mysql/scripts/mysql_install_db --user=mysql
+再次进行初始化数据库
+
+启动MySQL服务：
+1.用原本源代码的方式去使用和启动mysql
+/usr/local/mysql/bin/mysqld_safe --user=mysql &
+2.重启以后还要生效:
+vi /etc/rc.local
+/usr/local/mysql/bin/mysqld_safe --user=mysql &
+3.设定mysql密码
+/usr/local/mysql/bin/mysqladmin -uroot password 123456
