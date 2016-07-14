@@ -1,0 +1,33 @@
+主机扫描命令 fping
+    作用 批量的给目标主机发送 ping 请求 测试主机的存活情况
+    特点 并行发送 结果易读
+
+    源码包编译过程
+    编译方法  命令         产物
+    检测配置  ./configure  makefile
+    编译      make         二进制可执行文件
+    安装      make install 安装到指定目录
+
+    wget http://fping.org/dist/fping-3.10.tar.gz
+    ls
+    tar -xzf fping-3..
+    cd fping-3.10
+    ls
+    more install
+    ./configure
+    make
+    make install
+    ls /usr/local/sbin/fping
+    echo $PATH
+    fping -h
+    fping -v #查看版本号
+
+    fping 参数
+    命令参数 man -h 方式
+
+    常用参数介绍
+    -a 只显示出存活的主机 (相反参数 -u)
+    通过标准输入方式 fping + IP1 + IP2
+    -g 支持主机段的方式 192.168.1.1 192.168.1.255 192.168.1.0/24
+    通过读取一个文件中 IP 内容
+    fping -f filename

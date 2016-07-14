@@ -1,0 +1,68 @@
+XSTokenizer 是搜索字段的分词接口定义
+
+整个接口只要求实现一个方法 XSTokenizer::getTokens， 
+自定义分词器用于 INI 配置文件中的 tokenizer 选项。
+
+自定义分词器
+class XSTokenizerXyz implements XSTokenizer
+{
+    public function getTokens($value, XSDocument $doc = null)
+    {
+        $ret = array();
+        if (!empty($value))
+            $ret = explode('-', $value);
+        return $ret;
+    }
+}
+
+
+如果您需要编写带有参数支持的分词器，比如让用户传入按什么字符分割，请参照下面写法编写构造函数：
+class XSTokenizerXyz implements XSTokenizer
+{
+    private $delim = '-'; // 默认按 - 分割
+ 
+    public function __construct($arg = null)
+    {
+        if ($arg !== null && $arg !== '')
+            $this->delim = $arg;
+    }
+ 
+    public function getTokens($value, XSDocument $doc)
+    {
+        $ret = array();
+        if (!empty($value))
+            $ret = explode($this->delim, $value);
+        return $ret;
+    }
+}
+
+ini 配置文件中使用自定义分词器
+[some_field]
+; 不带参数的用法
+tokenizer = xyz
+; 带参数的用法，表示把 _ 作为参数传递给构造函数
+tokenizer = xyz(_)
+
+
+自定义 SCWS 词库
+全局自定义词库
+cd ./etc/dict_user.txt
+
+规范
+文件为纯文本文件，编码必须是 UTF-8，可用任何编辑器修改
+每行一条记录表示一个词，每行包含 1~4 个字段，字段之间用空格或制表符(\t)分隔
+字段含义依次表示 “词语”，“词频(TF)”，“逆词频率(IDF)”，“词性(ATTR)”
+后面三个字段如果省略依次使用 scws 的默认值
+特殊词性 ! 可用于表示删除该词
+自定义词典优先于内置词典加载和使用，以 # 开头的行为注释
+
+自定义词库
+cd ./data/goods/dict_user.txt
+
+使用 SCWS
+创建分词对象
+$xs = new XS
+$tokenizer = new XSTokenitenScws
+
+// $index = $db->getIndex(); 获取索引对象
+// $dict = $index->getCustomDict(); // 获取客户端词库

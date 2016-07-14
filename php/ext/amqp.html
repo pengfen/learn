@@ -17,8 +17,7 @@ bin  lib
 [root@iZ94f2imuwkZ erlang]# export PATH=$PATH:/usr/local/erlang/bin/
 [root@iZ94f2imuwkZ erlang]# vim ~/.bash_profile
 [root@iZ94f2imuwkZ erlang]# source ~/.bash_profile
-
-
+ 
 
 [root@iZ94f2imuwkZ rabbit]# mkdir simplejson
 [root@iZ94f2imuwkZ rabbit]# cd simplejson/
@@ -37,27 +36,77 @@ bin  lib
 [root@iZ94f2imuwkZ rabbitmq_server-3.4.2]# cd sbin/
 [root@iZ94f2imuwkZ sbin]# ls
 rabbitmqctl  rabbitmq-defaults  rabbitmq-env  rabbitmq-plugins  rabbitmq-server
-[root@iZ94f2imuwkZ sbin]# ./rabbitmq-server
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-server #启动rabbitmq的服务
+
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-server 
+./rabbitmq-server: line 50: erl: command not found
+[root@iZ94f2imuwkZ sbin]# export PATH=$PATH:/usr/local/erlang/bin/
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-server 
+
+              RabbitMQ 3.4.2. Copyright (C) 2007-2014 GoPivotal, Inc.
+  ##  ##      Licensed under the MPL.  See http://www.rabbitmq.com/
+  ##  ##
+  ##########  Logs: ./../var/log/rabbitmq/rabbit@iZ94f2imuwkZ.log
+  ######  ##        ./../var/log/rabbitmq/rabbit@iZ94f2imuwkZ-sasl.log
+  ##########
+              Starting broker... completed with 0 plugins.
+
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-plugins enable rabbitmq_management # 进入管理模式web 后可以通过http://ip.24.36.66:15672/ 访问
+./rabbitmq-plugins: line 22: exec: erl: not found
+[root@iZ94f2imuwkZ sbin]# 
+[root@iZ94f2imuwkZ sbin]# export PATH=$PATH:/usr/local/erlang/bin/
+[root@iZ94f2imuwkZ sbin]# 
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-plugins enable rabbitmq_management
+The following plugins have been enabled:
+  mochiweb
+  webmachine
+  rabbitmq_web_dispatch
+  amqp_client
+  rabbitmq_management_agent
+  rabbitmq_management
+
+Applying plugin configuration to rabbit@iZ94f2imuwkZ... started 6 plugins.
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl add_user peng0711 peng0711 # 设定用户名
+Creating user "peng0711" ...
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl set_user_tags peng0711 administrator # 设定用户类型
+Setting tags for user "peng0711" to [administrator] ...
+
+[root@iZ94f2imuwkZ rabbit]# mkdir ext
+[root@iZ94f2imuwkZ rabbit]# cd ext
+[root@iZ94f2imuwkZ ext]# mkdir mqc
+[root@iZ94f2imuwkZ ext]# cd mqc
+
+--------------------------------------------------------------------------------
+
+https://github.com/alanxz/rabbitmq-c/ 下载 rabbitmq-c-master.zip 包
+[root@iZ94f2imuwkZ mqc]# unzip rabbitmq-c-master.zip 
+[root@iZ94f2imuwkZ rabbitmq-c-master]# autoreconf -i && ./configure && make && sudo make install
+
+
+[root@iZ94f2imuwkZ ext]# mkdir amqp
+[root@iZ94f2imuwkZ ext]# cd amqp
+http://pecl.php.net/package/amqp # 下载ampq扩展包
+[root@iZ94f2imuwkZ amqp]# tar -zxvf amqp-1.6.0.tgz 
+[root@iZ94f2imuwkZ amqp-1.6.0]# /usr/local/php/bin/phpize
+Configuring for:
+PHP Api Version:         20041225
+Zend Module Api No:      20060613
+Zend Extension Api No:   220060519
+[root@iZ94f2imuwkZ amqp-1.6.0]# ./configure --with-php-config=/usr/local/php/bin/php-config --with-amqp
+[root@iZ94f2imuwkZ amqp-1.6.0]# make && make install
+[root@iZ94f2imuwkZ amqp-1.6.0]# vim /usr/local/php/etc/php.ini
+extension=amqp.so
+
+[root@iZ94f2imuwkZ amqp-1.6.0]# cd /root/lnmp
+[root@iZ94f2imuwkZ lnmp]# ./lnmp restart
 
 
 
-====================
-./rabbitmq-server #启动rabbitmq的服务
 
-./rabbitmq-plugins enable rabbitmq_management #进入管理模式web
-访问地址：http://127.0.0.1:15672/ guest guest
-用户配置： http://www.rabbitmq.com/man/rabbitmqctl.1.man.html#
-rabbitmqctl add_user konglj 123456 #设定用户名
-rabbitmqctl set_user_tags konglj administrator #设定用户类型
 
- 
+==================================================================
 
-第三步 先安装rabbitmq-c 随后安装amqp扩展
 
-通过浏览器下载rabbitmq-c-0.5.2.tar.gz https://github.com/alanxz/rabbitmq-c/
-cd rabbitmq-c-0.5.2
-./configure 
-make && make install
 ./examples/amqp_listen localhost 5672 amq.direct test
 ./examples/amqp_sendstring localhost 5672 amq.direct test "hello world"
 ./examples/amqp_sendstring localhost 5672 amq.direct test "hello world"

@@ -100,3 +100,4 @@ comment linux 命令
 git     git 操作
 server  linux 服务
 shell   linux 脚本
+scan linux扫描
