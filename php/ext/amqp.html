@@ -138,3 +138,102 @@ mv composer.phar /usr/local/bin/composer
 
 php-amqplib 环境搭建 
 整个环境已经搭建完成，可以测试开发了。
+
+
+# 命令查看 mq 状态
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl list_queues
+Listing queues ...
+CRM 1
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl list_queues
+Listing queues ...
+CRM 2
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl list_exchanges
+Listing exchanges ...
+  direct
+amq.direct  direct
+amq.fanout  fanout
+amq.headers headers
+amq.match headers
+amq.rabbitmq.log  topic
+amq.rabbitmq.trace  topic
+amq.topic topic
+crm_exchange  direct
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl list_bindings
+Listing bindings ...
+  exchange  CRM queue CRM []
+crm_exchange  exchange  CRM queue crm_routingkey  []
+[root@iZ94f2imuwkZ sbin]# 
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl list_connections
+Listing connections ...
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl list_channels
+Listing channels ...
+
+
+------------------------------------------------------
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl status # 查看状态
+Status of node rabbit@iZ94f2imuwkZ ...
+Error: unable to connect to node rabbit@iZ94f2imuwkZ: nodedown
+
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-server stop # 停止服务
+
+              RabbitMQ 3.4.2. Copyright (C) 2007-2014 GoPivotal, Inc.
+  ##  ##      Licensed under the MPL.  See http://www.rabbitmq.com/
+  ##  ##
+  ##########  Logs: ./../var/log/rabbitmq/rabbit@iZ94f2imuwkZ.log
+  ######  ##        ./../var/log/rabbitmq/rabbit@iZ94f2imuwkZ-sasl.log
+
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-server start # 开启服务
+
+
+---------------------------------------------------------------
+测试代码
+<?php
+
+$amqp = array(
+        'host'=>'127.0.0.1',
+        'port'=> '5672',
+        'login'=>'guest',
+        'password'=> 'guest',
+        'vhost' =>'/'
+    );
+
+try {
+    // 连接RabbitMQ
+    $amqconn = new AMQPConnection($amqp);
+    var_dump($amqconn);
+
+    $amqconn->connect();
+    // 创建exchange名称和类型
+    $channel = new AMQPChannel($amqconn);
+var_dump($channel);
+
+    $ex = new AMQPExchange($channel);
+    $ex->setName('crm_exchange');
+    $ex->setType(AMQP_EX_TYPE_DIRECT);
+    $ex->setFlags(AMQP_DURABLE);
+    $ex->declareExchange();
+
+    // 创建queue名称，使用exchange，绑定routingkey
+    $q = new AMQPQueue($channel);
+    $q->setName('CRM');
+    $q->setFlags(AMQP_DURABLE);
+    $q->declareQueue();
+    $q->bind('crm_exchange', 'crm_routingkey');
+} catch(Exception $e) {
+    // 将日志记录至服务器指定目录
+    $linuxLog = array(
+        'error'=>$e
+    );
+    echo json_encode($linuxLog).PHP_EOL;
+    // file_put_contents($log, json_encode($linuxLog).PHP_EOL,FILE_APPEND);
+}
+
+for( $i = 0; $i < 10; $i ++) {
+$data[] = array(
+    'name' => 'peng'.$i
+);
+}
+$message = json_encode($data);
+echo $message;
+$ex->publish($message, 'crm_routingkey',AMQP_NOPARAM, array('delivery_mode' => 2));
+
