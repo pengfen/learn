@@ -1,0 +1,59 @@
+解压 tp3.2压缩包
+
+改名为data
+
+配置虚拟主机
+
+<VirtualHost *:80>
+    ServerAdmin caopeng8787@163.com
+    DocumentRoot "F:/git/data"
+    ServerName www.data.com
+    <Directory "F:/git/data">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Order Deny,Allow
+        Deny from all
+        Allow from all
+    </Directory>
+    #ErrorLog "logs/dummy-host2.example.com-error.log"
+    #CustomLog "logs/dummy-host2.example.com-access.log" common
+</VirtualHost>
+
+设置 hosts (127.0.0.1 www.data.com)
+
+页面访问 www.data.com
+
+git
+cd /f/git/data
+git init
+git remote add origin https://github.com/pengfen/data.git
+git add .
+git commit -m "添加tp框架内容"
+git push origin master
+
+复制 Home --- Admin
+修改 Admin/IndexController
+namespace Admin\Controller;
+
+修改 index() 方法 $this->display();
+
+添加 Index/index 模板
+<extend name='Layout/main'/>
+
+添加 Layout/main 模板
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>{$title}</title>
+    </head>
+    <body>
+    <div id="head">头部</div>
+    <div id="menu">左部菜单</div>
+    <block name='main'>
+        <div>内容区</div>
+    </block>
+    </body>
+</html>
+
+http://www.data.com/index.php/Admin/Index
