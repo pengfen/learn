@@ -92,3 +92,56 @@ catalina 命令有如上的可选参数
 run 在catalina同一个命令行窗口下启动服务器
 start 开启一个新窗口启动服务器
 stop 关闭服务器
+
+
+-------------------------------------
+第一个WEB应用程序 开发 并部署到Tomcat服务器下运行
+
+    在Eclipse新建一个Java Project
+    在Java项目下创建WEB开发的目录结构
+
+    WebContent
+        WEB-INF
+            classes (编译后的class文件必须放在该目录下)
+            lib
+            web.xml (从已有目录中复制)
+        html 页面
+        JSP 页面
+        图片 ...
+    在src下新建一个Person类
+
+public class Person {
+	public String getPersonInfo() {
+	    return "person info ...";
+	}
+}
+
+手工的Person类对应的class文件(含包)复制到classes目录下
+在WebContent目录下新建一个JSP文件
+<%@page import="com.test.Person"%>
+<%@page language="java" contentType="text/html; charset=utf8" pageEncoding="utf8"%>
+
+<%
+    Person person = new Person();
+    System.out.print(person.getPersonInfo());
+%>
+
+把WebContent目录复制到Tomcat的webapps目录下 并改名为 wel
+
+在浏览器的地址栏中输入 http://localhost:8080/wel/wel.jsp 即可看到命令行的打印信息
+
+配置任意目录下的web应用程序 在conf目录下依次创建catalina\localhost目录 然后在这个Web应用程序建立test.xml文件 编辑这个文件输入以下内容
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Context docBase="E:\\java...\\WebContent" relocable="true"/>
+
+--------------------------------------
+配置任意目录下的web应用程序
+还可以在conf目录下依次创建catalina\localhost目录 然后在localhost目录下为test这个web应用程序建立test.xml文件 编辑这个文件输入以下内容
+<Context path="/test" docBase="c:\\test" reloadable="true" />
+
+从Tomcat5开始 不建议直接在server.xml文件中配置<Context>元素 因为server.xml文件作为Tomcat的主要配置文件 一旦Tomcat启动后 将不会再读取这个文件 因此无法在Tomcat服务器启动时发布Web应用程序 如果在其他地方配置<Context>元素 那么在Tomcat运行时 也可以发布Web应用程序
+
+从Tomcat5.5开始 在\conf\catalina\localhost目录下创建XML配置文件来配置Web应用程序 Tomcat将以XML文件的文件名将作为Web应用程序的上下文路径 而不理会在<Context>元素的path属性中指定的上下文路径是什么 由于Tomcat5.5之后的版本是以XML配置文件的文件名作为Web应用程序的上下文路径的 因此在配置<Context>元素时 可以不使用path属性
+
+reloadable 当修改了docBase下的classes目录下的class文件时 tomcat服务器是否会重新加载WEB应用

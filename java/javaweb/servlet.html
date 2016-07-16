@@ -1,0 +1,32 @@
+servlet简介
+Java Servlet是和平台无关的服务器端组件 它运行在Servlet容器中 Servlet容器负责Servlet和客户的通信以及调用Servelt的的方法 Servlet和客户的通信采用 "请求/响应"的模式
+Servlet可完成如下功能
+    创建并返回基于客户请求的动态HTML页面
+    创建可嵌入到现有HTML页面中的部分HTML页面(HTML片段)
+    与其它服务器资源(如数据库或基于Java的应用程序)进行通信
+
+
+---------------------------------------------
+Servlet的wel
+创建一个Servlet接口的实现类
+public class WelServlet implements Servlet
+
+在web.xml文件中配置和映射这个Servlet
+<!-- 配置和映射 Servlet -->
+<servlet>
+    <!-- Servlet 注册的名字 -->
+    <servlet-name>WelServlet</servlet-name>
+    <!-- Servlet 的全类名 -->
+    <servlet-class>test.serv.WelServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <!-- 需要和某一个 servlet 节点的 servlet-name 子节点的文本节点一致 -->
+    <servlet-name>WelServlet</servlet-name>
+    <!-- 映射具体的访问路径 / 代表当前 WEB 应用的根目录 -->
+    <url-pattern>/wel</url-pattern>
+</servlet-mapping>
+
+Run As --- Run On Server
+地址访问
+http://localhost:8080/test/wel
