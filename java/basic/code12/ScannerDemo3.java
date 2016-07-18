@@ -46,7 +46,7 @@ public class ScannerDemo3 {
 		int a = sc.nextInt();
 		Scanner sc2 = new Scanner(System.in);
 		String s = sc2.nextLine();
-		System.out.println("a:" + a + ",s:" + s);
+		System.out.println("a : " + a + ", s : " + s);
 	}
 }
 

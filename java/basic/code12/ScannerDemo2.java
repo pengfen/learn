@@ -19,10 +19,10 @@ public class ScannerDemo2 {
 		// 创建对象
 		Scanner sc = new Scanner(System.in);
 
-		// 获取数据
+		// 获取数据(int类型)
 		if (sc.hasNextInt()) { // 解决异常 (InputMismatchException)
 			int x = sc.nextInt();
-			System.out.println("x:" + x);
+			System.out.println("x : " + x);
 		} else {
 			System.out.println("你输入的数据有误");
 		}

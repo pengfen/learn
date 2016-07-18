@@ -23,6 +23,8 @@ package com.test;
  * 
  * 构造方法：
  * 		Scanner(InputStream source)
+
+ Scanner 主要有 nextXXX hasXXX 方法
  */
 import java.util.Scanner;
 
@@ -33,6 +35,6 @@ public class ScannerDemo {
 
 		int x = sc.nextInt();
 		
-		System.out.println("x:" + x);
+		System.out.println("x : " + x);
 	}
 }

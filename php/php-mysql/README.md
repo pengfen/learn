@@ -10,3 +10,7 @@ php-close.html   PHP 关闭 MySQL 连接
 php-xintro.html  php 培训时介绍
 
 code  对应的相关代码
+
+
+proc 使用
+mysql -uroot -p123 -e "use database_name:call proc_name" >> /tmp/proc.log
