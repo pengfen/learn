@@ -1,0 +1,54 @@
+GenericServlet
+是一个Servlet 是Servlet接口和ServletConfig 接口的实现类 但是一个抽象类 其中的service方法为抽象方法
+如果新建的Servlet程序直接继承GenericServlet会使用开发更简洁
+在GenericServlet中声明了一个ServletConfig类型的成员变量 在init(ServletConfig)方法中对其进行了初始化
+
+public abstract class GenericServlet implements Servlet, ServletConfig {}
+
+具体实现
+    在GenericServlet中声明了一个ServletConfig类型的成员变量 在init(ServletConfig)方法中对其进行了初始化
+    利用servletConfig成员变量的方法实现了ServletConfig接口的方法
+    还定义了一个init()方法 在init(ServletConfig)方法中对其进行调用 子类可以直接覆盖init()在其中实现对Servlet的初始化
+    不建议直接覆盖init(ServletConfig) 因为如果忘记编写super(ServletConfig) 而还是用了ServletConfig接口的方法 则会出现空指针异常
+
+
+public class LoginServlet extends GenericServlet {
+
+	//对当前的 Servlet 进行初始化: 覆盖 init 方法
+	@Override
+	public void init(javax.servlet.ServletConfig config) throws ServletException {
+		super.init(config);
+	}
+	
+	@Override
+	public void service(ServletRequest request, ServletResponse response)
+			throws ServletException, IOException {
+		
+		//获取请求方式是 GET 还是 POST
+		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+		String method = httpServletRequest.getMethod();
+		System.out.println(method); 
+		
+		//1. 获取请求参数: username, password
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		
+		//2. 获取当前 WEB 应用的初始化参数: user, password.
+		//需要使用 ServletContext 对象. 
+		String initUser = getServletContext().getInitParameter("user");
+		String initPassword = getServletContext().getInitParameter("password");
+
+		PrintWriter out = response.getWriter();
+		
+		//3. 比对
+		//4. 打印响应字符串. 
+		if(initUser.equals(username) && initPassword.equals(password)){
+			out.print("Hello: " + username);
+		}else{
+			out.print("Sorry: " + username);
+		}
+		
+		
+	}
+
+}

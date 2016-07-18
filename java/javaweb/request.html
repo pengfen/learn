@@ -1,0 +1,118 @@
+如何在 Serlvet 中获取请求信息:
+
+1). Servlet 的 service() 方法用于应答请求: 因为每次请求都会调用 service() 方法
+
+public void service(ServletRequest request, ServletResponse response)
+			throws ServletException, IOException
+			
+ServletRequest: 封装了请求信息. 可以从中获取到任何的请求信息.
+ServletResponse: 封装了响应信息, 如果想给用户什么响应, 具体可以使用该接口的方法实现. 
+
+这两个接口的实现类都是服务器给予实现的, 并在服务器调用 service 方法时传入. 
+
+2). ServletRequest: 封装了请求信息. 可以从中获取到任何的请求信息.
+
+①. 获取请求参数: 
+
+	> String getParameter(String name): 根据请求参数的名字, 返回参数值. 
+	若请求参数有多个值(例如 checkbox), 该方法只能获取到第一个提交的值. 
+
+	> String[] getParameterValues(String name): 根据请求参数的名字, 返回请求参数对应的字符串数组. 
+	
+	> Enumeration getParameterNames(): 返回参数名对应的 Enumeration 对象, 
+	类似于 ServletConfig(或 ServletContext) 的 getInitParameterNames() 方法. 
+
+	> Map getParameterMap(): 返回请求参数的键值对: key: 参数名,  value: 参数值, String 数组类型. 
+
+	public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+	    System.out.println("请求来了...");
+	    System.out.println(request);
+
+	    String user = request.getParameter("user");
+	    String password = request.getParameter("password");
+
+	    System.out.println(user + ', ' + password);
+
+	    String interesting = request.getParameter("interesting");
+	    System.out.println(interesting);
+
+	    String[] interestings = reques.getParameterValues("interesting");
+	    for (String interest : interestings) {
+	        System.out.println("-" + interest);
+	    }
+
+	    Enumeration<String> names = request.getParameterNames();
+	    while (names.hasMoreElements()) {
+	        String name = names.nextElement();
+	        String val = request.getParameter(name);
+
+	        System.out.println(name + ": " + val);
+	    }
+
+	    Map<String, String[]> map = request.getParameterMap();
+	    for (Map.Entry<String, String[]> entry : map.entrySet()) {
+	        System.out.println(entry.getKey() + ":" + Arrays.asList(entry.getValue()));
+	    }
+
+	    HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+
+	    String requestURI = httpServletRequest.getRequestURI();
+	    System.out.println(requestURI);
+
+	    String method = httpServletRequest.getMethod();
+	    System.out.println(method);
+
+	    String queryString= httpServletRequest.getQueryString();
+	    System.out.println(queryString);
+
+	    String servletPath = httpServletRequest.getServletPath();
+	    System.out.println(servletPath);
+	}
+
+②. 获取请求的 URI:
+
+	HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+		
+	String requestURI = httpServletRequest.getRequestURI();
+	System.out.println(requestURI); //  /day_29/loginServlet
+
+③. 获取请求方式: 
+
+	String method = httpServletRequest.getMethod();
+	System.out.println(method); //GET
+	
+④. 若是一个 GET 请求, 获取请求参数对应的那个字符串, 即 ? 后的那个字符串. 
+
+	String queryString = httpServletRequest.getQueryString();
+	System.out.println(queryString); //user=atguigu&password=123456&interesting=game&interesting=party&interesting=shopping
+
+⑤. 获取请求的 Serlvet 的映射路径 
+  
+   String servletPath = httpServletRequest.getServletPath();
+   System.out.println(servletPath);  //  /loginServlet
+   
+⑥. 和 attribute 相关的几个方法: 	   
+
+3). HttpServletRequest: 是 SerlvetRequest 的子接口. 针对于 HTTP 请求所定义. 里边包含了大量获取 HTTP 请求相关的方法. 
+ 
+4). ServletResponse: 封装了响应信息, 如果想给用户什么响应, 具体可以使用该接口的方法实现. 
+
+①. *getWriter(): 返回 PrintWriter 对象. 调用该对象的 print() 方法, 将把 print() 中的参数直接打印
+到客户的浏览器上. 
+
+②. 设置响应的内容类型: response.setContentType("application/msword");
+
+③. void sendRedirect(String location): 请求的重定向. (此方法为 HttpServletResponse 中定义.)
+
+-----------------------------------------------------------------------------
+
+在 web.xml 文件中设置两个 WEB 应用的初始化参数, user, password.
+定义一个 login.html, 里边定义两个请求字段: user, password. 发送请求到 loginServlet
+在创建一个 LoginServlet, 在其中获取请求的 user, password. 比对其和 web.xml 文件中定义的请求参数是否一致
+若一致, 响应 Hello:xxx, 若不一致, 响应 Sorry: xxx  xxx 为 user.
+
+
+response.setContentType("application/msword");
+
+PrintWriter out = response.getWriter();
+out.println("helloworld...");
