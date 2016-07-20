@@ -1,0 +1,37 @@
+HTTP简介
+
+WEB浏览器与WEB服务器之间的一部一答的交互过程必须遵循一定的规则 这个规则就是HTTP协议
+HTTP是htypertext transfer protocol(超文本传输协议)的简写 它是TCP/IP 协议集中的一个应用层协议 用于定义WEB浏览器与WEB服务器之间交换数据的过程以及数据本身的格式
+HTTP协议的版本 HTTP/1.0 HTTP/1.1 HTTP-NG
+
+HTTP会话方式
+四个步骤 (建立连接 发出请求信息 回送响应信息 关闭连接)
+
+浏览器与WEB服务器的连接过程是短暂的 每次连接只处理一个请求和响应 对每一个页面的访问 浏览器与WEB服务器都要建立一次单独的连接
+浏览器到WEB服务器之间的所有通讯都是完全独立分开的请求和响应对
+
+
+GET 请求和 POST 请求:
+
+    使用GET方式传递参数:
+
+	在浏览器地址栏中输入某个URL地址或单击网页上的一个超链接时，浏览器发出的HTTP请求消息的请求方式为GET。 
+	如果网页中的<form>表单元素的 method 属性被设置为了“GET”，浏览器提交这个FORM表单时生成的HTTP请求消息的请求方式也为GET。 
+	使用GET请求方式给WEB服务器传递参数的格式：  
+
+	http://www.atguigu.com/counter.jsp?name=lc&password=123
+
+    使用GET方式传送的数据量一般限制在 1KB 以下。 
+
+    使用 POST 方式传递参数:
+
+	POST 请求方式主要用于向 WEB 服务器端程序提交 FORM 表单中的数据: form 表单的 method 置为 POST
+	POST 方式将各个表单字段元素及其数据作为 HTTP 消息的实体内容发送给 WEB 服务器，传送的数据量要比使用GET方式传送的数据量大得多。  
+
+POST /counter.jsp HTTP/1.1
+referer: http://localhost:8080/Register.html
+content-type: application/x-www-form-urlencoded
+host: localhost:8080
+content-length: 43
+
+name=zhangsan&password=123              --请求体中传递参数. 

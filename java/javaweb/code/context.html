@@ -1,0 +1,95 @@
+ServletContext接口
+Servlet引擎为每个WEB应用程序都创建一个对应的ServletContext对象 ServletContext对象被包含在ServletConfig对象中 调用ServletConfig.getServletContext方法可以返回ServletContext对象的引用
+由于一个WEB应用程序中的所有Servlet都共享同一个ServletContext对象 所以 ServletContext对象被称之为application对象(Web应用程序对象)
+功能
+    获取WEB应用程序的初始化参数
+    记录日志
+    application域范围的属性
+    访问资源文件
+    获取虚拟路径所映射的本地路径
+    WEB应用程序之间的访问
+    ServletContext的其他方法
+
+
+------------------------------------------------------------------
+可以由  SerlvetConfig 获取:
+
+ServletContext servletContext = servletConfig.getServletContext();
+
+
+该对象代表当前 WEB 应用: 可以认为 SerlvetContext 是当前 WEB 应用的一个大管家. 可以从中获取到当前 WEB 应用的各个方面的信息.
+    获取当前 WEB 应用的初始化参数
+
+	设置初始化参数: 可以为所有的 Servlet 所获取, 而 Servlet 的初始化参数只用那个 Serlvet 可以获取. 
+
+    web.xml 中配置mysql连接参数 然后通过ServletContext来获取
+	<!-- 配置当前 WEB 应用的初始化参数 -->
+	<context-param>
+		<param-name>driver</param-name>
+		<param-value>com.mysql.jdbc.Driver</param-value>
+	</context-param>
+	<context-param>
+		<param-name>url</param-name>
+		<param-value>mysql:jdbc://localhost/jdbc</param-value>
+	</context-param>
+
+	方法:
+
+	getInitParameter
+	getInitParameterNames	
+
+	代码:
+
+	ServletContext servletContext = servletConfig.getServletContext();
+			
+	String driver = servletContext.getInitParameter("driver");
+	System.out.println("driver:" + driver);
+
+	Enumeration<String> names2 = servletContext.getInitParameterNames();
+	while(names2.hasMoreElements()){
+		String name = names2.nextElement();
+		System.out.println("-->" + name); 
+	}
+
+    获取当前 WEB 应用的某一个文件在服务器上的绝对路径, 而不是部署前的路径
+
+	getRealPath(String path);
+
+	代码:
+
+	String realPath = servletContext.getRealPath("/note.txt");
+	System.out.println(realPath);
+
+    获取当前 WEB 应用的名称: 
+
+	getContextPath()
+
+	代码:
+
+	String contextPath = servletContext.getContextPath();
+	System.out.println(contextPath); 
+
+	获取当前 WEB 应用的某一个文件对应的输入流. 
+
+	getResourceAsStream(String path): path 的 / 为当前 WEB 应用的根目录. 
+
+	代码:
+
+	InputStream is2 = servletContext.getResourceAsStream("/WEB-INF/classes/jdbc.properties");
+
+	try {
+	    ClassLoader classLoader = getClass().getClassLoader();
+	    InputStream is = classLoader.getResourceAsStream("jdbc.properties");
+	    System.out.println("1. " + is);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	或
+	try {
+	    InputStream is = servletContext.getResourceAsStream("/WEB-INF/classes/jdbc.properties");
+	    System.out.println("2. " + is);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	
+    和 attribute 相关的几个方法: 	
