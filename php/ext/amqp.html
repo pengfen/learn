@@ -80,6 +80,7 @@ Setting tags for user "peng0711" to [administrator] ...
 
 https://github.com/alanxz/rabbitmq-c/ 下载 rabbitmq-c-master.zip 包
 [root@iZ94f2imuwkZ mqc]# unzip rabbitmq-c-master.zip 
+[root@iZ94f2imuwkZ mqc]# cd rabbitmq-c-master
 [root@iZ94f2imuwkZ rabbitmq-c-master]# autoreconf -i && ./configure && make && sudo make install
 
 
@@ -87,6 +88,7 @@ https://github.com/alanxz/rabbitmq-c/ 下载 rabbitmq-c-master.zip 包
 [root@iZ94f2imuwkZ ext]# cd amqp
 http://pecl.php.net/package/amqp # 下载ampq扩展包
 [root@iZ94f2imuwkZ amqp]# tar -zxvf amqp-1.6.0.tgz 
+[root@iZ94f2imuwkZ amqp]# cd amqp-1.6.0
 [root@iZ94f2imuwkZ amqp-1.6.0]# /usr/local/php/bin/phpize
 Configuring for:
 PHP Api Version:         20041225
