@@ -1,0 +1,48 @@
+spring MVC
+MVC简介
+Spring MVC基本概念
+Spring MVC项目搭建
+用Srping MVC进行开发 (如何实现数据绑定 如何文件上传)
+
+MVC本质
+MVC的核心思想是业务数据抽取同业务数据呈现相分离
+
+View 视图层 为用户提供UI 重点关注数据的呈现
+Model 模型层 业务数据的信息表示 关注支撑业务的信息构成 通常是多个业务实体的组合
+Controller 控制层 调用业务逻辑产生合适的数据(Model) 传递数据给视图层用于呈现
+
+MVC 是一种架构模式
+程序分层 分工合作 既相互独立 又协同工作
+MVC 是一种思考方式
+需要将什么信息展示给用户 如何布局 调用哪些业务逻辑
+
+Spring MVC基本概念
+Controller --- DispatcherServlet --- Model View
+DispatcherServlet --- 调用 --- HandlerAdapter
+HandlerInterceptor
+HandlerMapping
+HandlerExecutionChain
+ModelAndView
+ViewResolver
+View
+
+Maven
+POM(Project Object Model)
+Dependency Management
+Coordinates 坐标
+
+maven安装
+下载并解压Maven
+配置环境变量(m2_HOME, Path)
+配置Maven配置文件(本地仓库路径 镜像)
+
+修改配置文件 settings.xml 中仓库和镜像
+
+eclipse 配置maven
+window --- preferences --- maven
+installations --- maven 安装目录
+user setting
+
+
+mvn archetype:generate -DgroupId=com-peng -DartifactId=spring-study -DarchetypeArtifactId=maven-archetype-webapp
+spring-web.xml
