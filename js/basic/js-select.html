@@ -1,0 +1,22 @@
+// 后端返回的数据
+$Type = $mod -> field("Type")->where($where)->group("Type")->select();
+$Channel = $mod -> field("Channel")->where($where)->group("Channel")->select();
+$Page = $mod -> field("Page")->where($where)->group("Page")->select();
+$CatOne = $mod -> field("CatOneName")->where($where)->group("CatOneName")->select();
+$CatTwo = $mod -> field("CatTwoName")->where($where)->group("CatTwoName")->select();
+return array(
+    'count' => $count,
+    'type' => $Type,
+    'channel' => $Channel,
+    'page' => $Page,
+    'catonename' => $CatOne,
+    'cattwoname' => $CatTwo
+    );
+
+// js 调用后加载到option
+var type = data.type; // 获取json中type数据
+$('select[name="source_type"] option:gt(0)').remove(); //清除以前option(除第一个元素以外)
+for (var i = 0; i < type.length; i ++) {
+    var opt = "<option value='" + type[i].Type + "'>" + type[i].Type + "</option>";
+    $('select[name="source_type"]').append(opt);
+}

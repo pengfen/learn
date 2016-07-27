@@ -1,0 +1,201 @@
+1.创建maven project
+2.修改pom.xml
+3.修改web.xml
+4.resources目录下创建spring添加applicationContext.xml test-servlet.xml
+5.编写applicationContext.xml
+6.编写test-servlet.xml
+7.编写WelController.java文件
+8.运行项目
+9.访问项目
+10.php调用接口
+
+1.创建maven project
+-----------------------------------------------------------
+File --- New --- Maven Project --- next --- 选择maven-archtype-webapp --- next --- Group Id:包名 Artifact Id:模块名 --- finish
+
+2.修改pom.xml
+-----------------------------------------------------------
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+			<!-- 资源文件拷贝插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<!-- java编译插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<!-- 配置Tomcat插件 -->
+			<plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <port>8888</port>
+                    <path>/test</path>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <server>tomcat7</server>
+                </configuration>
+            </plugin>
+		</plugins>
+    </build>
+
+    // 添加相关版本及相关依赖
+
+3.修改web.xml
+-----------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>  
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+       xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <!-- 注意3.1版本使用xmlns.jcp.org而不是java.sun.com -->
+	<display-name>test</display-name>
+    
+    <context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/applicationContext*.xml</param-value>
+	</context-param>
+
+	<!--Spring的ApplicationContext 载入 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- 添加过滤器,解决POST乱码问题 -->
+	<filter>
+       <filter-name>characterEncodingFilter</filter-name>
+       <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+       <init-param>
+          <param-name>encoding</param-name>
+          <param-value>UTF-8</param-value>
+       </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>characterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>	
+ 
+    <servlet>
+		<servlet-name>test</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring/test-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>test</servlet-name>
+		<!--进入 springmvc-->
+		<url-pattern>*.php</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>/index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- 异常处理 -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/error/404.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/WEB-INF/error/500.jsp</location>
+    </error-page>
+</web-app>
+
+4.resources目录下创建spring添加applicationContext.xml test-servlet.xml
+-----------------------------------------------------------
+
+5.编写applicationContext.xml
+-----------------------------------------------------------
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+	 http://www.springframework.org/schema/task  
+	http://www.springframework.org/schema/task/spring-task-3.2.xsd
+	">
+	<context:annotation-config />
+</beans>
+
+6.编写test-servlet.xml
+-----------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+   <!-- 配置注解驱动 -->
+   <context:component-scan base-package="com.peng.web"/>
+
+</beans>
+
+7.编写WelController.java文件
+-----------------------------------------------------------
+package com.peng.web;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+@RequestMapping("/wel")
+public class WelController {
+	@RequestMapping("/regist")
+	@ResponseBody
+	public String regist() {
+		return "{\"success\":" + 1 + "}";
+	}
+}
+
+8.运行项目
+-----------------------------------------------------------
+Run As --- Run Configuration --- tomcat7:run --- run
+
+9.访问项目
+-----------------------------------------------------------
+http://192.168.69.12:8888/test/wel/regist.php
+
+10.php调用接口
+-----------------------------------------------------------
+<?php
+
+$url = "http://192.168.69.12:8888/test/wel/regist.php";
+
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, $url); // 设置访问网页的URL
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // 执行之后不直接打印出来
+$res = curl_exec($curl);
+curl_close($curl);
+// 使用对象方式调用
+$return = json_decode($res);
+echo $return->success;
+
+// 使用数组方式调用
+$ret = json_decode($res, true);
+echo $ret['success'];
