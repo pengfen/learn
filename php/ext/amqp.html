@@ -239,3 +239,19 @@ $message = json_encode($data);
 echo $message;
 $ex->publish($message, 'crm_routingkey',AMQP_NOPARAM, array('delivery_mode' => 2));
 
+
+
+----------------------------------------------------------
+MQ集成
+准备二台虚拟机
+peng1(192.168.233.128) peng2(192.168.233.129)
+1.peng1 peng2二台服务器上安装MQ
+no acceptable C compiler found in $PATH (yum -y install gcc gcc++)
+No curses library functions found ( yum install ncurses-devel)
+
+修改二台 hosts
+vi /etc/hosts
+192.168.233.128 peng1
+192.168.233.129 peng2
+
+以peng1为中心 peng2集群到peng1上
