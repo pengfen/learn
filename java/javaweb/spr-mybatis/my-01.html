@@ -1,1 +1,87 @@
 mybatis的基础知识
+
+mybatis 和 springmvc通过订单商品案例驱动
+
+对原生态jdbc程序(单独使用jdbc开发) 问题总结
+mybatis框架原理
+mybatis入门程序 用户的增 删 改 查
+mybatis开发dao两种方法
+    原始dao开发方法(程序需要编写dao接口和dao实现类) (掌握)
+    mybatis的mapper接口(相当于dao接口)代码开发方法 (掌握)
+mybatis配置文件SqlMapConfig.xml
+mybatis核心 mybatis输入映射(掌握) mybatis输出映射(掌握)
+mybatis的动态sql (掌握)
+
+高级知识
+订单商品数据模型分析
+高级结果集映射(一对一 一对多 多对多)
+mybatis延迟加载
+mybatis查询缓存(一级缓存 二级缓存)
+mybatis和spring进行整合(掌握)
+mybatis逆向工程
+
+对原生态jdbc程序中问题总结
+环境
+
+创建数据库
+sql_table.sql 记录表结构
+sql_data.sql 记录测试数据 在实际企业开发中 最后提供一个初始化数据脚本
+
+create table user (
+    id int unsigned not null primary key auto_increment,
+    username varchar(32) not null comment "用户名称",
+    birthday date comment '生日',
+    sex char(1) comment '性别',
+    address varchar(255) comment '地址' 
+)engine=myisam DEFAULT charset=utf8;
+
+jdbc程序
+使用jdbc查询mysql数据库中用户表的记录
+创建java工程 加入jar包
+数据库驱动包 (mysql5.1)
+
+问题总结
+数据库连接 使用时就创建 不使用立即释放 对数据库进行频繁连接开启和关闭 造成数据库资源浪费 影响数据库性能
+设想 使用数据库连接池管理数据库连接
+
+将sql语句硬编码到java代码中 如果sql语句修改 需要重新编译java代码 不利于系统维护
+设想 将sql语句配置在xml配置文件中 即使sql变化 不需要对java代码进行重新编译
+
+向preparedStatement中设置参数 对占位符号位置和设置参数值 硬编码在java代码中 不利于系统维护
+设想 将sql语句及占位符号和参数全部配置在xml中
+
+从resultSet中遍历结果集数据时 存在硬编码 将获取表的字段进行硬编码 不利于系统维护
+设想 将查询的结果集 自动映射成java对象
+
+
+mybatis 是什么
+mybatis是一个持久层的框架 是apache下的顶级项目
+mybatis托管到goolecode下 再后来托管到github下(https://github.com/mybatis/mybatis-3)
+mybatis让程序将主要精力放在sql上 通过mybatis提供的映射方式 自由灵活生成(半自动化, 大部分需要程序员编写sql) 满足需要sql语句
+mybatis可以将向preparedStatement中的输入参数自动进行输入映射 将查询结果集灵活映射成java对象(输出映射)
+
+mybatis框架
+SqlMapConfig.xml (是mybatis的全局配置文件) 配置了数据源 事务等mybatis运行环境 配置映射文件 (配置sql语句)
+mapper.xml(映射文件)
+
+SqlSessionFactory (会话工厂) 作用 创建SqlSession
+SqlSession (会话) 作用 操作数据库 (发出sql增 删 改 查)
+Executor (执行器) 作用 SqlSession 内部通过执行器操作数据库
+mapped statement(底层封装对象) 作用 对操作数据库存储封装 包括sql语句 输入参数 输出结果类型
+
+入门程序
+需求
+根据用户id(主键)查询用户信息
+根据用户名称模糊查询用户信息
+添加用户
+删除用户
+更新用户
+
+log4j.properties
+# Global logging configuration
+#在开发环境下日志级别要设置成DEBUG 生产环境设置成info或error
+log4j.rootLogger=DEBUG, stdout
+# Console output...
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
