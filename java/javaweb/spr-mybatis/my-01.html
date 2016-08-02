@@ -143,3 +143,39 @@ SqlMapConfig.xml
     </mappers>
 
 编写程序
+
+根据用户名称模糊查询用户信息
+映射文件
+
+添加用户
+映射文件
+在User.xml中配置添加用户的statement
+
+mysql 自增主键 执行insert提交之前自动生成一个自增主键 
+通过mysql函数获取到刚插入记录的自增主键 LAST_INSERT_ID()
+
+是insert之后调用此函数
+
+非自增主键返回(使用uuid())
+使用mysql的uuid()函数生成主键 需要修改表中id字段类型为string 长度设置成35位
+执行思路
+先通过uuid()查询到主键 将主键输入到sql语句中 执行uuid()语句顺序相对于insert语句之前执行
+
+通过oracle的序列生成主键
+SELECT 序列名.nextval()
+
+
+总结
+parameterType 在映射文件中通过parameterType指定输入参数的类型
+resultType 在映射文件中通过resultType指定输出结果的类型
+
+#{} 表示一个占位符号 #{}接收输入参数 类型可以是简单类型 pojo hashmap  如果接收简单类型 #{}中可以写成value或其它名称
+#{}接收pojo对象值 通过OGNL读取对象中的属性值 通过属性.属性.属性 的方式获取对象属性值
+
+${} 表示一个拼接符号 会引用sql注入 所以不建议使用${}
+${}接收输入参数 类型可以是简单类型 pojo hashmap
+如果接收简单类型 ${}中只能写成value
+${}接收pojo对象值 通过OGNL读取对象中的属性值 通过属性.属性.属性 的方式获取对象属性值
+
+selectOne表示查询出一条记录进行映射 如果使用selectOne可以实现使用selectList也可以实现(list中只有一个对象)
+selectList表示查询出一个列表(多条记录)进行映射 如果使用selectList查询多条记录 不能使用selectOne(否则会出现错误 Expected one result (or null) to be returned by selectOne(), but found:4)
