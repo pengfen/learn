@@ -1,0 +1,50 @@
+mybatis开发DAO的方法
+
+SqlSessionFactoryBuilder
+通过SqlSessionFactoryBuilder创建会话工厂SqlSessionFactory 将SqlSessionFactoryBuilder当成一个工具类使用即可 不需要使用单例管理SqlSessionFactoryBuilder 在需要创建SqlSessionFactory时候 只需要new一次SqlSessionFactoryBuilder即可
+
+SqlSessionFactory
+通过SqlSessionFactory创建SqlSession 使用单例模式管理SqlSessionFactory(工厂一旦创建 使用一个实例) 将来mybatis和spring整合后 使用单例模式管理SqlSessionFactory
+
+SqlSession
+SqlSession是一个面向用户(程序员)的接口
+SqlSession中提供了很多操作数据库的方法 如 selectOne(返回单个对象) selectList(返回单个或多个对象)
+SqlSession是线程不安全的 在SqlSession实现类中除了有接口中的方法(操作数据库的方法)还有数据域属性
+SqlSession最佳应用场合在方法体内 定义成局部变量使用
+
+原始dao开发方法(程序员需要写dao接口和dao实现类)
+mapper代理方法(程序员只需要mapper接口 --- 相当于dao接口)
+
+总结原始dao开发问题
+dao接口实现类方法中存在大量模板方法 设想能否将这些代码提取出来 大大减轻程序员的工作量
+调用sqlSession方法时将statement的id硬编码
+调用sqlsession方法时传入的变量 由于sqlsession方法使用泛型 即使变量类型传入错误 在编译阶段也不报错 不利于程序员开发
+
+使用mapper接口
+程序员还需要编写mapper.xml映射文件
+程序员只需要编写mapper接口(相当于dao接口)
+程序员编写mapper接口需要遵循一些开发规范 mybatis可以自动生成mapper接口实现类代理对象
+
+开发规范
+1 在mapper.xml中namespace等于mapper接口地址
+<mpper namespace="com.peng.mybatis.mapper.UserMapper">
+2 mapper.java接口中的方法名和mapper.xml中statement的id一致
+3 mapper.java接口中的方法输入参数类型和mapper.xml中statement的parameterType指定的类型一致
+4 mapper.java接口中的方法返回值类型和mapper.xml中statement的resultType指定的类型一致
+
+总结
+以上开发规范主要是对下边的代码进行统一生成
+User user = sqlSesion.selectOne("test.findUserById", id);
+
+mapper.java
+mapper.xml
+
+代理对象内部调用 selectOne或selectList
+如果mapper方法返回单个pojo对象(非集合对象) 代理对象内部通过selectOne查询数据库
+如果mapper方法返回集合对象 代理对象内部通过selectOne查询数据库
+
+mapper接口方法参数只能有一个是否影响系统开发
+mapper接口方法参数只能有一个 系统是否不利于扩展维护
+系统框架中 dao层的代码是被业务层公用的
+即使mapper接口只有一个参数 可以使用包装类型的pojo满足不同的业务方法的需求
+注意 持久层方法的参数可以包装类型 map..., service方法中建议不要使用包装类型(不利于业务层的可扩展)

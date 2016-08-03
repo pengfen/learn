@@ -150,3 +150,13 @@ ${}接收pojo对象值 通过OGNL读取对象中的属性值 通过属性.属性
 
 selectOne表示查询出一条记录进行映射 如果使用selectOne可以实现使用selectList也可以实现(list中只有一个对象)
 selectList表示查询出一个列表(多条记录)进行映射 如果使用selectList查询多条记录 不能使用selectOne(否则会出现错误 Expected one result (or null) to be returned by selectOne(), but found:4)
+
+
+mybatis和hibernate本质区别和应用场景
+hibernate 是一个标准ORM框架(对象关系映射) 入门门褴较高的确 不需要程序写sql sql语句自动生成 对sql语句进行优化 修改比较困难的
+应用场景 适用与需要变化不多的中小型项目 比如 后台管理系统 erp orm oa ...
+
+mybatis 专注是sql本身 需要程序员自己编写sql语句 sql修改 优化比较方便 mybatis是一个不完全的ORM框架 虽然程序员自己写sql mybatis也可以实现映射(输入映射 输出映射)
+应用场景 适用与需求变化较多的项目 比如 互联网项目
+
+企业进行技术选型 以低成本 高回报作为技术选型的原则 根据项目组的技术力量进行选择
