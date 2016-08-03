@@ -109,45 +109,12 @@ SqlMapConfig.xml
     </environments>
 </configuration>
 
-根据用户id (主键) 查询用户信息
-映射文件 User.xml(原始ibatis命名) mapper代理开发映射文件名称叫 XXXMapper.xml 比如 UserMapper.xml ItemsMapper.xml
-在映射文件中配置sql语句
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+根据用户id (主键) 查询用户信息 (参见 my-select.html)
 
-<!-- namespace命名空间 作用就是对sql进行了分类化管理 理解sql隔离 -->
-<!-- 注意 使用mapper代理方法开发 namespace有特殊重要的作用 -->
-<mapper namespace="com.peng.dao">
-    <!-- 目的 为DAO接口方法提供sql语句配置 -->
-    
-    <!-- 在映射文件中配置很多sql语句 -->
-    <!-- 需求 通过id查询用户表的记录 -->
-    <!-- 通过select执行数据库查询 -->
-    <!-- id:标识映射文件中的sql 将sql语句封装到mappedStatement对象中 所以将id称为statement的id -->
-    <!-- parameterType:指定输入参数的类型 这里指定int类型 -->
-    <!-- #{}表示一个占位符号 -->
-    <!-- #{id}:其中的id表示接入输入的参数 参数名称就是id 如果输入参数是简单类型 #{}中的参数名可以任意 可以value或其它名称 -->
-    <!-- resultType:指定sql输出结果所映射的java对象类型 select指定resultType表示将单条记录映射成的java对象 -->
-    <select id="findUserById" parameterType="int" resultType="com.peng.mybatis.entity.User">
-        SELECT * FROM USER WHERE id=#{id}
-    </select>
-</mapper>
-
-在配置中加载映射文件
-在sqlMapConfig.xml中加载User.xml
-    <!-- 加载映射文件 -->
-    <mappers>
-        <mapper resource="sqlmap/User.xml" />
-    </mappers>
-
-编写程序
-
-根据用户名称模糊查询用户信息
+根据用户名称模糊查询用户信息 (参见 my-select.html)
 映射文件
 
-添加用户
+添加用户 (参见 my-insert.html)
 映射文件
 在User.xml中配置添加用户的statement
 
@@ -163,6 +130,10 @@ mysql 自增主键 执行insert提交之前自动生成一个自增主键
 
 通过oracle的序列生成主键
 SELECT 序列名.nextval()
+
+删除用户 (参见 my-delete.html)
+
+更新用户 (参见 my-update.html)
 
 
 总结

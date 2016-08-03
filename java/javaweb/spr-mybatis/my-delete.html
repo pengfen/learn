@@ -1,0 +1,36 @@
+删除用户
+
+<!-- 根据id删除用户 需要输入id值 -->
+<delete id="deleteUser" parameterType="java.lang.Integer">
+    delete from user where id=#{id}
+</delete>
+
+测试代码
+// 删除用户
+@Test
+public void deleteUserTest() throws IOException {
+	// mybatis配置文件
+	String resource = "SqlMapConfig.xml";
+	// 得到配置文件流
+	InputStream inputStream = Resources.getResourceAsStream(resource);
+	
+	// 创建会话工厂 传入mybatis的配置文件信息
+	SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+	
+	// 通过工厂得到SqlSession
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	
+	// 根据id删除用户
+	sqlSession.delete("test.deleteUser", 7);
+	
+	// 提交事务
+	sqlSession.commit();
+	
+	// 释放资源
+    sqlSession.close();
+}
+
+测试结果
+DEBUG [main] - ==>  Preparing: delete from user where id=? 
+DEBUG [main] - ==> Parameters: 7(Integer)
+DEBUG [main] - <==    Updates: 1

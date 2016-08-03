@@ -1,0 +1,50 @@
+更新用户
+<!-- 根据id更新用户 -->
+<!-- 分析 需要传入用户的id 需要传入用户的更新信息 -->
+<!-- parameterType指定user对象 包括id和更新信息 注意id必须存在 -->
+<!-- #{id} 从输入user对象中获取id属性值 -->
+<update id="updateUser" parameterType="com.peng.mybatis.entity.User">
+    update user set username=#{username},birthday=#{birthday},sex=#{sex},address=#{address} where id=#{id}
+</update>
+
+测试代码
+// 更新用户
+@Test
+public void updateUserTest() throws IOException {
+	// mybatis配置文件
+	String resource = "SqlMapConfig.xml";
+	// 得到配置文件流
+	InputStream inputStream = Resources.getResourceAsStream(resource);
+	
+	// 创建会话工厂 传入mybatis的配置文件信息
+	SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+	
+	// 通过工厂得到SqlSession
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	
+	// 插入用户对象
+	User user = new User();
+	// 设置id
+	user.setId(6);
+	user.setUsername("曹朋");
+	user.setBirthday(new Date());
+	user.setSex("男");
+	user.setAddress("上海松江");
+	
+	// list中的user和映射文件中的resultType所指定的类型一致
+	sqlSession.insert("test.updateUser", user);
+	
+	System.out.println(user.getId());
+	
+	// 提交事务
+	sqlSession.commit();
+	
+	// 释放资源
+    sqlSession.close();
+}
+
+// 测试内容
+DEBUG [main] - ==>  Preparing: update user set username=?,birthday=?,sex=?,address=? where id=? 
+DEBUG [main] - ==> Parameters: 曹朋(String), 2016-08-03 13:06:14.521(Timestamp), 男(String), 上海松江(String), 6(Integer)
+DEBUG [main] - <==    Updates: 1
+6

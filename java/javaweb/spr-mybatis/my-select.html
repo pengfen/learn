@@ -1,0 +1,110 @@
+映射文件 User.xml(原始ibatis命名) mapper代理开发映射文件名称叫 XXXMapper.xml 比如 UserMapper.xml ItemsMapper.xml
+在映射文件中配置sql语句
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace命名空间 作用就是对sql进行了分类化管理 理解sql隔离 -->
+<!-- 注意 使用mapper代理方法开发 namespace有特殊重要的作用 -->
+<mapper namespace="com.peng.dao">
+    <!-- 目的 为DAO接口方法提供sql语句配置 -->
+    
+    <!-- 在映射文件中配置很多sql语句 -->
+    <!-- 需求 通过id查询用户表的记录 -->
+    <!-- 通过select执行数据库查询 -->
+    <!-- id:标识映射文件中的sql 将sql语句封装到mappedStatement对象中 所以将id称为statement的id -->
+    <!-- parameterType:指定输入参数的类型 这里指定int类型 -->
+    <!-- #{}表示一个占位符号 -->
+    <!-- #{id}:其中的id表示接入输入的参数 参数名称就是id 如果输入参数是简单类型 #{}中的参数名可以任意 可以value或其它名称 -->
+    <!-- resultType:指定sql输出结果所映射的java对象类型 select指定resultType表示将单条记录映射成的java对象 -->
+    <select id="findUserById" parameterType="int" resultType="com.peng.mybatis.entity.User">
+        SELECT * FROM USER WHERE id=#{id}
+    </select>
+</mapper>
+
+在配置中加载映射文件
+在sqlMapConfig.xml中加载User.xml
+    <!-- 加载映射文件 -->
+    <mappers>
+        <mapper resource="sqlmap/User.xml" />
+    </mappers>
+
+编写测试程序
+// 根据id查询用户信息 得到一条记录结果
+@Test
+public void findUserByIdTest() throws IOException {
+	
+	// mybatis配置文件
+	String resource = "SqlMapConfig.xml";
+	// 得到配置文件流
+	InputStream inputStream = Resources.getResourceAsStream(resource);
+	
+	// 创建会话工厂 传入mybatis的配置文件信息
+	SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+	
+	// 通过工厂得到SqlSession
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	
+	// 通过SqlSession操作数据库
+	// 第一个参数 映射文件中statement的id 等于 namespace + "." + statement的id
+	// 第二个参数 指定和映射文件中所匹配的parameterType类型的参数
+	// sqlSession.selectOne结果 是与映射文件中所匹配的resultType类型的对象
+	User user = sqlSession.selectOne("test.findUserById", 1);
+	
+	System.out.println(user);
+	
+	// 释放资源
+	sqlSession.close();
+}
+
+junit测试 (注意版本)
+Debug As --- Junit Test
+
+DEBUG [main] - ==>  Preparing: SELECT * FROM USER WHERE id=? 
+DEBUG [main] - ==> Parameters: 1(Integer)
+DEBUG [main] - <==      Total: 1
+User [id=1, username=peng1, sex=男, birthday=Wed Jul 12 00:00:00 CST 2000, address=江西九江]
+
+
+
+模糊查询
+配置文件
+<!-- 根据用户名称模糊查询用户信息 可能返回多条 -->
+<!-- resultType 指定就是单条记录所映射的 java 对象类型 -->
+<!-- ${} 表示拼接sql串 将接收到的参数的内容不加任何修饰拼接在sql中 使用${}拼接sql 引起sql注入 -->
+<!-- ${value}接收输入参数的内容 如果传入类型是简单类型 ${}中只能使用value -->
+<!-- SELECT * FROM USER WHERE username LIKE #{username} -->
+<select id="findUserByName" parameterType="java.lang.String" resultType="com.peng.mybatis.entity.User">
+    SELECT * FROM USER WHERE username LIKE '%${value}%'
+</select>
+
+测试代码
+// 根据用户名称模糊查询用户列表
+@Test
+public void findUserByNameTest() throws IOException {
+	// mybatis配置文件
+	String resource = "SqlMapConfig.xml";
+	// 得到配置文件流
+	InputStream inputStream = Resources.getResourceAsStream(resource);
+	
+	// 创建会话工厂 传入mybatis的配置文件信息
+	SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+	
+	// 通过工厂得到SqlSession
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	
+	// list中的user和映射文件中resultType所指定的类型一致
+	List<User> list = sqlSession.selectList("test.findUserByName", "peng");
+	System.out.println(list);
+	
+	// 释放资源
+    sqlSession.close();
+}
+
+测试结果
+DEBUG [main] - ==>  Preparing: SELECT * FROM USER WHERE username LIKE '%peng%' 
+DEBUG [main] - ==> Parameters: 
+DEBUG [main] - <==      Total: 6
+[User [id=1, username=peng1, sex=男, birthday=Wed Jul 12 00:00:00 CST 2000, address=江西九江], User [id=2, username=peng1, sex=男, birthday=Wed Jul 12 00:00:00 CST 2000, address=北京], User [id=3, username=peng2, sex=男, birthday=Tue Jul 12 00:00:00 CST 2005, address=上海], User [id=4, username=peng3, sex=女, birthday=Mon Jul 12 00:00:00 CST 2004, address=深圳], User [id=5, username=peng4, sex=男, birthday=Sat Jul 12 00:00:00 CST 2003, address=广州], User [id=6, username=peng5, sex=男, birthday=Fri Jul 12 00:00:00 CST 2002, address=苏州]]
+DEBUG [main] - Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@3c0be339]
