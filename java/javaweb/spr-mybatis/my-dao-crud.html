@@ -1,0 +1,203 @@
+DAO 接口
+public interface UserDao {
+	
+	// 根据id查询用户信息
+	public User findUserById(int id) throws Exception;
+	
+	// 根据名称模糊查找
+	public List<User> findUserByName(String name) throws Exception;
+	
+	// 添加用户信息
+	public void insertUser(User user) throws Exception;
+	
+	// 删除用户信息
+	public void deleteUser(int id) throws Exception;
+	
+	// 更加用户信息
+	public void updateUser(User user) throws Exception;
+}
+
+DAO 实现类
+public class UserDaoImpl implements UserDao{
+	
+	// 需要向dao实现类中注入SqlSessionFactory
+	// 这里通过构造方法注入
+	private SqlSessionFactory sqlSessionFactory;
+	public UserDaoImpl(SqlSessionFactory sqlSessionFactory) {
+		this.sqlSessionFactory = sqlSessionFactory;
+	}
+
+	public User findUserById(int id) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		User user = sqlSession.selectOne("test.findUserById", id);
+		// 释放资源
+		sqlSession.close();
+		return user;
+	}
+
+	public void insertUser(User user) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		sqlSession.insert("test.insertUser", user);
+		
+		// 提交事务
+		sqlSession.commit();
+		
+		// 释放资源
+		sqlSession.close();
+	}
+
+	public void deleteUser(int id) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		// 执行插入操作
+		sqlSession.delete("test.deleteUser", id);
+		
+		// 提交事务
+		sqlSession.commit();
+		
+		// 释放资源
+		sqlSession.close();
+	}
+
+	public List<User> findUserByName(String name) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		List<User> list = sqlSession.selectList("test.findUserByName", name);
+		
+		// 释放资源
+		sqlSession.close();
+		
+		return list;
+	}
+
+	public void updateUser(User user) throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		sqlSession.insert("test.updateUser", user);
+		
+		// 提交事务
+		sqlSession.commit();
+		
+		// 释放资源
+		sqlSession.close();
+	}
+
+}
+
+DAO 测试类
+public class UserDaoImplTest {
+    private SqlSessionFactory sqlSessionFactory;
+	
+	// 此方法是在执行testFindUserById之前执行
+	@Before
+	public void setUp() throws Exception {
+		// 创建 sqlSessionFactory
+		// mybatis配置文件
+		String resource = "SqlMapConfig.xml";
+		// 得到配置文件流
+		InputStream inputStream = Resources.getResourceAsStream(resource);
+		// 创建会话工厂 传入mybatis的配置文件信息
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+	}
+}
+
+测试查询
+@Test
+public void testFindUserById() throws Exception {
+	// 创建UserDao的对象
+	UserDao userDao = new UserDaoImpl(sqlSessionFactory);
+	
+	// 调用UserDao的方法
+	User user = userDao.findUserById(1);
+	
+	System.out.println(user);
+}
+
+DEBUG [main] - ==>  Preparing: SELECT * FROM USER WHERE id=? 
+DEBUG [main] - ==> Parameters: 1(Integer)
+DEBUG [main] - <==      Total: 1
+
+测试添加
+@Test
+public void testInsertUser() throws Exception {
+	// 创建UserDao的对象
+	UserDao userDao = new UserDaoImpl(sqlSessionFactory);
+	
+	// 插入用户对象
+	User user = new User();
+	user.setUsername("曹朋测试");
+	user.setBirthday(new Date());
+	user.setSex("女");
+	user.setAddress("河南");
+	
+	// 调用UserDao的方法
+	userDao.insertUser(user);
+	System.out.println(user.getId());
+}
+
+DEBUG [main] - ==>  Preparing: insert into user(username,birthday,sex,address) value(?,?,?,?) 
+DEBUG [main] - ==> Parameters: 曹朋测试(String), 2016-08-04 13:23:23.156(Timestamp), 女(String), 河南(String)
+DEBUG [main] - <==    Updates: 1
+DEBUG [main] - ==>  Preparing: SELECT LAST_INSERT_ID() 
+DEBUG [main] - ==> Parameters: 
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - Committing JDBC Connection [com.mysql.jdbc.JDBC4Connection@6321e813]
+DEBUG [main] - Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@6321e813]
+DEBUG [main] - Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@6321e813]
+DEBUG [main] - Returned connection 1663166483 to pool.
+8
+
+测试删除
+@Test
+public void testDeleteUser() throws Exception {
+	// 创建UserDao的对象
+	UserDao userDao = new UserDaoImpl(sqlSessionFactory);
+	userDao.deleteUser(8);
+}
+
+DEBUG [main] - ==>  Preparing: delete from user where id=? 
+DEBUG [main] - ==> Parameters: 8(Integer)
+DEBUG [main] - <==    Updates: 1
+
+测试查询用户数组
+@Test
+public void testFindUserByName() throws Exception {
+	// 创建UserDao的对象
+	UserDao userDao = new UserDaoImpl(sqlSessionFactory);
+	
+	List<User> list = userDao.findUserByName("peng");
+	
+	System.out.println(list);
+}
+
+DEBUG [main] - ==>  Preparing: SELECT * FROM USER WHERE username LIKE '%peng%' 
+DEBUG [main] - ==> Parameters: 
+DEBUG [main] - <==      Total: 5
+DEBUG [main] - Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@1b68ddbd]
+DEBUG [main] - Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@1b68ddbd]
+DEBUG [main] - Returned connection 459857341 to pool.
+[User [id=1, username=peng1, sex=男, birthday=Wed Jul 12 00:00:00 CST 2000, address=江西九江], User [id=2, username=peng1, sex=男, birthday=Wed Jul 12 00:00:00 CST 2000, address=北京], User [id=3, username=peng2, sex=男, birthday=Tue Jul 12 00:00:00 CST 2005, address=上海], User [id=4, username=peng3, sex=女, birthday=Mon Jul 12 00:00:00 CST 2004, address=深圳], User [id=5, username=peng4, sex=男, birthday=Sat Jul 12 00:00:00 CST 2003, address=广州]]
+
+测试更新
+@Test
+public void testUpdateUser() throws Exception {
+	// 创建UserDao的对象
+	UserDao userDao = new UserDaoImpl(sqlSessionFactory);
+	
+	// 插入用户对象
+	User user = new User();
+	user.setId(9);
+	user.setUsername("测试更新");
+	user.setBirthday(new Date());
+	user.setSex("女");
+	user.setAddress("河南");
+	
+	// 调用UserDao的方法
+	userDao.updateUser(user);
+	System.out.println(user.getId());
+}
+
+DEBUG [main] - ==>  Preparing: update user set username=?,birthday=?,sex=?,address=? where id=? 
+DEBUG [main] - ==> Parameters: 测试更新(String), 2016-08-04 13:34:29.512(Timestamp), 女(String), 河南(String), 9(Integer)
+DEBUG [main] - <==    Updates: 1
