@@ -224,3 +224,6 @@ userQueryVo.setIds(ids);
     <!-- 每个遍历需要拼接的串 -->
     id=#{user_id}
 </foreach>
+
+对 <= >= 等有特殊符号使用 <![CDATA[ ]]> 进行过滤
+and z.ID <![CDATA[ <= ]]> #{end,jdbcType=INTEGER}
