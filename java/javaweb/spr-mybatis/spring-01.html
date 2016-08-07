@@ -345,3 +345,197 @@ view.render(mv.getModelInternal(), request, response);
 // modelAndView.setViewName("/WEB-INF/jsp/items/itemsList.jsp");
 // 上边的路径配置可以不在程序中指定jsp路径的前缀和jsp路径的后缀
 modelAndView.setViewName("items/itemsList");
+
+
+------------------------------------
+springmvc 和 mybatis 整合
+需求
+使用springmvc 和 mybatis 完成商品列表查询
+
+整合思路
+整合dao层 mybatis和spring整合 通过spring管理mapper接口 使用mapper的扫描器自动扫描mapper接口在spring中进行注册
+整合service层
+通过spring管理service接口
+通过配置方式将service接口配置在spring配置文件中
+实现事务控制
+整合springmvc
+由于springmvc是spring的模块 不需要整合
+
+@RequestMapping
+定义controller方法对应的url 进行处理器映射使用
+
+窄化请求映射
+
+@Controller
+// 为了对url进行分类管理 可以在这里定义根路径 最终访问url是根路径+子路径
+// 比如 商品列表 /items/queryItems.action
+@RequestMapping("/items")
+public class ItemsController {
+	
+}
+
+jsp
+action="${pageContext.request.contextPath}/items/editItemsSubmit.action"
+
+限制http请求方法
+出于安全性考虑 对http的链接进行方法限制
+如果限制请求为post方法 进行get请求 就会报错
+@RequestMapping(value="/editItems", method={RequestMethod.POST})
+
+controller方法的返回值
+返回ModelAndView
+返回string 如果controller方法返回string
+1 表示返回逻辑视图名 真正视图(jsp 路径) = 前缀 + 逻辑视图名 + 后缀
+@RequestMapping(value="/editItems", method={RequestMethod.POST})
+public String editItems(Model model) throws Exception {
+	// 调用service根据商品id查询商品信息
+	ItemsCustom itemsCustom = itemService.findItemsById(1);
+
+	// 返回ModelAndView
+	// ModelAndView modelAndView = new ModelAndView();
+	// 将商品信息放到model
+	// modelAndView.addObject("itemsCustom", itemsCustom);
+	// 商品修改页面
+	// modelAndView.setViewName("items/editItems");
+	// 通过形参中的model将model数据传到页面
+	// 相当于modelAndView.addObject方法
+	model.addAttribute("itemsCustom", itemsCustom);
+	return "items/editItems";
+}
+
+2 redirect 重定向
+商品修改提交后 重定向到商品查询列表
+redirect 重定向特点 浏览器地址栏中的url会变化 修改提交的request数据无法传到重定向的地址 因为重定向后重新进行request(request无法共享)
+// 商品信息修改提交
+@RequestMapping("/editItemsSubmit")
+public String editItemsSubmit() throws Exception {
+	// 调用service更新商品信息 页面需要将商品信息传到此方法
+	// 重定向
+	return "redirect:queryItems.action";
+}
+
+3 forward转发
+通过forward进行页面转发 浏览器地址栏url不变 request可以共享
+return "forward:queryItems.action";
+
+返回void
+在controller方法形参上可以定义request和response 使用request或response指定响应结果
+使用request转向页面 如下
+request.getRequestDispatcher("页面路径").forward(request, response);
+
+也可以通过response页面重定向 response.sendRedirect("url");
+
+也可以通过response指定响应结果 例如响应json数据如下
+response.setCharacterEncoding("utf-8");
+response.setContentType("application/json;charset=utf-8");
+response.getWriter().write("json串");
+
+参数绑定
+什么是参数绑定
+从客户端请求 key/value 数据 经过参数绑定 将key/value数据绑定到controller方法的形参上
+springmvc中 接收页面提交的数据是通过方法形参来接收 而不是在controller类定义成员变量接收
+
+处理器适配器调用springmvc提供参数绑定组件将key/value数据转成controller方法的形参 参数绑定组件 在springmvc早期版本使用PropertyEditor(只能将字符串传成java对象) 后期使用converter(进行任意类型的转换)springmvc提供了很多converter(转换器)在特殊情况下需要自定义converter 对日期数据绑定需要自定义converter
+
+参数绑定默认支持类型
+直接在controller方法形参上定义下边类型的对象 就可以使用这些对象 在参数绑定过程中 如果遇到下边类型直接进行绑定
+HttpServletRequest 通过request对象获取请求信息
+HttpServletResponse 通过response处理响应信息
+HttpSession 通过session对象得到session中存放的对象
+
+Model/ModelMap
+model是一个接口 modelMap是一个接口实现
+作用 将model数据填充到request域
+
+简单类型
+通过@RequestParam对简单类型的参数进行绑定
+如果不使用@RequestParam 要求request传入参数名称和controller方法的形参名称一致 方可绑定成功
+如果使用@RequestParam 不用限制request传入参数名称和controller方法的形参名称一致
+
+@RequestMapping(value="/editItems", method={RequestMethod.POST})
+// @RequestParam里边指定request传入参数名称和形参进行绑定
+//通过required属性指定参数是否必须传入
+//通过defaultValue可以设置默认值 如果id参数没有传入 将默认值和形参绑定
+public String editItems(Model model, @RequestParam(value="id", required=true) Integer id) throws Exception {
+	// 调用service根据商品id查询商品信息
+	ItemsCustom itemsCustom = itemService.findItemsById(1);
+
+	// 返回ModelAndView
+	// ModelAndView modelAndView = new ModelAndView();
+	// 将商品信息放到model
+	// modelAndView.addObject("itemsCustom", itemsCustom);
+	// 商品修改页面
+	// modelAndView.setViewName("items/editItems");
+	// 通过形参中的model将model数据传到页面
+	// 相当于modelAndView.addObject方法
+	model.addAttribute("itemsCustom", itemsCustom);
+	return "items/editItems";
+}
+通过required属性指定参数是否必须传入 如果设置为true 没有传入参数 会报错
+
+pojo绑定
+页面中input的name和controller的pojo形参中的属性名称一致 将页面中数据绑定到pojo
+
+页面定义
+<table width="100%" border=1>
+<tr>
+	<td>商品名称</td>
+	<td><input type="text" name="name" value="${itemsCustom.name}"></td>
+</tr>
+<tr>
+    <td>商品价格</td>
+    <td><input type="text" name="price" value="${itemsCustom.price}"></td>
+</tr>
+
+controller的pojo形参的定义
+public class Items {
+	private Integer id;
+	private String name;
+	private Float price;
+	private String pic;
+}
+
+自定义参数绑定实现日期类型绑定
+对于controller形参中pojo对象 如果属性中有日期类型 需要自定义参数绑定
+对请求日期数据串传成日期类型 要转换的日期类型和pojo中日期属性的类型保持一致
+
+自定义参数绑定将日期串转成java.util.Date类型
+需要向处理器适配器中注入自定义的参数绑定组件
+
+public class CustomDateConverter implements Converter<String, Date>{
+	public Date convert(String source) {
+	    // 实现将日期转成日期类型(格式是yyyy-MM-dd HH:mm:ss)
+	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    try {
+	        // 转成直接返回
+	        return simpleDateFormat.parse(source);
+	    } catch (ParseException e) {
+	        e.printStackTrace();
+	    }
+	    // 如果参数绑定失败返回null
+	    return null;
+	}
+
+}
+
+springmvc.xml 中配置
+<mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
+
+<!-- 自定义参数绑定 -->
+<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+    <!-- 转换器 -->
+    <property name="converters">
+        <list>
+        	<!-- 日期类型转换 -->
+        	<bean class="com.peng.mybatis.web.converter.CustomDateConverter" />
+        </list>
+    </property>
+</bean>
+
+springmvc和struts2的区别
+springmvc基于方法开发的 struts2基于类开发的
+springmvc将url和controller方法映射 映射成功后springmvc生成一个Handler对象 对象中只包括了一个method方法执行结束 形参数据销毁
+springmvc的controller开发类似service开发
+springmvc可以进行单例开发 并且建议使用单例开发 struts2通过类的成员变量接收参数 无法使用单例 只能使用多例
+
+经过实际测试 struts2速度慢 在于使用struts标签 如果使用struts建议使用jstl

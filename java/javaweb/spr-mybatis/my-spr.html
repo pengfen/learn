@@ -1,0 +1,82 @@
+spring和mybatis整合
+
+整合思路
+需要spring通过单例方式管理SqlSessionFactory
+spring和mybatis整合生成代理对象 使用SqlSessionFactory创建SqlSession (spring和mybatis整合自动完成)
+持久层的mapper都需要由spring进行管理
+
+整合环境
+创建一个新的java工程
+jar包
+mybatis的jar包
+spring的jar包
+mybatis和spring的整合包 早期ibatis和spring整合是由spring官方提供  现在mybatis和spring整合由mybatis提供
+
+原始dao开发 (和spring整合后)
+mapper.xml
+dao
+dao接口实现类
+dao接口实现类需要注入SqlSessionFactory 通过spring进行注入
+这里spring声明配置方式 配置dao的bean
+让UserDaoImpl实现类继承SqlSessionDaoSupport
+
+在applicationContext.xml 中配置dao
+
+
+整合
+<!-- mapper扫描器 -->
+<bean class="org.mybatis.spring.mapper.MapperScannerConfigure">
+    <!-- 扫描包路径 如果需要扫描多个包 中间使用半角逗号隔开 -->
+    <property name="basePackage" value="com.peng.mybatis.mapper" />
+    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+</bean>
+
+
+-------------------------------------
+mapper代理开发
+
+<!-- mapper配置 MapperFactoryBean 根据mapper接口生成代理对象 -->
+<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+    <!-- mapperInterface指定mapper接口 -->
+    <property name="mapperInterface" value="com.peng.mybatis.mapper.UserMapper"/>
+    <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+</bean>
+
+测试
+public class UserMapperTest {
+	private ApplicationContext applicationContext;
+
+	// 在setUp这个方法得到spring容器
+	@Before
+	public void setUp() throws Exception {
+	    applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+	}
+
+	@Test
+	public void testFindUserById() throws Exception {
+	    UserMapper userMapper = (UserMapper) applicationContext.getBean("userMapper");
+	    User user = userMapper.findUserById(1);
+	    System.out.println(user);
+	}
+}
+
+解决单个文件加载
+需要针对每个mapper进行配置 麻烦
+解决 通过MapperScannerConfigurer进行mapper扫描
+<!-- mapper批量扫描 从mapper包中扫描出mapper接口 自动创建代理对象并且在spring容器中注册遵循规范 将mapper.java和mapper.xml映射文件名称保持一致 且在一个目录中-->
+<!-- 自动扫描出来的mapper的bean的id为mapper类名(首字母小写) -->
+<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <!-- 指定扫描的包名 如果扫描多个包 每个包中间使用半角逗号分隔 -->
+    <property name="basePackage" value="com.peng.mybatis.mapper">
+    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+</bean>
+
+和spring整合后 使用mapper扫描器 SqlMapConfig.xml 中不需要配置mapper
+
+什么是逆向工程
+mybatis需要程序员自己编写sql语句 mybatis官方提供逆向工程 可以针对单表自动生成mybatis执行所需要的代码(mapper.java, mapper.xml)
+企业实际开发中 常用的逆向工程方式
+由于数据库的表生成java代码
+
+运行逆向工程 建议java程序方式 不依赖开发工具
+生成代码配置文件
