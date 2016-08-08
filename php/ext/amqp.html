@@ -243,6 +243,21 @@ $ex->publish($message, 'crm_routingkey',AMQP_NOPARAM, array('delivery_mode' => 2
 
 ----------------------------------------------------------
 MQ集成
+A、B两台机器安装rabbitserver，同步A.B机器的arb/rabbitmq/.erlang.cookie 
+启动 /etc/init.d/rabbitmq-server start
+
+vi /etc/hosts
+A主机名  IP
+B主机名  IP
+
+在B机器执行如下命令，即可将B机加入到A机的集群（以A为中心）
+rabbitmqctl stop_app
+rabbitmqctl reset
+rabbitmqctl join_cluster rabbit@A的hostname
+/etc/init.d/rabbitmq-server restart
+安装脚本
+
+-----------------------------------------------------------
 准备二台虚拟机
 peng1(192.168.233.128) peng2(192.168.233.129)
 1.peng1 peng2二台服务器上安装MQ
@@ -255,3 +270,91 @@ vi /etc/hosts
 192.168.233.129 peng2
 
 以peng1为中心 peng2集群到peng1上
+
+
+yum 安装erlang
+rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+yum -y install erlang
+yum -y install rabbitmq-server
+
+
+自动执行安装脚本
+#!/bin/bash
+
+yum_dir=/etc/yum.repos.d
+rabbitmq_rpm_dir=/usr/local/src
+rabbit_conf="[{rabbit,[{loopback_users,[]},{heartbeat,5},{disk_free_limit,5400000000},{log_levels,[{connection, warning}]}]}]."
+
+
+##配置本地yum源
+Set_Up_Yum () {
+
+    if [ ! -d $yum_dir/back ] ;then
+        mkdir $yum_dir/back
+    fi
+
+    if ( ls $yum_dir/CentOS-* ) > /dev/null 2>&1 ;then  mv  $yum_dir/Cent* $yum_dir/back ;fi
+
+echo "[baes] 
+name=base 
+baseurl=http://192.168.8.161/yum/Centos-6/Base/x86_64/ 
+enable=1 
+gpgcheck=0" > $yum_dir/base.repo
+
+
+    yum install wget -y 
+
+    if [ ! -f  $yum_dir/epel.repo ]> /dev/null 2>&1;then 
+        wget -P $yum_dir/ http://192.168.8.161/yum/repodata/x64/epel.repo 
+    fi
+
+
+    if [ ! -f $yum_dir/extra.repo ] > /dev/null 2>&1;then
+        wget -P $yum_dir/ http://192.168.8.161/yum/repodata/x64/extra.repo 
+    fi
+
+
+}
+
+##安装rabbitmq
+Install_Rabbitmq (){
+
+   echo  127.0.0.1 `hostname` >>/etc/hosts  ##添加hosts
+
+   Set_Up_Yum  
+
+   yum  install  erlang  -y 
+  
+   sleep 5
+
+   if [ ! -f $rabbitmq_rpm_dir/rabbitmq-server-3.5.0-1.noarch.rpm ] ;then 
+       wget -P $rabbitmq_rpm_dir  http://192.168.8.161/yum/Centos-6/extra/rabbitmq-server-3.5.0-1.noarch.rpm  
+   fi
+
+   cd $rabbitmq_rpm_dir
+  
+   yum install  rabbitmq-server-3.5.0-1.noarch.rpm -y 
+   
+   sleep 5
+
+   echo  "rabbit 启动rabbitmq插件" 
+
+   rabbitmq-plugins enable rabbitmq_management
+ 
+   sleep 5
+
+
+   echo $rabbit_conf > /etc/rabbitmq/rabbitmq.config
+
+   /etc/init.d/rabbitmq-server start 
+ 
+   sleep 10
+
+   rabbitmqctl  change_password guest yqqlmgs1cl 
+
+   rabbitmqctl  add_user admin !QAZ2wsx 
+
+   rabbitmqctl  set_user_tags  User administrator 
+}
+
+Install_Rabbitmq
