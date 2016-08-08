@@ -1,0 +1,81 @@
+创建项目(Dynamic Web Project)
+build\classes --- WebRoot\WEB-INF\classes
+WebContent --- WebRoot
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0"
+  metadata-complete="true">
+  
+    <!-- 配置和映射 Servlet -->
+    <servlet>
+        <!-- Servlet 注册的名字 -->
+        <servlet-name>WelServlet</servlet-name>
+        <!-- Servlet 的全类名 -->
+        <servlet-class>com.peng.WelServlet</servlet-class>
+    </servlet>
+  
+    <servlet-mapping>
+        <!-- 需要和某一个 servlet 节点的 servlet-name 子节点的文本节点一致 -->
+        <servlet-name>WelServlet</servlet-name>
+        <!-- 映射具体的访问路径 / 代表当前 WEB 应用的根目录 -->
+        <url-pattern>/wel</url-pattern>
+    </servlet-mapping>
+</web-app>
+
+/**
+ * Servlet implementation class WelServlet
+ */
+@WebServlet("/WelServlet")
+public class WelServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public WelServlet() {
+        super();
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		this.doPost(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();  
+		out.print("aaaa");  
+
+    也可以通过response指定响应结果 例如响应json数据如下
+//response.setCharacterEncoding("utf-8");
+//response.setContentType("application/json;charset=utf-8");
+//response.getWriter().write("json串");
+	}
+
+}
+
+使用原生的servlet整理linux
+测试servlet3
+
+相关jar包
+javaee.jar
+jsf-impl.jar
+jsf-api.jar
+jstl-1.2.jar
+@WebServlet(name="Servlet", urlPatterns="/web")
+相关属性
+asyncSupported 声明Servlet是否支持异步操作模式
+description Servlet的描述信息
+displayName Servlet的显示名称
+initParams  Servlet的初始化参数
+name        Servlet的名称
+urlPatterns Servlet的访问url
+value       Servlet的访问url
