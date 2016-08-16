@@ -115,3 +115,16 @@ SELECT a.telphone,n.* FROM newsource n left join `allphone` a on n.UsedPhone = a
 
 month 有值
 SELECT a.telphone,n.* FROM newsource n left join `allphone` a on n.UsedPhone = a.UsedPhone WHERE (a.telphone != ''  and n.SourceType = 3  and n.Month in (1,2,3)  and n.CatTwoName = '无关键词') limit 2
+
+获取分组后的总组数
+SELECT COUNT(*) FROM (SELECT count(*) FROM extendfund WHERE ( (CatOneName is NULL or CatOneName='') or (CatTwoName is NULL or CatTwoName='') ) GROUP BY Keywords) as a 
+
+
+delete from zt_allphone where ID in 
+(select * from 
+(select ID from zt_allphone WHERE (telphone = '' or telphone is NULL) group by UsedPhone having count(UsedPhone) > 1) as a)
+and ID NOT in 
+(select * from 
+(select max(ID) from zt_allphone WHERE (telphone = '' or telphone is NULL) group by UsedPhone having count(UsedPhone) > 1) as b);
+
+SELECT UsedPhone from zt_allphone WHERE UsedPhone != '' GROUP BY UsedPhone HAVING COUNT(UsedPhone) >1;

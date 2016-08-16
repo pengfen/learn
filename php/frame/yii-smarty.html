@@ -1,0 +1,54 @@
+安装 composer
+
+双击 Composer-Setup.exe
+
+代理IP 8.8.4.4
+
+cmd --- composer -v
+
+php -v #查看php是否可以直接运行
+
+登录 --- github --- 搜索 --- yii2-smarty
+
+php composer.phar require --prefer-dist yiisoft/yii2-smarty
+以下执行命令改为
+composer require --prefer-dist yiisoft/yii2-smarty
+
+去项目目录下查看redis是否安装成功
+查看目录 ...\vendor\yiisoft\yii2-smarty
+查看文件 ...\vendor\yiisoft\extensions.php
+  'yiisoft/yii2-smarty' => 
+  array (
+    'name' => 'yiisoft/yii2-smarty',
+    'version' => '2.0.5.0',
+    'alias' => 
+    array (
+      '@yii/smarty' => $vendorDir . '/yiisoft/yii2-smarty',
+    ),
+  ),
+
+配置文件(main.php)中配置
+'view' => [
+    'renderers' => [
+        'html' => [
+            'class' => 'yii\smarty\ViewRenderer',
+            //'cachePath' => '@runtime/Smarty/cache',
+        ],
+    ],
+],
+
+控制器中写方法测试
+public function actionIndex()
+{
+    //return $this->render('index');
+    return $this->render('index', ['username' => 'Alex']);
+}
+
+view/site目录下写测试模板index.php
+<?php
+<div>用户名 : {$username}</div>
+
+页面访问测试内容
+http://dev.yii.com/index.php?r=site/index
+
+用户名 : {$username}
