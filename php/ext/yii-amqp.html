@@ -1,0 +1,105 @@
+原生php-amqp操作
+
+// 配置
+$amqp = array(
+        'host'=>'192.168.8.152',
+        'port'=> '5672',
+        'login'=>'guest',
+        'password'=>'guest',
+        'vhost' =>'/'
+    );
+
+// 设置连接参数
+try {
+    // 连接RabbitMQ
+    $amqconn = new AMQPConnection($amqp);
+    //var_dump($amqconn);
+
+    $amqconn->connect();
+    var_dump($amqconn);
+    exit;
+    // 创建exchange名称和类型
+    $channel = new AMQPChannel($amqconn);
+
+    $ex = new AMQPExchange($channel);
+
+    $ex->setName('crm_exchange');
+    $ex->setType(AMQP_EX_TYPE_DIRECT);
+    $ex->setFlags(AMQP_DURABLE);
+    $ex->declareExchange();
+
+    // 创建queue名称，使用exchange，绑定routingkey
+    $q = new AMQPQueue($channel);
+    $q->setName('CRM');
+    $q->setFlags(AMQP_DURABLE);
+    $q->declareQueue();
+    $q->bind('crm_exchange', 'crm_routingkey');
+} catch(Exception $e) {
+    // 将日志记录至服务器指定目录
+    $linuxLog = array(
+        'error'=>$e
+    );
+    echo json_encode($linuxLog).PHP_EOL;
+    // file_put_contents($log, json_encode($linuxLog).PHP_EOL,FILE_APPEND);
+}
+
+// 发布消息
+try {
+    $message = json_encode($data);
+    // 消息发布
+    $channel->startTransaction();
+    $ex->publish($message, 'crm_routingkey',AMQP_NOPARAM, array('delivery_mode' => 2));
+    // 删除 allphone 里的数据
+    $channel->commitTransaction();
+} catch(Exception $e) {
+    // 记录错误
+}
+
+// 订阅消息
+while (true) {
+    //消息获取
+    $messages = $q->get(AMQP_AUTOACK) ;
+    if (!$messages) break;
+    echo '注意每次只读一条';
+    var_dump(json_decode($messages->getBody(), true));
+}
+// if ($messages){
+//     echo '注意每次只读一条';
+//     var_dump( $messages );
+//     var_dump(json_decode($messages->getBody(), true));
+// }
+$amqconn->disconnect();
+
+
+yii-amqp操作
+php composer.phar require --prefer-dist hzted123/yii2-amqp "*".
+修改为 composer require --prefer-dist hzted123/yii2-amqp "*"
+
+修改配置文件
+'amqp' => [
+'class' => 'hzted123\amqp\components\Amqp',
+'host' => '192.168.2.214',
+'port' => 5672,
+'user' => 'guest',
+'password' => 'guest',
+'vhost' => '/',
+'exchange_configs' => [
+        'crm_exchange' => [
+            'options' => ['type' => 'direct', 'passive' => false, 'auto_delete' => false, 'durable' => true ],
+        ],
+    ],
+    'queue_configs' => [
+        'CRM' =>  [
+            'options' => ['passive' => false, 'auto_delete' => false, 'durable' => true, 'exclusive' => false],
+            //'arguments' => ['x-max-length' => ['I', 1000000], 'x-max-length-bytes' => ['I', 300485760]],
+            'binds' => ['route' => 'crm_exchange']
+        ],
+    ],
+],
+
+代码
+\Yii::$app->amqp->exchange_declare('crm_exchange');
+$queue = \Yii::$app->amqp->queue_declare('CRM');
+$message = array('peng');
+$message = json_encode($message);
+\Yii::$app->amqp->send('crm_exchange', 'crm_routingkey', $message);
