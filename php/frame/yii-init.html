@@ -1,0 +1,191 @@
+window 执行 init.bat  linux上执行init文件
+
+Yii Application Initialization Tool v1.0
+
+Which environment do you want the application to be initialized in?
+
+    [0] Development
+    [1] Production
+
+    Your choice [0-1, or "q" to quit]
+
+    输入0
+    Initialize the application under 'Development' environment? [yes|no]
+    输入1
+    Initialize the application under 'Production' environment? [yes|no]
+
+    Development 开发环境
+    会自动生成入口文件 index.php index-test.php 配置文件main-local.php params-local.php
+
+    index.php 
+    defined('YII_ENV') or define('YII_ENV', 'dev');
+
+
+
+    Production 生成环境
+    会自动生成入口文件 index.php
+
+    index.php 
+    defined('YII_ENV') or define('YII_ENV', 'prod');
+
+
+    项目目录
+    backend 
+        components 项目组件目录
+        assets 前端资源包
+        config 配置文件
+        controllers 控制器
+        models 数据模型
+        runtime 运行时产生的文件
+        views 视图文件
+        web 入口文件
+    common 公共 
+        config 通用配置
+        mail 邮件相关的而已
+        models 公共数据模型
+        widgets 小挂件
+    console 控制台应用程序包含所需要的控制台命令，脚本之类
+    environments
+    frontend 前后 (子目录与后台的子目录一样)
+    tests
+    vagrant
+    vendor 包含依赖第三方的包
+        bin
+        bower
+        cebe
+        composer
+        ezyang
+        fzaninotto
+        phpspec
+        swiftmailer
+        yiisoft
+            yii2 yii2核心目录
+            yii2-bootstrap yii2的bootstrap扩展
+            yii2-codeception 用于单元测试
+            yii2-composer composer安装
+            yii2-debug 调试器
+            yii2-faker 测试夹具
+            yii2-gii
+            yii2-swiftmailer 邮件扩展
+            extensions.php 扩展配置文件
+
+安装 yii2 执行以下命令 (http://www.yiichina.com/)
+composer global require "fxp/composer-asset-plugin:^1.2.0"
+composer require yiisoft/yii2
+或者在 composer.json文件中添加
+"yiisoft/yii2": "~2.0.0",
+
+yii2-bootstrap扩展
+使用命令安装
+php composer.phar require --prefer-dist yiisoft/yii2-bootstrap
+或者在composer.json文件中添加
+"yiisoft/yii2-bootstrap": "~2.0.0"
+
+yii2-codeception 
+使用命令安装
+php composer.phar require --prefer-dist yiisoft/yii2-codeception
+或者在composer.json文件中添加
+"yiisoft/yii2-codeception": "~2.0.0"
+
+yii2-debug
+使用命令安装
+php composer.phar require --prefer-dist yiisoft/yii2-debug
+或者在composer.json文件中添加
+"yiisoft/yii2-debug": "~2.0.0"
+
+// 调用时需要在配置文件中配置
+return [
+    'bootstrap' => ['debug'],
+    'modules' => [
+        'debug' => [
+            'class' => 'yii\debug\Module',
+        ],
+        // ...
+    ],
+    ...
+];
+
+yii2-faker
+使用命令安装
+php composer.phar require --prefer-dist yiisoft/yii2-faker
+或者在composer.json文件中添加
+"yiisoft/yii2-faker": "~2.0.0"
+
+// 调用时需要在配置文件中配置
+'controllerMap' => [
+    'fixture' => [
+        'class' => 'yii\faker\FixtureController',
+    ],
+],
+
+@tests/unit/templates/fixtures)
+/**
+ * @var $faker \Faker\Generator
+ * @var $index integer
+ */
+return [
+    'name' => $faker->firstName,
+    'phone' => $faker->phoneNumber,
+    'city' => $faker->city,
+    'password' => Yii::$app->getSecurity()->generatePasswordHash('password_' . $index),
+    'auth_key' => Yii::$app->getSecurity()->generateRandomString(),
+    'intro' => $faker->sentence(7, true),  // generate a sentence with 7 words
+];
+
+class Book extends \Faker\Provider\Base
+{
+
+    public function title($nbWords = 5)
+    {
+        $sentence = $this->generator->sentence($nbWords);
+        return mb_substr($sentence, 0, mb_strlen($sentence) - 1);
+    }
+
+}
+
+'controllerMap' => [
+    'fixture' => [
+        'class' => 'yii\faker\FixtureController',
+        'providers' => [
+            'app\tests\unit\faker\providers\Book',
+        ],
+    ],
+]
+
+yii2-gii
+使用命令安装
+php composer.phar require --dev --prefer-dist yiisoft/yii2-gii
+或者在composer.json文件中添加
+"yiisoft/yii2-gii": "~2.0.0"
+
+return [
+    'bootstrap' => ['gii'],
+    'modules' => [
+        'gii' => [
+            'class' => 'yii\gii\Module',
+        ],
+        // ...
+    ],
+    // ...
+];
+
+yii2-swiftmailer
+使用命令安装
+php composer.phar require --prefer-dist yiisoft/yii2-swiftmailer
+或者在composer.json文件中添加
+"yiisoft/yii2-swiftmailer": "~2.0.0"
+
+return [
+    //....
+    'components' => [
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+        ],
+    ],
+];
+
+Yii::$app->mailer->compose('contact/html')
+     ->setFrom('from@domain.com')
+     ->setTo($form->email)
+     ->setSubject($form->subject)
+     ->send();
