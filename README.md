@@ -1,3 +1,12 @@
+﻿打开git客户端
+
+cd /e/git/learn
+git init
+git remote add origin https://github.com/pengfen/learn.git
+git pull origin master
+
+------------------------------------------------
+
 linux      linux 命令以及 linux 环境下安装等
 
 java       java 语言
