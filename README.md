@@ -4,6 +4,11 @@ cd /e/git/learn
 git init
 git remote add origin https://github.com/pengfen/learn.git
 git pull origin master
+git config --global user.email "caopeng8787@163.com"
+每次push时使用用户名和密码 
+或者添加客户端信任
+ssh-keygen.exe 生成公钥私钥
+将公钥复制到 github ---> setting ---> ssh keys ---> add ssh keys;
 
 ------------------------------------------------
 
