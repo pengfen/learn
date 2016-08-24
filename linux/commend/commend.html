@@ -426,3 +426,7 @@
     [root@localhost ~]# fdisk -l #查看 U 盘设备文件名
     [root@localhost ~]# mount -t vfat /dev/sdb1 /mnt/usb/
     注意 linux 默认是不支持 NTFS 文件系统的
+
+    查看全文多少行
+    cat gather.log | wc -l
+    cat gather.log | grep '当前消息' | wc -l #查看包含当前消息共有多少行
