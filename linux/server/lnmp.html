@@ -50,3 +50,36 @@ source /home/wwwroot/blog/blog.sql
 修改项目配置文件
 cd /home/wwwroot/blog/Application/Home/Conf
 vi config.php
+
+
+安装lnmp1.3
+------------------------------------------------------------------------------
+下载lnmp1.3
+http://lnmp.org/ 或是
+https://yunpan.cn/cM645qt8uUVbr  访问密码 8744 
+使用xftp上传到xshell目录
+解压tar -zxvf lnmp1.3
+cd lnmp1.3-full
+[root@peng2 lnmp]# cd  lnmp1.3-full
+[root@peng2 lnmp1.3-full]# ./install.sh
+mysql password 123456
+
+测试 192.168.179.128
+
+上传 yii-advanced 包到 /home/webroot目录中
+tar -zxvf yii-advanced...
+mv advanced resource
+cd resource
+./init
+1
+yes
+
+# 修改 nginx.conf 配置文件
+find /usr/local/ -name nginx.conf
+vim /usr/local/nginx/conf/nginx.conf
+root /home/wwwroot/default; ---- root /home/wwwroot/resource/frontend/web;
+
+http://192.168.179.128/
+
+
+
