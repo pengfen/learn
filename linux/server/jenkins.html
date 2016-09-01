@@ -79,5 +79,62 @@ Create First Admin User
 全名:	pengcao
 电子邮件地址:	caopeng8787@163.com
 
+安装git插件
+git plugin
+安装/更新 插件中
+
+准备	
+Checking internet connectivity
+Checking jenkins-ci.org connectivity
+Success
+SCM API Plugin	 完成
+Git plugin	 等待
+重启 Jenkins	 等待
+
+ls -la //列出文件
+rsync -auv --delete --exclude=/.git --exclude-from=./deployignore 
+//rsync同步  删除 过滤/.git   设置过滤文件 ./deployignore 
+./ root@192.168.97.243:/root/www/
+// 用ssh登陆 目标服务器
+ssh root@192.168.97.243 ls -la /root/www/
+//列出文件
+设置下更新目标的的服务器（也就是192.168.97.243），使他支持ssh
+
+vim /etc/ssh/sshd_config
+RSAAuthentication yes
+PubkeyAuthentication yes
+AuthorizedKeysFile      .ssh/authorized_keys
+安装rsync
+
+yum -y install rsync
+新建ssh目录
+
+mkdir .ssh
+chmod 755 .ssh/
+然后在.ssh目录下创建authorized_keys 文件
+
+touch authorized_keys
+chmod 600 authorized_keys
+把jenkins的key保存在这个文件。
+
 参考文章
 http://www.open-open.com/lib/view/open1435761032013.html
+
+
+
+----------------------------------------------------------
+exec() has been disabled for security reasons
+
+cd /usr/local/php/etc/
+vim php.ini
+/disable_fun
+去掉 exec();
+
+vim git.php
+<?php
+exec('/opt/git/git.sh');
+
+vim git.sh
+#!/bin/bash
+
+git clone https://github.com/pengfen/php.git
