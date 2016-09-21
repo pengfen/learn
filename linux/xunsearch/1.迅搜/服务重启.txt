@@ -2,6 +2,7 @@ killall xs-indexd #杀死所有索引服务
 killall xs-searchd #杀死所有搜索服务
 ps -ef | grep xs #搜索所有 xs 相关进程
 
+cd /usr/local/xunsearch
 bin/xs-ctl.sh -b local start    // 监听在本地回环地址 127.0.0.1 上
 bin/xs-ctl.sh -b inet start     // 监听在所有本地 IP 地址上
 
@@ -10,6 +11,7 @@ SDK 调用和 xunsearch 服务端不在同一服务器，请使用 -b inet 方�
 如果不使用 -b inet 启动服务 本地程序无法获取对象
 
 
+cd /usr/local/xunsearch/sdk/php
 ./util/Quest.php --suggest goods j
 使用建议词时(第一次需要更新索引日志库)
 ./util/Indexer.php --flush-log goods

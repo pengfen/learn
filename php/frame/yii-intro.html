@@ -29,3 +29,14 @@ http://www.yiichina.com/download 下载Yii模板
 配置虚拟主机
 
 测试访问地址 (http://dev.yii.com)
+
+---------------------------------------------------------------
+class MenuController extends Controller {
+	public function actionIndex() {}
+}
+页面访问 index.php?r=menu/index
+
+class MenuOptionController extends Controller {
+	public function actionMenuAdd() {}
+}
+页面访问 index.php?r=menu-option/menu-add
