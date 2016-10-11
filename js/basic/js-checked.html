@@ -64,3 +64,20 @@ jquery
 
     .disabled = true; // 禁用按钮
     .disabled = false; // 启用按钮
+
+单击选择框后的文字选择框选中
+显式选择 label的for属性与input的id一致
+<label for='name'>文字内容:</label>
+<input type="text" name="name" value="" id="name">
+隐式选择 label包含input
+<label>文字内容:<input type="text" name="name" value="">
+使用js操作
+$(".pmi_pl span").bind("click",function(){
+    var obj = $(this).prev("input[type=checkbox]");
+    if(obj.attr("checked")==true){ 
+        obj.removeAttr("checked"); 
+    }
+    else { 
+        obj.attr("checked","checked"); 
+    }
+});

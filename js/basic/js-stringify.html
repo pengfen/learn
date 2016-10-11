@@ -1,6 +1,14 @@
 #对searchform表单数据进行系列化
 var data = $("#searchform").serializeArray();
 data = JSON.stringify(data);
+
+// 针对 IE8 进行转码
+if(navigator.userAgent.indexOf("MSIE") > 0)  {
+    if(navigator.userAgent.indexOf("MSIE 8.0") > 0) { 
+        eval(" var data = '" + data +"';");
+    }  
+} 
+        
 $.post("{:U('')}", {'data' : data, 'state' : 3},
 function(data) {
     alert(data);
