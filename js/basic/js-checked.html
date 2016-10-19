@@ -81,3 +81,17 @@ $(".pmi_pl span").bind("click",function(){
         obj.attr("checked","checked"); 
     }
 });
+
+=============================================
+针对第一次选中有效 第二次不选中有效 第三次选中无效
+在高版本的jquery引入prop方法
+对于 HTML 元素本身就带有的固有属性 在处理时 使用prop方法
+对于 HTML 元素我们自定义的DOM属性 在处理时 使用attr方法
+
+如果使用 attr
+$('#check').attr('checked') = undefined;
+$('#check').attr('checked') = 'checked';
+
+如果使用 prop
+$('#check').prop('checked') = false;
+$('#check').prop('checked') = true;
