@@ -1,0 +1,39 @@
+日志
+
+配置
+'log' => [
+    //'traceLevel' => YII_DEBUG ? 3 : 0, // 常用于测试环境
+    'flushInterval' => 1000, // 配置刷新默认为1000条
+    'targets' => [
+        [
+            'class' => 'yii\log\FileTarget',
+            'levels' => ['error'],
+            'categories' => ['catalog'], // 分类策略
+            'exportInterval' => 1000, // 配置导出消息 默认为1000条
+            'logFile' => '@app/runtime/logs/req.log',
+            'maxFileSize' => 1024 * 20,
+            'maxLogFiles' => 20,
+            'logVars' => [],
+        ]
+        
+    ],
+],
+
+frontend\models中编写  Log 类
+// 操作日志 
+class Log{
+
+	// 记录操作日志
+	public static function log($msg) {
+		$userBase = Yii::$app->session['userInfo']['userBase'];
+		$uid = $userBase['uid'];
+		$login_id = $userBase['login_id'];
+		$name = $userBase['name'];
+		// 当前执行时间:{$time} $time = date("Y-m-d H:i:s", time());
+
+		Yii::error("uid:{$uid}, login_id:{$login_id}, name:{$name}, msg:{$msg}", 'catalog');
+	}
+}
+
+控制器调用
+Log::log('访问当前页 : '.$route);
