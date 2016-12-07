@@ -37,3 +37,16 @@ class Log{
 
 控制器调用
 Log::log('访问当前页 : '.$route);
+
+日志格式改变 时间 IP 输出消息
+2016-11-30 14:29:42 [192.168.18.111] uid:103067, login_id:yx2101, name:yx2101, msg:访问当前页 : home/init-msg
+vendor\yiisoft\yii2\log\Target.php
+getMessagePrefix($message) {
+    return '[$ip]'; // 只需要获取IP [192.168.18.23]
+    return '[$ip][$userID][$sessionID]'; // [192.168.18.23][-][ST-352-Co0NqrFybqWiNNFWfXZn-ssonew18cn]
+}
+
+public function formatMessage($message) {
+    return date('Y-m-d H:i:s', $timestamp) . " {$prefix} $text "; // 2016-11-30 07:40:27 [192.168.18.23] uid:103136, login_id:yx4104, name:yx4104, msg:访问当前页 : customer/refund
+    return date('Y-m-d H:i:s', $timestamp) . " {$prefix}[$level][$category] $text" . (empty($traces) ? '' : "\n    " . implode("\n    ", $traces)); // 2016-11-30 07:41:22 [192.168.18.23][error][catalog] uid:103136, login_id:yx4104, name:yx4104, msg:访问当前页 : customer/new-c
+}
