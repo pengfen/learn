@@ -1,0 +1,49 @@
+	成员授权
+
+	// 处理 uid
+	private static function handleAdd($group, $data, $id) {
+		// 添加数据
+		$user = Yii::$app->session->get('userInfo');
+	    $create_uid = $user['userBase']['uid'];
+	    $create_time = date('Y-m-d H:i:s', time());
+		$error = [];
+
+		$err = isset($data['error'])?$data['error']:'';
+		$data = $data['uid'];
+		
+		// 处理成员授权页面保存
+		$user = $group::find()->select('uid')->where(['rule_group_id' => $id])->asArray()->all();
+		$user = array_column($user, 'uid');
+		$del = array_diff($user, $data); // 求差集 
+		$add = array_diff($data, $user);
+
+		// 删除用户 (数据库有 提交数据中没有就执行删除)
+		if ($del) {
+			$sql = "delete from tb_UserPermissionGroup where rule_group_id = $id and uid in (";
+			foreach ($del as $value) {
+				$sql .= $value.',';
+			}
+			$sql = substr($sql, 0, -1).')';
+            $res = Yii::$app->db->createCommand($sql)->execute();
+            if ($res && !$add) {
+            	return '移除成员成功';
+            }
+		}
+
+		// 添加 (数据库没有 提交数据中有就执行添加)
+		if ($add) {
+			$sql = "insert into tb_UserPermissionGroup(rule_group_id, uid, create_uid, create_time) values";
+			foreach ($add as $value) {
+				$sql .= "('{$id}', '{$value}', '{$create_uid}', '{$create_time}'),";
+			}
+			$sql = substr($sql, 0, -1);
+			$res = Yii::$app->db->createCommand($sql)->execute();
+			if ($res) {
+				return 1;
+			} else {
+				return '添加失败';
+			}
+		} else {
+			return '当前用户已存在';
+		}
+	}
