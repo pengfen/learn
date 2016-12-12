@@ -10,20 +10,22 @@
 
 class Db{
 
-    static private $_instance;  
-    static private $_connectSource;
+    static private $_instance;  // 实例
+    static private $_connectSource; // 数据连接源
 
+    // 数据库相关配置 (主机 用户名 密码 数据库名)
     private $_dbConfig = array(
     	'host' => '127.0.0.1',
     	'user' => 'root',
     	'password' => '',
     	'database' => 'test'
     	);
+
 	private function __construct(){
-		//
+		// 构造函数
 	}
 
-	static public function getInstance(){
+	static public function getInstance(){ // 获取实例
 		if (!(self::$_instance instanceof self)) {
 			self::$_instance = new self();
 		}
@@ -31,7 +33,7 @@ class Db{
 		return self::$_instance;
 	}
 
-	public function connect(){
+	public function connect(){ // 获取数据库连接
 		if (!self::$_connectSource) {
 
 			self::$_connectSource = mysql_connect($this->_dbConfig['host'], $this->_dbConfig['user'], $this->_dbConfig['password']);

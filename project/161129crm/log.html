@@ -50,3 +50,8 @@ public function formatMessage($message) {
     return date('Y-m-d H:i:s', $timestamp) . " {$prefix} $text "; // 2016-11-30 07:40:27 [192.168.18.23] uid:103136, login_id:yx4104, name:yx4104, msg:访问当前页 : customer/refund
     return date('Y-m-d H:i:s', $timestamp) . " {$prefix}[$level][$category] $text" . (empty($traces) ? '' : "\n    " . implode("\n    ", $traces)); // 2016-11-30 07:41:22 [192.168.18.23][error][catalog] uid:103136, login_id:yx4104, name:yx4104, msg:访问当前页 : customer/new-c
 }
+
+监控日志
+tail -f req.log
+tail -f req.log | grep 15.23 监控某台主机的日志
+tail -f req.log | grep caopeng 监控某人的访问日志
