@@ -1,0 +1,12 @@
+参数回显
+
+<input type='text' name="search" value="<?=$search?>">
+
+控制器
+$postData = Yii::$app->request->post();
+$paras = [];
+$paras = $postData;
+
+return $this->renderPartial('index', [
+    'paras' => $paras
+]);
