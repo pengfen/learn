@@ -57,7 +57,9 @@ js  .checked = false; // 取消选择
 
 jquery
     $(this).removeAttr("checked"); // 取消选择
-    $(this).attr('checked', 'true'); // 添加选择
+    $(this).prop('checked', false);
+    $(this).attr('checked', 'true'); // 添加选择 (只支持第一次)
+    $(this).prop('checked', true); // 添加选择
 
     $(this).attr('disabled',"true"); // 禁用按钮
     $('#sms_send').removeAttr("disabled"); // 启用按钮
