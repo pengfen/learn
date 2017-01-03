@@ -8,3 +8,4 @@ plus_symbol.html 组织前加 --- 符号
 menu.html        菜单总结 (修改时使用js对象 追加input输入)
 three_level_menu.html 三级菜单 (添加三级时须要修改文件)
 customer.html         客户列表
+cancel-flush.html     取消按钮刷新数据

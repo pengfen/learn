@@ -1,0 +1,11 @@
+剖析单条查询 profile
+
+show profile 查询剖析工具 默认是禁用的
+set profiling = 1; // 启用剖析工具
+select * from resource_auth; // 执行查询语句
+show profiles; // 查看语句执行时间
+show profile for query 1; // 查看详细的执行时间
+set @query_id = 1;
+select state, sum(duration) as total_r, 
+round(100 * sum(duration) / (select sum(duration) from information_schema.profiling where query_id = @query_id), 2) as pct_r, count(*) as calls, sum(duration) / count(*) as 'r/call'
+from information_schema.profiling where query_id = @query_id group by state order by total_r desc;
