@@ -16,5 +16,6 @@ curl-http.html       http 请求
 curl-cookie.html     curl 操作cookie
 
 curl-sms.html        curl 发送短信
+curl-interface.html  curl上传文件后调用接口
 
 PHP文件 http://php.net/manual/zh/book.curl.php
