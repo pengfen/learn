@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)https://www.shiyanlou.com/courses/410/labs/1310/document -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Lei Shi">
+    <meta http-equiv="Cache-Control" content="o-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+	
+		
+        <title>Yii2 Behaviors 和 Validations - 实验楼</title>
+		
+	
+
+    
+    <meta content="实验楼是国内领先的IT技术实训平台，创新的实验驱动教学模式，以就业为导向，为IT相关专业的在校学生及从业者提供编程、运维、测试、云计算、大数据、数据库等全面的IT技术动手实践环境，提供Linux、Python、Java、C语言、Ruby、Android、IOS开发等热门课程。" name="description">
+    <meta content="实验楼,IT培训,IT教育,编程,在线编程,Linux,Linux教程,Linux操作系统,Python,Python教程,Python基础教程,Java,Java编程,C语言,大数据,Node.js,Hadoop,PHP,Docker" name="keywords">
+    
+    <meta content="实验楼,琛石科技" name="author">
+
+	<link rel="shortcut icon" href="https://static.shiyanlou.com/favicon.ico">
+	<link rel="stylesheet" href="./Yii2 Behaviors 和 Validations - 实验楼_files/font-awesome.min.css">
+	<link rel="stylesheet" href="./Yii2 Behaviors 和 Validations - 实验楼_files/bootstrap-tour.min.css">
+	<link rel="stylesheet" href="./Yii2 Behaviors 和 Validations - 实验楼_files/styles1471243581.css">
+
+	<style>
+		@font-face {
+			font-family: "lantingxihei";
+			src: url("https://static.shiyanlou.com/fonts/FZLTCXHJW.TTF");
+		}
+
+		.userimg {
+			display: inline-block;
+			height: 36px;
+			border-radius: 50%;
+		}
+		.username {
+			display: inline-block;
+			max-width: 100px;
+			font-size: 14px;
+			color: #FFFFFF;
+			white-space: pre;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+        /* modal 模态框*/
+        #invite-user .modal-body {
+            overflow: hidden;
+        }
+		#invite-user .modal-body .form-label {
+			margin-bottom: 16px;
+			font-size:14px;
+		}
+		#invite-user .modal-body .form-invite {
+			width: 80%;
+			padding: 6px 12px;
+			background-color: #eeeeee;
+			border: 1px solid #cccccc;
+			border-radius: 5px;
+			float: left;
+			margin-right: 10px;
+		}
+		#invite-user .modal-body .msg-modal-style {
+			background-color: #7dd383;
+			margin-top: 10px;
+			padding: 6px 0;
+			text-align: center;
+			width: 100%;
+		}
+		#invite-user .modal-body .modal-flash {
+			position: absolute;
+			top: 53px;
+			right: 74px;
+			z-index: 999;
+		}
+		/* end modal */
+
+        .en-footer {
+            padding: 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+	
+<link rel="stylesheet" href="./Yii2 Behaviors 和 Validations - 实验楼_files/tomorrow-night-eighties.css">
+<style>
+    #editor {
+        width: 0;
+		height: 0;
+		margin: 0;
+		padding: 0;
+		border: none;
+    }
+    #preview {
+        padding: 20px;
+        background: #fff;
+        border: solid 1px #eee;
+    }
+	#preview p,
+	#preview li,
+	#preview span,
+	#preview div,
+	#preview blockquote,
+	#preview blockquote	p {
+		font-size: 15px;
+        font-weight: 100;
+	}
+	#preview blockquote p {
+		line-height: 1.6em;
+	}
+    .mobile-alert {
+        display: none;
+        margin-top: 10px;
+        font-size: 16px;
+        text-align: center;
+    }
+    .breadcrumb {
+        border-bottom: solid 1px #eee;
+    }
+    @media (max-width: 768px) {
+        .mobile-alert {
+            display: block;
+        }
+        #preview p,
+        #preview li,
+        #preview span,
+        #preview div,
+        #preview blockquote,
+        #preview blockquote	p {
+            font-weight: 500;
+        }
+    }
+    .start-lab {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+        box-shadow: 0 2px 4px 2px #eee;
+        background: #274a59;
+        z-index: 100;
+    }
+    .start-lab span {
+        position: relative;
+        top: 4px;
+        color: #fff;
+        font-size: 16px;
+    }
+    .start-lab .btn {
+        margin-left: 10px;
+        padding: 6px 50px;
+        background: #0c9;
+        font-size: 18px;
+        border-color: #0c9;
+    }
+    @media (max-width: 768px) {
+        .start-lab .btn {
+            margin-top: 10px;
+        }
+    }
+</style>
+
+
+	
+    
+<style id="ace_editor.css">.ace_editor {position: relative;overflow: hidden;font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;direction: ltr;text-align: left;}.ace_scroller {position: absolute;overflow: hidden;top: 0;bottom: 0;background-color: inherit;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;cursor: text;}.ace_content {position: absolute;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;min-width: 100%;}.ace_dragging .ace_scroller:before{position: absolute;top: 0;left: 0;right: 0;bottom: 0;content: '';background: rgba(250, 250, 250, 0.01);z-index: 1000;}.ace_dragging.ace_dark .ace_scroller:before{background: rgba(0, 0, 0, 0.01);}.ace_selecting, .ace_selecting * {cursor: text !important;}.ace_gutter {position: absolute;overflow : hidden;width: auto;top: 0;bottom: 0;left: 0;cursor: default;z-index: 4;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;}.ace_gutter-active-line {position: absolute;left: 0;right: 0;}.ace_scroller.ace_scroll-left {box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;}.ace_gutter-cell {padding-left: 19px;padding-right: 6px;background-repeat: no-repeat;}.ace_gutter-cell.ace_error {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: 2px center;}.ace_gutter-cell.ace_warning {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");background-position: 2px center;}.ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");background-position: 2px center;}.ace_dark .ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEUAAAChoaGAgIAqKiq+vr6tra1ZWVmUlJSbm5s8PDxubm56enrdgzg3AAAAAXRSTlMAQObYZgAAAClJREFUeNpjYMAPdsMYHegyJZFQBlsUlMFVCWUYKkAZMxZAGdxlDMQBAG+TBP4B6RyJAAAAAElFTkSuQmCC");}.ace_scrollbar {position: absolute;right: 0;bottom: 0;z-index: 6;}.ace_scrollbar-inner {position: absolute;cursor: text;left: 0;top: 0;}.ace_scrollbar-v{overflow-x: hidden;overflow-y: scroll;top: 0;}.ace_scrollbar-h {overflow-x: scroll;overflow-y: hidden;left: 0;}.ace_print-margin {position: absolute;height: 100%;}.ace_text-input {position: absolute;z-index: 0;width: 0.5em;height: 1em;opacity: 0;background: transparent;-moz-appearance: none;appearance: none;border: none;resize: none;outline: none;overflow: hidden;font: inherit;padding: 0 1px;margin: 0 -1px;text-indent: -1em;-ms-user-select: text;-moz-user-select: text;-webkit-user-select: text;user-select: text;white-space: pre!important;}.ace_text-input.ace_composition {background: inherit;color: inherit;z-index: 1000;opacity: 1;text-indent: 0;}.ace_layer {z-index: 1;position: absolute;overflow: hidden;word-wrap: normal;white-space: pre;height: 100%;width: 100%;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;pointer-events: none;}.ace_gutter-layer {position: relative;width: auto;text-align: right;pointer-events: auto;}.ace_text-layer {font: inherit !important;}.ace_cjk {display: inline-block;text-align: center;}.ace_cursor-layer {z-index: 4;}.ace_cursor {z-index: 4;position: absolute;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;border-left: 2px solid;transform: translatez(0);}.ace_slim-cursors .ace_cursor {border-left-width: 1px;}.ace_overwrite-cursors .ace_cursor {border-left-width: 0;border-bottom: 1px solid;}.ace_hidden-cursors .ace_cursor {opacity: 0.2;}.ace_smooth-blinking .ace_cursor {-webkit-transition: opacity 0.18s;transition: opacity 0.18s;}.ace_editor.ace_multiselect .ace_cursor {border-left-width: 1px;}.ace_marker-layer .ace_step, .ace_marker-layer .ace_stack {position: absolute;z-index: 3;}.ace_marker-layer .ace_selection {position: absolute;z-index: 5;}.ace_marker-layer .ace_bracket {position: absolute;z-index: 6;}.ace_marker-layer .ace_active-line {position: absolute;z-index: 2;}.ace_marker-layer .ace_selected-word {position: absolute;z-index: 4;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}.ace_line .ace_fold {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;display: inline-block;height: 11px;margin-top: -2px;vertical-align: middle;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACJJREFUeNpi+P//fxgTAwPDBxDxD078RSX+YeEyDFMCIMAAI3INmXiwf2YAAAAASUVORK5CYII=");background-repeat: no-repeat, repeat-x;background-position: center center, top left;color: transparent;border: 1px solid black;border-radius: 2px;cursor: pointer;pointer-events: auto;}.ace_dark .ace_fold {}.ace_fold:hover{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpi+P//fz4TAwPDZxDxD5X4i5fLMEwJgAADAEPVDbjNw87ZAAAAAElFTkSuQmCC");}.ace_tooltip {background-color: #FFF;background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.1));background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));border: 1px solid gray;border-radius: 1px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);color: black;max-width: 100%;padding: 3px 4px;position: fixed;z-index: 999999;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;cursor: default;white-space: pre;word-wrap: break-word;line-height: normal;font-style: normal;font-weight: normal;letter-spacing: normal;pointer-events: none;}.ace_folding-enabled > .ace_gutter-cell {padding-right: 13px;}.ace_fold-widget {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;margin: 0 -12px 0 1px;display: none;width: 11px;vertical-align: top;background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42mWKsQ0AMAzC8ixLlrzQjzmBiEjp0A6WwBCSPgKAXoLkqSot7nN3yMwR7pZ32NzpKkVoDBUxKAAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: center;border-radius: 3px;border: 1px solid transparent;cursor: pointer;}.ace_folding-enabled .ace_fold-widget {display: inline-block;   }.ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42m3HwQkAMAhD0YzsRchFKI7sAikeWkrxwScEB0nh5e7KTPWimZki4tYfVbX+MNl4pyZXejUO1QAAAABJRU5ErkJggg==");}.ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAOUlEQVR42jXKwQkAMAgDwKwqKD4EwQ26sSOkVWjgIIHAzPiCgaqiqnJHZnKICBERHN194O5b9vbLuAVRL+l0YWnZAAAAAElFTkSuQmCCXA==");}.ace_fold-widget:hover {border: 1px solid rgba(0, 0, 0, 0.3);background-color: rgba(255, 255, 255, 0.2);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);}.ace_fold-widget:active {border: 1px solid rgba(0, 0, 0, 0.4);background-color: rgba(0, 0, 0, 0.05);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);}.ace_dark .ace_fold-widget {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2P4//8/AzoGEQ7oGCaLLAhWiSwB146BAQCSTPYocqT0AAAAAElFTkSuQmCC");}.ace_dark .ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQIW2P4//8/AxQ7wNjIAjDMgC4AxjCVKBirIAAF0kz2rlhxpAAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACAcVaiAAAAHElEQVQIW2P4//+/AxAzgDADlOOAznHAKgPWAwARji8UIDTfQQAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget:hover {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);background-color: rgba(255, 255, 255, 0.1);}.ace_dark .ace_fold-widget:active {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);}.ace_fold-widget.ace_invalid {background-color: #FFB4B4;border-color: #DE5555;}.ace_fade-fold-widgets .ace_fold-widget {-webkit-transition: opacity 0.4s ease 0.05s;transition: opacity 0.4s ease 0.05s;opacity: 0;}.ace_fade-fold-widgets:hover .ace_fold-widget {-webkit-transition: opacity 0.05s ease 0.05s;transition: opacity 0.05s ease 0.05s;opacity:1;}.ace_underline {text-decoration: underline;}.ace_bold {font-weight: bold;}.ace_nobold .ace_bold {font-weight: normal;}.ace_italic {font-style: italic;}.ace_error-marker {background-color: rgba(255, 0, 0,0.2);position: absolute;z-index: 9;}.ace_highlight-marker {background-color: rgba(255, 255, 0,0.2);position: absolute;z-index: 8;}.ace_br1 {border-top-left-radius    : 3px;}.ace_br2 {border-top-right-radius   : 3px;}.ace_br3 {border-top-left-radius    : 3px; border-top-right-radius:    3px;}.ace_br4 {border-bottom-right-radius: 3px;}.ace_br5 {border-top-left-radius    : 3px; border-bottom-right-radius: 3px;}.ace_br6 {border-top-right-radius   : 3px; border-bottom-right-radius: 3px;}.ace_br7 {border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px;}.ace_br8 {border-bottom-left-radius : 3px;}.ace_br9 {border-top-left-radius    : 3px; border-bottom-left-radius:  3px;}.ace_br10{border-top-right-radius   : 3px; border-bottom-left-radius:  3px;}.ace_br11{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-left-radius:  3px;}.ace_br12{border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br13{border-top-left-radius    : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br14{border-top-right-radius   : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br15{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;}
+/*# sourceURL=ace/css/ace_editor.css */</style><style id="ace-tm">.ace-tm .ace_gutter {background: #f0f0f0;color: #333;}.ace-tm .ace_print-margin {width: 1px;background: #e8e8e8;}.ace-tm .ace_fold {background-color: #6B72E6;}.ace-tm {background-color: #FFFFFF;color: black;}.ace-tm .ace_cursor {color: black;}.ace-tm .ace_invisible {color: rgb(191, 191, 191);}.ace-tm .ace_storage,.ace-tm .ace_keyword {color: blue;}.ace-tm .ace_constant {color: rgb(197, 6, 11);}.ace-tm .ace_constant.ace_buildin {color: rgb(88, 72, 246);}.ace-tm .ace_constant.ace_language {color: rgb(88, 92, 246);}.ace-tm .ace_constant.ace_library {color: rgb(6, 150, 14);}.ace-tm .ace_invalid {background-color: rgba(255, 0, 0, 0.1);color: red;}.ace-tm .ace_support.ace_function {color: rgb(60, 76, 114);}.ace-tm .ace_support.ace_constant {color: rgb(6, 150, 14);}.ace-tm .ace_support.ace_type,.ace-tm .ace_support.ace_class {color: rgb(109, 121, 222);}.ace-tm .ace_keyword.ace_operator {color: rgb(104, 118, 135);}.ace-tm .ace_string {color: rgb(3, 106, 7);}.ace-tm .ace_comment {color: rgb(76, 136, 107);}.ace-tm .ace_comment.ace_doc {color: rgb(0, 102, 255);}.ace-tm .ace_comment.ace_doc.ace_tag {color: rgb(128, 159, 191);}.ace-tm .ace_constant.ace_numeric {color: rgb(0, 0, 205);}.ace-tm .ace_variable {color: rgb(49, 132, 149);}.ace-tm .ace_xml-pe {color: rgb(104, 104, 91);}.ace-tm .ace_entity.ace_name.ace_function {color: #0000A2;}.ace-tm .ace_heading {color: rgb(12, 7, 255);}.ace-tm .ace_list {color:rgb(185, 6, 144);}.ace-tm .ace_meta.ace_tag {color:rgb(0, 22, 142);}.ace-tm .ace_string.ace_regex {color: rgb(255, 0, 0)}.ace-tm .ace_marker-layer .ace_selection {background: rgb(181, 213, 255);}.ace-tm.ace_multiselect .ace_selection.ace_start {box-shadow: 0 0 3px 0px white;}.ace-tm .ace_marker-layer .ace_step {background: rgb(252, 255, 0);}.ace-tm .ace_marker-layer .ace_stack {background: rgb(164, 229, 101);}.ace-tm .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid rgb(192, 192, 192);}.ace-tm .ace_marker-layer .ace_active-line {background: rgba(0, 0, 0, 0.07);}.ace-tm .ace_gutter-active-line {background-color : #dcdcdc;}.ace-tm .ace_marker-layer .ace_selected-word {background: rgb(250, 250, 255);border: 1px solid rgb(200, 200, 250);}.ace-tm .ace_indent-guide {background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;}
+/*# sourceURL=ace/css/ace-tm */</style><style>    .error_widget_wrapper {        background: inherit;        color: inherit;        border:none    }    .error_widget {        border-top: solid 2px;        border-bottom: solid 2px;        margin: 5px 0;        padding: 10px 40px;        white-space: pre-wrap;    }    .error_widget.ace_error, .error_widget_arrow.ace_error{        border-color: #ff5a5a    }    .error_widget.ace_warning, .error_widget_arrow.ace_warning{        border-color: #F1D817    }    .error_widget.ace_info, .error_widget_arrow.ace_info{        border-color: #5a5a5a    }    .error_widget.ace_ok, .error_widget_arrow.ace_ok{        border-color: #5aaa5a    }    .error_widget_arrow {        position: absolute;        border: solid 5px;        border-top-color: transparent!important;        border-right-color: transparent!important;        border-left-color: transparent!important;        top: -5px;    }</style></head>
+
+<body>
+	
+        
+        
+            
+<nav class="navbar navbar-default navbar-fixed-top header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-collapse" aria-expanded="false">
+                <span class="sr-only">实验楼</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.shiyanlou.com/">
+                <img src="./Yii2 Behaviors 和 Validations - 实验楼_files/logo_03.png">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="header-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown active">
+                    <a href="https://www.shiyanlou.com/courses/" class="dropdown-toggle hidden-xs">
+                        课程
+                        <span class="caret"></span>
+                    </a>
+                    <a href="https://www.shiyanlou.com/courses/410/labs/1310/document#" class="dropdown-toggle visible-xs-block" data-toggle="dropdown">
+                        课程
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="" href="https://www.shiyanlou.com/courses/">全部课程</a></li>
+                        <li><a class="" href="https://www.shiyanlou.com/paths/">学习路径</a></li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="https://www.shiyanlou.com/questions/">问答</a>
+                </li>
+                <li class=" bootcamp new-nav">
+                    <a href="https://www.shiyanlou.com/bootcamp/">训练营</a>
+                </li>
+                <li class=" new-nav">
+                    <a href="https://www.shiyanlou.com/vip">会员</a>
+                </li>
+                
+					
+					<li class=""><a href="https://www.shiyanlou.com/user/240711">我的课程</a></li>
+					
+                
+            </ul>
+
+            
+            <ul class="nav navbar-nav navbar-right user">
+                
+                <li><a class="btn btn-primary" id="header-continue-lab" href="https://www.shiyanlou.com/courses/running">继续实验</a></li>
+                
+                <li class="dropdown">
+                    <a href="https://www.shiyanlou.com/user/240711" class="dropdown-toggle hidden-xs">
+                        <img class="header-avatar" src="./Yii2 Behaviors 和 Validations - 实验楼_files/gravatarSWACREAFHSXD.jpg" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-template="&lt;div class=&quot;tooltip&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-arrow&quot; style=&quot;border-bottom-color:#f66e6e;&quot;&gt;&lt;/div&gt;&lt;div class=&quot;tooltip-inner&quot; style=&quot;background:#f66e6e;&quot;&gt;&lt;/div&gt;&lt;/div&gt;" data-original-title="新消息">
+                        
+                        <span class="header-msg-count" style="display:none;"></span>
+                        <span class="header-username hidden-sm">LOU3018993846</span>
+                        <span class="caret"></span>
+                    </a>
+					<a href="https://www.shiyanlou.com/courses/410/labs/1310/document#" class="dropdown-toggle visible-xs-block" data-toggle="dropdown">
+                        <img class="header-avatar" src="./Yii2 Behaviors 和 Validations - 实验楼_files/gravatarSWACREAFHSXD.jpg">
+                        
+                        <span class="header-msg-count" style="display:none;"></span>
+                        <span class="header-username">LOU3018993846</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.shiyanlou.com/user/240711">主页</a></li>
+                        <li><a href="https://www.shiyanlou.com/user/friends">好友</a></li>
+                        <li><a href="https://www.shiyanlou.com/user/message">
+                            <span class="position-relative"><span class="header-msg-mark" style="display:none;"></span>消息</span>
+                        </a></li>
+                        <li><a href="https://www.shiyanlou.com/profile">设置</a></li>
+                        <li rolw="separator" class="divider"></li>
+                        <li><a href="https://www.shiyanlou.com/logout">退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+            
+
+            <form class="navbar-form navbar-right" action="https://www.shiyanlou.com/search" method="get" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="search" autocomplete="off" placeholder="搜索 课程/问答">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+
+<div id="website-msg">
+    <div class="container">
+        <span class="msg-text">
+            <img src="./Yii2 Behaviors 和 Validations - 实验楼_files/activate-user-icon.png">
+            验证邮箱可获得3个实验豆，享受更多实验楼的服务
+        </span>
+        <a href="https://www.shiyanlou.com/user/account"><span class="btn btn-mine">立即验证</span></a>
+    </div>
+</div>
+<div id="msg-data" data-current-user="240711"></div>
+<style>
+    .layout-margin-top {
+        margin-top: 110px;
+    }
+    .layout-no-margin-top {
+        margin-top: 100px;
+    }
+</style>
+
+
+
+        
+	
+
+
+
+	
+	
+
+	
+
+
+<div class="container layout layout-margin-top">
+    
+<ol class="breadcrumb">
+    <li><a href="https://www.shiyanlou.com/courses/">全部课程</a></li>
+    <li>
+        <a href="https://www.shiyanlou.com/courses/410">Yii 2系列教程</a>
+    </li>
+    <li class="active">
+        Yii2 Behaviors 和 Validations
+    </li>
+</ol>
+
+    <div class="row">
+        <div class="col-md-9 layout-body">
+            
+<div class="mobile-alert alert alert-danger">在线实验，请到PC端体验</div>
+<div id="preview" class="markdown-body"><p>这一篇文章的开头就无需多言了，紧接着上一篇的内容和计划，这一篇我们来说说Yii2的Behavior和Validations。</p>
+<h2 id="behavior">Behavior</h2>
+<p>首先我们来说说Behavior，在Yii2中Behavior主要是可以用于一些常用的Model字段当中，对其进行自动化操作，比如自动添加一些时间戳字段等，这样我们就不用在每一个需要保存记录的地方分别写生成时间戳的代码了，比如前面我们在<a href="http://segmentfault.com/a/1190000003059939" target="_blank">Yii2系列教程五：简单的用户权限管理</a>中的<code>controllers/StatusController.php</code>的<code>actionCreate</code>方法实现的</p>
+<pre><code class="hljs php">    $model-&gt;created_by = Yii::$app-&gt;user-&gt;getId();<span class="hljs-comment">//add this line</span>
+    $model-&gt;created_at = time();
+    $model-&gt;updated_at = time();
+</code></pre><p>这些其实我们都是可以直接放在<code>Status</code>这个Model的<code>behaviors()</code>方法当中自动完成的。</p>
+<p>OK，那既然这样，我们就来实现一下呗。</p>
+<p>首先我们需要来喂我们的status表增加一个<code>updated_by</code>字段，用来记录是哪个用户对一条状态进行了更新：</p>
+<pre><code class="hljs bash">./yii migrate/create extend_status_table_<span class="hljs-keyword">for</span>_updated_by
+</code></pre><p>执行完上面的命令之后，来到相对应的<code>migration</code>文件中，为其<code>up()</code>和<code>down()</code>方法增加下面的代码：</p>
+<pre><code class="hljs php">
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">up</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">$this</span>-&gt;addColumn(<span class="hljs-string">'{{%status}}'</span>,<span class="hljs-string">'updated_by'</span>,Schema::TYPE_INTEGER.<span class="hljs-string">' NOT NULL'</span>);
+    <span class="hljs-keyword">$this</span>-&gt;addForeignKey(<span class="hljs-string">'fk_status_updated_by'</span>, <span class="hljs-string">'{{%status}}'</span>, <span class="hljs-string">'updated_by'</span>, <span class="hljs-string">'{{%user}}'</span>, <span class="hljs-string">'id'</span>, <span class="hljs-string">'CASCADE'</span>, <span class="hljs-string">'CASCADE'</span>);
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">down</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">$this</span>-&gt;dropForeignKey(<span class="hljs-string">'fk_status_updated_by'</span>,<span class="hljs-string">'{{%status}}'</span>);
+    <span class="hljs-keyword">$this</span>-&gt;dropColumn(<span class="hljs-string">'{{%status}}'</span>,<span class="hljs-string">'updated_by'</span>);
+}
+</code></pre><p>这个时候先不急着运行<code>./yii migrate/up</code>，因为这时候你运行<code>./yii migrate/up</code>其实是会报错的，因为对于已创建的status来说，它<code>updated_by</code>字段会默认为0，但是这个值在<code>user</code>这张表中并不存在。所以我们首先需要将<code>status</code>表中的几条数据删掉。鉴于这只是一个演示的小应用，为了保险起见，我将<code>stutas</code>这张表删除了，并且将<code>migration</code>这张表的于下面类似的两条记录删掉，以达到Yii2的migration重新创建<code>stutas</code>表的目的：</p>
+<pre><code class="hljs bash">m150804_035107_create_status_table
+m150806_034325_extend_status_table_<span class="hljs-keyword">for</span>_created_by
+</code></pre><p>然后再执行<code>./yii migrate/up</code>：</p>
+<pre><code class="hljs perl">./yii migrate/up
+
+Yii Migration Tool (based on Yii v2.<span class="hljs-number">0</span>.<span class="hljs-number">6</span>)
+
+Total <span class="hljs-number">3</span> new migrations to be applied:
+    m150804_035107_create_status_table
+    m150806_034325_extend_status_table_for_created_by
+    m150812_142736_extend_status_table_for_updated_by
+
+Apply the above migrations? (yes|<span class="hljs-keyword">no</span>) [<span class="hljs-keyword">no</span>]:yes
+*** applying m150804_035107_create_status_table
+    &gt; create table {{%status}} ... done (<span class="hljs-keyword">time</span>: <span class="hljs-number">0</span>.<span class="hljs-number">025</span><span class="hljs-keyword">s</span>)
+*** applied m150804_035107_create_status_table (<span class="hljs-keyword">time</span>: <span class="hljs-number">0</span>.<span class="hljs-number">033</span><span class="hljs-keyword">s</span>)
+
+*** applying m150806_034325_extend_status_table_for_created_by
+    &gt; add column created_by integer NOT NULL to table {{%status}} ... done (<span class="hljs-keyword">time</span>: <span class="hljs-number">0</span>.<span class="hljs-number">036</span><span class="hljs-keyword">s</span>)
+    &gt; add foreign key fk_status_created_by: {{%status}} (created_by) references {{%user}} (id) ... done (<span class="hljs-keyword">time</span>: <span class="hljs-number">0</span>.<span class="hljs-number">014</span><span class="hljs-keyword">s</span>)
+*** applied m150806_034325_extend_status_table_for_created_by (<span class="hljs-keyword">time</span>: <span class="hljs-number">0</span>.<span class="hljs-number">053</span><span class="hljs-keyword">s</span>)
+
+*** applying m150812_142736_extend_status_table_for_updated_by
+    &gt; add column updated_by integer NOT NULL to table {{%status}} ... done (<span class="hljs-keyword">time</span>: <span class="hljs-number">0</span>.<span class="hljs-number">017</span><span class="hljs-keyword">s</span>)
+    &gt; add foreign key fk_status_updated_by: {{%status}} (updated_by) references {{%user}} (id) ... done (<span class="hljs-keyword">time</span>: <span class="hljs-number">0</span>.<span class="hljs-number">017</span><span class="hljs-keyword">s</span>)
+*** applied m150812_142736_extend_status_table_for_updated_by (<span class="hljs-keyword">time</span>: <span class="hljs-number">0</span>.<span class="hljs-number">037</span><span class="hljs-keyword">s</span>)
+</code></pre><p>数据表创建完成之后，我们需要在<code>Status</code>这个Model文件中增加我们的behaviors方法：</p>
+<pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">behaviors</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            [
+                <span class="hljs-string">'class'</span> =&gt; BlameableBehavior::className(),
+                <span class="hljs-string">'createdByAttribute'</span> =&gt; <span class="hljs-string">'created_by'</span>,
+                <span class="hljs-string">'updatedByAttribute'</span> =&gt; <span class="hljs-string">'updated_by'</span>,
+            ],
+            <span class="hljs-string">'timestamp'</span> =&gt; [
+                <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\behaviors\TimestampBehavior'</span>,
+                <span class="hljs-string">'attributes'</span> =&gt; [
+                    ActiveRecord::EVENT_BEFORE_INSERT =&gt; [<span class="hljs-string">'created_at'</span>, <span class="hljs-string">'updated_at'</span>],
+                    ActiveRecord::EVENT_BEFORE_UPDATE =&gt; [<span class="hljs-string">'updated_at'</span>],
+                ],
+            ],
+        ];
+    }
+</code></pre><p>在<code>return</code>的数组当中，第一个就是使用Yii2的<code>BlameableBehavior</code>自动完成<code>created_by</code>和<code>updated_by</code>这两个字段，至于<code>timestamp</code>这个数组，就是使用Yii2的<code>TimestampBehavior</code>来自动完成created_at和<code>updated_at</code>字段，并且这会根据数据的<code>BEFORE_INSERT</code>和<code>BEFORE_UPDATE</code>两种情况来自动完成添加。</p>
+<p>需要注意的是，我们这时候需要在<code>Status</code>中引入下面两个类：</p>
+<pre><code class="hljs php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">behaviors</span>\<span class="hljs-title">BlameableBehavior</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>;
+</code></pre><p>这些工作都完成之后，我们就可以将我们原来在<code>controllers/StatusController.php</code>的<code>actionCreate</code>方法的相关那几行注释掉了：</p>
+<pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionCreate</span><span class="hljs-params">()</span>
+    </span>{
+        $model = <span class="hljs-keyword">new</span> Status();
+
+        <span class="hljs-keyword">if</span> ($model-&gt;load(Yii::$app-&gt;request-&gt;post())) {
+
+           <span class="hljs-comment">/* $model-&gt;created_by = Yii::$app-&gt;user-&gt;getId();
+            $model-&gt;created_at = time();
+            $model-&gt;updated_at = time();*/</span>
+
+            <span class="hljs-keyword">if</span> ($model-&gt;save()) {
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;redirect([<span class="hljs-string">'view'</span>, <span class="hljs-string">'id'</span> =&gt; $model-&gt;id]);
+            }
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;render(<span class="hljs-string">'create'</span>, [
+            <span class="hljs-string">'model'</span> =&gt; $model,
+        ]);
+    }
+</code></pre><p>注释掉之后，我们可以访问<code>http://localhost:8999/status/create</code> 来创建一条新的<code>status</code>来看看：</p>
+<p><img src="./Yii2 Behaviors 和 Validations - 实验楼_files/cb7859fe-d7d4-4980-aa56-fc26100abe4a.png" alt="替代文字"></p>
+<p>点击创建按钮，你依然可以看到下面这个可爱的页面：</p>
+<p><img src="./Yii2 Behaviors 和 Validations - 实验楼_files/6033c61c-5d58-47de-a957-a284cbb15ce0.png" alt="替代文字"></p>
+<p>到这里，我们的Behavior在Yii2中就已经实现完毕了。下面来看看Validations</p>
+<h2 id="validations">Validations</h2>
+<p>Yii2的Validation提供多种多样的验证机制，比如常见的email，图片，数字等，更多的验证机制和条件，你可以到这里查看文档：</p>
+<p><a href="http://www.yiiframework.com/doc-2.0/yii-validators-validator.html" target="_blank">http://www.yiiframework.com/doc-2.0/yii-validators-validator.html</a></p>
+<p>这里我想说明的一点是，在Yii2之中，Validation通常都是通过<code>validate()</code>来实现的，那么这个`validate()`` 方法的背后其实是怎么样的呢？可以看看下面这个顺序：</p>
+<pre><code class="hljs markdown"><span class="hljs-bullet">1. </span>首先检测Model当中有没有<span class="hljs-code">`scenarios()`</span>方法，如果该方法存在，则首先执行该方法里面对应的场景之下的验证规则
+
+<span class="hljs-bullet">2. </span>再检测Model当中的<span class="hljs-code">`rules()`</span>方法，然后执行验证规则
+</code></pre><p>为了演示方便，我们来创建一个新的Migrations：</p>
+<pre><code class="hljs sql">./yii migrate/<span class="hljs-keyword">create</span> create_sample_table
+</code></pre><p>然后还是想之前一样，来到相对应的migration文件当中，实现<code>up()</code>和<code>down()</code>方法：</p>
+<pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">up</span><span class="hljs-params">()</span>
+    </span>{
+        $tableOptions = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">$this</span>-&gt;db-&gt;driverName === <span class="hljs-string">'mysql'</span>) {
+            $tableOptions = <span class="hljs-string">'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB'</span>;
+        }
+
+        <span class="hljs-keyword">$this</span>-&gt;createTable(<span class="hljs-string">'{{%sample}}'</span>, [
+            <span class="hljs-string">'id'</span> =&gt; Schema::TYPE_PK,
+            <span class="hljs-string">'thought'</span> =&gt; Schema::TYPE_STRING.<span class="hljs-string">' NOT NULL DEFAULT ""'</span>,
+            <span class="hljs-string">'goodness'</span> =&gt; Schema::TYPE_SMALLINT . <span class="hljs-string">' NOT NULL DEFAULT 0'</span>,
+            <span class="hljs-string">'rank'</span> =&gt; Schema::TYPE_INTEGER . <span class="hljs-string">' NOT NULL'</span>,
+            <span class="hljs-string">'censorship'</span> =&gt; Schema::TYPE_STRING . <span class="hljs-string">' NOT NULL'</span>,
+            <span class="hljs-string">'occurred'</span> =&gt; Schema::TYPE_DATE . <span class="hljs-string">' NOT NULL'</span>,
+        ], $tableOptions);
+    }
+
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">down</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">$this</span>-&gt;dropTable(<span class="hljs-string">'{{%sample}}'</span>);
+    }
+</code></pre><p>然后执行之：</p>
+<pre><code class="hljs coffeescript">./yii migrate/up
+
+Yii Migration Tool (based <span class="hljs-literal">on</span> Yii v2<span class="hljs-number">.0</span><span class="hljs-number">.6</span>)
+
+Total <span class="hljs-number">1</span> <span class="hljs-keyword">new</span> migration to be applied:
+    m150812_153139_create_sample_table
+
+Apply the above migration? (<span class="hljs-literal">yes</span>|<span class="hljs-literal">no</span>) [<span class="hljs-literal">no</span>]:<span class="hljs-literal">yes</span>
+*** applying m150812_153139_create_sample_table
+    &gt; create table {{%sample}} ... done (time: <span class="hljs-number">0.026</span>s)
+*** applied m150812_153139_create_sample_table (time: <span class="hljs-number">0.037</span>s)
+</code></pre><p>使用Gii生成Model文件：</p>
+<p><img src="./Yii2 Behaviors 和 Validations - 实验楼_files/cab560b6-015e-40c5-8569-948b6e4dc341.png" alt="替代文字"></p>
+<p>再生成CRUD文件：</p>
+<p><img src="./Yii2 Behaviors 和 Validations - 实验楼_files/9f07269c-ceff-414f-a7db-524810042ad0.png" alt="替代文字"></p>
+<p><img src="./Yii2 Behaviors 和 Validations - 实验楼_files/4879faa0-b6c9-44ef-bbd2-4e1e7af752f6.png" alt="替代文字"></p>
+<p>然后打开<code>SampleController.php</code>，你就可以看到Yii2为我们生成的<code>rules()</code>了：</p>
+<pre><code class="hljs php"> <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rules</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            [[<span class="hljs-string">'goodness'</span>, <span class="hljs-string">'rank'</span>], <span class="hljs-string">'integer'</span>],
+            [[<span class="hljs-string">'rank'</span>, <span class="hljs-string">'censorship'</span>, <span class="hljs-string">'occurred'</span>], <span class="hljs-string">'required'</span>],
+            [[<span class="hljs-string">'occurred'</span>], <span class="hljs-string">'safe'</span>],
+            [[<span class="hljs-string">'thought'</span>, <span class="hljs-string">'censorship'</span>], <span class="hljs-string">'string'</span>, <span class="hljs-string">'max'</span> =&gt; <span class="hljs-number">255</span>]
+        ];
+    }
+</code></pre><p>Default Value验证</p>
+<p>我门修改一下rules()方法里面的occurred字段的验证，给它设置一个默认值：</p>
+<pre><code class="hljs php"><span class="hljs-keyword">return</span> [
+            [[<span class="hljs-string">'goodness'</span>, <span class="hljs-string">'rank'</span>], <span class="hljs-string">'integer'</span>],
+            [[<span class="hljs-string">'rank'</span>, <span class="hljs-string">'censorship'</span>], <span class="hljs-string">'required'</span>],
+            <span class="hljs-comment">// Gii generate this</span>
+            <span class="hljs-comment">//[['occurred'], 'safe'],</span>
+            [<span class="hljs-string">'occurred'</span>, <span class="hljs-string">'default'</span>, <span class="hljs-string">'value'</span> =&gt; date(<span class="hljs-string">'Y-m-d'</span>)],
+            [[<span class="hljs-string">'thought'</span>, <span class="hljs-string">'censorship'</span>], <span class="hljs-string">'string'</span>, <span class="hljs-string">'max'</span> =&gt; <span class="hljs-number">255</span>]
+        ];
+</code></pre><p>然后当我们创建一个新的Sample的时候，如果我们将<code>occurred</code>字段保留为空，那么这个字段就会默认取值为当天的日期。</p>
+<p><img src="./Yii2 Behaviors 和 Validations - 实验楼_files/a458b963-e783-4be0-a57f-f5d48481ebb1.png" alt="替代文字"></p>
+<p>Rank填入2，然后创建后是这样的：</p>
+<p><img src="./Yii2 Behaviors 和 Validations - 实验楼_files/6e81a753-81cf-45b0-aa61-595b405d69dc.png" alt="替代文字"></p>
+<p>至于另外的验证规则，你可以自己试着更改一下<code>rules()</code>方法里面的规则，然后进行相应的验证。</p>
+</div>
+<textarea id="editor">
+这一篇文章的开头就无需多言了，紧接着上一篇的内容和计划，这一篇我们来说说Yii2的Behavior和Validations。
+
+## Behavior
+
+首先我们来说说Behavior，在Yii2中Behavior主要是可以用于一些常用的Model字段当中，对其进行自动化操作，比如自动添加一些时间戳字段等，这样我们就不用在每一个需要保存记录的地方分别写生成时间戳的代码了，比如前面我们在[Yii2系列教程五：简单的用户权限管理](http://segmentfault.com/a/1190000003059939)中的`controllers/StatusController.php`的`actionCreate`方法实现的
+
+```
+    $model-&gt;created_by = Yii::$app-&gt;user-&gt;getId();//add this line
+    $model-&gt;created_at = time();
+    $model-&gt;updated_at = time();
+
+```
+这些其实我们都是可以直接放在`Status`这个Model的`behaviors()`方法当中自动完成的。
+
+OK，那既然这样，我们就来实现一下呗。
+
+首先我们需要来喂我们的status表增加一个`updated_by`字段，用来记录是哪个用户对一条状态进行了更新：
+
+```
+./yii migrate/create extend_status_table_for_updated_by
+
+
+```
+
+执行完上面的命令之后，来到相对应的`migration`文件中，为其`up()`和`down()`方法增加下面的代码：
+
+```
+
+public function up()
+{
+    $this-&gt;addColumn('{{%status}}','updated_by',Schema::TYPE_INTEGER.' NOT NULL');
+    $this-&gt;addForeignKey('fk_status_updated_by', '{{%status}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
+}
+
+public function down()
+{
+    $this-&gt;dropForeignKey('fk_status_updated_by','{{%status}}');
+    $this-&gt;dropColumn('{{%status}}','updated_by');
+}
+
+```
+这个时候先不急着运行`./yii migrate/up`，因为这时候你运行`./yii migrate/up`其实是会报错的，因为对于已创建的status来说，它`updated_by`字段会默认为0，但是这个值在`user`这张表中并不存在。所以我们首先需要将`status`表中的几条数据删掉。鉴于这只是一个演示的小应用，为了保险起见，我将`stutas`这张表删除了，并且将`migration`这张表的于下面类似的两条记录删掉，以达到Yii2的migration重新创建`stutas`表的目的：
+
+```
+m150804_035107_create_status_table
+m150806_034325_extend_status_table_for_created_by
+
+```
+
+
+然后再执行`./yii migrate/up`：
+
+```
+./yii migrate/up
+
+Yii Migration Tool (based on Yii v2.0.6)
+
+Total 3 new migrations to be applied:
+    m150804_035107_create_status_table
+    m150806_034325_extend_status_table_for_created_by
+    m150812_142736_extend_status_table_for_updated_by
+
+Apply the above migrations? (yes|no) [no]:yes
+*** applying m150804_035107_create_status_table
+    &gt; create table {{%status}} ... done (time: 0.025s)
+*** applied m150804_035107_create_status_table (time: 0.033s)
+
+*** applying m150806_034325_extend_status_table_for_created_by
+    &gt; add column created_by integer NOT NULL to table {{%status}} ... done (time: 0.036s)
+    &gt; add foreign key fk_status_created_by: {{%status}} (created_by) references {{%user}} (id) ... done (time: 0.014s)
+*** applied m150806_034325_extend_status_table_for_created_by (time: 0.053s)
+
+*** applying m150812_142736_extend_status_table_for_updated_by
+    &gt; add column updated_by integer NOT NULL to table {{%status}} ... done (time: 0.017s)
+    &gt; add foreign key fk_status_updated_by: {{%status}} (updated_by) references {{%user}} (id) ... done (time: 0.017s)
+*** applied m150812_142736_extend_status_table_for_updated_by (time: 0.037s)
+
+```
+
+数据表创建完成之后，我们需要在`Status`这个Model文件中增加我们的behaviors方法：
+
+```
+public function behaviors()
+    {
+        return [
+            [
+                'class' =&gt; BlameableBehavior::className(),
+                'createdByAttribute' =&gt; 'created_by',
+                'updatedByAttribute' =&gt; 'updated_by',
+            ],
+            'timestamp' =&gt; [
+                'class' =&gt; 'yii\behaviors\TimestampBehavior',
+                'attributes' =&gt; [
+                    ActiveRecord::EVENT_BEFORE_INSERT =&gt; ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE =&gt; ['updated_at'],
+                ],
+            ],
+        ];
+    }
+
+```
+在`return`的数组当中，第一个就是使用Yii2的`BlameableBehavior`自动完成`created_by`和`updated_by`这两个字段，至于`timestamp`这个数组，就是使用Yii2的`TimestampBehavior`来自动完成created_at和`updated_at`字段，并且这会根据数据的`BEFORE_INSERT`和`BEFORE_UPDATE`两种情况来自动完成添加。
+
+需要注意的是，我们这时候需要在`Status`中引入下面两个类：
+
+```
+use yii\behaviors\BlameableBehavior;
+use yii\db\ActiveRecord;
+
+```
+
+这些工作都完成之后，我们就可以将我们原来在`controllers/StatusController.php`的`actionCreate`方法的相关那几行注释掉了：
+
+```
+public function actionCreate()
+    {
+        $model = new Status();
+
+        if ($model-&gt;load(Yii::$app-&gt;request-&gt;post())) {
+
+           /* $model-&gt;created_by = Yii::$app-&gt;user-&gt;getId();
+            $model-&gt;created_at = time();
+            $model-&gt;updated_at = time();*/
+
+            if ($model-&gt;save()) {
+                return $this-&gt;redirect(['view', 'id' =&gt; $model-&gt;id]);
+            }
+        }
+        return $this-&gt;render('create', [
+            'model' =&gt; $model,
+        ]);
+    }
+
+```
+
+注释掉之后，我们可以访问`http://localhost:8999/status/create` 来创建一条新的`status`来看看：
+
+![替代文字](https://wt-prj.oss.aliyuncs.com/0d06af79c49d4e08abb1ab3f7ab6e860/cb7859fe-d7d4-4980-aa56-fc26100abe4a.png)
+
+点击创建按钮，你依然可以看到下面这个可爱的页面：
+
+![替代文字](https://wt-prj.oss.aliyuncs.com/0d06af79c49d4e08abb1ab3f7ab6e860/6033c61c-5d58-47de-a957-a284cbb15ce0.png)
+
+到这里，我们的Behavior在Yii2中就已经实现完毕了。下面来看看Validations
+
+## Validations
+
+Yii2的Validation提供多种多样的验证机制，比如常见的email，图片，数字等，更多的验证机制和条件，你可以到这里查看文档：
+
+[http://www.yiiframework.com/doc-2.0/yii-validators-validator.html](http://www.yiiframework.com/doc-2.0/yii-validators-validator.html)
+
+这里我想说明的一点是，在Yii2之中，Validation通常都是通过`validate()`来实现的，那么这个`validate()`` 方法的背后其实是怎么样的呢？可以看看下面这个顺序：
+
+```
+1. 首先检测Model当中有没有`scenarios()`方法，如果该方法存在，则首先执行该方法里面对应的场景之下的验证规则
+
+2. 再检测Model当中的`rules()`方法，然后执行验证规则
+
+```
+
+为了演示方便，我们来创建一个新的Migrations：
+
+```
+./yii migrate/create create_sample_table
+
+```
+
+然后还是想之前一样，来到相对应的migration文件当中，实现`up()`和`down()`方法：
+
+```
+public function up()
+    {
+        $tableOptions = null;
+        if ($this-&gt;db-&gt;driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        }
+
+        $this-&gt;createTable('{{%sample}}', [
+            'id' =&gt; Schema::TYPE_PK,
+            'thought' =&gt; Schema::TYPE_STRING.' NOT NULL DEFAULT ""',
+            'goodness' =&gt; Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 0',
+            'rank' =&gt; Schema::TYPE_INTEGER . ' NOT NULL',
+            'censorship' =&gt; Schema::TYPE_STRING . ' NOT NULL',
+            'occurred' =&gt; Schema::TYPE_DATE . ' NOT NULL',
+        ], $tableOptions);
+    }
+
+
+    public function down()
+    {
+        $this-&gt;dropTable('{{%sample}}');
+    }
+
+
+```
+
+然后执行之：
+
+```
+./yii migrate/up
+
+Yii Migration Tool (based on Yii v2.0.6)
+
+Total 1 new migration to be applied:
+    m150812_153139_create_sample_table
+
+Apply the above migration? (yes|no) [no]:yes
+*** applying m150812_153139_create_sample_table
+    &gt; create table {{%sample}} ... done (time: 0.026s)
+*** applied m150812_153139_create_sample_table (time: 0.037s)
+
+```
+使用Gii生成Model文件：
+
+![替代文字](https://wt-prj.oss.aliyuncs.com/0d06af79c49d4e08abb1ab3f7ab6e860/cab560b6-015e-40c5-8569-948b6e4dc341.png)
+
+再生成CRUD文件：
+
+![替代文字](https://wt-prj.oss.aliyuncs.com/0d06af79c49d4e08abb1ab3f7ab6e860/9f07269c-ceff-414f-a7db-524810042ad0.png)
+
+![替代文字](https://wt-prj.oss.aliyuncs.com/0d06af79c49d4e08abb1ab3f7ab6e860/4879faa0-b6c9-44ef-bbd2-4e1e7af752f6.png)
+
+然后打开`SampleController.php`，你就可以看到Yii2为我们生成的`rules()`了：
+
+```
+ public function rules()
+    {
+        return [
+            [['goodness', 'rank'], 'integer'],
+            [['rank', 'censorship', 'occurred'], 'required'],
+            [['occurred'], 'safe'],
+            [['thought', 'censorship'], 'string', 'max' =&gt; 255]
+        ];
+    }
+
+```
+
+Default Value验证
+
+我门修改一下rules()方法里面的occurred字段的验证，给它设置一个默认值：
+
+```
+return [
+            [['goodness', 'rank'], 'integer'],
+            [['rank', 'censorship'], 'required'],
+            // Gii generate this
+            //[['occurred'], 'safe'],
+            ['occurred', 'default', 'value' =&gt; date('Y-m-d')],
+            [['thought', 'censorship'], 'string', 'max' =&gt; 255]
+        ];
+
+```
+
+然后当我们创建一个新的Sample的时候，如果我们将`occurred`字段保留为空，那么这个字段就会默认取值为当天的日期。
+
+![替代文字](https://wt-prj.oss.aliyuncs.com/0d06af79c49d4e08abb1ab3f7ab6e860/a458b963-e783-4be0-a57f-f5d48481ebb1.png)
+
+Rank填入2，然后创建后是这样的：
+
+![替代文字](https://wt-prj.oss.aliyuncs.com/0d06af79c49d4e08abb1ab3f7ab6e860/6e81a753-81cf-45b0-aa61-595b405d69dc.png)
+
+至于另外的验证规则，你可以自己试着更改一下`rules()`方法里面的规则，然后进行相应的验证。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</textarea>
+<div class="start-lab">
+    <span>动手实践才能有更大收获，做实验，学IT！</span>
+    
+
+    
+
+     
+        
+    
+
+    
+    <button type="button" class="btn btn-success   lab-item-start-newlab" data-mobile-url="/courses/document/1310" data-url="/courses/start/1310" data-next="/courses/running">开始实验</button>
+</div>
+
+        </div>
+        <div class="col-md-3 layout-side">
+            
+    <div class="side-image side-image-pc">
+        <img src="./Yii2 Behaviors 和 Validations - 实验楼_files/1444890954904.png">
+    </div>
+    
+
+    
+        
+    
+
+
+    
+        
+<div class="sidebox mooc-teacher">
+    <div class="sidebox-header mooc-header">
+        <h4 class="sidebox-title">课程教师</h4>
+    </div>
+    <div class="sidebox-body mooc-content">
+        <a href="https://www.shiyanlou.com/user/7682" target="_blank">
+            <img src="./Yii2 Behaviors 和 Validations - 实验楼_files/gravatar57aeee35c98205091e18d1140e9f38cf.png">
+        </a>
+        <div class="mooc-info">
+            <div class="name"><strong>JellyBool</strong> </div>
+            
+            <div class="courses">共发布过<strong>8</strong>门课程</div>
+        </div>
+        <div class="mooc-extra-info">
+            <div class="word long-paragraph">
+                
+            </div>
+        </div>
+    </div>
+    <div class="sidebox-footer mooc-footer">
+        <a href="https://www.shiyanlou.com/teacher/7682" target="_blank">查看老师的所有课程 &gt;</a>
+    </div>
+</div>
+
+    
+    <div class="side-image">
+    <a href="https://www.shiyanlou.com/vip" target="_blank">
+        <img src="./Yii2 Behaviors 和 Validations - 实验楼_files/vip_ad2.png">
+    </a>
+</div>
+    
+    
+    
+    
+
+        </div>
+    </div>
+</div>
+
+
+	<div class="modal fade" id="invite-user" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">邀请好友，双方都可获赠实验豆！</h4>
+				</div>
+				<div class="modal-body">
+                    
+					<div class="form-label">
+                        分享专属链接给好友，或粘贴到QQ群/微博/论坛，好友注册后，您和好友将分别获赠3个实验豆！
+                    </div>
+					<input type="text" id="bstext" class="form-invite" value="https://www.shiyanlou.com/register?inviter=NTY0MzE5MjUzMzg2">              
+                    
+					<div id="msg-modal"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+    
+        
+        
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 clearfix footer-col">
+                <img src="./Yii2 Behaviors 和 Validations - 实验楼_files/logo_03.png">
+                <div class="footer-slogan">动手做实验，轻松学IT。</div>
+                <div class="col-xs-2">
+                    <div class="social-item footer-weixin-item">
+                        <i class="fa fa-weixin"></i>
+                        <div class="footer-weixin">
+                            <img src="./Yii2 Behaviors 和 Validations - 实验楼_files/footer-weixin.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="social-item footer-qq-item" data-original-title="" title="">
+                        <i class="fa fa-qq"></i>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="social-item footer-weibo-item">
+                        <a href="http://weibo.com/shiyanlou2013" target="_blank">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">公司</div>
+                <a href="https://www.shiyanlou.com/aboutus" target="_blank">关于我们</a><br>
+                <a href="https://www.shiyanlou.com/contact" target="_blank">联系我们</a><br>
+                <a href="http://www.simplecloud.cn/jobs.html" target="_blank">加入我们</a><br>
+                <a href="https://blog.shiyanlou.com/" target="_blank">技术博客</a><br>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">合作</div>
+                <a href="https://www.shiyanlou.com/contribute" target="_blank">我要投稿</a><br>
+                <a href="https://www.shiyanlou.com/labs" target="_blank">教师合作</a><br>
+                <a href="https://www.shiyanlou.com/edu/" target="_blank">高校合作</a><br>
+                <a href="https://www.shiyanlou.com/friends" target="_blank">友情链接</a>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">服务</div>
+                <a href="https://www.shiyanlou.com/bootcamp/" target="_blank">实战训练营</a><br>
+                <a href="https://www.shiyanlou.com/vip" target="_blank">会员服务</a><br>
+                <a href="https://www.shiyanlou.com/courses/reports" target="_blank">实验报告</a><br>
+                <a href="https://www.shiyanlou.com/questions/?tag=%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98" target="_blank">常见问题</a><br>
+                <a href="https://www.shiyanlou.com/privacy" target="_blank">隐私条款</a>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">学习路径</div>
+                <a href="https://www.shiyanlou.com/paths/python" target="_blank">Python学习路径</a><br>
+                <a href="https://www.shiyanlou.com/paths/linuxdev" target="_blank">Linux学习路径</a><br>
+                <a href="https://www.shiyanlou.com/paths/bigdata" target="_blank">大数据学习路径</a><br>
+                <a href="https://www.shiyanlou.com/paths/java" target="_blank">Java学习路径</a><br>
+                <a href="https://www.shiyanlou.com/paths/php" target="_blank">PHP学习路径</a><br>
+                <a href="https://www.shiyanlou.com/paths/" ,="" target="_blank">全部</a>
+            </div>
+        </div>
+    </div>
+    <div class="text-center copyright">
+        <span>Copyright @2013-2016 实验楼在线教育</span>
+        <span class="ver-line"> | </span>
+        <a href="http://www.miibeian.gov.cn/" target="_blank">蜀ICP备13019762号</a>
+        <script charset="utf-8" src="./Yii2 Behaviors 和 Validations - 实验楼_files/v.js"></script><script src="./Yii2 Behaviors 和 Validations - 实验楼_files/hm.js"></script><script type="text/javascript">
+            var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+            document.write(unescape("%3Cspan id='cnzz_stat_icon_5902315'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D5902315' type='text/javascript'%3E%3C/script%3E"));
+        </script><span id="cnzz_stat_icon_5902315"><a href="http://www.cnzz.com/stat/website.php?web_id=5902315" target="_blank" title="站长统计">站长统计</a></span><script src="./Yii2 Behaviors 和 Validations - 实验楼_files/stat.php" type="text/javascript"></script><script src="./Yii2 Behaviors 和 Validations - 实验楼_files/core.php" charset="utf-8" type="text/javascript"></script>
+        <script>
+            var _hmt = _hmt || [];
+            (function() {
+             var hm = document.createElement("script");
+             hm.src = "//hm.baidu.com/hm.js?6eb47a3aeda6ea31fa53985fdfdc78e8";
+             var s = document.getElementsByTagName("script")[0];
+             s.parentNode.insertBefore(hm, s);
+             })();
+        </script>
+    </div>
+</div>
+
+        
+    
+	
+
+	<div class="modal fade" id="flash-message" tabindex="-1" role="dialog">
+		<div class="modal-dialog" rolw="document">
+		</div>
+	</div>
+	<div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">注意</h4>
+				</div>
+				<div class="modal-body">
+				</div>
+				<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary confirm" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    
+<div class="modal fade" id="start-newlab">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>开始新实验</h3>
+			</div>
+			<div class="modal-body">
+                <p>一个实验正在进行，是否停止它，开始新实验？</p>
+			</div>
+			<div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                <a class="btn btn-primary start-newlab-confirm">确定</a>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="start-evaluation-course">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>开始评估课实验</h3>
+			</div>
+			<div class="modal-body">
+                <div>
+                    <p>为了让评估结果更加准确，请注意以下操作：</p>
+                    <ul>
+                        <li>完成实验后点击「停止实验」按钮</li>
+                        <li>将代码提交到代码库</li>
+                        <li>尽可能详尽的撰写实验报告</li>
+                        <li>尽可能在实验操作的关键步骤截图</li>
+                        <li>尽可能减少无用操作</li>
+                        <li>尽可能高效的利用内存/CPU资源</li>
+                    </ul>
+                    <p>评估课还在不断完善中，我们真挚希望你能通过我们提供的这个平台，找到更好的发展机会。</p>
+                </div>
+                <br>
+                <div class="start-newlab"></div>
+			</div>
+			<div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                <a class="btn btn-primary start-confirm">确定</a>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="vip-startlab-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>开始实验</h3>
+			</div>
+			<div class="modal-body">
+                <div class="start-newlab"></div>
+                <br>
+                <div class="text-center vip-vm">
+                    <a class="btn btn-default btn-lg newvm">创建新环境</a>
+					
+                </div>
+                <br>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+
+	
+		
+			
+		
+	
+
+    
+    <div class="modal fade" id="lottery-modal">
+        <div class="modal-dialog" style="text-align:center;">
+            <a style="display:block; background:#fff;" href="https://www.shiyanlou.com/lottery/Z0BxroDOR4Cmwn2iaha_qQ" target="_blank">
+                <img src="./Yii2 Behaviors 和 Validations - 实验楼_files/lottery-title.png">
+            </a>
+        </div>
+    </div>
+    
+
+    <div id="base-data" data-flash="false" data-csrf-token="/questions/form" data-is-login="true" data-jwt-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzaGl5YW5sb3U6d2ViOmFwcCIsInVuYW1lIjoiTE9VMzAxODk5Mzg0NiIsInVpZCI6IjI0MDcxMSIsImV4cCI6MTQ3MTQyMTYyOSwiaWF0IjoxNDcxMzM1MjI5fQ.BAaS83_-8RmsA3FnR_r-iMMvy7xmwX6YcDsfvZUI7G0" data-socket-url="wss://comet.shiyanlou.com" data-msg-user="" data-msg-system=""></div>
+
+    <script>
+    var pathLevel = window.location.pathname.split('/').length - 1;
+    var pathPrefix = new Array(pathLevel).join('../');
+    </script>
+
+    <script src="./Yii2 Behaviors 和 Validations - 实验楼_files/lib.js"></script>
+    <script src="./Yii2 Behaviors 和 Validations - 实验楼_files/jquery.min.js"></script>
+    <script src="./Yii2 Behaviors 和 Validations - 实验楼_files/ace.js"></script>
+    <script src="./Yii2 Behaviors 和 Validations - 实验楼_files/aliyun-oss-sdk-4.3.0.min.js"></script>
+    <script src="./Yii2 Behaviors 和 Validations - 实验楼_files/highlight.min.js"></script>
+    <script src="./Yii2 Behaviors 和 Validations - 实验楼_files/jspdf.min.js"></script>
+    <script src="./Yii2 Behaviors 和 Validations - 实验楼_files/plupload.full.min.js"></script>
+    <script src="./Yii2 Behaviors 和 Validations - 实验楼_files/ZeroClipboard.min.js"></script>
+
+    
+<div id="jinja-data" data-start-newlab-url="/courses/clear"></div>
+<script src="./Yii2 Behaviors 和 Validations - 实验楼_files/labDoc.js"></script><div class="loading-modal" style="display: none; position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; z-index: 1600; background: rgba(0, 0, 0, 0.498039);"><i class="fa fa-spinner fa-pulse" style="margin-top: 373.6px; color: rgb(255, 255, 255); font-size: 35px;"></i></div>
+
+    <script>
+    var bdata = $('#base-data').data();
+    var jdata = $('#jinja-data').data();
+
+    var socket = null;
+    if (bdata.isLogin) {
+        socket = window.io(bdata.socketUrl, {'query': 'token='+bdata.jwtToken});
+        socket.on('disconnect', function() {
+            socket.disconnect();
+        });
+
+        socket.on('event:user:logout', function() {
+          socket.emit('disconnection', "");
+          socket.disconnect();
+        });
+
+        socket.on('event:msg:new', function(data) {
+            $('.header-msg-count').show();
+            $('.header-msg-mark').show();
+            $('.header-avatar').tooltip('show');
+        });
+
+        socket.on('event:msg:all_read', function(data) {
+            $('.header-msg-count').hide();
+            $('.header-msg-mark').hide();
+        });
+
+        socket.on('event:lab:stoped', function() {
+            window.location.href = jdata.courseDetails;
+        });
+
+        if (/labs/.test(window.location.href)) {
+            socket.on('event:vm:retry_create', function() {
+                loading.show($('#display'));
+                loading.showMsg(true);
+                clearInterval(autoReconnect);
+                connect(localStorage.currentVmId)
+                loading.hide();
+            });
+        }
+    }
+    </script>
+
+
+</body></html>

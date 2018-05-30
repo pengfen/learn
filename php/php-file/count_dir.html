@@ -1,0 +1,67 @@
+<?php
+header('Content-type:text/html;charset=utf-8');
+//统计目录大小
+//filesize() 返回文件的大小
+
+echo totalSize(dirSize('C:\Program Files'), 3).' GB';
+
+/**
+ * 声明函数 统计目录的大小
+ * @param string  $path  目录路径   /paht/base 
+ * @return 返回目录的大小
+*/
+function dirSize($dirPath)
+{
+	//处理 dirPath 目录
+	$dirPath = rtrim($dirPath, '/').'/';
+	$totalSize = 0;      //空 变量  记录目录小
+	//打开目录
+	$dir_handler = opendir($dirPath);
+	//遍历目录
+	while ($basename = readdir($dir_handler)){
+		if ($basename == '.' || $basename == '..'){
+			continue;
+		}
+		$filename = $dirPath.$basename;
+		
+		//如果是文件 计算文件大小
+		if (is_file($filename)){
+			$totalSize += filesize($filename);
+		}
+		//如果是目录
+		if (is_dir($filename)){
+			$totalSize += dirSize($filename);
+		}
+	
+	}
+	closedir($dir_handler);
+	//返回计算的结果
+	return $totalSize;
+}
+
+
+/**
+	递归 求大小 执行原理
+	content 
+		文件
+		目录
+			再次调用
+
+*/
+
+/**
+ * 定义函数  把字节 转换为 KB  MB 或 GB
+ * @Param  int   $size   以字节为单位的大小
+ * @Param  int   $type  转换为以什么为单位的  1（默认 KB）   2(MB)   3(GB)
+ * @trurn 转换后的数值
+*/
+function totalSize($size, $type = 1)
+{
+	$totalSize = 0;
+	switch($type){
+		case 2: $totalSize = $size/1024/1024;  break;   //转换为MB 
+		case 3: $totalSize = $size/1024/1024/1024;  break;   //转换为GB 
+		default: $totalSize = $size/1024;  break;   //转换为KB 
+	}
+	return $totalSize;
+}

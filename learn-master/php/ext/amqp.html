@@ -1,0 +1,360 @@
+
+安装erlang rabbitmq的依赖
+[root@iZ94f2imuwkZ ~]# mkdir rabbit
+[root@iZ94f2imuwkZ ~]# cd rabbit
+[root@iZ94f2imuwkZ rabbit]# wget http://www.erlang.org/download/otp_src_17.4.tar.gz  
+[root@iZ94f2imuwkZ rabbit]# ls
+otp_src_17.4.tar.gz
+[root@iZ94f2imuwkZ rabbit]# tar -zxvf otp_src_17.4.tar.gz
+[root@iZ94f2imuwkZ rabbit]# ls
+otp_src_17.4  otp_src_17.4.tar.gz
+[root@iZ94f2imuwkZ rabbit]# cd otp_src_17.4
+[root@iZ94f2imuwkZ otp_src_17.4]# ./configure --prefix=/usr/local/erlang
+[root@iZ94f2imuwkZ otp_src_17.4]# make && make install
+[root@iZ94f2imuwkZ otp_src_17.4]# cd /usr/local/erlang/
+[root@iZ94f2imuwkZ erlang]# ls
+bin  lib
+[root@iZ94f2imuwkZ erlang]# export PATH=$PATH:/usr/local/erlang/bin/
+[root@iZ94f2imuwkZ erlang]# vim ~/.bash_profile
+[root@iZ94f2imuwkZ erlang]# source ~/.bash_profile
+ 
+
+[root@iZ94f2imuwkZ rabbit]# mkdir simplejson
+[root@iZ94f2imuwkZ rabbit]# cd simplejson/
+[root@iZ94f2imuwkZ simplejson]# wget https://pypi.python.org/packages/source/s/simplejson/simplejson-3.6.5.tar.gz
+
+[root@iZ94f2imuwkZ simplejson]# tar -zxvf simplejson-3.6.5.tar.gz
+[root@iZ94f2imuwkZ simplejson]# cd simplejson-3.6.5
+[root@iZ94f2imuwkZ simplejson-3.6.5]# python setup.py install
+[root@iZ94f2imuwkZ rabbit]# mkdir rabbitmq
+[root@iZ94f2imuwkZ rabbit]# cd rabbitmq/
+[root@iZ94f2imuwkZ rabbitmq]# wget http://www.rabbitmq.com/releases/rabbitmq-server/v3.4.2/rabbitmq-server-generic-unix-3.4.2.tar.gz 
+
+[root@iZ94f2imuwkZ rabbitmq]# tar -zxvf rabbitmq-server-generic-unix-3.4.2.tar.gz
+
+[root@iZ94f2imuwkZ rabbitmq]# cd rabbitmq_server-3.4.2/
+[root@iZ94f2imuwkZ rabbitmq_server-3.4.2]# cd sbin/
+[root@iZ94f2imuwkZ sbin]# ls
+rabbitmqctl  rabbitmq-defaults  rabbitmq-env  rabbitmq-plugins  rabbitmq-server
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-server #启动rabbitmq的服务
+
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-server 
+./rabbitmq-server: line 50: erl: command not found
+[root@iZ94f2imuwkZ sbin]# export PATH=$PATH:/usr/local/erlang/bin/
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-server 
+
+              RabbitMQ 3.4.2. Copyright (C) 2007-2014 GoPivotal, Inc.
+  ##  ##      Licensed under the MPL.  See http://www.rabbitmq.com/
+  ##  ##
+  ##########  Logs: ./../var/log/rabbitmq/rabbit@iZ94f2imuwkZ.log
+  ######  ##        ./../var/log/rabbitmq/rabbit@iZ94f2imuwkZ-sasl.log
+  ##########
+              Starting broker... completed with 0 plugins.
+
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-plugins enable rabbitmq_management # 进入管理模式web 后可以通过http://ip.24.36.66:15672/ 访问
+./rabbitmq-plugins: line 22: exec: erl: not found
+[root@iZ94f2imuwkZ sbin]# 
+[root@iZ94f2imuwkZ sbin]# export PATH=$PATH:/usr/local/erlang/bin/
+[root@iZ94f2imuwkZ sbin]# 
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-plugins enable rabbitmq_management
+The following plugins have been enabled:
+  mochiweb
+  webmachine
+  rabbitmq_web_dispatch
+  amqp_client
+  rabbitmq_management_agent
+  rabbitmq_management
+
+Applying plugin configuration to rabbit@iZ94f2imuwkZ... started 6 plugins.
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl add_user peng0711 peng0711 # 设定用户名
+Creating user "peng0711" ...
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl set_user_tags peng0711 administrator # 设定用户类型
+Setting tags for user "peng0711" to [administrator] ...
+
+[root@iZ94f2imuwkZ rabbit]# mkdir ext
+[root@iZ94f2imuwkZ rabbit]# cd ext
+[root@iZ94f2imuwkZ ext]# mkdir mqc
+[root@iZ94f2imuwkZ ext]# cd mqc
+
+--------------------------------------------------------------------------------
+
+https://github.com/alanxz/rabbitmq-c/ 下载 rabbitmq-c-master.zip 包
+[root@iZ94f2imuwkZ mqc]# unzip rabbitmq-c-master.zip 
+[root@iZ94f2imuwkZ mqc]# cd rabbitmq-c-master
+[root@iZ94f2imuwkZ rabbitmq-c-master]# autoreconf -i && ./configure && make && sudo make install
+
+
+[root@iZ94f2imuwkZ ext]# mkdir amqp
+[root@iZ94f2imuwkZ ext]# cd amqp
+http://pecl.php.net/package/amqp # 下载ampq扩展包
+[root@iZ94f2imuwkZ amqp]# tar -zxvf amqp-1.6.0.tgz 
+[root@iZ94f2imuwkZ amqp]# cd amqp-1.6.0
+[root@iZ94f2imuwkZ amqp-1.6.0]# /usr/local/php/bin/phpize
+Configuring for:
+PHP Api Version:         20041225
+Zend Module Api No:      20060613
+Zend Extension Api No:   220060519
+[root@iZ94f2imuwkZ amqp-1.6.0]# ./configure --with-php-config=/usr/local/php/bin/php-config --with-amqp
+[root@iZ94f2imuwkZ amqp-1.6.0]# make && make install
+[root@iZ94f2imuwkZ amqp-1.6.0]# vim /usr/local/php/etc/php.ini
+extension=amqp.so
+
+[root@iZ94f2imuwkZ amqp-1.6.0]# cd /root/lnmp
+[root@iZ94f2imuwkZ lnmp]# ./lnmp restart
+
+
+
+
+
+==================================================================
+
+
+./examples/amqp_listen localhost 5672 amq.direct test
+./examples/amqp_sendstring localhost 5672 amq.direct test "hello world"
+./examples/amqp_sendstring localhost 5672 amq.direct test "hello world"
+./examples/amqp_sendstring 127.0.0.1 5672 amq.direct test "hello world"
+
+紧接上步安装php-amqp的扩张 
+wget http://pecl.php.net/get/amqp-1.3.0.tgz
+tar -zxvf amqp-1.3.0.tgz 
+cd amqp-1.3.0
+/data/klj/php/bin/phpize 
+./configure --with-php-config=/data/klj/php/bin/php-config --with-amqp
+make 
+make install
+
+
+错误：Please reinstall the librabbit-mq distribution http://jingyan.baidu.com/article/e4511cf3362b872b845eafb9.html 解决librabbit-mq安装问题
+#./configure --with-php-config=/data/klj/php/bin/php-config --with-amqp --with-librabbitmq-dir=/data/source/rabbitmq-c-0.5.2
+
+第四步 使用官网提供的php-amqplib 
+下载php-amqplib https://github.com/videlalvaro/php-amqplib
+通过git没有下载完成，下载压缩包解压
+安装文档 修改couposer.json 
+随后执行 composer.phar install 替换为 /usr/local/bin/composer install #没有composer需要先安装composer
+
+
+安装composer php-amqplib的依赖环境 
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+
+php-amqplib 环境搭建 
+整个环境已经搭建完成，可以测试开发了。
+
+
+# 命令查看 mq 状态
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl list_queues
+Listing queues ...
+CRM 1
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl list_queues
+Listing queues ...
+CRM 2
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl list_exchanges
+Listing exchanges ...
+  direct
+amq.direct  direct
+amq.fanout  fanout
+amq.headers headers
+amq.match headers
+amq.rabbitmq.log  topic
+amq.rabbitmq.trace  topic
+amq.topic topic
+crm_exchange  direct
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl list_bindings
+Listing bindings ...
+  exchange  CRM queue CRM []
+crm_exchange  exchange  CRM queue crm_routingkey  []
+[root@iZ94f2imuwkZ sbin]# 
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl list_connections
+Listing connections ...
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl list_channels
+Listing channels ...
+
+
+------------------------------------------------------
+[root@iZ94f2imuwkZ sbin]# ./rabbitmqctl status # 查看状态
+Status of node rabbit@iZ94f2imuwkZ ...
+Error: unable to connect to node rabbit@iZ94f2imuwkZ: nodedown
+
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-server stop # 停止服务
+
+              RabbitMQ 3.4.2. Copyright (C) 2007-2014 GoPivotal, Inc.
+  ##  ##      Licensed under the MPL.  See http://www.rabbitmq.com/
+  ##  ##
+  ##########  Logs: ./../var/log/rabbitmq/rabbit@iZ94f2imuwkZ.log
+  ######  ##        ./../var/log/rabbitmq/rabbit@iZ94f2imuwkZ-sasl.log
+
+[root@iZ94f2imuwkZ sbin]# ./rabbitmq-server start # 开启服务
+
+
+---------------------------------------------------------------
+测试代码
+<?php
+
+$amqp = array(
+        'host'=>'127.0.0.1',
+        'port'=> '5672',
+        'login'=>'guest',
+        'password'=> 'guest',
+        'vhost' =>'/'
+    );
+
+try {
+    // 连接RabbitMQ
+    $amqconn = new AMQPConnection($amqp);
+    var_dump($amqconn);
+
+    $amqconn->connect();
+    // 创建exchange名称和类型
+    $channel = new AMQPChannel($amqconn);
+var_dump($channel);
+
+    $ex = new AMQPExchange($channel);
+    $ex->setName('crm_exchange');
+    $ex->setType(AMQP_EX_TYPE_DIRECT);
+    $ex->setFlags(AMQP_DURABLE);
+    $ex->declareExchange();
+
+    // 创建queue名称，使用exchange，绑定routingkey
+    $q = new AMQPQueue($channel);
+    $q->setName('CRM');
+    $q->setFlags(AMQP_DURABLE);
+    $q->declareQueue();
+    $q->bind('crm_exchange', 'crm_routingkey');
+} catch(Exception $e) {
+    // 将日志记录至服务器指定目录
+    $linuxLog = array(
+        'error'=>$e
+    );
+    echo json_encode($linuxLog).PHP_EOL;
+    // file_put_contents($log, json_encode($linuxLog).PHP_EOL,FILE_APPEND);
+}
+
+for( $i = 0; $i < 10; $i ++) {
+$data[] = array(
+    'name' => 'peng'.$i
+);
+}
+$message = json_encode($data);
+echo $message;
+$ex->publish($message, 'crm_routingkey',AMQP_NOPARAM, array('delivery_mode' => 2));
+
+
+
+----------------------------------------------------------
+MQ集成
+A、B两台机器安装rabbitserver，同步A.B机器的arb/rabbitmq/.erlang.cookie 
+启动 /etc/init.d/rabbitmq-server start
+
+vi /etc/hosts
+A主机名  IP
+B主机名  IP
+
+在B机器执行如下命令，即可将B机加入到A机的集群（以A为中心）
+rabbitmqctl stop_app
+rabbitmqctl reset
+rabbitmqctl join_cluster rabbit@A的hostname
+/etc/init.d/rabbitmq-server restart
+安装脚本
+
+-----------------------------------------------------------
+准备二台虚拟机
+peng1(192.168.233.128) peng2(192.168.233.129)
+1.peng1 peng2二台服务器上安装MQ
+no acceptable C compiler found in $PATH (yum -y install gcc gcc++)
+No curses library functions found ( yum install ncurses-devel)
+
+修改二台 hosts
+vi /etc/hosts
+192.168.233.128 peng1
+192.168.233.129 peng2
+
+以peng1为中心 peng2集群到peng1上
+
+
+yum 安装erlang
+rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+yum -y install erlang
+yum -y install rabbitmq-server
+
+
+自动执行安装脚本
+#!/bin/bash
+
+yum_dir=/etc/yum.repos.d
+rabbitmq_rpm_dir=/usr/local/src
+rabbit_conf="[{rabbit,[{loopback_users,[]},{heartbeat,5},{disk_free_limit,5400000000},{log_levels,[{connection, warning}]}]}]."
+
+
+##配置本地yum源
+Set_Up_Yum () {
+
+    if [ ! -d $yum_dir/back ] ;then
+        mkdir $yum_dir/back
+    fi
+
+    if ( ls $yum_dir/CentOS-* ) > /dev/null 2>&1 ;then  mv  $yum_dir/Cent* $yum_dir/back ;fi
+
+echo "[baes] 
+name=base 
+baseurl=http://192.168.8.161/yum/Centos-6/Base/x86_64/ 
+enable=1 
+gpgcheck=0" > $yum_dir/base.repo
+
+
+    yum install wget -y 
+
+    if [ ! -f  $yum_dir/epel.repo ]> /dev/null 2>&1;then 
+        wget -P $yum_dir/ http://192.168.8.161/yum/repodata/x64/epel.repo 
+    fi
+
+
+    if [ ! -f $yum_dir/extra.repo ] > /dev/null 2>&1;then
+        wget -P $yum_dir/ http://192.168.8.161/yum/repodata/x64/extra.repo 
+    fi
+
+
+}
+
+##安装rabbitmq
+Install_Rabbitmq (){
+
+   echo  127.0.0.1 `hostname` >>/etc/hosts  ##添加hosts
+
+   Set_Up_Yum  
+
+   yum  install  erlang  -y 
+  
+   sleep 5
+
+   if [ ! -f $rabbitmq_rpm_dir/rabbitmq-server-3.5.0-1.noarch.rpm ] ;then 
+       wget -P $rabbitmq_rpm_dir  http://192.168.8.161/yum/Centos-6/extra/rabbitmq-server-3.5.0-1.noarch.rpm  
+   fi
+
+   cd $rabbitmq_rpm_dir
+  
+   yum install  rabbitmq-server-3.5.0-1.noarch.rpm -y 
+   
+   sleep 5
+
+   echo  "rabbit 启动rabbitmq插件" 
+
+   rabbitmq-plugins enable rabbitmq_management
+ 
+   sleep 5
+
+
+   echo $rabbit_conf > /etc/rabbitmq/rabbitmq.config
+
+   /etc/init.d/rabbitmq-server start 
+ 
+   sleep 10
+
+   rabbitmqctl  change_password guest yqqlmgs1cl 
+
+   rabbitmqctl  add_user admin !QAZ2wsx 
+
+   rabbitmqctl  set_user_tags  User administrator 
+}
+
+Install_Rabbitmq

@@ -1,0 +1,202 @@
+content 内容 --- add content 添加内容
+lancome product 兰蒄商品 lancome shoppe 兰蔻
+
+分享
+只修改头图
+<div style="display: none;"><img src=""/></div>
+
+share.js --- wechat/jsconfig --- wechat/wechat/wechat-jssdk
+注意加载 share_url
+
+static 静态页面
+trial/index.html 我要试用
+redemption/index.html 兑礼指南
+mxcp/skincare.html 明星护肤单品
+mxcp/cosmetics.html 明星彩妆单品
+
+member/absolue/bind.html 绑定教程
+member/absolue/rights.html 金卡入会规则
+member/absolue/rules.html 积分细则
+member/silver/rights.html 银卡入会规则
+member/yours/bind.html 绑定微信会员
+member/yours/rights.html 普卡入会规则
+member/yours/rules.html 普卡积分细则
+member/yours/welcome.html 普卡入会指南
+
+微信菜单
+遇见兰蔻 会员福利 美丽专享
+遇见兰蔻 --- 热点活动 护肤有道 美妆课堂 香水奇遇 品牌故事
+会员福利 --- 我的会员节 我的会员卡 微信绑定 会员权益 积分兑礼
+美丽专享 --- 美丽有约 我要试用 试用报告 专柜导航 微客服
+
+微信菜单
+wechat/wechat/wechat_menu
+生成菜单 _wechat_menu_generate() { // 通过 taxonomy 生成}
+
+structure --- taxonomy --- wechat_menu
+
+base_function  基础函数库， 公用函数量
+lancome_avato 用户修改信息
+lancome_data 处理数据 module_load_include('inc', 'phpexcel');
+module_load_include('inc', 'lancome_sms', 'sms') 加载 lancome_sms 下 sms.inc
+lancome_kefu 会员信息 模块 lancome_kefu.module --- kefu-account-edit.tpl.php 修改会员信息 kefu-account-edit-not-member.tpl.php 修改非会员信息 kefu-account-merge.tpl.php 合并多账号
+if(count($data) == 1) {
+    $data = array_shift($data); // 取出数组中的第一下标对应的值
+    return theme('kefu-account-edit', array('data' => $data));
+    } else {
+    return theme('kefu-account-merge', array('data' => $data));
+}
+drupal_goto 常用于用户输入信息有误时 重定向到指定页
+global $user;
+print_r($user); // 获取用户相关信息 (主表信息)
+$user = user_load($user->uid);
+print_r($user); // 获取用户相关信息 (主从表信息)
+[field_user_wechat_openid] // 是否绑定微信
+[field_user_wechat_bind_cellphone] // 是否绑定会员
+[field_user_wechat_language]
+[field_user_wechat_subscribe]
+[field_user_wechat_gender]
+[field_user_wechat_region]
+[field_user_wechat_group]
+[field_user_wechat_headimgurl]
+[field_user_register_from]
+[field_user_wechat_nickname]
+[field_user_wechat_subscribe_time]
+[field_user_wechat_unsubscribe_t]
+[field_user_group]
+[field_user_member_level]
+[field_user_siebel_member_number]
+[field_user_siebel_mars_person_id]
+
+判断用户是否绑定会员
+$cellphone = $user->field_user_wechat_bind_cellphone[LANGUAGE_NONE][0]['value'];
+$data = _lancome_haihui_login(array('cellPhone' => $cellphone));
+if($data->success) {
+    $theme = theme('ajax-member-redemption-check-points', array('data' => $data->data));
+    drupal_json_output(array('status' => '1', 'data' => $theme));
+} else {
+    $error = _haihui_error_code();
+    drupal_json_output(array('status' => '100', 'msg' => $error[$data->errorCode]));
+}
+
+ajax 的使用
+member-redemption.tpl.php 中使用 redemption.js
+var url = "/ajax/wechat/member/redemption/" + router; // 请求路径 --- lancome-redemption.module
+var xhr = $.ajax({
+    "url" : url,
+    "cache" : false,
+    "dataType" : 'json',
+    "type" : "GET",
+    "data" : {}
+});
+xhr.done(function(data){
+    if(data.status == '1') {
+        $(".redemption .main").html(data.data);
+        $(".loading").hide();
+    }
+    if(data.status == '100') {
+        $(".loading").hide();
+        alert(data.msg);
+        return;
+    }
+    addClickEvent();
+});
+
+lancome-redemption.module
+$items['ajax/wechat/member/redemption/%'] = array(
+    'page callback' => '_ajax_wechat_member_redemption',
+    'page arguments' => array(4),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+);
+
+function lancome_redemption_theme() { // 设置模板加载路径
+    return array(
+        'ajax-member-redemption-check-points' => array(
+        'path' => drupal_get_path('theme', 'lancome_wechat') . '/templates',
+        'template' => 'ajax-member-redemption-check-points',
+        ),
+    );
+}
+
+function _ajax_wechat_member_redemption($router) {
+    global $user;
+    if(!$user->uid)
+    _data_print('999');
+    $user = user_load($user->uid);
+
+    if(!isset($user->field_user_wechat_bind_cellphone[LANGUAGE_NONE][0]['value']))
+    _data_print('100', '您还未绑定');
+    $cellphone = $user->field_user_wechat_bind_cellphone[LANGUAGE_NONE][0]['value'];
+    $data = _lancome_haihui_login(array('cellPhone' => $cellphone));
+
+    if($data->success) {
+        $theme = theme('ajax-member-redemption-check-points', array('data' => $data->data));
+        drupal_json_output(array('status' => '1', 'data' => $theme));
+    } else {
+        $error = _haihui_error_code();
+        drupal_json_output(array('status' => '100', 'msg' => $error[$data->errorCode]));
+    }
+}
+
+CURLOPT_SSL_VERIFYPEER 禁用后cURL将终止从服务端进行验证。使用CURLOPT_CAINFO选项设置证书使用CURLOPT_CAPATH选项设置证书目录
+如果CURLOPT_SSL_VERIFYPEER(默认值为2)被启用，CURLOPT_SSL_VERIFYHOST需要被设置成TRUE否则设置为 FALSE
+function _retrieve_member_level($phone) {
+    $input = array(
+        'consultantCode' => 'wx',
+        'tel' => $phone,
+    );
+    $url = 'https://rosebeautybj.chinacloudapp.cn:8443/lancome_sec/appws/searchUser';
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($input));
+    $ret = curl_exec($ch);
+    curl_close($ch);
+    return json_decode($ret);
+}
+
+对加载的数据进行处理
+var member = '<?php if(isset($member['LastName']) && $member['LastName']) echo 1; else echo "";?>';
+console.log(member);
+if (!member) {
+alert('很抱歉，数据加载失败，请稍后再试');
+window.location.href="/wechat/bind";
+}
+
+module 中处理逻辑 不在页面处理
+if ($member->data->memberLvl == '金卡会员') {
+    $member->data->memberImg = '2.jpg';
+    $member->data->memberClub = '兰蔻金纯私享荟';
+    $member->data->memberGrade = '金卡';
+} else if ($member->data->memberLvl == '银卡会员') {
+    $member->data->img = '1.jpg';
+    $member->data->memberClub = '兰蔻银卡俱乐部';
+    $member->data->memberGrade = '银卡';
+} else if ($member->data->memberLvl == '普通会员') {
+    $member->data->img = '3.jpg';
+    $member->data->memberClub = '兰蔻唯你俱乐部';
+    $member->data->memberGrade = '普通';
+}
+
+模板页可以使用变量代替
+print drupal_get_path('theme', 'lancome_wechat')."/img/member/member".$member->memberImg;
+if ($member->memberLvl  == '金卡会员') {
+//print drupal_get_path('theme', 'lancome_wechat')."/img/member/member2.jpg";
+} else if ($member->memberLvl == '普通') {
+//print drupal_get_path('theme', 'lancome_wechat')."/img/member/member3.jpg";
+} else {
+//print drupal_get_path('theme', 'lancome_wechat')."/img/member/member1.jpg";
+}?>
+
+kefu 客服
+save --- 后台
+名字和电话是二张表 --- ftp /var/script/avato --- 后台日志
+redemption 积分兑换
+reservation 美丽有约
+专柜导航 shoppe
+survey

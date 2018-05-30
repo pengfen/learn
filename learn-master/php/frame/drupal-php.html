@@ -1,0 +1,505 @@
+安装 Devel 模块
+
+configuration 配置 --- 开发 --- Devel Settings
+modules 模块 --- Devel --- Devel Settings
+
+安装 pHp filter 模块
+php filter php 过滤器 (内嵌PHP程序)
+
+This is a <strong>test</strong>
+print "welcome to drupal world";
+
+<?php
+print "welcome to drupal world";
+?>
+
+<?php
+print $user->name;
+?>
+
+<?php
+global $user;
+print "welcome to drupal world ".$user->name;
+?>
+
+<?php
+global $user;
+if (empty($user->uid)) $user->name = "匿名用户";
+print "welcome to drupal world ".$user->name;
+?>
+
+<?php
+global $user;
+if (empty($user->uid)) $user->name = "匿名用户";
+print "welcome to drupal world ".$user->name;
+
+var_dump($user);
+?>
+
+<?php
+global $user;
+if (empty($user->uid)) $user->name = "匿名用户";
+print "welcome to drupal world ".$user->name;
+
+var_dump_pre($user);
+
+function var_dump_pre($mixed = null) {
+	echo '<pre>';
+	var_dump($mixed);
+	echo '</pre>';
+	return null;
+}
+?>
+
+Devel 模块功能
+Empty Cache 清空缓存
+Run Cron 运行计划任务程序
+dvm 函数 (var_dump, print_r)
+db_queryd() 函数 (db_query())
+统计 Drupal 页面运行状态 (性能日志 Performance Logging)
+
+API 文档使用 api.drupal.org
+$nid 节点id
+node 节点表 (节点的标题 基础信息)
+node_type 内容类型表
+node_revision 节点版本表 (节点内容及对应版本信息)
+
+网址 = drupal 命令 = 选单(menu)  多数情况下午 网址代表的就是一个网页
+网址名称 使用在非网址可代表的单元 如区块 分类词表 view
+id 分类项目 (term id) $tid  内容节点 (node id) $nid  使用者账号 (user id) $uid
+
+
+hook 函数
+hook_menu() api.drupal.org 中搜索hook_menu()
+模块 Devel 模块机器名称 devel devel_menu()
+模块 MyTracer 模块机器名称 mytracer mytracer_menu()
+
+定义操作分离
+function mytracer_menu() {
+	$items = array();
+	$items['user/1/mytracer'] = array(
+	    'title' => 'my tracer',
+	    'descriptaion' => '浏览记录',
+	    'access callback' => true,
+	    'page callback' => 'mytracer_records',
+	    'page arguments' => array(1),
+	    'type' => MENU_NORMAL_ITEM,
+	);
+	return $items;
+}
+
+function mytracer_records($uid) {
+	$output = $uid;
+}
+
+日期时间型的使用
+timestamp 可转换时区
+drupal 核心末使用的 datetime time
+
+模块 my tracer
+追踪使用者资讯被浏览的记录
+版本零 空模块 并利用此空模块 练习相关 drupal 程序设计
+版本一 变量版本 被浏览的记录 使用 drupal 永久变量作记录
+版本二 资料库版本 记录所有 user 被浏览的记录 使用资料库作记录
+
+sites/all/modules/mytracer
+mytracer.info
+name = My Tracer #模组名
+description = My Tracer #追踪记录使用者资讯被浏览的资料
+core = 7.x #当前 drupal 版本
+package = 我的模组
+dependencies[] = views #此模块所依赖的模块
+files[] = mytracer.module #调用此模块之前加载的程序
+configure = admin/config/mytracer #配置目录
+
+mytracer.module
+function mystracer_menu(){
+	$items = array();
+	$items['admin/config/mytracer'] = array(
+		'title' => '追踪浏览记录',
+		'description' => '浏览记录',
+		'access callback' => true,
+		'page callback' => 'mytracer_admin',
+	);
+	return $items;
+} 
+
+function mystrcer_admin() {
+	return '这里是 My Tracer 的管理界面';
+}
+
+drupal 变量
+
+全局变量
+永久变量 (简称为 drupal 变量)
+
+$base_path 获取根目录
+$base_url 获取域名
+$user 当前用户名
+
+function mytracer_admin() { // 使用全局变量
+	global $base_path;
+	global $base_url;
+	global $user;
+
+	$output = '';
+
+	$output .= '<p>'.$base_path; // / 根目录
+	$output .= '</p>'.$base_url; // http://dev... 域名
+	dmp($user);
+	return $output;
+}
+
+variable_get($name, $default = NULL)
+variable_set($name, $value)
+variable_del($name);
+
+function mytracer_admin() { // 使用长久变量
+	$var1 = variable_get('mytracer_setting1', 10);
+	$output = '';
+	$output .= '<p>'.'永久变量 mytracer_setting1 的值为'.$var1;
+	variable_set('mytracer_setting1'.$var1 + 1);
+	return $output;
+}
+
+url ($path = NULL, array $options = array())
+
+function mytracer_admin() { // 使用 url
+	global $user;
+
+	$output = '';
+	$output .= '<p>'.'1.user 的网址是 '.url('user/'.'2'); // /?q=user/2
+	$output .= '<p>'.'2. 目前 user 的网址是 '.url('user/'.$user->uid); // /?q=user/1
+	$output .= '<p>'.'3. 目前 user 的网址是 '.url('user/'.$user->uid, array('absolute' => true)); // http://dev.drupall.com/?q=user/1
+	$output .= '<p>'.'4. 指向 user 1 的绝对网址 并且提供参数 '.url('user/1',
+	array('absolute' => true, 'query' => array('key1' => 'this-value', 'key2' => 10))); // http://dev.drupall.com/?q=user/1&key1=this-value&key2=10
+	$output .= '<p>'.'5. 指向 google 的外部链接 '.url('http://www.baidu.com'); // http://www.baidu.com
+	$output .= '<p>'.'6. mytracer 模块的 help 说明在 '.url('admin/help', array('fragment' => 'mytracer')); // /?q=admin/help#mytracer
+	$output .= '<p>'.'7. 最后比较难的确 url 作法所得到的结果是 '.url('user/'.$user->uid,
+	array('absolute' => true,
+	'fragment' => 'part1',
+	'query' => array('key1' => 'value1', 'key2' => 10))); // http://dev.drupall.com/?q=user/1&key1=value1&key2=10#part1
+	return $output;
+}
+
+function mytracer_admin() { // 使用 l() 链接函数
+	global $user;
+
+	$output = '';
+	$output .= '<p>'.'1.user 的网址是 '.l('user/'.'2'); // /?q=user/2
+	$output .= '<p>'.'2. 目前 user 的网址是 '.l('user/'.$user->uid); // /?q=user/1
+	$output .= '<p>'.'3. 目前 user 的网址是 '.l('user/'.$user->uid, array('absolute' => true)); // http://dev.drupall.com/?q=user/1
+	$output .= '<p>'.'4. 指向 user 1 的绝对网址 并且提供参数 '.l('user/1',
+	array('absolute' => true, 'query' => array('key1' => 'this-value', 'key2' => 10))); // http://dev.drupall.com/?q=user/1&key1=this-value&key2=10
+	$output .= '<p>'.'5. 指向 google 的外部链接 '.l('http://www.baidu.com'); // http://www.baidu.com
+	$output .= '<p>'.'6. mytracer 模块的 help 说明在 '.l('admin/help', array('fragment' => 'mytracer')); // /?q=admin/help#mytracer
+	$output .= '<p>'.'7. 最后比较难的确 url 作法所得到的结果是 '.l('user/'.$user->uid,
+	array('absolute' => true,
+	'fragment' => 'part1',
+	'query' => array('key1' => 'value1', 'key2' => 10))); // http://dev.drupall.com/?q=user/1&key1=value1&key2=10#part1
+	return $output;
+}
+
+t() 把文本翻译成和页面设置的语言或特定的语言
+	通过这个方法可以得到便于阅读并能够在页面上显示的文本
+function mytracer_admin(){// 使用 t 函数
+	$txt = '<p style="color:red;">A String</p>';
+	$output = '';
+
+	$output .= '<p>'.t('Title');
+	$output .= '<p>'.t('title');
+
+	$output .= '<p>'.t('use ! as a placeholder : !str', array('!str' => $txt));
+	$output .= '<p>'.t('use @ as a placeholder : @str', array('@str' => $txt));
+	$output .= '<p>'.t('use % as a placeholder : %str', array('%str' => $txt));
+
+	return $output;
+}
+
+arg 路径参数函数
+function mytracer_admin() { // 使用 arg() 函数 arg(0) --- admin  arg(1) --- config  arg(2) --- mytracer
+	$args = arg();
+	$output = '';
+	$output .= '<p>Current url\'s arguments -> '.implode(',', $args);
+	$output .= '<p> arg(0) = '.arg(0);
+	$output .= '<p> arg(1) in http://www.baidu.com/search = '.arg(1, 'http://www.baidu.com/search');
+	$output .= '<p> arg(1) in admin/config/mytracer = '.arg(1, 'admin/config/mytracer');
+	return $output;
+}
+
+function mytracer_admin() { //watchdog() 函数 提供了一个日志机制 收集所有必要的日志信息或事件
+	// 使用 watchdog() 函数
+	global $user;
+	dpm($user);
+
+	watchdog('mytracer', 'current user is @username, id = @id',
+	array('@username' => $user->name, '@id' => $user->uid));
+	watchdog('mytracer', 'current user is @username, id = @id',
+	array('@username' => $user->name, '@id' => $user->uid), WATCHDOG_NOTICE);
+	watchdog('mytracer', 'current user is @username, id = @id',
+	array('@username' => $user->name, '@id' => $user->uid), WATCHDOG_NOTICE,
+	l('mytracer 管理', 'admin/config/mytracer'));
+	return '';
+}
+日志访问地址 域名/admin/reports/dblog
+
+
+function mytracer_admin() { // 设置 drupal 消息 @username 替换变量
+	// 使用 drupal_set_message() 函数设置 drupal 消息
+	global $user;
+	$s = format_string('User: "@username" has entered this page',
+	array('@username' => $user->name));
+	drupal_set_message($s);
+	drupal_set_message($s, 'status', FALSE);
+
+	return '';
+}
+
+hook_init 初始化
+// 实现 hook_init()
+//function mytracer_init() {
+//    //$p = arg();
+//    $p = $_GET['q'];
+//    if ($p == 'admin/config/mytracer') { // drupal_add_css 动态加载 css 文件 drupal_get_path 返回一个系统项(模块 主题...)的路径
+//        drupal_add_css(drupal_get_path('module', 'mytracer').'/mytracer.css');
+//    }
+//    return ;
+//}
+
+hook_help 帮助文档
+//function mytracer_help($path, $arg) {
+//    switch ($path) {
+//        case 'admin/setting/mytracer':
+//            return t('The administration menu module provides a dropdown menu arrangged for on');
+//
+//        case 'admin/help#mytracer':
+//            $output = '';
+//            $output .= '<p>'.t('自定义模块');
+//            $output .= '<p>'.t('管理菜单<a href="@settings">设置页</a>');
+//            return $output;
+//    }
+//}
+
+'access callback' => 'mytracer_permission_admin', // true 是所有人都可以使用 mytracer 模块 
+		//'access arguments' => array('administer module filter'),
+// 建立自己的权限检查函数
+function mytracer_permission_admin() {
+// 请注意 函数中 只可以检查是否有权限 勿变更任何的值 因为这个权限检查函数以及其它的权限检查函数可能随时被调用
+// 条件 有 administer blocks 以及 access administration menu 的人有权限
+// 在权限管理界面的限时定义 都可以利用 user_access() 来检查这个 user 有没有权限 请注意 权限 id 字串
+if (user_access('administer blocks') && user_access('access administration menu')) {
+return true;
+}
+return false;
+}
+
+configure --- development --- devel settings
+Display $page array
+http://dev.drupal.com/admin/people/permissions
+page --- content --- system_main --- permission (可以查看权限机器名称 然后给 user_access)
+
+// 实现 hook_permission
+function mytracer_permission() { // http://dev.drupal.com/admin/people/permissions 查看权限
+// 定义新的权限名称
+$items['administer my tracer'] = array(
+'title' => t('Administer My Tracer'),
+);
+
+return $items;
+}
+
+	权限
+	function mytracer_menu() {
+	$items['admin/config/mytracer'] = array(
+	'title' => 'My Tracer',
+	'description' => 'My Tracer Settings',
+	// 不用 access callback 时 默认使用 user_access() 函数 直接使用 access arguments 给定的值 进行权限检查
+	'access arguments' => array('administer my tracer'),
+	'page callback' => 'mytracer_admin',
+	);
+	return $items;
+	}
+
+	权限设置 实现 hook_permission 钩子
+	function mytracer_permission() {
+	$items['administer my tracer'] = array(
+	'title' => t('Administer My Tracer'),
+	);
+	return $items;
+	}
+
+	user/1 --- admin
+	清除所有的缓存
+	Flush all caches --- Menu
+
+	增加第二个菜单
+	function mytracer_menu() {
+	$items['admin/config/mytracer']
+	$items['user/1/mytracer'] = array(
+	    'title' => 'My Tracer',
+	    'description' => 'User 1 的管理界面',
+	    'access arguments' => array('view mytracer records'),
+	    'page callback' => 'mytracer_records',
+	);
+	return $items;
+	}
+
+	// 权限中添加第二个菜单
+	function mytracer_permission(){
+	    ...
+
+	    // 增加 mytracer 模组中的第二个权限定义
+	    $items['view mytracer records'] = array(
+	        'title' => t('View MyTracer Records'),
+	    );
+	    return $items;
+	}
+
+	function mytracer_records() {
+	    $output = '<p>Here is the records of who reviewed your profile';
+	    return $output;
+	}
+
+	function mytracer_records($uid) { // 建立带参数的菜单
+	$account = user_load($uid);
+
+	$output = '<p>Here is the records of who reviewed your profile';
+	if ($account) { // 改变本页的 title 由 api.drupal.org 中查询 title 相关的函数
+	    drupal_set_title(format_string('My Tracer = User: @username',
+	        array('@username' => $account=>name))
+	    );
+	    $output .= '<p>'.format_string('User id = @uid, User name = @username',
+	    array('@uid' => $account->uid, '@username' => $account->name);
+	}
+	return $output;
+	}
+
+	function mystracer_menu() { // 建立带参数的菜单 --- 自动载入菜单
+	    ...
+	    // 增加第二个菜单 使用带参数的作法 让每个 user 都有自己的追踪记录 本次 参数部份改为自动载入的作法
+	    // 因为参数带有名字 user, 它回调 user_load
+	// 1 如果没有这个 user id 那后台自动传回 html 404 错误
+	// 2 如果有这个 user id 它会载入这个 user id 的 user 物件 并传给定义的 callback
+	    $items['user/%user/mytracer'] = array(
+	        'title' => 'My Tracer',
+	        'description' => 'user 的追踪记录',
+	        'access arguments' => array('view mytracer records'),
+	        'page callback' => 'mytracer_records',
+	        'page arguments' => array(1),
+	    );
+	    return $items;
+	}
+
+	// 这一次 因为 menu 传过来时有带参数 所以我们这里的 callback 函数也要接收一个参数
+	// 同时 因为我们使用自动载入的 menu 参数 因此这里的参数是载入后的 user 物件
+	// 因为经过了 自动载入参数的函数的执行 在执行过程中 已检查了是否有这个 user 物件
+	// 如果没有的话 代表无此网页 drupal 会转到 http 404 的指定网页
+	function mytracer_records($account) { // 建立带参数的菜单
+	$account = user_load($uid);
+
+	$output = '<p>Here is the records of who reviewed your profile';
+	if ($account) { // 改变本页的 title 由 api.drupal.org 中查询 title 相关的函数
+	drupal_set_title(format_string('My Tracer = User: @username',
+	array('@username' => $account=>name))
+	);
+	$output .= '<p>'.format_string('User id = @uid, User name = @username',
+	array('@uid' => $account->uid, '@username' => $account->name);
+	}
+	return $output;
+	}
+
+	// 建立子页菜单
+	// 在 $item['user/%user/mytracer'] = array(...
+	'type' => MENU_LOCAL_TASK, // 建立子页签 'weight' => 10, // 权重 进行排序)
+
+	// 使用额外程序文件
+	// 在 $item['user/%user/mytracer'] = array(...
+	'file' => 'mytracer.additional.inc', // 把指定 page callback 函数程序放在指定文件中);
+
+
+function mytracer_admin(){
+// 创建表单
+$output = drupal_get_form('mytracer_admin_form');
+return $output;
+}
+
+
+function mytracer_admin_form($form, &$form_state) {
+$form['foo'] = array(
+'#type' => 'textfield',
+'#title' => t('文本字段表单'),
+'#default_value' => t('foo'),
+'#size' => 60,
+'#maxlength' => 64,
+'#description' => t('字段描述'),
+'#required' => TRUE,
+);
+
+$form['submit'] = array(
+'#type' => 'submit',
+'#value' => t('Save'),
+);
+return $form;
+}
+
+// form 的验证函数 名称是在原来 form 建立函后面加上 _validate
+function mytracer_admin_form_validate($form, &$form_state) {
+dmp($form_state);
+
+// 检查输入的值是否介于 5 到 20
+$max_count = intval($form_state['values']['mytracer_list_max']);
+
+if ($max_count < 5 || $max_count > 20) {
+form_set_error('mytracer_list_max', '数字需介于 5 到 20 之间.');
+}
+return;
+}
+
+制作浏览记录的程序 hook_user_view()
+function mytracer_user_view($account, $view_mode, $langcode) {
+	// $account 被浏览的使用者  global $user 目前正在操作的使用者
+	global $user;
+	if ($view_mode <> 'full') {
+	    return;
+	}
+	if ($account->uid <> 1) {
+	    return;
+	}
+	// 取出放在永久变量中的浏览记录
+	$visits = variable_get('mytracer_user1_visits', array());
+
+	// 建立本次的浏览记录
+	$v = array('uid' => $user->uid, 'time' => time());
+
+	// 因为 array 后面的资料可能会被砍掉 因此 使用 array_unshift() 将新的记录放在 array 前面
+	array_unshift($visits, $v);
+
+	// 只保留 'mytracer_list_max' 笔数
+	$list_max = variable_get('mytracer_list_max', 5);
+	array_splice($visits, $list_max);
+
+	variable_set('mytracer_user1_visits', $visits);
+}
+
+登录与注册
+<?php if($user->uid); ?>
+	<aside class="login-bar c4">
+		<span>Welcome:<?php print l($user->name, 'user/'.$user->uid);?></span>
+		<?php print l('logout', 'user/logout');?>
+	</aside>
+	<?php else ?>
+	<aside class="login-bar c4">
+		<?php print l("Login|Register", "user/login");?>
+	</aside>
+	<?php endif; ?>
+
+
+
+
+	页面
+
+	城市有三种  标准 微信 手动
+
+	科颜氏
+
+

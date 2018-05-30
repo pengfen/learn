@@ -1,0 +1,76 @@
+<extend name='Layout/index'/>
+<block name="resource">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/apeng.css"/>
+	<title>用户表首页</title>
+</block>	
+<block name="main">
+    <div id="add">
+        <if condition="$_SESSION['manager']['id'] eq '1'">
+	    <a href="javascript:void(0)">添加管理员</a>
+	    <input type='hidden' value="{:U('Manager/add')}"/>
+	    </if>
+	    <a href="{:U('Manager/index')}">返回管理员列表</a>
+	</div>
+	<div class='admin-mess'>{$_GET['mess']}</div>
+	<div class='col-md-10' id = 'right'>
+		<div class="table-responsive">
+			<table class='table table-striped'>
+				<thead>
+					<tr>
+						<th>编号</th>
+						<th>姓名</th>
+						<th>邮箱</th>
+						<th>职位</th>
+						<th>添加时间</th>
+						<th>上次登录时间</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody class="managerMain">
+					<volist name='info' id='v'>
+						<tr>
+							<td>{$key + 1}</td>
+							<td>{$v.username}</td>
+							<td>{$v.email}</td>
+							<td>
+								<if condition="$v['rid'] neq '0'">{$v.rid}
+								<else />超级管理员
+								</if>
+							</td>
+							<td>{:date('Y-m-d H:i:s',$v['regtime'])}</td>
+							<td>{:date('Y-m-d H:i:s',$v['logtime'])}</td>
+							<td>
+							    <if condition="$_SESSION['manager']['id'] eq $v['id']">
+							    <a class='upd' href="javascript:void(0);">修改</a> 
+							    <input type='hidden' value="{:U('Manager/edit', array('id'=>$v[id]))}" />
+							    </if>
+							    <if condition="$v['id'] neq '1' and $_SESSION['manager']['id'] eq '1'">
+							    <a href="{:U('Manager/delete?id='.$v['id'])}">删除</a>
+							    </if>
+							</td>
+						</tr>
+					</volist>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan='7' style='text-align:center'>
+							{$pagelist}
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+	
+	<script>
+		$(".table-striped tr").mouseenter(function(){
+			$(this).css('background-color','#FCD8A7');
+		});
+		$(".table-striped tr").mouseleave(function(){
+			$(this).css('background-color','');
+		});
+
+		click($('#add a'));
+		click($('.upd'));
+	</script>
+</block>

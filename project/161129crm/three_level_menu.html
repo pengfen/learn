@@ -1,0 +1,18 @@
+修改三级菜单
+
+样式修改
+crm_common.css
+system_set.css
+rem_main.js
+
+修改添加菜单
+<?php foreach ($child as $value) {
+    if ($value['pid'] == $val['id']) { ?>
+    <option value="<?=$value['id']?>"><?=$value['name']?></option>
+    <?php }
+}
+} 
+
+修改编辑菜单
+
+修改访问授权

@@ -1,0 +1,63 @@
+#对searchform表单数据进行系列化
+var data = $("#searchform").serializeArray();
+data = JSON.stringify(data);
+
+// 针对 IE8 进行转码
+if(navigator.userAgent.indexOf("MSIE") > 0)  {
+    if(navigator.userAgent.indexOf("MSIE 8.0") > 0) { 
+        eval(" var data = '" + data +"';");
+    }  
+} 
+        
+$.post("{:U('')}", {'data' : data, 'state' : 3},
+function(data) {
+    alert(data);
+});
+如果js传递参数过多就使用系列化
+
+php端处理js数据
+$data = json_decode(stripslashes($_POST['data']),true);
+$arr = array();
+// 对系列化的数据进行重组 
+// array(0 => array('name' => 'key', 'value' => 'value')) 
+// array('key' => 'value')
+foreach ($data as $val) {
+    $arr[$val['name']] = $val['value'];
+}
+exit;
+
+// var type = $('select[name="source_type"]').val();
+// var channel = $('select[name="source_channel"]').val();
+// var page = $('select[name="source_page"]').val();
+// var distriTimeFrom = $('input[name="DistriButTimeFrom"]').val();
+// var distriTimeTo = $('input[name="DistriButTimeTo"]').val();
+// var fromTimeFrom = $('input[name="FromTimeFrom"]').val();
+// var fromTimeTo = $('input[name="FromTimeTo"]').val();
+// var province = $('select[name="province"]').val();
+// var city = $('select[name="city"]').val();
+// if (city != "请选择城市名") {
+//     city = province + ' ' + city;
+// } else {
+//     city = '';
+// }
+
+// var catOneName = $('select[name="catOneName"]').val();
+// var catTwoName = $('select[name="catTwoName"]').val();
+// var sms_id = $('select[name="title"]').val();
+// if (sms_id == 0) {
+//     alert('请选择短信标题');
+//     return;
+// }
+// $.post("{:U('')}", {'sourceType' : sourceType, 'type' : type, 'channel' : channel, 'page' : page, 'distriFrom' : distriTimeFrom, 'distriTo' : distriTimeTo, 'fromFrom' : fromTimeFrom, 'fromTo' : fromTimeTo, 'city' : city, 'catOneName' : catOneName, 'catTwoName' : catTwoName, 'smsId' : sms_id, 'state' : 3}, 
+//     function(data) {
+//         console.log(data);
+//         $('.source_number').text(data);
+//     });
+
+//JS 
+var data = $("#searchform").serializeArray();
+data = JSON.stringify(data);
+$.post("{:U('')}", {'data' : data, 'state' : 3},
+function(data) {
+    console.log(data);
+});

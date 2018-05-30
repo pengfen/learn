@@ -1,0 +1,119 @@
+@header-height: 60px; // 头部导航高度
+@cate-height: 30px; // 分级高度
+
+// 初始化样式
+body,ul,li,p,h1,h2,h3,h4{ padding: 0; margin: 0;}
+body { font-size: 12px; }
+ul,li { list-style: none; }
+a { text-decoration: none; }
+img,input { border: none; outline: none; }
+
+// 预定义样式
+.fl { float: left; }
+.fr { float: right; }
+.clear{ clear: both; }
+.w { margin: 0 auto; width: 1200px; }
+.mt10 {margin-top: 10px; }
+.mt20 {margin-top: 20px; }
+
+// 头部样式
+header{
+	height: @header-height;
+	line-height: @header-height;
+	background: #14191c;
+	.logo{ width: 140px; height: @header-height;}
+	.nav-left li{ width: 80px; float: left;
+	    a {color: #787d82; font-size: 14px;
+	    &:hover{ color: #fff; font-weight: bold}
+	    }
+	}
+
+	.nav-right li{ width: 80px; float: left; text-align:center;
+	    a {color: #787d82; font-size: 14px;
+	    &:hover{ color: #fff; font-weight: bold}
+	    }
+	}
+}
+
+// 课程分类样式
+.showlist{
+	h3 {height: 30px; line-height:30px; padding: 15px 0px; border-bottom: 2px solid #656c73;}
+	.direct,.category,.difficult {
+	height: @cate-height; line-height: @cate-height; padding: 10px 0px; border-bottom: 1px solid #edf1f2;
+		li {float: left; padding: 0px 14px;
+		   a{color: #656c73;
+		   &:hover{color:#c9394a; }
+		   }
+		}
+	}
+}
+
+// 个人中心侧边栏
+#uc-silder{
+	width:240px;
+	.uc-info{
+	height:80px;
+		.uc-img img{
+		width:80px; height:80px; background:red; border-radius:40px;
+		}
+		.uc-name{
+		height:24px; line-height:24px; font-size:18px; font-weight:bold; color:#14191c;
+		}
+		.uc-voc{
+		height:28px; font-size:18px;
+		}
+		.uc-set{
+		height:20px; line-height:20px; font-size:16px;
+		}
+	}
+	.uc-sign{
+	margin:20px 0px; height:22px; line-height:22px;
+	}
+	.uc-credit,.uc-exprience{
+	width:120px; height:43px;
+	span{height:20px; line-heigth:20px; font-size:16px; font-weight: bold;}
+	div{height:24px; line-heith:24px;
+	}
+	}
+}
+
+// 个人设置侧边栏
+#uc-set-silder {
+	width: 240px;
+	a{
+	width:  203px; height: 49px; line-height: 49px; border-bottom: 1px solid #e6e8e9; display: inline-block; padding-left: 35px;
+	&:hover{color: #be3948;}
+	.active{border-left: 2px solid #be3948;}
+    }
+} 
+
+// 个人资料
+.user-info{
+	width:820px; padding: 25px 0px 20px 40px;
+	div {height: 70px; 
+	    span{width:120px; height:40px; line-height:40px; text-align:right; font-size: 16px; font-weight: bold; display:inline-block; margin-right:5px;}
+	    .username, .addbtn{width:420px; height:40px; border: 1px solid #e6e8e9; padding-left: 8px;}
+	    .vocation{width:430px; height:40px; border: 1px solid #e6e8e9; padding-left: 8px;}
+	    .province, .city, .area{width:139px; height:40px; border: 1px solid #e6e8e9; padding-left: 8px;}
+	    textarea{width:420px; height:60px; border: 1px solid #e6e8e9; padding-left: 8px;}
+	}
+}
+
+// 个人头像
+.user-img{
+	width: 560px; height: 256px; padding: 60px 150px;
+	.user-ico{width: 220px;}
+	.user-ico img{width: 220px; height: 220px; float:left;}
+	.user-ico span{width: 220px; height: 36px; line-height: 36px; font-size: 20px; float:left; font-weight: bold; text-align: center;}
+	.user-btn{width: 220px; height: 40px; line-height: 40px; background: #14191c; color: #fff; font-size: 20px; font-weight: bold; margin-left: 260px; margin-top: 180px; text-align: center;}
+}
+
+// 修改密码
+.user-pass{
+	width: 550px; height: 250px; padding: 60px;
+	li{width: 550px; height: 40px; margin-bottom: 30px;
+	label{width:100px; margin-right: 20px; height: 40px; line-height: 40px; font-size: 20px; font-weight: bold;}
+	input{width:428px; padding-left: 8px; height: 38px; border: 1px solid #5e5e5e;}
+	.smbtn{width:440px; padding-left: 8px; height: 38px; border: 1px solid #e6e8e9; margin-left: 90px; background: #39b94c; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer;}
+	}
+}

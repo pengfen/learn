@@ -1,0 +1,288 @@
+MySQL数据库练习题
+
+实现要求 (使用PHP操作MySQL数据库知识完成)
+
+简单解释MySQL数据库的关键字 DB DBMS DBS
+如何启动和停止MySQL数据库服务 (至少两种)
+在命令行模式下如何连接MySQL数据库服务
+在mysql命令提示符下 如何查看当前服务器下的数据库 (浏览数据库)
+在mysql命令提示符下 如何选择进入一个数据库
+在mysql命令提示符下 如何查看当前库下的所有表
+在mysql命令提示符下 如何查看一张表的结构
+在mysql命令提示符下 如何取消当前sql命令
+在mysql命令提示符下 如何退出数据库
+在mysql命令提示符下 --> '> "> 分别表示什么意思
+在mysql命令提示符下 如何创建一个数据库
+在mysql命令提示符下 如何删除一个数据库
+在mysql命令提示符下 如何删除一个数据表
+
+参考下面 按照要求创建表 (字体类型和约束只做参考)
+学生表 stu
+序号  字段名   描述  类型              是否空    约束         备注
+1     id       学号  int unsigned      not null  主键 自增
+2     name     姓名  varchar(16)       not null 
+3     sex      性别  enum('m', 'w')    not null  default 'm'
+4     age      年龄  tinyint unsigned  not null
+5     classid  班号  char(6)           not null
+
+成绩表 grade
+序号  字段名  描述       类型              是否空    约束       备注
+1     id      编号       int unsigned      not null  主键 自增
+2     sid     学号       int unsigned      not null
+3     php     php成绩    tinyint unsigned  not null
+4     mysql   mysql成绩  tinyint unsigned  not null
+      
+为上面的每个表都添加10条测试数据
+修改其中的3条数据
+删除每个表的2条数据库
+
+
+------------------------------------------------------------------
+
+简单解释MySQL数据库的关键字 DB DBMS DBS
+DB data base 数据库
+DBMS data base manage system 数据库管理系统
+DBS data base 数据库系统
+
+如何启动和停止MySQL数据库服务 (至少两种)
+cmd 窗口
+net start mysql # 启动服务
+net stop mysql # 停止服务
+计算机 --- 管理(右键) --- 服务和应用程序 --- 服务 --- MySql --- 启动/停止(右键)
+
+在命令行模式下如何连接MySQL数据库服务器
+mysql -u root -p
+
+在mysql命令提示符下 如何查看当前服务器下的数据库 (浏览数据库)
+show databases;
+
+在mysql命令提示符下 如何选择进入一个数据库
+use database_name;
+
+在mysql命令提示符下 如何查看当前库下的所有表
+show tables;
+
+在mysql命令提示符下 如何查看一张表的结构
+desc table_name;
+
+在mysql命令提示符下 如何取消当前sql命令
+在mysql命令提示符下 如何退出数据库
+在mysql命令提示符下 --> '> "> 分别表示什么意思
+在mysql命令提示符下 如何创建一个数据库
+create database database_name;
+
+在mysql命令提示符下 如何删除一个数据库
+drop database database_name;
+
+在mysql命令提示符下 如何删除一个数据表
+drop table table_name;
+
+参考下面 按照要求创建表 (字体类型和约束只做参考)
+学生表 stu
+序号  字段名   描述  类型              是否空    约束         备注
+1     id       学号  int unsigned      not null  主键 自增
+2     name     姓名  varchar(16)       not null 
+3     sex      性别  enum('m', 'w')    not null  default 'm'
+4     age      年龄  tinyint unsigned  not null
+5     classid  班号  char(6)           not null
+
+create table stu(
+    id int unsigned not null primary key auto_increment,
+    name varchar(16) not null comment "姓名",
+    sex enum('m', 'w') not null default 'm' comment '性别',
+    age tinyint unsigned not null comment '年龄',
+    classid char(6) not null comment '班号'
+)
+
+成绩表 grade
+序号  字段名  描述       类型              是否空    约束       备注
+1     id      编号       int unsigned      not null  主键 自增
+2     sid     学号       int unsigned      not null
+3     php     php成绩    tinyint unsigned  not null
+4     mysql   mysql成绩  tinyint unsigned  not null
+
+create table grade(
+    id int unsigned not null primary key auto_increment,
+    sid int unsigned not null comment '学号',
+    php tinyint unsigned not null comment 'php成绩',
+    mysql tinyint unsigned not null comment 'mysql成绩'
+)
+      
+为上面的每个表都添加10条测试数据
+insert into stu(name, sex, age, classid) values(), ...
+insert into grade(sid, php, mysql) values(), ...
+
+修改其中的3条数据
+update stu set ... where ...
+update grade set ... where ...
+
+删除每个表的2条数据库
+delete from stu where ...
+delete form grade where ...
+
+==========================================================================
+实现要求 (使用PHP操作MySQL数据库知识完成)
+
+MySQL数据库都有哪些数据类型 使用表格整理出来
+在命令行模式下登录MySQL数据库 使用SQL实现下面要求 (写出对应sql语句)
+    创建留言数据库 comment
+    在comment数据库中创建留言表 comment 结构如下
+    表名 comment 留言信息表
+    序号  字段名称  字段说明  类型         属性   备注
+    1     id        编号      int(4)       非空   主键 自增
+    2     title     标题      varchar(32)  非空
+    3     author    作者      varchar(16)  可以空
+    4     addtime   留言时间  datetime     非空
+    5     content   留言内容  test         非空
+    6     isdelete  是否删除  tinyint      非空    默认值 0
+    在留言表最后添加一列状态 (status tinyint 默认值为0)
+    修改留言表author的默认值为youku 设为非空
+    删除comment表中的isdelete字段
+    为comment表中title字段添加索引
+    为留言簿表添加大于5条测试数据
+    要求将id值大于3的信息中author字段值改为admin
+    删除id号为4的数据
+授权一个用户lisi 密码为123 可以操作lampdb库下的所表表操作
+扩展 如何设计一个商城的数据库 他都应该有那些表 每个表都应有哪些字段 (列信息)
+
+
+
+------------------------------------------------------------------
+MySQL数据库都有哪些数据类型 使用表格整理出来
+在命令行模式下登录MySQL数据库 使用SQL实现下面要求 (写出对应sql语句)
+mysql -u root -p
+密码
+
+    创建留言数据库 comment
+    create dababase comment;
+    use comment;
+
+    在comment数据库中创建留言表 comment 结构如下
+    表名 comment 留言信息表
+    序号  字段名称  字段说明  类型         属性   备注
+    1     id        编号      int(4)       非空   主键 自增
+    2     title     标题      varchar(32)  非空
+    3     author    作者      varchar(16)  可以空
+    4     addtime   留言时间  datetime     非空
+    5     content   留言内容  text         非空
+    6     isdelete  是否删除  tinyint      非空    默认值 0
+    create table comment(
+        id int(4) unsigned not null primary key auto_increment,
+        title varchar(32) not null comment '标题',
+        author varchar(16) not null comment '作者',
+        addtime datetime comment '留言时间',
+        content text comment '留言内容', 
+        isdelete tinyint unsigned not null default 0 comment '是否删除 1删除 0不删除'
+    )
+
+    在留言表最后添加一列状态 (status tinyint 默认值为0)
+    alter table comment add status tinyint default 0 after isdelete;
+
+    修改留言表author的默认值为youku 设为非空
+    alter table comment modify author default 'youku';
+
+    删除comment表中的isdelete字段
+    alter table comment drop isdelete;
+
+    为comment表中title字段添加索引
+    alter table comment add index index_name (title);
+
+    为留言簿表添加大于5条测试数据
+    insert into comment(title, author, addtime, content, status) values (), ...
+
+    要求将id值大于3的信息中author字段值改为admin
+    update comment set author = 'admin' where id > 3;
+
+    删除id号为4的数据
+    delete from comment where id = 4;
+
+授权一个用户lisi 密码为123 可以操作lampdb库下的所表表操作
+grant all on lampdb.* to 'lisi'@'%' identified by '123';
+all 所有权限 (某些权限 如 select,update,delete...)
+* 所有表
+% 所有主机 (特定主机 192.168.80.19)
+
+扩展 如何设计一个商城的数据库 他都应该有那些表 每个表都应有哪些字段 (列信息)
+
+
+==========================================================================
+实现要求 (使用PHP操作MySQL数据库知识完成)
+
+在命令行模式下登录MySQL数据库 使用SQL实现下面要求 (写出对应sql语句)
+    创建留言数据库 comment
+    在comment数据库中创建留言表 comment 结构如下
+    表名 comment 留言信息表
+    序号  字段名称  字段说明  类型         属性   备注
+    1     id        编号      int(4)       非空   主键 自增
+    2     title     标题      varchar(32)  非空
+    3     author    作者      varchar(16)  可以空
+    4     addtime   留言时间  datetime     非空
+    5     content   留言内容  text         非空
+    为留言表添加大于15条测试数据 要求分三个用户添加
+    查询所有留言信息
+    查询某一用户的留言信息
+    查询所有数据 按时间降序排序
+    获取id在2到6之间的留言信息 并按时间降序排序
+    统计每个用户留了多少条留言 并对数量按从小到大排序
+    将id为8 9的两条数据的作者改为doudou
+    取出最新的三条留言 (使用limit)
+    查询留言者中包含"d"字母的留言信息 并按留言时间从小到大排序
+    退出sql 将数据库导出 并以comment.sql保存
+
+扩展 设计一个商城的需要哪些功能
+
+
+---------------------------------------------------------------------
+MySQL数据库都有哪些数据类型 使用表格整理出来
+在命令行模式下登录MySQL数据库 使用SQL实现下面要求 (写出对应sql语句)
+    创建留言数据库 comment
+    create database comment;
+    use comment;
+
+    在comment数据库中创建留言表 comment 结构如下
+    表名 comment 留言信息表
+    序号  字段名称  字段说明  类型         属性   备注
+    1     id        编号      int(4)       非空   主键 自增
+    2     title     标题      varchar(32)  非空
+    3     author    作者      varchar(16)  可以空
+    4     addtime   留言时间  datetime     非空
+    5     content   留言内容  text         非空
+    create table comment(
+        id int(4) not null primary key auto_increment,
+        title varchar(32) not null commnet '标题',
+        author varchar(16) comment '作者',
+        addtime datetime comment '留言时间',
+        content text comment '留言内容'
+    );
+
+    为留言表添加大于15条测试数据 要求分三个用户添加
+    insert into table comment(title, author, addtime, content) values(), ...
+
+    查询所有留言信息
+    select * from comment;
+
+    查询某一用户的留言信息
+    select * from comment where author = '';
+
+    查询所有数据 按时间降序排序
+    select * from comment order by addtime desc;
+
+    获取id在2到6之间的留言信息 并按时间降序排序
+    select * from comment where (id >= 2 and id <= 6) order by addtime desc;
+
+    统计每个用户留了多少条留言 并对数量按从小到大排序
+    select count(author) from comment group by author;
+
+    将id为8 9的两条数据的作者改为doudou
+    update comment set author = 'doudou' where id in (8, 9);
+
+    取出最新的三条留言 (使用limit)
+    select * from comment order by addtime desc limit 3;
+
+    查询留言者中包含"d"字母的留言信息 并按留言时间从小到大排序
+    select * from comment where auther like '%d%' order by addtime asc;
+
+    退出sql 将数据库导出 并以comment.sql保存
+    exit;
+
+扩展 设计一个商城的需要哪些功能

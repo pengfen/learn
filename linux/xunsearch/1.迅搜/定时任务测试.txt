@@ -1,0 +1,25 @@
+定时任务脚本测试
+
+console 定时任务模块
+
+在控制器 controller 中创建搜索控制器
+
+git bash 工具中
+
+进入项目目录
+
+执行 php命令
+
+php ./yii 控制器/方法
+
+==============================================================
+console  模块
+
+config 中添加 se_goods.ini 文件
+修改文件 'xunsearch' => ['iniDirectory' => '@console/config']
+
+https://api.jzlifeimg.com/v1/ucenter/password
+http://api.jz.life/v1/search/inquirygoods
+
+测试版本地址
+https://api.jzlifeimg.com/v1/search/inquirygoods

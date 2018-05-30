@@ -1,0 +1,38 @@
+linux redis
+---------------------------------------------
+安装
+wget http://download.redis.io/releases/redis-3.2.3.tar.gz
+tar -zxvf redis-3.2.3.tar.gz 
+cd redis-3.2.3   
+make
+
+修改配置
+vim redis.conf
+daemonize no --- daemonize yes
+protected-mode yes --- protected-mode no
+
+启动
+重启后生效 开启： chkconfig iptables on 关闭： chkconfig iptables off 
+即时生效，重启后失效 开启： service iptables start 关闭： service iptables stop 
+iptables -I INPUT -p tcp --dport 6379 -j ACCEPT
+src/redis-server redis.conf 
+
+测试连接
+使用redisclient连接
+
+windows redis
+---------------------------------------------
+安装
+https://github.com/MSOpenTech/redis/releases 下载 zip包
+解压 --- 复制到 e:/files/redis
+
+修改配置
+打开 redis.windows.conf
+daemonize no --- daemonize yes
+
+启动
+cmd --- e: --- cd files/redis
+E:\files\redis>redis-server.exe redis.windows.conf
+
+测试连接
+使用redisclient连接

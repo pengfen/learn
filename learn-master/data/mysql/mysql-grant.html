@@ -1,0 +1,22 @@
+mysql 权限操作
+
+use mysql
+select * from user \G;
+delete from user where user != 'root'; # 删除匿名用户
+flush privileges;
+
+update user set password=password('123456') where user='root';
+flush privileges;
+
+grant all on *.* to kiehls@'192.168.2.198' identified by '0412kiehls'; # 使用 IP 连接时需要使用新用户
+grant all on *.* to kiehls@'%' identified by '0412kiehls'; # % 允许所有用户 写 IP 就限定了特定的 IP 访问
+grant all on *.* to peng@'%' identified by '0418peng';
+flush privileges;
+
+使用 navict 连接 mysql 数据库
+
+主机名或IP地址 192.168.2.198
+用户名
+密码
+
+创建数据库 kiehls

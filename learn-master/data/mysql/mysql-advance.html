@@ -1,0 +1,83 @@
+MySQL04 MySQL数据库高级管理
+==============================================================
+1.	MySQL用户管理
+	1.1 权限表
+		user表
+		db表	host表
+		tables_priv 表 和 columns_priv表
+		procs_priv 表
+	1.2 账户管理
+		1.2.1 mysql服务器的登陆和退出
+		1.2.2 新建普通用户
+			1. 使用CREATE USER 语句来新建
+				CREATE USER 用户名 IDENTIFIED BY 密码	
+			2 使用INSERT子句新建普通用户
+				INSERT INTO mysql.user(Host, User, Password) VALUE(主机名, 用户名,  PASSWORD(密码))
+				flush privileges;
+			3 使用GRANT来新建普通用户
+				GRANT 权限 ON 数据库.数据表 TO 用户名@登录主机 IDENTIFIED BY “密码”
+		1.2.3 删除普通用户
+			1 使用DROP USER 
+				DROP USER 用户名
+			2 使用DELETE语句
+				DELETE FROM mysql.user WHERE User='' AND Password=''
+				flush privileges
+		1.2.4 root 用户修改自己的密码
+			1 使用mysqladmin 命令来修改root 用户的密码
+				mysqladmin -u 用户名 -p password '新密码'
+				注意:新密码必须用双引号
+				!! 可能会不成功
+			2 修改mysql数据库下的user表
+				UPDATE mysql.user SET Password=password(新密码) WHERE User='' AND Host=''
+				FLUSH PRIVILEGES
+			3 使用SET语句
+				SET PASSWORD = PASSWORD(新密码)
+				FLUSH PRIVILEGES
+		1.2.5 root 修改普通用户密码
+			1 使用set语句
+				SET PASSWORD FOR 'username'@'hostname'=PASSWORD(新密码)
+			2 修改mysql数据库user表
+			3 用CRANT 语句
+				GRANT 权限 ON 数据库.数据表 TO 用户名@登录主机 IDENTIFIED BY “密码”
+		1.2.6 普通用户修改密码
+			SET PASSWORD = PASSWORD(新密码)
+		1.2.7 root 用户丢失的解决方法
+			① 关闭 mysql服务
+			② 安全模式 开启mysql服务 mysqld --skip-grant-tables
+			③ root用户登录mysql服务器  mysql -u root
+			④ 修改 mysql数据库 下user表
+			⑤ 加载权限表 FLUSH PRIVILEGES
+			⑥ 退出mysql安全模式 mysqladmin -u root -p shutdown
+	1.3 权限管理
+		1.3.1 MySQL 的各种权限
+		1.3.2 授权
+			GRANT priv_type[(column_list)] ON database.table
+			TO user [IDENTIFIED BY [PASSWORD] 'password']
+			[, [IDENTIFIED BY [PASSWORD] 'password']] ....
+			[WITH with_option [with_option] ...]
+		1.3.2 收回权限
+			REVOKE priv_type[(column_list)]...
+			ON database.table
+			FORM 'user'@'host' [,'user'@'host']....
+		1.3.3 查看权限
+			SHOW GRANTS FOR 'username'@'hostname'
+			
+			
+2. 数据备份与还原
+	2.1 数据备份
+		2.1.1 使用 mysqldump 命令备份
+			1 备份一个数据库 
+				mysqldump -u username -p dbname table1 table2 ... > backupName.sql
+				dbname 表示数据库名 table是表名 没有改参数备份整个数据库
+			2 备份多个数据库
+				mysqldump -u username -p --database dbname1 dbname2 ... > backupName.sql
+			3 备份全部数据库
+				mysqldump -u username -p --all-databases > backupName.sql
+		2.1.2 复制数据库目录
+	2.2 数据还原
+		2.2.1 使用mysql命令还原
+			mysql -u root -p [dbname] < backup.sql
+		2.2.2 复制复制库目录
+		2.2.3 source命令
+				USER database;
+				SOURCE backup.sql

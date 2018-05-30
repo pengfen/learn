@@ -1,0 +1,201 @@
+Hadoop 体系
+
+Hadoop 分布式基础架构
+
+起源
+===========================================================
+Doug Cutting 策划一个雄心勃勃的计划 从头打造一个网络搜索引擎 支持 10 亿网页的索引系统 Lucene (一个应用广泛的文本搜索系统库)
+
+发展
+===========================================================
+2002年 开始Nutch 项目
+2003年 Google 发布论文 GFS (Google File System 谷歌分布式文件系统)
+2004年 Google 发布论文 Google MapReduce 
+2004年-- 最初的版本（称为HDFS和MapReduce）由Doug Cutting和Mike Cafarella开始实施。
+2005年12月-- Nutch移植到新的框架，Hadoop在20个节点上稳定运行。
+2006年1月-- Doug Cutting加入雅虎。
+2006年2月-- Apache Hadoop项目正式启动以支持MapReduce和HDFS的独立发展。
+2006年4月-- 标准排序（10 GB每个节点）在188个节点上运行47.9个小时。
+2006年5月-- 雅虎建立了一个300个节点的Hadoop研究集群。
+2006年5月-- 标准排序在500个节点上运行42个小时（硬件配置比4月的更好）。
+2006年11月-- 研究集群增加到600个节点。
+2006年12月-- 标准排序在20个节点上运行1.8个小时，100个节点3.3小时，500个节点5.2小时，900个节点7.8个小时。
+2007年1月-- 研究集群到达900个节点。
+2007年4月-- 研究集群达到两个1000个节点的集群。
+2008年4月-- 赢得世界最快1 TB数据排序在900个节点上用时209秒。
+2008年10月-- 研究集群每天装载10 TB的数据。
+2009年3月-- 17个集群总共24 000台机器。
+2009年4月-- 赢得每分钟排序，59秒内排序500 GB（在1400个节点上）和173分钟内排序100 TB数据（在3400个节点上）。
+2011年12月27日--1.0.0版本释出。标志着Hadoop已经初具生产规模。
+
+优点
+===========================================================
+高可靠性。Hadoop按位存储和处理数据的能力值得人们信赖。
+高扩展性。Hadoop是在可用的计算机集簇间分配数据并完成计算任务的，这些集簇可以方便地扩展到数以千计的节点中。
+高效性。Hadoop能够在节点之间动态地移动数据，并保证各个节点的动态平衡，因此处理速度非常快。
+高容错性。Hadoop能够自动保存数据的多个副本，并且能够自动将失败的任务重新分配。
+低成本。与一体机、商用数据仓库以及QlikView、Yonghong Z-Suite等数据集市相比，hadoop是开源的，项目的软件成本因此会大大降低。
+
+谷歌的变革
+===========================================================
+成本降低 能用 PC 机 就不用大型机和高端存储
+软件容错硬件故障视为常态 通过软件保证可靠性
+简化并行分布式计算 无须控制节点同步和数据交换台
+
+主要解决问题 (与传统不同的设计思路)
+首先 组件失效被认为是常态事件 而不是意外事件
+其次 以通常的标准衡量 我们的文件非常巨大
+第三 绝大部分文件的修改是采用在文件尾部追加数据 而不是覆盖原有数据的方式
+第四 应用程序和文件系统 API 的协同设计提高了整个系统的灵活性
+
+谷歌的三大论文
+Google File System --- HDFS (Hadoop Distributed File System)
+Google MapReduce --- Hadoop MapReduce
+Google Bigtable --- Hadoop Hbase
+
+解决搜索中词频问题 (单词计数)
+
+Hadoop 能做什么
+===========================================================
+搭建大型数据仓库 PB级数据的存储 处理 分析 统计等业务
+搜索引擎 日志分析 商业智能 数据挖掘
+
+核心 HDFS (分布式文件系统 存储海量的数据) MapReduce (并行处理框架 实现任务分解和调度)
+HDFS (Hadoop Distributed File System)
+===========================================================
+NameNode 管理节点 存放文件元数据 文件与数据块的映射表 数据块与数据节点的映射表
+DataNode 是 HDFS 的工作节点 存入数据块 每个数据块三个副本(默认) 分布在两个机架内的三个节点
+Block 文件存储处理的逻辑单元 HDFS 的文件被分成块进行存储 HDFS 块的默认大小 64MB
+
+心跳检测 DataNode 定期向 NameNode 发送心跳消息 SecondaryNameNode(二级 NameNode) 定期同步元数据映像文件和修改日志 NameNode 发生故障时 备胎转正
+
+HDFS 的特点
+高容错性 (数据冗余 硬件容错)
+高吞吐量 (大文件 流式的数据访问)
+成本低 (部署在低廉的硬件上)
+
+适用性和局限性
+适合数据指读写 吞吐量高 不适合交互式应用 低延迟很难满足
+适合一次写入多次读取 顺序读写 不支持多用户并发写相同文件
+不适合的场景 低时间延迟的数据访问  大量的小文件  多用户写入，任意修改文件
+
+HDFS 命令行操作
+hadoop namenode -format # 格式化元数据节点
+hadoop fs -mkdir -p /usr/input/wc # 创建一个递归目录
+hadoop fs -ls /usr/input # 查看创建的目录或文件 /usr/input/wc ...
+hadoop fs -put /root/wc-in /usr/input/wc #将文件上传到目录中
+hadoop fs -cat /usr/input/wc/wc-in # 查看上传文件内容
+hadoop fs -get /usr/input/wc/wc-in wc2 # 下载文件到本地
+hadoop fs -rmr /usr/input/wc #删除input 目录
+
+MapReduce
+===========================================================
+分而治之 一个大任务分成多个小的子任务(map)  并行执行后 合并结果(reduce)
+
+JobTracker 作业调度    分配任务 监控任务执行进度    监控 TaskTracker 的状态
+Tasktracker 执行任务 汇报任务状态
+Maptask
+ReduceTask
+
+MapReduce 的容错机制 (重复执行 推测执行)
+
+Hadoop 2
+===========================================================
+HDFS 存在的问题
+NameNode 单点故障 难以应用于在线场景
+NameNode 压力过大 且内存受限 影响系统扩展性
+MapReduce 存在的问题
+JobTracker 访问压力大 影响系统扩展性
+难以支持除 MapReduce 之外的计算框架 比如 spark storm 等
+
+Hadoop 2.x 由 HDFS MapReduce 和 YARN 三个分支构成
+HDFS NNFederation HA
+MapReduce 运行在 YARN 上的 MR
+YARN 资源管理系统
+
+HDFS 2
+解决HDFS 1.0 中单点故障和内存受限问题
+解决单点故障
+HDFS HA 通过主备 NameNode 解决
+如果主 NameNode 发生故障 则切换到备 NameNode 上
+
+解决内存受限问题
+HDFS Federation
+水平扩展 支持多个 NameNode
+每个 NameNode 分管一部分目录
+所有 NameNode 共享所有 DataNode 存储资
+
+2.x 仅是架构上发生了变化 使用方式不变
+对 HDFS 使用者透明
+HDFS 1.x 中的命令和 API 仍可以使用
+
+HDFS 2.0 HA
+主备 NameNode
+解决单点故障
+主 NameNode 对外提供服务 备 NameNode 同步主 NameNode 元数据 以待切换
+所有 DataNode 同时向两个 NameNode 汇报数据块信息
+两种切换选择
+手动切换 通过命令实现主备之间的切换 可以用 HDFS 升级等场合
+自动切换 基于 Zookeeper 实现
+基于 Zookeeper 自动切换方案
+Zookeeper Failover Controller 监控 NameNode 健康状态
+并向 Zookeeper 注册 NameNode
+NameNode 挂掉后 ZKFC 为 NameNode 竞争锁 获得 ZKFC 锁的 NameNode 变为 active
+
+HDFS 2.x Federation
+通过多个 namenode/namespace 把元数据的存储和管理分散到多个节点中 使用 namenode/namespace 可以通过增加机器来进行水平扩展
+能把单个 namenode 的负载分散到多个节点中 在 HDFS 数据规模较大的时候不会也降低 HDFS 的性能 可以通过多个 namespace 来隔离不同类型的应用 把不同类型应用的 HDFS 元数据的存储和管理分派到不同的 namenode 中
+
+YARN
+YARN YetAnother Resource Negotiator
+Hadoop 2.0 将 MRV1 中 JobTracker 的资源管理和任务调度两个功能分开 分别由 ResourceManager 和 ApplicationMaster 进程实现
+ResourceManager 负责整个集群的资源管理和调度
+ApplicationMaster 负责应用程序相关的事务 比如任务调度 任务监控和容错等
+YARN 的引入 使得多个计算框架可运行在一个集群中
+每个应用程序对应一个 ApplicationMaster
+目前多个计算框架可以运行在 YARN 上 比如 MapReduce Spark Storm 等
+
+MapReduce On YARN (MRV2)
+将 MapReduce 作业直接运行在 YARN 上 而不是由 JobTracker 和 TaskTracker 构建的 MRv1 系统中
+基本功能模块
+YARN 负责资源管理和调度
+MRAppMaster 负责任务切分 任务高度 任务监控和容错等
+MapTask/ReduceTask 任务驱动引擎 与 MRv1 一致
+每个 MapReduce 作业对应一个 MRAppMaster
+MRAppMaster 任务调度
+YARN 将资源分配给 MRAppMaster
+MRAppMaster 进一步将资源分配给内部的任务
+MRAppMaster 容错
+失败后 由 YARN 重新启动
+任务失败后 MRAppMaster 重新申请资源
+
+Hive
+===========================================================
+优势
+
+内置丰富的通用操作算子和计算函数，能大幅降低开发成本，同时提高逻辑正确性；
+丰富数据模型可以简化数据组织、管理和访问的复杂度；
+类SQL描述的数据处理流程为“所思即所见，所见即所得”，便于理解和维护；
+劣势
+
+数据操作不灵活，对于一些情况，一轮hadoop计算被迫要分成多个任务来完成；
+复杂数学计算实现困难，不直观 && 性能差；
+不适合访问外部数据，如dict和外部server；
+
+Hbase
+===========================================================
+与传统数据库不同的是 hbase 放弃事务特性 追求更高的扩展
+与 HDFS 不同的是 hbase 提供数据的随机读写和实时访问 实现对表数据的读写功能
+
+
+Sqoop 使能够和 HDFS 之外的数据存储进行交互
+===========================================================
+允许用户将数据从结构化存储器抽取到 Hadoop 中
+抽取的数据可以被 Hive 工具使用
+将数据从数据库转移到 HBase
+
+起源
+===========================================================
+
+起源
+===========================================================

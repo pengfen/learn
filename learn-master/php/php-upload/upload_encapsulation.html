@@ -1,0 +1,91 @@
+<h1>使用封装函数 来上传</h1>
+<form action="7.php" method='post' enctype='multipart/form-data'>
+	<input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+	<input type="file" name="myfile">
+	
+	<button>上传</button>
+</form>
+
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+//导入 函数库
+require "functions.php";
+
+//  执行上传
+$info = upload($_FILES['myfile'], './uploads', 2000000, array('image/png', 'image/gif', 'image/jpeg'));
+
+//判断是否上传成功
+if ($info['success']){
+	echo "上传成功！<br>";
+	echo "文件路径：".$info['info'];
+}else {
+	echo "上传失败！<br>";
+	echo "错误原因：".$info['info'];
+}
+
+functions.php 文件内容
+<?php
+/**
+  * 上传的函数
+  * @param arrray  $files	要上传的文件信息数组
+  * @param string	  $path  上传的目录		./uploads    ./uploads/
+  * @param int		  $allowSize	默认值 0（不验证大小）
+  * @param	array  $allowType	默认值 array()	如果是空数组 不验证类型		mime类型  
+  * @retrun   array	array('success'=>true/flase, 'info'=>上传路径/错误信息)		
+*/
+function upload($files, $path, $allowSize=0, $allowType=array())
+{
+    $return = array('success'=>false, 'info'=>'');			//声明返回信息  默认是错误的
+	$path = rtrim($path, '/').'/';									//重新处理路径
+	
+	//1. 判断是否错误
+	if ($files['error'] != 0){
+		//输出错误原因
+		switch ($files['error']){
+			case 1:  $info = "文件大小超过了php.ini中的限制！"; break;
+			case 2:  $info = "文件大小超过了表单中的限制！"; break;
+			case 3:  $info = "文件只被部分上传!"; break;
+			case 4:  $info = "文件没有上传!"; break;
+			case 6:  $info = "找不到临时目录!"; break;
+			case 7:  $info = "文件写入失败！"; break;
+		}
+		$return['info'] = $info;
+		return $return;
+	}
+	
+	//2. 验证文件大小
+	if ($allowSize != 0){
+		if ($files['size'] > $allowSize){
+			$return['info'] = "文件超过了限制，最大".$allowSize;
+			return $return;
+		}
+	}
+	
+	//3. 验证 文件类型
+	if (!empty($allowType)){
+		if (!in_array($files['type'], $allowType)){
+			$return['info'] = "文件类型不合法";
+			return $return;
+		}
+	}
+	
+	//4. 生成新的文件名
+	$suffix = pathinfo($files['name'], PATHINFO_EXTENSION);
+	$newName = $path.uniqid().'.'.$suffix;
+	
+	//5. 执行移动
+	if (is_uploaded_file($files['tmp_name'])){
+		//执行移动
+		if (move_uploaded_file($files['tmp_name'], $newName)){
+			$return['success'] = true;
+			$return['info'] = $newName;
+		}else {
+		    $return['info'] = "文件移动失败！";
+		}
+	}else {
+		$return['info'] = '上传文件不合法！';
+	}
+	return $return;
+	
+}

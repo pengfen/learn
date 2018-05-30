@@ -1,0 +1,541 @@
+springmvc的基础知识
+
+什么是springmvc
+springmvc框架原理(掌握)
+    前端控制器 处理器映射器 处理器适配器 视图解析器
+springmvc入门程序
+    非注解的处理器映射器 处理器适配器
+    注解的处理器映射器 处理器适配器 (掌握)
+springmvc 和 mybatis整合 (掌握)
+
+springmvc注解开发
+    常用的注解学习
+    参数绑定(简单类型 pojo 集合类型)
+    自定义参数绑定(掌握)
+springmvc 和 struts2区别
+
+springmvc的高级应用
+参数绑定(集合类型)
+数据回显
+上传图片
+json数据交互
+RESTful支持
+拦截器
+
+
+什么是springmvc
+springmvc是spring框架的一个模块 springmvc和spring无需通过中间整合 springmvc是一个基于mvc的web框架
+
+什么是mvc
+mvc是一个设计模式 mvc在b/s下的应用
+1 客户 request请求 控制器
+2 控制器 (controller 接口用户请求 响应) 请求模型进行处理
+3 M (模型model pojo action service dao) 处理结果返回 控制器
+4 控制器响应 渲染视图 将模型数据填充到request域中
+5 V (视图 view)
+b/s系统下模型无法将数据填充到视图
+
+springmvc框架
+前端控制器 DispatcherServlet 接口用户请求 响应
+处理器映射器 HandlerMapping
+Handler 处理器 (平常叫做controller)
+处理器适配器 HandlerAdapter 去执行Handler
+视图解析器 View resolver
+
+1 客户 request请求 url 前端控制器
+2 前端控制器 请求查找Handler 处理器映射器
+3 处理器映射器 返回一个执行链HandlerExecutionChain{} 前端控制器
+4 前端控制器 请求执行Handler 处理器适配器
+5 处理器适配器 执行 Handler处理器
+6 Handler处理器 返回ModelAndView给 处理器适配器
+7 处理器适配器 返回ModelAndView给 前端控制器
+8 前端控制器 请求进行视图解析 视图解析器
+9 视图解析器 返回view给 前端控制器
+10 前端控制器 视图渲染将模型数据填充到request域 view视图
+
+第一步 发起请求到前端控制器(DispatcherServlet)
+第二步 前端控制器请求HandlerMapping查找Handler 可以根据xml配置 注解进行查找
+第三步 处理器映射器HandlerMapping向前端控制器返回Handler
+第四步 前端控制器调用处理器适配器去执行Handler
+第五步 处理器适配器去执行Handler
+第六步 Hander执行完成给适配器返回ModelAndView
+第七步 处理器适配器向前端控制器返回ModelAndView ModelAndView是springmvc框架的一个底层对象 包括 Model和View
+第八步 前端控制器请求视图解析器去进行视图解析 根据逻辑视图名解析成真正的视图(jsp)
+第九步 视图解析器向前端控制器返回view
+第十步 前端控制器进行视图渲染 视图渲染将模型数据(在ModelAndView对象中)填充到request域
+第十一步 前端控制器向用户响应结果
+
+组件
+1 前端控制器DispatcherServlet (不需要程序员开发)
+    作用接收请求 响应结果 相当于转发器 中央处理器 有了DispatcherServlet减少了其它组件之间的耦合度
+2 处理器映射器HandlerMapping 作用根据请求的url查找Handler (不需要程序员开发)
+3 处理器适配器HandlerAdapter 作用按照特定规则 (HandlerAdapter要求的规则)去执行Handler 
+4 处理器Handler(需要程序员开发)
+注意 编写Handler时按照HandlerAdapter的要求去做 这样适配器才可以去正确执行Handler
+5 视图解析器 View resolver 作用进行视图解析 根据逻辑视图名解析成真正的视图(view) (不需要程序员开发)
+6 视图View (需要程序员开发jsp)
+    View是一个接口 实现类支持不同的View类型(jsp freemarker pdf ...)
+
+springmvc 入门
+需求 实现商品查询列表功能
+开发环境准备 eclipse + tomcat7开发
+springmvc和mybatis使用一个案例(商品订单管理)
+
+创建项目(Dynamic Web Project)
+build\classes --- WebRoot\WEB-INF\classes
+WebContent --- WebRoot
+
+加载相关jar包
+Build Path --- Configure Build Paht --- Libraries --- Add External JARs --- 选择相关jar包 --- OK
+
+配置前端控制器
+需要在web.xml配置前端控制器
+	<!-- springmvc前端控制器 -->
+	<servlet>
+	    <servlet-name>spring-first</servlet-name>
+	    <!-- 找到spring-webmvc包下的类 右击 - Copy Qualified Name - 支掉.class -->
+	    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	    <!-- contextConfigLocation配置springmvc加载的配置文件(配置处理器映射器 适配器等) -->
+	    <!-- 如果不配置contextConfigLocation 默认加载的是/WEB-INF/servlet名称-servlet.xml(spring-first-servlet.xml) -->
+	    <init-param>
+	        <param-name>contextConfigLocation</param-name>
+	        <param-value>classpath:springmvc.xml</param-value>
+	    </init-param>
+	</servlet>
+	
+	<servlet-mapping>
+	    <servlet-name>spring-first</servlet-name>
+	    <!-- 第一种 *.action访问以.action结尾 由DispatcherServlet进行解析 -->
+	    <!-- 第二种 / 访问的地址都由DispatcherServlet进行解析 对于静态文件的解析需要配置不让DispatcherServlet进行解析 使用些种方式可以实现RESTFul风格的url -->
+	    <!-- 第三种 /* 这样配置不对 使用这种配置 最终要转发到一个jsp页面时 仍然会由DispatcherServlet解析jsp地址 不能根据jsp页面找到handler 会报错 -->
+	    <url-pattern>*.php</url-pattern>
+	</servlet-mapping>
+
+配置处理器适配器
+在classpath下的springmvc.xml中配置处理器适配器
+
+通过查看源代码
+public class SimpleControllerHandlerAdapter implements HandlerAdapter {
+	public boolean supports(Object handler) {
+	    return (handler instanceof Controller);
+	}
+}
+
+此适配器能执行实现Controller接口的Handler
+public interface Controller {
+	ModelAndView handlerRequest(HttpServletRequest request, HttpServletResponse response) throws Exception;
+}
+
+开发Handler
+public class ItemsController implements Controller{
+
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest arg0,
+			HttpServletResponse arg1) throws Exception {
+		// 调用service查找数据库 查询商品列表 这里使用静态数据模拟
+		List<Items> itemsList = new ArrayList<Items>();
+		
+		// 向list中填充静态数据
+		Items items1 = new Items();
+		items1.setName("peng1");
+		items1.setPrice(6000f);
+		items1.setDetail("用于测试");
+		
+		Items items2 = new Items();
+		items2.setName("peng2");
+		items2.setPrice(5000f);
+		items2.setDetail("测试控制器");
+		
+		itemsList.add(items1);
+		itemsList.add(items2);
+		
+		// 返回ModelAndView
+		ModelAndView modelAndView = new ModelAndView();
+		// 相当于request的setAttribut 在jsp页面中通过itemsList取数据
+		modelAndView.addObject("itemsList", itemsList);
+		
+		// 指定视图
+		modelAndView.setViewName("/WEB-INF/jsp/items/itemsList.jsp");
+		
+		return modelAndView;
+	}
+
+}
+
+视图编写
+
+配置Handler
+将编写Handler在spring容器加载
+<!-- 配置Handler -->
+<bean name="/queryItems.action" class="com.peng.web.ItemsController"/>
+
+配置处理器映射器
+在classpath下的springmvc.xml中配置处理器映射器
+<!-- 处理器映射器 将bean的name作为url进行查找 需要在配置Handler时指定bean name(就是url)-->
+<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+	
+配置视图处理器
+<!-- 视图解析器 解析jsp视图 默认使用jstl标签 classpath下得有jstl包-->
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
+
+部署访问
+Run As --- Run on Server
+http://localhost:8080/test/queryItems.action
+处理器映射器根据url找不到Handler 就会报404错误
+处理器映射器根据url找不到Handler 转发的jsp页面地址错误
+HTTP Status 404 - /project_name/WEB-INF/jsp/items/XXX.jsp
+
+非注解的处理器映射器和适配器
+处理器映射器 org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping
+另一个映射器
+<!-- 简单url映射 -->
+<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    <property name="mappings">
+        <props>
+            <!-- 对itemsController进行url映射 url是/queryItems1.action -->
+            <prop key="/queryItems1.action">itemsController1</prop>
+            <prop key="/queryItems2.action">itemsController1</prop>
+        </props>
+    </property>
+</bean>
+多个映射器可以并存 前端控制器判断url能让哪些映射器映射 就让正确的映射器处理
+
+非注解的处理器适配器
+org.springframework.web.servlet.handler.SimpleUrlHandlerAdapter
+要求编写的Handler实现Controller接口
+
+org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter
+要求编写的Handler实现HttpRequestHandler接口
+编写类
+public class ItemsController2 implements HttpRequestHandler{
+
+	@Override
+	public void handleRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// 调用service查找数据库 查询商品列表 这里使用静态数据模拟
+		List<Items> itemsList = new ArrayList<Items>();
+		
+		// 向list中填充静态数据
+		Items items1 = new Items();
+		items1.setName("peng1");
+		items1.setPrice(6000f);
+		items1.setDetail("用于测试");
+		
+		Items items2 = new Items();
+		items2.setName("peng2");
+		items2.setPrice(5000f);
+		items2.setDetail("测试控制器");
+		
+		itemsList.add(items1);
+		itemsList.add(items2);
+		
+		// 设置模型数据
+		request.setAttribute("itemsList", itemsList);
+		// 设置转发的视图
+		request.getRequestDispatcher("/WEB-INF/jsp/items/itemsList.jsp").forward(request, response);
+		
+		// 使用此方法可以通过修改response 设置响应的数据格式 比如响应json数据
+		// response.setCharacterEncoding("utf-8");
+		// response.setContentType("application/json;charset=utf-8");
+		// response.getWriter().write("json串");
+	}
+}
+
+<!-- 另一个非注解的适配器 -->
+<bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+
+<!-- 配置另一个Handler -->
+<bean id="itemsController2" class="com.peng.web.ItemsController2" />
+<prop key="/queryItems3.action">itemsController2</prop>
+
+spring-webmvc --- org.springframework.web.servlet --- DispatcherServlet.properties
+前端控制器从上边的文件中加载处理映射器 适配器 视图解析器等组件 如果不在springmvc.xml中配置 使用默认加载的
+
+注解的处理器映射器和适配器
+在spring3.1之前使用org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping注解映射器
+在spring3.1之后使用org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping注解映射器
+在spring3.1之前使用org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter注解适配器
+在spring3.1之后使用org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter注解适配器
+
+配置注解映射器和适配器
+<!-- 注解映射器 -->
+<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+<!-- 注解适配器 -->
+<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
+
+<!-- 使用mvc:annotation-driven代替上边注解映射器和注解适配器配置 -->
+<!-- mvc:annotation-driven默认加载很多的参数绑定方法 比如json转换解析器就默认加载了-->
+<!-- 如果使用mvc:annotation-driven不用配置上边的RequestMappingHandlerMapping和RequestMappingHandlerAdapter -->
+<!-- 实际开发时使用mvc:annotation-driven -->
+<mvc:annotation-driven />
+
+源码分析
+通过前端控制器源码分析springmvc的执行过程
+第一步 前端控制器接收请求
+调用doDispatch
+protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	HttpServletRequest processedRequest = request;
+	HandlerExecutionChain mappedHandler = null;
+	int interceptorIndex = -1;
+	...
+}
+
+第二步 前端控制器调用处理器映射器查找 Handler
+protected HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception {
+	for (HandlerMapping hm : this.handlerMappings) {
+	    if (logger.isTraceEnabled()) {
+	        logger.trace("Testing handler map [" + hm + "] in DispatcherServlet with name" + getServlet());
+	    }
+	    HandlerExecutionChain handler = hm.getHandler(request);
+	    if (handler != null) {
+	        return handler;
+	    }
+	}
+	return null;
+}
+
+第三步 调用处理器去执行handler 得到执行结果ModelAndView
+mv = ha.handler(processedRequest, response, mappedHandler.getHandler());
+
+第四步 视图渲染 将model数据填充到request域
+视图解析 得到view
+view = resolveViewName(mv.getViewName(), mv.getModelInternal(), locale, request);
+
+调用view的渲染方法 将model数据填充到request域
+渲染方法
+view.render(mv.getModelInternal(), request, response);
+
+--------------------------------------
+
+入门程序小结
+
+通过入门程序理解springmvc前端控制器 处理器映射器 处理器适配器 视图解析器用法
+
+前端控制器配置
+第一种 *.action 访问以.action结尾 由DispatcherServlet进行解析
+第二种 / 所以访问的地址都由DispatcherServlet进行解析 对于静态文件的解析需要配置不让DispatcherServlet进行解析 使用此种方式可以实现RESTful风格的url
+
+处理器映射器
+非注解的处理映射器(了解)
+注解的处理映射器(掌握) 对标记@Controller类中标识有@RequestMapping的方法进行映射 在@RequestMapping里边定义映射的url
+使用注解的映射器不用在xml中配置url和Handler的映射关系
+
+处理器适配器
+非注解处理适配器(了解)
+注解的处理适配器(掌握)
+    注解处理器适配器和注解的处理器映射器是配对使用 理解为不能使用非注解映射器进行映射
+
+<mvc:annotation-driven /> 可以代替下边的配置
+<!-- 注解映射器 -->
+<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+<!-- 注解适配器 -->
+<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
+实际开发使用 mvc:annotation-driven
+
+视图解析器配置前缀和后缀
+<!-- 视图解析器 解析jsp视图 默认使用jstl标签 classpath下得有jstl包-->
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <!-- 配置视图解析器的前缀和后缀 -->
+    <property name="prefix" value="/WEB-INF/jsp" />
+    <property name="suffix" value=".jsp" />
+</bean>
+
+程序中不能指定前缀和后缀
+// 下边的路径 如果在视图解析器中配置jsp路径的前缀和jsp路径的后缀 修改为
+// modelAndView.setViewName("/WEB-INF/jsp/items/itemsList.jsp");
+// 上边的路径配置可以不在程序中指定jsp路径的前缀和jsp路径的后缀
+modelAndView.setViewName("items/itemsList");
+
+
+------------------------------------
+springmvc 和 mybatis 整合
+需求
+使用springmvc 和 mybatis 完成商品列表查询
+
+整合思路
+整合dao层 mybatis和spring整合 通过spring管理mapper接口 使用mapper的扫描器自动扫描mapper接口在spring中进行注册
+整合service层
+通过spring管理service接口
+通过配置方式将service接口配置在spring配置文件中
+实现事务控制
+整合springmvc
+由于springmvc是spring的模块 不需要整合
+
+@RequestMapping
+定义controller方法对应的url 进行处理器映射使用
+
+窄化请求映射
+
+@Controller
+// 为了对url进行分类管理 可以在这里定义根路径 最终访问url是根路径+子路径
+// 比如 商品列表 /items/queryItems.action
+@RequestMapping("/items")
+public class ItemsController {
+	
+}
+
+jsp
+action="${pageContext.request.contextPath}/items/editItemsSubmit.action"
+
+限制http请求方法
+出于安全性考虑 对http的链接进行方法限制
+如果限制请求为post方法 进行get请求 就会报错
+@RequestMapping(value="/editItems", method={RequestMethod.POST})
+
+controller方法的返回值
+返回ModelAndView
+返回string 如果controller方法返回string
+1 表示返回逻辑视图名 真正视图(jsp 路径) = 前缀 + 逻辑视图名 + 后缀
+@RequestMapping(value="/editItems", method={RequestMethod.POST})
+public String editItems(Model model) throws Exception {
+	// 调用service根据商品id查询商品信息
+	ItemsCustom itemsCustom = itemService.findItemsById(1);
+
+	// 返回ModelAndView
+	// ModelAndView modelAndView = new ModelAndView();
+	// 将商品信息放到model
+	// modelAndView.addObject("itemsCustom", itemsCustom);
+	// 商品修改页面
+	// modelAndView.setViewName("items/editItems");
+	// 通过形参中的model将model数据传到页面
+	// 相当于modelAndView.addObject方法
+	model.addAttribute("itemsCustom", itemsCustom);
+	return "items/editItems";
+}
+
+2 redirect 重定向
+商品修改提交后 重定向到商品查询列表
+redirect 重定向特点 浏览器地址栏中的url会变化 修改提交的request数据无法传到重定向的地址 因为重定向后重新进行request(request无法共享)
+// 商品信息修改提交
+@RequestMapping("/editItemsSubmit")
+public String editItemsSubmit() throws Exception {
+	// 调用service更新商品信息 页面需要将商品信息传到此方法
+	// 重定向
+	return "redirect:queryItems.action";
+}
+
+3 forward转发
+通过forward进行页面转发 浏览器地址栏url不变 request可以共享
+return "forward:queryItems.action";
+
+返回void
+在controller方法形参上可以定义request和response 使用request或response指定响应结果
+使用request转向页面 如下
+request.getRequestDispatcher("页面路径").forward(request, response);
+
+也可以通过response页面重定向 response.sendRedirect("url");
+
+也可以通过response指定响应结果 例如响应json数据如下
+response.setCharacterEncoding("utf-8");
+response.setContentType("application/json;charset=utf-8");
+response.getWriter().write("json串");
+
+参数绑定
+什么是参数绑定
+从客户端请求 key/value 数据 经过参数绑定 将key/value数据绑定到controller方法的形参上
+springmvc中 接收页面提交的数据是通过方法形参来接收 而不是在controller类定义成员变量接收
+
+处理器适配器调用springmvc提供参数绑定组件将key/value数据转成controller方法的形参 参数绑定组件 在springmvc早期版本使用PropertyEditor(只能将字符串传成java对象) 后期使用converter(进行任意类型的转换)springmvc提供了很多converter(转换器)在特殊情况下需要自定义converter 对日期数据绑定需要自定义converter
+
+参数绑定默认支持类型
+直接在controller方法形参上定义下边类型的对象 就可以使用这些对象 在参数绑定过程中 如果遇到下边类型直接进行绑定
+HttpServletRequest 通过request对象获取请求信息
+HttpServletResponse 通过response处理响应信息
+HttpSession 通过session对象得到session中存放的对象
+
+Model/ModelMap
+model是一个接口 modelMap是一个接口实现
+作用 将model数据填充到request域
+
+简单类型
+通过@RequestParam对简单类型的参数进行绑定
+如果不使用@RequestParam 要求request传入参数名称和controller方法的形参名称一致 方可绑定成功
+如果使用@RequestParam 不用限制request传入参数名称和controller方法的形参名称一致
+
+@RequestMapping(value="/editItems", method={RequestMethod.POST})
+// @RequestParam里边指定request传入参数名称和形参进行绑定
+//通过required属性指定参数是否必须传入
+//通过defaultValue可以设置默认值 如果id参数没有传入 将默认值和形参绑定
+public String editItems(Model model, @RequestParam(value="id", required=true) Integer id) throws Exception {
+	// 调用service根据商品id查询商品信息
+	ItemsCustom itemsCustom = itemService.findItemsById(1);
+
+	// 返回ModelAndView
+	// ModelAndView modelAndView = new ModelAndView();
+	// 将商品信息放到model
+	// modelAndView.addObject("itemsCustom", itemsCustom);
+	// 商品修改页面
+	// modelAndView.setViewName("items/editItems");
+	// 通过形参中的model将model数据传到页面
+	// 相当于modelAndView.addObject方法
+	model.addAttribute("itemsCustom", itemsCustom);
+	return "items/editItems";
+}
+通过required属性指定参数是否必须传入 如果设置为true 没有传入参数 会报错
+
+pojo绑定
+页面中input的name和controller的pojo形参中的属性名称一致 将页面中数据绑定到pojo
+
+页面定义
+<table width="100%" border=1>
+<tr>
+	<td>商品名称</td>
+	<td><input type="text" name="name" value="${itemsCustom.name}"></td>
+</tr>
+<tr>
+    <td>商品价格</td>
+    <td><input type="text" name="price" value="${itemsCustom.price}"></td>
+</tr>
+
+controller的pojo形参的定义
+public class Items {
+	private Integer id;
+	private String name;
+	private Float price;
+	private String pic;
+}
+
+自定义参数绑定实现日期类型绑定
+对于controller形参中pojo对象 如果属性中有日期类型 需要自定义参数绑定
+对请求日期数据串传成日期类型 要转换的日期类型和pojo中日期属性的类型保持一致
+
+自定义参数绑定将日期串转成java.util.Date类型
+需要向处理器适配器中注入自定义的参数绑定组件
+
+public class CustomDateConverter implements Converter<String, Date>{
+	public Date convert(String source) {
+	    // 实现将日期转成日期类型(格式是yyyy-MM-dd HH:mm:ss)
+	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    try {
+	        // 转成直接返回
+	        return simpleDateFormat.parse(source);
+	    } catch (ParseException e) {
+	        e.printStackTrace();
+	    }
+	    // 如果参数绑定失败返回null
+	    return null;
+	}
+
+}
+
+springmvc.xml 中配置
+<mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
+
+<!-- 自定义参数绑定 -->
+<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+    <!-- 转换器 -->
+    <property name="converters">
+        <list>
+        	<!-- 日期类型转换 -->
+        	<bean class="com.peng.mybatis.web.converter.CustomDateConverter" />
+        </list>
+    </property>
+</bean>
+
+springmvc和struts2的区别
+springmvc基于方法开发的 struts2基于类开发的
+springmvc将url和controller方法映射 映射成功后springmvc生成一个Handler对象 对象中只包括了一个method方法执行结束 形参数据销毁
+springmvc的controller开发类似service开发
+springmvc可以进行单例开发 并且建议使用单例开发 struts2通过类的成员变量接收参数 无法使用单例 只能使用多例
+
+经过实际测试 struts2速度慢 在于使用struts标签 如果使用struts建议使用jstl

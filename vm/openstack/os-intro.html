@@ -1,0 +1,112 @@
+OpenStack 介绍
+OpenStack 功能组件
+OpenStack 工作原理
+OpenStack 访问控制流程
+
+
+OpenStack 介绍
+===============================================================
+OpenStack 是 Rackspace 和 NASA 共同发起的开源项目
+OpenStack 是一系列开源软件项目的组合
+基础设施资源的系统管理平台
+
+OpenStack 功能组件
+===============================================================
+compute 计算资源管理模块
+volume  存储资源管理模块
+network 网络资源管理模块
+
+orchestration  编制服务
+scheduling     调度服务
+policy         策略服务
+image registry 境像注册服务
+logging        日志服务
+
+Horizon --- UI 服务
+User Dashboard   Customer Portal
+
+Keystone --- 身份服务
+identity
+
+Nova --- 计算服务
+Compute API   Scheduling   Policy  Compute   部分管理 Admin API
+
+Glance --- 镜像服务
+Image API   Image Registry
+
+Cinder/Swift --- 存储服务
+Volume
+
+Heat --- 编排组织服务
+Orchestration
+
+Ceilometer 监控计量服务
+Billing Monitoring
+
+
+Horizon --- UI 模块
+为云管理员提供整体视图 以实现资源整合和配额管理
+为终端用户提供自助服务门户 在配额范围内 自由操作 使用资源
+
+Keystone --- 身份服务模块
+User     即用户 代表可以通过 keystone 进行访问的人或程序 User 通过认证信息 (如密码 API Keys 等) 进行验证
+Tenant   即租户 它是各个服务中的一些可以访问的资源集合
+Role     即角色 Roles 代表一组用户可以访问的资源权限
+Service  即服务 如 Nova Glance Swift 服务在 KeyStone 上进行注册
+Endpoint 可以理解它是一个服务暴露出来的访问点 如果需要访问一个服务则必须知道他的 endpoint
+Token    访问资源的令牌 相当于现实中钥匙 具有时效性
+
+keystone 提供的服务
+Identity 服务验证了身份验证凭证
+Token    服务将会验证并管理用于验证请求身份的令牌
+Catalog  服务提供了可用于端点发现的服务注册表
+Policy   服务暴露了一个基于规则的身份验证引擎
+
+易购环境集成
+每个 Keystone 功能都支持用于集成到异构环境并展示不同功能的后端插件 更常见的一些后端包括
+Key Value Store
+Memcached
+Structured Query Language (SQL)
+Pluggable Authentication Module (PAM)
+Lightweight Directory Access Protocol (LDAP)
+
+
+Nova --- 计算服务
+OpenStack 的核心服务 主要功能包括
+实例生命周期管理
+计算资源管理
+向外提供 REST 风格的 API
+
+nova-api       nova 表现层
+nova-scheduler nova 控制层
+nova-compute   nova 模型层 虚拟机创建等
+三者使用 rabbit MQ 来通信
+user Request --- nova-api --- 通知 Scheduler --- rabbit MQ --- 选择 Host --- nova-scheduler --- 通知 Host --- rabbit MQ --- 创建 VM --- nova-compute
+
+Glance --- 镜像服务
+提供虚拟机镜像的存储 查询和检索服务
+为 Nova 组件提供服务
+依赖于存储服务和数据库
+
+Web portal --- Glance-api --- Glance-registry --- DataBase
+                          --- Image Store
+
+Swift --- 对象存储服务
+OpenStack 最早期的两个服务之一
+高可用分布式对象存储服务
+定位 account --- container --- object
+可以通过 HTTP(S) Object API 及 S3 接口存取
+
+Cinder --- 块存储服务 管理所有的块存储设备 为 VM 服务
+cinder request --- cinder-api --- rabbit MQ --- cinder-scheduler --- cinder-volume
+
+Neutron --- 网络服务
+提供云计算环境下的虚拟网络功能
+给每个租户独立的网络环境
+三种模式 Flat 模式   Flat DHCP 模式    模式
+
+OpenStack 工作原理
+===============================================================
+
+OpenStack 访问控制流程
+===============================================================

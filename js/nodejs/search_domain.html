@@ -1,0 +1,101 @@
+index.html 搜索域名页面
+
+<html>
+    <head>
+    	<meta charset='utf8'>
+    	<title>DNS 查询</title>
+    </head>
+    <body>
+    	<h1 style="text-align:center;">DNS查询工具</h1>
+    	<div style="text-align:center;">
+    		<form action="/parse" method="post">
+    			查询 DNS <input type="text" name="search_dns"/>
+    			<input type="submit" value="查询"/>
+    		</form>
+    	</div>
+    </body>
+</html>
+
+
+nodejs 处理页
+var http = require('http');
+url = require('url');
+fs = require('fs');
+dns = require('dns');
+querystring = require('querystring');
+http.createServer(function(req, res) {
+	// http head 返回 html 因此 Content-Type 为 html
+	var pathname = url.parse(req.url).pathname;
+	req.setEncoding('utf8');
+	res.writeHead(200, {'Content-Type' : 'text/html'});
+	router(res, req, pathname);
+	// router(res, req, pathname) 处理不同url请求资源 分发处理
+	// var pathname = url.parse(req.url).pathname 获取当前请求资源的url路径
+	// req.setEncoding('utf8') 设置返回客户端页面的数据格式 
+
+	function router(res, req, pathname) {
+		switch (pathname) { // 根据pathname不同 执行不同的处理逻辑
+			case "/parse":
+			    parseDns(res, req);
+			    break;
+			default:
+			    goIndex(res, req);
+		}
+		// switch(pathname) 判断当前的pathname 是什么参数
+		// case '/parse' 如果请求路径是 '/parse' 时 执行parseDns(res, req)域名解析
+		// default 其他情况 goIndex(res, req) 显示index.html页面
+	}
+
+	/*
+	 * @desc 定义响应html页面的函数
+	 * @params res http请求对象
+	 * @params req http响应对象
+	*/
+	function goIndex(res, req) {
+		// 获取index.html的文件路径
+		var readPath = __dirname + '/' + url.parse('index.html').pathname;
+		// 同步读取index.html文件的信息
+	    var indexPage = fs.readFileSync(readPath);
+	    res.end(indexPage);
+
+	    // var readPath 获取index.html文件的路径
+	    // var indexPage 读取index.html文件数据 并将数据保存到indexPage 变量中
+	    // res.end(indexPage) 通过res响应html数据到客户端
+	}
+
+	function parseDns(res, req) {
+		var postData = '';
+		req.addListener('data', function(postDataChunk) {
+			postData += postDataChunk;
+		});
+
+		// HTTP响应html页面信息
+		req.addListener('end', function() { // Domain:127.0.0.1IP:180.168.41.175
+			var retData = getDns(postData, function(domain, address) {
+				res.writeHead(200, {'Content-Type' : 'text/html'});
+				res.end("<html><head><meta charset='utf8'><title>parse</title></head><body><div style='text-align:center'>Domain:<span style='color:red'>" + domain + "</span>IP:<span style='color:red'>" + address.join(',') + "</span></div></body></html>");
+			});
+			return;
+		});
+		// req.addListener("data", function() {}); 数据传递到服务器时触发的事件函数 读取客户端传递来的数据 获取数据后添加到 postData 中
+		// req.addListener("end", function() {}); 数据接收完成 end事件被触发后 执行DNS 域名解析
+		// getDns 异步解析域名 执行完成后回调执行 function(domain, address){} domain 是传递的域名参数 address 是解析后返回的IP地址列表
+
+		// index.html 页面输入 127.0.0.1
+		// /parse Domain:127.0.0.1IP:180.168.41.175
+
+	}
+
+	function getDns(postData, callback) {
+		var domain = querystring.parse(postData).search_dns;
+		// 异步解析域名
+		dns.resolve(domain, function(err, address) {
+			if (!address) {
+				address = ['不存在域名'];
+			}
+			callback(domain, address);
+		})
+		// dns.resolve(domain, function(err, address) {}) 方法的使用可看官网API
+		// var domain 应用querystring模块来获取post数据中键值为search_dns的值
+	}
+}).listen(3000, '127.0.0.1');

@@ -1,0 +1,37 @@
+<!--author:lishuo;time:2015:8:10-->
+<extend name='Layout/index'/>
+<block name='resource'>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/apeng.css"/>
+</block>
+<block name='main'>
+<div class='admin-mess'>{$_GET['mess']}</div>
+<div id = 'right' class="col-md-10">
+	<table class="table table-striped">
+	    <thead>
+	    	<tr>
+	    		<th>编号</th>
+	    		<th>照片</th>
+	    		<th>描述</th>
+	    		<th>点赞量</th>
+	    		<th>相册ID</th>
+	    		<th>添加时间</th>
+	    		<th>编辑</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    	<volist name='data' id='vo'>
+	    	<tr>
+	    		<td>{$vo.id}</td>
+	    		<td><img src="__ROOT__/Uploads/{$vo.photo_name_thumb}" width=70></td>
+	    		<td>{$vo.des}</td>
+	    		<td>{$vo.good}</td>
+	    		<td>{$vo.aid}</td>
+	    		<td>{:date('Y-m-d H:i:s',$vo['create_time'])}</td>
+	    		<td><a href="{:U('Photo/delete',array('id'=>$vo['id']))}">删除</a></td>
+	    		
+	    	</volist>
+	    	<tr><td colspan="6" id='page'><if condition="$count neq '0'">共有 {$count} 条记录 {$page}<else />没有数据</if></td></tr>
+	    </tbody>
+    </table>
+</div>
+</block>

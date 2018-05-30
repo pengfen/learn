@@ -1,0 +1,44 @@
+<extend name='Layout/index'/>
+<block name='resource'>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/apeng.css"/>
+</block>
+<block name='main'>
+<div id="add">
+    <a href="javascript:void(0)">添加角色</a>
+    <input type='hidden' value="{:U('Role/add')}"/>
+    <a href="{:U('Role/index')}">角色列表</a>
+</div>
+<div class='admin-mess'>{$_GET['mess']}</div>
+<div id = 'right' class="col-md-10">
+	<table class="table table-striped">
+	    <thead>
+	    	<tr>
+	    		<th>编号</th>
+	    		<th>角色名</th>
+	    		<th>操作</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    	<foreach name='info' item='v'>
+	    	<tr>
+	    		<td>{$v.id}</td>
+	    		<td>{$v.name}</td>
+	    		<td>
+	    		    <a class="detail" href="javascript:void(0);">查看权限</a>
+				  	<input type="hidden" name="" value="{:U('Role/detail', array('id'=>$v[id]))}"/>
+	    			<a class="upd" href="javascript:void(0);">分配权限</a>
+				  	<input type="hidden" name="" value="{:U('Role/distribute', array('id'=>$v[id]))}"/>
+				  	<a href="{:U('Role/delete', array('id'=>$v[id]))}">删除</a>
+	    		</td>
+	    	</tr>
+	    	</foreach>
+	    </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+	click($('#add a'));  // 动态加载添加界面模板
+	click($('.upd'));    // 动态加载修改界面模板
+	click($('.detail')); // 动态加载当前角色所拥有的权限
+</script>
+</block>

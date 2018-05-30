@@ -1,0 +1,25 @@
+Yii 方法中生成 excel 文件
+
+下载地址
+href = '/index.php?r=admin/download'
+
+public function actionDownload() {
+    $name = Customer::find()->where(['status']=>1)->asArray()->all(); // 获取数据
+    header("Content-type:application/vnd.ms-excel"); // 设置输出类型 测试设置 utf-8 编辑
+    header("Content-Disposition:attachment;filename=demo.xls"); // 设置附件描述信息
+    $tab = "\t"; $br = "\n";
+    $head = "用户手机".$tab."门店".$tab."地址".$tab."电话".$br; // 定义 excel 文件中表格头
+    echo $head;
+    foreach ($name as $val) { // 循环输出数据库数据到 excel 文件中
+        $mobile = $val['mobile'].$tab;
+        echo iconv('UTF-8', 'GB2312', $mobile);
+        $shopping = $val['shopping'].$tab;
+        echo iconv('UTF-8', 'GB2312', $shopping);
+        $address = $val['address'].$tab;
+        echo iconv('UTF-8', 'GB2312', $address);
+        echo $val['phone'].$tab.$br; // 固定电话中注意空格中英文
+    }
+}
+
+如果空格是中文保存至数据库 iconv 转换时不能将内容输出到 excel 文件中
+注意 不转换 wps 可以读取 office 不能读取

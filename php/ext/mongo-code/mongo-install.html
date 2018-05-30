@@ -1,0 +1,62 @@
+mongodb 的安装
+
+https://www.mongodb.com/download-center#community 选择系统版本
+
+linux系统安装
+------------------------------------------------------------------
+wget https://fastdl.mongodb.org/linux/mongodb-linux-i686-3.2.9.tgz
+[root@peng3 mongo]# tar -zxvf mongodb-linux-i686-3.2.9.tgz 
+[root@peng3 mongo]# mv mongodb-linux-i686-3.2.9 /usr/local/mongodb
+[root@peng3 mongo]# cd /usr/local/mongodb/
+[root@peng3 mongodb]# ls
+bin  GNU-AGPL-3.0  MPL-2  README  THIRD-PARTY-NOTICES
+[root@peng3 mongodb]# mkdir data #默认放在/data/db为了方便管理统一放到mongodb目录下
+[root@peng3 mongodb]# touch logs #创建一个日志文件
+[root@peng3 mongodb]# ls
+bin  data  GNU-AGPL-3.0  logs  MPL-2  README  THIRD-PARTY-NOTICES
+[root@peng3 mongodb]# cd bin
+[root@peng3 bin]# ./mongod -h
+
+bin/mongod --dbpath=/usr/local/mongodb/data/ --fork --logpath=/usr/local/mongodb/logs 
+--dbpath=/usr/local/mongodb/data/ 用于指定存放mongodb的库数据
+--fork 是后台执行 不然一直在前后
+--logpath=/usr/local/mongodb/logs 用于指定mongodb的日志记录文件
+
+如果出错
+32-bit servers don't have journaling enabled by default. Please use --journal if you want durability
+添加 --journal (32bit版本的mongodb默认不开journal记录，如果你需要的话，需要在运行时加上--journal开关)
+
+出现以下错误
+ERROR: child process failed, exited with error number 100
+查看日志
+The default storage engine 'wiredTiger' is not available with this build of mongod (3.2版本后 默认wiredTiger) 添加 --storageEngine=mmapv1
+
+bin/mongod --storageEngine=mmapv1 --dbpath=/usr/local/mongodb/data/ --fork --journal --logpath=/usr/local/mongodb/logs
+--nohttpinterface 用于关闭浏览器查看
+pkill mongod终止mongod进程
+
+./mongo进入客户端
+[root@peng3 mongodb]# bin/mongo
+
+
+windows 安装
+------------------------------------------------------------------
+下载windows版本 双击 mongodb-win32-x86_64-2008plus-ssl-3.2.9-signed.msi 安装
+C:\Users\Administrator>e:
+
+E:\>cd files\mongo\bin #进行mongo的安装目录
+
+E:\files\mongo\bin>mongo.exe #使用mongo的客户端
+2016-08-24T15:14:27.668+0800 I CONTROL  [main] Hotfix KB2731284 or later update is not installed, will zero-out data files
+MongoDB shell version: 3.2.9
+connecting to: test
+Welcome to the MongoDB shell.
+For interactive help, type "help".
+For more comprehensive documentation, see
+        http://docs.mongodb.org/
+Questions? Try the support group
+        http://groups.google.com/group/mongodb-user
+> show dbs #查看数据库
+local  0.000GB
+test   0.000GB
+> 

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$title}</title>
+    <link href="__PUBLIC__/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="__PUBLIC__/Home/Js/jquery-2.1.4.min.js"></script>
+    <script src="__PUBLIC__/Bootstrap/js/bootstrap.min.js"></script>
+    <style type="text/css">
+		body{
+			background: url('__PUBLIC__/Home/Images/bg.jpg') repeat-x;
+			background-position:10px 50px;
+			background-color:#F1E9D6;
+		}
+    </style>
+    <block name='style'>
+    	
+    </block>
+  </head>
+  <body >
+   <!--header-->
+    <nav class="navbar navbar-default navbar-fixed-top" id='head' style='background-color:#f90;color: #fff;' style="position:relative">
+      <div class="container-fluid container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand " href="{:U('Index/index')}" style='color:#fff;'><b>资料网</b></a>
+        </div>
+        <script type="text/javascript">
+        $(function(){
+           $('#mynav .nav_li').mouseover(function(){
+           	 $(this).css('background','#9c3').siblings().css('background','#f90');
+
+          //alert('ok');
+         
+        })
+           $('#mynav #<?php echo ACTION_NAME;?>').css('background','#9c3');
+           	
+        })
+       
+        </script>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <block name='nav'>
+          <ul class="nav navbar-nav" id='mynav'>
+            <li class="nav_li" id='index'><a href="{:U('Index/index')}" style='color:#fff;font-size:bloder'><b>个人中心 </b><span class="sr-only">(current)</span></a></li>
+            <li class="nav_li" id='resource'><a href="{:U('Resource/index')}" style='color:#fff'><b>资料交易 </b></a></li>
+            <li class="nav_li" id='searchfriend'><a href="{:U('Friend/searchfriend')}" style='color:#fff'><b>找好友</b></a></li>
+             <li class="nav_li" id='myhome'><a href="{:U('User/myhome')}"  style='color:#fff'><b>我的主页</b></a></li>
+             <!--
+            <li class="dropdown nav_li"  id='myhome'>
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style='color:#fff'><b></b> <span class="caret"></span></a>
+              
+              <ul class="dropdown-menu" >
+                <li><a href="{:U('Say/index')}">说说</a></li>
+                <li><a href="{:U('Log/index')}">日志</a></li>
+                <li><a href="{:U('Album/index')}">相册</a></li>
+                <li><a href="{:U('Message/index')}">留言</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="{:U('Resource/index')}">我的资料库</a></li>
+                <li role="separator" class="divider"></li>
+           
+              </ul>
+            </li>-->
+          </ul>
+          </block>
+          <!-- <form class="navbar-form navbar-left" role="search" action="{:U('Search/index')}">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="用户/应用/动态">
+            </div>
+            <button type="submit" class="btn btn-default">搜索</button>
+          </form> -->
+          <ul class="nav navbar-nav navbar-right">
+           <li><a style="color:#fff"><b>欢迎你<?php echo $_SESSION['user']['username']?></b></a></li>
+            <li><a href="{:U('Login/logout')}" style='color:#fff'><b>退出</b></a></li>
+           
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style='color:#fff'><b>设置</b> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                
+                <li><a href="{:U('User/auth')}">权限设置</a></li>
+                <li><a href="{:U('User/edit')}">修改资料</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="Index/help">帮助中心 </a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+      <div id="tipmess" style="width:100px; height:100px; line-height: 100px; text-align:center; color:#fff; border-radius: 50px; background: pink; box-shadow: 0px 0px 10px red; position: absolute; left:600px; top 500px; z-index:5; display:none;">添加成功</div>
+    </nav>  
+
+	<block name='banner'></block>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<!--main-->
+				<block name='main'>
+
+				</block>
+				<!--end main-->
+			</div>
+		</div>
+	</div>
+  
+   
+  </body>
+</html>

@@ -1,0 +1,70 @@
+K 星人
+
+访问地址 域名/kstar/card
+function kiehls_kstarcard_menu() {
+    $items['kstar/card'] = array(
+    'page callback' => '_kiehls_kstarcard',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    );
+    return $items;
+}
+
+function kiehls_kstarcard_theme() { // 调用模板 kstar-card.tpl.php
+    return array(
+        'kstar-card' => array(
+        'path' => drupal_get_path('theme', 'kiehls_wechat') . '/templates',
+        'template' => 'kstar-card',
+        ),
+    );
+}
+
+function _kiehls_kstarcard() {
+    global $user;
+    $user = kiehls_user_load($user->uid);
+    if($user->field_user_wechat_bind_cellphone) {
+        $cellphone = $user->field_user_wechat_bind_cellphone[LANGUAGE_NONE][0]['value'];
+        $userinfo = _kiehls_club_get_points($cellphone); // 获取用户信息
+        $notice = "Hi! {$userinfo->name}！您的积分为：{$userinfo->points} 现在开始体验K星人俱乐部带给您的特别体验吧！";
+    } else {
+        $notice = "您尚未绑定科颜氏会员";
+    }
+    return theme('kstar-club', array('notice' => $notice));
+}
+
+function _kiehls_club_get_points($cellphone) {
+    module_load_include('inc', 'kiehls_club', 'kiehls_club'); // kiehls_club/kiehls_club.inc
+    $clubAPI = new kiehlsClubAPI(variable_get('kiehls_club_api_host', NULL));
+    $result = $clubAPI->getPoints($cellphone); // 获取积分
+    if($result->result == 'success') {
+        return $result->jsonResponse;
+    }
+    return FALSE;
+}
+
+public function getPoints($cellphone) { // 根据手机号来查询积分
+    $url = "{$this->_host}/get_point.ashx?mobile={$cellphone}";
+    $re = file_get_contents($url);
+    return json_decode($re);
+}
+
+function _kiehls_card() {
+    drupal_set_title('科颜氏'); // 设置显示标题
+    global $user; // 获取当前用户
+    $user = user_load($user->uid); // 加载所有从表数据
+    $notice = '';
+    $userinfo= '';
+    if($user->field_user_wechat_bind_cellphone) {
+    $cellphone = $user->field_user_wechat_bind_cellphone[LANGUAGE_NONE][0]['value'];
+    //$cellphone = '13818715331'; // 测试号 IVY
+    //$cellphone = '15821666705'; // 测试号 陈立康
+    $url = "http://kiehlsclub.kiehls.com.cn/get_point.ashx?mobile={$cellphone}";
+    $re = file_get_contents($url); // 获取接口返回数据
+    $result =  json_decode($re);
+    if($result->result == 'success') {
+    $userinfo = $result->jsonResponse;
+    $notice = "调用成功";
+    }
+    }
+    return theme('kstar-card', array('notice' => $notice, 'userinfo' => $userinfo));
+}

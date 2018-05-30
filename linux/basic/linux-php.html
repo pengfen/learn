@@ -1,0 +1,32 @@
+PHP 开发环境搭建的前奏工作
+
+PHP 开发环境搭建的前奏工作概述
+实战PHP开发环境搭建的前奏工作
+
+环境安装后配置文件
+
+配置虚拟主机
+
+<VirtualHost *:80>
+    DocumentRoot "E:\crm\branches\221"
+    ServerName dev.crm.com
+    <Directory "E:\crm\branches\221">
+        Options Indexes FollowSymLinks
+        Order Deny,Allow
+        Allow from all
+    </Directory>   
+</VirtualHost>
+
+xampp 配置 httpd.conf
+
+<Directory />
+    # 注释前二行 再添加二行 (对403错误进行处理)
+    # AllowOverride none
+    # Require all denied
+    Order Deny,Allow 
+    Allow from all
+</Directory>
+
+配置 windows 下本地hosts
+
+127.0.0.1 dev.crm.com

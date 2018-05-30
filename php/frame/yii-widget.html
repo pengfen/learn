@@ -1,0 +1,62 @@
+widget的使用
+
+yii1 使用
+
+调用widget <?php $this->widget('WidgetName'); ?>
+
+传参
+<?php $userId = 1; ?>
+<?php $this->widget('WidgetName', array('userId' => $userId)); ?>
+
+创建Widget (自定义Widget类要继承CWidget覆盖方法run)
+<?php
+class BannerMagicWidget extends CWidget {
+	public function run() {}
+}
+
+或者
+class MyWidget extends CWidget {
+	public function init() {} // 此方法会被CController::beginWidget() 调用
+	public function run() {} // 此方法会被CController::endWidget() 调用
+}
+
+<?php
+class BannerMagicWidget extends CWidget {
+	public function run() {
+		// 处理内容
+
+		$this->render('bannerMagic', array(
+			'advert' => $advert
+			));
+	}
+}
+
+view视图中
+<img src="images/adverts/<?php echo $advert; ?>" />
+
+其它视图中调用本挂件
+<?php $this->widget('BannerMagicWidget'); ?>
+
+-------------------------------------------------------------
+yii2中的使用
+
+common\widgets目录中自定义 widget
+<?php
+
+namespace common\widgets;
+
+class MyWidget extends \yii\base\Widget {
+	public $name;
+	
+    public function init(){
+        parent::init();
+    }
+    public function run(){ // 处理内容
+    	echo '<script>alert(\''. $this->name .'\')</script>';
+    }
+}
+
+视图中调用小部件 widget
+use common\widgets\MyWidget;
+
+<?php echo MyWidget::widget(['name' => '调用成功']);?>

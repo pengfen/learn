@@ -1,0 +1,132 @@
+var name = $('input[name="name"]').val();
+var cid = $('input[name="cid"]').val();
+var customerQQ = $('input[name="customerQQ"]').val();
+var orderID = $('input[name="orderID"]').val();
+var targetUserId = $('input[name="targetUserId"]').val();
+var smartSearch = $('input[name="smartSearch"]').val();
+
+// 刷新数据
+$.post('', {'name' : name, 'cid' : cid, 'customerQQ' : customerQQ, 'orderID' : orderID, 'targetUserId' : targetUserId, 'smartSearch' : smartSearch, 'state' : 8}, 
+	function(data) {
+		$('#cu_table tr:gt(0)').remove();
+		if (data) {
+			var claim = $('#cu_table th.te15').text();
+			for (var i = 0; i < data.length; i ++) {
+				var tr = '<tr><td><input type="checkbox" name="customerIpt" value="' + data[i].cid + '" class="checkIpt"><input class="customerUid" type="hidden" name="customerUid" value="' + data[i].uid + '"></td><td class="colbur customerId" style="cursor:pointer"><input class="customerUid" type="hidden" name="customerUid" value="' + data[i].uid + '">' + data[i].cid + '</td><td>' + data[i].name + '</td><td class="colbur" style="text-align: left; padding: 0px 10px;"><span';
+				if (data[i].isFirend == 1) { // 处理QQ号显示
+					tr += 'class="QQ"';
+				} else {
+					tr += ' style="display: inline-block; width: 100%; max-height: 30px; height: 100%; padding-left: 20px; background: url(../images/u5195.png) no-repeat left center; background-size: 14px auto; cursor: pointer"';
+				}
+				tr += '>' + data[i].customerQQ + '</span></td>';
+				<?php if (Auth::auth($prefix.'_source')) { ?>
+					if (data[i].customerFrom == null) { data[i].customerFrom = ''; }
+					tr += '<td>' + data[i].customerFrom + '</td>';
+				<?php } if (Auth::auth($prefix.'_channel')) { ?>
+					if (data[i].channel == null) { data[i].channel = ''; }
+					tr += '<td>' + data[i].channel + '</td>';
+				<?php } ?>
+				// if (typeof(data[i].customerFrom) != 'undefined') { // 处理客户来源显示
+				// 	if (data[i].customerFrom == null) { data[i].customerFrom = ''; }
+				// 	tr += '<td>' + data[i].customerFrom + '</td>';
+				// }
+				// if (typeof(data[i].channel) != 'undefined') { // 处理渠道显示
+				// 	if (data[i].channel == null) { data[i].channel = ''; }
+				// 	tr += '<td>' + data[i].channel + '</td>';
+				// }
+				if (data[i].allotTime == null) { data[i].allotTime = ''; }
+				if (data[i].firstChartTime == null) { data[i].firstChartTime = ''; }
+				tr += '<td>' + data[i].allotTime + '</td><td>' + data[i].firstChartTime + '</td>';
+				<?php if (Auth::auth($prefix.'_save')) { ?>
+					if (data[i].leftSaveDays == null) { data[i].leftSaveDays = ''; }
+					if (data[i].leftSaveDays >= 0 && data[i].leftSaveDays != 999) {
+						tr += '<td>' + data[i].leftSaveDays + '</td>';
+					} else {
+						tr += '<td></td>';
+					}
+				<?php } if (Auth::auth($prefix.'_not_call')) { ?>
+					if (data[i].noChartDays == null) { data[i].noChartDays = ''; }
+					if (data[i].noChartDays < 0) {
+						tr += '<td>未联系</td>';
+					} else {
+						tr += '<td>' + data[i].noChartDays + '</td>';
+					}
+				<?php } if (Auth::auth($prefix.'_service')) { ?>
+					if (data[i].leftServerDays == null) { data[i].leftServerDays = ''; }
+					if (data[i].leftServerDays < 0) {
+						tr += '<td>已过服务期</td>';
+					} else {
+						tr += '<td>' + data[i].leftServerDays + '</td>';
+					}
+				<?php } if (Auth::auth($prefix.'_userName')) { ?>
+					if (data[i].userName == null) { data[i].userName = ''; }
+					tr += '<td>' + data[i].userName + '</td>';
+				<?php } if (Auth::auth($prefix.'_orgName')) { ?>
+					if (data[i].orgName == null) { data[i].orgName = ''; }
+					tr += '<td>' + data[i].orgName + '</td>';
+				<?php } if (Auth::auth($prefix.'_rate')) { ?>
+					if (data[i].rate == null) { data[i].rate = ''; }
+					tr += '<td>' + data[i].rate + '</td>';
+				<?php } if (Auth::auth($prefix.'_serviceName')) { ?>
+					if (data[i].serviceName == null) { data[i].serviceName = ''; }
+					tr += '<td>' + data[i].serviceName + '</td>';
+				<?php } ?>
+				// if (typeof(data[i].leftSaveDays) != 'undefined') { // 保护期剩余
+				// 	if (data[i].leftSaveDays == null) { data[i].leftSaveDays = ''; }
+				// 	if (data[i].leftSaveDays >= 0 && data[i].leftSaveDays != 999) {
+				// 		tr += '<td>' + data[i].leftSaveDays + '</td>';
+				// 	} else {
+				// 		tr += '<td></td>';
+				// 	}
+				// }
+				// if (typeof(data[i].noChartDays) != 'undefined') { // 处理未联系天数
+				// 	if (data[i].noChartDays == null) { data[i].noChartDays = ''; }
+				// 	if (data[i].noChartDays < 0) {
+				// 		tr += '<td>未联系</td>';
+				// 	} else {
+				// 		tr += '<td>' + data[i].noChartDays + '</td>';
+				// 	}
+				// }
+				// if (typeof(data[i].leftServerDays) != 'undefined') { // 服务期剩余
+				// 	if (data[i].leftServerDays == null) { data[i].leftServerDays = ''; }
+				// 	if (data[i].leftServerDays < 0) {
+				// 		tr += '<td>已过服务期</td>';
+				// 	} else {
+				// 		tr += '<td>' + data[i].leftServerDays + '</td>';
+				// 	}
+				// }
+				// if (typeof(data[i].userName) != 'undefined') { // 归属人
+				// 	if (data[i].userName == null) { data[i].userName = ''; }
+				// 	tr += '<td>' + data[i].userName + '</td>';
+				// }
+				// if (typeof(data[i].orgName) != 'undefined') { // 归属组织
+				// 	if (data[i].orgName == null) { data[i].orgName = ''; }
+				// 	tr += '<td>' + data[i].orgName + '</td>';
+				// }
+				// if (typeof(data[i].rate) != 'undefined') { // 服务评价
+				// 	if (data[i].rate == null) { data[i].rate = ''; }
+				// 	tr += '<td>' + data[i].rate + '</td>';
+				// }
+				// if (typeof(data[i].serviceName) != 'undefined') {
+				// 	if (data[i].serviceName == null) { data[i].serviceName = ''; }
+				// 	tr += '<td>' + data[i].serviceName + '</td>';
+				// }
+				if (claim) { // 认翎按钮
+					tr += '<td><input type="button" class="claim" value="认领" style="height: 24px; line-height: 24px; margin: 3px; display: inline; color: #fff; background: #1e86d1; border-radius: 5px; padding: 0px 16px; font-size: 14px;"></td>';
+				}
+				tr += '</tr>';
+				$('#cu_table').append(tr);
+			}
+		}
+	}, 'json');
+
+控制器调用
+if ($postData['state'] == 8) { // 详情页关闭时异步刷新
+	unset($postData['state']);
+	$data = $this->getData(1, $customerType, $postData, $point, $shift);
+	if ($data['code'] == 1000) {
+		$info = $this->holderAuthData($prefix, $data['data']['customer']);
+		echo json_encode($info);
+	}
+	exit;
+}

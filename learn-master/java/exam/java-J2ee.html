@@ -1,0 +1,130 @@
+j2ee部分
+
+1、BS与CS的联系与区别。 
+
+ C/S是Client/Server的缩写。服务器通常采用高性能的PC、工作站或小型机，并采用大型数据库系统，如Oracle、Sybase、InFORMix或 SQL Server。客户端需要安装专用的客户端软件。 
+
+B/Ｓ是Brower/Server的缩写，客户机上只要安装一个浏览器（Browser），如Netscape Navigator或Internet Explorer，服务器安装Oracle、Sybase、InFORMix或 SQL Server等数据库。在这种结构下，用户界面完全通过WWW浏览器实现，一部分事务逻辑在前端实现，但是主要事务逻辑在服务器端实现。浏览器通过Ｗeb Server 同数据库进行数据交互。 
+
+C/S 与 B/S 区别： 
+
+１．硬件环境不同: 
+
+  C/S 一般建立在专用的网络上, 小范围里的网络环境, 局域网之间再通过专门服务器提供连接和数据交换服务. 
+
+  B/S 建立在广域网之上的, 不必是专门的网络硬件环境,例与电话上网, 租用设备. 信息自己管理. 有比C/S更强的适应范围, 一般只要有操作系统和浏览器就行 
+
+２．对安全要求不同 
+
+  C/S 一般面向相对固定的用户群, 对信息安全的控制能力很强. 一般高度机密的信息系统采用C/S 结构适宜. 可以通过B/S发布部分可公开信息. 
+
+  B/S 建立在广域网之上, 对安全的控制能力相对弱, 可能面向不可知的用户。 
+
+３．对程序架构不同 
+
+  C/S 程序可以更加注重流程, 可以对权限多层次校验, 对系统运行速度可以较少考虑. 
+
+  B/S 对安全以及访问速度的多重的考虑, 建立在需要更加优化的基础之上. 比C/S有更高的要求 B/S结构的程序架构是发展的趋势, 从MS的.Net系列的BizTalk 2000 Exchange 2000等, 全面支持网络的构件搭建的系统. SUN 和IBM推的JavaBean 构件技术等,使 B/S更加成熟. 
+
+４．软件重用不同 
+
+  C/S 程序可以不可避免的整体性考虑, 构件的重用性不如在B/S要求下的构件的重用性好. 
+
+  B/S 对的多重结构,要求构件相对独立的功能. 能够相对较好的重用.就入买来的餐桌可以再利用,而不是做在墙上的石头桌子 
+
+５．系统维护不同   
+
+  C/S 程序由于整体性, 必须整体考察, 处理出现的问题以及系统升级. 升级难. 可能是再做一个全新的系统 
+
+  B/S 构件组成,方面构件个别的更换,实现系统的无缝升级. 系统维护开销减到最小.用户从网上自己下载安装就可以实现升级. 
+
+６．处理问题不同 
+
+  C/S 程序可以处理用户面固定, 并且在相同区域, 安全要求高需求, 与操作系统相关. 应该都是相同的系统 
+
+  B/S 建立在广域网上, 面向不同的用户群, 分散地域, 这是C/S无法作到的. 与操作系统平台关系最小. 
+
+７．用户接口不同 
+
+  C/S 多是建立的Window平台上,表现方法有限,对程序员普遍要求较高 
+
+  B/S 建立在浏览器上, 有更加丰富和生动的表现方式与用户交流. 并且大部分难度减低,减低开发成本. 
+
+８．信息流不同 
+
+  C/S 程序一般是典型的中央集权的机械式处理, 交互性相对低 
+
+  B/S 信息流向可变化, B-B B-C B-G等信息、流向的变化, 更像交易中心。 
+
+2、应用服务器与WEB SERVER的区别？
+
+     应用服务器：Weblogic、Tomcat、Jboss 
+
+     WEB SERVER：IIS、 Apache 
+
+3、应用服务器有那些？ 
+
+     BEA WebLogic Server，IBM WebSphere Application Server，Oracle9i Application Server，jBoss，Tomcat 
+
+4、J2EE是什么？ 
+
+     答:Je22是Sun公司提出的多层(multi-diered),分布式(distributed),基于组件(component-base)的企业级应用模型(enterpriese application model).在这样的一个应用系统中，可按照功能划分为不同的组件，这些组件又可在不同计算机上，并且处于相应的层次(tier)中。所属层次包括客户层(clietn tier)组件,web层和组件,Business层和组件,企业信息系统(EIS)层。
+
+     一个另类的回答：j2ee就是增删改查。 
+
+5、J2EE是技术还是平台还是框架？ 什么是J2EE
+
+   J2EE本身是一个标准，一个为企业分布式应用的开发提供的标准平台。 
+
+   J2EE也是一个框架，包括JDBC、JNDI、RMI、JMS、EJB、JTA等技术。
+
+6、请对以下在J2EE中常用的名词进行解释(或简单描述) 
+
+     web容器：给处于其中的应用程序组件（JSP，SERVLET）提供一个环境，使JSP,SERVLET直接更容器中的环境变量接口交互，不必关注其它系统问题。主要有WEB服务器来实现。例如：TOMCAT,WEBLOGIC,WEBSPHERE等。该容器提供的接口严格遵守J2EE规范中的WEB APPLICATION 标准。我们把遵守以上标准的WEB服务器就叫做J2EE中的WEB容器。 
+
+     EJB容器：Enterprise java bean 容器。更具有行业领域特色。他提供给运行在其中的组件EJB各种管理功能。只要满足J2EE规范的EJB放入该容器，马上就会被容器进行高效率的管理。并且可以通过现成的接口来获得系统级别的服务。例如邮件服务、事务管理。 
+
+     JNDI：（Java Naming & Directory Interface）JAVA命名目录服务。主要提供的功能是：提供一个目录系统，让其它各地的应用程序在其上面留下自己的索引，从而满足快速查找和定位分布式应用程序的功能。 
+
+     JMS：（Java Message Service）JAVA消息服务。主要实现各个应用程序之间的通讯。包括点对点和广播。 
+
+     JTA：（Java Transaction API）JAVA事务服务。提供各种分布式事务服务。应用程序只需调用其提供的接口即可。 
+
+     JAF：（Java Action FrameWork）JAVA安全认证框架。提供一些安全控制方面的框架。让开发者通过各种部署和自定义实现自己的个性安全控制策略。      
+
+     RMI/IIOP:（Remote Method Invocation /internet对象请求中介协议）他们主要用于通过远程调用服务。例如，远程有一台计算机上运行一个程序，它提供股票分析服务，我们可以在本地计算机上实现对其直接调用。当然这是要通过一定的规范才能在异构的系统之间进行通信。RMI是JAVA特有的。
+
+7、如何给weblogic指定大小的内存? 
+
+     （这个问题不作具体回答，列出来只是告诉读者可能会遇到什么问题，你不需要面面俱到，什么都精通。）
+
+     在启动Weblogic的脚本中（位于所在Domian对应服务器目录下的startServerName），增加set MEM_ARGS=-Xms32m -Xmx200m，可以调整最小内存为32M，最大200M 
+
+8、如何设定的weblogic的热启动模式(开发模式)与产品发布模式? 
+
+     可以在管理控制台中修改对应服务器的启动模式为开发或产品模式之一。或者修改服务的启动文件或者commenv文件，增加set PRODUCTION_MODE=true。 
+
+9、如何启动时不需输入用户名与密码? 
+
+     修改服务启动文件，增加 WLS_USER和WLS_PW项。也可以在boot.properties文件中增加加密过的用户名和密码. 
+
+10、在weblogic管理制台中对一个应用域(或者说是一个网站,Domain)进行jms及ejb或连接池等相关信息进行配置后,实际保存在什么文件中? 
+
+     保存在此Domain的config.xml文件中，它是服务器的核心配置文件。 
+
+11、说说weblogic中一个Domain的缺省目录结构?比如要将一个简单的helloWorld.jsp放入何目录下,然的在浏览器上就可打入http://主机:端口号//helloword.jsp就可以看到运行结果了? 又比如这其中用到了一个自己写的javaBean该如何办? 
+
+     Domain目录服务器目录applications，将应用目录放在此目录下将可以作为应用访问，如果是Web应用，应用目录需要满足Web应用目录要求，jsp文件可以直接放在应用目录中，Javabean需要放在应用目录的WEB-INF目录的classes目录中，设置服务器的缺省应用将可以实现在浏览器上无需输入应用名。 
+
+12、在weblogic中发布ejb需涉及到哪些配置文件 
+
+     不同类型的EJB涉及的配置文件不同，都涉及到的配置文件包括ejb-jar.xml,weblogic-ejb-jar.xmlCMP实体Bean一般还需要weblogic-cmp-rdbms-jar.xml 
+
+13、如何在weblogic中进行ssl配置与客户端的认证配置或说说j2ee(标准)进行ssl的配置?
+
+     缺省安装中使用DemoIdentity.jks和DemoTrust.jks  KeyStore实现SSL，需要配置服务器使用Enable SSL，配置其端口，在产品模式下需要从CA获取私有密钥和数字证书，创建identity和trust keystore，装载获得的密钥和数字证书。可以配置此SSL连接是单向还是双向的。 
+
+14、如何查看在weblogic中已经发布的EJB? 
+
+     可以使用管理控制台，在它的Deployment中可以查看所有已发布的EJB
+

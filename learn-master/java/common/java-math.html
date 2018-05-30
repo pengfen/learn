@@ -1,0 +1,21 @@
+Math 类位于java.lang 包中 包含用于执行基本数学运算的方法
+Math 类的所有方法都是静态方法 所以使用该类中的方法时 可以直接使用类名.方法名
+
+long round() 返回四舍五入后的整数
+double floor() 返回小于参数的最大整数
+double ceil() 返回大于参数的最小整数
+double random() 返回 [0,1) 之间的随机数浮点数
+
+double a = 12.81; // 定义一个 double 类型变量
+int b = (int) a; // 将 double 类型强制转换为 int 类型 去掉小数位
+System.out.println("强制类型转换 " + b);
+long c = Math.round(a); // 调用 round 方法 进行四舍五入
+System.out.println("四舍五入 " + c);
+double e = Math.floor(a); // 调用 floor 方法 返回小于参数的最大整数
+System.out.println("floor " + d);
+double e = Math.ceil(a); // 调用 ceil 方法 返回大于参数的最小整数
+System.out.println("ceil " + e);
+double x = Math.random(); // 调用 random 方法 产生 [0,1) 之间的随机数浮点数
+System.out.println("随机数 " + x);
+int y = (int) (Math.random() * 99); // 产生 [0, 99) 之间的随机整数
+System.out.println("产生[0,99)之间的随机整数 " + y);

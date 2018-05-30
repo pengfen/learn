@@ -1,0 +1,19 @@
+调用接口时注意有一场景
+
+第一次访问可以 第二次访问不可以
+
+curl 需要添加请求头信息
+
+接口那里进行判断 然后处理是否返回成功或失败
+
+获取cookie
+
+echo $_COOKIE['PHPSESSID']; 
+根据 PHPSESSID 判断是否重新提交
+
+PHP 获取 sessionid --- PHPSESSID
+
+Java 获取 sessionid --- JSESSIONID
+"JSESSIONID=A5FBC7BFB53500FB677D001217B94D41"
+
+最终解决方案 Java端不使用sessionid来判断处理是否为第一次访问

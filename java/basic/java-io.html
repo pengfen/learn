@@ -1,0 +1,1018 @@
+异常
+File
+递归
+字节流
+转换流
+字符流
+其他流
+
+异常概述
+异常 异常就是Java程序在运行过程中出现的错误
+异常由来 问题也是现实生活中一个具体事务 也可以通过java的类的形式进行描述 并封装成对象 其实就是Java对不正常情况进行描述后的对象体现
+我们见过的异常 角标越界异常 空指针异常
+
+讲解IO流之前为什么先讲解异常和File类呢?
+因为File表示的是IO流将来要操作的文件，所以我们需要学习File类。
+而操作文件无非就是上传文件和下载文件，在这个操作的过程中可能出现问题，
+出现问题后，我们需要对对应的代码进行处理。所以我们需要学习异常异常。
+
+异常分三类：
+骑车去旅行：
+	Error:走到半路上，发生山路塌陷，或者出现了泥石流，这个问题很严重，不是班长能够立马解决的。
+	Exception:出门前，班长要看看车轮子以及车链子等是否还在
+	RuntimeException:在骑车的过程中，有好路不走，偏偏要走石子路
+
+1,编译时异常
+除了RuntimeException及其子类,Exception中所有的子类都是,这种异常必须要处理,要不编译通不过
+2,运行是异常
+RuntimeException及其子类都是,这种异常不用处理,编译会通过,不过这样的程序会有安全隐患,遇到这种异常是需要改代码的
+3,严重错误问题
+用Error进行描述,这个问题发生后,一般不编写针对代码进行处理,而是要对程序进行修正.通常都是由虚拟机抛出的问题
+
+
+异常举例
+除数为0
+数组访问越界
+
+JVM的默认处理方案
+把异常的名称 错误原因及异常出现的位置等信息输出在了控制台
+程序停止执行
+
+jvm发现运算是已经违反了数学运算规则,java将这种常见的问题进行描述,并封装成了对象叫做ArithmeticException
+当除0运算发生后,jvm将该问题打包成了一个异常对象.
+并将对象抛给调用者main函数,new ArithmeticException("/by zero");
+
+main函数收到这个问题时,有两种处理方式:
+1,自己将该问题处理,然后继续运行
+2,自己没有针对的处理方式,只有交给调用main的jvm来处理
+jvm有一个默认的异常处理机制,就将该异常进行处理.并将该异常的名称,异常的信息.异常出现的位置打印在了控制台上
+同时将程序停止运行
+
+异常处理方案
+异常处理方案
+try ... catch ... finally
+throws
+
+try ... catch 处理方式
+一个异常的情况
+多个异常的情况
+平级情况
+存在上下级的情况
+JDK7的新特性及注意事项
+
+基本格式：try是检测异常,catch是用来捕获异常的,finally是用来结束资源的
+世界上最真情的相依,是你在try我在catch,无论你发神马脾气,我都默默接受,静静处理
+分别采用RuntimeException和非RuntimeException举例
+
+编译时异常和运行时异常的区别
+Java中的异常被分为两大类 编译时异常和运行时异常 所有的RuntimeException 类及其子类的实例被称为运行时异常 其他的异常就是编译时异常
+编译时异常 Java程序必须显示处理 否则程序就会发生错误 无法通过编译
+运行时异常 无需显示处理 也可以和编译时异常一样处理
+
+Throwable中的方法
+getMessage() 获取异常信息 返回字符串
+toString() 获取异常类名和异常信息 返回字符串
+printStackTrace() 获取异常类名和异常信息 以及异常出现在程序中的位置 返回值void
+printStackTrace(PrintStream s) 通常用该方法将异常内容保存在日志文件中 以便查阅
+
+throws 
+定义功能方法时 需要把出现的问题暴露出来让调用者去处理 那么就通过throws在方法上标识
+举例分别演示编译时异常和运行时异常的抛出
+
+throw
+在功能方法内部出现某种情况 程序不能继续运行 需要进行跳转时 就用throw把异常对象抛出
+举例分别演示编译时异常对象和运行时异常对象的抛出
+
+throws和throw的区别
+throws
+用在方法声明后面 跟的是异常类名
+可以跟多个异常类名 用逗号隔开
+表示抛出异常 由该方法的调用者来处理
+throws表示出现异常的一种可能性 并不一定会发生这些异常
+throw
+用在方法体内 眼的是异常对象名
+只能抛出一个异常对象名
+表示抛出异常 由方法体内的语句处理
+throw则是抛出了异常 执行throw则一定抛出了某种异常
+
+我们到底该如何处理异常呢
+原则 如果该功能内部可以将问题处理 用try 如果处理不了 交由调用者处理 这是用throws
+区别
+后续程序需要继续运行就try
+后续程序不需要继续运行就throws
+举例
+感冒了就自己吃点药就好了try
+吃了好几天药都没好结果得了H7N9 那就得throws到医院
+如果医院没有特效药就变成Error了
+
+finally的特点作用及面试题
+finally的特点
+被finally控制的语句体一定会执行
+特殊情况 在执行到finally之前jvm退出了(比如System.exit(0))
+finally的作用 用于释放资源 在IO流操作和数据库操作中会见到
+finally相关的面试题
+final finally和finalize的区别
+如果catch里面有return语句 请问finally的代码还会执行吗 如果会 请问是在return前还是return后
+
+try…catch…finally可以使用
+try…catch也可以使用
+try…finally也可以使用
+但是，catch，finally不能单独使用
+
+自定义异常
+考试成绩必须在0-100之间
+很明显java没有对应的异常 需要我们自己来做一个异常
+自定义异常
+继承自Exception
+继承自RuntimeException
+
+异常注意事项
+子类重写父类方法时 子类的方法必须抛出相同的异常或父类异常的子类 (父亲坏了 儿子不能比父亲更坏)
+如果父类抛出了多个异常 子类重写父类时 只能执行相同的异常或者是他的子集 子类不能抛出父类没有的异常
+如果被重写的方法没有异常抛出 那么子类的方法绝对不可以抛出异常 如果子类方法内有异常发生 那么子类只能try 不能throws
+
+File类概述和构造方法
+File类的概述 文件和目录路径名的抽象表示形式
+构造方法
+public File(String pathname)
+public File(String parent, String child)
+public file(File  parent, String child)
+
+通过创建对象后，我们再来理解文件和目录路径名的抽象表示形式这句话的意思：
+	仅仅是一个路径的表示，不代码具体的事物一定是存在的。
+
+File类的成员方法
+创建功能
+public boolean createNewfile()
+public boolean mkdir()
+public boolean mkdirs()
+删除功能
+public boolean delete()
+重命名功能
+public boolean renameTo(File dest)
+
+File 类的成员方法
+判断功能
+public boolean idDirectory()
+public boolean isFile()
+public boolean exists()
+public boolean canRead()
+public boolean canWrite()
+public boolean isHidden()
+
+File 类的成员方法
+基本获取功能
+public String getAbsolutePath()
+public String getPath()
+public String getName()
+public long length()
+public long lastModified()
+高级获取功能
+public String[] list()
+public File[] listFiles()
+
+File类练习
+判断E盘目录下是否有后缀名为.jpg的文件 如果有 就输出此文件名称
+文件名称过滤器的实现思想及代码
+public String[] list(FilenameFilter filter)
+public File[] listFiles(FilenameFilter filter)
+查看源码看执行流程
+
+递归的思想概述
+递归 方法定义中调用方法本身的现象
+递归注意实现
+要有出口号 否则就是死递归
+次数不能太多 否则就内在溢出
+构造方法不能递归使用
+
+递归举例：
+	从前有座山…
+	我们学编程…
+
+递归解决问题的思想及内存图
+递归解决问题的思想
+找到出口
+找到规律
+求阶乘案例
+普通for循环
+递归实现
+画内存图
+断点查看执行流程
+
+递归练习
+兔子问题(斐波那契数列)
+递归遍历目录下指定后缀名结尾的文件名称
+递归删除带内容的目录
+
+IO流概述
+IO流用来处理设备之间的数据传输 上传文件和下载文件
+Java对数据的操作是通过流的方式
+Java用于操作流的对象都在IO包中
+
+IO 流分类
+按照数据流向
+输入流 读入数据
+输出流 写出数据
+按照数据类型
+字节流
+字符流
+什么情况下使用哪种流呢
+如果数据所在的文件通过windows自带的记事本打开并能读懂里面的内容 就用字符流 其他用字节流
+如果你什么都不知道 就用字节流
+
+IO流的分类如果没有明确指定 默认按照数据类型分
+
+IO流常用基类
+字节流的抽象基类 InputStream OutputStream
+字符流的抽象基类 Reader Writer
+注 由这四个类派生出来的子类名称都是以其父类名作为子类名的后缀
+如 InputStream 的子类FileInputStream
+如 Reader 的子类 FileReader
+
+字节流写数据
+OUtputStream FileOutputStream
+往一个文本文件中写一句话 "helloworld"
+分析发现其实更适合用字符流 但是由于字节流先出现 所以 我们考虑先使用字节流后面再讲会什么出现字符流
+FileOutputStream 的构造方法
+FileOutputStream(File file)
+FileOutputStream(String name)
+
+字节流写数据的方式
+public void write(int b)
+public void write(byte[] b)
+public void write(byte[] b, int off, int len)
+
+字节流写数据常见问题
+创建字节输出流到底做了哪些事情
+数据写成功后 为什么要close()
+如何实现数据的换行
+如何实现数所的追加写入
+
+字节流写数据加入异常处理
+加入异常处理的IO流操作
+
+字节流读取数据
+InputStream FileInputStream
+把刚才写的数据读取出来显示在控制台
+FileInputStream的构造方法 FileInputStream(File file)  FileInputStream(String name)
+FileInputStream的成员方法 public int read()  public int read(byte[] b)
+
+字节流读取数据两种方式图解比较
+一次读取一个字节
+一次读取一个字节数组 每次可以读取多个数据 提高了操作效率
+
+喝水：
+	一次喝一滴水
+	一次喝一口水
+
+搬运东西	
+	一次搬一件
+	一次搬多件
+
+字节流复制数据练习
+把当前项目目录下的a.txt内容复制到当前项目目录下的b.txt中
+把c:\\a.txt内容复制到d:\\b.txt中
+把e:\\林青.jpg内容复制到当前项目目录下的mn.jpg中
+把e:\\哥有老婆.mp4复制到当前项目目录下的copy.mp4中
+
+复制数据的最基本思想：
+	数据源：读数据
+	目的地：写数据
+
+字节缓冲流
+字节流一次读写一个数组的速度明显比一次读写一个字节的速度快很多 这是加入了数组这样的缓冲区效果 java本身在设计的时候 也考虑到了这样的设计思想(装饰设计模式后面讲解) 所以提供了字节缓冲区流
+字节缓冲输出流 BufferedOutputStream
+字节缓冲输入流 BufferedInputStream
+
+字节缓冲流复制数据练习
+把d:\\林青.jpg内容复制到当前项目目录下的mn.jpg中
+把d:\\哥有老婆.mp4复制到当前项目目录下的copy.mp4中
+四种方式比较复制效率
+
+转换流出现的原因及思想
+由于字节流操作中文不是特别方便 所以 java就提供了转换流
+字符流 = 字节流 + 编码表
+
+编码表概述和常见的编码表
+编码表 由字符及其对应的数值组成的一张表
+常见编码表
+ASCII/Unicode 字符集
+ISO-8859-1
+GB2312/GBK/GB18030
+BIG5
+UTF-8
+
+计算机只能识别二进制数据，早期由来是电信号。
+为了方便应用计算机，让它可以识别各个国家的文字。
+就将各个国家的文字用数字来表示，并一一对应，形成一张表。
+
+ASCII：美国标准信息交换码。
+用一个字节的7位可以表示。
+ISO8859-1：拉丁码表。欧洲码表
+用一个字节的8位表示。
+GB2312：中国的中文编码表。
+GBK：中国的中文编码表升级，融合了更多的中文文字符号。
+GB18030：GBK的取代版本
+BIG-5码 ：通行于台湾、香港地区的一个繁体字编码方案，俗称“大五码”。
+Unicode：国际标准码，融合了多种文字。
+所有文字都用两个字节来表示,Java语言使用的就是unicode
+UTF-8：最多用三个字节来表示一个字符。
+
+UTF-8不同，它定义了一种“区间规则”，这种规则可以和ASCII编码保持最大程度的兼容：
+它将Unicode编码为00000000-0000007F的字符，用单个字节来表示它将Unicode编码为00000080-000007FF的字符用两个字节表示 它将Unicode编码为00000800-0000FFFF的字符用3字节表示 
+
+字符串中的编码问题
+编码 把看得懂的变成看不懂的
+解码 把看不懂的变成看得懂的
+
+转换流概述
+OUtputStreamWriter 字符输出流
+public OutputStreamWriter(OUtputStream out)
+public OutputStreamWriter(OutputStream out, String charsetName)
+InputStreamReader 字符输入流
+public InputStreamReader(InputStream in)
+public InputStreamReader(InputStream in, String charsetName)
+
+OutputStreamWriter写数据
+OutputStreamWriter写数据方法
+public void write(int c)
+public void write(char[] cbuf)
+public void write(char[] cbuf, int off, int len)
+public void write(String str)
+public void write(String str, int off, int len)
+字符流操作要注意的问题
+flush()的作用
+flush()和close()的区别
+
+InputStreamReader 读数据
+OUtputStreamWriter 读数据方法
+public int read()
+public int read(char[] cbuf)
+
+字符流复制文本文件
+把当前项目目录下的a.txt内容复制到当前项目目录下的b.txt中
+把c:\\a.txt内容复制到d:\\b.txt中
+
+转换流的简化写法
+转换流的名字比较长 而我们常见的操作都是按照本地默认编码实现的 所以 为了简化我们的书写 转换流提供了对应的子类
+FileWriter
+FileReader
+
+FileWriter和FileReader
+FileWriter写数据
+FileReader读取数据
+FileWriter和RileReader实现文本文件的复制
+
+字符缓冲流
+BufferedWriter基本用法
+BufferedReader基本用法
+字符缓冲流复制文本文件
+特殊功能
+BufferedWriter void newLine()
+BufferedReader String readLine()
+字符缓冲流特殊功能复制文本文件
+
+IO流小结
+字节流 字节输入流 字节输出流
+字符流 字符输入流 字符输出流
+
+IO流练习
+复制文本文件
+复制图片
+把ArrayList集合中的字符串数据存储到文件文件
+从文本文件中读取数据(每一行为一个字符串数据) 到集合中 并遍历集合
+复制单极文件夹
+复制单极文件夹中指定文件并修改文件名称
+复制多极文件夹
+键盘录入5个学生信息(姓名 语文成绩 数学成绩 英语成绩) 按照总分从高到低存入文件文件
+
+已知s.txt文件中有这样的一个字符串 "kjoijoijoi" 请编写程序读取数据内容 把数据排序后写入 ss.txt中
+用Reader模拟BufferedReader的readLine()功能
+自定义类模拟LineNumberReader的特有功能 获取每次读取数据的行号
+登录注册IO版
+
+操作基本数据类型的流
+操作基本数据类型
+DataInputStream
+DataOutputStream
+
+1：数据输出流允许应用程序以适当方式将基本 Java 数据类型写入输出流中。然后，应用程序可以使用数据输入流将数据读入。 
+2：案例
+public static void main(String[] args) throws IOException {
+write();
+read();
+}
+
+private static void read() throws FileNotFoundException, IOException {
+DataInputStream dis = new DataInputStream(
+new FileInputStream("dos.txt"));
+byte b = dis.readByte();
+System.out.println(b);
+short s = dis.readShort();
+System.out.println(s);
+int i = dis.readInt();
+System.out.println(i);
+long l = dis.readLong();
+System.out.println(l);
+float f = dis.readFloat();
+System.out.println(f);
+double d = dis.readDouble();
+System.out.println(d);
+char ch = dis.readChar();
+System.out.println(ch);
+boolean bb = dis.readBoolean();
+System.out.println(bb);
+dis.close();
+}
+
+private static void write() throws IOException {
+DataOutputStream dos = new DataOutputStream(new FileOutputStream(
+"dos.txt"));
+dos.writeByte(1);
+dos.writeShort(20);
+dos.writeInt(300);
+dos.writeLong(4000);
+dos.writeFloat(12.34f);
+dos.writeDouble(12.56);
+dos.writeChar('a');
+dos.writeBoolean(true);
+dos.close();
+}
+
+内存操作流
+操作字节数组
+ByteArrayInputStream
+ByteArrayOutputStream
+操作字符数组
+CharArrayReader
+CharArrayWrite
+操作字符串
+StringReader
+StringWriter
+
+1:内存操作流一般用于处理临时信息，因为临时信息不需要保存，使用后就可以删除。
+2:以第一个举例即可
+ByteArrayOutputStream baos = new ByteArrayOutputStream();
+baos.write("helloworld".getBytes());
+baos.close();
+
+byte[] bys = baos.toByteArray();
+ByteArrayInputStream bais = new ByteArrayInputStream(bys);
+int by = 0;
+while ((by = bais.read()) != -1) {
+System.out.println((char) by);
+}
+
+baos.close();
+bais.close();
+
+最后的close()可以不写，通过看源码可以知道这里什么都没有做。
+
+打印流
+打印流概述
+字节流打印流
+字符打印流
+打印流特点
+只能操作目的地 不能操作数据
+可以操作任意类型的数据
+如果启动了自动刷新 能够自动刷新
+可以操作文件的流
+打印流复制文件文件
+
+标准输入输出流
+System类中的字段 in out
+它们各代表了系统标准的输入和输出设备
+默认输入设备是键盘 输出设备是显示器
+System.in 的类型是 InputStream
+System.out 的类型是 PrintStream 是 OutputStream的子类FilterOutputStream 的子类
+
+说明：System.out.println()语句的原理。
+并测试如下两个代码：
+用System.in实现键盘录入数据。用BufferedReader改进。
+用System.out实现控制台输出数据。用BufferedWriter改进。
+
+随机访问流
+RandomAccessFile 概述
+RandomAccessFile 类不属于流 是Object类的子类 但它融合了 InputStream和OutputStream 的功能 支持对随机访问文件的读取和写入
+案例演示
+
+1：访问模式
+"r" 以只读方式打开。调用结果对象的任何 write 方法都将导致抛出 IOException。  
+"rw" 打开以便读取和写入。如果该文件尚不存在，则尝试创建该文件。  
+"rws" 打开以便读取和写入，对于 "rw"，还要求对文件的内容或元数据的每个更新都同步写入到底层存储设备。  
+"rwd" 打开以便读取和写入，对于 "rw"，还要求对文件内容的每个更新都同步写入到底层存储设备。 
+一般使用rw模式。
+
+2：案例
+public static void main(String[] args) throws IOException {
+write();
+read();
+}
+
+private static void read() throws IOException {
+RandomAccessFile raf = new RandomAccessFile("raf.txt", "rw");
+int i = raf.readInt();
+System.out.println(i);
+System.out.println("当前指针位置：" + raf.getFilePointer());
+char ch = raf.readChar();
+System.out.println(ch);
+System.out.println("当前指针位置：" + raf.getFilePointer());
+String s = raf.readUTF();
+System.out.println(s);
+System.out.println("当前指针位置：" + raf.getFilePointer());
+System.out.println("读取数据完毕");
+
+System.out.println("当前指针位置：" + raf.getFilePointer());
+raf.seek(0);// 返回数据开头
+int ii = raf.readInt();
+System.out.println(ii);
+}
+
+private static void write() throws IOException {
+RandomAccessFile raf = new RandomAccessFile("raf.txt", "rw");
+raf.writeInt(100); // 写入int类型
+raf.writeChar('爱');// 写入字符
+raf.writeUTF("中国你好");// 写入字符串
+raf.close();
+System.out.println("写入成功");
+}
+
+合并流
+SequenceInputStream 概述
+SequenceInputStream 类可以将多个输入流串流在一起 合并为一个输入流 因此 该流也被称为合并流
+SequenceInputStream 的构造方法
+SequenceInputStream(InputStream s1, InputStream s2)
+SequenceInputStream(Enumeration<? extends InputStream> e)
+把多个文件的内容写入到一个文本文件
+
+// public SequenceInputStream(InputStream s1,
+// InputStream s2)
+// InputStream is1 = new FileInputStream("a.txt");
+// InputStream is2 = new FileInputStream("b.txt");
+// SequenceInputStream sis = new SequenceInputStream(is1, is2);
+
+InputStream is1 = new FileInputStream("a.txt");
+InputStream is2 = new FileInputStream("b.txt");
+Vector<InputStream> v = new Vector<InputStream>();
+v.add(is1);
+v.add(is2);
+Enumeration<InputStream> en = v.elements();
+SequenceInputStream sis = new SequenceInputStream(en);
+
+// 复制数据
+FileOutputStream fos = new FileOutputStream("copy.txt");
+
+byte[] bys = new byte[1024];
+int len = 0;
+while ((len = sis.read(bys)) != -1) {
+fos.write(bys, 0, len);
+}
+
+fos.close();
+is1.close();
+is2.close();
+sis.close();
+
+序列化流
+序列化流 ObjectOutputStream
+反序列化流 ObjectInputStream
+序列化操作问题
+为什么要实现序列化
+如何实现序列化
+序列化数据后 再次修改类文件 读取数据会出问题 如何解决呢
+使用transient关键字声明不需要序列化的成员变量
+
+对象序列化是将对象状态转换为可保持或传输的过程。一般的格式是与平台无关的二进制流，可以将这种二进制流持久保存在磁盘上，也可以通过网络将这种二进制流传输到另一个网络结点。
+对象反序列化，是指把这种二进制流数据还原成对象。
+
+Properties 集合
+Properties 概述
+Properties 作为 Map集合的使用
+Properties 的特殊功能
+public Object setProperty(String key, String value)
+public String getProperty(String key)
+public Set<String> stringPropertyNames()
+Properties和IO流的结合使用
+public void load(Reader reader)
+public void store(Writer writer, String comments)
+
+课堂练习：
+1：我有一个文本文件，我知道数据是键值对形式的，但是不知道内容是什么。请写一个程序判断是否有“lisi”这样的键存在，如果有就改变其实为”100”
+2：我有一个猜数字小游戏的程序，请写一个程序实现在测试类中只能用5次，超过5次提示：游戏试玩已结束，请付费。
+
+NIO包下的IO流
+NIO其实就是新IO的意思
+JDK4出现NIO 新IO和传统的IO有相同的目的 都是用于进行输入输出的 但新IO使用了不同的方式来处理输入输出 采用内存映射文件的方式 将文件或者文件的一段区域映射到内存中 就可以像访问内存一样的来访问文件了 这种方式效率比旧IO要高很多 但是目前好多地方我们看到的还是旧IO的引用 所以我们仍以旧IO为主 知道NIO即可
+JDK7的IO改进(写一个案例)
+Path
+Paths
+Files
+
+1：JDK4新IO要了解的类(留给学生自己看)
+Buffer(缓冲),Channer(通道)
+
+2：JDK7要了解的新IO类
+Path:与平台无关的路径。
+Paths:包含了返回Path的静态方法。
+	public static Path get(URI uri):根据给定的URI来确定文件路径。
+Files:操作文件的工具类。提供了大量的方法，简单了解如下方法
+	public static long copy(Path source, OutputStream out) :复制文件
+	public static Path write(Path path, Iterable<? extends CharSequence> lines, Charset cs, OpenOption... options):
+		把集合的数据写到文件。
+
+//复制文件
+Files.copy(Paths.get("Demo.java"), newFileOutputStream("Copy.Java"));
+
+//把集合中的数据写到文件
+List<String> list = new ArrayList<String>();
+list.add("hello");
+list.add("world");
+list.add("java");
+Files.write(Paths.get("list.txt"), list, Charset.forName("gbk"));
+
+
+====================================================================
+
+1:异常(理解)
+	(1)程序出现的不正常的情况。
+	(2)异常的体系
+		Throwable
+			|--Error	严重问题，我们不处理。
+			|--Exception
+				|--RuntimeException	运行期异常，我们需要修正代码
+				|--非RuntimeException 编译期异常，必须处理的，否则程序编译不通过
+	(3)异常的处理：
+		A:JVM的默认处理
+			把异常的名称,原因,位置等信息输出在控制台，但是呢程序不能继续执行了。
+		B:自己处理
+			a:try...catch...finally
+				自己编写处理代码,后面的程序可以继续执行
+			b:throws
+				把自己处理不了的，在方法上声明，告诉调用者，这里有问题
+	(4)面试题
+		A:编译期异常和运行期异常的区别?
+			编译期异常 必须要处理的，否则编译不通过
+			运行期异常 可以不处理，也可以处理
+		B:throw和throws是的区别
+			throw:
+				在方法体中,后面跟的是异常对象名,并且只能是一个
+				throw抛出的是一个异常对象，说明这里肯定有一个异常产生了
+			throws:
+				在方法声明上,后面跟的是异常的类名,可以是多个
+				throws是声明方法有异常，是一种可能性，这个异常并不一定会产生
+	(5)finally关键字及其面试题
+		A:finally用于释放资源，它的代码永远会执行。特殊情况：在执行到finally之前jvm退出了
+		B:面试题
+			a:final,finally,finalize的区别?
+			b:如果在catch里面有return,请问finally还执行吗?如果执行,在return前还是后
+				会，前。
+				
+				实际上在中间。这个上课我们讲过
+		C:异常处理的变形
+			try...catch...finally
+			try...catch...
+			try...catch...catch...
+			try...catch...catch...fianlly
+			try...finally
+	(6)自定义异常
+		继承自Exception或者RuntimeException,只需要提供无参构造和一个带参构造即可
+	(7)异常的注意实现
+		A:父的方法有异常抛出,子的重写方法在抛出异常的时候必须要小于等于父的异常 
+		B:父的方法没有异常抛出,子的重写方法不能有异常抛出
+		C:父的方法抛出多个异常,子的重写方法必须比父少或者小
+
+2:File(掌握)
+	(1)IO流操作中大部分都是对文件的操作，所以Java就提供了File类供我们来操作文件
+	(2)构造方法
+		A:File file = new File("e:\\demo\\a.txt");
+		B:File file = new File("e:\\demo","a.txt");
+		C:File file = new File("e:\\demo");
+		  File file2 = new File(file,"a.txt");
+	(3)File类的功能(自己补齐)
+		A:创建功能
+		B:删除功能
+		C:重命名功能
+		D:判断功能
+		E:获取功能
+		F:高级获取功能
+		G:过滤器功能
+	(4)案例：
+		A:输出指定目录下指定后缀名的文件名称
+			a:先获取所有的，在遍历的时候判断，再输出
+			b:先判断，再获取，最后直接遍历输出即可
+		B:批量修改文件名称
+
+========================================================================
+
+1:递归(理解)
+	(1)方法定义中调用方法本身的现象
+		举例：老和尚给小和尚讲故事，我们学编程
+	(2)递归的注意事项；
+		A:要有出口，否则就是死递归
+		B:次数不能过多，否则内存溢出
+		C:构造方法不能递归使用
+	(3)递归的案例：
+		A:递归求阶乘
+		B:兔子问题
+		C:递归输出指定目录下所有指定后缀名的文件绝对路径
+		D:递归删除带内容的目录(小心使用)
+
+2:IO流(掌握)
+	(1)IO用于在设备间进行数据传输的操作	
+	(2)分类：
+		A:流向
+			输入流	读取数据
+			输出流	写出数据
+		B:数据类型
+			字节流	
+					字节输入流
+					字节输出流
+			字符流
+					字符输入流
+					字符输出流
+		注意：
+			a:如果我们没有明确说明按照什么分，默认按照数据类型分。
+			b:除非文件用windows自带的记事本打开我们能够读懂，才采用字符流，否则建议使用字节流。
+	(3)FileOutputStream写出数据
+		A:操作步骤
+			a:创建字节输出流对象
+			b:调用write()方法
+			c:释放资源
+			
+		B:代码体现：
+			FileOutputStream fos = new FileOutputStream("fos.txt");
+			
+			fos.write("hello".getBytes());
+			
+			fos.close();
+			
+		C:要注意的问题?
+			a:创建字节输出流对象做了几件事情?
+			b:为什么要close()?
+			c:如何实现数据的换行?
+			d:如何实现数据的追加写入?
+	(4)FileInputStream读取数据
+		A:操作步骤
+			a:创建字节输入流对象
+			b:调用read()方法
+			c:释放资源
+			
+		B:代码体现：
+			FileInputStream fis = new FileInputStream("fos.txt");
+			
+			//方式1
+			int by = 0;
+			while((by=fis.read())!=-1) {
+				System.out.print((char)by);
+			}
+			
+			//方式2
+			byte[] bys = new byte[1024];
+			int len = 0;
+			while((len=fis.read(bys))!=-1) {
+				System.out.print(new String(bys,0,len));
+			}
+			
+			fis.close();
+	(5)案例：2种实现
+		A:复制文本文件
+		B:复制图片
+		C:复制视频
+	(6)字节缓冲区流
+		A:BufferedOutputStream
+		B:BufferedInputStream
+	(7)案例：4种实现
+		A:复制文本文件
+		B:复制图片
+		C:复制视频
+		
+3:自学字符流
+	IO流分类
+		字节流：
+			InputStream
+				FileInputStream
+				BufferedInputStream
+			OutputStream
+				FileOutputStream
+				BufferedOutputStream
+		
+		字符流：
+			Reader
+				FileReader
+				BufferedReader
+			Writer
+				FileWriter
+				BufferedWriter
+
+=======================================================================
+
+1:字符流(掌握)
+	(1)字节流操作中文数据不是特别的方便，所以就出现了转换流。
+	   转换流的作用就是把字节流转换字符流来使用。
+	(2)转换流其实是一个字符流
+		字符流 = 字节流 + 编码表
+	(3)编码表
+		A:就是由字符和对应的数值组成的一张表
+		B:常见的编码表
+			ASCII
+			ISO-8859-1
+			GB2312
+			GBK
+			GB18030
+			UTF-8
+		C:字符串中的编码问题
+			编码
+				String -- byte[]
+			解码
+				byte[] -- String
+	(4)IO流中的编码问题
+		A:OutputStreamWriter
+			OutputStreamWriter(OutputStream os):默认编码，GBK
+			OutputStreamWriter(OutputStream os,String charsetName):指定编码。
+		B:InputStreamReader
+			InputStreamReader(InputStream is):默认编码，GBK
+			InputStreamReader(InputStream is,String charsetName):指定编码
+		C:编码问题其实很简单
+			编码只要一致即可
+	(5)字符流
+		Reader
+			|--InputStreamReader
+				|--FileReader
+			|--BufferedReader
+		Writer
+			|--OutputStreamWriter
+				|--FileWriter
+			|--BufferedWriter
+	(6)复制文本文件(5种方式)
+
+2:IO流小结(掌握)
+	IO流
+		|--字节流
+			|--字节输入流
+				InputStream
+					int read():一次读取一个字节
+					int read(byte[] bys):一次读取一个字节数组
+				
+					|--FileInputStream
+					|--BufferedInputStream
+			|--字节输出流
+				OutputStream
+					void write(int by):一次写一个字节
+					void write(byte[] bys,int index,int len):一次写一个字节数组的一部分
+					
+					|--FileOutputStream
+					|--BufferedOutputStream
+		|--字符流
+			|--字符输入流
+				Reader
+					int read():一次读取一个字符
+					int read(char[] chs):一次读取一个字符数组
+					
+					|--InputStreamReader
+						|--FileReader
+					|--BufferedReader
+						String readLine():一次读取一个字符串
+			|--字符输出流
+				Writer
+					void write(int ch):一次写一个字符
+					void write(char[] chs,int index,int len):一次写一个字符数组的一部分
+					
+					|--OutputStreamWriter
+						|--FileWriter
+					|--BufferedWriter
+						void newLine():写一个换行符
+						
+						void write(String line):一次写一个字符串
+
+3:案例(理解 练习一遍)
+	A:复制文本文件 5种方式(掌握)
+	B:复制图片(二进制流数据) 4种方式(掌握)
+	C:把集合中的数据存储到文本文件
+	D:把文本文件中的数据读取到集合并遍历集合
+	E:复制单级文件夹
+	F:复制单级文件夹中指定的文件并修改名称
+		回顾一下批量修改名称
+	G:复制多级文件夹
+	H:键盘录入学生信息按照总分从高到低存储到文本文件
+	I:把某个文件中的字符串排序后输出到另一个文本文件中
+	J:用Reader模拟BufferedReader的特有功能
+	K:模拟LineNumberReader的特有功能
+
+==========================================================================
+
+1:登录注册IO版本案例(掌握)
+	要求，对着写一遍。
+	
+	cn.itcast.pojo User
+	cn.itcast.dao UserDao
+	cn.itcast.dao.impl UserDaoImpl(实现我不管)
+	cn.itcast.game GuessNumber
+	cn.itcast.test	UserTest
+
+2:数据操作流(操作基本类型数据的流)(理解)
+	(1)可以操作基本类型的数据
+	(2)流对象名称	
+		DataInputStream
+		DataOutputStream
+
+3:内存操作流(理解)
+	(1)有些时候我们操作完毕后，未必需要产生一个文件，就可以使用内存操作流。
+	(2)三种
+		A:ByteArrayInputStream,ByteArrayOutputStream
+		B:CharArrayReader,CharArrayWriter
+		C:StringReader,StringWriter
+
+4:打印流(掌握)
+	(1)字节打印流，字符打印流
+	(2)特点：
+		A:只操作目的地,不操作数据源
+		B:可以操作任意类型的数据
+		C:如果启用了自动刷新，在调用println()方法的时候，能够换行并刷新
+		D:可以直接操作文件
+			问题：哪些流可以直接操作文件呢?
+			看API，如果其构造方法能够同时接收File和String类型的参数，一般都是可以直接操作文件的
+	(3)复制文本文件
+		BufferedReader br = new BufferedReader(new FileReader("a.txt"));
+		PrintWriter pw = new PrintWriter(new FileWriter("b.txt"),true);
+		
+		String line = null;
+		while((line=br.readLine())!=null) {
+			pw.println(line);
+		}
+		
+		pw.close();
+		br.close();
+			
+5:标准输入输出流(理解)
+	(1)System类下面有这样的两个字段
+		in 标准输入流
+		out 标准输出流
+	(2)三种键盘录入方式
+		A:main方法的args接收参数
+		B:System.in通过BufferedReader进行包装
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		C:Scanner
+			Scanner sc = new Scanner(System.in);
+	(3)输出语句的原理和如何使用字符流输出数据
+		A:原理
+			System.out.println("helloworld");
+			
+			PrintStream ps = System.out;
+			ps.println("helloworld");
+		B:把System.out用字符缓冲流包装一下使用
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+6:随机访问流(理解)
+	(1)可以按照文件指针的位置写数据和读数据。
+	(2)案例：
+		A:写数据
+		B:读数据
+		C:获取和改变文件指针的位置
+
+7:合并流(理解)
+	(1)把多个输入流的数据写到一个输出流中。
+	(2)构造方法：
+		A:SequenceInputStream(InputStream s1, InputStream s2) 
+		B:SequenceInputStream(Enumeration<? extends InputStream> e) 
+
+8:序列化流(理解)
+	(1)可以把对象写入文本文件或者在网络中传输
+	(2)如何实现序列化呢?
+		让被序列化的对象所属类实现序列化接口。
+		该接口是一个标记接口。没有功能需要实现。
+	(3)注意问题：
+		把数据写到文件后，在去修改类会产生一个问题。
+		如何解决该问题呢?
+			在类文件中，给出一个固定的序列化id值。
+			而且，这样也可以解决黄色警告线问题
+	(4)面试题：
+		什么时候序列化?
+		如何实现序列化?
+		什么是反序列化?
+
+9:Properties(理解)
+	(1)是一个集合类，Hashtable的子类
+	(2)特有功能
+		A:public Object setProperty(String key,String value)
+		B:public String getProperty(String key)
+		C:public Set<String> stringPropertyNames()
+	(3)和IO流结合的方法
+		把键值对形式的文本文件内容加载到集合中
+		public void load(Reader reader)
+		public void load(InputStream inStream)
+
+		把集合中的数据存储到文本文件中
+		public void store(Writer writer,String comments)
+		public void store(OutputStream out,String comments)
+	(4)案例：
+		A:根据给定的文件判断是否有键为"lisi"的，如果有就修改其值为100
+		B:写一个程序实现控制猜数字小游戏程序不能玩超过5次
+
+10:NIO(了解)
+	(1)JDK4出现的NIO，对以前的IO操作进行了优化，提供了效率。但是大部分我们看到的还是以前的IO
+	(2)JDK7的NIO的使用	
+		Path:路径
+		Paths:通过静态方法返回一个路径
+		Files:提供了常见的功能
+			复制文本文件
+			把集合中的数据写到文本文件

@@ -1,0 +1,63 @@
+将聊天记录添加到数据库
+
+$('#sumbtn').click(function(){
+	var message = $('#message').val();
+	var nickname = $('#nickname').val();
+	$('#content').append("<li>" + nickname + "说 : " + message + "</li>");
+	$.ajax({
+		url:'/index.php?r=chat/insert',
+		type:'post',
+		data:{nickname:nickname,content:message},
+		success:function(data) {
+			console.log(data);
+		}
+	});
+});
+
+public function actionInsert()
+{
+	$request = Yii::$app->request;
+	$postData = $request->post();
+	$chat = new Chat();
+	$chat->nickname = $postData['nickname'];
+	$chat->content = $postData['content'];
+	$chat->addtime = date('Y-m-d H:i:s', time());
+
+	if ($chat->validate()) {
+		$chat->save();
+		echo '调用成功';
+	} else {
+		var_dump($chat->getErrors());
+	}
+}
+
+
+
+将数据库数据导致面板上
+var setting = {
+	url:'/index.php?r=chat/index',
+	dataType:'json',
+	success:function(data) {
+		$('#content').html("")
+		//$('#content li:first-child').remove(); // 添除上一次加载所有的 li
+		var len = data.length;
+		if (len) {
+			for (var i = 0; i < len; i ++) {
+				$('#content').append("<li>" + data[i]['nickname'] + "说 : " + data[i]['content'] + "</li>");
+			}
+		}
+		setTimeout(function(){$.ajax(setting)}, 2000);
+	}
+}
+$.ajax(setting);
+
+public function actionIndex()
+{
+	sleep(2);
+	$name = Chat::find()->orderby('addtime DESC')->limit(7)->asArray()->all();
+	foreach ($name as $key => $value) {
+		$time[$key] = $value['addtime'];
+	}
+	array_multisort($time, SORT_ASC, $name); // 根据时间数组重新排序
+	echo json_encode($name);
+}

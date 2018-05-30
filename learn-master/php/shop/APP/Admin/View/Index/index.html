@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>商城管理系统</title>
+		<link rel="stylesheet" type="text/css" href="{$smarty.const.__ROOT__}/Public/css/admin.css">
+	</head>
+	<frameset rows="76, *, 40" frameborder='0' scrolling='no'>
+		<frame src="{$smarty.const.__MODULE__}/Index/head" scrolling="0"></frame>
+		<frameset cols="300, *" frameborder='0'>
+			<frame src="{$smarty.const.__CONTROLLER__}/left"></frame>
+			<frame src="{$smarty.const.__CONTROLLER__}/right" name='main'></frame>
+		</frameset>
+		<frame src="{$smarty.const.__CONTROLLER__}/foot"></frame>
+	</frameset>
+</html>

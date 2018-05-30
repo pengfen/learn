@@ -1,0 +1,46 @@
+# 每分钟向 test.log 文件中输出文字
+[root@apeng ~]# mkdir test
+[root@apeng ~]# cd test
+[root@apeng test]# touch test.log
+[root@apeng test]#
+[root@apeng test]# pwd
+/root/test
+[root@apeng test]# crontab -l
+0 1 * * * /usr/sbin/ntpdate cn.pool.ntp.org
+[root@apeng test]# crontab -e
+crontab: installing new crontab
+[root@apeng test]# crontab -l
+0 1 * * * /usr/sbin/ntpdate cn.pool.ntp.org
+*/1 * * * * echo welcome >> /root/test/test.log
+[root@apeng test]#
+[root@apeng test]# vi test.log
+
+
+案例
+[root@iZ94f2imuwkZ sbin]# crontab -l
+#*/1 * * * * php /root/test.php "我被调用了" >> /var/log/test.log
+#*/1 * * * * php /root/test.php "你好 欢迎使用crontab" >> /var/log/test.log
+[root@iZ94f2imuwkZ sbin]# 
+[root@iZ94f2imuwkZ sbin]# vim /root/test.php 
+
+<?php
+echo date("Y-m-d H:i:s", time())." : ".$argv[1];
+echo PHP_EOL;
+sleep(30);
+echo date("Y-m-d H:i:s", time());
+echo "我睡醒了".PHP_EOL;
+
+[root@iZ94f2imuwkZ sbin]# vim /var/log/test.log 
+[root@iZ94f2imuwkZ sbin]# 
+[root@iZ94f2imuwkZ sbin]# tail -f /var/log/test.log 
+2016-07-01 09:36:31我睡醒了
+2016-07-01 09:36:31我睡醒了
+2016-07-01 09:37:01 : 你好 欢迎使用crontab
+2016-07-01 09:37:01 : 我被调用了
+2016-07-01 09:37:31我睡醒了
+2016-07-01 09:37:31我睡醒了
+2016-07-01 09:38:01 : 我被调用了
+2016-07-01 09:38:01 : 你好 欢迎使用crontab
+2016-07-01 09:38:31我睡醒了
+2016-07-01 09:38:31我睡醒了
+

@@ -1,0 +1,99 @@
+servlet简介
+Java Servlet是和平台无关的服务器端组件 它运行在Servlet容器中 Servlet容器负责Servlet和客户的通信以及调用Servelt的的方法 Servlet和客户的通信采用 "请求/响应"的模式
+Servlet可完成如下功能
+    创建并返回基于客户请求的动态HTML页面
+    创建可嵌入到现有HTML页面中的部分HTML页面(HTML片段)
+    与其它服务器资源(如数据库或基于Java的应用程序)进行通信
+
+
+---------------------------------------------
+Servlet的wel
+创建一个Servlet接口的实现类
+public class WelServlet implements Servlet
+
+在web.xml文件中配置和映射这个Servlet
+<!-- 配置和映射 Servlet -->
+<servlet>
+    <!-- Servlet 注册的名字 -->
+    <servlet-name>WelServlet</servlet-name>
+    <!-- Servlet 的全类名 -->
+    <servlet-class>test.serv.WelServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <!-- 需要和某一个 servlet 节点的 servlet-name 子节点的文本节点一致 -->
+    <servlet-name>WelServlet</servlet-name>
+    <!-- 映射具体的访问路径 / 代表当前 WEB 应用的根目录 -->
+    <url-pattern>/wel</url-pattern>
+</servlet-mapping>
+
+Run As --- Run On Server
+地址访问
+http://localhost:8080/test/wel
+
+-----------------------------------------------------------
+Servlet 容器 运行Servlet JSP Filter等的软件环境
+可以来创建Servlet 并调用Servlet的相关生命周期方法
+JSP Filter Listener Tag ...
+
+Servlet 生命周期的方法 以下方法都是由Servlet容器负责调用
+	构造器 第一次请求Servlet时 创建Servlet的实例 调用构造器 (说明Servlet的单实例的)
+	init方法 只被调用一次 在创建好实例后立即被调用 用于初始化当前Servlet
+	service 被多次调用 每次请求都会调用service方法 实际用于响应请求的
+	destroy 只被调用一次 在当前servlet所在的WEB应用被卸载前调用 用于释放当前servlet所占用的资源
+
+load-on-startup参数
+    配置在servlet节点中
+    <servlet>
+	    <!-- servlet 注册的名字 -->
+	    <servlet-name>secondServlet</servlet-name>
+	    <!-- servlet 的全类名 -->
+	    <servlet-class>test.com.SecondServlet</servlet-class>
+	    <!-- 可以指定 servlet 被创建的时机 -->
+	    <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    load-on-startup 可以指定servlet被创建的时机 若为负数 则在第一次请求时被创建 若为0或正数 则在当前WEB应用被servlet容器加载时创建实例 且数组越小越早被创建
+
+关于servlet-mapping
+    同一个servlet可以被映射到多个url上 即多个<servlet-mapping>元素的<servlet-name>子元素的设置值可以是同一个servlet的注册名
+    在servlet映射到的url中也可以使用*通配符 但是只能有两种固定的格式 一种格式是 *.扩展名 另一种格式是以下斜杠/开头并以/*结尾
+	<servlet-mapping>
+	    <servlet-name>anyName</servlet-name>
+	    <url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	    <servlet-name>anyName</servlet-name>
+	    <url-pattern>/action/*</url-pattern>
+	</servlet-mapping>
+
+ServletConfig servlet的配置信息 --- config.html
+
+ServletContext --- context.html
+
+----------------------------------------------------------
+servlet容器响应客户请求的过程
+    1.servlet引擎检查是否已经装载并创建了该servlet的实例对象 如果是 则直接执行第四步 否则 执行第二步
+    2.装载并创建该servlet的一个实例对象 调用该servlet的构造器
+    3.调用servlet实例对象的init()方法
+    4.创建一个用于封装请求的servletRequest对象和一个代表响应消息的servletResponse对象 然后调用servlet的service()方法并将请求和响应对象作为参数传递进去
+    5.WEB应用程序被停止或重新启动之前 servlet引擎将卸载servlet 并在卸载之前调用servlet的destroy()方法
+
+---------------------------------------
+servlet的注册和运行
+servlet程序必须通过servlet容器来启动运行 并且储存目录有特殊要求 需要存储在<WEB应用程序目录>\WEB-INF\classes\目录中
+servlet程序必须在WEB应用程序的web.xml文件中进行注册和映射其访问路径 才可以被servlet引擎加载和被外界访问
+一个<servlet>元素用于注册一个servlet 它包含有两个主要的子元素 <servlet-name>和<servlet-class> 分别用于设置servlet的注册名称和servlet的完整类名
+一个<servlet-mapping>元素用于映射一个已注册的servlet的一个对外访问路径 它包含有两个子元素 <servlet-name>和<url-pattern>分别用于指定servlet的注册名称和servlet的对外访问路径
+
+servlet映射的细节
+同一个servlet可以被映射到多个URL上 即多个<servlet-mapping>元素的<servlet-name>子元素的设置值可以是同一个servlet的注册名
+在servlet映射到的url中也可以使用*通配符 但是只能有两种固定的格式 一种格式是 *.扩展名 另一种格式是以下斜杠/开头并以/*结尾
+<servlet-mapping>
+    <servlet-name>anyName</servlet-name>
+    <url-pattern>*.do</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>anyName</servlet-name>
+    <url-pattern>/action/*</url-pattern>
+</servlet-mapping>

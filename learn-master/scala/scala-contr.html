@@ -1,0 +1,94 @@
+scala> if (x > 0) 1 else -1
+res14: Int = 1
+
+scala> val s = if (x > 0) 1 else -1
+s: Int = 1
+
+scala> if (x > 0) "positive" else -1 # 一个分支是 String 另一个分支是 Int 那们的公共超类型是 Any
+res15: Any = positive
+
+# () 可当做是表示 "无有用值" 的占位符 Unit 可当做 Java 中的 void
+scala> if (x > 0) 1 else ()
+res16: AnyVal = 1
+
+if 表达式
+
+if (logical_exp) valA else valB
+
+if (true) 1 else 2
+if (false) 3 else 4
+
+val a = 1
+if (a == 1) a
+if (a != 1) "not one"
+if (a != 1) "not one" else a
+
+for comprehension
+
+for {
+	x < -xs
+	y = x + 1
+	if (y > 0)
+} yield y
+
+object worksheet_chenfan {
+	val l = List("alice", "bob", "cathy")
+
+	for (
+	    s < -1
+	) println(s)
+
+	for {
+	    s < -1
+	    if (s.length > 3)
+	} println(s)
+
+	val result_for = for {
+	    s < -1
+	    s1 = s.toUpperCase()
+	    if (s1 != "")
+	} yield (s1)
+}
+
+
+try 表达式
+try {}
+catch {}
+finally {}
+
+try {
+	Integer.parseInt("dog");
+} catch {
+	case _=>0
+} finally {
+	println("always be");
+}
+
+match 表达式
+exp match { // 主要用在 pattern match 中
+	case p1 => val1
+	case p2 => val2
+	case _ => valn
+}
+
+code match {
+	case 1 => "one"
+	case 2 => "two"
+	case _ => "others"
+}
+
+
+val result_try = try {
+	Integer.parseInt("dog");
+} catch {
+	case _=>0
+} finally {
+	println("always be");
+}
+
+val code = 1
+val result_match = code match {
+	case 1 => "one"
+	case 2 => "two"
+	case _ => "others"
+}

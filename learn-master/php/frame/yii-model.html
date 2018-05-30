@@ -1,0 +1,55 @@
+yii 数据模型
+
+kiehls_customer 表 --- 对应于 Customer 模型
+
+1) 在 models 创建模型类 Customer.php
+2) 编写代码
+namespace app\models;
+use yii\db\ActiveRecord;
+class Customer extends ActiveRecord
+{
+    public static function tableName()
+    {
+        return '{{%kiehls_customer}}';
+    }
+}
+3) 可以模型类中编写 增删改查
+4) 在 controllers 中创建控制器类 CustomerController.php
+5) 在控制器类中使用模型类
+use app\models\Customer;
+use app\models\Areas;
+$customer = new Customer();
+$name = Areas::getName($id);
+
+
+
+模型中增删改查
+// 获取主键值
+public function getId() {return $this->getPrimaryKey();}
+
+// 添加数据 $data 添加的数据
+public static function insertData(array $data = array()) {
+	$db = \Yii::$app->db; 获取数据库对象
+	if (!is_array($data) || empty($data)) return false; // 如果数据为空 直接返回
+	$result = $db->createCommand()->insert(self::tableName(), $data)->execute();
+	if ($result) {return $db->getLastInsertID();} return false;
+}
+
+// 修改数据 $data 要修改的数据  $where 要修改的条件
+public static function updateData(array $data = array(), $where = '') {
+	$db = \Yii::$app->db;
+	if (!is_array($data) || empty($data)) return false;
+	if (empty($where) || $where == '') return false;
+
+	$result = $db->createCommand()->update(self::tableName(), $data, $where)->execute();
+	return $result;
+}
+
+// 删除数据 $where 删除条件
+public static function deleteData($where = '') {
+	$db = \Yii::$app->db;
+	if (empty($where) || $where == '') return false;
+
+	$result = $db->createCommand()->delete(self::tableName(), $where)->execute();
+	return $result;
+}

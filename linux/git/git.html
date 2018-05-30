@@ -1,0 +1,72 @@
+    git 的安装
+
+    liunx (centos) yum -y install git
+
+    windows 直接双击安装
+
+
+    连接 github
+    =========================
+    进入 git 客户端
+    ssh-keygen.exe 生成公钥 私钥
+    将公钥复制到 github ---> setting ---> ssh keys ---> add ssh keys
+    git remote add origin git@github.com:pengfen/linux.git #添加远程主分支
+    git clone git@github.com:pengfen/linux.git #复制远端代码到本地
+
+
+    获取主分支
+    ==========================
+    git checkout master 切换到主分支
+    git pull 拉主分支代码 
+    git pull origin master 当前分支下拉主分支
+
+
+    创建分支
+    ==========================
+    git branch peng_188 创建分支
+    git checkout peng_188
+    git checkout -b peng_188 创建并切换分支
+
+
+    查看分支
+    ==========================
+    git branch -a 查看所有分支
+    git branch
+    git status 查看当有修改文件
+
+    删除分支
+    ==========================
+    git branch -d peng_188 删除分支
+    git branch -D peng_188
+
+    提交分支
+    ==========================
+    git status
+    git add . 添加所有修改文件 (不包括删除文件)
+    git commit -m '提示信息'
+    git push origin peng_188 推送分支
+    git push (git fetch + git merge)
+    git diff 查看修改的地方
+    git diff branch_v1 branch_v2
+    git diff branch 查看当前目录与 branch分支不同的地方
+
+    add . (包括添加 修改文件) add --all (包括添加 修改 删除文件)
+    git add . #添加所有文件(包括新加的及修改的)
+    git add --all #添加所有文件(包括新加的 修改的及删除的)
+
+
+    git clone
+    ==========================
+    打开 git 客户端
+    cd /f
+    git clone https://github.com/pengfen/chatroom.git # 克隆项目代码到本地
+
+
+    其它
+    ==========================
+    git 提交时 单个文件最大允许 50M
+    超过 50M 会报错
+    remote: warning: File Linux从初学到精通.pdf is 65.30 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB
+
+
+    git pull -f git@github.com.... develop:develop

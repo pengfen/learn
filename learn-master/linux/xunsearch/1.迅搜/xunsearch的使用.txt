@@ -1,0 +1,153 @@
+xunsearch 的安装路径 /usr/local/xunsearch
+
+cd /usr/local/xunsearch
+
+体验 demo 项目
+cat ./sdk/php/app/demo.ini
+cd ./sdk/php
+./util/Indexer.php --source=csv --clean demo
+
+.ini 配置文件
+project.name = demo #项目名
+project.default_charset = utf-8 #默认字符集
+server.index = 8383 #索引库
+server.search = 8384 #搜索库
+
+[name] #字段名
+type = string #字段类型
+
+type 字段类型
+string 字符型，适用多数情况，也是默认值
+numeric 数值型，包含整型和浮点数，仅当字段需用于以排序或区间检索时才设为该类型，否则请使用 string　即可
+date 日期型，形式为 YYYYmmdd 这样固定的 8 字节，如果没有区间检索或排序需求不建议使用
+id 主键型，确保每条数据具备唯一值，是索引更新和删除的凭据，每个搜索项目必须有且仅有一个 id 字段，该字段的值不区分大小写
+title 标题型，标题或名称字段，至多有一个该类型的字段
+body 内容型，主内容字段, 即本搜索项目中内容最长的字段，至多只有一个该类型字段，本字段不支持字段检索
+
+string 只支持英文 (单个单词 不支持单个字母等)
+title body 支持中文 (./util/Quest.php demo 测试)
+
+ll
+bin
+data  数据
+etc
+include
+lib
+sdk 辅助工具
+share
+tmp
+
+data (demo goods)
+cd ./demo
+ll
+db log_db search.log
+cd ../goods
+ll
+db log_db search.log
+db 默认的主索引数据库 各种检索数据均存放在此
+log_db 搜索日志数据库 用于存放搜索日志相关
+
+cd ./sdk/php/util
+Indexer.php
+IniWizzard.php
+Logger.php
+Quest.php
+RequiredCheck.php
+SearchSkel.php
+skel
+Xs
+XSDataSource.class.php
+XSutil.class.php
+
+运行条件检测 ./Required.php
+
+索引管理器 ./Indexer.php
+-p 指定项目名称或配置文件路径，参数名可以省略不写， 如果仅指定项目名称，那么将使用 $prefix/sdk/php/app/.ini 文件
+
+# 查看 demo 项目在服务端的相关信息
+util/Indexer.php --info -p demo
+./Indexer.php --info -p goods
+
+[mallyy_jz@ns util]$ ./Indexer.php --info -p goods
+---------- SERVER INFO BEGIN ----------
+{
+  id:"indexd", uptime:6808726, num_burst:1, max_burst:1,
+  num_accept:84, aps:0.0, num_task:464, tps:0.0,
+  sock:7, name:"goods", home:"data/goods", rcv_size:8,
+  flag:0x0000, version:"1.4.9"
+}
+DBS: [log_db] -> [db] -> [NULL]
+CMDS:
+  -> {NULL}
+---------- SERVER INFO END ----------
+数据库名：db[0x0000]
+队列数据：0条
+导入进程：无
+
+./Indexer.php --clean goods # 清空 goods 库所有索引
+
+[mallyy_jz@ns util]$ ./Indexer.php --info -p goods
+---------- SERVER INFO BEGIN ----------
+{
+  id:"indexd", uptime:6809185, num_burst:1, max_burst:1,
+  num_accept:93, aps:0.0, num_task:524, tps:0.0,
+  sock:7, name:"goods", home:"data/goods", rcv_size:8,
+  flag:0x0000, version:"1.4.9"
+}
+DBS: [log_db] -> [db] -> [NULL]
+CMDS:
+  -> {NULL}
+---------- SERVER INFO END ----------
+数据库名：db[0x0002]
+队列数据：0条
+导入进程：无
+
+搜索测试工具 ./Quest.php --help
+
+yii xunsearch 集成
+添加到索引库
+#通过类获取 db
+$model = new Se_goods(); #指向se_goods.ini
+$db = $model->getDb();
+#通过配置获取 db
+$db = \Yii::$app->xunsearch->getDatabase('se_goods');
+#查询所有数据
+#获取索引对象 $index = $db->getIndex();
+#开启索引缓冲区
+$index->openBuffer();
+循环插入到索引库
+$model->id = ; ... $model->save();
+#关闭索引缓冲区
+$index->closeBuffer();
+
+#获取相关对象
+$db = \Yii::$app->xunsearch->getDatabase('se_goods');
+$xs = $db->xs; #搜索项目的总对象
+$search = $db->getSearch(); #获取搜索对象
+$scws = $db->getScws(); #获取分词对象
+$index = $db->getIndex(); #获取索引对象
+
+$search->setQuery('酒柜'); // 设置搜索语句
+$search->addWeight('subject', 'xunsearch'); // 增加附加条件：提升标题中包含 'xunsearch' 的记录的权重
+$search->setLimit(5, 10); // 设置返回结果最多为 5 条，并跳过前 10 条
+$docs = $xs->search->search(); // 执行搜索，将搜索结果文档保存在 $docs 数组中
+$count = $search->count(); // 获取搜索结果的匹配总数估算值
+
+yii 搜索
+$model = new Se_goods();
+$search = $model->find()->asArray()->all(); #获取所有搜索数据
+
+$search = $model->findOne(343); #获取id 为 343的单条数据
+$condition = ['id'=>'343'];
+$search = $model->find()->where($condition)->asArray()->all();
+
+// 获取某一区间内容
+$condition = ['BETWEEN', 'sell_price', 100, 2000];
+$search = $model->find()->where($condition)->asArray()->all();
+
+// 获取某一搜索词的所有记录
+$condition = '冰箱';
+$search = $model->find()->where($condition)->asArray()->all();
+
+
+util/Quest.php demo --list-synonyms=stemmed

@@ -1,0 +1,70 @@
+CSS 动画
+
+CSS 动画  keyframes
+CSS 过渡动画 transition
+
+定义动画
+@-webkit-keyframes changeWidth {
+	0% {width: 100px;}
+	100% {width: 200px;}
+}
+
+使用动画
+.myClassName {
+	-webkit-animation: changeWidth 2s;
+}
+
+
+/* 动画样式定义 让棕子左右摇 */
+@keyframes rock {
+    0% { transform:rotate(0deg)}
+    10% { transform:rotate(3deg)}
+    20% { transform:rotate(-3deg)}
+    30% { transform:rotate(2deg)}
+    40% { transform:rotate(-2deg)}
+    50% { transform:rotate(1deg)}
+    60% { transform:rotate(-1deg)}
+    70% { transform:rotate(0deg)}
+    100% { transform:rotate(0deg)}
+}
+
+.c_zongzi_box_rock {
+    -webkit-animation: rock 2s infinite;
+}
+
+粽子肉元件  左叶元件  右叶元件  底叶元件  文字吉祥元件 文字如意元件
+opacity: 0; /* 设置透明度 */
+display: none; /* 最开始隐藏此元件 */
+transition: all 1s; /* 设置过渡动画 */
+
+
+右边文字内容区显示
+.text .caption {
+    opacity: 0;
+    transition: all 1s; /* 1s 后出现 */
+}
+
+.text .to {
+    opacity: 0;
+    transition: all 1s 0.5s; /* caption 文字出现后 0.5s 出现些内容*/
+}
+
+.text .msg {
+    opacity: 0;
+    transition: all 1s 1s; /* caption 文字出现后 1s 出现些内容*/
+}
+
+.text .from {
+    opacity: 0;
+    transition: all 1s 1.5s; /* caption 文字出现后 1.5s 出现些内容*/
+}
+
+.text_in .caption,
+.text_in .to,
+.text_in .msg,
+.text_in .from {
+    opacity: 1;
+    margin-left: 0px;
+}
+
+页面上测试 添加 text_in 类测试

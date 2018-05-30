@@ -1,0 +1,44 @@
+<?php
+header('Content-type:text/html;charset=utf-8');
+//删除 目录
+
+//rmdir('./sbbk');
+//unlink('./1.exe');
+
+/**
+ * 删除 目录的函数
+ * @param string $path 要删除目录的路径
+*/
+function deleteDir($path)
+{
+    //判读 目录的有效性
+	if (!file_exists($path) || !is_dir($path)){
+		exit('目录无效！');
+	}
+	
+	//打开目录 目录
+	$dir_handler = opendir($path);
+	//遍历目录
+	while ($basename = readdir($dir_handler)){
+		if ($basename == '.' || $basename == '..'){
+			continue;
+		}
+		//拼装路径
+	    $filename = rtrim($path, '/').'/'.$basename;
+		//如果是文件
+		if (is_file($filename)){
+			@unlink($filename);
+		}
+		//如果 目录
+		if (is_dir($filename)){
+			deleteDir($filename);
+		}
+	}
+	//关闭资源
+	closedir($dir_handler);
+	//删除path目录
+	@rmdir($path);
+}
+
+
+deleteDir('./content');

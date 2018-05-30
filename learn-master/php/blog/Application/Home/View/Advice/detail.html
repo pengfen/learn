@@ -1,0 +1,23 @@
+<div class="col-md-10">
+	<h3>{$info.title}</h3>
+	<div class="comment" style="border-top: 2px solid #c3dae8; padding-top: 8px; min-height: 200px;">
+	    <p id="author_info" class="author_info">
+	    楼主 : {$name} 于 {:date('Y-m-d H:i:s', $info[addtime])} 发表
+	    </p>
+	    <p id="comment" class="elide">
+	    {:htmlspecialchars_decode($info['content'])}
+	    <!-- {$info.content} -->
+	    </p>
+	    
+	</div>
+	<if condition="$minfo neq ''">
+	<div class="answer">
+        <p id="answer_info">
+        1楼 : {$minfo.username}(产品经理) 于 {:date('Y-m-d H:i:s', $minfo[addtime])} 发表
+        </p>
+        <p id="comment" class="elide">
+	    {$minfo.content}
+	    </p>
+    </div>
+    </if>
+</div>

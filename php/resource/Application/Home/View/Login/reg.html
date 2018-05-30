@@ -1,0 +1,64 @@
+<extend name="Layout/mini"/>
+<block name="main">
+<div class="regist-wrap">
+    <div class="regist-left fl">
+		<ul class="regist-tab">
+			<li>邮箱注册<small>|</small></li>
+			<li>手机注册</li>
+		</ul>
+		<form class="regist-form" action="{:U('Login/checkReg')}" method="post">
+			<ul>
+				<li class="regist-mail">
+					<label>邮&nbsp;&nbsp;&nbsp;&nbsp;箱:</label><input type="text" name="email" placeholder='请输入邮箱地址'/>
+				</li>
+				<li class="regist-pass">
+					<label>设置密码:</label><input type="password" name="password" placeholder='请输入密码'/>
+				</li>
+				<li class="regist-repass">
+					<label>确认密码:</label><input type="password" name="repassword" placeholder='请输入确认密码'/>
+				</li>
+				<li class="regist-verify">
+					<span>验&nbsp;证&nbsp;码:<input type="text" name="code" placeholder='验证码'/></span>
+					<!-- <img src="../../common/code.php" id="code" onclick="javascript:this.src='../../common/code.php?tm='+Math.random()" /> -->
+					<!--
+					<img id='verify-img' src='./code.php'/>
+					<a id='verify-a' href="javascript:void(0)">换一张</a>-->
+					<img src="__CONTROLLER__/verify" onclick="javascript:this.src='__CONTROLLER__/verify?' + (new Date())">
+					<div class="clear"></div>
+				</li>
+				<li class="regist-text">
+					点击注册 表示您同意1号店 <a href=''>《服务协议》</a>
+				</li>
+				<li class="regist-btn">
+					<input type='submit' value='注册'/>
+				</li>
+			</ul>
+		</form>
+	</div>
+	
+	<script type="text/javascript" async>
+	    $(function(){
+	    	$('#verify-a').click(function(){
+	    		$('#verify-img').attr('src', './code.php?time=' + Date());
+	    	});
+	    });
+	</script>
+	<div class="regist-right fr">
+		<div class="error-text">
+			<?php
+			    if (!empty($_GET)){
+			    	switch ($_GET['errno']) {
+			    		case 8: echo '邮箱格式不对'; break;
+			    		case 3: echo '密码长度不够'; break;
+			    		case 6: echo '确认密码不一致'; break;
+			    		case 7: echo '验证码不一致'; break;
+			    		case 11: echo '用户名已存在'; break;
+			    		default: break;
+			    	}
+			    }
+			?>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+</block>

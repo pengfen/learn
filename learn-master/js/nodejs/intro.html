@@ -1,0 +1,11 @@
+require 加载需要的node.js原生模块
+var http = require('http'); // 服务器创建
+dns = require('dns'); // DNS 查询
+fs = require('fs'); // 文件操作
+url = require('url'); // url 处理
+querystring = require('querystring'); // 字符串处理
+
+http 模块负责HTTP服务器的创建
+dns 模块主要负责解析当前DNS域名 返回DNS服务器IP地址
+url 模块处理文件url路径
+querystring 模块处理前端传回的字符串解析

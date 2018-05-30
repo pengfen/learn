@@ -1,0 +1,30 @@
+<extend  name='Layout/index'/>
+<block name="main">
+<div class="w showlist">
+    <h3>全部课程</h3>
+	<ul class="direct">
+	    <li>方向:</li>
+	    <foreach name="direct" item="v">
+	    <li><a href="{:U('Index/showlist', array('rid'=>$v[id]))}">{$v[name]}</a></li>
+	    </foreach>
+	</ul>
+	<ul class="category">
+	    <li>分类:</li>
+	    <foreach name="cate" item="v">
+	    <li><a href="{:U('Index/showlist', array('cid'=>$v[id]))}">{$v[catename]}</a></li>
+	    </foreach>
+	</ul>
+	<ul class="difficult">
+	    <li>难度:</li>
+	    <foreach name="difficult" item="v">
+	    <li><a href="{:U('Index/showlist', array('did'=>$v[id]))}">{$v[name]}</a></li>
+	    </foreach>
+	</ul>
+	<div class="clear"></div>
+	<div class="lesson">
+		<foreach name="three" item="v">
+		<a href="{:U('Lesson/index', array('id'=>$v[id]))}">{$v[catename]}</a>
+		</foreach>
+	</div>
+</div>
+</block>

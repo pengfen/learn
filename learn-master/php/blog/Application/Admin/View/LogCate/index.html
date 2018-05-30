@@ -1,0 +1,38 @@
+<extend name='Layout/index'/>
+<block name='resource'>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/apeng.css"/>
+</block>
+<block name='main'>
+<div class='admin-mess'>{$_GET['mess']}</div>
+<div id = 'right' class="col-md-10">
+	<table class="table table-striped">
+	    <thead>
+	    	<tr>
+	    		<th>编号</th>
+	    		<if condition="$name neq ''">
+	    		<th>用户名</th>
+	    		</if>
+	    		<th>日志分类名</th>
+	    		<th>日志总数</th>
+	    		<th>操作</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    	<foreach name='info' item='v'>
+	    	<tr>
+	    		<td>{$v.id}</td>
+	    		<if condition="$name neq ''">
+	    		<td>{$name}</td>
+	    		</if>
+	    		<td>{$v.name}</td>
+	    		<td>{$v.total}</td>
+	    		<td>
+	    			<a class="upd" href="{:U('Log/index', array('id'=>$v[id], 'name'=>$name, 'cate'=>$v[name]))}">查看所属日志</a>
+	    		</td>
+	    	</tr>
+	    	</foreach>
+	    	<tr><td colspan="5" id='page'><if condition="$count neq '0'">共有 {$count} 条记录 {$page}<else />没有数据</if></td></tr>
+	    </tbody>
+    </table>
+</div>
+</block>

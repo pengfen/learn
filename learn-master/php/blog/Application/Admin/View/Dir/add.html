@@ -1,0 +1,66 @@
+<block name='head'>
+<form class="form-horizontal" action="{:U('Dir/insert')}" method="post">
+<input type='hidden' name="flag" value="{$flag}"/>
+</block>
+  <div class="form-group">
+    <label for="tablename" class="col-sm-2 control-label">表名</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" name='name' id="tablename" placeholder="请输表名" value="{$v.name}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="authname" class="col-sm-2 control-label">表结构</label>
+    <div class="col-sm-9">
+      <textarea name='struct'>{$v.struct}</textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="controller" class="col-sm-2 control-label">控制器名</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="controller" name='controller' placeholder="请输入控制器名" value="{$v.controller}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="method" class="col-sm-2 control-label">控制器中操作方法</label>
+    <div class="col-sm-9">
+      <textarea name='method'>{$v.method}</textarea>
+    </div>
+  </div>
+    <div class="form-group">
+    <label for="model" class="col-sm-2 control-label">模型名</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="model" name='model' placeholder="请输入模型名" value="{$v.model}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="modmet" class="col-sm-2 control-label">模型中操作方法</label>
+    <div class="col-sm-9">
+      <textarea name="modmet">{$v.modmet}</textarea>
+    </div>
+  </div>
+    <div class="form-group">
+    <label for="template" class="col-sm-2 control-label">模板</label>
+    <div class="col-sm-9">
+      <textarea name="template">{$v.template}</textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="note" class="col-sm-2 control-label">备注</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="note" name='note' placeholder="请输入备注" value="{$v.note}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="des" class="col-sm-2 control-label">描述</label>
+    <div class="col-sm-9">
+      <textarea name='des'>{$v.des}</textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+    <block name='foot'>
+      <button type="submit" class="btn btn-default">添加目录</button>
+    </block>
+    </div>
+  </div>
+</form>

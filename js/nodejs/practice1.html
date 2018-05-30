@@ -1,0 +1,58 @@
+练习
+
+在浏览器输入 http://127.0.0.1:2000 输出 you are so good
+
+分析 根据hello world方法 将其中的res.end返回的字符串修改为 you are so good 即可
+
+var http = require('http');
+http.createServer(function(req, res) {
+	res.writeHead(200, {'Content-Type' : 'text/plain'});
+	res.end('you are so good\n');
+}).listen(2000, '127.0.0.1');
+console.log('Server running at http://127.0.0.1:2000/');
+
+在浏览器输入 http://127.0.0.1:3000 显示一个任意的html页面数据 其html页面数据字符代码如下
+
+<html>
+    <head>
+    	<title>Node.js</title>
+    </head>
+    <body>
+    	<div>Hi Node, I like you so much</div>
+    </body>
+</html>
+
+分析 res对象可以响应多种方式 text返回类开 text/plain 还可以返回 css html jpg等类型 返回html格式 修改其Content-Type为text/html
+
+var http = require('http');
+http.createServer(function(req, res) {
+	var retHtml = "<html><head><title>node.js</title></head><body><div>Hi Node, I like you so much</div></body></html>";
+
+	res.writeHead(200, {'Content-Type' : 'text/html'});
+	res.end(retHtml);
+}).listen(3000, '127.0.0.1');
+console.log('Server running at http://127.0.0.1:3000/');
+
+启动 Node.js command prompt
+F:
+cd nodejs
+node test.js
+
+页面访问 http://127.0.0.1:3000/
+
+现在有getFileData returnData 和 fs.readFile 三个方法 其中fs.readFile 是一个异步函数 是已知的 编程实现使用 returnData调用getFileData方法 在getFileData中停留一秒后 打印出一个index.conf文件里面的二进制数据
+
+var fs = require('fs');
+function getFileData(callback) {
+	fs.readFile('index.conf', function(data) {
+		callback(data);
+	});
+}
+
+function returnData(callback) {
+	getFileData(function(data) {
+		setTimeout(function() {
+			callback(data);
+		}, 1000);
+	})
+}

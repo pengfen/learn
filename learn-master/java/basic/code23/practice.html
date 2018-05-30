@@ -1,0 +1,105 @@
+逻辑思考题:
+1:矿泉水1元钱1瓶，每2个空瓶换一瓶矿泉水，现有20元钱，请问可以买多少瓶矿泉水？
+20(虽然感觉有道理，但是肯定不是这个)
+39	程序员
+40	销售 – 管理岗位
+
+逻辑思维能力是没有问题的：
+20+10+5+2+1+1 和1个空瓶子
+
+如何能达到40呢?
+借一个。
+如何借？交通能力。（交流沟通）
+1个空瓶子先给商店，再借。
+
+2:下面这个表达式,你移动一个数字或者符号就可以把这个表达式变成正确的.请试试.
+62-63=1
+把6移动到2的次方位置。
+2的10次幂以内的值要非常的敏感。
+
+3: 一栋房子需要一个工匠七天建成，这个工匠的工钱是一份金条，假如现在你需要盖一栋房子，而你只有一根完整的金条，怎么能把金条分三份的情况下每天都付给工匠工资，最后一天刚好付完？
+1/7,2/7,4/7
+
+
+面试题:
+1:谈谈final, finally, finalize的区别
+final:最终的意思，可以修饰类，方法和变量。
+	它修饰的类，不能被继承
+	它修饰的方法，不能被重写
+	它修饰的变量，不能被改变
+finally:是异常处理的一部分，用于释放资源的。它控制的代码永远会执行。
+特殊情况：在执行到finally之前，JVM退出了。
+finalize:是Object类的一个方法，用于垃圾回收。
+
+2: &和&&的区别
+A:作为逻辑运算符，&&具有短路效果
+B:&还可以做为位运算符
+
+3: Math.round(11.5)等於多少? Math.round(-11.5)等於多少?
+12
+-11
+4: short s1 = 1; s1 = s1 + 1;有什么错? short s1 = 1; s1 += 1;有什么错?
+前者有错，s1会自动提升为int类型，结果赋值给short类型，所以报错。
+后者无错，+=这种赋值运算符隐含了强制类型转换。
+
+5:数组有没有length()这个方法? String有没有length()这个方法？
+没有。
+有。
+
+6: Overload和Override的区别。Overload的方法是否可以改变返回值的类型?
+Overload：重载
+Override：重写
+
+重载：
+	同一个类中，方法名相同，参数列表不同。与返回值类型无关。
+
+重写：
+	存在于子父类，或者子父接口中，方法声明相同。
+
+Overload的方法可以改变返回值的类型，因为它与返回值类型无关。
+
+7:给我写出JDK提供的5个常用类名,5个接口名,5个包名.
+5个常用类名
+	String
+	StringBuilder
+	Integer
+	集合类(ArrayList,LinkedList,HashSet,HashMap)
+	IO流(FileReader,FileWriter,FileInputStream,FileOutputStream)
+        (BufferedXxx系列)
+
+5个接口名
+	Collection
+	List
+	Set
+	Map
+	Iterator
+	Comparable
+	Comparator
+	跟数据库相关：Connection，Statement，PreparedStatement，CallableStatement，ResultSet
+
+5个包名
+	java.lang
+	java.util
+	java.io
+	java.net
+	java.sql
+	java.math
+	java.awt
+
+8:构造方法是否可被override?
+不可以。
+
+9: try {}里有一个return语句，那么紧跟在这个try后的finally {}里的code会不会被执行，什么时候被执行，在return前还是后?
+会。
+前。
+
+10: 编程题: 用最有效率的方法算出2乘以8等於几?
+2<<3
+
+11: 当一个对象被当作参数传递到一个方法后，此方法可改变这个对象的属性吗？
+可以。
+
+12: switch是否能作用在byte上，是否能作用在long上，是否能作用在String上?
+可以
+不可以
+JDK7以后可以

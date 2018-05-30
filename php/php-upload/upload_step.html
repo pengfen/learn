@@ -1,0 +1,58 @@
+<h1>文件上传-完整的上传步骤</h1>
+<form action="6.php" method='post' enctype='multipart/form-data'>
+	<input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+	<input type="file" name="myfile">
+	
+	<button>上传</button>
+</form>
+
+<?php
+header('Content-type:text/html;charset=utf-8');
+//完整的上传步骤
+
+//定义变量
+$path = "./uploads"; 				 //声明上传的目录
+$files = $_FILES['myfile'];			//获取上传文件的数组
+$allowSize = 2000000;				//允许文件的大小
+$allowType = array('image/png', 'image/gif', 'image/jpeg');			//允许的文件类型	
+
+//1. 判断 是否有错误
+if ($files['error'] != 0){
+	//输出错误原因
+	switch ($files['error']){
+		case 1:  $info = "文件大小超过了php.ini中的限制！"; break;
+		case 2:  $info = "文件大小超过了表单中的限制！"; break;
+		case 3:  $info = "文件只被部分上传!"; break;
+		case 4:  $info = "文件没有上传!"; break;
+		case 6:  $info = "找不到临时目录!"; break;
+		case 7:  $info = "文件写入失败！"; break;
+	}
+	echo $info;
+	exit;
+}
+
+//2. 验证文件的大小
+if ($allowSize <  $files['size']){
+	exit ("上传的文件过大!");
+}
+
+//3. 验证文件的类型
+if (!in_array($files['type'], $allowType)){
+	exit ("文件类型错误！");
+}
+
+//4. 生成新的文件名
+$extension = pathinfo($files['name'], PATHINFO_EXTENSION);				//获取后缀
+$newName = uniqid().'.'.$extension;
+
+//5. 执行 把文件移动到指定的位置
+if (is_uploaded_file($files['tmp_name'])){
+	//移动
+	if (move_uploaded_file($files['tmp_name'], $path.'/'.$newName)){
+		echo "上传成功！";
+	}else {
+		exit ("移动文件失败！");
+	}
+}else {
+	exit ("不是合法的上传文件！");
+}

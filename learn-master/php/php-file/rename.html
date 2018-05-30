@@ -1,0 +1,26 @@
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+//文件的基本操作函数
+
+/*
+	copy()
+	unlink()
+	ftruncate
+*/
+
+//ftruecate()
+
+//打开文件
+$fp = fopen('data2.xml', 'r+');
+
+//截取文件
+ftruncate($fp, 20);
+
+//关闭文件
+fclose($fp);
+
+
+//rename  
+rename('data1.xml', 'sb.txt');
+rename('./data', './public');

@@ -1,0 +1,66 @@
+<extend name='Layout/index'/>
+<block name='resource'>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/apeng.css"/>
+</block>
+<block name='main'>
+<div class='admin-mess'>{$_GET['mess']}</div>
+<div id="add">
+    <a href="javascript:void(0)">添加会员</a>
+    <input type='hidden' value="{:U('User/add')}"/>
+    <a href="{:U('User/index')}">会员列表</a>
+</div>
+<div id = 'right' class="col-md-10">
+	<table class="table table-striped">
+	    <thead>
+	    	<tr>
+	    		<th>编号</th>
+	    		<th>用户名</th>
+	    		<th>性别</th>
+	    		<th>邮箱</th>
+	    		<th>状态</th>
+	    		<th>操作</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    	<foreach name='info' item='v'>
+	    	<tr>
+	    		<td>{$v.id}</td>
+	    		<td>
+	    		    <a class="detail" href="javascript:void(0)">{$v.username}</a>
+	    			<input type="hidden" value="{:U('User/detail', array('id'=>$v[id]))}"/>
+	    		</td>
+	    		<td><if condition="$v[sex] eq 0">保密<elseif condition="$v[sex] eq 1"/>男<else/>女</if></td>
+	    		<td>{$v.email}</td>
+	    		<td><if condition='$v[state] eq 0'>禁用<else />启用</if></td>
+	    		<td>
+	    			<a class="update" href="javascript:void(0)">修改</a>
+	    			<input type="hidden" name="" value="{:U('User/edit', array('id'=>$v[id], 'state'=>$v['state'], 'name'=>$v[username]))}" />
+	    			<a class="detail" href="javascript:void(0)">会员详情</a>
+	    			<input type="hidden" value="{:U('User/detail', array('id'=>$v[id]))}"/>
+	    			<a class="detail" href="javascript:void(0)">会员课程</a>
+	    			<input type="hidden" value="{:U('User/detail', array('id'=>$v[id]))}"/>
+	    			<a class="detail" href="javascript:void(0)">会员课程评论</a>
+	    			<input type="hidden" value="{:U('User/detail', array('id'=>$v[id]))}"/>
+	    			<a class="detail" href="javascript:void(0)">会员笔记</a>
+	    			<input type="hidden" value="{:U('User/detail', array('id'=>$v[id]))}"/>
+	    			<!-- <a class="upd" href="{:U('LogCate/index', array('id'=>$v[id], 'name'=>$v[username]))}">日志分类</a>
+	    			<a class="album" href="{:U('Album/index', array('id'=>$v[id], 'name'=>$v[username]))}">相册分类</a>
+	    			<a class="detail" href="javascript:void(0)">会员详情</a>
+	    			<input type="hidden" value="{:U('User/detail', array('id'=>$v[id]))}"/>
+	    			<a href="{:U('Mood/index', array('id'=>$v[id], 'name'=>$v[username]))}">说说列表</a>
+	    			<a href="{:U('Friend/index', array('id'=>$v[id], 'name'=>$v[username]))}">好友列表</a>
+	    			<a href="{:U('Record/index', array('id'=>$v[id], 'name'=>$v[username]))}">生活记录列表</a>
+	    			<a href="{:U('Advice/index', array('id'=>$v[id], 'name'=>$v[username]))}">建议列表</a> -->
+	    		</td>
+	    	</tr>
+	    	</foreach>
+	    	<tr><td colspan="6" id='page'><if condition="$count neq '0'">共有 {$count} 条记录 {$page}<else />没有数据</if></td></tr>
+	    </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    click($('#add a'));  // 添加会员界面 
+	click($('.update')); // 修改会员状态
+	click($('.detail')); // 显示会员详情
+</script>
+</block>

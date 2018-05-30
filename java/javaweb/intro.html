@@ -1,0 +1,147 @@
+JavaWeb应用的概念
+在Sun的Java Servlet规范中 对Java Web应用作了这样定义 
+Java Web应用由一组Servlet HTML页 类 以及其它可以被绑定的资源构成
+它可以在各种供应商提供的实现Servlet规范的Servlet容器中运行
+
+Java Web应用中可以包含如下内容
+Servlet
+JSP
+实用类
+静态文档如HTML 图片
+描述Web应用的信息(web.xml)
+
+
+---------------------------------------
+
+Servlet容器的概念
+Servlet容器为JavaWeb应用提供运行时环境 它负责管理Servlet和JSP的生命周期 以及管理它们的共享数据
+Servlet容器也称为JavaWeb应用容器 或者Servlet/JSP容器
+目前最流行的servlet容器软件
+Tomcat
+Resin
+J2EE服务器(如Weblogic)中也提供了内置的Servlet容器
+
+----------------------------
+Tomcat简介
+Tomcat是一个免费的开放源代码的
+Server容器 它是Apache软件基金会的一个项级项目 由Apache Sun和其他一些公司及个人共同开发而成 由于有了Sun的参与与支持 最新的Servlet和JSP规范总是能在Tomcat中得到体现
+
+Tomcat的目录结构
+bin 存放启动和关闭Tomcat的脚本文件
+conf 存放Tomcat服务器的各种配置文件
+lib 存放Tomcat服务器和所有web应用程序需要访问的jar文件
+logs 存放Tomcat的日志文件
+temp 存放Tomcat运行时产生的临时文件
+webapps 当发布web应用程序时 通常把web应用程序的目录及文件放到这个目录下
+work Tomcat将JSP生成的Servlet源文件和字节码文件放到这个目录下
+
+http://tomcat.apache.org/ 下载
+解压tomcat7
+startup.bat 运行(如果一闪而过)
+
+解决方案
+查看错误
+C:\Users\Administrator>d:
+D:\>cd D:\files\apache-tomcat-7.0.70\bin
+D:\files\apache-tomcat-7.0.70\bin>startup
+错误显示需要配置 JAVA_HOME或JRE_HOME
+
+计算机 --- 属性 --- 高级系统设置 --- 环境变量 --- 新建 --- java_home 值 java安装目录
+
+进入tomcat安装目录 启动startup.bat
+
+
+------------------------------------------------
+总结
+部署并启动tomcat服务器
+解压 tomcat7 到一个非中文目录下
+配置一个环境变量 java_home(指向JDK安装的根目录) 或 jre_home
+通过双击 tomcat7\bin目录下的startup.bat 启动服务器
+可以在浏览器中输入 localhost:8080 来检验tomcat安装是否正确
+若已经启动了一个Tomcat应用 若再启动同一个Tomcat应用 会抛出异常 java.net.BindException: Address already in use: JVM_Bind:8080 因为端口已经被占用了
+Tomcat 开源的Servlet容器
+可以通过修改server.xml 文件中的配置信息来修改Tomcat服务的端口号
+<Connector port="8989" protocol="HTTP/1.1" connectionTimeout="20000" redirectPort="8443" />
+把port的值改为其他的端口号即可
+为了可以在任意目录下启动Tomcat服务器
+把 tomcat7\bin 添加到path下 添加成功后 若在任意目录下通过startup启动tomcat服务器 会有提示
+The CATALINA_HOME environment variable is not defined correctly
+This environment variable is needed to run this program
+
+即 要求设置CATALINA_HOME 这个环境变量
+设置CATALINA_HOME环境变量
+通过阅读startup.bat 批处理文件 可知CATALINA_HOME环境变量下有一个bin目录 而bin目录又有一个catalina.bat文件 由此可知CATALINA_HOME 指向的应该是Tomcat安装的根目录
+于是把Tomcat的根目录设为CATALINA_HOME 环境变量
+此时即可以在任意目录下通过startup.bat shutdown.bat启动关闭Tomcat服务器
+
+继续阅读startup.bat文件 发现启动tomcat服务器的是catalina.bat文件
+在命令行窗口直接输入catalina 提示如下
+
+commads
+debug              Start Catatlina in a debugger
+debug - security   Debug Catalina with a security manager
+jpda start         Start Catalina under JPDA debugger
+run                Start Catalina in the current window
+run - security     Start in the current window with security manager
+start              Start Catalina in a separate window
+start - security   Start in a separate window with security manager
+stop               Stop Catalina
+version            What version of tomcat are you running
+
+catalina 命令有如上的可选参数
+run 在catalina同一个命令行窗口下启动服务器
+start 开启一个新窗口启动服务器
+stop 关闭服务器
+
+
+-------------------------------------
+第一个WEB应用程序 开发 并部署到Tomcat服务器下运行
+
+    在Eclipse新建一个Java Project
+    在Java项目下创建WEB开发的目录结构
+
+    WebContent
+        WEB-INF
+            classes (编译后的class文件必须放在该目录下)
+            lib
+            web.xml (从已有目录中复制)
+        html 页面
+        JSP 页面
+        图片 ...
+    在src下新建一个Person类
+
+public class Person {
+	public String getPersonInfo() {
+	    return "person info ...";
+	}
+}
+
+手工的Person类对应的class文件(含包)复制到classes目录下
+在WebContent目录下新建一个JSP文件
+<%@page import="com.test.Person"%>
+<%@page language="java" contentType="text/html; charset=utf8" pageEncoding="utf8"%>
+
+<%
+    Person person = new Person();
+    System.out.print(person.getPersonInfo());
+%>
+
+把WebContent目录复制到Tomcat的webapps目录下 并改名为 wel
+
+在浏览器的地址栏中输入 http://localhost:8080/wel/wel.jsp 即可看到命令行的打印信息
+
+配置任意目录下的web应用程序 在conf目录下依次创建catalina\localhost目录 然后在这个Web应用程序建立test.xml文件 编辑这个文件输入以下内容
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Context docBase="E:\\java...\\WebContent" relocable="true"/>
+
+--------------------------------------
+配置任意目录下的web应用程序
+还可以在conf目录下依次创建catalina\localhost目录 然后在localhost目录下为test这个web应用程序建立test.xml文件 编辑这个文件输入以下内容
+<Context path="/test" docBase="c:\\test" reloadable="true" />
+
+从Tomcat5开始 不建议直接在server.xml文件中配置<Context>元素 因为server.xml文件作为Tomcat的主要配置文件 一旦Tomcat启动后 将不会再读取这个文件 因此无法在Tomcat服务器启动时发布Web应用程序 如果在其他地方配置<Context>元素 那么在Tomcat运行时 也可以发布Web应用程序
+
+从Tomcat5.5开始 在\conf\catalina\localhost目录下创建XML配置文件来配置Web应用程序 Tomcat将以XML文件的文件名将作为Web应用程序的上下文路径 而不理会在<Context>元素的path属性中指定的上下文路径是什么 由于Tomcat5.5之后的版本是以XML配置文件的文件名作为Web应用程序的上下文路径的 因此在配置<Context>元素时 可以不使用path属性
+
+reloadable 当修改了docBase下的classes目录下的class文件时 tomcat服务器是否会重新加载WEB应用

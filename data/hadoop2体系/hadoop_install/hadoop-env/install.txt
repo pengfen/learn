@@ -1,0 +1,15 @@
+Hadoop 环境之系统安装
+
+vmware 的安装 (windows 上直接下一步 参考 F:\data\vm_install)
+虚拟机及 linux 系统的安装 (参考 F:\data\linux_install)
+
+peng1 --- 192.168.129.128 --- peng0313
+peng2 --- 192.168.129.129 --- peng0313
+peng3 --- 192.168.129.130 --- peng0313
+
+[root@peng1 ~]# vim /etc/sysconfig/network-scripts/ifcfg-eth0
+ONBOOT="no" --- ONBOOT="yes"
+[root@peng1 ~]# service network restart
+[root@peng1 ~]# ifconfig
+
+建立快照 (初始化)

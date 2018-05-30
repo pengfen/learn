@@ -1,0 +1,16 @@
+var mobilephone = $('#mobilephone').val();
+if (mobilephone) {
+    $.ajax({
+        url:'/index.php?r=site/mobile',
+        data:{mobile:mobilephone},
+        success:function(data) {
+        if(data) {
+        //alert("该号码已参与活动，每个手机号只能参与一次。");
+        window.location.href="/index.php?r=site/direct&mobile=" + mobilephone;
+        //$('.select-shop').css('display', 'none');
+        $('.has-select').unbind("click");
+        $(".shopping li").unbind('click');
+        }
+        }
+    })
+}

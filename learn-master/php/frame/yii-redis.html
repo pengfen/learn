@@ -1,0 +1,28 @@
+安装 composer
+
+双击 Composer-Setup.exe
+
+代理IP 8.8.4.4
+
+cmd --- composer -v
+
+php -v #查看php是否可以直接运行
+
+登录 --- github --- 搜索 --- yii2-redis
+
+php composer.phar require --prefer-dist yiisoft/yii2-redis 
+以下执行命令改为
+composer require --prefer-dist yiisoft/yii2-redis
+
+去项目目录下查看redis是否安装成功
+查看目录 ...\vendor\yiisoft\yii2-redis
+查看文件 ...\vendor\yiisoft\extensions.php
+'yiisoft/yii2-redis' => 
+  array (
+    'name' => 'yiisoft/yii2-redis',
+    'version' => '2.0.5.0',
+    'alias' => 
+    array (
+      '@yii/redis' => $vendorDir . '/yiisoft/yii2-redis',
+    ),
+  ),

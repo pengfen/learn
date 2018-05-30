@@ -1,0 +1,22 @@
+导入导出mysql数据库命令
+
+导出数据和表结构
+mysqldump -u用户名 -p密码 数据库名 > 数据库名.sql
+[root@iZ94f2imuwkZ sql]# mysqldump -ucaopeng -p1234560. resource > res.sql (注意 cd /opt/sql 导出的文件就放在 /opt/sql目录下)
+
+只导出表结构
+mysqldump -u用户名 -p密码 -d 数据库名 > 数据库名.sql
+[root@iZ94f2imuwkZ sql]# mysqldump -ucaopeng -p1234560. -d resource > res.sql
+
+
+导入数据库
+创建空数据库 create database res;
+选择数据库 use res;
+设置数据库编码 set names utf8;
+
+导入数据 source /opt/sql/res.sql (直接在mysql命令行)
+mysql> source /opt/sql/res.sql
+
+导入数据 (在目录中 cd /opt/sql)
+mysql -u用户名 -p密码 数据库名 < 数据库名.sql
+[root@iZ94f2imuwkZ sql]# mysql -ucaopeng -p1234560. res < res.sql

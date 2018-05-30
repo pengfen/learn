@@ -1,0 +1,229 @@
+SqlMapConfig.xml
+mybatis的全局配置文件SqlMapConfig.xml 配置内容如下
+
+properties (属性)
+settings(全局配置参数)
+typeAliases(类型别名)
+typeHandlers(类型处理器)
+objectFactory(对象工厂)
+plugins(插件)
+environments(环境集合属性对象)
+environment(环境子属性对象)
+transactionManager(事务管理)
+dataSource(数据源)
+mappers(映射器)
+
+properties属性
+需求
+将数据库连接参数单独配置在db.properties中 只需要在SqlMapConfig.xml中加载db.properties的属性值 在SqlMapConfig.xml中就不需要对数据库连接参数硬编码
+
+将数据库连接参数只配置在db.properties中 原因 方便对参数进行统一管理 其它xml可以引用该db.properties
+
+properties特性
+jdbc.driver=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/mybatis
+jdbc.username=root
+jdbc.password=
+
+在SqlMapConfig.xml加载属性文件
+mybatis将按照下面的顺序来加载属性
+在properties元素体内定义的属性首先被读取
+然后会读取properties元素中resource或url加载的属性 它会覆盖已读取的同名属性
+最后读取parameterType传递的属性 它会覆盖已读取的同名属性
+
+因此 通过parameterType传递的属性具在最高优先级 resource或url加载的属性次之 最低优先级的是properties元素体内定义的属性
+
+建议 不要在properties元素体内添加任何属性值 只将属性值定义在properties文件中 在properties 文件中定义属性名要有一定的特殊性 如 XXX.XXX
+
+settings全局参数配置
+mybatis框架在运行时可以调整一些运行参数
+比如 开启二级缓存 开启延迟加载
+全局参数将会影响mybatis的运行行为
+
+typeAliases (别名) 重点
+需求
+在mapper.xml中 定义很多的statement statement需要parameterType指定输入参数的类型 需要resultType指定输出结果的映射类型
+如果在指定类型时输入类型全路径 不方便进行开发 可以针对parameterType或resultType指定的类型定义一些别名 在mapper.xml中通过别名定义 方便开发
+
+typeHandlers (类型处理器)
+mybatis中通过typeHandlers完成jdbc类型和java类型的转换
+通常情况下 mybatis提供的类型处理满足日常需要 不需要自定义
+
+mappers (映射配置)
+通过resource加载单个映射文件
+<!-- 通过resource方法一次加载一个映射文件 -->
+<mapper resource="mapper/UserMapper.xml" />
+
+通过mapper接口加载
+<!-- 通过mapper接口加载映射文件 -->
+<!-- 遵循一些规范 需要将mapper接口类名和mapper.xml映射文件名称保持一致 且在一个目录中上边规范的前提是 使用的是mapper代理方法 -->
+<mapper class="com.peng.mybatis.mapper.UserMapper" />
+
+批量加载mapper
+指定mapper接口的包名 mybatis自动扫描包下边所有mapper接口进行加载
+遵循一些规范 需要将mapper接口类名和mapper.xml映射文件名称保持一致 且在一个目录中上边规范的前提是 使用的是mapper代理方法
+<package name="com.peng.mybatis.mapper" />
+<mapper resource="" />
+使用相对于类路径的资源
+
+<mapper url="" />
+使用完全限定路径
+
+<mapper class="" />
+使用mapper接口类型路径 此种方法要求mapper接口名称和mapper映射文件名称相同 且放在同一个目录中
+
+输入映射
+通过parameterType指定输入参数的类型 类型可以是简单类型 hashmap pojo的包装类型
+传递pojo的包装对象
+需求
+完成用户信息的综合查询 需要传入查询条件很复杂 (可能包括用户信息 其它信息 比如商品 订单的)
+建议使用自定义的包装类型的pojo 在包装类型的pojo中将复杂的查询条件包装进行
+
+映射文件
+在UserMapper.xml 中定义用户信息综合查询 (查询条件复杂 通过高级查询条件查询)
+
+// 创建包装对象 设置查询条件
+UserQueryVo userQueryVo = new UserQueryVo();
+UserCustom userCustom = new UserCustom();
+userCustom.setSex("1");
+userCustom.setUsername("张三丰");
+userQueryVo.setUserCustom(userCustom);
+
+// 调用userMapper的方法
+List<UserCustom> list = userMapper.findUserList(userQueryVo);
+
+输出映射
+resultType
+使用resultType进行输出映射 只有查询出来的列名和pojo中的属性名一致 该列才可能映射成功
+如果查询出来的列名和pojo中的属性名全部不一致 没有创建pojo对象
+只要查询出来的列名和pojo中的属性有一个一致 就会创建pojo对象
+
+
+输出简单类型
+需求
+用户信息的综合查询列表总数 通过查询总数和上边用户
+
+// 创建包装对象 设置查询条件
+UserQueryVo userQueryVo = new UserQueryVo();
+UserCustom userCustom = new UserCustom();
+userCustom.setSex("1");
+userCustom.setUsername("张三丰");
+userQueryVo.setUserCustom(userCustom);
+
+// 调用userMapper的方法
+int count = userMapper.findUserCount(userQueryVo);
+System.out.println(count);
+
+查询出来的结果集只有一行且一列 可以使用简单类型进行输出映射
+
+输出pojo对象和pojo列表
+不管是输出的pojo单个对象还是一个列表(list中包括pojo) 在mapper.xml中resultType指定的类型是一样的 在mapper.java指定的方法返回值类型不一样
+
+输出单个pojo对象 方法返回值是单个对象类型
+// 根据id查询用户信息
+public User findUserById(int id) throws Exception;
+输出pojo对象list 方法返回值是List<Pojo>
+// 根据用户名列表查询用户列表
+public List<User> findUserByName(String name) throws Exception;
+生成的动态代理对象中是根据mapper方法的返回值类型确定是调用selectOne(返回单个对象调用) 学是selectList(返回集合对象)
+
+输出hashmap
+输出pojo对象可以改用hashmap输出类型 将输出的字段名称作为map的key value为字段值
+
+
+resultMap
+resultType可以指定pojo将查询结果映射为pojo 但需要pojo的属性名和sql查询的列名一致方可映射成功
+如果sql查询字段名和pojo的属性名不一致 可以通过resultMap将字段名和属性名作一个对应关系 resultMap实质上还需要将查询结果映射到pojo对象中
+resultMap 可以实现将查询结果映射为复杂类型的pojo 比如在查询结果映射对象中包括pojo和list实现一对一查询和一对多查询
+
+mybatis中使用resultMap完成高级输出结果映射
+resultMap使用方法
+如果查询出来的列名和pojo的属性名不一致 通过定义一个resultMap对列名和pojo属性名之间作一个映射关系
+定义resultMap
+使用resutlMap作为statement的输出映射类型
+
+将下边的sql使用user完成映射
+select id id_, username username_ from user where id=#{value}
+user类中属性名和上边查询列名不一致
+
+动态sql
+mybatis核心对sql语句进行灵活操作 通过表达式进行判断 对sql进行灵活接接 组装
+需求
+用户信息综合查询列表和用户信息查询列表总数这两个statement的定义使用动态sql
+对查询条件进行判断 如果输入参数不为空才进行查询条件拼接
+
+WHERE user.sex = #{userCustom.sex} AND user.username LIKE '%${userCustom.username}%'
+以上语句使用拼接
+<!-- where 可以自动去掉条件中的第一个and -->
+<where>
+    <if test="userCustom != null">
+        <if test="userCustom.sex != null and userCustom.sex != ''">
+            and userCustom.sex = #{userCustom.sex}
+        </if>
+        <if test="userCustom.username != null and userCuomst.username != ''">
+        	and userCustom.username LIKE '%${userCustom.username}%'
+        </if>
+    </if>
+</where>
+
+sql片段
+id sql片段的唯一标识
+经验 是基于单表来定义sql片段 这样话这个sql片段可重用性才高 在sql片段中不要包括where
+<sql id="query_user_where">
+    <if test="userCustom != null">
+        <if test="userCustom.sex != null and userCustom.sex != ''">
+            and userCustom.sex = #{userCustom.sex}
+        </if>
+        <if test="userCustom.username != null and userCuomst.username != ''">
+        	and userCustom.username LIKE '%${userCustom.username}%'
+        </if>
+    </if>
+</sql>
+引用sql片段
+<where>
+    <!-- 引用sql片段的id 如果refid指定的id不在本mapper文件中 需要前边追加namespace -->
+	<include refid="query_user_where"></include>
+</where>
+
+foreach
+向sql传递数组或List mybatis使用foreach解析
+
+需求
+在用户查询列表和查询总数的statement中增加多个id输入查询
+select * from user where id=1 or id=10 or id=16
+select * from user where id in(1, 10, 16)
+在输入参数类型中添加List<Integer> ids 传入多个id
+private List<Integer> ids;
+
+修改mapper.xml
+where id=1 or id=10 or id=16
+在查询条件中 
+
+<if test="ids != null">
+    <!-- 使用foreach遍历传入ids -->
+    <!-- collection 指定输入对象中集合属性-->
+    <!-- item 每个遍历生成对象中 -->
+    <!-- open 开始遍历时拼接的串 -->
+    <!-- close 结束遍历时拼接的串 -->
+    <!-- separator 遍历的两个对象中需要拼接的串 -->
+    <!-- 使用实现下边的sql拼接 AND (id=1 OR id=10 OR id=16) -->
+    <foreach collection="ids" item="user_id" open="AND (" close=")" separator="or">
+        <!-- 每个遍历需要拼接的串 -->
+        id=#{user_id}
+    </foreach>
+</if>
+
+List<Integer> ids = new ArrayList<Integer>();
+ids.add(1);
+ids.add(10);
+ids.add(16);
+userQueryVo.setIds(ids);
+
+<!-- 实现 and id IN(1,10,16) 拼接 -->
+<foreach collection="ids" item="user_id" open="and id IN(" close=")" separator=",">
+    <!-- 每个遍历需要拼接的串 -->
+    id=#{user_id}
+</foreach>
+
+对 <= >= 等有特殊符号使用 <![CDATA[ ]]> 进行过滤
+and z.ID <![CDATA[ <= ]]> #{end,jdbcType=INTEGER}

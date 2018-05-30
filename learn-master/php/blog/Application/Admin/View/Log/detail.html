@@ -1,0 +1,25 @@
+<table class="table table-striped">
+<tbody>
+    <tr>
+        <td>标题</td><td>{$info.title}</td>
+    </tr>
+    <tr>
+        <td>内容</td><td id="log-content">{$info.content}</td>
+    </tr>
+    <tr>
+        <td>作者</td><td>{$name}</td>
+    </tr>
+    <tr>
+        <td>所有分类</td><td>{$cate}</td>
+    </tr>
+    <tr>
+        <td>发布时间</td><td>{:date('Y-m-d H:i:s', $info[addtime])}</td>
+    </tr>
+    <tr>
+        <td>所属权限</td><td><if condition='$v[auth] eq 0'>所有人可见<elseif condition='$v[auth] eq 1' />仅好友可见<elseif condition='$v[auth] eq 2' />指定好友可见<else />仅自己可见</if></td>
+    </tr>
+</tbody>
+</table>
+<script>
+$('#log-content').html($('#log-content').text());
+</script>

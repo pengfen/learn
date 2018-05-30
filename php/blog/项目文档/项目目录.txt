@@ -1,0 +1,55 @@
+blog --- 项目名
+|--- Application 应用目录
+------ |--- Admin 后台模块
+------ ------ |--- Conf 应用公共配置文件目录
+------ ------ |--- Common 应用公共函数目录
+------ ------ |--- Controller 模块控制器目录
+------ ------ ------ |--- IndexController.class.php 首页控制器
+------ ------ ------ |--- AuthController.class.php 权限控制器
+------ ------ ------ |--- LoginController.class.php 登录控制器
+------ ------ ------ |--- RoleController.class.php 角色控制器
+------ ------ ------ |--- PhotoController.class.php 图片控制器
+------ ------ ------ |--- AlbumController.class.php 相册控制器
+------ ------ ------ |--- LogController.class.php 日志控制器
+------ ------ ------ |--- CommentController.class.php 评论控制器
+------ ------ ------ |--- FriendControlle.class.php 好友控制器
+------ ------ ------ |--- ResourceControlle.class.php 资源控制器
+------ ------ |--- Model 模块模型目录
+------ ------ |--- View 模块视图文件目录
+------ |--- Common 应用公共模块
+------ ------ |--- Conf 应用公共配置文件目录
+------ ------ |--- Common 应用公共函数目录
+------ |--- Home 前台模块
+------ ------ |--- Conf 应用公共配置文件目录
+------ ------ |--- Common 应用公共函数目录
+------ ------ |--- Controller 模块控制器目录
+------ ------ ------ |--- IndexController.class.php 首页控制器
+------ ------ ------ |--- PhotoController.class.php 图片控制器
+------ ------ ------ |--- AlbumController.class.php 相册控制器
+------ ------ ------ |--- LogController.class.php 日志控制器
+------ ------ ------ |--- CommentController.class.php 评论控制器
+------ ------ ------ |--- FriendControlle.class.php 好友控制器
+------ ------ ------ |--- ResourceControlle.class.php 资源控制器
+------ ------ |--- Model 模块模型目录
+------ ------ |--- View 模块视图文件目录
+------ |--- Runtime 运行时目录
+------ ------ |--- Cache 模版缓存目录
+------ ------ |--- Data 数据目录
+------ ------ |--- Logs 日志目录
+------ ------ |--- Temp 缓存目录
+
+|--- Public 资源文件目录
+------ |--- Admin 后台相关资源
+------ ------ |--- Css css资源
+------ ------ |--- Js js 资源
+------ ------ |--- Images 图片资源
+------ |--- Bootstrap bootstrap 相关资源
+------ ------ |--- css css资源
+------ ------ |--- js js 资源
+------ ------ |--- fonts 字体资源
+------ |--- Home 前台相关资源
+------ ------ |--- Css css资源
+------ ------ |--- Js js 资源
+------ ------ |--- Images 图片资源
+|--- ThinkPHP 框架目录
+|--- index.php 项目入口文件

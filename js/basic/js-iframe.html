@@ -1,0 +1,35 @@
+iframe 框架调用父框架
+
+客户列表页 customer --- 调用左侧菜单 window.parent.window (当前窗口的父窗口)
+var allTotal = '<?=$allTotal?>';
+if (allTotal >= 0) {
+	var route = url.split('/');
+	window.parent.window.updateNumber(allTotal, route[2]);
+}
+
+左侧菜单 left.html   name (新客户 new-c ...)
+function updateNumber(data, name) {
+    $('.' + name).text(data); // 更新客户数
+}
+
+父框架添加加载阴影 rem-main.js
+$('body').on('click', '.sub-menu-tc>li>a', function() {
+	var str = $(this).parent().attr('data-html');
+	if (str.indexOf('customer/') > 0) {
+	    layer.load(0, {shade : 0.5});
+	}
+})
+
+客户列表清除阴影
+window.parent.window.layer.closeAll();
+
+三级菜单动态变层 (z-index)
+$('.sub-menu>li').hover(function() {
+	if ($(this).children('ul').is(':hidden')) {
+	    $('.pageslide-left').css('z-index', '2021');
+	    $(this).children('.sub-menu-tc').show();
+	} else {
+	    $('.pageslide-left').css('z-index', '1021');
+	    $(this).children('.sub-menu-tc').hide();
+	}
+})

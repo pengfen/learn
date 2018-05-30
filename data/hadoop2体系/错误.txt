@@ -1,0 +1,6 @@
+git push origin master
+Counting objects: 935. done.
+Delta compression using up to 4 threads
+warning: suboptimal pack - out of memory
+fatal: Out of memory, malloc failed(tried to allocate 18795074 bytes)
+error: failed to push some refs to 'git@github.com:pengfen/data.git'

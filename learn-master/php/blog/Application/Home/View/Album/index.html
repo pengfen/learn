@@ -1,0 +1,252 @@
+<!--author:lishuo;time:2015-8-3-->
+<extend name='Layout/tpl'/>
+<block name='style'>
+	<style>
+		ul{
+			list-style: none;
+		}
+		.album{
+			position:relative;
+		}
+		.content{
+			position:absolute;
+			background-color:rgba(153,204,51,0.8);
+			color:#fff;
+			left:0px;
+			bottom:60px;
+			width:243px;
+			height:25px;
+			margin-left:20px;
+			font-family: 'Microsoft YaHei';
+			cursor:pointer;
+		}
+	</style>
+	<script>
+		$(function(){   //相册封面上的动画效果
+			$('.album').mouseenter(function(){
+				if($(this).parent().next().next('div').is(':animated')){
+					return;
+				}
+				$(this).parent().next().next('div').animate({
+					'height':'85px',
+				},500);
+				 $(this).parent().next().next('div').children('p').css({display:'block'});
+
+			}).mouseleave(function(){
+				$(this).parent().next().next('div').animate({
+					'height':'25px',
+				},200);
+				 $(this).parent().next().next('div').children('p').css({display:'none'});
+				 $(this).parent().next().next('div').children('p').filter(':first').css({display:'block'});
+			});
+
+
+			//点击相册异步显示照片
+			$('.thumbnail').click(function(){
+				$id=$(this).next().val();
+				$url="{:U('Photo/index')}";
+				$.ajax({
+					url:$url,
+					data:{'id':$id},
+					success:function(html){
+						$('.albums').text('');
+					    $('.albums').append(html);
+					}
+				});
+			});	
+
+			//修改照片的弹框
+			$('.thumbnail').next().next().next('a').click(function(){
+				$(this).next().css({display:'block'});
+			})
+
+			//异步修改相册封面
+			// $('.thumbnail').next().next().next('a').click(function(){
+			// 	$url="{:U('Album/edit')}";
+			// 	$id=$(this).siblings('input').val();
+			// 	$.ajax({
+			// 		url:$url,
+			// 		data:{'id':$id},
+			// 		success:function(html){
+			// 			alert(html);
+			// 		}
+			// 	})
+			// })
+
+			//上传图片异步展示编辑页
+			// $('.insertphoto').click(function(){
+				
+			// 	$url=$('#photoform').attr('action');
+			// 	  alert($('#photoform').serialize());
+			// 	 alert($url);
+
+				// $.ajax({
+				// 	url:$url,
+				// 	type:"POST",
+			 //        data:$('#myform').serialize(),
+				// 	success:function(data){
+				// 		$('.albums').append("<div>"+data['album_name']+'::'+data['des']+"</div>");
+				// 	}
+				// });
+			// })
+
+
+		})
+		
+
+
+	</script>
+</block>
+<block name="main">
+	<div style="background:#F5EFD3;padding:20px;">
+		<div class="row" style="margin-top:60px;">
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
+			  上传照片
+			</button>
+
+			<!-- Modal 上传照片-->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			    <form action="{:U('Photo/insert')}" id="photoform" method="post" enctype="multipart/form-data">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">上传图片</h4>
+			      </div>
+			      <div class="modal-body">
+			           <!--start-->
+			        
+						<div class="row">
+							<div class="col-md-12" style="height:50px;background:#F9F2F4;">
+								选择相册: 
+
+								<select name="aid" id="sel" style="margin-top:10px;">
+									<volist name='data' id='vo'>
+										<option value="{$vo.id}"> &nbsp;&nbsp;{$vo.album_name} &nbsp;&nbsp;	
+										</option>	
+									</volist>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12" style="height:50px;">
+								<div style="display:inline">上传照片: </div><input type='file' name='photo_name' multiple='true' style="display:inline">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12" style="height:50px;">
+								<div>图片描述: </div>
+								<textarea name='photo_des' style="width:200px;height:50px;"></textarea>
+							</div>
+						</div>
+
+			           <!--end-->
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			        <button type="submit" class="btn btn-primary">确定</button>
+			      </div>
+			      </form>
+			    </div>
+			  </div>
+			</div><!--Modal end-->
+
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#mModal">
+			  创建相册
+			</button>
+
+			<!-- Modal 相册-->
+			<div class="modal fade" id="mModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			 <form  action="{:U('Album/insert')}" method="post" id="myform">
+			  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title" id="myModalLabel">创建相册</h4>
+				      </div>
+				      <div class="modal-body">
+		
+				      		<table height='200' style="margin-left:40px">
+				      			<tr>
+				      				<td width='80' style="text-align:right">相册名称：</td>
+				      				<td width='200'><input type='text' name="album_name"></td>
+				      				<td width='200'></td>
+				      			</tr>
+					        	<tr>
+					        		<td style="text-align:right">相册描述：</td>
+					        		<td>
+					        			<textarea clos='200' rows='2' name="des"></textarea>
+					        		</td>
+					        		<td></td>
+					        	</tr>
+					        	<tr>
+					        		<td style="text-align:right">分类：</td>
+					        		<td>
+					        			<select name="class">
+					        				<option value="z">最爱</option>
+					        				<option value="r">人物</option>
+					        				<option value="f">风景</option>
+					        				<option value="y">游记</option>
+					        				<option value="k">卡通</option>
+					        				<option value="s">生活</option>
+					        				<option value="q">其他</option>
+					        			</select>
+					        		</td>
+					        		<td></td>
+					        	</tr>
+					        	<tr>
+					        		<td style="text-align:right">访问权限：</td>
+					        		<td>
+					        			<select name="power">
+					        				<option value="0">所有人可见</option>
+					        				<option value="1">好友可见</option>
+					        				<option value="2">仅自己可见</option>
+					        			</select>
+					        		</td>
+					        		<td></td>
+					        	</tr>
+				        	</table>
+				        
+				      </div>
+				      <div class="modal-footer">
+				         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				         <button type="submit" class="btn btn-primary" id="give">确定</button>
+				      </div>
+				    </div>
+				
+			  </div>
+			  </form>
+			</div><!--Modal end-->
+								          
+		</div>
+		<div class="row albums" style="margin-top:30px; background">
+		  <volist name='data' id="vo">
+			  <div class="col-xs-6 col-md-3">
+			    <a href="javascript:void(0)" class="thumbnail">
+			      <img class="album" data-src="holder.js/100%*180" src="__ROOT__/Uploads/{$vo.first}" alt="相册" data-holder-rendered="true" style="height:180px;width:100%;display:block;">
+			    </a>
+			    <input type='hidden' value="{$vo.id}">
+			    <div class="content">
+			    	<p>&nbsp;相册名: {$vo.album_name}</p>
+			    	<p style="display:none;">&nbsp;描述: {$vo.des}</p>
+			    	<p style="display:none;">&nbsp;浏览数: {$vo.scan}</p>
+			    </div>
+			    <a href='javascript:void(0)' class='btn' data-toggle='popover' data-placement='top'>修改封面</a>
+			    <div class="popover fade top in" style="top:-58px;left:58.5px;display:none;">
+			    	<div class='arrow'></div>
+			    	<h3 class='popover-title'>选择照片</h3>
+					<div class='popover-content'>
+						<form action="{:U('Album/edit')}" method='post' enctype="multipart/form-data">
+							<input type='file' name='first'>
+							<input type='hidden' value="{$vo.id}" name='id'>
+							<button type="submit" class="btn btn-primary"> 上传</button>
+						</form>
+					</div>
+			    </div>
+			  </div>
+
+		  </volist>    
+		</div>
+</block>

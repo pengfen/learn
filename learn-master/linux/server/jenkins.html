@@ -1,0 +1,140 @@
+jdk安装
+
+http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html 下载jdk8
+
+安装 JDK 环境 (注意查看 linux 系统信息)
+
+[root@peng1 ~]# uname -a
+Linux peng1 2.6.32-279.el6.i686 #1 SMP Fri Jun 22 10:59:55 UTC 2012 i686 i686 i386 GNU/Linux
+
+删除centos自带的java
+java -version #查看java版本
+rpm -qa | grep jdk
+yum -y remove 要删除的jdk
+
+使用 ssh 工具上传 jdk-8u73-linux-i586.gz (与 linux 系统对应)
+
+
+[root@peng1 ~]# mkdir /usr/local/java/
+[root@peng1 ~]# mv jdk-8... /usr/local/java/
+[root@peng1 ~]# cd /usr/local/java/
+[root@peng1 ~]# tar -zxvf jdk-8...
+[root@peng1 ~]# vi /etc/profile
+export JAVA_HOME=/usr/local/java/jdk1.8.0_73
+export JRE_HOME=/usr/local/java/jdk1.8.0_73/jre
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH=./:$JAVA_HOME/lib:$JAVA_HOME/jre/lib
+[root@peng1 ~]# source /etc/profile
+[root@peng1 ~]# java -version
+
+
+安装tomcat
+mkdir /usr/local/tomcat
+mv apache-tomcat-7.0.70.tar.gz /usr/local/tomcat/
+cd /usr/local/tomcat/
+cd apache-tomcat-7.0.70
+bin/startup.sh 
+
+service iptables stop 关闭防火墙
+
+http://192.168.233.132:8080/
+
+下载 jenkins war包
+cp jenkins.war /usr/local/tomcat/apache-tomcat-7.0.70/webapps/
+vim /etc/profile
+export JENKINS_HOME=/usr/local/tomcat/apache-tomcat-7.0.70/webapps/jenkins
+source /etc/profile
+
+删除 config.xml 以下标签 (/root/.jenkins /usr/local/tomcat/apache-tomcat.../webapps/jenkins)
+<useSecurity>true</useSecurity>
+<authorizationStategy class="hudson.sucrity.FullControlOnceLoggedInAuthorizationStrategy">
+    ......
+</authorizationStategy>
+<securityRealm class="hudson.security.HudsonPrivateSecurityRealm">
+   <disableSignup>false</disableSignup>
+    .. 
+</securityRealm>
+
+修改config.xml 文件中passwordHash标签内容 (/root/.jenkins/users/admin /usr/local/tomcat/apache-tomcat.../webapps/jenkins/users/admin)
+#jbcrypt:$2a$10$DdaWzN64JgUtLdvxWIflcuQu2fgrrMSAMabF5TSrGK5nXitqK9ZMS
+
+cd /usr/local/tomcat/apache-tomcat...
+bin/shutdown.sh
+bin/startup.sh
+
+http://192.168.233.132:8080/jenkins/
+用户名 admin
+密码 111111
+
+安装支持的插件
+Folders Plugin OWASP Markup Formatter Plugin build timeout plugin Credentials Binding Plugin Timestamper Workspace Cleanup Plugin Ant Plugin Gradle Plugin Pipeline GitHub Organization Folder Plugin Pipeline: Stage View Plugin Git plugin Subversion Plug-in SSH Slaves plugin Matrix Authorization Strategy Plugin PAM Authentication plugin LDAP Plugin Email Extension Plugin Mailer Plugin
+
+Installation Failures
+Some plugins failed to install properly, you may retry installing them or continue with the failed plugins
+
+Create First Admin User
+用户名:	pengcao
+密码:	6543210.
+确认密码:	6543210.
+全名:	pengcao
+电子邮件地址:	caopeng8787@163.com
+
+安装git插件
+git plugin
+安装/更新 插件中
+
+准备	
+Checking internet connectivity
+Checking jenkins-ci.org connectivity
+Success
+SCM API Plugin	 完成
+Git plugin	 等待
+重启 Jenkins	 等待
+
+ls -la //列出文件
+rsync -auv --delete --exclude=/.git --exclude-from=./deployignore 
+//rsync同步  删除 过滤/.git   设置过滤文件 ./deployignore 
+./ root@192.168.97.243:/root/www/
+// 用ssh登陆 目标服务器
+ssh root@192.168.97.243 ls -la /root/www/
+//列出文件
+设置下更新目标的的服务器（也就是192.168.97.243），使他支持ssh
+
+vim /etc/ssh/sshd_config
+RSAAuthentication yes
+PubkeyAuthentication yes
+AuthorizedKeysFile      .ssh/authorized_keys
+安装rsync
+
+yum -y install rsync
+新建ssh目录
+
+mkdir .ssh
+chmod 755 .ssh/
+然后在.ssh目录下创建authorized_keys 文件
+
+touch authorized_keys
+chmod 600 authorized_keys
+把jenkins的key保存在这个文件。
+
+参考文章
+http://www.open-open.com/lib/view/open1435761032013.html
+
+
+
+----------------------------------------------------------
+exec() has been disabled for security reasons
+
+cd /usr/local/php/etc/
+vim php.ini
+/disable_fun
+去掉 exec();
+
+vim git.php
+<?php
+exec('/opt/git/git.sh');
+
+vim git.sh
+#!/bin/bash
+
+git clone https://github.com/pengfen/php.git

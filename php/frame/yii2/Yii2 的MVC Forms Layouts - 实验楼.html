@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)https://www.shiyanlou.com/courses/410/labs/1305/document -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Lei Shi">
+    <meta http-equiv="Cache-Control" content="o-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+	
+		
+        <title>Yii2 的MVC Forms Layouts - 实验楼</title>
+		
+	
+
+    
+    <meta content="实验楼是国内领先的IT技术实训平台，创新的实验驱动教学模式，以就业为导向，为IT相关专业的在校学生及从业者提供编程、运维、测试、云计算、大数据、数据库等全面的IT技术动手实践环境，提供Linux、Python、Java、C语言、Ruby、Android、IOS开发等热门课程。" name="description">
+    <meta content="实验楼,IT培训,IT教育,编程,在线编程,Linux,Linux教程,Linux操作系统,Python,Python教程,Python基础教程,Java,Java编程,C语言,大数据,Node.js,Hadoop,PHP,Docker" name="keywords">
+    
+    <meta content="实验楼,琛石科技" name="author">
+
+	<link rel="shortcut icon" href="https://static.shiyanlou.com/favicon.ico">
+	<link rel="stylesheet" href="./Yii2 的MVC Forms Layouts - 实验楼_files/font-awesome.min.css">
+	<link rel="stylesheet" href="./Yii2 的MVC Forms Layouts - 实验楼_files/bootstrap-tour.min.css">
+	<link rel="stylesheet" href="./Yii2 的MVC Forms Layouts - 实验楼_files/styles1471243581.css">
+
+	<style>
+		@font-face {
+			font-family: "lantingxihei";
+			src: url("https://static.shiyanlou.com/fonts/FZLTCXHJW.TTF");
+		}
+
+		.userimg {
+			display: inline-block;
+			height: 36px;
+			border-radius: 50%;
+		}
+		.username {
+			display: inline-block;
+			max-width: 100px;
+			font-size: 14px;
+			color: #FFFFFF;
+			white-space: pre;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+        /* modal 模态框*/
+        #invite-user .modal-body {
+            overflow: hidden;
+        }
+		#invite-user .modal-body .form-label {
+			margin-bottom: 16px;
+			font-size:14px;
+		}
+		#invite-user .modal-body .form-invite {
+			width: 80%;
+			padding: 6px 12px;
+			background-color: #eeeeee;
+			border: 1px solid #cccccc;
+			border-radius: 5px;
+			float: left;
+			margin-right: 10px;
+		}
+		#invite-user .modal-body .msg-modal-style {
+			background-color: #7dd383;
+			margin-top: 10px;
+			padding: 6px 0;
+			text-align: center;
+			width: 100%;
+		}
+		#invite-user .modal-body .modal-flash {
+			position: absolute;
+			top: 53px;
+			right: 74px;
+			z-index: 999;
+		}
+		/* end modal */
+
+        .en-footer {
+            padding: 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+	
+<link rel="stylesheet" href="./Yii2 的MVC Forms Layouts - 实验楼_files/tomorrow-night-eighties.css">
+<style>
+    #editor {
+        width: 0;
+		height: 0;
+		margin: 0;
+		padding: 0;
+		border: none;
+    }
+    #preview {
+        padding: 20px;
+        background: #fff;
+        border: solid 1px #eee;
+    }
+	#preview p,
+	#preview li,
+	#preview span,
+	#preview div,
+	#preview blockquote,
+	#preview blockquote	p {
+		font-size: 15px;
+        font-weight: 100;
+	}
+	#preview blockquote p {
+		line-height: 1.6em;
+	}
+    .mobile-alert {
+        display: none;
+        margin-top: 10px;
+        font-size: 16px;
+        text-align: center;
+    }
+    .breadcrumb {
+        border-bottom: solid 1px #eee;
+    }
+    @media (max-width: 768px) {
+        .mobile-alert {
+            display: block;
+        }
+        #preview p,
+        #preview li,
+        #preview span,
+        #preview div,
+        #preview blockquote,
+        #preview blockquote	p {
+            font-weight: 500;
+        }
+    }
+    .start-lab {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+        box-shadow: 0 2px 4px 2px #eee;
+        background: #274a59;
+        z-index: 100;
+    }
+    .start-lab span {
+        position: relative;
+        top: 4px;
+        color: #fff;
+        font-size: 16px;
+    }
+    .start-lab .btn {
+        margin-left: 10px;
+        padding: 6px 50px;
+        background: #0c9;
+        font-size: 18px;
+        border-color: #0c9;
+    }
+    @media (max-width: 768px) {
+        .start-lab .btn {
+            margin-top: 10px;
+        }
+    }
+</style>
+
+
+	
+    
+<style id="ace_editor.css">.ace_editor {position: relative;overflow: hidden;font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;direction: ltr;text-align: left;}.ace_scroller {position: absolute;overflow: hidden;top: 0;bottom: 0;background-color: inherit;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;cursor: text;}.ace_content {position: absolute;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;min-width: 100%;}.ace_dragging .ace_scroller:before{position: absolute;top: 0;left: 0;right: 0;bottom: 0;content: '';background: rgba(250, 250, 250, 0.01);z-index: 1000;}.ace_dragging.ace_dark .ace_scroller:before{background: rgba(0, 0, 0, 0.01);}.ace_selecting, .ace_selecting * {cursor: text !important;}.ace_gutter {position: absolute;overflow : hidden;width: auto;top: 0;bottom: 0;left: 0;cursor: default;z-index: 4;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;}.ace_gutter-active-line {position: absolute;left: 0;right: 0;}.ace_scroller.ace_scroll-left {box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;}.ace_gutter-cell {padding-left: 19px;padding-right: 6px;background-repeat: no-repeat;}.ace_gutter-cell.ace_error {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: 2px center;}.ace_gutter-cell.ace_warning {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");background-position: 2px center;}.ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");background-position: 2px center;}.ace_dark .ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEUAAAChoaGAgIAqKiq+vr6tra1ZWVmUlJSbm5s8PDxubm56enrdgzg3AAAAAXRSTlMAQObYZgAAAClJREFUeNpjYMAPdsMYHegyJZFQBlsUlMFVCWUYKkAZMxZAGdxlDMQBAG+TBP4B6RyJAAAAAElFTkSuQmCC");}.ace_scrollbar {position: absolute;right: 0;bottom: 0;z-index: 6;}.ace_scrollbar-inner {position: absolute;cursor: text;left: 0;top: 0;}.ace_scrollbar-v{overflow-x: hidden;overflow-y: scroll;top: 0;}.ace_scrollbar-h {overflow-x: scroll;overflow-y: hidden;left: 0;}.ace_print-margin {position: absolute;height: 100%;}.ace_text-input {position: absolute;z-index: 0;width: 0.5em;height: 1em;opacity: 0;background: transparent;-moz-appearance: none;appearance: none;border: none;resize: none;outline: none;overflow: hidden;font: inherit;padding: 0 1px;margin: 0 -1px;text-indent: -1em;-ms-user-select: text;-moz-user-select: text;-webkit-user-select: text;user-select: text;white-space: pre!important;}.ace_text-input.ace_composition {background: inherit;color: inherit;z-index: 1000;opacity: 1;text-indent: 0;}.ace_layer {z-index: 1;position: absolute;overflow: hidden;word-wrap: normal;white-space: pre;height: 100%;width: 100%;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;pointer-events: none;}.ace_gutter-layer {position: relative;width: auto;text-align: right;pointer-events: auto;}.ace_text-layer {font: inherit !important;}.ace_cjk {display: inline-block;text-align: center;}.ace_cursor-layer {z-index: 4;}.ace_cursor {z-index: 4;position: absolute;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;border-left: 2px solid;transform: translatez(0);}.ace_slim-cursors .ace_cursor {border-left-width: 1px;}.ace_overwrite-cursors .ace_cursor {border-left-width: 0;border-bottom: 1px solid;}.ace_hidden-cursors .ace_cursor {opacity: 0.2;}.ace_smooth-blinking .ace_cursor {-webkit-transition: opacity 0.18s;transition: opacity 0.18s;}.ace_editor.ace_multiselect .ace_cursor {border-left-width: 1px;}.ace_marker-layer .ace_step, .ace_marker-layer .ace_stack {position: absolute;z-index: 3;}.ace_marker-layer .ace_selection {position: absolute;z-index: 5;}.ace_marker-layer .ace_bracket {position: absolute;z-index: 6;}.ace_marker-layer .ace_active-line {position: absolute;z-index: 2;}.ace_marker-layer .ace_selected-word {position: absolute;z-index: 4;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}.ace_line .ace_fold {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;display: inline-block;height: 11px;margin-top: -2px;vertical-align: middle;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACJJREFUeNpi+P//fxgTAwPDBxDxD078RSX+YeEyDFMCIMAAI3INmXiwf2YAAAAASUVORK5CYII=");background-repeat: no-repeat, repeat-x;background-position: center center, top left;color: transparent;border: 1px solid black;border-radius: 2px;cursor: pointer;pointer-events: auto;}.ace_dark .ace_fold {}.ace_fold:hover{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpi+P//fz4TAwPDZxDxD5X4i5fLMEwJgAADAEPVDbjNw87ZAAAAAElFTkSuQmCC");}.ace_tooltip {background-color: #FFF;background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.1));background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));border: 1px solid gray;border-radius: 1px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);color: black;max-width: 100%;padding: 3px 4px;position: fixed;z-index: 999999;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;cursor: default;white-space: pre;word-wrap: break-word;line-height: normal;font-style: normal;font-weight: normal;letter-spacing: normal;pointer-events: none;}.ace_folding-enabled > .ace_gutter-cell {padding-right: 13px;}.ace_fold-widget {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;margin: 0 -12px 0 1px;display: none;width: 11px;vertical-align: top;background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42mWKsQ0AMAzC8ixLlrzQjzmBiEjp0A6WwBCSPgKAXoLkqSot7nN3yMwR7pZ32NzpKkVoDBUxKAAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: center;border-radius: 3px;border: 1px solid transparent;cursor: pointer;}.ace_folding-enabled .ace_fold-widget {display: inline-block;   }.ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42m3HwQkAMAhD0YzsRchFKI7sAikeWkrxwScEB0nh5e7KTPWimZki4tYfVbX+MNl4pyZXejUO1QAAAABJRU5ErkJggg==");}.ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAOUlEQVR42jXKwQkAMAgDwKwqKD4EwQ26sSOkVWjgIIHAzPiCgaqiqnJHZnKICBERHN194O5b9vbLuAVRL+l0YWnZAAAAAElFTkSuQmCCXA==");}.ace_fold-widget:hover {border: 1px solid rgba(0, 0, 0, 0.3);background-color: rgba(255, 255, 255, 0.2);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);}.ace_fold-widget:active {border: 1px solid rgba(0, 0, 0, 0.4);background-color: rgba(0, 0, 0, 0.05);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);}.ace_dark .ace_fold-widget {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2P4//8/AzoGEQ7oGCaLLAhWiSwB146BAQCSTPYocqT0AAAAAElFTkSuQmCC");}.ace_dark .ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQIW2P4//8/AxQ7wNjIAjDMgC4AxjCVKBirIAAF0kz2rlhxpAAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACAcVaiAAAAHElEQVQIW2P4//+/AxAzgDADlOOAznHAKgPWAwARji8UIDTfQQAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget:hover {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);background-color: rgba(255, 255, 255, 0.1);}.ace_dark .ace_fold-widget:active {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);}.ace_fold-widget.ace_invalid {background-color: #FFB4B4;border-color: #DE5555;}.ace_fade-fold-widgets .ace_fold-widget {-webkit-transition: opacity 0.4s ease 0.05s;transition: opacity 0.4s ease 0.05s;opacity: 0;}.ace_fade-fold-widgets:hover .ace_fold-widget {-webkit-transition: opacity 0.05s ease 0.05s;transition: opacity 0.05s ease 0.05s;opacity:1;}.ace_underline {text-decoration: underline;}.ace_bold {font-weight: bold;}.ace_nobold .ace_bold {font-weight: normal;}.ace_italic {font-style: italic;}.ace_error-marker {background-color: rgba(255, 0, 0,0.2);position: absolute;z-index: 9;}.ace_highlight-marker {background-color: rgba(255, 255, 0,0.2);position: absolute;z-index: 8;}.ace_br1 {border-top-left-radius    : 3px;}.ace_br2 {border-top-right-radius   : 3px;}.ace_br3 {border-top-left-radius    : 3px; border-top-right-radius:    3px;}.ace_br4 {border-bottom-right-radius: 3px;}.ace_br5 {border-top-left-radius    : 3px; border-bottom-right-radius: 3px;}.ace_br6 {border-top-right-radius   : 3px; border-bottom-right-radius: 3px;}.ace_br7 {border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px;}.ace_br8 {border-bottom-left-radius : 3px;}.ace_br9 {border-top-left-radius    : 3px; border-bottom-left-radius:  3px;}.ace_br10{border-top-right-radius   : 3px; border-bottom-left-radius:  3px;}.ace_br11{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-left-radius:  3px;}.ace_br12{border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br13{border-top-left-radius    : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br14{border-top-right-radius   : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br15{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;}
+/*# sourceURL=ace/css/ace_editor.css */</style><style id="ace-tm">.ace-tm .ace_gutter {background: #f0f0f0;color: #333;}.ace-tm .ace_print-margin {width: 1px;background: #e8e8e8;}.ace-tm .ace_fold {background-color: #6B72E6;}.ace-tm {background-color: #FFFFFF;color: black;}.ace-tm .ace_cursor {color: black;}.ace-tm .ace_invisible {color: rgb(191, 191, 191);}.ace-tm .ace_storage,.ace-tm .ace_keyword {color: blue;}.ace-tm .ace_constant {color: rgb(197, 6, 11);}.ace-tm .ace_constant.ace_buildin {color: rgb(88, 72, 246);}.ace-tm .ace_constant.ace_language {color: rgb(88, 92, 246);}.ace-tm .ace_constant.ace_library {color: rgb(6, 150, 14);}.ace-tm .ace_invalid {background-color: rgba(255, 0, 0, 0.1);color: red;}.ace-tm .ace_support.ace_function {color: rgb(60, 76, 114);}.ace-tm .ace_support.ace_constant {color: rgb(6, 150, 14);}.ace-tm .ace_support.ace_type,.ace-tm .ace_support.ace_class {color: rgb(109, 121, 222);}.ace-tm .ace_keyword.ace_operator {color: rgb(104, 118, 135);}.ace-tm .ace_string {color: rgb(3, 106, 7);}.ace-tm .ace_comment {color: rgb(76, 136, 107);}.ace-tm .ace_comment.ace_doc {color: rgb(0, 102, 255);}.ace-tm .ace_comment.ace_doc.ace_tag {color: rgb(128, 159, 191);}.ace-tm .ace_constant.ace_numeric {color: rgb(0, 0, 205);}.ace-tm .ace_variable {color: rgb(49, 132, 149);}.ace-tm .ace_xml-pe {color: rgb(104, 104, 91);}.ace-tm .ace_entity.ace_name.ace_function {color: #0000A2;}.ace-tm .ace_heading {color: rgb(12, 7, 255);}.ace-tm .ace_list {color:rgb(185, 6, 144);}.ace-tm .ace_meta.ace_tag {color:rgb(0, 22, 142);}.ace-tm .ace_string.ace_regex {color: rgb(255, 0, 0)}.ace-tm .ace_marker-layer .ace_selection {background: rgb(181, 213, 255);}.ace-tm.ace_multiselect .ace_selection.ace_start {box-shadow: 0 0 3px 0px white;}.ace-tm .ace_marker-layer .ace_step {background: rgb(252, 255, 0);}.ace-tm .ace_marker-layer .ace_stack {background: rgb(164, 229, 101);}.ace-tm .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid rgb(192, 192, 192);}.ace-tm .ace_marker-layer .ace_active-line {background: rgba(0, 0, 0, 0.07);}.ace-tm .ace_gutter-active-line {background-color : #dcdcdc;}.ace-tm .ace_marker-layer .ace_selected-word {background: rgb(250, 250, 255);border: 1px solid rgb(200, 200, 250);}.ace-tm .ace_indent-guide {background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;}
+/*# sourceURL=ace/css/ace-tm */</style><style>    .error_widget_wrapper {        background: inherit;        color: inherit;        border:none    }    .error_widget {        border-top: solid 2px;        border-bottom: solid 2px;        margin: 5px 0;        padding: 10px 40px;        white-space: pre-wrap;    }    .error_widget.ace_error, .error_widget_arrow.ace_error{        border-color: #ff5a5a    }    .error_widget.ace_warning, .error_widget_arrow.ace_warning{        border-color: #F1D817    }    .error_widget.ace_info, .error_widget_arrow.ace_info{        border-color: #5a5a5a    }    .error_widget.ace_ok, .error_widget_arrow.ace_ok{        border-color: #5aaa5a    }    .error_widget_arrow {        position: absolute;        border: solid 5px;        border-top-color: transparent!important;        border-right-color: transparent!important;        border-left-color: transparent!important;        top: -5px;    }</style></head>
+
+<body>
+	
+        
+        
+            
+<nav class="navbar navbar-default navbar-fixed-top header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-collapse" aria-expanded="false">
+                <span class="sr-only">实验楼</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.shiyanlou.com/">
+                <img src="./Yii2 的MVC Forms Layouts - 实验楼_files/logo_03.png">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="header-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown active">
+                    <a href="https://www.shiyanlou.com/courses/" class="dropdown-toggle hidden-xs">
+                        课程
+                        <span class="caret"></span>
+                    </a>
+                    <a href="https://www.shiyanlou.com/courses/410/labs/1305/document#" class="dropdown-toggle visible-xs-block" data-toggle="dropdown">
+                        课程
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="" href="https://www.shiyanlou.com/courses/">全部课程</a></li>
+                        <li><a class="" href="https://www.shiyanlou.com/paths/">学习路径</a></li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="https://www.shiyanlou.com/questions/">问答</a>
+                </li>
+                <li class=" bootcamp new-nav">
+                    <a href="https://www.shiyanlou.com/bootcamp/">训练营</a>
+                </li>
+                <li class=" new-nav">
+                    <a href="https://www.shiyanlou.com/vip">会员</a>
+                </li>
+                
+					
+					<li class=""><a href="https://www.shiyanlou.com/user/240711">我的课程</a></li>
+					
+                
+            </ul>
+
+            
+            <ul class="nav navbar-nav navbar-right user">
+                
+                <li><a class="btn btn-primary" id="header-continue-lab" href="https://www.shiyanlou.com/courses/running">继续实验</a></li>
+                
+                <li class="dropdown">
+                    <a href="https://www.shiyanlou.com/user/240711" class="dropdown-toggle hidden-xs">
+                        <img class="header-avatar" src="./Yii2 的MVC Forms Layouts - 实验楼_files/gravatarSWACREAFHSXD.jpg" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-template="&lt;div class=&quot;tooltip&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-arrow&quot; style=&quot;border-bottom-color:#f66e6e;&quot;&gt;&lt;/div&gt;&lt;div class=&quot;tooltip-inner&quot; style=&quot;background:#f66e6e;&quot;&gt;&lt;/div&gt;&lt;/div&gt;" data-original-title="新消息">
+                        
+                        <span class="header-msg-count" style="display:none;"></span>
+                        <span class="header-username hidden-sm">LOU3018993846</span>
+                        <span class="caret"></span>
+                    </a>
+					<a href="https://www.shiyanlou.com/courses/410/labs/1305/document#" class="dropdown-toggle visible-xs-block" data-toggle="dropdown">
+                        <img class="header-avatar" src="./Yii2 的MVC Forms Layouts - 实验楼_files/gravatarSWACREAFHSXD.jpg">
+                        
+                        <span class="header-msg-count" style="display:none;"></span>
+                        <span class="header-username">LOU3018993846</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.shiyanlou.com/user/240711">主页</a></li>
+                        <li><a href="https://www.shiyanlou.com/user/friends">好友</a></li>
+                        <li><a href="https://www.shiyanlou.com/user/message">
+                            <span class="position-relative"><span class="header-msg-mark" style="display:none;"></span>消息</span>
+                        </a></li>
+                        <li><a href="https://www.shiyanlou.com/profile">设置</a></li>
+                        <li rolw="separator" class="divider"></li>
+                        <li><a href="https://www.shiyanlou.com/logout">退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+            
+
+            <form class="navbar-form navbar-right" action="https://www.shiyanlou.com/search" method="get" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="search" autocomplete="off" placeholder="搜索 课程/问答">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+
+<div id="website-msg">
+    <div class="container">
+        <span class="msg-text">
+            <img src="./Yii2 的MVC Forms Layouts - 实验楼_files/activate-user-icon.png">
+            验证邮箱可获得3个实验豆，享受更多实验楼的服务
+        </span>
+        <a href="https://www.shiyanlou.com/user/account"><span class="btn btn-mine">立即验证</span></a>
+    </div>
+</div>
+<div id="msg-data" data-current-user="240711"></div>
+<style>
+    .layout-margin-top {
+        margin-top: 110px;
+    }
+    .layout-no-margin-top {
+        margin-top: 100px;
+    }
+</style>
+
+
+
+        
+	
+
+
+
+	
+	
+
+	
+
+
+<div class="container layout layout-margin-top">
+    
+<ol class="breadcrumb">
+    <li><a href="https://www.shiyanlou.com/courses/">全部课程</a></li>
+    <li>
+        <a href="https://www.shiyanlou.com/courses/410">Yii 2系列教程</a>
+    </li>
+    <li class="active">
+        Yii2 的MVC Forms Layouts
+    </li>
+</ol>
+
+    <div class="row">
+        <div class="col-md-9 layout-body">
+            
+<div class="mobile-alert alert alert-danger">在线实验，请到PC端体验</div>
+<div id="preview" class="markdown-body"><p>上一篇文章我们简单地实现了Yii2框架安装和Hello World，而在这一篇文章当中，我们会带着好奇之心去探索一下在Yii2中的几个重要的元素组成：
+MVC，Forms和Layouts。</p>
+<p>本文的目标是创建一个小小的表单应用，就是实现一个简单的类似发微博的功能，但是我还不想牵扯到数据库那一块，因为其实数据库和表在Yii2框架之中其实还是有很多东西可以讲的，打算在下一篇的文章中会详细讲到。</p>
+<h2 id="mvc">MVC</h2>
+<p><img src="./Yii2 的MVC Forms Layouts - 实验楼_files/a302fe24-f760-43fb-9047-4be57d7e8ed0.png" alt="替代文字"></p>
+<p>模型(Model)对于我个人的简单理解就是一个概念集合，在这个集合里面包含该概念集合的多种数据，比如一个User会有姓名，性别等多个属性，这个概念集合通常就是对于数据库的一张表（如果还没有对应的数据表，则可以看作是一个集合的属性）；而每一个具体的实例概念就对应一条数据记录。比如在这一篇文章之中我们会创建一个Status模型，代表状态（来源于生活：发一条状态），这个Status会有两个重要的属性，text和permissions，text就是状态本身，permissions是状态的权限。</p>
+<p>视图(Views)通过控制器想模型请求数据，并将数据以某种特定的版式展示给用户。</p>
+<p>控制器(Controller)可以向Model和Views发送不同的指令，一般是向Model取数据，然后读取视图文件来渲染输出数据。</p>
+<p>在Yii2的应用中，一般是这样的：某个URL指向某个控制器的特定action，然后控制器负责向特定的模型取数据，然后将数据分配给视图渲染输出。</p>
+<p>在这里说一下我个人的观点，我觉得其实在MVC当中，可能应该做事最多的应该是Model，与之相迎合的是，Controller和Views则相对要轻一些，Controller负责协调Model和Views，Views负责展示数据。</p>
+<p>在Yii2的项目当中，我们将models文件放在/models/目录之下，所以我们在这个文件夹之下创建Status.php：</p>
+<pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">Model</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Status</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">const</span> PERMISSIONS_PRIVATE = <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">const</span> PERMISSIONS_PUBLIC = <span class="hljs-number">20</span>;
+
+    <span class="hljs-keyword">public</span> $text;
+    <span class="hljs-keyword">public</span> $permissions;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rules</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            [[<span class="hljs-string">'text'</span>,<span class="hljs-string">'permissions'</span>], <span class="hljs-string">'required'</span>],
+        ];
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getPermissions</span><span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">array</span> (<span class="hljs-keyword">self</span>::PERMISSIONS_PRIVATE=&gt;<span class="hljs-string">'Private'</span>,<span class="hljs-keyword">self</span>::PERMISSIONS_PUBLIC=&gt;<span class="hljs-string">'Public'</span>);
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getPermissionsLabel</span><span class="hljs-params">($permissions)</span> </span>{
+      <span class="hljs-keyword">if</span> ($permissions==<span class="hljs-keyword">self</span>::PERMISSIONS_PUBLIC) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'Public'</span>;
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'Private'</span>;        
+      }
+    }
+}
+</span></code></pre><p>这里需要注意的是rules()这个方法，它会触发Yii自带的表单验证规则，比如这里就是text和permissions这两个表单输入框都不能为空，至于getPermissions()这个方法是为了在使用dropdown输入框的时候使用的。</p>
+<p>Status模型创建好之后，我们就可以接着创建对应的控制器和方法。在平时的开发中我习惯是为每一个模型都创建一个对应的控制器，里面一般都是包含几个最常见的方法：index create store update delete等。这里我创建一个StatusController.php，这个文件应该是位于/controllers/文件夹当中，而我们希望实现一个发表状态的功能，我们必须需要一个create操作方法，比如我们的目的是：在用户访问<a href="http://localhost:8999/status/create%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E5%B1%95%E7%A4%BA%E5%88%9B%E5%BB%BA%E4%B8%80%E6%9D%A1%E7%8A%B6%E6%80%81%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BB%99%E7%94%A8%E6%88%B7%E3%80%82" target="_blank">http://localhost:8999/status/create的时候，我们可以展示创建一条状态的页面给用户。</a></p>
+<pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">controllers</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Yii</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">web</span>\<span class="hljs-title">Controller</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>\<span class="hljs-title">Status</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StatusController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionCreate</span><span class="hljs-params">()</span>
+    </span>{
+        $model = <span class="hljs-keyword">new</span> Status;
+
+        <span class="hljs-keyword">if</span> ($model-&gt;load(Yii::$app-&gt;request-&gt;post()) &amp;&amp; $model-&gt;validate()) {
+            <span class="hljs-comment">//  $model 有post数据时直接展示</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;render(<span class="hljs-string">'view'</span>, [<span class="hljs-string">'model'</span> =&gt; $model]);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// 没有数据的时候，直接渲染create视图</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;render(<span class="hljs-string">'create'</span>, [<span class="hljs-string">'model'</span> =&gt; $model]);
+        }
+    }
+}
+</span></code></pre><p>首先，根据URL的规则，我们创建了一个actionCreate()方法，在这个方法里，我们通过条件判断来确定展示某个特定的视图。</p>
+<p>创建好控制器和方法之后，我们就可以走到下一步了：创建视图。在Yii2中，视图文件的存放位置跟控制器的名字是息息相关的，比如上面我们创建了一个StatusController，我们现在首先需要在views/创建一个status/文件夹，然后在这个文件夹里创建各个跟StatusController相关的视图文件，比如上面actionCreate()中return $this-&gt;render()两个视图：view.php和create.php</p>
+<h2 id="forms">Forms</h2>
+<p>首先，我们需要一个Create视图来展示我们创建Status的表单(create.php):</p>
+<pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span>
+  <span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">helpers</span>\<span class="hljs-title">Html</span>;
+  <span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">widgets</span>\<span class="hljs-title">ActiveForm</span>;
+  <span class="hljs-keyword">use</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>\<span class="hljs-title">Status</span>;
+<span class="hljs-meta">?&gt;</span></span>
+<span class="php"><span class="hljs-meta">&lt;?php</span> $form = ActiveForm::begin();<span class="hljs-meta">?&gt;</span></span>
+    <span class="php"><span class="hljs-meta">&lt;?</span>= $form-&gt;field($model, <span class="hljs-string">'text'</span>)-&gt;textArea([<span class="hljs-string">'rows'</span> =&gt; <span class="hljs-string">'4'</span>])-&gt;label(<span class="hljs-string">'Status Update'</span>); <span class="hljs-meta">?&gt;</span></span>
+
+    <span class="php"><span class="hljs-meta">&lt;?</span>=
+    $form-&gt;field($model, <span class="hljs-string">'permissions'</span>)-&gt;dropDownList($model-&gt;getPermissions(), 
+             [<span class="hljs-string">'prompt'</span>=&gt;<span class="hljs-string">'- Choose Your Permissions -'</span>]) <span class="hljs-meta">?&gt;</span></span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group"</span>&gt;</span>
+        <span class="php"><span class="hljs-meta">&lt;?</span>= Html::submitButton(<span class="hljs-string">'Submit'</span>, [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'btn btn-primary'</span>]) <span class="hljs-meta">?&gt;</span></span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="php"><span class="hljs-meta">&lt;?php</span> ActiveForm::end(); <span class="hljs-meta">?&gt;</span></span>
+</code></pre><p>在我们平时开发web应用的时候，表单几乎总是每时每刻都得存在，只要是需要收集信息的地方就需要表单。而Yii2在对表单支持这方面做得非常不错，就如你看到的一样，上面的<a href="http://www.yiiframework.com/doc-2.0/yii-widgets-activeform.html" target="_blank">Yii2 ActiveForm</a>就是Yii2内置的用来帮助我们生成表单的小组件，这里需要注意的是dropDownList这个输入框式怎么实现的，它直接使用了getPermissions()，这个方法正好返回了一个我们需要的数组。</p>
+<p>这时候访问：<a href="http://localhost:8999/status/create" target="_blank">http://localhost:8999/status/create</a> 就可以看到上面创建的表单了：</p>
+<p><img src="./Yii2 的MVC Forms Layouts - 实验楼_files/18185c10-ebae-4d33-a6c7-2f18bc1322cb.png" alt="替代文字"></p>
+<p>至于为什么就自动排版好了，不用我们写css，那是因为Yii2默认会给我们加载Bootstrap的css文件，所以我们在使用的时候直接指定类名就OK了。而且很明显地，我们可以看到，一旦输入框在失去焦点的时候，如果里面没有输入任何内容，每个输入框就会有相应的错误提示，用户体验很不错。这个其实是得益于我们在Status模型中声明的rules()方法，Yii2会根据指定的规则通过js在前端给出相应的验证。</p>
+<p>然后我们尝试填入一些内容，你就会看到输入框的变化了：</p>
+<p><img src="./Yii2 的MVC Forms Layouts - 实验楼_files/54adf24a-a5b2-44f2-9b08-fd314f730c9e.png" alt="替代文字"></p>
+<p>点击Submit 按钮，表单会提交到StatusController的actionCreate()方法，一旦有post数据传过来，就会渲染view.php视图：</p>
+<p><img src="./Yii2 的MVC Forms Layouts - 实验楼_files/79644208-ae1a-4957-ba9b-9c32aac892a0.png" alt="替代文字">
+到这里，其实我们就走通整个MVC的过程，并且在这个过程中，我们顺带说了一下Forms的知识点。</p>
+<h2 id="layouts">Layouts</h2>
+<p>为什么要说Layouts呢？因为Layouts在Yii中其实可以看作是视图中经常重复用到的部分，比如一个HTML文件的header，navigation bar 和footer等，这些都是几乎是在每一个视图文件中都会用到，所以Yii采取了一种一劳永逸的方法来管理这些共用的部分：Layouts就应运而生。这样你就不用在每一个view文件中重复不必要的代码了，而且又特别好管理。</p>
+<p>Yii允许你创建多个Layouts，不过我貌似还没遇到那样的使用场景，所以还是无法给出有实证的说法，不管怎么说，一个Layouts就基本够用了。</p>
+<p>最后，我们借着Layouts的东风来看看我们怎么修改一下Yii2的默认导航栏：添加一个新的导航。</p>
+<p>在上一节我就提到过views\layouts\main.php这个文件，里面的具体结构你可以直打开来看看，我们这里改动的是Nav::widget这部分：</p>
+<pre><code class="hljs php">  <span class="hljs-keyword">echo</span> Nav::widget([
+                <span class="hljs-string">'options'</span> =&gt; [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'navbar-nav navbar-right'</span>],
+                <span class="hljs-string">'items'</span> =&gt; [
+                    [<span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'Home'</span>, <span class="hljs-string">'url'</span> =&gt; [<span class="hljs-string">'/site/index'</span>]],
+                    [
+                        <span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'Status'</span>,
+                        <span class="hljs-string">'items'</span> =&gt; [
+                            [<span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'Create'</span>, <span class="hljs-string">'url'</span> =&gt; [<span class="hljs-string">'/status/create'</span>]],
+                        ],
+                    ],
+                    [<span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'About'</span>, <span class="hljs-string">'url'</span> =&gt; [<span class="hljs-string">'/site/about'</span>]],
+                    [<span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'Contact'</span>, <span class="hljs-string">'url'</span> =&gt; [<span class="hljs-string">'/site/contact'</span>]],
+                    Yii::$app-&gt;user-&gt;isGuest ?
+                        [<span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'Login'</span>, <span class="hljs-string">'url'</span> =&gt; [<span class="hljs-string">'/site/login'</span>]] :
+                        [<span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'Logout ('</span> . Yii::$app-&gt;user-&gt;identity-&gt;username . <span class="hljs-string">')'</span>,
+                            <span class="hljs-string">'url'</span> =&gt; [<span class="hljs-string">'/site/logout'</span>],
+                            <span class="hljs-string">'linkOptions'</span> =&gt; [<span class="hljs-string">'data-method'</span> =&gt; <span class="hljs-string">'post'</span>]],
+                ],
+            ]);
+</code></pre><p>我们在本来的基础之上添加了下面这个内容：</p>
+<pre><code class="hljs php"> [
+    <span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'Status'</span>,
+    <span class="hljs-string">'items'</span> =&gt; [
+        [<span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'Create'</span>, <span class="hljs-string">'url'</span> =&gt; [<span class="hljs-string">'/status/create'</span>]],
+    ],
+],
+</code></pre><p>这样之后，刷新一下页面，你就可以看到我们的导航变化了。而且很神奇的是：这里还实现了dropdown menu的功能，这个其实就是使用Bootstrap的dropdown menu来实现的。</p>
+<p><img src="./Yii2 的MVC Forms Layouts - 实验楼_files/691fb75e-c24e-44d1-b589-5e721d864112.png" alt="替代文字"></p>
+<p>嗯，这篇文章貌似讲得差不多了，至少我不知道还改讲些什么了，接下来的文章我会尝试讲讲Yii2的数据库相关的内容。</p>
+</div>
+<textarea id="editor">上一篇文章我们简单地实现了Yii2框架安装和Hello World，而在这一篇文章当中，我们会带着好奇之心去探索一下在Yii2中的几个重要的元素组成：
+MVC，Forms和Layouts。
+
+本文的目标是创建一个小小的表单应用，就是实现一个简单的类似发微博的功能，但是我还不想牵扯到数据库那一块，因为其实数据库和表在Yii2框架之中其实还是有很多东西可以讲的，打算在下一篇的文章中会详细讲到。
+
+## MVC
+
+![替代文字](https://wt-prj.oss.aliyuncs.com/0d06af79c49d4e08abb1ab3f7ab6e860/a302fe24-f760-43fb-9047-4be57d7e8ed0.png)
+
+模型(Model)对于我个人的简单理解就是一个概念集合，在这个集合里面包含该概念集合的多种数据，比如一个User会有姓名，性别等多个属性，这个概念集合通常就是对于数据库的一张表（如果还没有对应的数据表，则可以看作是一个集合的属性）；而每一个具体的实例概念就对应一条数据记录。比如在这一篇文章之中我们会创建一个Status模型，代表状态（来源于生活：发一条状态），这个Status会有两个重要的属性，text和permissions，text就是状态本身，permissions是状态的权限。
+
+视图(Views)通过控制器想模型请求数据，并将数据以某种特定的版式展示给用户。
+
+控制器(Controller)可以向Model和Views发送不同的指令，一般是向Model取数据，然后读取视图文件来渲染输出数据。
+
+在Yii2的应用中，一般是这样的：某个URL指向某个控制器的特定action，然后控制器负责向特定的模型取数据，然后将数据分配给视图渲染输出。
+
+在这里说一下我个人的观点，我觉得其实在MVC当中，可能应该做事最多的应该是Model，与之相迎合的是，Controller和Views则相对要轻一些，Controller负责协调Model和Views，Views负责展示数据。
+
+在Yii2的项目当中，我们将models文件放在/models/目录之下，所以我们在这个文件夹之下创建Status.php：
+
+```
+&lt;?php
+ 
+namespace app\models;
+ 
+use yii\base\Model;
+ 
+class Status extends Model
+{
+    const PERMISSIONS_PRIVATE = 10;
+    const PERMISSIONS_PUBLIC = 20;
+     
+    public $text;
+    public $permissions;
+ 
+    public function rules()
+    {
+        return [
+            [['text','permissions'], 'required'],
+        ];
+    }
+     
+    public function getPermissions() {
+      return array (self::PERMISSIONS_PRIVATE=&gt;'Private',self::PERMISSIONS_PUBLIC=&gt;'Public');
+    }
+     
+    public function getPermissionsLabel($permissions) {
+      if ($permissions==self::PERMISSIONS_PUBLIC) {
+        return 'Public';
+      } else {
+        return 'Private';        
+      }
+    }
+}
+
+```
+这里需要注意的是rules()这个方法，它会触发Yii自带的表单验证规则，比如这里就是text和permissions这两个表单输入框都不能为空，至于getPermissions()这个方法是为了在使用dropdown输入框的时候使用的。
+
+Status模型创建好之后，我们就可以接着创建对应的控制器和方法。在平时的开发中我习惯是为每一个模型都创建一个对应的控制器，里面一般都是包含几个最常见的方法：index create store update delete等。这里我创建一个StatusController.php，这个文件应该是位于/controllers/文件夹当中，而我们希望实现一个发表状态的功能，我们必须需要一个create操作方法，比如我们的目的是：在用户访问http://localhost:8999/status/create的时候，我们可以展示创建一条状态的页面给用户。
+
+```
+&lt;?php
+ 
+namespace app\controllers;
+ 
+use Yii;
+use yii\web\Controller;
+use app\models\Status;
+ 
+class StatusController extends Controller
+{
+    public function actionCreate()
+    {
+        $model = new Status;
+ 
+        if ($model-&gt;load(Yii::$app-&gt;request-&gt;post()) &amp;&amp; $model-&gt;validate()) {
+            //  $model 有post数据时直接展示
+            return $this-&gt;render('view', ['model' =&gt; $model]);
+        } else {
+            // 没有数据的时候，直接渲染create视图
+            return $this-&gt;render('create', ['model' =&gt; $model]);
+        }
+    }
+}
+
+```
+
+首先，根据URL的规则，我们创建了一个actionCreate()方法，在这个方法里，我们通过条件判断来确定展示某个特定的视图。
+
+
+创建好控制器和方法之后，我们就可以走到下一步了：创建视图。在Yii2中，视图文件的存放位置跟控制器的名字是息息相关的，比如上面我们创建了一个StatusController，我们现在首先需要在views/创建一个status/文件夹，然后在这个文件夹里创建各个跟StatusController相关的视图文件，比如上面actionCreate()中return $this-&gt;render()两个视图：view.php和create.php
+
+## Forms
+
+首先，我们需要一个Create视图来展示我们创建Status的表单(create.php):
+
+```
+&lt;?php
+  use yii\helpers\Html;
+  use yii\widgets\ActiveForm;
+  use app\models\Status;
+?&gt;
+&lt;?php $form = ActiveForm::begin();?&gt;
+    &lt;?= $form-&gt;field($model, 'text')-&gt;textArea(['rows' =&gt; '4'])-&gt;label('Status Update'); ?&gt;
+ 
+    &lt;?=
+    $form-&gt;field($model, 'permissions')-&gt;dropDownList($model-&gt;getPermissions(), 
+             ['prompt'=&gt;'- Choose Your Permissions -']) ?&gt;
+ 
+    &lt;div class="form-group"&gt;
+        &lt;?= Html::submitButton('Submit', ['class' =&gt; 'btn btn-primary']) ?&gt;
+    &lt;/div&gt;
+ 
+&lt;?php ActiveForm::end(); ?&gt;
+
+```
+
+在我们平时开发web应用的时候，表单几乎总是每时每刻都得存在，只要是需要收集信息的地方就需要表单。而Yii2在对表单支持这方面做得非常不错，就如你看到的一样，上面的[Yii2 ActiveForm](http://www.yiiframework.com/doc-2.0/yii-widgets-activeform.html)就是Yii2内置的用来帮助我们生成表单的小组件，这里需要注意的是dropDownList这个输入框式怎么实现的，它直接使用了getPermissions()，这个方法正好返回了一个我们需要的数组。
+
+这时候访问：http://localhost:8999/status/create 就可以看到上面创建的表单了：
+
+![替代文字](https://wt-prj.oss.aliyuncs.com/0d06af79c49d4e08abb1ab3f7ab6e860/18185c10-ebae-4d33-a6c7-2f18bc1322cb.png)
+
+
+至于为什么就自动排版好了，不用我们写css，那是因为Yii2默认会给我们加载Bootstrap的css文件，所以我们在使用的时候直接指定类名就OK了。而且很明显地，我们可以看到，一旦输入框在失去焦点的时候，如果里面没有输入任何内容，每个输入框就会有相应的错误提示，用户体验很不错。这个其实是得益于我们在Status模型中声明的rules()方法，Yii2会根据指定的规则通过js在前端给出相应的验证。
+
+
+然后我们尝试填入一些内容，你就会看到输入框的变化了：
+
+![替代文字](https://wt-prj.oss.aliyuncs.com/0d06af79c49d4e08abb1ab3f7ab6e860/54adf24a-a5b2-44f2-9b08-fd314f730c9e.png)
+
+点击Submit 按钮，表单会提交到StatusController的actionCreate()方法，一旦有post数据传过来，就会渲染view.php视图：
+
+![替代文字](https://wt-prj.oss.aliyuncs.com/0d06af79c49d4e08abb1ab3f7ab6e860/79644208-ae1a-4957-ba9b-9c32aac892a0.png)
+到这里，其实我们就走通整个MVC的过程，并且在这个过程中，我们顺带说了一下Forms的知识点。
+
+## Layouts
+
+为什么要说Layouts呢？因为Layouts在Yii中其实可以看作是视图中经常重复用到的部分，比如一个HTML文件的header，navigation bar 和footer等，这些都是几乎是在每一个视图文件中都会用到，所以Yii采取了一种一劳永逸的方法来管理这些共用的部分：Layouts就应运而生。这样你就不用在每一个view文件中重复不必要的代码了，而且又特别好管理。
+
+Yii允许你创建多个Layouts，不过我貌似还没遇到那样的使用场景，所以还是无法给出有实证的说法，不管怎么说，一个Layouts就基本够用了。
+
+最后，我们借着Layouts的东风来看看我们怎么修改一下Yii2的默认导航栏：添加一个新的导航。
+
+在上一节我就提到过views\layouts\main.php这个文件，里面的具体结构你可以直打开来看看，我们这里改动的是Nav::widget这部分：
+
+```
+  echo Nav::widget([
+                'options' =&gt; ['class' =&gt; 'navbar-nav navbar-right'],
+                'items' =&gt; [
+                    ['label' =&gt; 'Home', 'url' =&gt; ['/site/index']],
+                    [
+                        'label' =&gt; 'Status',
+                        'items' =&gt; [
+                            ['label' =&gt; 'Create', 'url' =&gt; ['/status/create']],
+                        ],
+                    ],
+                    ['label' =&gt; 'About', 'url' =&gt; ['/site/about']],
+                    ['label' =&gt; 'Contact', 'url' =&gt; ['/site/contact']],
+                    Yii::$app-&gt;user-&gt;isGuest ?
+                        ['label' =&gt; 'Login', 'url' =&gt; ['/site/login']] :
+                        ['label' =&gt; 'Logout (' . Yii::$app-&gt;user-&gt;identity-&gt;username . ')',
+                            'url' =&gt; ['/site/logout'],
+                            'linkOptions' =&gt; ['data-method' =&gt; 'post']],
+                ],
+            ]);
+
+```
+
+我们在本来的基础之上添加了下面这个内容：
+
+```
+ [
+    'label' =&gt; 'Status',
+    'items' =&gt; [
+        ['label' =&gt; 'Create', 'url' =&gt; ['/status/create']],
+    ],
+],
+
+```
+这样之后，刷新一下页面，你就可以看到我们的导航变化了。而且很神奇的是：这里还实现了dropdown menu的功能，这个其实就是使用Bootstrap的dropdown menu来实现的。
+
+![替代文字](https://wt-prj.oss.aliyuncs.com/0d06af79c49d4e08abb1ab3f7ab6e860/691fb75e-c24e-44d1-b589-5e721d864112.png)
+
+嗯，这篇文章貌似讲得差不多了，至少我不知道还改讲些什么了，接下来的文章我会尝试讲讲Yii2的数据库相关的内容。
+
+</textarea>
+<div class="start-lab">
+    <span>动手实践才能有更大收获，做实验，学IT！</span>
+    
+
+    
+
+     
+        
+    
+
+    
+    <button type="button" class="btn btn-success   lab-item-start-newlab" data-mobile-url="/courses/document/1305" data-url="/courses/start/1305" data-next="/courses/running">开始实验</button>
+</div>
+
+        </div>
+        <div class="col-md-3 layout-side">
+            
+    <div class="side-image side-image-pc">
+        <img src="./Yii2 的MVC Forms Layouts - 实验楼_files/1444890954904.png">
+    </div>
+    
+
+    
+        
+    
+
+
+    
+        
+<div class="sidebox mooc-teacher">
+    <div class="sidebox-header mooc-header">
+        <h4 class="sidebox-title">课程教师</h4>
+    </div>
+    <div class="sidebox-body mooc-content">
+        <a href="https://www.shiyanlou.com/user/7682" target="_blank">
+            <img src="./Yii2 的MVC Forms Layouts - 实验楼_files/gravatar57aeee35c98205091e18d1140e9f38cf.png">
+        </a>
+        <div class="mooc-info">
+            <div class="name"><strong>JellyBool</strong> </div>
+            
+            <div class="courses">共发布过<strong>8</strong>门课程</div>
+        </div>
+        <div class="mooc-extra-info">
+            <div class="word long-paragraph">
+                
+            </div>
+        </div>
+    </div>
+    <div class="sidebox-footer mooc-footer">
+        <a href="https://www.shiyanlou.com/teacher/7682" target="_blank">查看老师的所有课程 &gt;</a>
+    </div>
+</div>
+
+    
+    <div class="side-image">
+    <a href="https://www.shiyanlou.com/vip" target="_blank">
+        <img src="./Yii2 的MVC Forms Layouts - 实验楼_files/vip_ad2.png">
+    </a>
+</div>
+    
+    
+    
+    
+
+        </div>
+    </div>
+</div>
+
+
+	<div class="modal fade" id="invite-user" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">邀请好友，双方都可获赠实验豆！</h4>
+				</div>
+				<div class="modal-body">
+                    
+					<div class="form-label">
+                        分享专属链接给好友，或粘贴到QQ群/微博/论坛，好友注册后，您和好友将分别获赠3个实验豆！
+                    </div>
+					<input type="text" id="bstext" class="form-invite" value="https://www.shiyanlou.com/register?inviter=NTY0MzE5MjUzMzg2">              
+                    
+					<div id="msg-modal"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+    
+        
+        
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 clearfix footer-col">
+                <img src="./Yii2 的MVC Forms Layouts - 实验楼_files/logo_03.png">
+                <div class="footer-slogan">动手做实验，轻松学IT。</div>
+                <div class="col-xs-2">
+                    <div class="social-item footer-weixin-item">
+                        <i class="fa fa-weixin"></i>
+                        <div class="footer-weixin">
+                            <img src="./Yii2 的MVC Forms Layouts - 实验楼_files/footer-weixin.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="social-item footer-qq-item" data-original-title="" title="">
+                        <i class="fa fa-qq"></i>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="social-item footer-weibo-item">
+                        <a href="http://weibo.com/shiyanlou2013" target="_blank">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">公司</div>
+                <a href="https://www.shiyanlou.com/aboutus" target="_blank">关于我们</a><br>
+                <a href="https://www.shiyanlou.com/contact" target="_blank">联系我们</a><br>
+                <a href="http://www.simplecloud.cn/jobs.html" target="_blank">加入我们</a><br>
+                <a href="https://blog.shiyanlou.com/" target="_blank">技术博客</a><br>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">合作</div>
+                <a href="https://www.shiyanlou.com/contribute" target="_blank">我要投稿</a><br>
+                <a href="https://www.shiyanlou.com/labs" target="_blank">教师合作</a><br>
+                <a href="https://www.shiyanlou.com/edu/" target="_blank">高校合作</a><br>
+                <a href="https://www.shiyanlou.com/friends" target="_blank">友情链接</a>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">服务</div>
+                <a href="https://www.shiyanlou.com/bootcamp/" target="_blank">实战训练营</a><br>
+                <a href="https://www.shiyanlou.com/vip" target="_blank">会员服务</a><br>
+                <a href="https://www.shiyanlou.com/courses/reports" target="_blank">实验报告</a><br>
+                <a href="https://www.shiyanlou.com/questions/?tag=%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98" target="_blank">常见问题</a><br>
+                <a href="https://www.shiyanlou.com/privacy" target="_blank">隐私条款</a>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">学习路径</div>
+                <a href="https://www.shiyanlou.com/paths/python" target="_blank">Python学习路径</a><br>
+                <a href="https://www.shiyanlou.com/paths/linuxdev" target="_blank">Linux学习路径</a><br>
+                <a href="https://www.shiyanlou.com/paths/bigdata" target="_blank">大数据学习路径</a><br>
+                <a href="https://www.shiyanlou.com/paths/java" target="_blank">Java学习路径</a><br>
+                <a href="https://www.shiyanlou.com/paths/php" target="_blank">PHP学习路径</a><br>
+                <a href="https://www.shiyanlou.com/paths/" ,="" target="_blank">全部</a>
+            </div>
+        </div>
+    </div>
+    <div class="text-center copyright">
+        <span>Copyright @2013-2016 实验楼在线教育</span>
+        <span class="ver-line"> | </span>
+        <a href="http://www.miibeian.gov.cn/" target="_blank">蜀ICP备13019762号</a>
+        <script charset="utf-8" src="./Yii2 的MVC Forms Layouts - 实验楼_files/v.js"></script><script src="./Yii2 的MVC Forms Layouts - 实验楼_files/hm.js"></script><script type="text/javascript">
+            var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+            document.write(unescape("%3Cspan id='cnzz_stat_icon_5902315'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D5902315' type='text/javascript'%3E%3C/script%3E"));
+        </script><span id="cnzz_stat_icon_5902315"><a href="http://www.cnzz.com/stat/website.php?web_id=5902315" target="_blank" title="站长统计">站长统计</a></span><script src="./Yii2 的MVC Forms Layouts - 实验楼_files/stat.php" type="text/javascript"></script><script src="./Yii2 的MVC Forms Layouts - 实验楼_files/core.php" charset="utf-8" type="text/javascript"></script>
+        <script>
+            var _hmt = _hmt || [];
+            (function() {
+             var hm = document.createElement("script");
+             hm.src = "//hm.baidu.com/hm.js?6eb47a3aeda6ea31fa53985fdfdc78e8";
+             var s = document.getElementsByTagName("script")[0];
+             s.parentNode.insertBefore(hm, s);
+             })();
+        </script>
+    </div>
+</div>
+
+        
+    
+	
+
+	<div class="modal fade" id="flash-message" tabindex="-1" role="dialog">
+		<div class="modal-dialog" rolw="document">
+		</div>
+	</div>
+	<div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">注意</h4>
+				</div>
+				<div class="modal-body">
+				</div>
+				<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary confirm" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    
+<div class="modal fade" id="start-newlab">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>开始新实验</h3>
+			</div>
+			<div class="modal-body">
+                <p>一个实验正在进行，是否停止它，开始新实验？</p>
+			</div>
+			<div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                <a class="btn btn-primary start-newlab-confirm">确定</a>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="start-evaluation-course">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>开始评估课实验</h3>
+			</div>
+			<div class="modal-body">
+                <div>
+                    <p>为了让评估结果更加准确，请注意以下操作：</p>
+                    <ul>
+                        <li>完成实验后点击「停止实验」按钮</li>
+                        <li>将代码提交到代码库</li>
+                        <li>尽可能详尽的撰写实验报告</li>
+                        <li>尽可能在实验操作的关键步骤截图</li>
+                        <li>尽可能减少无用操作</li>
+                        <li>尽可能高效的利用内存/CPU资源</li>
+                    </ul>
+                    <p>评估课还在不断完善中，我们真挚希望你能通过我们提供的这个平台，找到更好的发展机会。</p>
+                </div>
+                <br>
+                <div class="start-newlab"></div>
+			</div>
+			<div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                <a class="btn btn-primary start-confirm">确定</a>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="vip-startlab-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>开始实验</h3>
+			</div>
+			<div class="modal-body">
+                <div class="start-newlab"></div>
+                <br>
+                <div class="text-center vip-vm">
+                    <a class="btn btn-default btn-lg newvm">创建新环境</a>
+					
+                </div>
+                <br>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+
+	
+		
+			
+		
+	
+
+    
+    <div class="modal fade" id="lottery-modal">
+        <div class="modal-dialog" style="text-align:center;">
+            <a style="display:block; background:#fff;" href="https://www.shiyanlou.com/lottery/Z0BxroDOR4Cmwn2iaha_qQ" target="_blank">
+                <img src="./Yii2 的MVC Forms Layouts - 实验楼_files/lottery-title.png">
+            </a>
+        </div>
+    </div>
+    
+
+    <div id="base-data" data-flash="false" data-csrf-token="/questions/form" data-is-login="true" data-jwt-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzaGl5YW5sb3U6d2ViOmFwcCIsInVuYW1lIjoiTE9VMzAxODk5Mzg0NiIsInVpZCI6IjI0MDcxMSIsImV4cCI6MTQ3MTQyMTUyNywiaWF0IjoxNDcxMzM1MTI3fQ.Gx5F5pyclRnwN3NIIscHXI3q20ZNbuu8MVkxVQvPfw0" data-socket-url="wss://comet.shiyanlou.com" data-msg-user="" data-msg-system=""></div>
+
+    <script>
+    var pathLevel = window.location.pathname.split('/').length - 1;
+    var pathPrefix = new Array(pathLevel).join('../');
+    </script>
+
+    <script src="./Yii2 的MVC Forms Layouts - 实验楼_files/lib.js"></script>
+    <script src="./Yii2 的MVC Forms Layouts - 实验楼_files/jquery.min.js"></script>
+    <script src="./Yii2 的MVC Forms Layouts - 实验楼_files/ace.js"></script>
+    <script src="./Yii2 的MVC Forms Layouts - 实验楼_files/aliyun-oss-sdk-4.3.0.min.js"></script>
+    <script src="./Yii2 的MVC Forms Layouts - 实验楼_files/highlight.min.js"></script>
+    <script src="./Yii2 的MVC Forms Layouts - 实验楼_files/jspdf.min.js"></script>
+    <script src="./Yii2 的MVC Forms Layouts - 实验楼_files/plupload.full.min.js"></script>
+    <script src="./Yii2 的MVC Forms Layouts - 实验楼_files/ZeroClipboard.min.js"></script>
+
+    
+<div id="jinja-data" data-start-newlab-url="/courses/clear"></div>
+<script src="./Yii2 的MVC Forms Layouts - 实验楼_files/labDoc.js"></script><div class="loading-modal" style="display: none; position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; z-index: 1600; background: rgba(0, 0, 0, 0.498039);"><i class="fa fa-spinner fa-pulse" style="margin-top: 373.6px; color: rgb(255, 255, 255); font-size: 35px;"></i></div>
+
+    <script>
+    var bdata = $('#base-data').data();
+    var jdata = $('#jinja-data').data();
+
+    var socket = null;
+    if (bdata.isLogin) {
+        socket = window.io(bdata.socketUrl, {'query': 'token='+bdata.jwtToken});
+        socket.on('disconnect', function() {
+            socket.disconnect();
+        });
+
+        socket.on('event:user:logout', function() {
+          socket.emit('disconnection', "");
+          socket.disconnect();
+        });
+
+        socket.on('event:msg:new', function(data) {
+            $('.header-msg-count').show();
+            $('.header-msg-mark').show();
+            $('.header-avatar').tooltip('show');
+        });
+
+        socket.on('event:msg:all_read', function(data) {
+            $('.header-msg-count').hide();
+            $('.header-msg-mark').hide();
+        });
+
+        socket.on('event:lab:stoped', function() {
+            window.location.href = jdata.courseDetails;
+        });
+
+        if (/labs/.test(window.location.href)) {
+            socket.on('event:vm:retry_create', function() {
+                loading.show($('#display'));
+                loading.showMsg(true);
+                clearInterval(autoReconnect);
+                connect(localStorage.currentVmId)
+                loading.hide();
+            });
+        }
+    }
+    </script>
+
+
+</body></html>

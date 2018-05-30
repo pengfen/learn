@@ -1,0 +1,55 @@
+长轮询执行弹幕效果
+
+var setting = {
+url:'/index.php?r=site/data',
+dataType:'json',
+success:function(data) {
+$('#barrage-list').html("")
+var nickname = $('#barrage-name').val();
+//$('#content li:first-child').remove(); // 添除上一次加载所有的 li
+var len = data.length;
+var barrageHtml;
+if (len) {
+for (var i = 0; i < len; i ++) {
+if (data[i]['status'] == 0 && data[i]['nickname'] != nickname) { // 追加弹幕内容
+var div="<div>" + data[i]['content'] + "</div>";
+$(".barrage-dm .d_show").append(div);
+init_screen();
+}
+if (i < 7) {
+barrageHtml = "<dd><ul><li class='t1'>" + data[i]['nickname'] + ": </li><li class='t2'>" + data[i]['content'] + "</li><li class='t3'>" + data[i]['addtime'] + "</li></ul></dd>";
+$(barrageHtml).hide().prependTo($('#barrage-list')).slideDown(300);
+}
+}
+}
+setTimeout(function(){$.ajax(setting)}, 300);
+}
+}
+$.ajax(setting);
+
+public function actionData() {
+// 查询状态为0 的所有记录
+$name = Chat::find()->orderby('addtime DESC')->where(array('status'=>'0'))->asArray()->all();
+if ($name) {
+$count = count($name);
+if ($count < 7) {
+$info = Chat::find()->orderby('addtime DESC')->limit((7 - $count))->asArray()->all();
+$name = array_merge($info, $name);
+}
+} else {
+sleep(1);
+$name = Chat::find()->orderby('addtime DESC')->limit(7)->asArray()->all();
+}
+$sql = "update chatroom_user set status=1 where id in (";
+foreach ($name as $key => $value) {
+$sql .= $value['id'].',';
+$time[$key] = $value['addtime'];
+$name[$key]['addtime'] = date('m-d H:i', strtotime($value['addtime']));
+}
+$sql = rtrim($sql, ',');
+$sql .= ')';
+\Yii::$app->db->createCommand($sql)->execute();
+
+array_multisort($time, SORT_ASC, $name); // 根据时间数组重新排序
+echo json_encode($name);
+}

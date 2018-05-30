@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>商城管理系统</title>
+		<link rel="stylesheet" type="text/css" href="{$smarty.const.__ROOT__}/Public/css/admin.css">
+	</head>
+	<body class='bgimg'>
+	<div class="main-header"><a href="{$smarty.const.__MODULE__}/Auth/add">添加权限</a></div>
+	<div class='admin-mess'>{$mess}</div>
+	    <ul class="showlist">
+	        <li class="header">
+	        	<span>编号</span>
+	        	<span>权限名称</span>
+	        	<span>控制器</span>
+	        	<span>操作方法</span>
+	        	<span>全路径</span>
+	        </li>
+	        {foreach $info as $k => $v}
+	        <li class="text">
+	            <!--<span>{$v.id}</span>-->
+	            <span>{$v@iteration}</span>
+	            <span style="text-align:left;color:red;">{$v.name}</span>
+	            <span>{$v.cont}</span>
+	            <span>{$v.action}</span>
+	            <span>{$v.path}</span>
+	        </li>
+	        {/foreach}
+	    </ul>
+	</body>
+</html>

@@ -1,0 +1,74 @@
+drupal.org/node/190815
+版型设定 (外观 --- 设定 --- 版型名称)
+区域
+样版变数
+样版程式
+样版建议 (对自己的样板名按一些建议进行命名 drupal.org/node/1089656)
+CSS 定义 (style.css 或是数个 css 档案)
+javascript
+版型档案(.info)
+
+Appearance 外观
+logo image settings 设置外观 logo
+
+版型区域
+Structure --- block --- Demonstrate block regions(Bartik) 示范区块和区域
+
+Theme Template 主题模板
+html.tpl.php --- modules/system
+page.tpl.php --- modules/system
+region.tpl.php --- modules/system
+node.tpl.php --- modules/node
+block.tpl.php --- modules/block
+comment-wrapper.tpl.php --- modules/comment
+comment.tpl.php --- modules/comment
+
+
+版型
+从无到有
+子版型 --- 继承zen 版型
+
+安装 zen 版型
+Appearance --- Install new theme
+
+安装 zenophile 模块 (创建 zen 子版型)
+创建 zen 子版型
+Appearance --- create zen subtheme 选项
+system name : szen
+human name  : szen
+description : 第一个 zen 子版型
+site directory : all --- 安装目录/sites/all  default --- 安装目录/sites/default
+
+设置当前显示版型为 szen
+Enable and set default
+
+模板文件的使用
+复制 安装目录/sites/all/themes/zen/templates/page.tpl.php 文件至 安装目录/sites/all/themes/szen/templates/page.tpl.php
+
+Appearance --- settings 设定 (设置 szen 版型相关配置) 也可以通过 szen.info 文件来设置
+Wireframes 添加边框
+
+去除工具栏
+Modules --- Administration menu Toolbar
+Modules --- Administration menu
+
+使用路径进入后台
+http://dev.drupal.com/admin  管理后台
+http://dev.drupal.com/admin/dashboard 
+http://dev.drupal.com/admin/content 内容管理后台
+http://dev.drupal.com/admin/structure 架构管理后台
+http://dev.drupal.com/admin/appearance 外观管理后台
+http://dev.drupal.com/admin/people
+http://dev.drupal.com/admin/modules 模块管理后台
+http://dev.drupal.com/admin/configuration 
+http://dev.drupal.com/admin/reports
+http://dev.drupal.com/admin/help
+
+rtl.css (right to left 右至左)
+
+次选单 
+page--front.tpl.php --- $secondary_menu_heading
+删除次选单 (删除 $secondary_menu_heading 相关)
+
+修改主菜单(id=navigator) --- 查看 css 文件路径 --- 根据路径修改对应的 css 文件
+背景 ---- 修改 page-backgrounds.css 文件

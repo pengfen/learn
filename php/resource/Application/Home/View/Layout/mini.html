@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>商城管理系统</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Css/style.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Css/font-awesome.min.css">
+	    <script type="text/javascript" src='__PUBLIC__/Home/Js/jquery.js'></script>
+	    <block name="style">
+	    </block>
+	</head>
+	<body bgcolor="#fafafa">
+	<div class='reg-log'>
+		<div class="w log">
+			<div class="topFl">
+				<!-- <a href="<?php //echo __ROOT__?>/home/index.php">
+					<img width="145" src='<?php //echo __ROOT__?>/home/include/images/loginlogo.jpg'/>
+				</a> -->
+				<a href="{:U('Index/index')}">
+					<img width="145" src='__PUBLIC__/Home/Images/loginlogo.jpg'/>
+				</a>
+			</div>
+			<div class="topFr fr">
+				<span class='fl'>你好,欢迎光临1号店!<a href="{:U('Login/login')}">请登录<a></span>
+				<div class='fl' id='help-center'>帮助中心<i class='icon-caret-down'></i>
+				    <div class="menu-list">
+	                    <ul>
+	                        <li><a href="">包裹跟踪</a></li>
+	                        <li><a href="">常见问题</a></li>
+	                        <li><a href="">在线退换货</a></li>
+	                        <li><a href="">在线投诉</a></li>
+	                        <li><a href="">配送范围</a></li>
+	                    </ul>
+	                </div>
+				</div>
+		    </div>
+		</div>
+		 <script type="text/javascript" async>
+		    $(function(){
+		    	$('#help-center').hover(
+		    		function(){
+		    			$('#help-center').css('border', '1px solid #dfdfdf').css('border-bottom', 'none');
+		    			$('.menu-list').css('display', 'block').css('border-top', 'none');
+		    		},
+		    		function(){
+		    			$('#help-center').css('border', 'none');
+		    			$('.menu-list').css('display', 'none');
+		    		}
+		    	);
+		    });
+		 </script>
+	</div>
+	<block name="main">
+	</block>
+	<div id="simplefooter">
+    <a href="" target="_blank">沪ICP备13044278号</a>|<a href=''>合字B1.B2-20130004</a>|<a href="" target="_blank">营业执照</a>
+    <p>Copyright © 1号店网上超市 2007-2014，All Rights Reserved</p>
+</div>
+</body>
+</html>

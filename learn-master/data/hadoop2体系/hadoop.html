@@ -1,0 +1,287 @@
+
+    Hadoop 大数据平台架构与实战
+
+    大数据技术的相关概念
+    Hadoop 的架构和运行机制
+    实战 Hadoop 的安装和配置
+    实战 Hadoop 开发
+
+    目标
+    掌握大数据存储与处理技术的原理 (理论知识)
+    掌握 Hadoop 的使用和开发能力 (实践能力)
+
+    建议
+    结合书本 知识点更加系统全面
+    实战经验很重要 边听课边
+
+    谷歌
+    革命性的变化1 成本降低 能用 PC 机 就不用大型机和高端存储
+    革命性的变化2 软件容错硬件故障视为常态 通过软件保证可靠性
+    革命性的变化3 简化并行分布式计算 无须控制节点同步和数据交换台
+
+    google 只是写了一些技术论文 而并没有开源其源代码
+    一个模仿 google 大数据技术的开源实现 hadoop
+
+    Hadoop 的功能和优势
+    http://hadoop.apache.org
+
+    Hadoop 可以用来做什么
+    搭建大型数据仓库 PB级数据的存储 处理 分析 统计等业务
+    搜索引擎 日志分析 商业智能 数据挖掘
+
+    Hadoop 的优势
+    高扩展 低成本
+
+    Hadoop 人才的需求越来越大
+    开发 和运维
+
+    Hadoop 相关开源工具
+    HIVE 将 SQL 语句 转换为 Hadoop 任务
+    降低使用 Hadoop 的门槛
+
+    HBASE 分布式数据库
+    与传统数据库不同的是 hbase 放弃事务特性 追求更高的扩展
+    与 HDFS 不同的是 hbase 提供数据的随机读写和实时访问 实现对表数据的读写功能
+
+    zookeeper
+
+
+    Hadoop 的组成
+    包括两个核心组成
+    HDFS 分布式文件系统 存储海量的数据
+    MapReduce 并行处理框架 实现任务分解和调度
+
+
+    Google 三大论文
+    Google File System --- HDFS (Hadoop Distributed File System)
+    Google MapReduce --- Hadoop MapReduce
+    Google Bigtable --- Hadoop Hbase
+
+
+    HDFS (Hadoop Distributed File System)
+    hdfs 设计架构
+
+    基本概念
+    块(Block)
+    NameNode
+    DataNode
+
+    HDFS 的文件被分成块进行存储
+    HDFS 块的默认大小 64MB
+    块是文件存储处理的逻辑单元
+
+    HDFS 中有两类节点 NameNode 和 DataNode
+
+    NameNode 是管理节点 存放文件元数据
+    文件与数据块的映射表
+    数据块与数据节点的映射表
+
+    DataNode 是 HDFS 的工作节点 存入数据块
+    每个数据块三个副本 分布在两个机架内的三个节点
+
+    心跳检测
+    DataNode 定期向 NameNode 发送心跳消息
+    二级 NameNode 定期同步元数据映像文件和修改日志 NameNode 发生故障时 备胎转正
+
+    HDFS 的特点
+    数据冗余 硬件容错
+    流式的数据访问
+    存储大文件
+
+    适用性和局限性
+    适合数据指读写 吞吐量高
+    不适合交互式应用 低延迟很难满足
+
+    适合一次写入多次读取 顺序读写
+    不支持多用户并发写相同文件
+
+    不适合的场景 低时间延迟的数据访问  大量的小文件  多用户写入，任意修改文件
+
+    HDFS 命令行操作
+    hadoop namenode -format
+    hadoop fs -ls /
+    hadoop fs -ls /hadoop
+    hadoop fs -put ./hadoop-env.sh /user/test
+    hadoop fs -ls /
+    hadoop fs -ls /user
+
+    hadoop fs -mkdir input #创建一个目录
+    hadoop fs -ls /user/root #查看创建的目录
+    /user/root/input
+    hadoop fs -put hadoop-env.sh input/ #将文件上传到目录中
+    hadoop fs -ls /user/root/input #查看上传文件
+    hadoop fs -cat /user/root/input/hadoop-env.sh #查看上传文件
+    hadoop fs -get input/hadoop-env.sh hadoop-env2.sh #下载文件到本地
+    ls
+    rm -rf hadoop-env2.sh
+    ls
+    hadoop fs -rm hadoop-env.sh
+    hadoop fs -rm -rmr input #删除input 目录
+    hadoop dfsadmin -report
+
+    Google File System (GFS)  一个面向大规模数据密集型应用的 可伸缩的分布式文件系统
+
+    主要解决问题 (与传统不同的设计思路)
+    首先 组件失效被认为是常态事件 而不是意外事件
+    其次 以通常的标准衡量 我们的文件非常巨大
+    第三 绝大部分文件的修改是采用在文件尾部追加数据 而不是覆盖原有数据的方式
+    第四 应用程序和文件系统 API 的协同设计提高了整个系统的灵活性
+
+    解决搜索中词频问题 (单词计数)
+
+    分而治之 一个大任务分成多个小的子任务(map) 并行执行后 合并结果(reduce)
+
+    Job & Task
+    JobTracker
+    TaskTracker
+    MapTask
+    ReduceTask
+
+    JobTracker 的角色
+    作业调度
+    分配任务 监控任务执行进度
+    监控 TaskTracker 的状态
+
+    TaskTracker 的角色
+    执行任务
+    汇报任务状态
+
+    MapReduce 的容错机制
+    重复执行
+    推测执行
+
+
+    Hadoop 2.0 产生背景
+
+Hadoop 1 中 HDFS 和 MapReduce 在高可用 扩展性等方面存在问题
+HDFS 存在的问题
+NameNode 单点故障 难以应用于在线场景
+NameNode 压力过大 且内存受限 影响系统扩展性
+MapReduce 存在的问题
+JobTracker 访问压力大 影响系统扩展性
+难以支持除 MapReduce 之外的计算框架 比如 spark storm 等
+
+
+Hadoop 2.x 由 HDFS MapReduce 和 YARN 三个分支构成
+HDFS NNFederation HA
+MapReduce 运行在 YARN 上的 MR
+YARN 资源管理系统
+
+HDFS 2
+解决HDFS 1.0 中单点故障和内存受限问题
+解决单点故障
+HDFS HA 通过主备 NameNode 解决
+如果主 NameNode 发生故障 则切换到备 NameNode 上
+
+解决内存受限问题
+HDFS Federation
+水平扩展 支持多个 NameNode
+每个 NameNode 分管一部分目录
+所有 NameNode 共享所有 DataNode 存储资
+
+2.x 仅是架构上发生了变化 使用方式不变
+对 HDFS 使用者透明
+HDFS 1.x 中的命令和 API 仍可以使用
+
+HDFS 2.0 HA
+主备 NameNode
+解决单点故障
+主 NameNode 对外提供服务 备 NameNode 同步主 NameNode 元数据 以待切换
+所有 DataNode 同时向两个 NameNode 汇报数据块信息
+两种切换选择
+手动切换 通过命令实现主备之间的切换 可以用 HDFS 升级等场合
+自动切换 基于 Zookeeper 实现
+基于 Zookeeper 自动切换方案
+Zookeeper Failover Controller 监控 NameNode 健康状态
+并向 Zookeeper 注册 NameNode
+NameNode 挂掉后 ZKFC 为 NameNode 竞争锁 获得 ZKFC 锁的 NameNode 变为 active
+
+
+HDFS 2.x Federation
+通过多个 namenode/namespace 把元数据的存储和管理分散到多个节点中 使用 namenode/namespace 可以通过增加机器来进行水平扩展
+能把单个 namenode 的负载分散到多个节点中 在 HDFS 数据规模较大的时候不会也降低 HDFS 的性能 可以通过多个 namespace 来隔离不同类型的应用 把不同类型应用的 HDFS 元数据的存储和管理分派到不同的 namenode 中
+
+
+YARN
+YARN YetAnother Resource Negotiator
+Hadoop 2.0 将 MRV1 中 JobTracker 的资源管理和任务调度两个功能分开 分别由 ResourceManager 和 ApplicationMaster 进程实现
+ResourceManager 负责整个集群的资源管理和调度
+ApplicationMaster 负责应用程序相关的事务 比如任务调度 任务监控和容错等
+YARN 的引入 使得多个计算框架可运行在一个集群中
+每个应用程序对应一个 ApplicationMaster
+目前多个计算框架可以运行在 YARN 上 比如 MapReduce Spark Storm 等
+
+MapReduce On YARN (MRV2)
+将 MapReduce 作业直接运行在 YARN 上 而不是由 JobTracker 和 TaskTracker 构建的 MRv1 系统中
+基本功能模块
+YARN 负责资源管理和调度
+MRAppMaster 负责任务切分 任务高度 任务监控和容错等
+MapTask/ReduceTask 任务驱动引擎 与 MRv1 一致
+每个 MapReduce 作业对应一个 MRAppMaster
+MRAppMaster 任务调度
+YARN 将资源分配给 MRAppMaster
+MRAppMaster 进一步将资源分配给内部的任务
+MRAppMaster 容错
+失败后 由 YARN 重新启动
+任务失败后 MRAppMaster 重新申请资源
+
+========================================================
+
+HDFS 写入文件的流程
+第一步 client 写入请求 namenode
+第二步 namenode 返回元数据给 client
+第三步 写入 block
+第四步 block 之间进行复制
+第五步 datanode 更新元数据至 namenode
+
+HDFS 读取文件的流程
+第一步 client 读取请求 namenode
+第二步 namenode 返回元数据给 client
+第三步 读取 block 中数据
+
+HDFS 读取数据  client 向 NameNode 发起读取数据的请求  
+NameNode 会检索 Client 读取数据的元数据信息来决定第一个 Block 具体在哪些机器上并根据 Hadoop 的机架感知策略等决定把哪个副本交给 Client 去读取  
+其实 NameNode 是返回了该副本的 URL  接下来就是 Client 通过该 URL 建立 InputStream 进行数据的读取  
+后续 Block 按照同样的流程 以此类推
+
+HDFS 写入数据  client 向 NameNode 发起写数据的请求
+NameNode 会决定把第一个 Block 及其副本写在哪些机器 (一般而言如果有三个副本 那么两个副本在同一个 Rack 另外一个副本在另一个机架中的) 但是实际上写入数据的时候  
+客户端只写入每个 Block 的第一个副本给 HDFS
+Client 写入每个 Block 的第一个副本后  该 Block 的副本是在 NameNode 的管理下基于第一个副本的数据进行 Pipeline 方式的写入
+
+
+基于 Yarn 的 MapReduce 架构
+MapReduce 程序是基于 Mapper 和 Reducer 两大阶段构成的 其中 Mapper 是把一个计算任务分成很多小任务进行并行计算 Reducer 是做最后的统计工作的
+Hadoop 2.x 开始 MapReduce 的运行是基于 Yarn 进行的
+
+当 ResourceManager 接收到 Client 提交程序的请求的时候会根据集群资源的状况在某个 NodeManager 所在的节点上命令 NodeManager 来启动程序的第一个 Container   该 Container 就是程序的 ApplicatioinMaster  负责程序的任务调度的执行过程  ApplicationMaster 转过来向 ResourceManager 注册自己  注册之的会向 ResourceManager 申请具体的 Container 计算资源
+
+如何知道一个程序中的 ApplicationMaster 需要多少个 Container 呢
+ApplicationMaster 在启动的时候会运行程序的 main 方法
+该方法中会有数据的输入和相关的配置
+通过这些内容就可以知道需要多少 Container
+
+主从结构
+主节点 只有一个 ResourceManager
+控制节点 每个 Job 都有一个 MRAppMaster
+从节点 有很多个 YarnChild
+
+ResourceManager 负责
+接收客户提交的计算任务
+把 Job 分给 MRAppMaster 执行
+监控 MRAppMaster 的执行情况
+
+MRAppMaster 负责
+负责一个 Job 执行的任务调度
+把 Job 分给 YarnChild 执行
+监控 YarnChild 的执行情况
+
+YarnChild 负责
+执行 MRAppMaster 分配的计算任务
+
+shuffling 合并并排序
+缓存到内存
+分区 排序
+排序后 合并到磁盘
+默认排序 字典排序
+默认分区 可能会产生数据倾斜

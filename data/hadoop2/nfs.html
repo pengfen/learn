@@ -1,0 +1,9 @@
+
+[root@peng1 hadoop2]# chmod -R 777 /opt/hadoop2/staging/
+[root@peng1 hadoop2]# ll /opt/hadoop2
+[root@peng1 hadoop2]# vi /etc/exports
+/opt/hadoop2/staging 192.168.0.0/24(rw,sync)
+[root@peng1 hadoop2]# service nfs start
+[root@peng1 hadoop2]# exportfs -rv
+exporting 192.168.0.0/24:/opt/hadoop2/staging
+

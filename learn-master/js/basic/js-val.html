@@ -1,0 +1,25 @@
+js获取表单中的值
+
+var type = $('select[name="source_type"]').val();
+var channel = $('select[name="source_channel"]').val();
+var page = $('select[name="source_page"]').val();
+var distriTimeFrom = $('input[name="DistriButTimeFrom"]').val();
+var distriTimeTo = $('input[name="DistriButTimeTo"]').val();
+var fromTimeFrom = $('input[name="FromTimeFrom"]').val();
+var fromTimeTo = $('input[name="FromTimeTo"]').val();
+var province = $('select[name="province"]').val();
+var city = $('select[name="city"]').val();
+if (city != "请选择城市名") {
+    city = province + ' ' + city;
+} else {
+    city = '';
+}
+var catOneName = $('select[name="catOneName"]').val();
+var catTwoName = $('select[name="catTwoName"]').val();
+var sms_id = $('select[name="sms_id"]').val();
+
+
+对于表单数据过多 常用系列化来传递表单数据至后端
+// js系列化表单数据
+var data = $("#searchform").serializeArray();
+data = JSON.stringify(data);

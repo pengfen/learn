@@ -1,0 +1,10 @@
+Scws 分词器
+
+class XSTokenizerScws implements XSTokenizer
+{
+	// 参考hightman ---> xunsearch ---> lib ---> XSTokenizer.class.php
+}
+
+tokenizer 分词对象
+$tokenizer = $model->getDb()->getScws(); // 获取分词对象
+$words = $tokenizer->getResult($keyword); // 智能提取句子的词

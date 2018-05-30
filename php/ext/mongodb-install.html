@@ -1,0 +1,44 @@
+mongodb windows 安装
+
+http://www.mongodb.org/downloads 或 https://yunpan.cn/cM8meEbgdu8V3  访问密码 e82a
+
+创建目录/data/db (在安装目录E:\files\mongo下)
+cmd
+
+e:
+cd files\mongo\bin
+E:\files\mongo\bin>mongod.exe --dbpath e:\files\mongo\data\db
+
+E:\files\mongo\bin>mongod.exe --dbpath e:\files\mongo\data\db #注意默认端口号
+2016-08-24T14:39:08.298+0800 I CONTROL  [main] Hotfix KB2731284 or later update is not installed
+2016-08-24T14:39:08.299+0800 I CONTROL  [initandlisten] MongoDB starting : pid=428 port=27017 db
+L
+2016-08-24T14:39:08.299+0800 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 20
+2016-08-24T14:39:08.299+0800 I CONTROL  [initandlisten] db version v3.2.9
+2016-08-24T14:39:08.299+0800 I CONTROL  [initandlisten] git version: 22ec9e93b40c85fc7cae7d56e7d
+2016-08-24T14:39:08.299+0800 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1p-fips 9 J
+2016-08-24T14:39:08.299+0800 I CONTROL  [initandlisten] allocator: tcmalloc
+2016-08-24T14:39:08.299+0800 I CONTROL  [initandlisten] modules: none
+2016-08-24T14:39:08.299+0800 I CONTROL  [initandlisten] build environment:
+2016-08-24T14:39:08.299+0800 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2016-08-24T14:39:08.299+0800 I CONTROL  [initandlisten]     distarch: x86_64
+2016-08-24T14:39:08.300+0800 I CONTROL  [initandlisten]     target_arch: x86_64
+2016-08-24T14:39:08.300+0800 I CONTROL  [initandlisten] options: { storage: { dbPath: "e:\files\
+2016-08-24T14:39:08.301+0800 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_siz
+_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),fil
+,log_size=2GB),statistics_log=(wait=0),
+2016-08-24T14:39:08.679+0800 I NETWORK  [HostnameCanonicalizationWorker] Starting hostname canon
+2016-08-24T14:39:08.679+0800 I FTDC     [initandlisten] Initializing full-time diagnostic data c
+ic.data'
+2016-08-24T14:39:08.782+0800 I NETWORK  [initandlisten] waiting for connections on port 27017
+
+mongod.exe --bind_ip yourIPadress --logpath "C:\data\dbConf\mongodb.log" --logappend --dbpath "C:\data\db" --port yourPortNumber --serviceName "YourServiceName" --serviceDisplayName "YourServiceName" --install
+
+--bind_ip	绑定服务IP，若绑定127.0.0.1，则只能本机访问，不指定默认本地所有IP
+--logpath	定MongoDB日志文件，注意是指定文件不是目录
+--logappend	使用追加的方式写日志
+--dbpath	指定数据库路径
+--port	指定服务端口号，默认端口27017
+--serviceName	指定服务名称
+--serviceDisplayName	指定服务名称，有多个mongodb服务时执行。
+--install	指定作为一个Windows服务安装。

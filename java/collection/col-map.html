@@ -1,0 +1,17 @@
+Map 接口
+Map 提供了一种映射关系 其中的元素是以键值对 (key-value) 的形式存储的 能够实现根据 key 快速查找 value
+Map 中的键值对以 Entry 类型的对象实例形式存在
+键 (key 值) 不可重复 value 值可以
+每个键最多只能映射到一个值
+Map 接口提供了分别返回 key 值集合 value 值集合以及 Entry(键值对) 集合的方法
+Map 支持泛型 形式如 Map<K, V>
+
+HashMap 类
+HashMap 是 Map 的一个重要实现类 也是最常用的 基于哈希表实现
+HashMap 中的 Entry 对象是无序排列的
+Key 值和 value 值都可以为 null 但是一个 HashMap 只能有一个 key 值为 null 的映射(key值不可重复)
+
+案例功能
+通过 Map<String, Student> 进行学生信息管理 其中 key 为学生 ID  value 为学生对象
+通过键盘输入学生信息
+对集合中的学生信息进行增 删 改 查操作

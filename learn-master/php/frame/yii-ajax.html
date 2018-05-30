@@ -1,0 +1,18 @@
+Yii 中使用异步请求
+
+1) 编写 js 文件 (web/js/customer.js)
+$(function(){
+	$.ajax({
+	    url:'/index.php?r=customer/test',
+	    success:function(data) {
+	        console.log(data);
+	    }
+	})
+})
+2) 加载 js 文件 (views/layouts/main.php)
+<?= Html::jsFile('@web/js/customer.js') ?>
+3) 编辑控制器方法
+public function actionTest() {
+	echo '调用成功';
+}
+4) 浏览器中测试

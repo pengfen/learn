@@ -1,0 +1,100 @@
+<?php
+/**
+ * 定时刷新索引库
+ * User: peng
+ * Date: 2016/2/16
+ * Time: 16:19
+ */
+namespace console\controllers;
+
+use yii\console\Controller;
+use yii\helpers\ArrayHelper;
+use console\models\Order;
+use console\models\Orderextend;
+use console\models\Ordergoods;
+use console\models\RefundmentDoc;
+use console\models\Goods;
+use console\models\Brand;
+use console\models\Se_goods;
+use yii\db\Query;
+
+class SearchController extends Controller
+{
+    /**
+     * @peng 2016-02-16 批量插入数据至索引库
+     */
+    public function actionBatchinsertgoods(){
+        $model = new Se_goods();
+        $GoodsTB = Goods::tableName();
+        $BrandTB = Brand::tableName();
+        $query = new Query;
+        $query->select(['g.id','g.name','g.img','g.store_nums','g.if_price','g.is_del','g.up_time','g.grade','g.sale','g.real_market_price','g.spot_goods','g.sell_price','b.name brand_name'])
+            ->from($GoodsTB . 'AS g')
+            ->leftJoin($BrandTB . 'AS b', 'b.id=g.brand_id')
+            ->orderBy('g.id asc');
+        $data = $query->all();
+        //$data = Goods::find()->asArray()->all(); // 获取商品数据
+        if ($data) {
+            $model->deleteAll(); // 清除索引库数据
+            $index = $model->getDb()->getIndex(); // 获取索引对象
+            $index->openBuffer(); // 开启索引缓冲区
+            $rate = \Yii::$app->params['usdtocny'];
+            foreach($data as $key=>$val) {
+                if (isset($val['id']) && isset($val['name']) && $val['sell_price'] && $val['is_del'] == 0) {
+                    $model->id = $val['id'];
+                    $model->name = $val['name'];
+                    $model->sell_price = round($rate*$val['sell_price']);
+                    $model->img = empty($val['img'])?'':$val['img'];
+                    $model->up_time = empty($val['up_time'])?'':$val['up_time'];
+                    $model->grade = empty($val['grade'])?0:$val['grade'];
+                    $model->sale = empty($val['sale'])?0:$val['sale'];
+                    $model->store_nums = empty($val['store_nums'])?0:$val['store_nums'];
+                    $model->if_price = $val['if_price'];
+                    $market_price = empty($val['real_market_price'])?0:floatval($val['real_market_price']);
+                    $model->real_market_price = round($rate*$market_price);
+                    $model->brand_name = empty($val['brand_name'])?'':$val['brand_name'];
+                    $model->spot_goods = $val['spot_goods'];
+                    $model->save();
+                }
+            }
+            $index->closeBuffer(); // 关闭索引缓冲区
+            echo '数据批量添加成功';
+            $result = ['is_Error' => false, 'message' => '数据批量添加成功'];
+        } else {
+            echo '数据批量添加失败';
+            $result = ['is_Error' => true, 'message' => '数据批量添加失败'];
+        }
+        return $result;
+    }
+
+    /**
+     * @peng 2016-02-16 添加自定义词典内容
+     */
+    public function actionCustomdict() {
+        $GoodsTB = Goods::tableName();
+        $query = new Query;
+        $data = $query->select(['keywords'])->from($GoodsTB)->all();
+        if ($data) {
+            $model = new Se_goods();
+            $index = $model->getDb()->getIndex(); // 获取索引对象
+            $index->setCustomDict(''); // 清空以前的数据
+            foreach ($data as $key=>$val) {
+                if (!$val['keywords']) {
+                    continue;
+                }
+                $dict = $val['keywords'];
+                $custom = $index->getCustomDict(); // 获取自定义词典内容
+                $dict = $custom.$dict."\n"; // 追加内容
+                $index->setCustomDict($dict);
+            }
+            self::actionBatchinsertgoods();
+
+            echo '自定义词典添加成功';
+            $result = ['is_Error' => false, 'message' => '自定义词典添加成功'];
+        } else {
+            echo '自定义词典添加失败';
+            $result = ['is_Error' => true, 'message' => '自定义词典添加失败'];
+        }
+        return $result;
+    }
+}

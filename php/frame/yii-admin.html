@@ -1,0 +1,111 @@
+安装yii后台管理
+
+进入到项目目录
+php composer.phar require dmstr/yii2-adminlte-asset "2.*"
+改为
+composer require dmstr/yii2-adminlte-asset "2.*"
+
+会安装 rmrevin/yii-fontawesome almasaeed2010/adminlts cehe/yii2-gravatar dmstr/yii2-adminlte-asset
+
+backend 后台main.php配置文件中放置
+
+    "view" => [
+        "theme" => [
+            "pathMap" => [
+                "@app/views" => "@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app"
+            ],
+        ],
+    ], // 放置在components中
+
+
+
+php composer.phar require mdmsoft/yii2-admin "~2.0"
+改为
+composer require mdmsoft/yii2-admin "~2.0"
+
+会安装 mdmsoft/yii2-admin
+
+frontend 前台main.php配置文件中放置
+    'modules' => [
+        'admin' => [
+            'class' => 'mdm\admin\Module',
+            'layout' => 'left-menu',//yii2-admin的导航菜单
+        ]
+    ],
+
+backend 后台main.php配置文件中放置
+    'authManager' => [
+        'class' => 'yii\rbac\DbManager', // 使用数据库管理配置文件
+    ], // 放
+
+    "urlManager" => [
+        //用于表明urlManager是否启用URL美化功能，在Yii1.1中称为path格式URL，
+        // Yii2.0中改称美化。
+        // 默认不启用。但实际使用中，特别是产品环境，一般都会启用。
+        "enablePrettyUrl" => true,
+        // 是否启用严格解析，如启用严格解析，要求当前请求应至少匹配1个路由规则，
+        // 否则认为是无效路由。
+        // 这个选项仅在 enablePrettyUrl 启用后才有效。
+        "enableStrictParsing" => false,
+        // 是否在URL中显示入口脚本。是对美化功能的进一步补充。
+        "showScriptName" => false,
+        // 指定续接在URL后面的一个后缀，如 .html 之类的。仅在 enablePrettyUrl 启用时有效。
+        "suffix" => "",
+        "rules" => [
+            "<controller:\w+>/<id:\d+>"=>"<controller>/view",
+            "<controller:\w+>/<action:\w+>"=>"<controller>/<action>"
+        ],
+    ], // 放置在components中
+
+    配置prettyurl后还需要添加.htaccess文件 文件内容如下
+    Options +FollowSymLinks
+	IndexIgnore  */*
+	RewriteEngine on
+	# if a directory or a file exists, use it directly
+	RewriteCond  %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	# otherwise forward it to index.php
+	RewriteRule . index.php
+
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            '/site/login',
+//            'site/*',//允许访问的节点，可自行添加
+//            'admin/*',//允许所有人访问admin节点及其子节点
+        ]
+    ],
+
+common 公共中配置
+    'authManager' => [
+        'class' => 'yii\rbac\DbManager', // 使用数据库管理配置文件
+    ] // 放置在components中
+
+    'language' => 'zh-cn',
+
+    yii migrate --migrationPath=@mdm/admin/migrations
+    全自动生成 menu表 migration表
+    yii migrate --migrationPath=@yii/rbac/migrations
+    会自动生成 auth_assignment auth_item auth_item_child auth_rule 四张表
+
+    http://dev.yii.com/index.php?r=admin 前台访问可以看权限相关信息
+    配置 'language' => 'zh-cn', 将页面上的英文改为中文
+
+    yii2-admin 的使用
+    创建user管理员表
+    CREATE TABLE `user` (
+      `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+      `username` varchar(255) NOT NULL COMMENT '用户名',
+      `auth_key` varchar(32) NOT NULL COMMENT '自动登录key',
+      `password_hash` varchar(255) NOT NULL COMMENT '加密密码',
+      `password_reset_token` varchar(255) DEFAULT NULL COMMENT '重置密码token',
+      `email` varchar(255) NOT NULL COMMENT '邮箱',
+      `role` smallint(6) NOT NULL DEFAULT '10' COMMENT '角色等级',
+      `status` smallint(6) NOT NULL DEFAULT '10' COMMENT '状态',
+      `created_at` int(11) NOT NULL COMMENT '创建时间',
+      `updated_at` int(11) NOT NULL COMMENT '更新时间',
+      PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='后台管理员表';
+
+注册用户 
+http://dev.yii.com/ --- signup --- 注册一个用户

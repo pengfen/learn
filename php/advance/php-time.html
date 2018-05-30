@@ -1,0 +1,102 @@
+PHP错误处理和时间日期函数
+========================================================
+1. PHP的错误处理
+	1.1 错误报告级别
+		PHP程序的错误发生一般归属于下列三个领域：
+		语法错误：		Parse error 		语法错误最常见，并且也容易修复。如：代码中遗漏一个分号。这类错误会阻止脚本的执行。
+		运行时错误：		Fatal error		这种错误一般不会阻止PHP脚本的执行，但会阻止当前要做的事情。输出一条错误，但php脚本继续执行
+		警告错误：		Warning			警告信息  不会影响程序的执行    
+		提示错误：		Notice				提示 通知	不会影响程序的执行
+		语法严格声明： Strict standards	更加严格的语法标准		老版本中的语法在新版本中不建议使用
+		逻辑错误：		这种错误最麻烦，既不阻止脚本执行，也不输出错误消息。
+		
+		级别常量									错误值									错误报告描述
+		E_ERROR									1											致命的运行时错误（阻止脚本执行）
+		E_WARNING								2											运行时警告(非致命性错误)
+		E_PARSE									4											从语法中解析错误
+		E_NOTICE									8											运行时注意消息(可能是或可能不是一个问题) 
+		E_CORE_ERROR						16										PHP启动时初始化过程中的致命错误
+		E_CORE_WARNING					32										PHP启动时初始化过程中的警告(非致命性错)
+		E_COMPILE_ERROR					64										编译时致命性错 
+		E_COMPILE_WARNING				128										编译时警告(非致命性错) 
+		E_USER_ERROR							256										用户自定义的致命错误 
+		E_USER_WARNING 					512										用户自定义的警告(非致命性错误)
+		E_USER_NOTICE						1024										用户自定义的提醒(经常是bug) 
+		E_STRICT									2048										编码标准化警告(建议如何修改以向前兼容) 
+		E_ALL										6143										所有的错误、警告和注意信息
+	1.2 调整错误报告级别
+		配置指令									默认值								描述
+		display_startup_errors				Off									是否显示PHP引擎在初始化时遇到的错误
+		log_errors									Off									确定日志语句记录位置
+		error_log									Null									设置错误可以发送到syslog中
+		log_errors_max_len					1024									每个日志项的最大长度，以字节为单位，设置0表示指定最大长度。
+		ignore_repeated_errors				Off									是否忽略同一个文件、同一行发生的重复错误消息
+		ignore_repeated_source			Off									忽略不同文件中和同一文件中不同行发生的重复错误。
+		track_errors								Off									启动该指令会使PHP在$php_errormsg中存储最近发生的错误信息。 
+		
+		1.2.1	display_errors: 是否开启PHP输出错误报告的功能		值为：On（默认输出错误报告）、 Off（屏蔽所有错误信息）
+		1.2.2 error_reporting: 设置不同的错误报告级别。
+				error_reporting = E_ALL & ~E_NOTICE						
+					-- 可以抛出任何非注意的错误，默认值
+				error_reporting = E_ERROR | E_PARSE | E_CORE_ERROR
+				   -- 只考虑致命的运行时错误、新解析错误和核心错误。
+				error_reporting = E_ALL & ~(E_USER_ERROR | E_USER_WARNING | E_USER_NOTICE)
+				   -- 报告除用户导致的错误之外的所有错误。
+		1.2.3	在PHP脚本可以通过error_reporting( )函数动态设置错误报告级别。
+
+	1.3 使用trigger_error()函数来替代die( )
+		
+	1.4 自定义错误处理
+		1.3.1 为什么要自定义用户处理
+			自定义错误报告的处理方式，可以完全绕过标准的PHP错误处理函数，这样就可以按自己定义的格式打印错误报告，或改变错误报告打印的位置
+			以下几种情况可以考虑自定义错误处理。
+				可以记下错误的信息，及时发现一些生产环境出现的问题
+				可以屏蔽错误。
+				可以控制错误的输出。
+				可以作为调试工具。
+		1.3.2	使用set_error_handler()函数来设置用户自定义错误处理。
+		
+	1.5 写错误日志
+		1.5.1	使用指定的文件记录错误报告日志
+			1、先配置php.ini:
+				error_reporting = E_ALL		将向PHP发送每个错误
+				display_errors=Off     			不显示错误报告
+				log_errors=On          			决定日志语句记录的位置
+				log_errors_max_log=1024	    每个日志项的最大长度
+				error_log=G:/myerror.log		指定错误写进的文件
+			2、使用函数：在php文件中使用error_log()来记录日志,就可以将信息写入到myerror.log文件中
+				如果出现错误，自动写日志
+
+		1.5.1	错误日志记录到操作系统的日志里
+			1、先配置PHP.ini文件中
+				error_reporting = E_ALL  	     将向PHP发送每个错误
+				display_errors=Off 	     		 不显示错误报告
+				log_errors=On 		     			 决定日志语句记录的位置。
+				log_errors_max_log=1024   	 每个日志项的最大长度
+				error_log=syslog 	     			 指定到系统日志中。
+			2、使用四个函数来记录日志：
+				define_syslog_variables();		 为系统日志初始化配置		PHP5.3 已经废除
+				openlog();		    					 打开一个日志链接
+				syslog();		     					 发送一条日志记录
+				closelog();	   	     					 关闭日志链接
+			3， 有错误自动写日志
+2. PHP的时间和日期
+	2.1 UNIX时间戳
+		time()				获取当前的事件戳
+		mktime()			获取指定日期时间 的时间戳
+		strtotime()		把任意英文格式的时间日期转换为时间戳
+		时间戳： 是公元1970年1月1日 0点 0分 0秒  至今 的秒数  
+	2.2 在PHP中获取日期和时间
+		getdate()
+	2.3 日期和时间的格式化输出
+		date()
+	2.3 修改PHP的默认时区
+		1、修php.ini配置文件：
+				 date.timezone = Etc/GMT+8	
+				 date.timezone = PRC
+				 date.timezone = Asia/ChongQing
+		2、date_default_timezone_set( ): 	-- 设定用于一个脚本中所有日期时间函数的默认时区 。
+		3、date_default_timezone_get( ): 	-- 获取当前时区
+
+	2.4 使用微妙计算PHP脚本执行时间
+		microtime()

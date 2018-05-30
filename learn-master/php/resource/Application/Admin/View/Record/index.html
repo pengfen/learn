@@ -1,0 +1,36 @@
+<extend name='Layout/index'/>
+<block name='resource'>
+</block>
+<block name='main'>
+<div id = 'right' class="col-md-10">
+	<table class="table table-striped">
+	    <thead>
+	    	<tr>
+	    		<th>编号</th>
+	    		<th>用户名</th>
+	    		<th>生活记录</th>
+	    		<th>添加时间</th>
+	    		<th>操作</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    	<foreach name='info' item='v'>
+	    	<tr>
+	    		<td>{$v.id}</td>
+	    		<td>{$name}</td>
+	    		<td><if condition="$v[oper] eq 0">发布了说说<elseif condition="$v[oper] eq 1"/>发布了日志<else />上传了图片</if></td>
+	    		<td>{:date('Y-m-d H:i:s', $v[addtime])}</td>
+	    		<td>
+	    			<!-- <a class="update" href="javascript:void(0)">修改</a>
+	    			<input type="hidden" name="" value="{:U('User/edit', array('id'=>$v[id], 'state'=>$v['state'], 'name'=>$v[username]))}" /> -->
+	    		</td>
+	    	</tr>
+	    	</foreach>
+	    </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+	// click($('.update')); // 修改会员状态
+	// click($('.detail')); // 显示会员详情
+</script>
+</block>

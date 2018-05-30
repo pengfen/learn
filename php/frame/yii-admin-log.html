@@ -1,0 +1,205 @@
+create table `admin_log` (
+    `id` int unsigned not null auto_increment primary key,
+    `admin_id` int unsigned not null comment '操作用户ID',
+    `admin_name` varchar(200) not null comment '操作用户名',
+    `addtime` int not null comment '记录时间',
+    `admin_ip` varchar(200) not null comment '操作用户IP',
+    `admin_agent` varchar(200) not null comment '操作用户浏览器代理商',
+    `describe` varchar(200) not null default '' comment '记录描述',
+    `model` varchar(200) not null comment '操作模块(如文章)',
+    `type` varchar(200) not null comment '操作类型(如添加)',
+    `handle_id` int unsigned not null default 0 comment '操作对象id',
+    `result` text comment '操作结果',
+    `note` text comment '备注'
+)engine=myisam default charset=utf8 comment='后台日志操作记录表';
+
+控制器
+<?php
+
+namespace backend\controllers;
+
+use backend\components\BaseController;
+use common\models\AdminLog;
+use yii;
+use yii\data\ActiveDataProvider;
+
+class AdminLogController extends BaseController
+{
+    public function actionIndex()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => AdminLog::find(),
+            'sort' => [
+                'defaultOrder' => [
+                    'addtime' => SORT_DESC
+                ]
+            ],
+        ]);
+        return $this->render('index',[
+            'dataProvider' => $dataProvider
+        ]);
+    }
+
+    public function actionView($id){
+       return $this->render('view',[
+           'model'=>AdminLog::findOne($id),
+       ]);
+    }
+
+}
+
+数据模型
+<?php
+
+namespace common\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "{{%article}}".
+ **/
+class AdminLog extends \yii\db\ActiveRecord
+{
+
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%admin_log}}';
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id'=>'操作记录ID',
+            'title'=>'操作记录描述',
+            'addtime'=>'记录时间',
+            'admin_name'=>'操作人姓名',
+            'admin_ip'=>'操作人IP地址',
+            'admin_agent'=>'操作人浏览器代理商',
+            'controller'=>'操作控制器名称',
+            'action'=>'操作类型',
+            'objId'=>'操作数据编号',
+            'result'=>'操作结果',
+        ];
+    }
+
+
+
+    public static function saveLog($controller ,$action,$result,$objId){
+        $model = new self;
+        $model->admin_ip = Yii::$app->request->userIP;
+        $headers = Yii::$app->request->headers;
+        $model->addtime = time();
+        if ($headers->has('User-Agent')) {
+            $model->admin_agent =  $headers->get('User-Agent');
+        }
+        $model->admin_id = Yii::$app->user->identity->id;
+        $model->admin_name = Yii::$app->user->identity->email;
+
+        $controllers = ['article','video','collection','collection-album','category','banner','exchange','user','admin'];
+        if(!in_array(strtolower($controller),$controllers)) $controller = '';
+        $actions = ['create','update','delete','login','logout'];
+        if(!in_array(strtolower($action),$actions))$action = '';
+
+        $model->controller = $controller;
+        $model->action = $action;
+        $model->result = $result;
+        $model->objId = $objId;
+        $model->title =  $model->admin_name.' '.$model->action.' '.$model->controller;
+        $model->save(false);
+
+    }
+}
+
+index视图
+<?php
+
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = '操作记录';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="handle-index">
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => [
+            'title',
+            [
+                'attribute'=>'addtime',
+                'value'=>function($model){
+                    return date('Y-m-d H:i:s',$model->addtime);
+                },
+            ],
+            ['class' => 'yii\grid\ActionColumn','template'=>'{view}']
+        ],
+        'tableOptions'=>['class' => 'table table-striped']
+    ]); ?>
+
+</div>
+
+详细列表
+<?php
+
+use yii\widgets\DetailView;
+
+/* @var $this yii\web\View */
+/* @var $model backend\models\Admin */
+
+$this->title = '操作记录： '.$model->title;
+$this->params['breadcrumbs'][] = ['label' => '操作记录', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="admin-view">
+
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'id',
+            'admin_name',
+            'addtime:datetime',
+            'admin_ip',
+            'admin_agent',
+            'controller',
+            'action',
+            'objId',
+            'result'
+        ],
+    ]) ?>
+
+</div>
+
+控制器中调用
+
+public function actionCreate()
+    {
+        $model = new Banner();
+        $model->status=Banner::STATUS_DISPLAY;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            //保存操作记录
+            \common\models\AdminLog::saveLog('banner','create',$model->searchById($model->primaryKey),$model->primaryKey);
+
+            Yii::$app->session->setFlash('success','Banner【'.$model->title.'】发布成功');
+            return $this->redirect(['index']);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+public function searchById($id){
+    if (($model = Banner::findOne($id)) !== null) {
+        return json_encode($model->toArray());
+    } else {
+        throw new \yii\web\NotFoundHttpException('The requested page does not exist.');
+    }
+}

@@ -1,0 +1,31 @@
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+//文件操作  
+
+//声明文件名
+$filename = "./data.txt";
+
+//打开文件
+/**
+	文件的打开 方式
+		r				readonly	只读
+		r+				读写
+		w				只写
+		w+			读写
+		a				只写
+		a+			读写
+		x				只写
+		x+			读写
+*/
+//以读写方式打开
+$fp = fopen($filename, 'r+');
+
+//写文件
+//fwrite($fp, '小艳艳和我去钓鱼，钓完鱼就去.......');
+
+//读取文件
+echo fread($fp, filesize($filename));
+
+//关闭资源
+fclose($fp);

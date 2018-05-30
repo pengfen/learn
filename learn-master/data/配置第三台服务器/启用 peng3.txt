@@ -1,0 +1,177 @@
+配置无密码登录 peng3
+
+[root@peng1 hadoop1.2]# cd /root/.ssh/
+[root@peng1 .ssh]# ls
+authorized_keys  id_dsa  id_dsa.pub  known_hosts
+[root@peng1 .ssh]# scp id_dsa root@peng3:~
+The authenticity of host 'peng3 (192.168.209.131)' can't be established.
+RSA key fingerprint is b2:cc:4e:b0:e4:fb:53:30:26:5e:3c:15:a2:63:b7:d5.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'peng3,192.168.209.131' (RSA) to the list of known hosts.
+root@peng3's password:
+id_dsa                                        100%  672     0.7KB/s   00:00
+
+登录 peng3
+
+[root@peng3 ~]# ]# cat id_dsa.pub >> ~/.ssh/authorized_keys
+-bash: /root/.ssh/authorized_keys: 没有那个文件或目录
+[root@peng3 ~]# ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
+Generating public/private dsa key pair.
+Created directory '/root/.ssh'.
+Your identification has been saved in /root/.ssh/id_dsa.
+Your public key has been saved in /root/.ssh/id_dsa.pub.
+The key fingerprint is:
+52:ba:04:e1:83:35:ed:c7:da:e3:fd:46:0e:67:14:e4 root@peng3
+The key's randomart image is:
++--[ DSA 1024]----+
+|    +.     ..    |
+|   + o.    ..    |
+|  . +. ..   E.   |
+|     o.oo   .    |
+|      ++S  .     |
+|     ..oo . +    |
+|      .. o *     |
+|        . . o    |
+|           o.    |
++-----------------+
+[root@peng3 ~]# cat id_dsa.pub >> ~/.ssh/authorized_keys
+
+
+查看 hosts
+
+[root@peng1 hadoop1.2]# vi /etc/hosts
+192.168.209.130 peng2
+192.168.209.129 peng1
+192.168.209.131 peng3
+
+[root@peng1 .ssh]# scp /etc/hosts  root@peng3:/etc
+hosts                                         100%  224     0.2KB/s   00:00
+
+[root@peng3 ~]# vi /etc/hosts
+
+[root@peng1 .ssh]# scp /etc/hosts  root@peng2:/etc
+hosts                                         100%  224     0.2KB/s   00:00
+
+修改相关配置 及配置节点相关信息
+
+[root@peng1 conf]# vi masters
+peng3 配置 secondaryNameNode
+[root@peng1 conf]# vi slaves
+peng2
+peng3 配置 DataNode
+
+[root@peng1 conf]# scp -r /home/hadoop1.2/conf  root@peng2:/home/hadoop1.2/
+task-log4j.properties                         100% 3890     3.8KB/s   00:00
+fair-scheduler.xml                            100%  327     0.3KB/s   00:00
+mapred-queue-acls.xml                         100% 2033     2.0KB/s   00:00
+masters                                       100%    6     0.0KB/s   00:00
+ssl-server.xml.example                        100% 1994     2.0KB/s   00:00
+hadoop-env.sh                                 100% 2439     2.4KB/s   00:00
+log4j.properties                              100% 5018     4.9KB/s   00:00
+hadoop-metrics2.properties                    100% 2052     2.0KB/s   00:00
+taskcontroller.cfg                            100%  382     0.4KB/s   00:00
+configuration.xsl                             100% 1095     1.1KB/s   00:00
+core-site.xml                                 100%  392     0.4KB/s   00:00
+hadoop-policy.xml                             100% 4644     4.5KB/s   00:00
+hdfs-site.xml                                 100%  272     0.3KB/s   00:00
+ssl-client.xml.example                        100% 2042     2.0KB/s   00:00
+slaves                                        100%    6     0.0KB/s   00:00
+mapred-site.xml                               100%  282     0.3KB/s   00:00
+capacity-scheduler.xml                        100% 7457     7.3KB/s   00:00
+
+登录到 peng2 查看相关配置文件是否正确
+[root@peng2 hadoop1.2]# cd conf/
+[root@peng2 conf]# vi core-site.xml
+[root@peng2 conf]# vi hdfs-site.xml
+[root@peng2 conf]# vi mapred-site.xml
+
+[root@peng1 conf]# scp -r /usr/local/java/  root@peng3:/usr/local/java
+javafx-src.zip                                100% 4985KB   4.9MB/s   00:00
+[root@peng1 conf]# scp -r /etc/profile  root@peng3:/etc/
+profile                                       100% 1973     1.9KB/s   00:00
+
+[root@peng1 conf]# scp -r /root/hadoop/hadoop-1.2.1  root@peng3:/root/hadoop/
+
+登录到 peng3
+[root@peng3 ~]# java -version
+java version "1.6.0_24"
+OpenJDK Runtime Environment (IcedTea6 1.11.1) (rhel-1.45.1.11.1.el6-i386)
+OpenJDK Client VM (build 20.0-b12, mixed mode)
+[root@peng3 ~]# vi /etc/profile
+[root@peng3 hadoop]# ln -sf /root/hadoop/hadoop-1.2.1 /home/hadoop1.2
+
+[root@peng3 conf]# vi core-site.xml
+[root@peng3 conf]# vi hdfs-site.xml
+[root@peng3 conf]# vi mapred-site.xml
+[root@peng3 conf]# vi masters
+[root@peng3 conf]# vi slaves
+
+[root@peng3 conf]# jps
+-bash: jps: command not found
+[root@peng3 conf]#
+[root@peng3 conf]# source /etc/profile
+[root@peng3 conf]# jps
+
+三台服务器都关闭防火增
+[root@peng2 hadoop]# service iptables stop
+iptables：清除防火墙规则：                                 [确定]
+iptables：将链设置为政策 ACCEPT：filter                    [确定]
+iptables：正在卸载模块：                                   [确定]
+
+
+[root@peng1 hadoop1.2]# ./bin/start-all.sh                                      starting namenode, logging to /root/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-root-namenode-peng1.out
+peng2: starting datanode, logging to /root/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-root-datanode-peng2.out
+peng3: starting datanode, logging to /root/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-root-datanode-peng3.out
+peng3: starting secondarynamenode, logging to /root/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-root-secondarynamenode-peng3.out
+starting jobtracker, logging to /root/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-root-jobtracker-peng1.out
+peng2: starting tasktracker, logging to /root/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-root-tasktracker-peng2.out
+peng3: starting tasktracker, logging to /root/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-root-tasktracker-peng3.out
+[root@peng1 hadoop1.2]#
+[root@peng1 hadoop1.2]#
+[root@peng1 hadoop1.2]# jps
+5790 NameNode
+6047 Jps
+
+
+[root@peng2 hadoop]# jps
+26903 DataNode
+27052 Jps
+27004 TaskTracker
+
+
+[root@peng3 hadoop]# jps
+3744 SecondaryNameNode
+3878 Jps
+3675 DataNode
+
+
+[root@peng1 ~]# touch test
+[root@peng1 ~]# vim test
+
+
+[root@peng1 hadoop1.2]# ./bin/hadoop fs -mkdir /user/input/wc
+[root@peng1 hadoop1.2]# ./bin/hadoop fs -ls /user/
+Found 2 items
+drwxr-xr-x   - root supergroup          0 2016-03-10 21:17 /user/input
+drwxr-xr-x   - root supergroup          0 2016-03-10 21:16 /user/root
+
+[root@peng1 hadoop1.2]# ./bin/hadoop fs  -put /root/test /user/input/wc
+[root@peng1 hadoop1.2]# ./bin/hadoop fs  -cat /user/input/wc/test
+welcome hadoop welcome hello
+world put get
+put get welcom
+hadoop hello
+world put get
+put hello welcome
+
+[root@peng1 hadoop1.2]# ./bin/hadoop jar /root/wc.jar mr.peng.com.JobRun
+16/03/10 21:52:59 WARN mapred.JobClient: Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+16/03/10 21:52:59 INFO input.FileInputFormat: Total input paths to process : 1
+16/03/10 21:52:59 INFO util.NativeCodeLoader: Loaded the native-hadoop library
+16/03/10 21:52:59 WARN snappy.LoadSnappy: Snappy native library not loaded
+16/03/10 21:52:59 INFO mapred.JobClient: Running job: job_201603102151_0001
+16/03/10 21:53:00 INFO mapred.JobClient:  map 0% reduce 0%
+16/03/10 21:53:05 INFO mapred.JobClient:  map 100% reduce 0%
+16/03/10 21:53:12 INFO mapred.JobClient:  map 100% reduce 33%
+16/03/10 21:53:13 INFO mapred.JobClient:  map 100% reduce 100%
+16/03/10 21:53:14 INFO mapred.JobClient: Job complete: job_201603102151_0001

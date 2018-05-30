@@ -1,0 +1,29 @@
+<extend name='Layout/index'/>
+<block name='resource'>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/apeng.css"/>
+</block>
+<block name='main'>
+<div class='admin-mess'>{$_GET['mess']}</div>
+<div id = 'right' class="col-md-10">
+	<table class="table table-striped">
+	    <thead>
+	    	<tr>
+	    		<th>编号</th>
+	    		<th>回复者</th>
+	    		<th>回复内容</th>
+	    		<th>回复时间</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    	<foreach name='info' item='v'>
+	    	<tr>
+	    		<td>{$key + 1}</td>
+	    		<td>{$v.username}</td>
+	    		<td>{$v.content}</td>
+	    		<td>{:date('Y-m-d H:i:s', $v[addtime])}</td>
+	    	</tr>
+	    	</foreach>
+	    </tbody>
+    </table>
+</div>
+</block>

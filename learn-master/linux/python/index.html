@@ -1,0 +1,24 @@
+[root@caopeng1 ~]# python
+Python 2.6.6 (r266:84292, Jun 18 2012, 14:10:23) 
+[GCC 4.4.6 20110731 (Red Hat 4.4.6-3)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> print "welcome to python world" #打印入门
+welcome to python world
+>>> exit() #退出
+
+入门程序
+[root@caopeng1 python]# vim wel.py
+
+#!/usr/bin/env python
+#_*_ coding:utf-8 _*_
+
+# Filename : wel.py
+print 'welcome to python world'
+
+# 可以使用 python 执行命令 也可以使用 755 改变权限执行文件 
+[root@caopeng1 python]# python wel.py
+welcome to python world
+
+# 更换为执行文件
+chmod 755 wel.py
+./wel.py

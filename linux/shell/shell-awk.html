@@ -1,0 +1,114 @@
+    awk '条件1{动作1} 条件2{动作2} ...' 文件名
+    条件 (pattern)
+    一般使用关系表达式作为条件
+    x > 10 判断变量 x 是否大于 10
+    x >= 10 大于等于
+    x <= 10 小于等于
+    动作 (Action)
+    格式化输出
+    流程控制语句
+
+
+    [root@peng1 shell]# cut -f 2,4 student.txt
+    name    mark
+    apeng   85
+    cao     60
+    peng    70
+    [root@peng1 shell]# awk '{printf $2 "\t" $4 "\n"}' student.txt
+    name    mark
+    apeng   85
+    cao     60
+    peng    70
+    [root@peng1 shell]# awk '{print $2 "\t" $4}' student.txt
+    name    mark
+    apeng   85
+    cao     60
+    peng    70
+
+    [root@peng1 shell]# df -h  
+    文件系统              容量  已用  可用 已用%% 挂载点
+    /dev/sda3              20G  4.1G   14G  23% /
+    tmpfs                 504M     0  504M   0% /dev/shm
+    /dev/sda1             194M   26M  158M  15% /boot
+
+    [root@peng1 shell]# df -h | grep "/dev/sda3"
+    /dev/sda3              20G  4.1G   14G  23% /
+    [root@peng1 shell]# df -h | grep "/dev/sda3" | awk '{print $5}'
+    23%
+    [root@peng1 shell]# df -h | grep "/dev/sda3" | awk '{print $5}' | cut -d "%" -f 1
+    23
+
+
+    [root@peng1 shell]# cat student.txt
+    id      name    gender  mark
+    1       apeng   f       85
+    2       cao     f       60
+    3       peng    f       70
+    [root@peng1 shell]# awk '{print $2 "\t" $4}' student.txt
+    name    mark
+    apeng   85
+    cao     60
+    peng    70
+    [root@peng1 shell]# awk 'BEGINP{print "这是学生信息"}{print $2 "\t" $4}' student.txt
+    name    mark
+    apeng   85
+    cao     60
+    peng    70
+    [root@peng1 shell]# awk 'BEGIN{print "这是学生信息"}{print $2 "\t" $4}' student.txt
+    这是学生信息
+    name    mark
+    apeng   85
+    cao     60
+    peng    70
+    [root@peng1 shell]# awk 'END{print "这是学生信息"}{print $2 "\t" $4}' student.txt
+    name    mark
+    apeng   85
+    cao     60
+    peng    70
+    这是学生信息
+
+    FS 内置命令
+    [root@peng1 shell]# cat /etc/passwd | grep /bin/bash
+    root:x:0:0:root:/root:/bin/bash
+    mysql:x:27:27:MySQL Server:/var/lib/mysql:/bin/bash
+    [root@peng1 shell]# cat /etc/passwd | grep /bin/bash | awk '{FS=":"}{print $1 "\t" $3}' # 以 : 作为分割符
+    root:x:0:0:root:/root:/bin/bash
+    mysql   27
+    [root@peng1 shell]# cat /etc/passwd | grep /bin/bash | awk 'BEGIN{FS=":"}{print $1 "\t" $3}'
+    root    0
+    mysql   27
+
+    
+    [root@peng1 shell]# cat student.txt
+    id      name    gender  mark
+    1       apeng   f       85
+    2       cao     f       60
+    3       peng    f       70
+    [root@peng1 shell]# cat student.txt | grep -v Name
+    id      name    gender  mark
+    1       apeng   f       85
+    2       cao     f       60
+    3       peng    f       70
+    [root@peng1 shell]# cat student.txt | grep -v name
+    1       apeng   f       85
+    2       cao     f       60
+    3       peng    f       70
+    [root@peng1 shell]# cat student.txt | grep -v mark
+    1       apeng   f       85
+    2       cao     f       60
+    3       peng    f       70
+    [root@peng1 shell]# cat student.txt | grep -v mark | awk '$4>=70{print $2}'
+    apeng
+    peng
+
+    awk '{printf $2 "\t" $4 "\n"}' student.txt
+    awk '{print $2 "\t" $4}' student.txt
+    awk '{printf $2 "\t" $4}' student.txt
+    df -h | awk '{print $1 "\t" $3}'
+    df -h | grep "/dev/sda5" | awk '{print $5}'
+    df -h | grep "/dev/sda5" | awk '{print $5}' | cut -d "%" -f 1
+    awk 'BEGIN{printf "This is a transcript \n"}{printf $2 "\t" $4 "\n"}' student.txt
+    awk '{print $2 "\t" $4}'
+    awk 'END{print "test"}{printf $2 "\t" $4 "\n"}'
+    cat /etc/passwd | grep "/bin/bash" | awk 'BEGIN {FS=":"}{printf $1 "\t" $3 "\n"}'
+    cat student.txt | grep -v Name | awk '$4>=70{print $2}'

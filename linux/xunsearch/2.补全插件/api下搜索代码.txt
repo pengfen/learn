@@ -1,0 +1,605 @@
+<?php
+namespace api\modules\v1\controllers;
+
+use Aliyun\OSS\Commands\InitiateMultipartUploadCommand;
+use api\modules\v1\models\Se_goods;
+use Imagine\Gd\Image;
+use Yii;
+use yii\rest\ActiveController;
+use yii\web\Response;
+use yii\filters\AccessControl;
+use yii\data\ActiveDataProvider;
+use api\modules\v1\models\User;
+use api\modules\v1\models\Search;
+use api\modules\v1\models\Goods;
+use api\modules\v1\models\Brand;
+use yii\filters\auth\HttpBearerAuth;
+use yii\filters\RateLimiter;
+use yii\filters\VerbFilter;
+use api\modules\v1\models\Util;
+use yii\db\Query;
+
+class SearchController extends ActiveController
+{
+    public $modelClass = 'api\modules\v1\models\Se_goods';
+    public $serializer = [
+        'class' => 'yii\rest\Serializer',
+        'collectionEnvelope' => 'items',
+    ];
+
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        $behaviors['contentNegotiator']['formats']['text/html'] = Response::FORMAT_JSON;
+        $behaviors['verbFilter'] =[
+            'class' => VerbFilter::className(),
+            'actions' => $this->verbs(),
+        ];
+        $behaviors['rateLimiter'] =[
+            'class' => RateLimiter::className(),
+        ];
+//        $behaviors['authenticator'] = [
+//            'class' => HttpBearerAuth::className(),
+//        ];
+
+        return $behaviors;
+    }
+
+    public function serializeData($data)
+    {
+        return Yii::createObject($this->serializer)->serialize($data);
+    }
+    public function afterAction($action, $result)
+    {
+        $result = parent::afterAction($action, $result);
+        return $this->serializeData($result);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function verbs()
+    {
+        return [
+            'index' => ['GET', 'HEAD'],
+            'view' => ['GET', 'HEAD'],
+            'create' => ['POST'],
+            'update' => ['PUT', 'PATCH'],
+            'delete' => ['DELETE'],
+        ];
+    }
+
+    public function actions()
+    {
+        $actions = parent::actions();
+        // disable the "delete" and "create" actions
+        unset($actions['delete'], $actions['view']);
+        return $actions;
+    }
+
+    /**
+     * @peng 2016-01-28 批量插入数据至索引库
+     */
+    public function actionBatchinsertgoods(){
+        $model = new Se_goods();
+        $GoodsTB = Goods::tableName();
+        $BrandTB = Brand::tableName();
+        $query = new Query;
+        $query->select(['g.id','g.name','g.img','g.is_del','g.store_nums','g.if_price','g.up_time','g.grade','g.sale','g.real_market_price','g.spot_goods','g.sell_price','b.name brand_name'])
+            ->from($GoodsTB . 'AS g')
+            ->leftJoin($BrandTB . 'AS b', 'b.id=g.brand_id')
+            ->orderBy('g.id asc');
+        $data = $query->all();
+        //$data = Goods::find()->asArray()->all(); // 获取商品数据
+        if ($data) {
+            $model->deleteAll(); // 清除索引库数据
+            $index = $model->getDb()->getIndex(); // 获取索引对象
+            $index->openBuffer(); // 开启索引缓冲区
+            $rate = yii::$app->params['usdtocny'];
+            foreach($data as $key=>$val) {
+                if (isset($val['id']) && isset($val['name']) && $val['sell_price'] && $val['is_del'] == 0) {
+                    $model->id = $val['id'];
+                    $model->name = $val['name'];
+                    $model->sell_price = round($rate*$val['sell_price']);
+                    $model->img = empty($val['img'])?'':$val['img'];
+                    $model->up_time = empty($val['up_time'])?'':$val['up_time'];
+                    $model->grade = empty($val['grade'])?0:$val['grade'];
+                    $model->sale = empty($val['sale'])?0:$val['sale'];
+                    $model->store_nums = empty($val['store_nums'])?0:$val['store_nums'];
+                    $model->if_price = $val['if_price'];
+                    $market_price = empty($val['real_market_price'])?0:floatval($val['real_market_price']);
+                    $model->real_market_price = round($rate*$market_price);
+                    $model->brand_name = empty($val['brand_name'])?'':$val['brand_name'];
+                    $model->spot_goods = $val['spot_goods'];
+                    $model->save();
+                }
+            }
+            $index->closeBuffer(); // 关闭索引缓冲区
+            $result = ['is_Error' => false, 'message' => '数据批量添加成功'];
+        } else {
+            $result = ['is_Error' => true, 'message' => '数据批量添加失败'];
+        }
+        return $result;
+    }
+
+    /**
+     * @peng 2016-01-28 根据不同条件查询数据
+     * @param $keyword  搜索关键词
+     * @param $min_price 最低价格
+     * @param $max_price 最高价格
+     * $search = $model->find()->asArray()->all(); // 获取所有数据
+     * $search = $model->findOne(343); // 查询单条数据
+     */
+    public function actionInquirygoods(){
+        $request = Yii::$app->request;
+        $postData = $request->post();
+
+        $keyword = isset($postData['keyword'])?trim($postData['keyword']):'';
+        $min_price = isset($postData['min_price'])?intval($postData['min_price']):0;
+        $max_price = isset($postData['max_price'])?intval($postData['max_price']):0;
+        $brand_name = isset($postData['brand_name'])?trim($postData['brand_name']):'';
+        $page = isset($postData['page'])?intval($postData['page']):1;
+        $spot_goods = isset($postData['spot_goods'])?intval($postData['spot_goods']):0;
+
+        $model = new Se_goods();
+        $pageSize = 10; // 默认十条
+        if ($page < 1) {
+            $page = 1;
+        }
+        $offset = $pageSize * ($page - 1);
+        //$search = $model->find()->limit($pageSize)->offset($offset)->asArray()->all(); // 处理分页
+
+        if ($keyword) { // 根据关键字查询
+            // 判断关键字是否为英文
+            $eng = preg_match("/^[^\x80-\xff]+$/", $keyword);   //判断是否是英文
+            if ($eng) {
+                // 获取与英文相关联的建议词
+                $search = $model->getDb()->getSearch();
+                $words = $search->getExpandedQuery($keyword);
+                if (is_array($words) && count($words) > 1 ) {
+                    $condition = ['OR'];
+                    foreach ($words as $key=>$val) {
+                        $condition[] = $val;
+                    }
+                } else {
+                    if (isset($words[0]['word']) && $words[0]['word']) {
+                        $condition = $words[0]['word'];
+                    } else {
+                        return ['is_Error' => true, 'message' => '没有所需商品'];
+                        exit;
+                    }
+                }
+
+            } else {
+                $tokenizer = $model->getDb()->getScws(); // 获取分词对象
+                // $version = $tokenizer->getVersion(); // 获取版本号
+                // $tops = $tokenizer->getTops('沙发'); // 获取重要词统计结果
+                $words = $tokenizer->getResult($keyword); // 智能提取句子的词
+                if (is_array($words) && count($words) > 1 ) {
+                    $condition = ['OR'];
+                    foreach ($words as $val) {
+                        $condition[] = $val['word'];
+                    }
+                } else {
+                    if (isset($words[0]['word']) && $words[0]['word']) {
+                        $condition = $words[0]['word'];
+                    } else {
+                        return ['is_Error' => true, 'message' => '没有所需商品'];
+                        exit;
+                    }
+                }
+            }
+
+
+            if ($spot_goods == 1) {
+                if ($min_price && $max_price) {
+                    return self::getFacets($keyword, $pageSize, $offset, $min_price, $max_price); // 使用分页处理有货
+                    exit;
+                } else {
+                    return self::getFacets($keyword, $pageSize, $offset); // 使用分页处理有货
+                    exit;
+                }
+            }
+
+            $data = $model->find()->where($condition)->limit($pageSize)->offset($offset)->asArray()->all();
+            $count = $model->find()->where($condition)->asArray()->count();
+            $result = self::isResult($data, $count);
+        } elseif ($min_price && $max_price) { // 根据价格查询
+            $condition = ['BETWEEN', 'sell_price', $min_price, $max_price];
+            $data = $model->find()->asArray()->all();
+            $data = $model->find()->where($condition)->limit($pageSize)->offset($offset)->asArray()->all();
+            $count = $model->find()->where($condition)->asArray()->count();
+            $result = self::isResult($data, $count);
+        } elseif($brand_name){ // 根据品牌名查询
+            $condition = ['brand_name'=>$brand_name];
+            if ($spot_goods == 1) {
+                return self::getFacets($brand_name, $pageSize, $offset); // 使用分页处理有货
+                exit;
+            }
+
+            $data = $model->find()->where($condition)->limit($pageSize)->offset($offset)->asArray()->all();
+            $count = $model->find()->where($condition)->asArray()->count();
+            $result = self::isResult($data, $count);
+        } else {
+            $result = ['is_Error' => true, 'message' => '没有所需商品'];
+        }
+        return $result;
+    }
+
+    /**
+     * @peng 2016-02-14 处理多字段
+     * @param $keyword 关键字
+     * @param $pageSize 页面默认显示记录数
+     * @param $offset 第几页(分页)
+     */
+    public function getFacets($keyword, $pageSixe, $offset, $min_price=0, $max_price=0) {
+        $model = new Se_goods();
+        $db = $model->getDb();
+        $search = $db->getSearch(); // 获取搜索对象
+        // 使用范围处理多字段
+        if ($max_price && $min_price) {
+            $docs = $search->setQuery($keyword)->addRange('spot_goods', 1, 1)->addRange('sell_price', $min_price, $max_price)->setLimit($pageSixe, $offset)->search();
+            $count = $search->setQuery($keyword)->addRange('spot_goods', 1, 1)->addRange('sell_price', $min_price, $max_price)->setLimit($pageSixe, $offset)->count();
+        } else {
+            $docs = $search->setQuery($keyword)->addRange('spot_goods', 1, 1)->setLimit($pageSixe, $offset)->search();
+            $count = $search->setQuery($keyword)->addRange('spot_goods', 1, 1)->setLimit($pageSixe, $offset)->count();
+        }
+
+        $data = array();
+        if ($docs) {
+            foreach ($docs as $key=>$val) {
+                foreach($val as $k=>$v) {
+                    $data[$key][$k] = $v;
+                }
+            }
+            $data = self::getReferenceprice($data);
+            return self::isResult($data, $count);
+        } else {
+            return ['is_Error' => true, 'message' => '没有所需商品'];
+        }
+
+
+        // 使用分面处理多字段
+//        if ($max_price && $min_price) {
+//            $docs = $search->setQuery($keyword)->addRange('sell_price', $min_price, $max_price)->setFacets(array('spot_goods'), true)->setSort('spot_goods')->setLimit($pageSixe, $offset)->search();
+//        } else {
+//            $docs = $search->setQuery($keyword)->setFacets(array('spot_goods'), true)->setSort('spot_goods')->setLimit($pageSixe, $offset)->search(); // 在搜索时加入分面设置
+//        }
+//
+//        $fid_counts = $search->getFacets('spot_goods'); // 返回数组，以 fid 为键，匹配数量为值
+//        if (isset($fid_counts[1]) && $fid_counts[1]) {
+//            $count = $fid_counts[1];
+//        } else {
+//            return ['is_Error' => true, 'message' => '没有所需商品'];
+//            exit;
+//        }
+//        $data = array();
+//        foreach ($docs as $key=>$val) {
+//            if ($key >= ($count - $offset)) { // 排除多余的记录数
+//                break;
+//            }
+//            foreach($val as $k=>$v) {
+//                $data[$key][$k] = $v;
+//            }
+//        }
+        //return self::isResult($data, $count);
+    }
+
+    /**
+     * @peng 2016-02-02 强制刷新索引库
+     */
+    public function actionFlushindex() {
+        $model = new Se_goods();
+        $index = $model->getDb()->getIndex();
+        $bool = $index->flushIndex();
+        if ($bool) {
+            $result = ['is_Error' => false, 'message' => '索引库刷新成功'];
+        } else {
+            $result = ['is_Error' => true, 'message' => '索引库刷新失败'];
+        }
+        return $result;
+    }
+
+    /**
+     * @peng 2016-02-02 强制刷新日志库
+     */
+    public function actionFlushlogging() {
+        $model = new Se_goods();
+        $index = $model->getDb()->getIndex();
+        $bool = $index->flushLogging();
+        if ($bool) {
+            $result = ['is_Error' => false, 'message' => '日志库刷新成功'];
+        } else {
+            $result = ['is_Error' => true, 'message' => '日志库刷新失败'];
+        }
+        return $result;
+    }
+
+    /**
+     * @peng 2016-01-28 判断是否有返回数据
+     */
+    private function isResult($data, $count=''){
+        if ($data) {
+            $result = ['is_Error' => false, 'message' => '查询成功', 'data'=>$data];
+            if ($count) {$result['count'] = $count;}
+        } else {
+            $result = ['is_Error' => true, 'message' => '没有所需商品'];
+        }
+        return $result;
+    }
+
+    /**
+     * @peng 2016-01-28 获取热搜词
+     */
+    public function actionHotword() {
+        $model = new Se_goods();
+        $db = $model->getDb();
+        $search = $db->getSearch(); // 获取搜索对象
+        $words = $search->getHotQuery(); // 获取搜索词
+        $res = self::isResult($words);
+        return $res;
+    }
+
+    /**
+     * @peng 2016-01-28 获取相关联的词
+     */
+    public function actionRelatedword() {
+        $request = Yii::$app->request;
+        $postData = $request->post();
+        $relate = isset($postData['relate'])?$postData['relate']:'';
+        if ($relate) {
+            $model = new Se_goods();
+            $db = $model->getDb();
+            $search = $db->getSearch(); // 获取搜索对象
+            // $search->setQuery('管理');
+            // $words = $search->getRelatedQuery(); // 获取前 6 个和默认搜索语句 "管理" 相关搜索词
+            $words = $search->getRelatedQuery($relate, 10); // 获取 10 个和 "管理" 相关的搜索词
+            $result = self::isResult($words);
+        } else {
+            $result = ['is_Error' => true, 'message' => '搜索词不存在'];
+        }
+
+        return $result;
+    }
+
+    /**
+     * @peng 2016-02-14 获取相关的建议词
+     */
+    public function actionExpandword() {
+        $request = Yii::$app->request;
+        $postData = $request->post();
+        $expand = isset($postData['expand'])?$postData['expand']:'';
+        if ($expand) {
+            $model = new Se_goods();
+            $db = $model->getDb();
+            $search = $db->getSearch(); // 获取搜索对象
+            $words = $search->getExpandedQuery($expand); // 获取 10 个和搜索相关的词
+            $result = self::isResult($words);
+        } else {
+            $result = ['is_Error' => true, 'message' => '搜索词不存在'];
+        }
+
+        return $result;
+    }
+
+    /**
+     * @peng 2016-01-28 添加自定义词典内容
+     */
+    public function actionCustomdict() {
+        $request = Yii::$app->request;
+        $postData = $request->post();
+        $dict = isset($postData['dict'])?$postData['dict']:'';
+        if ($dict) {
+            $model = new Se_goods();
+            $index = $model->getDb()->getIndex(); // 获取索引对象
+            $custom = $index->getCustomDict(); // 获取自定义词典内容
+            $dict = $custom.$dict."\n"; // 追加内容
+            $index->setCustomDict($dict);
+            $result = ['is_Error' => false, 'message' => '自定义词典添加成功'];
+            } else {
+            $result = ['is_Error' => true, 'message' => '自定义词典添加失败'];
+        }
+        return $result;
+    }
+
+    public function actionSendgoods()
+    {
+
+
+        $key = "111";
+        $token = array(
+            "iss" => "http://example.org",
+            "aud" => "http://example.com",
+            "iat" => 1356999524,
+            "nbf" => 1357000000
+        );
+
+        /**
+         * IMPORTANT:
+         * You must specify supported algorithms for your application. See
+         * https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40
+         * for a list of spec-compliant algorithms.
+         */
+        $jwt = JWT::encode($token, $key);
+        print_r($jwt);
+        $decoded = JWT::decode($jwt, $key, array('HS256'));
+
+        print_r($decoded);
+        $model = new Se_goods();
+        $model->id = 343;
+        $model->name = 'Natuzzi Borghese转角皮质沙发';
+        $model->sell_price = '222';
+        $model->img = 'upload/2015/11/19/20151109041407796.jpg';
+        $model->save();
+        print_r($model->getErrors());
+        echo "ok";
+
+    }
+
+    /**
+     * @peng 2016-01-28 APP 端商品的搜索 （支持迅搜）
+     * @param $word 关键字
+     */
+    public function actionSearchgoods(){
+        $request = Yii::$app->request;
+        $postData = $request->post();
+
+        $keyword = isset($postData['word'])?trim($postData['word']):'';
+        $min_price = isset($postData['min_price'])?intval($postData['min_price']):0;
+        $max_price = isset($postData['max_price'])?intval($postData['max_price']):0;
+        $brand_name = isset($postData['brand_name'])?trim($postData['brand_name']):'';
+        $page = isset($postData['page'])?intval($postData['page']):1;
+        $spot_goods = isset($postData['spot_goods'])?intval($postData['spot_goods']):0;
+
+        $model = new Se_goods();
+        $pageSize = 10; // 默认十条
+        if ($page < 1) {
+            $page = 1;
+        }
+        $offset = $pageSize * ($page - 1);
+        //$search = $model->find()->limit($pageSize)->offset($offset)->asArray()->all(); // 处理分页
+
+        if ($keyword) { // 根据关键字查询
+            // 判断关键字是否为英文
+            $eng = preg_match("/^[^\x80-\xff]+$/", $keyword);   //判断是否是英文
+            if ($eng) {
+                // 获取与英文相关联的建议词
+                $search = $model->getDb()->getSearch();
+                $words = $search->getExpandedQuery($keyword);
+                if (!$words) {
+                    $words[0] = $keyword;
+                }
+                $condition = self::getKeyword($words);
+            } else {
+                $tokenizer = $model->getDb()->getScws(); // 获取分词对象
+                // $version = $tokenizer->getVersion(); // 获取版本号
+                // $tops = $tokenizer->getTops('沙发'); // 获取重要词统计结果
+                $words = $tokenizer->getResult($keyword); // 智能提取句子的词
+                $condition = self::getKeyword($words, true);
+            }
+
+            if ($spot_goods == 1) {
+                if ($min_price && $max_price) {
+                    return self::getFacets($keyword, $pageSize, $offset, $min_price, $max_price); // 使用分页处理有货
+                    exit;
+                } else {
+                    return self::getFacets($keyword, $pageSize, $offset); // 使用分页处理有货
+                    exit;
+                }
+            }
+
+            $data = $model->find()->where($condition)->limit($pageSize)->offset($offset)->asArray()->all();
+            $data = self::getReferenceprice($data);
+            $count = $model->find()->where($condition)->asArray()->count();
+            $result = self::isResult($data, $count);
+        } elseif ($min_price && $max_price) { // 根据价格查询
+            $condition = ['BETWEEN', 'sell_price', $min_price, $max_price];
+            $data = $model->find()->asArray()->all();
+            $data = $model->find()->where($condition)->limit($pageSize)->offset($offset)->asArray()->all();
+            $data = self::getReferenceprice($data);
+            $count = $model->find()->where($condition)->asArray()->count();
+            $result = self::isResult($data, $count);
+        } elseif($brand_name){ // 根据品牌名查询
+            $condition = ['brand_name'=>$brand_name];
+            if ($spot_goods == 1) {
+                return self::getFacets($brand_name, $pageSize, $offset); // 使用分页处理有货
+                exit;
+            }
+
+            $data = $model->find()->where($condition)->limit($pageSize)->offset($offset)->asArray()->all();
+            $data = self::getReferenceprice($data);
+            $count = $model->find()->where($condition)->asArray()->count();
+            $result = self::isResult($data, $count);
+        } else {
+            $result = ['is_Error' => true, 'message' => '没有所需商品'];
+        }
+        return $result;
+    }
+
+    /**
+     * @peng 2016-02-23 获取参考价
+     * @param $data 商品数据
+    */
+    private function getReferenceprice($data){
+        if ($data) {
+            foreach($data as $key=>$val) {
+                $data[$key]['reference_price'] = '';
+                if ($val['real_market_price'] > $val['sell_price']) {
+                    $data[$key]['reference_price'] = $val['real_market_price'];
+                }
+                if (isset($val['img']) && $val['img']) {
+                    $data[$key]['img'] = Util::absolute_path($val['img']);
+                }
+            }
+        }
+        return $data;
+    }
+
+    /**
+     * @peng 2016-02-23 获取句子中关键词
+     * @param $words 句子
+     * @param $type 类型 true 中文 默认英文
+    */
+    private function getKeyword($words, $type=false){
+        if (is_array($words) && count($words) > 1 ) {
+            $condition = ['OR'];
+            foreach ($words as $key=>$val) {
+                if ($type == true) {$val = $val['word'];}
+                $condition[] = $val;
+            }
+        } else {
+            if (isset($words[0]) && $words[0]) {
+                if ($type == true && isset($words[0]['word']) && $words[0]['word']) {$condition = $words[0]['word'];}
+                else {$condition = $words[0];}
+            } else {
+                return ['is_Error' => true, 'message' => '没有所需商品'];
+                exit;
+            }
+        }
+        return $condition;
+    }
+
+    /**
+     * 商品的搜索
+     * @param $word 关键字
+     * @param $goods 搜索的商品
+    */
+//    public function actionSearchgoods(){
+//
+//        $request = yii::$app->request;
+//        $postData = $request->post();
+//
+//        $word = isset($postData['word'])?$postData['word']:'';
+//
+//        if(!empty($word) && preg_match("|^[\w\x7f\s*-\xff*]+$|",$word)){
+//            $SearchName     = Search::tableName();
+//            $GoodsName       = Goods::tableName();
+//            //搜索分词库
+//            $SearchInfo    = Search::selectOne("SELECT s.id,s.num FROM {$SearchName} s WHERE s.keyword='{$word}'");
+//            //刷新分词库被搜索的次数
+//            if($SearchInfo){
+//                Search::updateData(array('num' => $SearchInfo['num'] + 1),' id = '.$SearchInfo['id']);
+//            }else{
+//                $data = array(
+//                    'keyword' => $word,
+//                    'num' => 1
+//                );
+//                Search::insertData($data);
+//            }
+//            $GoodsInfo = Goods::selectAll("SELECT * FROM {$GoodsName} g WHERE ".' name like "%'.$word.'%" or find_in_set("'.$word.'",search_words) ');
+//        }else{
+//            $GoodsInfo = Goods::find()->asArray()->all();
+//        }
+//        if(!empty($GoodsInfo)) {
+//            foreach ($GoodsInfo as $key => $value) {
+//                //处理获取的商品数据
+//                $data[$key] = GoodsController::goods_exchange($value);
+//            }
+//        }else{
+//            $data = $GoodsInfo;
+//        }
+//        $result = ['is_Error' => false,'message' => '查询成功'];
+//        $result['data'] = $data;
+//        return $result;
+//    }
+}

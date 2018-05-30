@@ -1,0 +1,42 @@
+http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/keplersr2
+
+下载 java-ee
+
+下载tomcat
+
+配置编译环境
+window --- preferences --- java --- compiler --- 选择1.7
+
+配置本地JDK
+window --- preferences --- java --- Installed JREs --- 去掉系统自带的 --- add --- next --- 选择目录E:\files\java\jdk --- finish --- 再选择这次添加的
+
+配置本地Tomcat
+window --- preferences --- server --- runtime envirconment --- add --- 选择apache tomcat v7.0 --- 选择目录E:\files\tomcat7 --- finish
+
+-------------------------------------------
+新工作空间配置字符集
+window --- preferences --- general --- workspace --- other 选择UTF-8
+
+配置文件打开方式 (html xml jsp)
+window --- preferences --- file Associations --- *.xml ... --- myeclipse jsp editor...
+
+配置jsp文件的字符集
+window --- preferences --- JSP --- UTF-8
+
+修改字体大小
+window --- preferences --- colors and fonts --- text font --- edit --- 四号
+
+配置是否忽视编程警告 (初学时忽视 以后开发选择性的忽视)
+window --- preferences --- errors/warnings --- 选择ignore
+
+配置参数填充
+window --- preferences --- java --- content assist --- 去除fill method arguments ...
+
+配置编程格式
+window --- preferences --- java --- formatter --- edit --- braces
+
+去除derby
+window --- preferences --- general --- startup and shutdown --- 去除myeclipse derby (eclipse for javaee 没有derby)
+
+导出配置信息 (方便以后每次建立新的工作空间 直接导入不用重新配置)
+File --- Export --- preferences --- export all --- data.epf

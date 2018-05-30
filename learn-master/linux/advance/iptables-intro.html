@@ -1,0 +1,84 @@
+    iptables 
+
+    如何用 iptables 搭建一套强大的安全防护盾
+    什么是 iptables
+    常见于 linux 系统下的应用层防火墙工具
+
+    常用人员 系统管理人员 网络工程人员 安全人员等等
+
+    场景 模拟用 iptables 控制并发的 http 访问
+    目标机器 [IP2]10.10.163.233 客户端机器 [IP1]10.10.163.232
+
+    场景描述 IP1(通过 ab 命令) -> IP2(http服务)
+
+    如何用 iptables 搭建一套如何企业实际使用的防火墙规则
+    如何用 iptables 进行防攻击
+    如何利用 iptables 进行数据包转发
+    明白 iptables 的强大及实际使用意义
+
+    netfilter
+    什么是 netfilter
+    netfilter 是 linux 操作系统核心层内部的一个数据包处理模块
+
+    什么是 hook point
+    数据包在 netfilter 中的挂载点 (PRE_ROUTING INPUT OUTPUT FORWARD POST_ROUTING)
+
+    iptables 规则组成
+    组成部分 四张表 + 五条链 (Hook point) + 规则
+    四张表 filter 表 nat 表 mangle 表 raw 表
+    五条链 INPUT OUTPUT FORWARD PREROUTING POSTROUTING
+
+    filter 表 访问控制 规则匹配
+    nat    表 地址转发
+    mangle 表 修改数据包 改变包头中内容 (TTL TOS MARK)
+    raw    表 数据包的跟踪和分析
+
+    数据包访问控制 ACCEPT DROP REJECT
+    数据包改写 SNAT DNAT
+    信息纪录 LOG
+
+    iptables -v #查看 iptables 的版本号
+    iptables -L #查看 iptables 的规则
+    iptables -nL #-n 是让主机名等不显示出来
+    iptables -F #表示清除之前设置的规则
+    iptables -I INPUT -p tcp --dport 80 -j ACCEPT #允许访问 80 端口
+
+    iptables -nL #无规则时显示
+    Chain INPUT (policy ACCEPT)
+    target prot opt source destination
+
+    Chain FORWARD (policy ACCEPT)
+    target prot opt source destination
+
+    Chain OUTPUT (policy ACCEPT)
+    target prot opt source destination
+
+    iptables -I INPUT -p tcp --dport 80 -j ACCEPT #允许通过tcp协议访问 80 端口
+    iptables -nL #添加规则后显示
+    Chain INPUT (policy ACCEPT)
+    target prot opt source destination
+    ACCEPT tcp  --  0.0.0.0/0 0.0.0.0/0 tcp dpt:80
+
+    Chain FORWARD (policy ACCEPT)
+    target prot opt source destination
+
+    Chain OUTPUT (policy ACCEPT)
+    target prot opt source destination
+
+    iptables -I INPUT -p tcp --dport 80 -j ACCEPT #允许通过tcp协议访问 80 端口
+    iptables -I INPUT -p tcp --dport 10:21 -j ACCEPT #允许通过tcp协议访问 10 ~ 21 端口 
+    iptables -I INPUT -p icmp -j ACCEPT #允许通过icmp 协议访问
+    iptables -A INPUT -j REJECT #拒绝其它所有协议
+
+    nmap -sS -p 0-1000 10.10.163.233 #端口扫描 nmap 不是需要安装
+
+    存在问题
+    本机无法访问本机 (iptables -I INPUT -i lo -j ACCEPT) (telnet 127.0.0.1 22)
+    本机无法访问其他主机 (iptables -I INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT)
+    修改只允许 访问本机的 httpd 服务
+
+    只允许某一台主机访问 httpd 
+    iptables -D INPUT -p tcp --dport 80 -j ACCEPT #删除
+    iptables -nL
+    iptables -I INPUT -p tcp -s 10.0.0.0 --dport 80 -j ACCEPT #只允许某一个台主机访问
+    iptables -nL

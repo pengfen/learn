@@ -1,0 +1,46 @@
+ifconfig 命令
+    ifconfig 命令 查看与配置网络状态命令
+
+    关闭与启动网卡 (相当于 windows 上禁用和启用网络)
+    ifdown 网卡设备名 #禁用该网卡设备
+    ifup 网卡设备名 #启用该网卡设备
+
+    查询网络状态
+    netstat 选项
+    选项
+    -t 列出TCP协议端口
+    -u 列出UDP协议端口
+    -n 不使用域名与服务名 而使用IP地址和端口号
+    -l 仅列出在监听状态网络服务
+    -a 列出所有的网络连接
+    -r 列出路由列表 功能和 route 命令一致
+
+    netstat -an
+    ESTABLISHED 状态代表已经存在
+    netstat -an | grep
+
+    在一台服务器里 连内网的网卡是不能设置网关的
+
+    route 命令
+    route -n #查看路由列表 (可以看到网关)
+    route add default gw 192.168.1.1 #临时设定网关
+
+    网络测试命令
+    ping 命令
+    ping [选项] ip 或域名 #探测指定IP 或域名的网络状况
+    -c 次数 指定 ping 包的次数
+
+    telnet 命令
+    telnet [域名或IP] [端口] #远程管理与端口探测命令
+    telnet 192.168.0.252 80
+
+    traceroute 命令
+    traceroute [选项] IP或域名 #路由跟踪命令
+    -n 使用IP 不使用域名 速度更快
+
+    tcpdump 命令
+    tcpdump -i eth0 -nnX port 21
+    -i 指定网卡接口
+    -nn 将数据包中的域名与服务转为IP 和端口
+    -X 以十六进制和ASCII 码显示数据包内容
+    port 指定监听的端口

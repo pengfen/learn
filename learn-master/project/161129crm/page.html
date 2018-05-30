@@ -1,0 +1,42 @@
+分页
+
+显示分页代码
+<?php if($total_page > 1){?>
+    <div class="cu_page">
+    </div>
+<?php }?>
+
+js加载js代码显示
+<script src="js/pagination.js"></script>
+
+var total_page = <?=$total_page?>;
+var cur_page = <?=$cur_page?>;
+var url = '<?=$page_url?>';
+var g_method = "get";
+if(total_page > 0)
+    create_page(cur_page,total_page,url,g_method);
+
+控制器加载相关数据
+
+// 当前页 (分页第几页)
+if(!empty($_GET['point'])){
+    $point = $_GET['point'];
+} else {
+    $point = 0;
+}
+$shift = Yii::$app->params['shift']; // 每页显示多少条 配置文件中配置
+
+$cur_page = intval(($point / $shift) + 1); // 当前页
+$total_page = intval($data['total'] / $shift + 1); // 总页数  
+
+'page_url' => '/index.php?r=import/import-message',
+'total_page' => $total_page,
+'cur_page' => $cur_page,
+
+模型中处理数据
+$model = $query->select('i.create_time, i.add_num, i.repeat_num, i.download_adr, b.login_id')->from($infoTB.' AS i')->leftJoin($baseTB.' AS b', 'i.create_uid = b.uid')->where('i.mode = '.$where)->orderBy(['i.create_time' => SORT_DESC]);
+$data = $model->offset($point)->limit($shift)->all();
+$total = $model->count('b.login_id');
+$res['info'] = $data;
+$res['total'] = $total;
+return $res;

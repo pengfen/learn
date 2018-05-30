@@ -1,0 +1,137 @@
+    双分支 if 条件语句
+    if [条件判断式]
+    then
+    条件成立时 执行的程序
+    else 
+    条件不成立时 执行的另一个程序
+    fi
+
+    [-d /root] && echo "yes" || echo "no" #第一个判断命令如果正确执行 则打印 "yes" 否则打印 "no"
+
+    判断是否是目录
+    #!/bin/bash
+
+    read -t 30 -p "Please input a dir: " dir
+    if [ -d "$dir"]
+    then
+    echo "shurn de shi mnlu"
+    else
+    echo "no no no"
+    fi
+    if []
+ 
+    判断 apache 是否启动
+    #!/bin/bash
+    test=$(ps aux | grep httpd | grep -v grep) #截取 httpd 进程 并把结果赋予变量 test
+    if [-n "$test"] #如果test 的值不为空 则执行 then 中命令
+    then
+    echo "$(date) httpd is ok!" >> /tmp/autostart-acc.log
+    else
+    /etc/rc.d/init.d/httpd start &>/dev/null
+    echo "$(date) restart httpd !!" >> /tmp/autostart-err.log
+    fi
+
+    # 复杂的 if ... then ... else ... fi
+    [root@peng1 shell]# vi else.sh
+    #!/bin/bash
+    echo "Please input your content : "
+    read content
+
+    if [ "$content" -lt 10 ]
+    then echo "The content is smaller than 10"
+    else
+    echo "The content is bigger than 10"
+    fi
+
+    [root@peng1 shell]# ll
+    总用量 8
+    -rw-r--r--. 1 root root 175 3月  31 14:33 else.sh
+    -rwxr-xr-x. 1 root root 133 3月  28 20:57 if.sh
+    [root@peng1 shell]# chmod 755 else.sh
+    [root@peng1 shell]# ./else.sh
+    Please input your content :
+    12
+    The content is bigger than 10
+
+
+
+    多分支 if 条件语句
+    if [条件判断式1]
+    then 
+    当条件判断式 1 成立时 执行程序1
+    elif [条件判断式2]
+    then
+    不条件判断式 2 成立时 执行程序2
+    ...
+    else
+    当所有条件都不成立时 最后执行此程序
+    fi
+
+    #!/bin/bash #字符界面加减乘除计算器
+
+    read -t 30 -p "Please input num1: " num1
+    read -t 30 -p "Please input num2: " num2 #通过 read 命令接收要计算的数值 并赋予变量 num1 和 num2
+    read -t 30 -p "Please input a operator: " ope #通过 read 命令接收要计算的符号 并赋予变量 ope
+
+    if [-n "$num1" -a -n "$num2" -a -n "$opc"] #第一层判断 用来判断 num1 num2 和 ope 中都有值
+    then
+    test1=$(echo $num1 | sed 's/[0-9]//g')
+    test2=$(echo $num2 | sed 's/[0-9]//g') #定义变量 test1 和 test2 的值为 $(命令) 的结果
+    #后续命令作用是 把变量 test1 的值替换为空 如果能替换为空 证明 num1 的值为数字
+    #如果不能替换为空 证明 num1 的值为非数字 我们使用这种方法判断变量 num1 的值为数字
+    #用同样的方法测试 test2 变量
+
+    if [-z "$test1" -a -z "$test2"] #第二层判断 用来判断 num1 和 num2 为数值
+    #如果变量 test1 和 test2 的值为空 则证明 num1 和 num2 是数字
+    then
+    #如果 test1 和 test2 是数字 则执行以下命令
+    if["$ope" == '+']
+    #第三层判断用来确认运算符
+    #测试变量 $ope 中是什么运算符
+    then
+    sum=$(($num1 + $num2)) #如果是加号则执行加法运算
+    elif["$ope" == '-']
+    then
+    sum=$(($num1 - $num2))
+    elif["$ope" == '*']
+    then
+    sum=$(($num1 * $num2))
+    elif["$ope" == '/']
+    then
+    sum=$(($num1 / $num2))
+    else
+    echo "Please enter a valid symbol" #如果运算符不匹配 提示输入有效的符号
+    exit 10 #并退出程序 返回错误代码 10
+    fi
+    else #如果 test1 和 test2 不是数值
+    echo "Please enter a valid value" #则提示输入有效的数值
+    exit 11 #并退出程序 返回错误代码 11
+    fi
+    else
+    echo "qing shuru neirong"
+    exit
+    fi
+
+    echo " $num1 $ope $num2 : $sum" #输出数值运算的结果
+
+    判断用户输入的是什么文件
+    #!/bin/bash #判断用户输入的是什么文件
+    read -p "Please input a filename: " file #接收键盘的输入 并赋予变量 file
+
+    if [-z "$file"] #判断 file 变量是否为空
+    then
+    echo "Error, please input a filename"
+    exit 1
+    elif [! -e "$file"] #判断 file 的值是否存在
+    then 
+    echo "Your input is not a file!"
+    exit 2
+    elif [-f "$file"] #判断 file 的值是否为普通文件
+    then
+    echo "$file is a regulare file!"
+    elif [-d "$file"] #判断 file 的值是否为目录文件
+    then
+    echo "$file is a directory!"
+    else
+    echo "$file is an other file!"
+    fi

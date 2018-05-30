@@ -1,0 +1,1145 @@
+本 hadoop体系使用 一主三从
+
+使用版本
+jdk1.8.0
+hadoop2.6.2
+zookeeper3.4.6
+hive1.1.1
+hbase0.98.17
+
+笔记本
+peng1 --- 192.168.129.128 --- peng0313
+peng2 --- 192.168.129.129 --- peng0313
+peng3 --- 192.168.129.130 --- peng0313
+peng4 --- 192.168.129.131 --- peng0313
+
+peng1 --- 192.168.129.133 --- peng0321
+peng2 --- 192.168.129.134 --- peng0321
+peng3 --- 192.168.129.135 --- peng0321
+peng4 --- 192.168.129.136 --- peng0321
+
+配置无密码登录
+[root@peng1 ~]# vi /etc/hosts
+192.168.209.129 peng1
+192.168.209.130 peng2
+192.168.209.131 peng3
+192.168.209.132 peng4
+
+复制公钥及主机配置
+[root@peng1 ~]# ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
+[root@peng1 ~]# cd /root/.ssh
+[root@peng1 ~]# cat id_dsa.pub >> ~/.ssh/authorized_keys
+[root@peng1 .ssh]# scp id_dsa.pub root@peng2:~
+[root@peng1 .ssh]# scp id_dsa.pub root@peng3:~
+[root@peng1 .ssh]# scp id_dsa.pub root@peng4:~
+
+登录 peng2
+[root@peng2 ~]# ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
+[root@peng2 ~]# cat id_dsa.pub >> ~/.ssh/authorized_keys
+[root@peng2 ~]# more ~/.ssh/authorized_keys
+
+登录 peng3 peng4 操作同上
+
+[root@peng1 .ssh]# scp /etc/hosts root@peng2:/etc/
+[root@peng1 .ssh]# scp /etc/hosts root@peng3:/etc/
+[root@peng1 .ssh]# scp /etc/hosts root@peng4:/etc/
+
+
+安装 JDK
+=============================================================
+删除系统自带的 JDK
+[root@peng4 rh]# java -version
+java version "1.6.0_24"
+OpenJDK Runtime Environment (IcedTea6 1.11.1) (rhel-1.45.1.11.1.el6-i386)
+OpenJDK Client VM (build 20.0-b12, mixed mode)
+[root@peng4 rh]# rpm -aq | grep jdk
+java-1.6.0-openjdk-1.6.0.0-1.45.1.11.1.el6.i686
+[root@peng4 rh]#
+[root@peng4 rh]# yum -y remove java-1.6.0-openjdk-1.6.0.0-1.45.1.11.1.el6.i686
+
+Loaded plugins: fastestmirror, security
+Setting up Remove Process
+Resolving Dependencies
+--> Running transaction check
+---> Package java-1.6.0-openjdk.i686 1:1.6.0.0-1.45.1.11.1.el6 will be erased
+--> Finished Dependency Resolution
+base                                                     | 3.7 kB     00:00
+base/primary_db                                          | 3.6 MB     00:35
+extras                                                   | 3.4 kB     00:00
+extras/primary_db                                        |  30 kB     00:00
+updates                                                  | 3.4 kB     00:00
+updates/primary_db                                       | 3.8 MB     00:02
+
+Dependencies Resolved
+
+================================================================================
+ Package
+    Arch Version                   Repository                              Size
+================================================================================
+Removing:
+ java-1.6.0-openjdk
+    i686 1:1.6.0.0-1.45.1.11.1.el6 @anaconda-CentOS-201207051201.i386/6.3  82 M
+
+Transaction Summary
+================================================================================
+Remove        1 Package(s)
+
+Installed size: 82 M
+Downloading Packages:
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Erasing    : 1:java-1.6.0-openjdk-1.6.0.0-1.45.1.11.1.el6.i686            1/1
+  Verifying  : 1:java-1.6.0-openjdk-1.6.0.0-1.45.1.11.1.el6.i686            1/1
+
+Removed:
+  java-1.6.0-openjdk.i686 1:1.6.0.0-1.45.1.11.1.el6
+
+Complete!
+
+在 www.oracle.com 上下载 jdk-8u73-linux-i586.gz
+使用 winscp 上传 jdk 包到 peng1(192.168.129.128) 服务器上
+[root@peng1 ~]# mkdir /usr/local/java
+[root@peng1 ~]# mv jdk-8u73-linux-i586.gz /usr/local/java
+[root@peng1 ~]# cd /usr/local/java
+[root@peng1 java]# tar -zxvf jdk-8u73-linux-i586.gz
+[root@peng1 java]# vi /etc/profile
+
+export JAVA_HOME=/usr/local/java/jdk1.8.0_73
+export JRE_HOME=/usr/local/java/jdk1.8.0_73/jre
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH=./:$JAVA_HOME/lib:$JAVA_HOME/jre/lib
+
+[root@peng1 java]# source /etc/profile
+
+复制 JDK 环境
+[root@peng1 ~]# scp -r /usr/local/java/ root@peng2:/usr/local/
+[root@peng1 ~]# scp -r /usr/local/java/ root@peng3:/usr/local/
+[root@peng1 ~]# scp -r /usr/local/java/ root@peng4:/usr/local/
+[root@peng1 ~]# scp -r /etc/profile root@peng2:/etc/
+[root@peng1 ~]# scp -r /etc/profile root@peng3:/etc/
+[root@peng1 ~]# scp -r /etc/profile root@peng4:/etc/
+
+登录 peng2 (检测 java 环境)
+[root@peng2 ~]# vi /etc/profile 
+[root@peng2 ~]# source /etc/profile
+[root@peng2 ~]# java -version
+java version "1.8.0_73"
+Java(TM) SE Runtime Environment (build 1.8.0_73-b02)
+Java HotSpot(TM) Client VM (build 25.73-b02, mixed mode)
+[root@peng2 ~]# jps
+
+登录 peng3 peng4 同上操作
+
+同步时间
+[root@peng1 ~]# ntpdate pool.ntp.org
+[root@peng1 ~]# crontab -e
+0-59/10 * * * * /usr/sbin/ntpdate pool.ntp.org
+
+no crontab for root - using an empty one
+crontab: installing new crontab
+
+登录 peng2 peng3 peng4 同上操作
+
+
+
+安装 Hadoop
+=============================================================
+http://hadoop.apache.org --- download
+--- http://hadoop.apache.org/releases.html
+--- http://www.apache.org/dyn/closer.cgi/hadoop/common
+--- http://apache.fayea.com/hadoop/common/
+
+[root@peng1 ~]# mkdir hadoop
+[root@peng1 ~]# cd hadoop
+
+使用 winscp 上传 hadoop-2.6.2.tar.gz /root/hadoop2
+
+[root@peng1 hadoop]# tar -zxvf hadoop-2.6.2.tar.gz
+[root@peng1 hadoop]# ln -sf /root/hadoop/hadoop-2.6.2 /home/hadoop
+[root@peng1 hadoop]# cd /home/hadoop
+[root@peng1 hadoop]# cd ./etc/hadoop
+
+修改配置文件
+[root@peng1 hadoop]# vi hadoop-env.sh
+export JAVA_HOME=/usr/local/java/jdk1.8.0_73
+[root@peng1 hadoop]# vi yarn-env.sh
+export JAVA_HOME=/usr/local/java/jdk1.8.0_73
+[root@peng1 hadoop]# vi core-site.xml
+
+<property>
+    <name>hadoop.tmp.dir</name>
+    <value>/opt/hadoop</value>
+</property>
+
+<property>
+    <name>fs.default.name</name>
+    <value>hdfs://peng1:9000</value>
+</property>
+
+[root@peng1 hadoop]# vi hdfs-site.xml
+
+<property>
+    <name>dfs.http.address</name>
+    <value>peng1:50070</value>
+</property>
+
+<property>
+    <name>dfs.namenode.secondary.http-address</name>
+    <value>hdfs://peng1:50090</value>
+</property>
+<property>
+    <name>dfs.replication</name>
+    <value>3</value>
+</property>
+
+[root@peng1 hadoop]# cp -a mapred-site.xml.template mapred-site.xml
+[root@peng1 hadoop]# vi mapred-site.xml
+
+<property>
+    <name>mapred.job.tracker</name>
+    <value>master:9001</value>
+</property>
+<property>
+    <name>mapred.map.tasks</name>
+    <value>20</value>
+</property>
+<property>
+    <name>mapred.reduce.tasks</name>
+    <value>4</value>
+</property>
+<property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+</property>
+<property>
+    <name>mapreduce.jobhistory.address</name>
+    <value>peng1:10020</value>
+</property>
+<property>
+    <name>mapreduce.jobhistory.webapp.address</name>
+    <value>peng1:19888</value>
+</property>
+
+[root@peng1 hadoop]# vi yarn-site.xml
+
+<property>
+    <name>yarn.resourcemanager.address</name>
+    <value>peng1:8032</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.scheduler.address</name>
+    <value>peng1:8030</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.webapp.address</name>
+    <value>peng1:8088</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.resource-tracker.address</name>
+    <value>peng1:8031</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.admin.address</name>
+    <value>peng1:8033</value>
+</property>
+<property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+</property>
+<property>
+    <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+    <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+</property>
+
+[root@peng1 hadoop]# vi slaves
+peng2
+peng3
+peng4
+[root@peng1 hadoop]# vi /etc/profile
+export HADOOP_HOME=/home/hadoop
+export PATH=$PATH:$HADOOP_HOME/bin
+export PATH=$PATH:$HADOOP_HOME/sbin
+
+登录 peng2
+[root@peng2 ~]# mkdir hadoop
+登录 peng3 peng4 操作同上
+
+复制 hadoop 环境 (注意 peng2 peng3 peng4 已经创建 hadoop 目录)
+[root@peng1 ~]# scp -r /root/hadoop/hadoop-2.6.2 root@peng2:/root/hadoop/
+[root@peng1 ~]# scp -r /root/hadoop/hadoop-2.6.2 root@peng3:/root/hadoop/
+[root@peng1 ~]# scp -r /root/hadoop/hadoop-2.6.2 root@peng4:/root/hadoop/
+[root@peng1 ~]# scp -r /etc/profile root@peng2:/etc/
+[root@peng1 ~]# scp -r /etc/profile root@peng3:/etc/
+[root@peng1 ~]# scp -r /etc/profile root@peng4:/etc/
+
+登录 peng2 (测试 hadoop 环境)
+[root@peng2 ~]# cd hadoop/
+[root@peng2 hadoop]# source /etc/profile
+[root@peng2 hadoop]# ln -sf /root/hadoop/hadoop-2.6.2/ /home/hadoop
+[root@peng2 hadoop]# cd /home/hadoop/etc/hadoop/
+[root@peng2 hadoop]# vi hadoop-env.sh
+[root@peng2 hadoop]# vi yarn-env.sh
+[root@peng2 hadoop]# vi slaves
+[root@peng2 hadoop]# vi core-site.xml
+[root@peng2 hadoop]# vi hdfs-site.xml
+[root@peng2 hadoop]# vi mapred-site.xml
+[root@peng2 hadoop]# vi yarn-site.xml
+
+登录 peng3 peng4 操作同上
+
+[root@peng1 ~]# cd /home/hadoop
+[root@peng1 hadoop]# ./bin/hdfs namenode -format
+[root@peng1 hadoop]# ./sbin/start-dfs.sh
+peng1 NameNode SecondaryNameNode
+peng2 DataNode
+peng3 DataNode
+peng4 DataNode
+[root@peng1 hadoop]# ./sbin/start-yarn.sh
+peng1 ResourceManager
+peng2 NodeManager
+peng3 NodeManager
+peng4 NodeManager
+[root@peng1 hadoop]# jps 
+[root@peng1 hadoop]# ./sbin/stop-all.sh
+[root@peng1 hadoop]# ./sbin/start-all.sh 
+[root@peng1 hadoop]# ./bin/hdfs dfsadmin -report #查看集群状态
+[root@peng1 hadoop]# ./bin/hdfsfsck / -files -blocks #查看文件块组成
+
+[root@peng1 ~]# jps
+4289 NameNode
+5939 Jps
+4468 SecondaryNameNode
+4604 ResourceManager
+
+[root@peng2 hadoop]# jps
+2896 NodeManager
+2800 DataNode
+3005 Jps
+
+[root@peng3 hadoop]# jps
+4506 Jps
+3116 DataNode
+3213 NodeManager
+
+[root@peng4 hadoop]# jps
+5168 YarnChild #执行时会出现
+2912 NodeManager
+4850 MRAppMaster
+5207 Jps
+2815 DataNode
+
+http://peng1:50070/dfshealth.jsp
+http://peng1:50070/explorer.html#/
+http://peng1:8088/cluster
+
+运行 hadoop1 中的样例
+[root@peng1 hadoop]# ./bin/hadoop jar /root/hadoop-examples-1.2.1.jar pi 10 100
+Number of Maps  = 10
+Samples per Map = 100
+Java HotSpot(TM) Client VM warning: You have loaded library /root/hadoop/hadoop-2.6.2/lib/native/libhadoop.so.1.0.0 which might have disabled stack guard. The VM will try to fix the stack guard now.
+It's highly recommended that you fix the library with 'execstack -c <libfile>', or link it with '-z noexecstack'.
+16/03/18 22:44:46 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Wrote input for Map #0
+Wrote input for Map #1
+Wrote input for Map #2
+Wrote input for Map #3
+Wrote input for Map #4
+Wrote input for Map #5
+Wrote input for Map #6
+Wrote input for Map #7
+Wrote input for Map #8
+Wrote input for Map #9
+Starting Job
+16/03/18 22:44:48 INFO client.RMProxy: Connecting to ResourceManager at peng1/192.168.129.128:8032
+16/03/18 22:44:49 INFO input.FileInputFormat: Total input paths to process : 10
+16/03/18 22:44:49 INFO mapreduce.JobSubmitter: number of splits:10
+16/03/18 22:44:49 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1457890849308_0003
+16/03/18 22:44:49 INFO impl.YarnClientImpl: Submitted application application_1457890849308_0003
+16/03/18 22:44:50 INFO mapreduce.Job: The url to track the job: http://peng1:8088/proxy/application_1457890849308_0003/
+16/03/18 22:44:50 INFO mapreduce.Job: Running job: job_1457890849308_0003
+16/03/18 22:44:57 INFO mapreduce.Job: Job job_1457890849308_0003 running in uber mode : false
+16/03/18 22:44:57 INFO mapreduce.Job:  map 0% reduce 0%
+16/03/18 22:45:08 INFO mapreduce.Job:  map 20% reduce 0%
+16/03/18 22:45:19 INFO mapreduce.Job:  map 20% reduce 7%
+16/03/18 22:50:51 INFO mapreduce.Job:  map 30% reduce 7%
+16/03/18 22:51:00 INFO mapreduce.Job: Task Id : attempt_1457890849308_0003_m_000002_0, Status : FAILED
+Container killed on request. Exit code is 137
+Container exited with a non-zero exit code 137
+Killed by external signal
+
+16/03/18 22:51:01 INFO mapreduce.Job:  map 20% reduce 7%
+16/03/18 22:52:34 INFO mapreduce.Job:  map 30% reduce 7%
+16/03/18 22:52:35 INFO mapreduce.Job:  map 40% reduce 7%
+16/03/18 22:52:37 INFO mapreduce.Job:  map 50% reduce 7%
+16/03/18 22:52:42 INFO mapreduce.Job:  map 80% reduce 7%
+16/03/18 22:52:43 INFO mapreduce.Job:  map 90% reduce 7%
+16/03/18 22:52:46 INFO mapreduce.Job:  map 90% reduce 30%
+16/03/18 22:52:58 INFO mapreduce.Job:  map 100% reduce 30%
+16/03/18 22:53:00 INFO mapreduce.Job:  map 100% reduce 100%
+16/03/18 22:53:00 INFO mapreduce.Job: Job job_1457890849308_0003 completed successfully
+16/03/18 22:53:00 INFO mapreduce.Job: Counters: 51
+        File System Counters
+                FILE: Number of bytes read=226
+                FILE: Number of bytes written=1171995
+                FILE: Number of read operations=0
+                FILE: Number of large read operations=0
+                FILE: Number of write operations=0
+                HDFS: Number of bytes read=2600
+                HDFS: Number of bytes written=215
+                HDFS: Number of read operations=43
+                HDFS: Number of large read operations=0
+                HDFS: Number of write operations=3
+        Job Counters
+                Failed map tasks=1
+                Launched map tasks=11
+                Launched reduce tasks=1
+                Other local map tasks=1
+                Data-local map tasks=10
+                Total time spent by all maps in occupied slots (ms)=3703326
+                Total time spent by all reduces in occupied slots (ms)=469968
+                Total time spent by all map tasks (ms)=3703326
+                Total time spent by all reduce tasks (ms)=469968
+                Total vcore-seconds taken by all map tasks=3703326
+                Total vcore-seconds taken by all reduce tasks=469968
+                Total megabyte-seconds taken by all map tasks=3792205824
+                Total megabyte-seconds taken by all reduce tasks=481247232
+        Map-Reduce Framework
+                Map input records=10
+                Map output records=20
+                Map output bytes=180
+                Map output materialized bytes=280
+                Input split bytes=1420
+                Combine input records=0
+                Combine output records=0
+                Reduce input groups=2
+                Reduce shuffle bytes=280
+                Reduce input records=20
+                Reduce output records=0
+                Spilled Records=40
+                Shuffled Maps =10
+                Failed Shuffles=0
+                Merged Map outputs=10
+                GC time elapsed (ms)=107716
+                CPU time spent (ms)=54690
+                Physical memory (bytes) snapshot=1289175040
+                Virtual memory (bytes) snapshot=3516928000
+                Total committed heap usage (bytes)=1228120064
+        Shuffle Errors
+                BAD_ID=0
+                CONNECTION=0
+                IO_ERROR=0
+                WRONG_LENGTH=0
+                WRONG_MAP=0
+                WRONG_REDUCE=0
+        File Input Format Counters
+                Bytes Read=1180
+        File Output Format Counters
+                Bytes Written=97
+Job Finished in 492.184 seconds
+Estimated value of Pi is 3.14800000000000000000
+
+
+
+安装 zookeeper (只需要 peng1 peng2 peng3 安装)
+=============================================================
+zookeeper.apache.org 
+--- download (http://zookeeper.apache.org/releases.html)
+--- download (http://www.apache.org/dyn/closer.cgi/zookeeper/)
+--- http://apache.fayea.com/zookeeper/
+--- zookeeper-3.4.6
+--- http://apache.fayea.com/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
+wget http://apache.fayea.com/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
+
+[root@peng1 ~]# mkdir zk
+[root@peng1 ~]# cd zk
+使用 ssh 工具上传 zookeeper-3.4.6.tar.gz 到 /root/zk
+[root@peng1 zk]# tar -zxvf zookeeper-3.4.6.tar.gz
+[root@peng1 zk]# ln -sf /root/zk/zookeeper-3.4.6 /home/zk
+[root@peng1 zk]# cd /home/zk
+
+
+[root@peng1 zk]# cd conf
+[root@peng1 conf]# cp -a zoo_sample.cfg zoo.cfg
+[root@peng1 conf]# vi zoo.cfg
+dataDir=/opt/zookeeper
+
+server.1=peng1:2888:3888
+server.2=peng2:2888:3888
+server.3=peng3:2888:3888
+[root@peng1 conf]# mkdir /opt/zookeeper
+[root@peng1 conf]# cd /opt/zookeeper/
+[root@peng1 zookeeper]# vi myid
+1
+
+
+[root@peng1 zookeeper]# scp -r /opt/zookeeper/ root@peng2:/opt/
+myid                                          100%    2     0.0KB/s   00:00
+[root@peng1 zookeeper]# scp -r /opt/zookeeper/ root@peng3:/opt/
+myid                                          100%    2     0.0KB/s   00:00
+[root@peng1 zookeeper]# scp -r /root/zk/zookeeper-3.4.6 root@peng2:/root/zk/
+[root@peng1 zookeeper]# scp -r /root/zk/zookeeper-3.4.6 root@peng3:/root/zk/
+
+[root@peng1 zookeeper]# vi /etc/profile
+export PATH=$PATH:/home/zk/bin
+[root@peng1 zookeeper]# source /etc/profile
+[root@peng1 zookeeper]# scp -r /etc/profile root@peng2:/etc/
+[root@peng1 zookeeper]# scp -r /etc/profile root@peng3:/etc/
+[root@peng1 zookeeper]# service iptables stop
+
+登录 peng2
+
+[root@peng2 zk]# ln -sf /root/zk/zookeeper-3.4.6/ /home/zk
+[root@peng2 zk]# cd /home/zk/conf
+[root@peng2 conf]# vi zoo.cfg
+[root@peng2 conf]# vi /opt/zookeeper/myid
+2
+[root@peng2 conf]# source /etc/profile
+[root@peng2 conf]# service iptables stop
+
+登录 peng3 操作同上
+
+启动 ZK
+[root@peng1 ~]# cd /home/zk
+[root@peng1 zk]# cd bin
+[root@peng1 bin]#
+[root@peng1 bin]# zkServer.sh start
+JMX enabled by default
+Using config: /home/zk/bin/../conf/zoo.cfg
+Starting zookeeper ... STARTED
+[root@peng1 bin]# jps
+3094 QuorumPeerMain
+3118 Jps
+
+登录 peng2 peng3 操作同上
+
+
+
+安装 hive
+=============================================================
+下载  http://hive.apache.org/downloads.html 
+--- Download a release now!
+--- http://apache.fayea.com/hive/ 
+--- hive-1.2.1/
+--- apache-hive-1.2.1-bin.tar.gz
+
+service iptables stop #关闭防火墙
+# 启动 hadoop 集群
+[root@peng1 ~]# cd /home/hadoop
+[root@peng1 hadoop]# ./sbin/start-all.sh
+
+# jps 查看所有节点是否全部正常启动
+
+# 页面访问
+peng1:8088/cluster
+peng1:50070
+
+[root@peng1 ~]# mkdir hive
+上传 apache-hive0... 至 /root/hive/
+[root@peng1 ~]# cd hive
+[root@peng1 hive]# ls
+apache-hive-1.0.1-bin.tar.gz
+[root@peng1 hive]# tar -zxvf apache-hive-1.2.1-bin.tar.gz
+[root@peng1 hive]# ln -sf /root/hive/apache-hive-1.2.1-bin /home/hive
+[root@peng1 hive]# cd /home/hive
+
+# 进入 hive 客户端
+[root@peng1 hive]# ./bin/hive
+如果报 jline 相关的错误 (由于旧版本里不存在 jline jar)
+[root@peng1 hive]# cp lib/jline-2.12.jar /home/hadoop/share/hadoop/yarn/lib/
+[root@peng1 hive]# rm /home/hadoop/share/hadoop/yarn/lib/jline-0.9.94.jar
+
+# 不需要重启动 hadoop (下面三行命令忽略)
+[root@peng1 hive]# stop-all.sh
+[root@peng1 hive]# start-all.sh
+[root@peng1 hive]# hadoop dfsadmin -safemode leave #去除安全模式
+[root@peng1 hive]# ./bin/hive
+hive>
+
+# 安装 mysql 数据库
+[root@peng1 ~]# yum install mysql-server
+[root@peng1 ~]# service mysqld start
+[root@peng1 ~]# netstat -nplt | grep 3306
+tcp        0      0 0.0.0.0:3306                0.0.0.0:*                   LISTEN      8212/mysqld
+
+# 修改 mysql 密码
+[root@peng1 ~]# mysql
+mysql> use mysql
+mysql> select * from user \G;
+共五条数据 user password 都为空有二条 主机是 host: localhost host: peng1
+user:root password 为空有三条 主机是  host: localhost host: peng1 host: 127.0.0.1
+
+mysql> grant all on *.* to root@'%' identified by '123456'; #此语句有错误
+mysql> update user set password=password('123456') where user='root';
+mysql> flush privileges;
+mysql> delete from user where user != 'root';
+Query OK, 2 rows affected (0.00 sec)
+mysql> flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> create database hive;
+
+
+# 安装 mysql 驱动 jar 包
+上传 mysql 驱动包至 /root/
+[root@peng1 hive]# cp -a /root/mysql-connector-java-5.1.7-bin.jar /home/hive/lib/
+
+[root@peng1 mysqldriver]# cp -a mysql-connector-java-5.1.7-bin.jar /home/hive/lib/
+[root@peng1 mysqldriver]# cd /home/hive/lib/
+[root@peng1 lib]# ls
+
+# 修改 hive 配置文件
+
+[root@peng1 ~]# cd /home/hive/conf/
+[root@peng1 conf]# cp -a hive-default.xml.template hive-site.xml
+[root@peng1 conf]# vi hive-site.xml
+
+<name>javax.jdo.option.ConnectionURL</name>
+<value>jdbc:mysql://peng1/hive</value>
+
+<name>javax.jdo.option.ConnectionDriverName</name>
+<value>com.mysql.jdbc.Driver</value>
+
+<name>javax.jdo.option.ConnectionUserName</name>
+<value>root</value>    
+
+<name>javax.jdo.option.ConnectionPassword</name>
+<value>123456</value>
+
+# 将 System:java.io.tmpdir 修改 /opt/hive/intmp
+<name>hive.querylog.location</name>
+<value>/opt/hive/intmp</value>
+
+<name>hive.server2.logging.operation.log.location</name>
+<value>/opt/hive/intmp/operation_logs</value>
+
+<name>hive.exec.local.scratchdir</name>
+<value>/opt/hive/intmp</value>
+
+<name>hive.downloaded.resources.dir</name>
+<value>/opt/hive/intmp/peng_resources</value>
+
+
+[root@peng1 hive]# mkdir -p /opt/hive/intmp #目录可以随意创建
+[root@peng1 hive]# cd  conf
+[root@peng1 conf]# vi hive-site.xml
+将 System:java.io.tmpdir 修改 /opt/hive/intmp
+[root@peng1 ~]# cd /home/hive/
+[root@peng1 hive]# ./bin/hive
+
+create table t_employee(
+id int,
+name string,
+age int,
+dept_name string
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',';
+
+
+hive> create table t_employee(
+    > id int,
+    > name string,
+    > age int,
+    > dept_name string
+    > )
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ',';
+OK
+Time taken: 0.551 seconds
+
+
+[root@peng1 ~]# mkdir hivesql # 存放 hivesql 脚本文件
+[root@peng1 ~]# cd hivesql
+[root@peng1 hivesql]# vi emp
+1,张三,32,销售部
+2,李四,31,销售部
+3,王五,33,销售部
+4,孙六,34,销售部
+
+[root@peng1 hivesql]# cd /home/hive/
+[root@peng1 hive]# ./bin/hive
+hive> load data local inpath '/root/hivesql/emp' into table t_emp;
+
+
+hive> show tables;
+OK
+t_emp
+Time taken: 0.613 seconds, Fetched: 1 row(s)
+hive> select * from t_emp;
+OK
+1       张三    32      销售部
+2       李四    31      销售部
+3       王五    33      销售部
+4       孙六    34      销售部
+Time taken: 0.524 seconds, Fetched: 4 row(s)
+hive> desc t_emp;
+OK
+id                      int
+name                    string
+age                     int
+dept_name               string
+
+
+hive> select count(*) from t_emp;
+Query ID = root_20160319000606_17c9e60e-ae11-407d-9435-75bda5bd8242
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1458314605588_0001, Tracking URL = http://peng1:8088/proxy/application_1458314605588_0001/
+Kill Command = /home/hadoop/bin/hadoop job  -kill job_1458314605588_0001
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2016-03-19 00:06:54,272 Stage-1 map = 0%,  reduce = 0%
+2016-03-19 00:07:04,095 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.26 sec
+2016-03-19 00:07:17,188 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 2.47 sec
+MapReduce Total cumulative CPU time: 2 seconds 470 msec
+Ended Job = job_1458314605588_0001
+MapReduce Jobs Launched:
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 2.47 sec   HDFS Read: 6545 HDFS Write: 2 SUCCESS
+Total MapReduce CPU Time Spent: 2 seconds 470 msec
+OK
+4
+Time taken: 38.581 seconds, Fetched: 1 row(s)
+
+# 在浏览器可以看到 t_emp 存在位置
+http://peng1:50070/explorer.html#/user/hive/warehouse/t_emp
+
+create table t_person (
+id int,
+name string,
+like array<string>,
+tedian map<string,string>
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+COLLECTION ITEMS TERMINATED BY '_'
+MAP KEYS TERMINATED BY ':';
+
+1,zhangsan,sports_books_tv,sex:男_color:red
+
+load data local inpath /root/hivesql/data into table t_person
+
+hive 的其它用法 参考 hive的使用
+
+
+
+安装 hbase
+=============================================================
+hbase 环境搭建 ( 分布式环境 )
+      HM (HMaster) RS (RegionServer)
+peng1              Y
+peng2              Y
+peng3 Y            Y
+peng4 Y            Y  
+http://abloz.com/hbase/book.html hbase 中文文档
+http://apache.fayea.com/hbase/ 下载 hbase-0.98.17-hadoop2-bin.tar.gz
+[root@peng1 ~]# mkdir hbase
+[root@peng1 ~]# mv hbase-0.98.17-hadoop2-bin.tar.gz hbase
+[root@peng1 ~]# cd hbase
+[root@peng1 hbase]# tar -zxvf hbase-0.98.17-hadoop2-bin.tar.gz
+[root@peng1 hbase]# ln -sf /root/hbase/hbase-0.98.17-hadoop2 /home/hbase
+[root@peng1 hbase]# cd /home/hbase
+[root@peng1 hbase]# cd conf
+[root@peng1 conf]# vi hbase-env.sh
+export JAVA_HOME=/usr/local/java/jdk1.8.0_73
+[root@peng1 conf]# vi hbase-site.xml
+
+<property>
+    <name>hbase.rootdir</name>
+    <value>hdfs://peng1:9000/hbase</value>
+</property>
+<properey>
+    <name>hbase.cluster.distributed</name>
+    <value>true</value>
+</property>
+
+[root@peng1 conf]# vi regionservers
+peng1
+peng2
+peng3
+peng4
+
+[root@peng1 conf]# vi hbase-env.sh
+export HBASE_MANAGES_ZK=false #默认为true true 时使用内置的 zk
+[root@peng1 conf]# vi hbase-site.xml
+
+<property>
+    <name>hbase.zookeeper.quorum</name>
+    <value>peng1,peng2,peng3</value>
+</property>
+<property>
+    <name>hbase.zookeeper.property.dataDir</name>
+    <value>/opt/zookeeper</value>
+</property>
+
+[root@peng1 conf]# cp -a /home/hadoop/etc/hadoop/hdfs-site.xml .
+
+
+复制 hbase 环境
+[root@peng2 ~]# mkdir hbase
+
+[root@peng1 conf]# scp -r /root/hbase/hbase-0.98.17-hadoop2 root@peng2:/root/hbase/
+[root@peng1 conf]# scp -r /root/hbase/hbase-0.98.17-hadoop2 root@peng3:/root/hbase/
+[root@peng1 conf]# scp -r /root/hbase/hbase-0.98.17-hadoop2 root@peng4:/root/hbase/
+
+[root@peng2 hbase]# ln -sf /root/hbase/hbase-0.98.17-hadoop2/ /home/hbase
+[root@peng2 hbase]# cd /home/hbase/conf
+[root@peng2 conf]# vi hbase-env.sh
+[root@peng2 conf]# vi hbase-site.xml
+[root@peng2 conf]# vi regionservers
+
+登录 peng3 peng4 操作同上
+
+开启 zk 服务 和 hadoop 服务
+[root@peng1 conf]# zkServer.sh start #peng1 peng2 peng3 开启
+[root@peng1 hbase]# ./bin/start-hbase.sh
+[root@peng1 hbase]# jps
+8384 HRegionServer
+7168 QuorumPeerMain
+8257 HMaster
+4837 NameNode
+5160 ResourceManager
+5019 SecondaryNameNode
+8430 Jps
+
+[root@peng2 conf]# jps
+32418 NodeManager
+1142 QuorumPeerMain
+1739 Jps
+32316 DataNode
+1502 HRegionServer
+
+
+[root@peng3 ~]# jps
+32512 QuorumPeerMain
+31010 DataNode
+454 Jps
+31112 NodeManager
+32765 HRegionServer
+
+
+[root@peng4 ~]# jps
+31157 DataNode
+602 Jps
+444 HRegionServer
+31261 NodeManager
+
+http://peng1:60010/master-status
+Master peng1
+
+
+[root@peng2 hbase]# ./bin/hbase-daemon.sh start master # 其它服务器开启 hmaster 使用
+
+[root@peng1 hbase]# kill -9 8257 # 挂一台服务器 peng1 (会自动切换为另一台 peng2)
+http://peng2:60010/master-status
+Master peng2
+
+
+[root@peng1 hbase]# ./bin/hbase shell # 进入 hbase 数据库
+hbase(main):001:0> create 't_student','cf1' # 创建表
+=> Hbase::Table - t_student
+hbase(main):002:0> list # 显示表
+TABLE
+t_student
+1 row(s) in 0.0360 seconds
+=> ["t_student"]
+
+hbase(main):003:0> desc 't_student'
+Table t_student is ENABLED
+t_student
+COLUMN FAMILIES DESCRIPTION
+{NAME => 'cf1', BLOOMFILTER => 'ROW', VERSIONS => '1', IN_MEMORY => 'false', KEEP_DELE
+TED_CELLS => 'FALSE', DATA_BLOCK_ENCODING => 'NONE', TTL => 'FOREVER', COMPRESSION =>
+'NONE', MIN_VERSIONS => '0', BLOCKCACHE => 'true', BLOCKSIZE => '65536', REPLICATION_S
+COPE => '0'}
+1 row(s) in 0.1080 seconds
+
+hbase(main):004:0> put 't_student','001','cf1:name','peng1'
+0 row(s) in 0.2150 seconds
+
+hbase(main):005:0> scan 't_student'
+ROW                    COLUMN+CELL
+ 001                   column=cf1:name, timestamp=1458444384020, value=peng1
+1 row(s) in 0.0460 seconds
+
+hbase(main):004:0> create 't_person','cf1'
+
+hbase(main):005:0> list
+hbase(main):006:0> put 't_person','001','cf1:name','peng1'
+hbase(main):007:0> flush 't_person' # 每 flush 一次会生成一个文件
+hbase(main):008:0> put 't_person','001','cf1:name','peng2'
+hbase(main):009:0> put 't_person','001','cf1:name','peng3'
+hbase(main):0010:0> flush 't_person'
+hbase(main):0011:0> major_compact 't_person' #将多个文件合并为一个文件
+hbase(main):0012:0> ./bin/hbase hfile -p -f /hbase/data/default/t_student/14ff507dcb6c8045d4d5af1492ac5394/9a83a6dc26cd4de485b6003f0e5807e6 # cf1文件路径 打印数据信息
+
+
+
+安装 sqoop
+=============================================================
+http://apache.fayea.com/sqoop/1.4.6/
+当前使用 1.99.6 版本
+
+# 下次安装 Tomcat 再次测试
+[root@peng1 ~]# cd /home/
+[root@peng1 home]# mkdir sqoop
+[root@peng1 home]#
+[root@peng1 home]# cp -a /root/sqoop-1.99.6-bin-hadoop200.tar.gz sqoop/
+[root@peng1 home]# cd sqoop
+
+[root@peng1 sqoop]# tar -zxvf sqoop-1.99.6-bin-hadoop200.tar.gz
+
+[root@peng1 sqoop]# ln -sf /root/sqoop/sqoop-1.99.6-bin-hadoop200 /home/sqoop
+[root@peng1 sqoop]# cd /home/sqoop/
+[root@peng1 ~]# vi /etc/profile
+export SQOOP_HOME=/home/sqoop
+export PATH=$PATH:$SQOOP_HOME/bin
+
+[root@peng1 ~]# source /etc/profile
+
+# 修改配置文件 (hadoop 相关 jar 文件目录)
+[root@peng1 sqoop]# cd /home/sqoop/server/conf/
+[root@peng1 conf]# vi catalina.properties
+#common.loader=${catalina.base}/lib,${catalina.base}/lib/*.jar,${catalina.home}/lib,${catalina.home}/lib/*.jar,${catalina.home}/../lib/*.jar,/usr/lib/hadoop/*.jar,/usr/lib/hadoop/lib/*.jar,/usr/lib/hadoop-hdfs/*.jar,/usr/lib/hadoop-hdfs/lib/*.jar,/usr/lib/hadoop-mapreduce/*.jar,/usr/lib/hadoop-mapreduce/lib/*.jar,/usr/lib/hadoop-yarn/*.jar,/usr/lib/hadoop-yarn/lib/*.jar,/usr/lib/hive/lib/*.jar
+#
+
+common.loader=${catalina.base}/lib,${catalina.base}/lib/*.jar,${catalina.home}/lib,${catalina.home}/lib/*.jar,/home/hadoop/share/hadoop/common/*.jar,/home/hadoop/share/hadoop/common/lib/*.jar,/home/hadoop/share/hadoop/hdfs/*.jar,/home/hadoop/share/hadoop/hdfs/lib/*.jar,/home/hadoop/share/hadoop/mapreduce/*.jar,/home/hadoop/share/hadoop/mapreduce/lib/*.jar,/home/hadoop/share/hadoop/yarn/*.jar,/home/hadoop/share/hadoop/yarn/lib/*.jar,/home/hive/lib/*.jar
+
+[root@peng1 conf]# vi sqoop.properties
+/configuration.directory
+org.apache.sqoop.submission.engine.mapreduce.configuration.directory=/home/hadoop/etc/hadoop/
+
+复制 msyql-con...jar 到 .../server/lib
+
+# 服务端启动
+[root@peng1 sqoop]# ./bin/sqoop.sh server start # 也可以使用./bin/sqoop2-server start 启动服务
+Sqoop home directory: /home/sqoop
+Setting SQOOP_HTTP_PORT:     12000
+Setting SQOOP_ADMIN_PORT:     12001
+Using   CATALINA_OPTS:
+Adding to CATALINA_OPTS:    -Dsqoop.http.port=12000 -Dsqoop.admin.port=12001
+Using CATALINA_BASE:   /home/sqoop/server
+Using CATALINA_HOME:   /home/sqoop/server
+Using CATALINA_TMPDIR: /home/sqoop/server/temp
+Using JRE_HOME:        /usr/local/java/jdk1.8.0_73/jre
+Using CLASSPATH:       /home/sqoop/server/bin/bootstrap.jar
+
+[root@peng1 sqoop]# ./bin/sqoop.sh client
+Sqoop home directory: /home/sqoop
+三月 23, 2016 9:54:20 上午 java.util.prefs.FileSystemPreferences$1 run
+信息: Created user preferences directory.
+Sqoop Shell: Type 'help' or '\h' for help.
+
+sqoop:000> show version --all # 查看版本是否安装成功
+client version:
+  Sqoop 1.99.6 source revision 07244c3915975f26f03d9e1edf09ab7d06619bb8
+  Compiled by root on Wed Apr 29 10:40:43 CST 2015
+0    [main] WARN  org.apache.hadoop.util.NativeCodeLoader  - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+server version:
+  Sqoop 1.99.6 source revision 07244c3915975f26f03d9e1edf09ab7d06619bb8
+  Compiled by root on Wed Apr 29 10:40:43 CST 2015
+API versions:
+  [v1]
+
+sqoop:000> show connector
++----+------------------------+---------+------------------------------------------------------+----------------------+
+| Id |          Name          | Version |                        Class                         | Supported Directions |
++----+------------------------+---------+------------------------------------------------------+----------------------+
+| 1  | generic-jdbc-connector | 1.99.6  | org.apache.sqoop.connector.jdbc.GenericJdbcConnector | FROM/TO              |
+| 2  | kite-connector         | 1.99.6  | org.apache.sqoop.connector.kite.KiteConnector        | FROM/TO              |
+| 3  | hdfs-connector         | 1.99.6  | org.apache.sqoop.connector.hdfs.HdfsConnector        | FROM/TO              |
+| 4  | kafka-connector        | 1.99.6  | org.apache.sqoop.connector.kafka.KafkaConnector      | TO                   |
+
+sqoop:000> create link --cid 1
+Creating link for connector with id 1
+Please fill following values to create new link object
+Name: firstLink # 连接名 (随便取)
+
+Link configuration
+
+JDBC Driver Class: com.mysql.jdbc.Driver # mysql jdbc 驱动类名
+JDBC Connection String: jdbc:mysql://peng1/peng # 建立连接 (连接那个库)
+Username: root # 用户名
+Password: ****** # 密码
+JDBC Connection Properties:
+There are currently 0 values in the map:
+entry#
+New link was successfully created with validation status OK and persistent id 1
+sqoop:000> show link
++----+-----------+--------------+------------------------+---------+
+| Id |   Name    | Connector Id |     Connector Name     | Enabled |
++----+-----------+--------------+------------------------+---------+
+| 1  | firstLink | 1            | generic-jdbc-connector | true    |
++----+-----------+--------------+------------------------+---------+
+sqoop:000> create link --cid 3
+Creating link for connector with id 3
+Please fill following values to create new link object
+Name: second
+
+Link configuration
+
+HDFS URI: hdfs://peng1:8020/
+Hadoop conf directory: /home/hadoop/etc/hadoop/
+New link was successfully created with validation status OK and persistent id 2
+sqoop:000> show link
++----+-----------+--------------+------------------------+---------+
+| Id |   Name    | Connector Id |     Connector Name     | Enabled |
++----+-----------+--------------+------------------------+---------+
+| 1  | firstLink | 1            | generic-jdbc-connector | true    |
+| 2  | second    | 3            | hdfs-connector         | true    |
++----+-----------+--------------+------------------------+---------+
+
+mysql 导数据到 hdfs
+
+
+
+安装 scala
+=============================================================
+www.scala-lang.org/download # 下载 scala-2.11.8.tgz
+
+[root@peng1 ~]# mkdir scala
+[root@peng1 ~]# mv scala-2.11.8.tgz scala
+[root@peng1 ~]# cd scala/
+[root@peng1 scala]# ls
+[root@peng1 scala]# tar -zxvf scala-2.11.8.tgz
+[root@peng1 ~]# ln -sf /root/scala/scala-2.11.8 /home/scala
+[root@peng1 ~]# cd /home/scala/
+[root@peng1 scala]# ./bin/scala
+Welcome to Scala 2.11.8 (Java HotSpot(TM) Client VM, Java 1.8.0_73).
+Type in expressions for evaluation. Or try :help.
+
+scala>
+
+[root@peng1 scala]# vi /etc/profile
+export SCALA_HOME=/home/scala
+export PATH=$PATH:/home/scala/bin
+[root@peng1 scala]# source /etc/profile
+
+[root@peng1 scala]# scp /etc/profile root@peng2:/etc/
+[root@peng1 scala]# scp /etc/profile root@peng3:/etc/
+[root@peng1 scala]# scp /etc/profile root@peng4:/etc/
+[root@peng1 scala]# scp -r /root/scala/scala-2.11.8 root@peng2:/root/scala/
+[root@peng1 scala]# scp -r /root/scala/scala-2.11.8 root@peng3:/root/scala/
+[root@peng1 scala]# scp -r /root/scala/scala-2.11.8 root@peng4:/root/scala/
+
+登录 peng2
+[root@peng2 ~]# ln -sf /root/scala/scala-2.11.8 /home/scala/
+[root@peng2 ~]# source /etc/profile
+
+登录 peng3 peng4 操作同上
+
+
+
+安装 spark
+=============================================================
+spark 下载
+http://spark.apache.org/downloads.html
+
+下载页需要选择spark 版本 还要选择 hadoop 版本
+http://www.apache.org/dyn/closer.lua/spark/spark-1.6.0/spark-1.6.0-bin-hadoop2.6.tgz
+
+[root@peng1 ~]# mkdir spark
+[root@peng1 ~]# mv spark-1.6.0-bin-hadoop2.6.tgz spark
+[root@peng1 ~]# cd spark/
+[root@peng1 spark]# ls
+spark-1.6.0.tgz
+[root@peng1 spark]# tar -zxvf spark-1.6.0-bin-hadoop2.6.tgz
+
+[root@peng1 spark]# ln -sf /root/spark/spark-1.6.0-bin-hadoop2.6.tgz /home/spark
+[root@peng1 spark]# cd /home/spark/conf/
+
+[root@peng1 conf]# cp -a spark-env.sh.template spark-env.sh
+[root@peng1 conf]# vi spark-env.sh
+
+export JAVA_HOME=/usr/local/java/jdk1.8.0_73
+export SCALA_HOME=/home/scala
+export SPARK_MASTER_IP=peng1
+export SPARK_WORKER_MEMORY=1g
+export SPARK_EXECUTOR_MEMORY=1g
+export SPARK_DRIVER_MEMORY=1G
+export HADOOP_CONF_DIR=/home/hadoop/etc/hadoop
+
+[root@peng1 conf]# cp -a slaves.template slaves
+[root@peng1 conf]# vi slaves
+peng2
+peng3
+peng4
+
+[root@peng1 conf]# cp -a spark-defaults.conf.template spark-defaults.conf
+[root@peng1 conf]# vi spark-defaults.conf
+spark.executor.extraJavaOptions  -XX:+PrintGCDetails -Dkey=value -Dnumbers="one two three"
+spark.eventLog.enabled           true
+spark.eventLog.dir               hdfs://peng1:9000/historyserverforSpark
+spark.yarn.historyServer.address peng1:18080
+spark.history.fs.logDirectory    hdfs://peng1:9000/historyserverforSpark
+
+
+[root@peng1 spark]# vi /etc/profile
+export SCALA_HOME=/home/scala
+export PATH=$PATH:$SCALA_HOME/bin
+
+export SPARK_HOME=/home/spark
+export PATH=$PATH:$SPARK_HOME/bin
+export PATH=$PATH:$SPARK_HOME/sbin
+
+
+[root@peng1 spark]# scp /etc/profile root@peng2:/etc/
+profile                                       100% 2282     2.2KB/s   00:00
+[root@peng1 spark]# scp /etc/profile root@peng3:/etc/
+profile                                       100% 2282     2.2KB/s   00:00
+[root@peng1 spark]# scp /etc/profile root@peng4:/etc/
+profile                                       100% 2282     2.2KB/s   00:00
+
+[root@peng1 spark]# scp -r /root/spark/spark-1.6.0-bin-hadoop2.6 root@peng2:/root/spark/  
+[root@peng1 spark]# scp -r /root/spark/spark-1.6.0-bin-hadoop2.6 root@peng3:/root/spark/  
+[root@peng1 spark]# scp -r /root/spark/spark-1.6.0-bin-hadoop2.6 root@peng4:/root/spark/  
+
+登录 peng2 修改软链接
+[root@peng2 spark]# ln -sf /root/spark/spark-1.6.0-bin-hadoop2.6.tgz/ /home/spark
+[root@peng2 ~]# source /etc/profile
+
+登录 peng3 peng4 同上操作
+
+[root@peng1 spark]# jps
+27008 QuorumPeerMain
+26533 ResourceManager
+15270 MainGenericRunner
+26220 NameNode
+26397 SecondaryNameNode
+17038 Master
+17102 Jps
+
+[root@peng2 scala]# jps
+25728 QuorumPeerMain
+26352 Jps
+26305 Worker
+25378 DataNode
+25475 NodeManager
+
+[root@peng3 scala]# jps
+26626 Jps
+26563 Worker
+3492 QuorumPeerMain
+2573 DataNode
+2670 NodeManager
+
+[root@peng4 scala]# jps
+2839 DataNode
+2936 NodeManager
+29352 Jps
+29289 Worker
+
+[root@peng1 spark]# ./sbin/start-all.sh
+http://peng1:8080/
+
+[root@peng1 spark]# ./sbin/start-history-server.sh
+http://peng1:18080
+
+[root@peng1 spark]# ./bin/run-example SparkPi 10 # 测试案例

@@ -1,0 +1,138 @@
+<extend name='Layout/tpl'/>
+<block name='style'>
+<style type="text/css">
+	#review{
+	margin-top:235px;
+	}
+	ul li{list-style: none;}
+</style>
+<script type="text/javascript">
+	$(function(){
+		$('.re_btn').click(function(){
+			$('#review_a').attr('placeholder',$(this).prev('input').val());
+			$('#rid').val($(this).next().val());
+			$('#pid').val($(this).next().next().val());
+			$('#path').val($(this).next().next().next().val());
+			$('#answer').css('display','block');
+
+			
+		})
+
+		$('#issue').click(function()
+			{
+			$.ajax({
+				url:$('#review_url').val(),
+				type:'post',
+				data:{rid:$('#rid').val(),pid:$('#pid').val(),content:$('#review_a').val(),path:$('#path').val()},
+				success:function(data){
+					alert('回复成功！');
+					window.location = window.location.href;	
+				}
+			})
+		})
+
+		$('#addreview').click(function()
+			{
+			$.ajax({
+				url:$('#review_url').val(),
+				type:'post',
+				data:{pid:$('#pid2').val(),content:$('#review_b').val(),path:$('#path').val()},
+				success:function(data){
+					alert('回复成功！');
+					window.location = window.location.href;	
+				}
+			})
+		})
+	})
+</script>
+</block>
+<block name='main'>
+<div id='review' class="row">
+	<div class="col-md-12">
+		<div class="col-md-10">
+			<div class="panel panel-default">
+			  <div class="panel-heading">评论列表</div>
+			  <div class="panel-body">
+			  	<ul>
+				    <volist name='list' id='vo'>
+				    <input type="hidden" id='pid2' value="{$vo.pid}">
+				    	<li>
+				    	<table class='table'>
+				    		<tr><td rowspan="3"><img src="__ROOT__/Avatar/{$vo.headimg}" alt=""></td><td>{$vo.username}说:{$vo.content}<input type="hidden" value="@{$vo.username}">
+				    		<button type='button' class='re_btn'>回复</button>
+				    		<input type="hidden" value="{$vo.sender}">
+				    		<input type="hidden" value="{$vo.id}">
+				    		<input type="hidden" value='{$vo.path},{$vo.id}'></td></tr>
+				    		<tr><td>{:date('Y-m-d H:i:s',$vo['addtime'])}</td></tr>
+				    		<tr><td>
+				    			<ul>
+				    			<volist name="vo['sreview']" id='voc'>
+				    				<li>
+				    				<table>
+				    					<tr>
+				    						<td rowspan="3">
+				    							<img src="__ROOT__/Avatar/{$voc.headimg}" alt="">
+				    						</td>
+				    						<td>{$voc.username}回复{$voc.receivername}:{$voc.content}
+				    						<input type="hidden" value="@{$voc.username}">
+				    					<button type='button' class='re_btn'>回复</button>
+				    					<input type="hidden" value="{$voc.sender}">
+				    					<input type="hidden" value="{$vo.id}">
+										<input type="hidden" value='{$vo.path},{$voc.id}'></td>
+				    					</tr>
+				    					<tr><td>{:date('Y-m-d H:i:s',$voc['addtime'])}</td></tr>
+				    					<tr><td></td></tr>
+				    				</table>
+				    					
+										
+				    					
+				    				</li>
+				    			</volist>
+				    		</ul>
+
+				    		</td></tr>
+				    	</table>
+				    		
+							
+				    		
+				    	</li>
+				    </volist>
+			    </ul>
+			  </div>
+			  <div class="panel-body">
+			  <div class="col-lg-8" >
+    <div class="input-group" style='display:none;margin-left:100px;' id='answer'>
+      <input type="text" id='review_a' class="form-control" placeholder="">
+       <input type="hidden" value="{:U('Review/addReview')}" id='review_url'>
+			  
+			   <input type="hidden" value="" id='owner'>
+			   <input type="hidden" value="" id='pid'>
+			   <input type="hidden" value="" id='rid'>
+			   <input type="hidden" value="" id='path'>
+			      <span class="input-group-btn">
+			        <button class="btn btn-default" id='issue' type="button">回复</button>
+			      </span>
+			    </div><!-- /input-group -->
+			  </div><!-- /.col-lg-6 -->
+			</div>
+			</div>
+
+		</div>
+		<div class="col-md-10">
+			<div class="panel panel-default">
+			  <div class="panel-heading">评论发表</div>
+			  <div class="panel-body">
+			    <textarea class="form-control" rows="3" id='review_b'></textarea>
+			  </div>
+			  <input type="hidden" value="{:U('Review/addReview')}" id='review_url'>
+			   <input type="hidden" value="<?php echo $_SESSION['uid'];?>" id='owner'>
+			   <input type="hidden" value="0" id='pid'>
+		
+			   <input type="hidden" value="'0'" id='path'>
+			  
+			  <div class="panel-footer"><button type="button" id='addreview' class="btn btn-default btn-sm">发表</button></div>
+			</div>
+		</div>
+	</div>
+</div>
+</block>

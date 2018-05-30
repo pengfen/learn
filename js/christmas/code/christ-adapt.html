@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>圣诞主题</title>
+    <style type="text/css">
+    .bird {
+       width: 3rem;
+        height: 3rem;
+        top: 10%;
+        position: absolute;
+        z-index: 10;
+        /*background: url(http://img.mukewang.com/55ade1700001b38302730071.png);*/
+        background: url(../images/code/test1.png);
+        background-size: 300% 100%;
+    }
+    
+    .birdFly {
+        /*写法1*/
+        -moz-animation-name: bird-slow;
+        -moz-animation-duration: 400ms;
+        -moz-animation-timing-function: steps(1,start);
+        -moz-animation-iteration-count: infinite;
+
+        /*写法2*/
+        /*-webkit-animation:bird-slow 400ms steps(3) infinite;*/
+    }
+
+    @keyframes bird-slow {
+		0% {background-position-x: -0px}
+		100% {background-position-x: -237px}
+	}
+    
+
+    </style>
+</head>
+
+<body>
+    尺寸增加后，精灵图正常
+    <div class="bird birdFly"></div>
+</body>
+<script type="text/javascript">
+var docEl = document.documentElement,
+    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+    recalc = function() {
+        //设置根字体大小
+        docEl.style.fontSize = 20 * (docEl.clientWidth / 320) + 'px';
+    };
+
+//绑定浏览器缩放与加载时间
+window.addEventListener(resizeEvt, recalc, false);
+document.addEventListener('DOMContentLoaded', recalc, false);
+</script>
+
+</html>

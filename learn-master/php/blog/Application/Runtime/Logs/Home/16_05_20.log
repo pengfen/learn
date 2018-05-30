@@ -1,0 +1,800 @@
+[ 2016-05-20T09:43:28+08:00 ] 127.0.0.1 /index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.040003s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-20T09:43:28+08:00 ] 127.0.0.1 /index.php/Home/Register/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-20T09:43:28+08:00 ] 127.0.0.1 /index.php/Home/Register/verifyImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-20T09:43:39+08:00 ] 127.0.0.1 /index.php/Home/Log/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2048] Declaration of Home\Controller\LogController::theme() should be compatible with Think\Controller::theme($theme) F:\learn\php\blog\Application\Home\Controller\LogController.class.php 第 9 行.
+
+[ 2016-05-20T09:43:39+08:00 ] 127.0.0.1 /index.php/Home/Register/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-20T09:43:39+08:00 ] 127.0.0.1 /index.php/Home/Register/verifyImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-20T09:43:45+08:00 ] 127.0.0.1 /index.php/Home/Login/dologin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: SQLSTATE[HY000] [2002] ����Ŀ�����������ܾ����޷����ӡ�
+
+
+[ 2016-05-20T10:07:23+08:00 ] 127.0.0.1 /index.php/Home/Log/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.008000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+NOTIC: [2048] Declaration of Home\Controller\LogController::theme() should be compatible with Think\Controller::theme($theme) F:\learn\php\blog\Application\Home\Controller\LogController.class.php 第 9 行.
+
+[ 2016-05-20T10:07:24+08:00 ] 127.0.0.1 /index.php/Home/Register/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001001s ]
+
+[ 2016-05-20T10:07:24+08:00 ] 127.0.0.1 /index.php/Home/Register/verifyImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-05-20T10:07:29+08:00 ] 127.0.0.1 /index.php/Home/Login/dologin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SELECT * FROM `blog_user` WHERE `email` = 'apeng1@qq.com' LIMIT 1   [ RunTime:0.0900s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0020s ]
+SQL: UPDATE `blog_user` SET `experience`='180' WHERE `id` = 52 [ RunTime:0.0900s ]
+
+[ 2016-05-20T10:07:30+08:00 ] 127.0.0.1 /index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0420s ]
+SQL: SELECT * FROM `blog_visitor` WHERE `uid` = 52 GROUP BY visitor ORDER BY addtime desc LIMIT 9   [ RunTime:0.0330s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 61 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 61 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 53 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 53 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `blog_news` ORDER BY addtime desc LIMIT 6   [ RunTime:0.0220s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.103006s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.104006s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001001s ]
+
+[ 2016-05-20T10:07:31+08:00 ] 127.0.0.1 /index.php/Home/Mydong/friend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.004000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+NOTIC: [8] Undefined index: uid F:\learn\php\blog\Application\Home\Controller\MydongController.class.php 第 71 行.
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52  [ RunTime:0.1440s ]
+SQL: SELECT * FROM `blog_record` WHERE ( uid in (56,53,61,61) ) ORDER BY addtime desc LIMIT 10   [ RunTime:0.3310s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 61 LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 61 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 61 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 61 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 53 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 53 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 53 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 53 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 53 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_mood` WHERE ( uid in (56,53,61,61) ) ORDER BY addtime desc LIMIT 3   [ RunTime:0.0400s ]
+SQL: SELECT * FROM `blog_log_cate` WHERE ( uid in (56,53,61,61) )  [ RunTime:0.0100s ]
+NOTIC: [2048] Declaration of Home\Controller\LogController::theme() should be compatible with Think\Controller::theme($theme) F:\learn\php\blog\Application\Home\Controller\LogController.class.php 第 322 行.
+SQL: SELECT * FROM `blog_log` WHERE ( cid in (39,42,47,49) ) ORDER BY addtime desc LIMIT 3   [ RunTime:0.0020s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001001s ]
+NOTIC: [8] Use of undefined constant title - assumed 'title' F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: review F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 17 行.
+NOTIC: [8] Undefined index: uid F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 65 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: title F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: review F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 17 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: review F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 17 行.
+NOTIC: [8] Undefined index: uid F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 65 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: title F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: review F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 17 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: title F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: review F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 17 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.036002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.036002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-20T14:36:05+08:00 ] 127.0.0.1 /index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.047501s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+
+[ 2016-05-20T14:36:05+08:00 ] 127.0.0.1 /index.php/Home/Register/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002501s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002501s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.002500s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.187503s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.187503s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.025001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.027501s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002500s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005000s ]
+
+[ 2016-05-20T14:36:07+08:00 ] 127.0.0.1 /index.php/Home/Register/verifyImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002500s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002500s ]
+
+[ 2016-05-20T14:36:14+08:00 ] 127.0.0.1 /index.php/Home/Login/dologin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SELECT * FROM `blog_user` WHERE `email` = 'apeng1@qq.com' LIMIT 1   [ RunTime:0.1300s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `blog_user` SET `experience`='185' WHERE `id` = 52 [ RunTime:0.0550s ]
+
+[ 2016-05-20T14:36:14+08:00 ] 127.0.0.1 /index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0275s ]
+SQL: SELECT * FROM `blog_visitor` WHERE `uid` = 52 GROUP BY visitor ORDER BY addtime desc LIMIT 9   [ RunTime:0.0600s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 61 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 61 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_news` ORDER BY addtime desc LIMIT 6   [ RunTime:0.0350s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.122501s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.122501s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-20T14:36:16+08:00 ] 127.0.0.1 /index.php/Home/Mydong/friend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+NOTIC: [8] Undefined index: uid F:\learn\php\blog\Application\Home\Controller\MydongController.class.php 第 71 行.
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52  [ RunTime:0.0650s ]
+SQL: SELECT * FROM `blog_record` WHERE ( uid in (56,53,61,61) ) ORDER BY addtime desc LIMIT 10   [ RunTime:0.3300s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 61 LIMIT 1   [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 61 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 61 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 61 LIMIT 1   [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 53 LIMIT 1   [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 53 LIMIT 1   [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_mood` WHERE ( uid in (56,53,61,61) ) ORDER BY addtime desc LIMIT 3   [ RunTime:0.6000s ]
+SQL: SELECT * FROM `blog_log_cate` WHERE ( uid in (56,53,61,61) )  [ RunTime:0.1900s ]
+NOTIC: [2048] Declaration of Home\Controller\LogController::theme() should be compatible with Think\Controller::theme($theme) F:\learn\php\blog\Application\Home\Controller\LogController.class.php 第 322 行.
+SQL: SELECT * FROM `blog_log` WHERE ( cid in (39,42,47,49) ) ORDER BY addtime desc LIMIT 3   [ RunTime:0.0200s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.002500s ]
+NOTIC: [8] Use of undefined constant title - assumed 'title' F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: review F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 17 行.
+NOTIC: [8] Undefined index: uid F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 65 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: title F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: review F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 17 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: review F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 17 行.
+NOTIC: [8] Undefined index: uid F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 65 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: title F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: review F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 17 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: title F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: review F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 17 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.057501s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.057501s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-20T14:36:36+08:00 ] 127.0.0.1 /index.php/Home/Resource/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: select r.id,r.type,r.header,r.main,r.score,r.download,r.addtime,u.username from blog_resource r left join blog_user u on r.uid=u.id order by r.download desc limit 5 [ RunTime:0.0700s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: title F:\learn\php\blog\Application\Runtime\Cache\Home\1f500f88dc3c7a30fce9587ab1010eea.php 第 7 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.052501s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.052501s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002500s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002500s ]
+
+[ 2016-05-20T14:37:37+08:00 ] 127.0.0.1 /index.php/Home/Resource/technology.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.002500s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: select r.id,r.type,r.header,r.main,r.score,r.download,r.addtime,u.username from blog_resource r left join blog_user u on r.uid=u.id where r.type='技术' order by r.addtime desc [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.124801s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.124801s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-20T14:37:38+08:00 ] 127.0.0.1 /index.php/Home/Resource/education.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: select r.id,r.type,r.header,r.main,r.score,r.download,r.addtime,u.username from blog_resource r left join blog_user u on r.uid=u.id where r.type='教育' order by r.addtime desc [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031200s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031200s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-20T14:37:40+08:00 ] 127.0.0.1 /index.php/Home/Resource/technology.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: select r.id,r.type,r.header,r.main,r.score,r.download,r.addtime,u.username from blog_resource r left join blog_user u on r.uid=u.id where r.type='技术' order by r.addtime desc [ RunTime:0.0156s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015600s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015600s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-20T14:37:41+08:00 ] 127.0.0.1 /index.php/Home/Resource/education.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: select r.id,r.type,r.header,r.main,r.score,r.download,r.addtime,u.username from blog_resource r left join blog_user u on r.uid=u.id where r.type='教育' order by r.addtime desc [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015600s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015600s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-20T14:37:42+08:00 ] 127.0.0.1 /index.php/Home/Resource/technology.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: select r.id,r.type,r.header,r.main,r.score,r.download,r.addtime,u.username from blog_resource r left join blog_user u on r.uid=u.id where r.type='技术' order by r.addtime desc [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015600s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015600s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-20T14:37:43+08:00 ] 127.0.0.1 /index.php/Home/Resource/technology.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: select r.id,r.type,r.header,r.main,r.score,r.download,r.addtime,u.username from blog_resource r left join blog_user u on r.uid=u.id where r.type='技术' order by r.addtime desc [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-20T14:37:45+08:00 ] 127.0.0.1 /index.php/Home/Resource/education.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.002500s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: select r.id,r.type,r.header,r.main,r.score,r.download,r.addtime,u.username from blog_resource r left join blog_user u on r.uid=u.id where r.type='教育' order by r.addtime desc [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015600s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015600s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-20T14:37:48+08:00 ] 127.0.0.1 /index.php/Home/Resource/literature.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: select r.id,r.type,r.header,r.main,r.score,r.download,r.addtime,u.username from blog_resource r left join blog_user u on r.uid=u.id where r.type='文学' order by r.addtime desc [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.046800s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.046800s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-20T14:37:50+08:00 ] 127.0.0.1 /index.php/Home/Resource/technology.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: select r.id,r.type,r.header,r.main,r.score,r.download,r.addtime,u.username from blog_resource r left join blog_user u on r.uid=u.id where r.type='技术' order by r.addtime desc [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015600s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015600s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-20T14:37:51+08:00 ] 127.0.0.1 /index.php/Home/Resource/education.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: select r.id,r.type,r.header,r.main,r.score,r.download,r.addtime,u.username from blog_resource r left join blog_user u on r.uid=u.id where r.type='教育' order by r.addtime desc [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015600s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015600s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-20T14:37:58+08:00 ] 127.0.0.1 /index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002501s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002501s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_visitor` WHERE `uid` = 52 GROUP BY visitor ORDER BY addtime desc LIMIT 9   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 61 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 61 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_news` ORDER BY addtime desc LIMIT 6   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022500s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022500s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002500s ]
+
+[ 2016-05-20T14:37:58+08:00 ] 127.0.0.1 /index.php/Home/Mydong/friend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: uid F:\learn\php\blog\Application\Home\Controller\MydongController.class.php 第 71 行.
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_record` WHERE ( uid in (56,53,61,61) ) ORDER BY addtime desc LIMIT 10   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 61 LIMIT 1   [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 61 LIMIT 1   [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 61 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 61 LIMIT 1   [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 53 LIMIT 1   [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 53 LIMIT 1   [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 53 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_mood` WHERE ( uid in (56,53,61,61) ) ORDER BY addtime desc LIMIT 3   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_log_cate` WHERE ( uid in (56,53,61,61) )  [ RunTime:0.0000s ]
+NOTIC: [2048] Declaration of Home\Controller\LogController::theme() should be compatible with Think\Controller::theme($theme) F:\learn\php\blog\Application\Home\Controller\LogController.class.php 第 322 行.
+SQL: SELECT * FROM `blog_log` WHERE ( cid in (39,42,47,49) ) ORDER BY addtime desc LIMIT 3   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.002500s ]
+NOTIC: [8] Use of undefined constant title - assumed 'title' F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: review F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 17 行.
+NOTIC: [8] Undefined index: uid F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 65 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: title F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: review F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 17 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: review F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 17 行.
+NOTIC: [8] Undefined index: uid F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 65 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: title F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: review F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 17 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: title F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 11 行.
+NOTIC: [8] Undefined index: review F:\learn\php\blog\Application\Runtime\Cache\Home\096c0501a97510b87ff0ba23b4c95a80.php 第 17 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022501s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022501s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-20T14:38:01+08:00 ] 127.0.0.1 /index.php/Home/Log/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+NOTIC: [2048] Declaration of Home\Controller\LogController::theme() should be compatible with Think\Controller::theme($theme) F:\learn\php\blog\Application\Home\Controller\LogController.class.php 第 9 行.
+NOTIC: [8] Undefined index: uid F:\learn\php\blog\Application\Home\Controller\LogController.class.php 第 15 行.
+SQL: SELECT * FROM `blog_log_cate` WHERE `uid` = 52  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_log` WHERE ( cid in (38) and flag=0 )  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: flag F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 139 行.
+NOTIC: [8] Undefined variable: flag F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 143 行.
+NOTIC: [8] Undefined variable: flag F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 151 行.
+NOTIC: [8] Undefined variable: flag F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 156 行.
+NOTIC: [8] Undefined variable: flag F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 176 行.
+NOTIC: [8] Undefined variable: flag F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 191 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 197 行.
+NOTIC: [8] Use of undefined constant addtime - assumed 'addtime' F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 197 行.
+NOTIC: [8] Undefined variable: flag F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 197 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 197 行.
+NOTIC: [8] Undefined variable: trash F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 201 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 203 行.
+NOTIC: [8] Use of undefined constant cid - assumed 'cid' F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 204 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 205 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 206 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.090001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.090001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-20T14:38:04+08:00 ] 127.0.0.1 /index.php/Home/Log/detail/id/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+NOTIC: [2048] Declaration of Home\Controller\LogController::theme() should be compatible with Think\Controller::theme($theme) F:\learn\php\blog\Application\Home\Controller\LogController.class.php 第 9 行.
+NOTIC: [8] Undefined index: uid F:\learn\php\blog\Application\Home\Controller\LogController.class.php 第 255 行.
+SQL: SELECT `username` FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_log` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `blog_log` SET `views`='12' WHERE `id` = 1 [ RunTime:0.0624s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant addtime - assumed 'addtime' F:\learn\php\blog\Application\Runtime\Cache\Home\b1b638146fc5b0ff6be5783f1c450534.php 第 4 行.
+NOTIC: [8] Undefined variable: flag F:\learn\php\blog\Application\Runtime\Cache\Home\b1b638146fc5b0ff6be5783f1c450534.php 第 8 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031200s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031200s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-20T14:38:13+08:00 ] 127.0.0.1 /index.php/Home/Log/seclist.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2048] Declaration of Home\Controller\LogController::theme() should be compatible with Think\Controller::theme($theme) F:\learn\php\blog\Application\Home\Controller\LogController.class.php 第 9 行.
+SQL: SELECT * FROM `blog_log_cate` WHERE `uid` = 52  [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_log` WHERE ( cid in (38) and auth=3 )  [ RunTime:0.0025s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002500s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.002500s ]
+NOTIC: [8] Undefined variable: flag F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 139 行.
+NOTIC: [8] Undefined variable: flag F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 143 行.
+NOTIC: [8] Undefined variable: flag F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 151 行.
+NOTIC: [8] Undefined variable: flag F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 156 行.
+NOTIC: [8] Undefined variable: flag F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 176 行.
+NOTIC: [8] Undefined variable: flag F:\learn\php\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 191 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.037500s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.037500s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-20T14:38:15+08:00 ] 127.0.0.1 /index.php/Home/Record/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SELECT * FROM `blog_record` WHERE `uid` = 52  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant oper - assumed 'oper' F:\learn\php\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 15 行.
+NOTIC: [8] Use of undefined constant addtime - assumed 'addtime' F:\learn\php\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 16 行.
+NOTIC: [8] Use of undefined constant oper - assumed 'oper' F:\learn\php\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 15 行.
+NOTIC: [8] Use of undefined constant addtime - assumed 'addtime' F:\learn\php\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 16 行.
+NOTIC: [8] Use of undefined constant oper - assumed 'oper' F:\learn\php\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 15 行.
+NOTIC: [8] Use of undefined constant addtime - assumed 'addtime' F:\learn\php\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 16 行.
+NOTIC: [8] Use of undefined constant oper - assumed 'oper' F:\learn\php\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 15 行.
+NOTIC: [8] Use of undefined constant addtime - assumed 'addtime' F:\learn\php\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 16 行.
+NOTIC: [8] Use of undefined constant oper - assumed 'oper' F:\learn\php\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 15 行.
+NOTIC: [8] Use of undefined constant addtime - assumed 'addtime' F:\learn\php\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 16 行.
+NOTIC: [8] Use of undefined constant oper - assumed 'oper' F:\learn\php\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 15 行.
+NOTIC: [8] Use of undefined constant oper - assumed 'oper' F:\learn\php\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 15 行.
+NOTIC: [8] Use of undefined constant addtime - assumed 'addtime' F:\learn\php\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 16 行.
+NOTIC: [8] Use of undefined constant oper - assumed 'oper' F:\learn\php\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 15 行.
+NOTIC: [8] Use of undefined constant oper - assumed 'oper' F:\learn\php\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 15 行.
+NOTIC: [8] Use of undefined constant addtime - assumed 'addtime' F:\learn\php\blog\Application\Runtime\Cache\Home\cde52c686c24cf31e6a5f0e87b84fb68.php 第 16 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031201s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.046801s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+

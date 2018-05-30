@@ -1,0 +1,314 @@
+Java 开发常见工具介绍
+Eclipse 和 MyEclipse 介绍
+Eclipse 下载 安装及卸载
+Eclipse 的基本使用
+Eclipse 的高级使用
+
+Java 开发常见工具介绍
+操作系统自带的记事本软件
+高级记事本软件
+集成开发环境 IDE(Integrated Development Environment)
+
+windows 自带的记事本 notepad
+Editplus Notepad++ UltraEdit
+
+这种软件是用于程序开发环境的应用程序，一般包括代码编辑器，编译器，调试器和图形界面工具。
+集成了代码编写功能，分析功能，编译功能，调试功能等一体化的开发软件。
+具备这一特性的软件都可以叫做IDE。
+举例：JCreator,JBuilder,NetBeans,JDeveloper,Eclipse,MyEclipse…
+
+Eclipse 的概述
+Eclipse 是一种可扩展的开放源代码的 IDE
+Eclipse 的特点描述 (免费 纯Java语言编写 免安装 扩展性强)
+MyEclipse 
+在Eclipse基础上追加的功能性插件 对插件收费
+在WEB开发中提供强大的系统架构平台
+
+Eclipse是一种可扩展的开放源代码的IDE。起始于1999年4月，由OTI和IBM两家公司的IDE产品开发组组建。2001年11月，IBM公司捐出价值4000万美元的源代码组建了Eclipse联盟，并由该联盟负责这种工具的后续开发。最初主要用于Java语言开发，通过安装不同的插件，Eclipse可以支持不同的计算机语言开发。
+
+
+Eclipse 的下载 安装及卸载
+下载 http://eclipse.org/
+安装
+绿色版 解压就可以使用(Eclipse)
+安装版 双击运行 一路next即可(JDK)
+卸载
+绿色版 直接删除文件夹即可
+安装版 专业卸载软件或者控制面板添加删除程序
+
+由于Eclipse需要基于Java环境，安装后运行时需要确认计算机中是否对JAVA_HOME与path环境变量进行配置
+
+解压的路径问题：最好和JDK安装时候的一样，不要有空格或者其他特殊符号。跟开发相关的软件最好安装在同一个目录下。
+
+Eclipse目录结构：
+
+小技巧：
+如何查看Eclipse的版本。
+Eclipse安装目录下有一个.eclipseproduct文件，用记事本打开看version=xxx就知道版本了
+
+如果出现问题删除eclipse.ini文件后重新启动
+
+
+Eclipse 的基本使用
+选择工作空间
+工作空间 其实就是我们写的源代码所在的目录
+用Eclipse来完成一个HelloWorld案例
+代码以项目为基本单位
+创建项目
+创建包
+创建类
+编写代码
+
+创建Java项目：
+	点击File或者在最左侧空白处，在界面中写一个项目名称，然后Finish即可。
+
+创建包：展开项目，在源包src下建立一个包cn.itcast
+
+创建类：在cn.itcast包下建立一个类HelloWorld
+	在界面中写一个类名：HelloWorld
+	可以选择让main方法也被创建。
+	然后finish即可。
+
+在HelloWorld类中输出一句话
+	在main方法中写一条输出语句：我爱Java。
+
+编译 自动编译 在保存的那一刻帮你做好了
+运行
+点击虫子后面的绿色内在三角形按键
+点击Run菜单下的run 也可以使用快捷键 ctrl+f11
+选择要运行的文件或者在要运行的文件内容中 右键 --- Run as --- Java Application 即可
+看到 Console 即可 它就是Eclipse自带的控制台
+
+课堂练习1：
+	使用Eclipse创建项目，并完成案例。在控制台输出自己的名称。
+
+Eclipse 的汉化及语法检查
+方式有好几种 
+使用dropins 安装插件
+从Eclipse3.5开始，安装目录下就多了一个dropins目录，只要将插件解压后放到到该目录即可。同理，这种方式卸载插件也是特别的方便，推荐这种方式
+大家可以同时使用中文版和英文版，这样还可以学英语
+源代码语法检查
+红色波浪线
+黄色波浪线	
+
+
+源代码语法检查
+Eclipse可以对正在进行编写的源代码进行语法检查，对错误的源代码使用红色波浪线进行提示，
+对未使用的成员或有安全隐患的成员使用黄色波浪线进行警告提示
+
+Eclipse之所以可以进行语法检查，主要原因是因为Eclipse在随时监测是否有键盘或鼠标输出动作，
+如果有就对Eclipse下所有工程所有类进行编译，发现错误，立即标注。
+
+不使用的工程尽量关闭
+	选中工程close即可
+
+Eclipse 组成之视窗与视图
+视窗 每一个基本的窗体被称为视窗
+PackageExplorer：显示项目结构，包，类，及使用的所有外部资源
+Outline：显示某个类的结构，方便进行查找，识别，修改
+Console：显示程序在控制台运行的结果，屏幕输出的结果显示在该视窗下
+Problems：显示Eclipse内所有语法级错误及其所处位置
+Hierarchy (F4)：显示Java继承层次结构，包括继承与实现接口
+视图 是由某些视窗的组合而成的
+Java视图
+Debug视图
+
+
+Eclipse 中工作空间的基本配置
+程序的编译和运行的环境配置
+如何去掉默认注释
+行号的显示和隐藏
+字体大小及颜色
+窗体给弄乱了 怎么办
+控制台找不到了 怎么办
+
+A:程序的编译和运行的环境配置(一般不改)
+	window -- Preferences -- Java
+	编译环境：Compiler	默认选中的就是最高版本。
+	运行环境：Installed JREs	默认会找你安装的那个JDK。建议配置了Java的环境变量。
+问题：
+低编译，高运行。可以。
+高编译，低运行。不可以。
+	建议，编译和运行的版本一致。
+
+B:如何去掉默认注释?
+	window -- Preferences -- Java -- Code Style -- Code Templates
+	选择你不想要的内容，通过右边Edit编辑。
+	注意：请只删除注释部分，不是注释部分的不要删除。
+		
+C:行号的显示和隐藏
+	显示：在代码区域的最左边的空白区域，右键 -- Show Line Numbers即可。
+	隐藏：把上面的动作再做一次。
+		
+D:字体大小及颜色
+	a:Java代码区域的字体大小和颜色：
+		window -- Preferences -- General -- Appearance -- Colors And Fonts -- Java修改 -- Java Edit Text Font
+	b:控制台
+		window -- Preferences -- General -- Appearance -- Colors And Fonts -- Debug -- Console font
+	c:其他文件
+		window -- Preferences -- General -- Appearance -- Colors And Fonts -- Basic -- Text Font
+		
+E:窗体给弄乱了，怎么办?
+	window -- Reset Perspective
+		
+F:控制台找不到了，怎么办?
+	Window--Show View—Console
+
+课堂练习2：
+	把我刚才讲解过的配置做一遍。
+
+Eclipse 中快捷键的使用
+内容辅助键
+Alt+/ 起提示作用
+main+alt+/ sout+alt+/ 给出其他提示
+常用快捷键
+格式化 ctrl+shift+f
+导入包 ctrl+shift+o
+注释   ctrl+/ ctrl+shift+/ ctrl+shift+\
+代码上下移动选中代码 alt+上/下箭头
+查看源码 选中类名(F3或者Ctrl+鼠标点击)
+
+快捷键
+a:格式化。
+	在代码区域：ctrl+shift+f
+	在代码区域：右键 -- source -- Format
+
+b:导入包。
+导入方式：
+	自己手动写完代码，需要导入包：ctrl+shift+o
+	有些时候，通过alt+/提示的类，会自动把包导入。
+有些类在多个包下都有，请问，肿么办?
+	你按了提示后，它会把所有的包给你显示，让你选择。
+
+c:注释问题
+单行注释：
+	选中需要被注释的内容：ctrl+/
+	想取消注释，再次选中，然后ctrl+/
+多行注释：
+	选中需要被注释的内容：ctrl+shift+/
+	想取消注释，再次选中，然后ctrl+shift+\
+		
+d:代码上下移动
+	选择要被移动的代码，然后alt+上/下箭头即可。
+
+e:给出一个快捷键大全。有空自己练习。
+
+课堂练习3：写一个标准的学生类(Student)。
+成员变量：name,age
+构造方法：无参，带2个参数
+成员方法：get/set方法
+并测试。(StudentDemo)
+
+Eclipse 中如何提高开发效率
+自动生成构造方法
+自动生成get/set方法
+上面两种操作的快捷键操作
+
+继承抽象类 或者实现接口
+看到Override说说这是什么 有什么用
+
+自动生成构造方法
+	a:无参构造方法 在代码区域右键--source--Generate Constructors from Superclass
+	b:带参构造方法 在代码区域右键--source--Generate Constructors using fields.. -- finish
+
+自动生成get/set方法
+	在代码区域右键--source--Generate Getters and Setters...
+
+继承抽象类，或者实现接口
+	a:以前做法 先写类，然后在类中在去继承类或者实现接口
+	b:现在做法 在创建类的时候，选择要继承的类或者实现的接口。
+	Object是所有类的父类，所有类都直接或者间接的继承自Object。
+
+看到Override说说这是什么，有什么用。
+顺带的提醒一下面试题?重写和重载的区别。
+Override和Overload的区别?请问Overload可以改变返回值类型吗?
+
+课堂练习4：写一个标准的学生类(Student)。
+成员变量：name,age
+构造方法：无参，带2个参数
+成员方法：get/set方法
+并测试。(StudentDemo)
+
+Eclipse 中如何制作帮助文档
+编写源程序(设计接口 抽象类 具体类案例)
+针对源程序添加文档注释
+选中项目 --- 右键盘 --- Export --- Java --- Javadoc --- Finish
+
+Eclipse 中打jar包并使用jar包
+jar是什么 jar是多个class文件的压缩包
+jar有什么用 用别人写好的东西
+打jar包 选中项目 --- 右键 --- Export --- Java --- Jar --- 自己指定一个路径和一个名称 --- Finish
+使用jar包 复制到项目路径下并添加到构建路径
+
+Eclipse 中如何删除项目和导入项目
+删除项目
+选中项目 --- 右键 --- 删除 (从项目区域中删除 从硬盘上删除)
+导入项目 
+在项目区域右键找到import
+找到General 展开 并找到 Existing Projects into Workspace
+点击next 然后选择你要导入的项目 (注意 这里选择是项目名称)
+
+Eclipse 中几个常见小问题
+如何查看项目所在路径
+选中 -- 右键 -- Properties -- Resource -- Location
+导入项目要注意的问题
+项目区域中不可能出现同名的项目(新建或者导入)
+自己随意建立的文件夹是不能作为项目导入的
+修改项目问题
+不要随意修改项目名称
+如果真要修改，不要忘记了配置文件.project中的
+<name>把这里改为你改后的名称</name>
+
+Eclipse 中代码的高级(Debug)调试
+Debug的作用
+调试程序
+查看程序执行流程
+如何查看程序执行流程
+什么是断点
+如何设置断点
+在哪里设置断点
+如何运行设置断点后的程序
+看哪些地方
+如何去除断点
+
+断点：就是一个标记，表示从哪里开始看程序
+ 
+A:如何设置断点
+	在语句的最左边，双击即可。
+B:在哪里加
+	现在：在每一个方法的第一条有效语句上加。
+	以后：哪里不会加哪里。
+C:怎么运行断点的程序
+	在代码区域--右键--Debug as--Java Appliaction
+ 
+	弹出一个界面：问你是否需要打开断点界面。并问你是否需要记录。
+	是(Yes)，是(选中复选框)。
+D:弹出了断点界面
+	a:点哪里
+	Step Over:跳过一行
+	F6:看到每一行的执行过程。
+	b:看哪里
+	看源代码:对照看程序的执行步骤
+	看Debug界面:对照看程序的执行步骤
+	看变量界面:看变量的产生，赋值，及消失。
+E:如何去除断点
+	a:把添加的动作再做一遍
+	b:一键清除版
+		选择Debug界面--breakPoints--Remove All... 带两个x的。
+
+课堂练习6：把我刚才的动作做一遍。
+
+
+Eclipse 中代码练习
+写一个标准的学生类 并测试
+分析并实现动物案例 并测试
+断点查看基本数据类型和引用数据类型的参数传递问题
+
+eclipse 换主题色
+Help --- eclipse Marketplace ... --- eclipse color theme
+下载 --- 安装 --- 重启eclipse
+Warning: You are installing software that contains unsigned content. The authenticity or validity
+直接无视 点击OK
+window --- preferences --- color theme
+
+更换settings.xml

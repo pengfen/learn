@@ -1,0 +1,22 @@
+<?php if (!defined('THINK_PATH')) exit();?><div class="user-pass">
+    <form>
+    	<ul class="user-password">
+    	    <li>
+    	    	<label>当前密码</label>
+    	    	<input type="password" name="pass" placeholder="请输入当前的密码"/>
+    	    </li>
+    	    <li>
+    	    	<label>新&nbsp;密&nbsp;码</label>
+    	    	<input type="password" name="newpass" placeholder="请输入新密码"/>
+    	    </li>
+    	    <li>
+    	    	<label>确认密码</label>
+    	    	<input type="password" name="repass" placeholder="请输入确认密码"/>
+    	    </li>
+    	    <li>
+    	    	<label></label>
+    	    	<input type="submit" name="smbtn" class="smbtn" value="保存" />
+    	    </li>
+    	</ul>
+    </form>
+</div>

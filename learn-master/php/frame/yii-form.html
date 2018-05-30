@@ -1,0 +1,88 @@
+表单
+
+处理表单标签是大量的重复性劳动并且易错。因此， Yii 也提供了一系列的方法来辅助处理表单标签。
+
+注意： 考虑在处理 models 以及需要验证的情形下，使用 yii\widgets\ActiveForm 组件。
+创建表单
+
+表单可以用类似如下代码，使用 yii\helpers\Html::beginForm() 方法开启：
+
+<?= Html::beginForm(['order/update', 'id' => $id], 'post', ['enctype' => 'multipart/form-data']) ?>
+方法的第一个参数为表单将要被提交的 URL 地址。它可以以 Yii 路由的形式被指定，并由 yii\helpers\Url::to() 来接收处理。 第二个参数是使用的方法，默认为 post 方法。第三个参数为表单标签的属性数组。在上面的例子中， 我们把编码 POST 请求中的表单数据的方式改为 multipart/form-data。 如果是上传文件，这个调整是必须的。
+
+关闭表单标签非常简单：
+
+<?= Html::endForm() ?>
+按钮
+
+你可以用如下代码生成按钮：
+
+<?= Html::button('Press me!', ['class' => 'teaser']) ?>
+<?= Html::submitButton('Submit', ['class' => 'submit']) ?>
+<?= Html::resetButton('Reset', ['class' => 'reset']) ?>
+上述三个方法的第一个参数为按钮的标题，第二个是标签属性。标题默认没有进行转码，如果标题是由终端用输入的，那么请自行用 yii\helpers\Html::encode() 方法进行转码。
+
+输入栏
+
+input 相关的方法有两组：以 active 开头的被称为 active inputs，另一组则不以其开头。 active inputs 依据指定的模型和属性获取数据，而普通 input 则是直接指定数据。
+
+一般用法如下：
+
+type, input name, input value, options
+<?= Html::input('text', 'username', $user->name, ['class' => $username]) ?>
+
+type, model, model attribute name, options
+<?= Html::activeInput('text', $user, 'name', ['class' => $username]) ?>
+如果你知道 input 类型，更方便的做法是使用以下快捷方法：
+
+yii\helpers\Html::buttonInput()
+yii\helpers\Html::submitInput()
+yii\helpers\Html::resetInput()
+yii\helpers\Html::textInput(), yii\helpers\Html::activeTextInput()
+yii\helpers\Html::hiddenInput(), yii\helpers\Html::activeHiddenInput()
+yii\helpers\Html::passwordInput() / yii\helpers\Html::activePasswordInput()
+yii\helpers\Html::fileInput(), yii\helpers\Html::activeFileInput()
+yii\helpers\Html::textarea(), yii\helpers\Html::activeTextarea()
+Radios 和 checkboxes 在方法的声明上有一点点不同：
+
+<?= Html::radio('agree', true, ['label' => 'I agree']);
+<?= Html::activeRadio($model, 'agree', ['class' => 'agreement'])
+
+<?= Html::checkbox('agree', true, ['label' => 'I agree']);
+<?= Html::activeCheckbox($model, 'agree', ['class' => 'agreement'])
+Dropdown list 和 list box 将会如下渲染：
+
+<?= Html::dropDownList('list', $currentUserId, ArrayHelper::map($userModels, 'id', 'name')) ?>
+<?= Html::activeDropDownList($users, 'id', ArrayHelper::map($userModels, 'id', 'name')) ?>
+
+<?= Html::listBox('list', $currentUserId, ArrayHelper::map($userModels, 'id', 'name')) ?>
+<?= Html::activeListBox($users, 'id', ArrayHelper::map($userModels, 'id', 'name')) ?>
+第一个参数是 input 的名称，第二个是当前选中的值，第三个则是一个下标为列表值， 值为列表标签的名值对数组。
+
+如果你需要使用多项选择， checkbox list 应该能够符合你的需求：
+
+<?= Html::checkboxList('roles', [16, 42], ArrayHelper::map($roleModels, 'id', 'name')) ?>
+<?= Html::activeCheckboxList($user, 'role', ArrayHelper::map($roleModels, 'id', 'name')) ?>
+否则，用 radio list ：
+
+<?= Html::radioList('roles', [16, 42], ArrayHelper::map($roleModels, 'id', 'name')) ?>
+<?= Html::activeRadioList($user, 'role', ArrayHelper::map($roleModels, 'id', 'name')) ?>
+Labels 和 Errors
+
+如同 inputs 一样，Yii 也提供了两个方法用于生成表单 label 。 带 ative 方法用于从 model 中取数据，另外一个则是直接接收数据。
+
+<?= Html::label('User name', 'username', ['class' => 'label username']) ?>
+<?= Html::activeLabel($user, 'username', ['class' => 'label username'])
+为了从一个或者一组 model 中显示表单的概要错误，你可以使用如下方法：
+
+<?= Html::errorSummary($posts, ['class' => 'errors']) ?>
+为了显示单个错误：
+
+<?= Html::error($post, 'title', ['class' => 'error']) ?>
+Input 的名和值
+
+
+
+使用原生表单
+设置 enableCsrfValidation => false
+Yii CSRF 策略 (提交表单时生成一个 token 值  然后将 token 值放进 cookie 中)

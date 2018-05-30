@@ -1,0 +1,49 @@
+<?php
+header('Content-type:text/html;charset=utf-8');
+//创建目录
+
+//mkdir
+//mkdir('./sbbk');
+//mkdir('./sbbk/a');
+//mkdir('a/b/c/d/e');
+
+/**
+ * 可以创建 连续目录的函数
+ * @param string  $path   要创建的目录路径
+*/
+function  createDir($path)
+{
+	//路径中的盘符 取出来
+	preg_match('/^[a-zA-Z]:\//',  $path, $matches);
+	//去掉盘符
+	$path = preg_replace('/^[a-zA-Z]:\//', '', $path);
+	//去掉 路径 后面的
+	$path = rtrim($path, '/');
+	//把字符串 变成数组
+	$pathList = explode('/', $path);
+	
+	$pathdir = "";   			//空字符串
+	//遍历数组
+	foreach ($pathList as $k => $v){
+		//判断有没有盘符
+		if ($k == 0 && !empty($matches)){
+			$pathdir .= $matches[0];
+		}
+		//拼装abc
+		$pathdir .= $v.'/';
+		if (!file_exists($pathdir)){
+			//创建目录
+			@mkdir($pathdir);
+		}
+	}
+}
+
+
+createDir('D:/abc/a/b/c/');
+createDir('abc/a/b/c/');
+
+
+
+//createDir('abc/a/b/c/');
+
+//mkdir('D:/sb/abc');

@@ -1,0 +1,1762 @@
+[ 2015-09-19T09:25:33+08:00 ] 127.0.0.1 /resource/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000056s ]
+INFO: [ app_init ] --END-- [ RunTime:0.061260s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001641s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002035s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000113s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000336s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.211212s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.211418s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.017723s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.018509s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.103967s ]
+INFO: [ app_end ] --END-- [ RunTime:0.104171s ]
+
+[ 2015-09-19T09:52:54+08:00 ] 127.0.0.1 /resource/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001501s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001590s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001781s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000081s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000240s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.040831s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041015s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.012217s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.012454s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001580s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001734s ]
+
+[ 2015-09-19T09:54:18+08:00 ] 127.0.0.1 /resource/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000735s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001816s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002017s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000077s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000228s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+ERR: Think\Controller:Widget方法不存在！
+
+[ 2015-09-19T10:06:40+08:00 ] 127.0.0.1 /resource/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000116s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002780s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001548s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001790s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000111s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000462s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.5839s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0317s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000069s ]
+INFO: [ template_filter ] --END-- [ RunTime:-2.338913s ]
+NOTIC: [8] Undefined index: name D:\files\wamp\www\resource\Application\Runtime\Cache\Home\a303ea982639efdae0c028cbf5b248bb.php 第 1 行.
+NOTIC: [8] Undefined index: name D:\files\wamp\www\resource\Application\Runtime\Cache\Home\a303ea982639efdae0c028cbf5b248bb.php 第 1 行.
+NOTIC: [8] Undefined index: name D:\files\wamp\www\resource\Application\Runtime\Cache\Home\a303ea982639efdae0c028cbf5b248bb.php 第 1 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006609s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006776s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000804s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000945s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008134s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006776s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000037s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000582s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001503s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001701s ]
+
+[ 2015-09-19T10:09:35+08:00 ] 127.0.0.1 /resource/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002755s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001168s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001353s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000081s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000249s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0063s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.043402s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007442s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007599s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000760s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000899s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008654s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007599s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000280s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001501s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001671s ]
+
+[ 2015-09-19T10:11:05+08:00 ] 127.0.0.1 /resource/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000689s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001048s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001395s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000079s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000236s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0059s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000065s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.045105s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006490s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006654s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000732s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000863s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007666s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006654s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000276s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001674s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001847s ]
+
+[ 2015-09-19T10:26:47+08:00 ] 127.0.0.1 /resource/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.011002s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001467s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001637s ]
+
+[ 2015-09-19T10:28:28+08:00 ] 127.0.0.1 /resource/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000780s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000858s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000091s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000264s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0343s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0009s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000067s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.171879s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006491s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006657s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.015906s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.016066s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022923s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006657s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000037s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000344s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.014955s ]
+INFO: [ app_end ] --END-- [ RunTime:0.015142s ]
+
+[ 2015-09-19T10:28:30+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/list/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000916s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001606s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001825s ]
+ERR: 非法操作:list
+
+[ 2015-09-19T10:28:52+08:00 ] 127.0.0.1 /resource/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000761s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001106s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001270s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000076s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000228s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0205s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000065s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.059878s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008136s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008298s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001327s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001475s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010024s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008298s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000392s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001273s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001422s ]
+
+[ 2015-09-19T10:28:53+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000134s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001349s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000929s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001089s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000080s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000240s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000163s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.062247s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015738s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015902s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000792s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000923s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016973s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015902s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000033s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000271s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001146s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001312s ]
+
+[ 2015-09-19T10:29:02+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000838s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000916s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001067s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000076s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000226s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000067s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.043647s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007985s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008142s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001176s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001318s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009628s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008142s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000277s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001404s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001567s ]
+
+[ 2015-09-19T10:30:35+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000719s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001231s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003024s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000089s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000262s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0053s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.062515s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006035s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006247s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000797s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000935s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007325s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006247s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000282s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001265s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001428s ]
+
+[ 2015-09-19T10:33:36+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000812s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001245s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001423s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000078s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000238s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0068s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0011s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000066s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.075248s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008199s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008399s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000871s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001021s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009579s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008399s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000293s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001729s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001919s ]
+
+[ 2015-09-19T10:33:58+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000696s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000874s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001017s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000184s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000352s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0056s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000066s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.084617s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006470s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006642s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000760s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000893s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007710s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006642s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000299s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001159s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001306s ]
+
+[ 2015-09-19T10:34:01+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000679s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000906s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001071s ]
+SQL: SHOW COLUMNS FROM `resource_business_logic` [ RunTime:0.1584s ]
+SQL: SELECT * FROM `resource_business_logic` LIMIT 1   [ RunTime:0.0227s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000481s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0107s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000061s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.019893s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006136s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006303s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000744s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000877s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007317s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006303s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000274s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000068s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.026605s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.051258s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006566s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.025033s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.030928s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007061s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.025033s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000031s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.031345s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001183s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001388s ]
+
+[ 2015-09-19T10:34:06+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000774s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000920s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001087s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000125s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000304s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0067s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000076s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.170863s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006551s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006725s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000701s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000831s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007707s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006725s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000287s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001119s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001261s ]
+
+[ 2015-09-19T10:34:08+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000693s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000966s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001139s ]
+SQL: SHOW COLUMNS FROM `resource_business_logic` [ RunTime:0.0049s ]
+SQL: SELECT * FROM `resource_business_logic` LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000080s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000230s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0054s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000074s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.014237s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006175s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006372s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000660s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000786s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007257s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006372s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000264s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000070s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.020997s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0023s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.029368s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006266s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.008911s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.014556s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006742s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.008911s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.015025s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001169s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001327s ]
+
+[ 2015-09-19T10:34:53+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000697s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000974s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001158s ]
+SQL: SHOW COLUMNS FROM `resource_business_logic` [ RunTime:0.0058s ]
+SQL: SELECT * FROM `resource_business_logic` LIMIT 1   [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000096s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000266s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0056s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000069s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.016849s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008859s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009030s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000769s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000898s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010070s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009030s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000033s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000273s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000082s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.024243s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000086s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.031971s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006546s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.008009s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.013809s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006980s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.008009s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000031s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.014215s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001110s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001245s ]
+
+[ 2015-09-19T10:34:58+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001809s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001080s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001272s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000079s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000235s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0054s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0009s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000066s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.039340s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008078s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008267s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001039s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001192s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009718s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008267s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000379s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001160s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001298s ]
+
+[ 2015-09-19T10:34:59+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000836s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000911s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001385s ]
+SQL: SHOW COLUMNS FROM `resource_business_logic` [ RunTime:0.0063s ]
+SQL: SELECT * FROM `resource_business_logic` LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000081s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000235s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0068s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000203s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.018995s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009821s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009985s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000715s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000852s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010984s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009985s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000277s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000070s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.025714s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0037s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000067s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.036241s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006355s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.010924s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.016591s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006798s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.010924s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000032s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.017002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001314s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001467s ]
+
+[ 2015-09-19T10:35:09+08:00 ] 127.0.0.1 /resource/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000687s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000944s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001108s ]
+SQL: SHOW COLUMNS FROM `resource_business_logic` [ RunTime:0.0952s ]
+SQL: SELECT * FROM `resource_business_logic` LIMIT 1   [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000098s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000291s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0055s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000064s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.014719s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006364s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006522s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000657s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000784s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007451s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006522s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000033s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000270s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000073s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.021264s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000070s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.028855s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006112s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.008094s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000037s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.013599s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006580s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.008094s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000031s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.014014s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001140s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001274s ]
+
+[ 2015-09-19T10:36:34+08:00 ] 127.0.0.1 /resource/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000859s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001180s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001355s ]
+SQL: SHOW COLUMNS FROM `resource_business_logic` [ RunTime:0.0066s ]
+SQL: SELECT * FROM `resource_business_logic` LIMIT 1   [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000087s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000352s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0126s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0013s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000065s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.022520s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005916s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006078s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000680s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000810s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007039s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006078s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000033s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000277s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001182s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001324s ]
+
+[ 2015-09-19T10:36:35+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000697s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000856s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001010s ]
+SQL: SHOW COLUMNS FROM `resource_business_logic` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `resource_business_logic` LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000409s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000584s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0055s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0009s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000065s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.016786s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005819s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005991s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000746s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000885s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007010s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005991s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000033s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000274s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001107s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001249s ]
+
+[ 2015-09-19T10:36:37+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000722s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000970s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001210s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000079s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000231s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0051s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0047s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000064s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.035175s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006172s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006343s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000784s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000926s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007419s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006343s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000324s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004192s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004347s ]
+
+[ 2015-09-19T10:36:38+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/6.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000045s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000763s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000913s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001083s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000080s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000233s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000100s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.084217s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009491s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009708s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000878s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001026s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010894s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009708s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000037s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000289s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001348s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001789s ]
+
+[ 2015-09-19T10:36:54+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000798s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001033s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001193s ]
+SQL: SHOW COLUMNS FROM `resource_business_logic` [ RunTime:0.0068s ]
+SQL: SELECT * FROM `resource_business_logic` LIMIT 1   [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000088s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000257s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0051s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000177s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.013395s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006139s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006302s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000765s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000907s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007363s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006302s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000037s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000339s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001158s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001301s ]
+
+[ 2015-09-19T10:37:14+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000694s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001063s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001223s ]
+SQL: SHOW COLUMNS FROM `resource_business_logic` [ RunTime:0.0068s ]
+SQL: SELECT * FROM `resource_business_logic` LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000447s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0052s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000065s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.013570s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005851s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006059s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000719s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000850s ]
+NOTIC: [8] Use of undefined constant image - assumed 'image' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 25 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007129s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006059s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000032s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000338s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001160s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001321s ]
+
+[ 2015-09-19T10:40:07+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000771s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001100s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001290s ]
+SQL: SHOW COLUMNS FROM `resource_business_logic` [ RunTime:0.0068s ]
+SQL: SELECT * FROM `resource_business_logic` LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000099s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000291s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0081s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000073s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.017776s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005758s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005931s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000493s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000626s ]
+NOTIC: [8] Use of undefined constant image - assumed 'image' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 25 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006762s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005931s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000032s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000342s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000912s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001056s ]
+
+[ 2015-09-19T10:40:09+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000894s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001031s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001202s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000080s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000250s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0053s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000068s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.069438s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008393s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008618s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001011s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001183s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010186s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008618s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000039s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000353s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001366s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001518s ]
+
+[ 2015-09-19T10:43:43+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000779s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001480s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001681s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000085s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000258s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0063s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000069s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.035857s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006658s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006837s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000677s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000806s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007776s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006837s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000032s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000273s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001301s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001454s ]
+
+[ 2015-09-19T10:50:17+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000798s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001442s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001629s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000087s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000258s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0054s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000073s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.085601s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007161s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007346s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000804s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000954s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008466s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007346s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000033s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000280s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001047s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001191s ]
+
+[ 2015-09-19T10:55:11+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000808s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001109s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001298s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000100s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000398s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0055s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000079s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.062504s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006570s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006746s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000827s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000995s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007917s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006746s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000315s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001549s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001703s ]
+
+[ 2015-09-19T10:55:23+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000718s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000970s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001160s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000093s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000277s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0121s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000078s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.094112s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006906s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007093s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000524s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000664s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007901s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007093s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000287s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000908s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001051s ]
+
+[ 2015-09-19T10:56:21+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000715s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001065s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001254s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000094s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000272s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0063s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000090s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.085479s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008332s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008513s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000519s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000665s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009633s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008513s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000280s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001096s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001244s ]
+
+[ 2015-09-19T10:56:26+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000806s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001024s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001213s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000088s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000269s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0052s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000286s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.074645s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006899s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007089s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000550s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000687s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007937s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007089s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000291s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000945s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001095s ]
+
+[ 2015-09-19T10:57:07+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000704s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000984s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001168s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000794s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001040s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0052s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000075s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.039853s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006425s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006597s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000495s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000622s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007366s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006597s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000032s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000275s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000839s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000974s ]
+
+[ 2015-09-19T10:59:46+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001145s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001254s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001443s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000113s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000360s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0054s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000157s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.046769s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007720s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007874s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000579s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000708s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008738s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007874s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000033s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000276s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000963s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001099s ]
+
+[ 2015-09-19T11:03:27+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000795s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001504s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001700s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000086s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000259s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0477s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0009s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000084s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.087505s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007451s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007632s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000657s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000798s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008597s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007632s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000037s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000308s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001083s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001233s ]
+
+[ 2015-09-19T11:06:21+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000765s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001115s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001295s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000087s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000276s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0127s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0009s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000084s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.091594s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008886s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009084s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000854s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001024s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010384s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009084s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000045s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000454s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001291s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001469s ]
+
+[ 2015-09-19T11:07:17+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000865s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000862s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001028s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000089s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000260s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0062s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000070s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.055863s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006014s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006210s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000703s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000873s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007263s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006210s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000303s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000978s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001202s ]
+
+[ 2015-09-19T14:54:07+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000865s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001244s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001460s ]
+SQL: SHOW COLUMNS FROM `resource_direct` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `resource_direct`  [ RunTime:0.0009s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000102s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000288s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0172s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000071s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.038074s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006912s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007090s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000879s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001022s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009960s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007090s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.001994s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001212s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001355s ]
+
+[ 2015-09-19T14:59:43+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000917s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001356s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001534s ]
+SQL: SHOW COLUMNS FROM `resource_direct` [ RunTime:0.0077s ]
+SQL: SELECT * FROM `resource_direct`  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0063s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `resource_difficult` [ RunTime:0.0473s ]
+SQL: SELECT * FROM `resource_difficult`  [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000098s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000270s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000072s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.010440s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006055s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006228s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000658s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000786s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 34 行.
+NOTIC: [8] Use of undefined constant catename - assumed 'catename' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010007s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006228s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.003162s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001778s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001996s ]
+
+[ 2015-09-19T15:00:28+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000788s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001187s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001365s ]
+SQL: SHOW COLUMNS FROM `resource_direct` [ RunTime:0.0075s ]
+SQL: SELECT * FROM `resource_direct`  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0067s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 1  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `resource_difficult` [ RunTime:0.0066s ]
+SQL: SELECT * FROM `resource_difficult`  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000090s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000247s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0011s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000072s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.011039s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006281s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006468s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000667s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000795s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 34 行.
+NOTIC: [8] Use of undefined constant catename - assumed 'catename' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010296s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006468s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.003203s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001216s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001356s ]
+
+[ 2015-09-19T15:05:22+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000852s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001650s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001884s ]
+SQL: SHOW COLUMNS FROM `resource_direct` [ RunTime:0.0053s ]
+SQL: SELECT * FROM `resource_direct`  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0076s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 1  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `resource_difficult` [ RunTime:0.0047s ]
+SQL: SELECT * FROM `resource_difficult`  [ RunTime:0.0005s ]
+NOTIC: [8] Undefined index: id D:\files\wamp\www\resource\Application\Home\Controller\IndexController.class.php 第 34 行.
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+
+[ 2015-09-19T15:08:34+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000810s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001176s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001358s ]
+SQL: SHOW COLUMNS FROM `resource_direct` [ RunTime:0.0063s ]
+SQL: SELECT * FROM `resource_direct`  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0062s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 1  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `resource_difficult` [ RunTime:0.0151s ]
+SQL: SELECT * FROM `resource_difficult`  [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: id D:\files\wamp\www\resource\Application\Home\Controller\IndexController.class.php 第 34 行.
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') )' at line 1
+
+[ 2015-09-19T15:09:18+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000860s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001089s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001258s ]
+SQL: SHOW COLUMNS FROM `resource_direct` [ RunTime:0.0064s ]
+SQL: SELECT * FROM `resource_direct`  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0059s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 1  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `resource_difficult` [ RunTime:0.0077s ]
+SQL: SELECT * FROM `resource_difficult`  [ RunTime:0.0006s ]
+NOTIC: [8] Undefined index: id D:\files\wamp\www\resource\Application\Home\Controller\IndexController.class.php 第 34 行.
+NOTIC: [8] Undefined variable: three D:\files\wamp\www\resource\Application\Home\Controller\IndexController.class.php 第 40 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000092s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000259s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000085s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.010020s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007530s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007721s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000749s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000901s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 34 行.
+NOTIC: [8] Use of undefined constant catename - assumed 'catename' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011769s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007721s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.003138s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001242s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001386s ]
+
+[ 2015-09-19T15:09:54+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000752s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001109s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001284s ]
+SQL: SHOW COLUMNS FROM `resource_direct` [ RunTime:0.0052s ]
+SQL: SELECT * FROM `resource_direct`  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0059s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 1  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `resource_difficult` [ RunTime:0.0184s ]
+SQL: SELECT * FROM `resource_difficult`  [ RunTime:0.0005s ]
+NOTIC: [8] Undefined variable: three D:\files\wamp\www\resource\Application\Home\Controller\IndexController.class.php 第 40 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000093s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000261s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000069s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.009891s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006112s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006289s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000735s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000863s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 34 行.
+NOTIC: [8] Use of undefined constant catename - assumed 'catename' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009932s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006289s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.002926s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001133s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001320s ]
+
+[ 2015-09-19T15:10:35+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000748s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001287s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001466s ]
+SQL: SHOW COLUMNS FROM `resource_direct` [ RunTime:0.0063s ]
+SQL: SELECT * FROM `resource_direct`  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0059s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 1  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `resource_difficult` [ RunTime:0.0051s ]
+SQL: SELECT * FROM `resource_difficult`  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `resource_categorys` WHERE ( pid in (2) )  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000094s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000261s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0011s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000069s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.010117s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005951s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006102s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000654s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000787s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 34 行.
+NOTIC: [8] Use of undefined constant catename - assumed 'catename' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009694s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006102s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000032s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.002932s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001203s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001351s ]
+
+[ 2015-09-19T15:13:03+08:00 ] 127.0.0.1 /resource/index.php/Home/Index/showlist/id/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000769s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001140s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001312s ]
+SQL: SHOW COLUMNS FROM `resource_direct` [ RunTime:0.0052s ]
+SQL: SELECT * FROM `resource_direct`  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `resource_categorys` [ RunTime:0.0049s ]
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 1  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `resource_difficult` [ RunTime:0.0066s ]
+SQL: SELECT * FROM `resource_difficult`  [ RunTime:0.0007s ]
+SQL: SELECT * FROM `resource_categorys` WHERE ( pid in (2) )  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000094s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000253s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 7 行.
+SQL: SELECT * FROM `resource_categorys` WHERE `pid` = 0  [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000081s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.011926s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007986s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008156s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000707s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000837s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 30 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 34 行.
+NOTIC: [8] Use of undefined constant catename - assumed 'catename' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 38 行.
+NOTIC: [8] Use of undefined constant catename - assumed 'catename' D:\files\wamp\www\resource\Application\Runtime\Cache\Home\00cabd38e3b48168551e82b0047672d2.php 第 42 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011894s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008156s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.003046s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001176s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001327s ]
+

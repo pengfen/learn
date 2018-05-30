@@ -1,0 +1,17 @@
+yii-basic Yii 基础版
+
+web.php  配置文件中配置
+'request' => [
+    'enableCsrfValidation' => false,
+],
+
+yii 引用 css 文件
+<?php
+use yii\helpers\Html;
+?>
+
+引用 css 文件
+<?=Html::cssFile('@web/css/index.css')?>
+
+引用 js 文件
+<?=Html::jsFile('@web/js/jquery.js')?>

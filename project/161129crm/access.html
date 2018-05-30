@@ -1,0 +1,86 @@
+访问授权
+
+页面勾选 菜单勾选后它所有子元素也勾选
+$('.main_part :checkbox').on('click', function() {
+    var obj = $(this);
+    var val = $(this).val();
+    // 判断是否是菜单元素
+    if (val.indexOf('-') > 0) { // 处理方法元素
+        var parent = $(this).parent().parent().parent(); // 获取二级菜单 --- ul
+        if ($(this)[0].checked == false) { // 方法未选中 
+            // 判断二级菜单下是否有选中的方法
+            var length = parent.find('input:checked').length;
+            if (length == 0) {
+                parent.prev('p').find('input').prop('checked', false);
+            }
+            // 处理顶级级菜单
+            length = parent.parent().find('input:checked').length;
+            if (length == 1) {
+                parent.parent().find("p:first").find('input').prop('checked', false);
+            }
+        } else {
+            // 方法选中
+            // 让父菜单也选中
+            var length = parent.find('input:checked').length;
+            if (length != 0) {
+                parent.prev('p').find('input').prop("checked", true);
+            }
+            length = parent.parent().find('input:checked').length;
+            if (length != 0) {
+                parent.parent().find("p:first").find('input').prop('checked', true);
+            }
+        }
+    } else { // 处理菜单元素
+        var level = $(this).parent().prev('input[name="level"]').val();
+        var length;
+        var parent = $(this).parent().parent();
+        if ($(this)[0].checked == false) { // 菜单未选中
+            if (level == 1) {
+                // 处理顶级菜单
+                length = parent.parent().find('input:checked').length;
+                if (length != 0) {
+                    parent.parent().find('input:checked').each(function () {
+                        $(this).prop('checked', false);
+                    });
+                }
+            } else {
+                // 处理二级菜单
+                length = parent.next('ul').find('input:checked').length;
+                if (length != 0) {
+                    parent.next('ul').find('input:checked').each(function() {
+                        $(this).prop('checked', false);
+                    });
+                }
+                // 当前菜单的父菜单
+                length = parent.parent().find('input:checked').length;
+                if (length == 1) {
+                    parent.parent().find('p:first').find('input:checked').prop('checked', false);
+                }
+            }
+        } else {
+            // 菜单选中
+            if (level == 1) {
+                // 处理顶级菜单
+                length = parent.parent().find('input[type="checkbox"]').not("input:checked").length;
+                if (length != 0) {
+                    parent.parent().find('input[type="checkbox"]').not("input:checked").each(function() {
+                        $(this).prop('checked', true);
+                    })
+                }
+            } else {
+                // 处理上级菜单
+                length = parent.next('ul').find('input[type="checkbox"]').not("input:checked").length;
+                if (length != 0) {
+                    parent.next('ul').find('input[type="checkbox"]').not("input:checked").each(function() {
+                        $(this).prop('checked', true);
+                    })
+                }
+                // 当前菜单的父菜单
+                length = parent.parent().find('p:first').find('input').not('checked').length;
+                if (length != 0) {
+                    parent.parent().find('p:first').find('input').not('checked').prop('checked', true);
+                }
+            }
+        }
+    }
+});

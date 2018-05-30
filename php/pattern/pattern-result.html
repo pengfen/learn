@@ -1,0 +1,28 @@
+查找所有匹配结果
+
+preg_match 只能匹配一次结果 但很多时候我们需要匹配秘有的结果 preg_match_all 可以循环获取一个列表的匹配结果数组
+
+$p = "|<[^>]+>(.*?)</[^>]+>|i";
+$str = "<b>example: </b><div align=left>this is a test</div>";
+preg_match_all($p, $str, $matches);
+print_r($matches);
+
+可以使用preg_match_all 匹配一个表格中的数据
+$p = "/<tr><td>(.*?)<\/td>\s*<td>(.*?)<\/td>\s<\tr>/i";
+$str = "<table><tr><td>eric</td><td>25</td></tr><tr><td>john</td><td>25</td></tr></table>";
+preg_match_all($p, $str, $matches);
+print_r($matches);
+
+$matches 结果排序为 $matches[0] 保存完整模式的所有匹配 $matches[1]保存第一个子组的秘有匹配 以此类推
+
+<?php
+$str = "<ul><li>item 1</li><li>item 2</li></ul>";
+$p = "/<li>(.*?)<\/li>\s*<li>(.*?)<\/li>/i";
+preg_match_all($p, $str, $matches);
+print_r($matches);
+
+$pattern = '/<cite>.*\/([0-9]+).*<\/cite>/ism'; // 匹配 <cite>共15415条/771页</cite> 获取总页数
+
+$pattern = '/<td class=\"call_no\">(.*?)<\/td>/ism'; // 获取表格中所有 cass_no 值
+preg_match_all($pattern,$content,$matches);
+$phone = $matches[1]; // 手机号

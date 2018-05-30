@@ -1,0 +1,240 @@
+ XML部分
+1、xml有哪些解析技术?区别是什么? 
+答:有DOM,SAX,STAX等 
+
+DOM:处理大型文件时其性能下降的非常厉害。这个问题是由DOM的树结构所造成的，这种结构占用的内存较多，而且DOM必须在解析文件之前把整个文档装入内存,适合对XML的随机访问SAX:不现于DOM,SAX是事件驱动型的XML解析方式。它顺序读取XML文件，不需要一次全部装载整个文件。当遇到像文件开头，文档结束，或者标签开头与标签结束时，它会触发一个事件，用户通过在其回调事件中写入处理代码来处理XML文件，适合对XML的顺序访问 
+
+STAX:Streaming API for XML (StAX) 
+
+讲解这些区别是不需要特别去比较，就像说传智播客与其他培训机构的区别时，我们只需说清楚传智播客有什么特点和优点就行了，这就已经间接回答了彼此的区别。
+
+ 
+
+2、你在项目中用到了xml技术的哪些方面?如何实现的? 
+
+ 
+
+答:用到了数据存贮，信息配置两方面。在做数据交换平台时，将不能数据源的数据组装成XML文件，然后将XML文件压缩打包加密后通过网络传送给接收者，接收解密与解压缩后再同XML文件中还原相关信息进行处理。在做软件配置时，利用XML可以很方便的进行，软件的各种配置参数都存贮在XML文件中。 
+
+ 
+
+3、用jdom解析xml文件时如何解决中文问题?如何解析? 
+
+答:看如下代码,用编码方式加以解决 
+package test; 
+import java.io.*; 
+public class DOMTest 
+{ 
+private String inFile = "c:\\people.xml" 
+private String outFile = "c:\\people.xml" 
+public static void main(String args[]) 
+{ 
+new DOMTest(); 
+} 
+public DOMTest() 
+{ 
+try 
+{ 
+javax.xml.parsers.DocumentBuilder builder = 
+
+javax.xml.parsers.DocumentBuilderFactory.newInstance().newDocumentBuilder(); 
+org.w3c.dom.Document doc = builder.newDocument(); 
+org.w3c.dom.Element root = doc.createElement("老师"); 
+org.w3c.dom.Element wang = doc.createElement("王"); 
+org.w3c.dom.Element liu = doc.createElement("刘"); 
+wang.appendChild(doc.createTextNode("我是王老师")); 
+root.appendChild(wang); 
+doc.appendChild(root); 
+javax.xml.transform.Transformer transformer = 
+javax.xml.transform.TransformerFactory.newInstance().newTransformer(); 
+transformer.setOutputProperty(javax.xml.transform.OutputKeys.ENCODING, "gb2312"); 
+transformer.setOutputProperty(javax.xml.transform.OutputKeys.INDENT, "yes"); 
+
+transformer.transform(new javax.xml.transform.dom.DOMSource(doc), 
+new 
+
+javax.xml.transform.stream.StreamResult(outFile)); 
+} 
+catch (Exception e) 
+{ 
+System.out.println (e.getMessage()); 
+} 
+} 
+}
+
+ 
+
+4、编程用JAVA解析XML的方式. 
+
+ 
+
+答:用SAX方式解析XML，XML文件如下： 
+
+<?xml version=1.0 encoding=gb2312?> 
+
+<person> 
+
+<name>王小明</name> 
+
+<college>信息学院</college> 
+
+<telephone>6258113</telephone> 
+
+<notes>男,1955年生,博士，95年调入海南大学</notes> 
+
+</person> 
+
+事件回调类SAXHandler.java 
+
+import java.io.*; 
+
+import java.util.Hashtable; 
+
+import org.xml.sax.*; 
+
+public class SAXHandler extends HandlerBase 
+
+{ 
+
+private Hashtable table = new Hashtable(); 
+
+private String currentElement = null; 
+
+private String currentValue = null; 
+
+public void setTable(Hashtable table) 
+
+{ 
+
+this.table = table; 
+
+} 
+
+public Hashtable getTable() 
+
+{ 
+
+return table; 
+
+} 
+
+public void startElement(String tag, AttributeList attrs) 
+
+throws SAXException 
+
+{ 
+
+currentElement = tag; 
+
+} 
+
+public void characters(char[] ch, int start, int length) 
+
+throws SAXException 
+
+{ 
+
+currentValue = new String(ch, start, length); 
+
+} 
+
+public void endElement(String name) throws SAXException 
+
+{ 
+
+if (currentElement.equals(name)) 
+
+table.put(currentElement, currentValue); 
+
+} 
+
+ 
+
+} 
+
+JSP内容显示源码,SaxXml.jsp: 
+
+<HTML> 
+
+<HEAD> 
+
+<TITLE>剖析XML文件people.xml</TITLE> 
+
+</HEAD> 
+
+<BODY> 
+
+<%@ page errorPage=ErrPage.jsp 
+
+contentType=text/html;charset=GB2312 %> 
+
+<%@ page import=java.io.* %> 
+
+<%@ page import=java.util.Hashtable %> 
+
+<%@ page import=org.w3c.dom.* %> 
+
+<%@ page import=org.xml.sax.* %> 
+
+<%@ page import=javax.xml.parsers.SAXParserFactory %> 
+
+<%@ page import=javax.xml.parsers.SAXParser %> 
+
+<%@ page import=SAXHandler %> 
+
+<% 
+
+File file = new File(c:\people.xml); 
+
+FileReader reader = new FileReader(file); 
+
+Parser parser; 
+
+SAXParserFactory spf = SAXParserFactory.newInstance(); 
+
+SAXParser sp = spf.newSAXParser(); 
+
+SAXHandler handler = new SAXHandler(); 
+
+sp.parse(new InputSource(reader), handler); 
+
+Hashtable hashTable = handler.getTable(); 
+
+out.println(<TABLE BORDER=2><CAPTION>教师信息表</CAPTION>); 
+
+out.println(<TR><TD>姓名</TD> + <TD> + 
+
+(String)hashTable.get(new String(name)) + </TD></TR>); 
+
+out.println(<TR><TD>学院</TD> + <TD> + 
+
+(String)hashTable.get(new String(college))+</TD></TR>); 
+
+out.println(<TR><TD>电话</TD> + <TD> + 
+
+(String)hashTable.get(new String(telephone)) + </TD></TR>); 
+
+out.println(<TR><TD>备注</TD> + <TD> + 
+
+(String)hashTable.get(new String(notes)) + </TD></TR>); 
+
+out.println(</TABLE>); 
+
+%> 
+
+</BODY> 
+
+</HTML> 
+
+ 
+
+5、XML文档定义有几种形式？它们之间有何本质区别？解析XML文档有哪几种方式？ 
+
+ 
+
+a: 两种形式 dtd  schema，
+
+b: 本质区别:schema本身是xml的，可以被XML解析器解析(这也是从DTD上发展schema的根本目的)，c:有DOM,SAX,STAX等 
+
+   DOM:处理大型文件时其性能下降的非常厉害。这个问题是由DOM的树结构所造成的，这种结构占用的内存较多，而且DOM必须在解析文件之前把整个文档装入内存,适合对XML的随机访问 SAX:不现于DOM,SAX是事件驱动型的XML解析方式。它顺序读取XML文件，不需要一次全部装载整个文件。当遇到像文件开头，文档结束，或者标签开头与标签结束时，它会触发一个事件，用户通过在其回调事件中写入处理代码来处理XML文件，适合对XML的顺序访问 STAX:Streaming API for XML (StAX)     
+

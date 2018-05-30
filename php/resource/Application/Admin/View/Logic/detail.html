@@ -1,0 +1,21 @@
+<div>
+	<ul style="list-style:none;">
+	    <if condition="$info[ac] neq ''">
+	    <li>所属项目名 {$name}</li>
+	    <li>{$info.ac}</li>
+		<li>|--- {:nl2br($info[content])}</li>
+		<else />
+		<li>没有数据 
+		    <a href="javascript:void(0)" id="add-logic">添加方法逻辑</a>
+            <input type='hidden' value="{:U('Logic/add', array('ac'=>$ac, 'pid'=>$pid))}"/>
+        </li>
+	    </if>
+		<if condition="$info[note] neq ''">
+		<li>|--- 备注</li>
+		<li>|------ {:nl2br($info[note])}</li>
+		</if>
+	</ul>
+</div>
+<script>
+click($('#add-logic'));
+</script>

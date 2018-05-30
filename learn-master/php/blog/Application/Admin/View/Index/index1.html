@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>后台首页</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/admin.css"/>
+	<script type="text/javascript" src="__PUBLIC__/Bootstrap/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" async="true">
+	    $(function(){
+	    	// 手风琴实现
+	    	$('#left ul:first').show(); // 默认显示第一个ul
+	    	// 单击第一个标题就显示对应的ul 下的内容
+	    	$('#left h3').click(function(){
+	    		$(this).next('ul').slideDown().siblings('ul').slideUp();
+	    	});
+
+	    	// 动态加载对应的模板
+	    	$('#left li').click(function(){
+	    		// 获取对应的控制器
+	    		var $contro = $(this).children('input')[0].value;
+	    		// 获取对应的操作方法
+	    		var $action = $(this).children('input')[1].value;
+	    		// 拼接请求路径
+	    		var $url = "__MODULE__" + '/' + $contro + '/' + $action;
+	    		// 异步请求
+	    		$.ajax({
+	    			url: $url,
+	    			success: function(data){
+	    				$('#right').text(''); // 清空以前的数据
+	    				$('#right').append(data); // 将对应的模板放进主页显示
+	    			}
+	    		});
+	    	});
+	    });
+	</script>
+</head>
+
+<body>
+	<header>
+	    <nav class="navbar navbar-default">
+		  <div class="container">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#">Brand</a>
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+		        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+		        <li><a href="#">Link</a></li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">Action</a></li>
+		            <li><a href="#">Another action</a></li>
+		            <li><a href="#">Something else here</a></li>
+		            <li role="separator" class="divider"></li>
+		            <li><a href="#">Separated link</a></li>
+		            <li role="separator" class="divider"></li>
+		            <li><a href="#">One more separated link</a></li>
+		          </ul>
+		        </li>
+		      </ul>
+		      <form class="navbar-form navbar-left" role="search">
+		        <div class="form-group">
+		          <input type="text" class="form-control" placeholder="Search">
+		        </div>
+		        <button type="submit" class="btn btn-default">Submit</button>
+		      </form>
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="#">Link</a></li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">Action</a></li>
+		            <li><a href="#">Another action</a></li>
+		            <li><a href="#">Something else here</a></li>
+		            <li role="separator" class="divider"></li>
+		            <li><a href="#">Separated link</a></li>
+		          </ul>
+		        </li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+	</header>
+
+	<div id='left'>
+	    <foreach name='plist' item='v'>
+	    <h3>{$v.name}</h3>
+		<ul>
+		    <foreach name='clist' item='cv'>
+		    <if condition="$cv[pid] eq $v[id]">
+		    <li>
+		    <input type='hidden' name='controller' value="{$cv.controller}"/>
+		    <input type='hidden' name='action' value="{$cv.action}"/>
+		    <a href="javascript:void(0)">{$cv.controller}:{$cv.action}:{$cv.name}</a>
+		    </li>
+		    </if>
+			</foreach>
+		</ul>
+		</foreach>
+	</div>
+	<div id='right'></div>
+	<div class="clear"></div>
+	<footer></footer>
+</body>
+</html>

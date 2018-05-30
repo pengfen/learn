@@ -1,0 +1,25 @@
+<ul class="nav nav-list">
+<foreach name='plist' item='v'>
+	<li>
+		<a href="javascript:void(0);" class="dropdown-toggle">
+			<i class="icon-desktop"></i>
+			<span class="menu-text"> {$v.name} </span>
+			<b class="arrow icon-angle-down"></b>
+		</a>
+
+		<ul class="submenu">
+		<foreach name='clist' item='cv'>
+		<if condition="$cv[pid] eq $v[id]">
+			<li>
+				<?php $contro = $cv['controller']; $action = $cv['action'];?>
+				<a href="__MODULE__/{$contro}/{$action}">
+					<i class="icon-double-angle-right"></i>
+					{$cv.name}
+				</a>
+			</li>
+		</if>
+		</foreach>
+		</ul>
+	</li>
+</foreach>
+</ul>

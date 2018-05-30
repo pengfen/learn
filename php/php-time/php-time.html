@@ -1,0 +1,46 @@
+// 计算时间差
+
+$time1 = strtotime("2016-06-29 10:00:00");
+$time2 = strtotime("2016-06-29 10:01:00");
+echo '时间差是 '.($time2 - $time1); // 60 计算的是秒数
+
+// 计算时间差
+
+$time1 = strtotime("2016-06-29 10:00:00");
+$time2 = strtotime("2016-06-29 10:01:01");
+echo '时间差是 '.($time2 - $time1); // 1 计算的是秒数
+
+
+function extime(){ // 用于暂定脚本执行
+    // 判断时间区域
+    $currtime = time();
+    $mintime = strtotime(date('Y-m-d', $currtime).' 07:30:00');
+    $maxtime = strtotime(date('Y-m-d', $currtime).' 14:00:00');
+    // $currtime = date('Y-m-d H:i:s', $currtime);
+    if ($currtime > $mintime && $currtime < $maxtime) {
+        echo '请在早上 07:30 之前,晚上 14:00 以后执行此脚本';
+        echo PHP_EOL;
+        exit;
+    }
+}
+
+
+// 获取凌晨零点
+$time = date('Y-m-d', time()); // 获取当前时间
+$time = date('Y-m-d H:i:s', strtotime($time.' 00:00:00'));
+
+
+// 获取当天的年份
+$y = date("Y");
+// 获取当天的月份
+$m = date("m");
+// 获取当天的号数
+$d = date("d");
+// 将今天开始的年月日时分秒，转换成unix时间戳(开始示例：2015-10-12 00:00:00)
+$todayTime = mktime(0, 0, 0, $m, $d, $y);
+// $todayTime即是当天零点的时间戳
+
+
+// 一句话
+echo date('Y-m-d H:i:s', strtotime(date('Y-m-d', time()).' 00:00:00'));
+echo date('Y-m-d H:i:s', mktime(0, 0, 0, date("m"), date("d"), date("Y")));

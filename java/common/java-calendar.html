@@ -1,0 +1,17 @@
+Date 类最主要的作用就是获得当前时间 同时这个类里面也具有设置时间以及一些其他的功能
+java.util.Calendar 类是一个抽象类 可以通过调用 getInstance() 静态方法获取一个 Calendar 对象
+
+Calendar c = Calendar.getInstance(); // 创建 Calendar 对象
+int year = c.get(Calendar.YEAR); 
+int month = c.get(Calendar.MONTH);
+int day = c.get(Calendar.DAY_OF_MONTH);
+int hour = c.get(Calendar.HOUR_OR_DAY);
+int minute = c.get(Calendar.MINUTE);
+int second = c.get(Calendar.SECOND);
+System.out.println("当前时间: " + year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second);
+
+Calendar 类提供了 getTime() 方法 用来获取Date 对象 完成 Calendar 和 Date 的转换 还可能通过 getTimeInMillis() 方法 获取此 Calendar 的时间值 以毫秒为单位
+Date date = c.getTime(); // 将 Calendar 对象转换为 Date 对象
+Long time = c.getTimeInMillis(); // 获取当前毫秒数
+System.out.println("当前时间: " + date);
+System.out.println("当前毫秒数: " + time);

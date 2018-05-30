@@ -1,0 +1,12 @@
+将java对象转换到json
+
+User --- 对应表
+List<User> users = new ArrayList<User>();
+User user = new User();
+user.setUsername("peng1");
+user.setPassword("123456");
+
+users.add(user);
+// import net.sf.json.JSONArray;
+JSONArray json = JSONArray.fromObject(users);
+return json.toString();

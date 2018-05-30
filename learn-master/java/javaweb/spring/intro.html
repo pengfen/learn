@@ -1,0 +1,185 @@
+spring是什么
+spring是一个开源框架
+spring为简化企业级应用开发而生 使用spring可以使用简单的javaBean实现以前只有EJB才能实现的功能
+spring是一个IOC(DI)和AOP容器框架
+
+轻量级 spring是非侵入性的 基于spring开发的应用中的对象可以不依赖于spring的API
+依赖注入 DI dependency injection IOC
+面向切面编程 AOP aspect oriented programming
+容器 spring是一个容器 因为它包含并且管理应用对象的生命周期
+框架 spring实现了使用简单的组件配置组合成一个复杂的应用在spring中可以使用XML和Java注解组合这些对象
+一站式 在IOC和AOP的基础上可以整合各种企业应用的开源框架和优秀的第三方类库(实际上spring自身也提供了展现层的springMVC和持久层的Spring JDBC)
+
+安装spring tool suite
+spring tool suite 是一个eclipse插件 利用该插件可以更方便的在Eclipse平台上开发基于spring的应用
+安装方法说明 (springsource-sute-3.4.0...)
+Help --- install new software ... --- click add --- in dialog add site dialog, click archive --- springsource-sute... --- click open --- spring IDE
+
+
+commons-logging-1.1.3
+spring-beans-4.0.0.RELEASE
+spring-context-
+spring-core
+spring-expression
+
+
+秒杀系统web
+前端交互设计
+Restful
+SpringMVC
+bootstrap + jquery
+
+详情页流程逻辑
+获取标准系统时间 --- 时间判断开始时间结束时间 --- 倒计时 --- 秒杀地址 --- 执行秒杀 --- 结果
+                                              --- 秒杀结束
+
+什么是Restful
+兴起于Rails
+一种优雅的URI表述方式
+资源的状态和状态转移
+
+Restful示例
+GET /seckill/list
+POSt /seckill/{seckillId}/execution
+DELETE /seckill/{id}/delete
+
+Restful规范
+GET ---> 查询操作
+POST ---> 添加/修改操作
+PUT ---> 修改操作
+DELETE ---> 删除操作
+
+URL设计
+/模块/资源/{标示}/集合1/...
+/user/{uid}/frends --- 好友列表
+/user/{uid}/followers --- 关注者列表
+
+秒杀API的URL设计
+GET /seckill/list 秒杀列表
+GET /seckill/{id}/detail 详情页
+GET /seckill/time/now 系统时间
+POST /seckill/{id}/exposer 暴露秒杀
+POST /seckill/{id}/{md5}/execution 执行秒杀
+
+围绕Handler开发
+
+Handler --- 数据 Model 页面 View
+
+SpringMVC运行流程
+1 用户 请求 DispatcherServlet
+2 DispatcherServlet --- DefaultAnnotation HandlerMapping
+3 DispatcherServlet --- DefaultAnnotation HandlerAdapter
+4 DefaultAnnotation HandlerAdapter --- SeckillController
+5 DefaultAnnotation HandlerAdapter --- ModelAndView /seckill/list --- DispatcherServlet 
+6 DispatcherServlet --- InternalResource ViewResolver
+7 DispatcherServlet --- Model --- list.jsp
+8 list.jsp --- 用户
+
+HTTP请求地址映射原理
+Http请求 --- SpringMVC Handler Mapping 注解 xml 编程等 (Servlet容器) --- Handler处理方法
+
+注解映射技巧
+@RequestMapping注解
+支持标准的URL
+Ant风格URL(即?和*和**等字符)
+带{xxx}占位符的URL
+/user/*/creation 匹配/user/aaa/creation /user/bbb/creation 等URL
+/user/**/creation 匹配 /user/creation /user/aaa/bbb/creation 等URL
+/user/{userId} 匹配/user/123 user/abc等URL 
+/company/{companyId}/user/{userId}/detail 匹配/company/123/user/456/detail等URL
+
+请求方法细节处理
+请求参数绑定
+请求方式限制
+请求转发和重定向
+数据模型赋值
+返回json数据
+cookie访问
+
+@RequestMapping(value="/{seckillId}/detail", method=RequestMethod.GET)
+public String detail(@PathVariable("seckilld") Long seckillId, Model model) {
+	if (seckillId == null) {
+	    return "redirect:/seckill/list";
+	}
+	Seckill seckill = seckillService.getById(seckillId);
+	if (seckill == null) {
+	    return "forward:/seckill/list";
+	}
+	model.addAttribute("seckill", seckill); //model
+	return "detail"; //view
+}
+
+返回json数据
+@RequestMapping(value = "/{seckillId}/{md5}/execution",
+method = RequestMethod.POST,
+produces = {"application/json;charset=UTF-8"})
+@ResponseBody
+public SeckillResult<Exposer> exportSeckillURL(@PathVariable("id") long id) {
+	SeckillResult<Exposer> result;
+	try {
+	    Exposer exposer = ...;
+	} catch (Exception e) {
+	    logger.error(e.getMessage(), e);
+	    result = new SeckillResult<Exposer>(false, e.getMessage());
+	}
+	return result;
+}
+
+Cookie访问
+@RequestMapping(value = "/{seckillId}/{md5}/execution",
+    method = RequestMethod.POST)
+public SeckillResult<SeckillExecution> execute(@PathVariable("seckillId") long seckillId, @PathVariable("md5") String md5, @CookieValue(value = "killPhone", required = false) Long phone)
+{
+    if (phone == null) {
+        return new SeckillResult<SeckillExecution>(false, "未注册电话");
+    } 
+    SeckillExecution execution = seckillService.executeSeckillByProcedure(seckillId, phone, md5);
+    SeckillResult<SeckillExecution> result = new SeckillResult<SeckillExecution>(true, execution);
+    return result;
+}
+
+
+--------------------------------------------------
+spring简介
+IOC(配置 注解)
+Bean(配置 注解)
+AOP(配置 注解 AspectJ API)
+
+Spring是一个开源框架 为了解决企业应用开发的复杂性而创建的 但现在已经不止应用于企业应用研究
+是一个轻量级的控制反转(Ioc)和面向切面(AOP)的容器框架
+    从大小与开销两方面而言Spring都是轻量的
+    通过控制反转(Ioc)的技术达到松耦合的目的
+    提供了面向切面编程的丰富支持 允许通过分离应用的业务逻辑与系统级服务进行内聚性的开发
+    包含并管理应用对象的配置和生命周期 这个意义上是一种容器
+
+在spring上开发应用简单
+在spring上开发应用方便
+在spring上开发应用快捷
+spring带来了复杂JavaEE开发的春天
+
+Spring作用
+容器
+提供了对多种技术的支持 JMS MQ支持 UnitTest ...
+AOP(事务管理 日志等)
+提供了众多方便应用的辅助类(JDBC Template等)
+对主流应用框架(Hibernate等)提供了良好的支持
+
+适用范围
+构建企业应用(SpringMVC + Spring + Hibernate/ibatis)
+单独使用Bean容器(Bean管理)
+单独使用AOP进行切面处理
+其他的Spring功能 如 对消息的支持等
+在互联网中的应用
+
+Bean容器初始化
+文件 FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("F:/workspace/appcontext.xml");
+Classpath ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring-context.xml");
+Web应用
+<listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+<servlet>
+    <servlet-name>context</servlet-name>
+    <servlet-class>org.springframework.web.context.ContextLoaderServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+</servlet>

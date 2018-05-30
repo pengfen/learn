@@ -1,0 +1,11 @@
+<?php
+// 简单网络爬虫 (抓取整个网页)
+$curl=curl_init("http://www.baidu.com");
+curl_exec($curl);
+curl_close($curl);
+?>
+
+打开 cmd
+cd /d 代码目录路径
+php -f 文件名
+php -f 文件名 > baidu.html #重定向到 baidu.html 文件中

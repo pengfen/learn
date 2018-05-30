@@ -1,0 +1,147 @@
+multi.js
+
+(function(){
+	$.fn.extend({
+		checks_select: function(options, msg, select, content, flag, e){
+			jq_checks_select = null; 
+			$(this).val(msg); // 设置显示值 ---请选择...---
+			$(this).next().empty(); //先清空 
+			jq_check = $(this); 
+			if (jq_checks_select == null) { 
+				jq_checks_select = jq_check.next(); // input输入框下的div
+				jq_checks_select.addClass("checks_div_select"); // 为div显示对应的样式
+				//jq_checks_select = $("<div class='checks_div_select'></div>").insertAfter(jq_check); 
+				$('#' + flag).html(''); // 清空div中数据
+				$.each(options, function(i, n){ // i对应部门id n 对应部门名 向div中添加数据
+					check_div = $("<div style='height:26px;line-height:26px;'><input type='checkbox' value='" + n + "'>&nbsp;&nbsp;&nbsp;&nbsp;" + n + "<input type='hidden' value='" + i + "'></div>").appendTo(jq_checks_select); 
+
+					check_box = check_div.children(); // 获取 input元素
+					check_box.click(function(e){ 
+						temp = ""; 
+						ids = "";
+						// $(this).parents().find("input:checked") 获取所有的元素(包括部门小组)
+						$('#' + flag).find("input:checked").each(function(i){ // 获取 input 选中框
+							id = $(this).next("input").val(); 
+							if(i == 0){ 
+							    temp = $(this).val(); 
+							    ids = id;
+							} else { 
+							    temp += "," + $(this).val(); 
+							    ids += "," + id;
+							} 
+						});
+
+						jq_check.val(temp); 
+						$(select).val(ids);
+						e.stopPropagation(); 
+					}); 
+				}); 
+				//jq_checks_select.show(); 
+				jq_checks_select.toggle(); 
+				//check_div.slideToggle();
+			} else { 
+		        jq_checks_select.toggle(); 
+		    } 
+		    e.stopPropagation(); 
+		}
+	});
+})(jQuery); 
+
+
+引入js文件
+
+<label class="addmess_label fl">选择部门：</label>
+<input type="hidden" id="DeptID" name="DeptID" value="">
+<div style="float:left; position:relative;"> 
+    <input style="height:30px; margin-right:30px;" type="text" id="DeptMsg" readonly="readonly"/> 
+    <div id="DeptMsgShow"></div> 
+</div>
+
+&nbsp;&nbsp;
+<label class="addmess_label fl">选择所属组：</label>
+<input type="hidden" id="TeamID" name="TeamID" value="">
+<div style="float:left; position:relative"> 
+    <input style="height:30px;" type="text" id="TeamMsg" value="—请选择属组—" readonly="readonly"/> 
+    <div id="TeamMsgShow"></div> 
+</div>
+
+<script type="text/javascript">
+// 定义部门对象 {11:"市场一部",12:"市场二部"...}
+var options = {
+    <?php foreach ($depArr as $key => $dep) {?> <?php echo $key;?>:"<?php echo $dep;?>",<?php }?>
+};
+var options = {11:"市场一部",12:"市场二部",13:"市场三部"};
+$('#DeptMsg').val('—请选择部门—');
+
+// 鼠标移入移出事件
+$("#Dept").mouseenter(function(e){ //鼠标移入 
+    $("#DeptID").val('');
+    $('#TeamMsg').val('—请选择属组—');
+    $("#DeptMsg").checks_select(options, '—请选择部门—', '#DeptID', '#DeptMsg', 'DeptMsgShow', e); 
+    $('#DeptMsgShow').css('display', 'block');
+}).mouseleave(function(e){ //鼠标移出 
+    $('#DeptMsgShow').css('display', 'none');
+});   
+$("#Team").mouseenter(function(e){ //鼠标移入 
+    var depId = $("#DeptID").val();
+    if (depId) {
+        $.post("{:U('')}", {"depId": depId, 'getDepTeams': 1},
+        function(data){
+            var resData = data.data;
+            var option = {};
+            for (var i = 0; i < resData.length; i++) {
+                option[resData[i].DeptID + '-' + resData[i].TID] = resData[i].TeamName;
+            }
+            
+            $("#TeamMsg").checks_select(option, '—请选择属组—', '#TeamID', '#TeamMsg', 'TeamMsgShow', e); 
+            $('#TeamMsgShow').css('display', 'block');
+                
+        }, 'json');
+    } else {
+        alert('请选择部门');
+    }
+}).mouseleave(function(e){ //鼠标移出 
+    $('#TeamMsgShow').css('display', 'none');
+}); 
+
+
+// 鼠标单击事件
+//$("#DeptMsg").checks_select(options, '—请选择部门—', '#DeptID', '#DeptMsg', 'DeptMsgShow'); 
+$("#DeptMsg").click(function(e){
+    if ($('#TeamMsgShow').css('display') == 'block') {
+        $('#TeamMsgShow').css('display', 'none');
+    } 
+    $("#DeptID").val('');
+    $('#TeamMsg').val('—请选择属组—');
+    $("#DeptMsg").checks_select(options, '—请选择部门—', '#DeptID', '#DeptMsg', 'DeptMsgShow', e); 
+    $('#DeptMsgShow').css('display', 'block');
+});
+$('#TeamMsg').click(function(e){
+    if ($('#DeptMsgShow').css('display') == 'block') {
+        $('#DeptMsgShow').css('display', 'none');
+    }
+    var depId = $("#DeptID").val();
+    if (depId) {
+        $.post("{:U('')}", {"depId": depId, 'getDepTeams': 1},
+        function(data){
+            var resData = data.data;
+            var option = {};
+            for (var i = 0; i < resData.length; i++) {
+                option[resData[i].DeptID + '-' + resData[i].TID] = resData[i].TeamName;
+            }
+            
+            $("#TeamMsg").checks_select(option, '—请选择属组—', '#TeamID', '#TeamMsg', 'TeamMsgShow', e); 
+            $('#TeamMsgShow').css('display', 'block');
+                
+        }, 'json');
+    } else {
+        alert('请选择部门');
+    }
+    
+});
+
+$(document).click(function () { // 单击其它元素时就隐藏
+    $('#TeamMsgShow').css('display', 'none');
+    $('#DeptMsgShow').css('display', 'none');
+});
+</script>

@@ -1,0 +1,12 @@
+apache ab 命令 (压力测试)
+
+./ab -n 1200 -c 100 http://192.168.2.198:8080/index.php?r=chat/index
+
+-n 代表每次并发量
+-c 代表总共发送的数量
+
+
+ab -n 1200 -c 100
+Requests per second: 41.33 [#/sec]  平均每次的请求数
+Time per request:  2419 所有并发用户 (这里是100) 都要请求一次的平均时间
+Time per request:  24.197 单个用户请求一次的平均时间

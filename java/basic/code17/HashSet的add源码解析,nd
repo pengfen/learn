@@ -1,0 +1,77 @@
+interface Collection {
+	...
+}
+
+interface Set extends Collection {
+	...
+}
+
+class HashSet implements Set {
+	private static final Object PRESENT = new Object();
+	private transient HashMap<E,Object> map;
+	
+	public HashSet() {
+		map = new HashMap<>();
+	}
+	
+	public boolean add(E e) { //e=hello,world
+        return map.put(e, PRESENT)==null;
+    }
+}
+
+class HashMap implements Map {
+	public V put(K key, V value) { //key=e=hello,world
+	
+		//看哈希表是否为空，如果空，就开辟空间
+        if (table == EMPTY_TABLE) {
+            inflateTable(threshold);
+        }
+        
+        //判断对象是否为null
+        if (key == null)
+            return putForNullKey(value);
+        
+        int hash = hash(key); //和对象的hashCode()方法相关
+        
+        //在哈希表中查找hash值
+        int i = indexFor(hash, table.length);
+        for (Entry<K,V> e = table[i]; e != null; e = e.next) {
+        	//这次的e其实是第一次的world
+            Object k;
+            if (e.hash == hash && ((k = e.key) == key || key.equals(k))) {
+                V oldValue = e.value;
+                e.value = value;
+                e.recordAccess(this);
+                return oldValue;
+                //走这里其实是没有添加元素
+            }
+        }
+
+        modCount++;
+        addEntry(hash, key, value, i); //把元素添加
+        return null;
+    }
+    
+    transient int hashSeed = 0;
+    
+    final int hash(Object k) { //k=key=e=hello,
+        int h = hashSeed;
+        if (0 != h && k instanceof String) {
+            return sun.misc.Hashing.stringHash32((String) k);
+        }
+
+        h ^= k.hashCode(); //这里调用的是对象的hashCode()方法
+
+        // This function ensures that hashCodes that differ only by
+        // constant multiples at each bit position have a bounded
+        // number of collisions (approximately 8 at default load factor).
+        h ^= (h >>> 20) ^ (h >>> 12);
+        return h ^ (h >>> 7) ^ (h >>> 4);
+    }
+}
+
+
+hs.add("hello");
+hs.add("world");
+hs.add("java");
+hs.add("world");

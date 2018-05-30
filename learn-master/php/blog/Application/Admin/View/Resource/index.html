@@ -1,0 +1,55 @@
+<!--author:lishuo;time:2015-8-10-->
+<extend name='Layout/index'/>
+<block name="resource">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/apeng.css"/>
+	</style>
+	<title>用户表首页</title>
+</block>	
+<block name="main">
+	<div class='admin-mess'>{$_GET['mess']}</div>
+			<div class='col-md-10' id = 'right'>
+					<div class="table-responsive">
+						<table class='table table-striped'>
+							<thead>
+								<tr>
+									<td colspan='6'></td>
+									<td colspan='2'>
+										<b><a href="{:U('Resource/index')}" style='color:#87B87F'>查全部</a></b>
+									</td>
+								</tr>
+								<tr>
+									<th>编号</th>
+									<th>类型</th>
+									<th>标题</th>
+									<th>简介</th>
+									<th>下载次数</th>
+									<th>分值</th>
+									<th>添加时间</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody class="managerMain">
+								<volist name='data' id='vo'>
+									<tr>
+										<td>{$vo.id}</td>
+										<td>{$vo.type}</td>
+										<td>{$vo.header}</td>
+										<td>{:htmlspecialchars_decode($vo['main'])}</td>
+										<td>{$vo.download}</td>
+										<td>{$vo.score}</td>
+										<td>{:date('Y-m-d ',$vo['addtime'])}</td>
+										<td><a href="{:U('Resource/delete',array('id'=>$vo['id']))}">删除</a></td>
+									</tr>
+								</volist>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan='8'>
+										{$pagelist}
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+				</div>
+			</div>
+</block>

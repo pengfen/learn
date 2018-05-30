@@ -1,0 +1,132 @@
+// 测试 curl 相关代码
+
+	public function curl(){
+		// $html = file_get_contents('http://dev.xqs221.com/index.php?s=/Admin/Public/login.html');
+		// $pattern = "/<p.*><input.*<\/p>/U";
+		// preg_match_all($pattern, $html, $matches);
+		// foreach ($matches[0] as $v){
+		// 	echo $v.'<br>';
+		// }
+
+		$curl=curl_init('http://dev.xqs221.com/index.php?s=/Admin/Public/login.html'); // 初始化
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		$content = curl_exec($curl); // 执行
+		curl_close($curl); // 关闭
+		$pattern = '/<p.*><input type="(.*?)".*?><\/p>/U';
+		preg_match_all($pattern,$content,$matches);
+		print_r($matches);
+		foreach ($matches[0] as $v){
+			echo $v.'<br>';
+		}
+
+		preg_match_all('|value="(.*)"|isU',$content,$arr); //匹配到数组$arr中；
+		print_r($arr); //$arr[1]就是匹配的结果
+		echo '<br/><br/><br/>';
+		print_r($arr[1]);
+
+		$str = '<img width="100" src="1.gif" height="100">';
+		preg_match_all('/<img.*?src="(.*?)".*?>/is',$str,$array);
+		print_r($array);
+		echo '<br/><br/><br/>';
+
+		echo "===================== 采集https登录";
+		$url = 'https://passport.jd.com/uc/login';
+		$jd = curl_init();
+		  curl_setopt($jd, CURLOPT_SSL_VERIFYPEER, FALSE);
+		  curl_setopt($jd, CURLOPT_HEADER, false);
+		  curl_setopt($jd, CURLOPT_FOLLOWLOCATION, true);
+		  curl_setopt($jd, CURLOPT_URL, $url);
+		  curl_setopt($jd, CURLOPT_REFERER, $url);
+		  curl_setopt($jd, CURLOPT_RETURNTRANSFER, TRUE);
+		$login = curl_exec($jd);
+		curl_close($jd);
+		echo $str = iconv('GBK', 'UTF-8', $login);
+		//$pattern = '/<input id="(.*?)" \/>/s';
+		$pattern = '/<input id=\"loginname\".*?\/>/ism';
+		preg_match_all($pattern, $str, $matches);
+		print_r($matches);
+		echo '<br/><br/><br/>';
+
+		$pattern = '/<a rel=\"nofollow\".*?>(.*?)<\/a>/ism';
+		preg_match_all($pattern, $str, $matches);
+		print_r($matches);
+		echo '<br/><br/><br/>';
+
+		$pattern = '/<a rel=\"nofollow\".*?href=(.*?)>(.*?)<\/a>/ism';
+		preg_match_all($pattern, $str, $matches);
+		print_r($matches);
+		echo '<br/><br/><br/>';
+
+		$phonenumber = '13712345678';
+		if(preg_match("/^1[34578]{1}\d{9}$/",$phonenumber)){
+		    echo "是手机号码";
+		}else{
+		    echo "不是手机号码";
+		}
+		echo '<br/><br/><br/>';
+
+		$phonenumber = '1371234567d';
+		if(preg_match("/^1[34578]{1}\d{9}$/",$phonenumber)){
+		    echo "是手机号码";
+		}else{
+		    echo "不是手机号码";
+		}
+		echo '<br/><br/><br/>';
+
+		$curl=curl_init('http://list.jd.com/list.html?cat=670,671,672'); // 初始化
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		$content = curl_exec($curl); // 执行
+		curl_close($curl); // 关闭
+		//var_dump($content); // class="gl-item"
+		$pattern = '/<li class=\"gl-item\".*>.*?<div class=\"p-price\">.*?<i>(.*)<\/i>.*</div>.*<\/li>/ism';
+		preg_match_all($pattern, $content, $matches);
+		print_r($matches);
+
+
+		// 匹配百度首页所有 a 标签
+		// $pattern = "/<a.*>.*<\/a>/U";
+
+		// //获取百度源代码
+		// $html = file_get_contents('https://www.baidu.com/');
+
+		// //获取
+		// preg_match_all($pattern, $html, $matches);
+
+
+		// //var_dump($matches);
+		// foreach ($matches[0] as $v){
+		// 	// 获取$v 中的href
+		// 	echo $v.'<br>';
+		// }
+	}
+
+	public function login(){
+		$data='username=sc001&password=123456';
+		$curlobj = curl_init();			// 初始化
+		curl_setopt($curlobj, CURLOPT_URL, "http://dev.xqs221.com/index.php?s=/Admin/Public/login.html");		// 设置访问网页的URL
+		curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, true);			// 执行之后不直接打印出来
+
+		date_default_timezone_set('PRC'); // 使用Cookie时，必须先设置时区
+		curl_setopt($curlobj, CURLOPT_COOKIESESSION, TRUE); 
+		curl_setopt($curlobj, CURLOPT_HEADER, 0); 
+		curl_setopt($curlobj, CURLOPT_FOLLOWLOCATION, 1); // 这样能够让cURL支持页面链接跳转
+
+		curl_setopt($curlobj, CURLOPT_POST, 1);  
+		curl_setopt($curlobj, CURLOPT_POSTFIELDS, $data);  
+		curl_setopt($curlobj, CURLOPT_HTTPHEADER, array("application/x-www-form-urlencoded; charset=utf-8", 
+			"Content-length: ".strlen($data)
+			)); 
+		$content = curl_exec($curlobj);	// 执行
+		//curl_close($curlobj);
+		echo $content;
+		curl_close($curlobj);
+
+
+		// curl_setopt($curlobj, CURLOPT_URL, "http://dev.xqs221.com/index.php?s=/Admin/Index/index.html");
+		// curl_setopt($curlobj, CURLOPT_POST, 0);  
+		// curl_setopt($curlobj, CURLOPT_HTTPHEADER, array("Content-type: text/html")); 
+		// $output=curl_exec($curlobj);	// 执行
+		// curl_close($curlobj);			// 关闭cURL
+		// echo $output;
+	}
+}

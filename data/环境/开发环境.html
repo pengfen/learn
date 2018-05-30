@@ -1,0 +1,21 @@
+安装 JDK
+
+查看电脑配置 下载 (www.oracle.com) 与电脑相对应的版本安装 
+本机测试安装 jdk-8u73-windows-x64.exe
+配置环境变量 计算机 --- 属性 --- 高级系统设置 --- 环境变量 --- path 中追加 D:\files\java\jdk1.8\bin (jdk 安装环境)
+
+
+安装 eclipse 
+
+官网 (www.eclipse.org/downloads) 下载 Eclipse IDE for java EE Developers
+直接解压 然后进入 eclipse 目录中 双击 eclipse.exe
+
+Java was started but returned exit code=1
+把Java 8 Update ... 删除
+
+将 hadoop-eclipse-plugin-1.1.2.jar 文件复制到 echipse 安装目录 (D:\files\eclipse\eclipse\plugins)
+重启 eclipse 
+window --- preferences --- 配置 hadoop 安装目录
+
+window --- show view --- MapReduce Tools --- Map/Reduce Location --- OK 
+右击 --- new Hadoop location --- 进入 hadoop 配置界面

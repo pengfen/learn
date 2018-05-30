@@ -1,0 +1,1388 @@
+[ 2016-05-16T10:44:31+08:00 ] 127.0.0.1 /index.php/Admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: manager F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 18 行.
+
+[ 2016-05-16T10:44:31+08:00 ] 127.0.0.1 /index.php/Admin/Login/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.088005s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.089005s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:44:31+08:00 ] 127.0.0.1 /index.php/Admin/Login/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:44:34+08:00 ] 127.0.0.1 /index.php/Admin/Login/doLogin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+
+[ 2016-05-16T10:45:06+08:00 ] 127.0.0.1 /index.php/Admin/Login/doLogin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `blog_manager` [ RunTime:0.0290s ]
+SQL: SELECT * FROM `blog_manager` WHERE `email` = 'apeng1@qq.com' LIMIT 1   [ RunTime:0.0000s ]
+
+[ 2016-05-16T10:45:06+08:00 ] 127.0.0.1 /index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0340s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.005000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001001s ]
+SQL: SHOW COLUMNS FROM `blog_auth` [ RunTime:0.0360s ]
+SQL: SHOW COLUMNS FROM `blog_role` [ RunTime:0.0040s ]
+NOTIC: [8] unserialize(): Error at offset 0 of 45 bytes F:\learn\php\blog\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+SQL: SELECT `aids` FROM `blog_role` WHERE `id` = 6  [ RunTime:0.0010s ]
+NOTIC: [8] unserialize(): Error at offset 0 of 330 bytes F:\learn\php\blog\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+SQL: SELECT * FROM `blog_auth` WHERE ( id in (4,5,12,13,14,8,9,11,15,16) and level = 0 )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `blog_auth` WHERE ( id in (4,5,12,13,14,8,9,11,15,16) and level = 1 )  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.118007s ]
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.023001s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.095006s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.118006s ]
+NOTIC: [2] Division by zero F:\learn\php\blog\Application\Runtime\Cache\Admin\b595b808c2ebeeeb0478ffc30bb4e87a.php 第 146 行.
+NOTIC: [8] Undefined variable: link F:\learn\php\blog\Application\Runtime\Cache\Admin\b595b808c2ebeeeb0478ffc30bb4e87a.php 第 165 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.026001s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.095006s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.121006s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:06+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0400s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:06+08:00 ] 127.0.0.1 /index.php/Admin/Index/breadcrumb.html?controller=Index&action=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_auth` [ RunTime:0.0030s ]
+SQL: SELECT `name` FROM `blog_auth` WHERE `controller` = 'Index' AND `action` = 'index' LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:08+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:11+08:00 ] 127.0.0.1 /index.php/Admin/User/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0030s ]
+NOTIC: [2048] Declaration of Admin\Controller\PageController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') F:\learn\php\blog\Application\Admin\Controller\PageController.class.php 第 56 行.
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `blog_user` LIMIT 1   [ RunTime:0.0420s ]
+NOTIC: [8] Undefined variable: count F:\learn\php\blog\Application\Admin\Controller\PageController.class.php 第 35 行.
+SQL: SELECT * FROM `blog_user` LIMIT 0,8   [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.007001s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `blog_auth` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `blog_role` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_auth` WHERE ( id in (4,5,12,13,14,8,9,11,15,16) and level = 1 )  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.029002s ]
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011001s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.013000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.023001s ]
+NOTIC: [2] Division by zero F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 147 行.
+NOTIC: [8] Undefined variable: link F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 166 行.
+NOTIC: [8] Undefined index: mess F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 198 行.
+NOTIC: [8] Use of undefined constant sex - assumed 'sex' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 215 行.
+NOTIC: [8] Use of undefined constant sex - assumed 'sex' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 215 行.
+NOTIC: [8] Use of undefined constant state - assumed 'state' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 217 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 220 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 220 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 221 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 221 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 222 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 222 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 224 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 225 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 225 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 226 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 226 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 227 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 227 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 228 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 228 行.
+NOTIC: [8] Use of undefined constant sex - assumed 'sex' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 215 行.
+NOTIC: [8] Use of undefined constant sex - assumed 'sex' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 215 行.
+NOTIC: [8] Use of undefined constant state - assumed 'state' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 217 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 220 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 220 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 221 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 221 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 222 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 222 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 224 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 225 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 225 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 226 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 226 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 227 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 227 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 228 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 228 行.
+NOTIC: [8] Use of undefined constant sex - assumed 'sex' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 215 行.
+NOTIC: [8] Use of undefined constant sex - assumed 'sex' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 215 行.
+NOTIC: [8] Use of undefined constant state - assumed 'state' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 217 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 220 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 220 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 221 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 221 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 222 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 222 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 224 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 225 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 225 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 226 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 226 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 227 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 227 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 228 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 228 行.
+NOTIC: [8] Use of undefined constant sex - assumed 'sex' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 215 行.
+NOTIC: [8] Use of undefined constant sex - assumed 'sex' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 215 行.
+NOTIC: [8] Use of undefined constant state - assumed 'state' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 217 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 220 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 220 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 221 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 221 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 222 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 222 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 224 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 225 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 225 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 226 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 226 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 227 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 227 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 228 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 228 行.
+NOTIC: [8] Use of undefined constant sex - assumed 'sex' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 215 行.
+NOTIC: [8] Use of undefined constant sex - assumed 'sex' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 215 行.
+NOTIC: [8] Use of undefined constant state - assumed 'state' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 217 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 220 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 220 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 221 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 221 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 222 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 222 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 224 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 225 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 225 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 226 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 226 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 227 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 227 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 228 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 228 行.
+NOTIC: [8] Use of undefined constant sex - assumed 'sex' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 215 行.
+NOTIC: [8] Use of undefined constant state - assumed 'state' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 217 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 220 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 220 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 221 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 221 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 222 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 222 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 224 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 225 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 225 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 226 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 226 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 227 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 227 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 228 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 228 行.
+NOTIC: [8] Use of undefined constant sex - assumed 'sex' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 215 行.
+NOTIC: [8] Use of undefined constant state - assumed 'state' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 217 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 220 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 220 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 221 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 221 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 222 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 222 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 224 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 225 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 225 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 226 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 226 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 227 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 227 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 228 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 228 行.
+NOTIC: [8] Use of undefined constant sex - assumed 'sex' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 215 行.
+NOTIC: [8] Use of undefined constant state - assumed 'state' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 217 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 220 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 220 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 221 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 221 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 222 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 222 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 224 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 225 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 225 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 226 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 226 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 227 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 227 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 228 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\65e605872ed5d34210f5b33beb13f5a3.php 第 228 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.055004s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.013000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.067004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:11+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0020s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:11+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:11+08:00 ] 127.0.0.1 /index.php/Admin/Index/breadcrumb.html?controller=User&action=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_auth` [ RunTime:0.0140s ]
+SQL: SELECT `name` FROM `blog_auth` WHERE `controller` = 'User' AND `action` = 'index' LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:13+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:15+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:17+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:19+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-16T10:45:21+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:23+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:24+08:00 ] 127.0.0.1 /index.php/Admin/Advice/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+NOTIC: [2048] Declaration of Admin\Controller\PageController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') F:\learn\php\blog\Application\Admin\Controller\PageController.class.php 第 56 行.
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `blog_advice` LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: count F:\learn\php\blog\Application\Admin\Controller\PageController.class.php 第 35 行.
+SQL: SELECT * FROM `blog_advice` LIMIT 0,8   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: title F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 5 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.006000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `blog_auth` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `blog_role` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_auth` WHERE ( id in (4,5,12,13,14,8,9,11,15,16) and level = 1 )  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.024001s ]
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009001s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.011000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.020001s ]
+NOTIC: [2] Division by zero F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 147 行.
+NOTIC: [8] Undefined variable: link F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 166 行.
+NOTIC: [8] Undefined index: mess F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 198 行.
+NOTIC: [8] Undefined index: username F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 214 行.
+NOTIC: [8] Use of undefined constant addtime - assumed 'addtime' F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 215 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 218 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 218 行.
+NOTIC: [8] Undefined index: username F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 218 行.
+NOTIC: [8] Undefined index: username F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 214 行.
+NOTIC: [8] Use of undefined constant addtime - assumed 'addtime' F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 215 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 218 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 218 行.
+NOTIC: [8] Undefined index: username F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 218 行.
+NOTIC: [8] Undefined index: username F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 214 行.
+NOTIC: [8] Use of undefined constant addtime - assumed 'addtime' F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 215 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 218 行.
+NOTIC: [8] Use of undefined constant username - assumed 'username' F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 218 行.
+NOTIC: [8] Undefined index: username F:\learn\php\blog\Application\Runtime\Cache\Admin\139e9474bca111245f075bc608ff8377.php 第 218 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013001s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.011000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.024001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:24+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:24+08:00 ] 127.0.0.1 /index.php/Admin/Index/breadcrumb.html?controller=Advice&action=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_auth` [ RunTime:0.0030s ]
+SQL: SELECT `name` FROM `blog_auth` WHERE `controller` = 'Advice' AND `action` = 'index' LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-16T10:45:26+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:28+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:29+08:00 ] 127.0.0.1 /index.php/Admin/LogCate/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_log_cate` [ RunTime:0.0020s ]
+NOTIC: [2048] Declaration of Admin\Controller\PageController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') F:\learn\php\blog\Application\Admin\Controller\PageController.class.php 第 56 行.
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `blog_log_cate` LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: count F:\learn\php\blog\Application\Admin\Controller\PageController.class.php 第 35 行.
+SQL: SELECT * FROM `blog_log_cate` LIMIT 0,8   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: title F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 5 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.006001s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `blog_auth` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `blog_role` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_auth` WHERE ( id in (4,5,12,13,14,8,9,11,15,16) and level = 1 )  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.025002s ]
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010001s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.011000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.020001s ]
+NOTIC: [2] Division by zero F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 147 行.
+NOTIC: [8] Undefined variable: link F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 166 行.
+NOTIC: [8] Undefined index: mess F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 198 行.
+NOTIC: [8] Undefined variable: name F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 204 行.
+NOTIC: [8] Undefined variable: name F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 213 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Undefined variable: name F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Undefined variable: name F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 213 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Undefined variable: name F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Undefined variable: name F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 213 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Undefined variable: name F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Undefined variable: name F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 213 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Undefined variable: name F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Undefined variable: name F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 213 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Undefined variable: name F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Undefined variable: name F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 213 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Undefined variable: name F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Undefined variable: name F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 213 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Undefined variable: name F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Undefined variable: name F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 213 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Undefined variable: name F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' F:\learn\php\blog\Application\Runtime\Cache\Admin\f7ba478bff28bf7a218a4e277195fd93.php 第 217 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017001s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.011000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.027001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-16T10:45:29+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:29+08:00 ] 127.0.0.1 /index.php/Admin/Index/breadcrumb.html?controller=LogCate&action=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_auth` [ RunTime:0.0030s ]
+SQL: SELECT `name` FROM `blog_auth` WHERE `controller` = 'LogCate' AND `action` = 'index' LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:31+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001001s ]
+
+[ 2016-05-16T10:45:33+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:35+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001001s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-16T10:45:37+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:40+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:43+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001001s ]
+
+[ 2016-05-16T10:45:46+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:49+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:52+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:45:55+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.1290s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-05-16T10:45:58+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:01+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-16T10:46:04+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:07+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:10+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:13+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:16+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:19+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:22+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:25+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:28+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:31+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0280s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:34+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:37+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:40+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:43+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-16T10:46:46+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:49+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:52+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:55+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:46:58+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:47:01+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-16T10:47:04+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0010s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:47:07+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:47:10+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-16T10:47:12+08:00 ] 127.0.0.1 /index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: select aac from blog_manager a left join blog_role b on a.rid = b.id where a.id='11' [ RunTime:0.0000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given F:\learn\php\blog\Application\Admin\Controller\BaseController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `blog_advice` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `blog_advice` WHERE `isread` = 0  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+

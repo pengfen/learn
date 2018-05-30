@@ -1,0 +1,215 @@
+lnmp 环境搭建 (一键安装包)
+
+wget -c http://soft.vpser.net/lnmp/lnmp1.2-full.tar.gz && tar zxf lnmp1.2-full.tar.gz && cd lnmp1.2-full && ./install.sh
+please input the root password of mysql 输入mysql 的 root 密码
+do you want to install the innoDB storage engine 是否启用 mysql innodb 启用输入 y
+install php 5.3.28, please input y 选择 php 5.3.28
+install mysql 5.5.37, please input y
+install mariaDB 5.5.37, please input md
+
+进入mysql 服务器
+mysql -hlocalhost -uroot -p
+
+版本升级
+http://www.php.net/downloads.php 查看版本
+进入 lnmp1.1-full 目录下
+./upgrade_php.sh 输入查到的版本号 
+5.6.15
+5.5.30
+
+开启 (peng4 --- 192.168.129.131 --- peng0313)
+安装 lnmp
+数据库密码 peng0521
+
+配置目录
+/usr/local/mysql
+/usr/local/php
+/usr/local/nginx
+
+cd /root/lnmp
+./lnmp restart
+
+
+[root@peng4 lnmp]# mysql -uroot -p
+Enter password:
+
+注意 composer 需要 php 5.6 以上版本
+
+更新 php 版本
+
+    cd ./lnmp
+    cd ./lnmp1.2-full
+    ./upgrade.sh php
+    http://www.php.net/downloads.php #找要更新的版本号
+    输入要更新的版本号
+
+    token 过期
+    创建一个新的token
+    composer config --global github-oauth.github.com token值
+    composer config --global github-oauth.github.com dedeef5aafd16f05d2ca1901a8a92b8fa584b93d
+
+    删除 composer
+    rm -rf ./composer
+    rm -rf /usr/local/bin/composer
+
+    cd
+    ls
+    mkdir composer
+    ls
+    cd ./composer
+    安装目录 /root/composer/composer.phar
+    mv ./composer.phar /usr/local/bin/composer
+
+    composer create-project yiisoft/yii2-app-advanced /home/wwwroot/default/yii2
+
+    如果遇到 your requirements could not be resolved to an installable set of packages
+    删除对应的缓存
+安装 yii 框架
+[root@peng4 ~]# mkdir composer
+[root@peng4 ~]# cd composer/
+[root@peng4 composer]# curl -sS https://getcomposer.org/installer | php
+
+
+ali 上搭建环境
+pwd
+mkdir lnmp
+ls
+cd ./lnmp
+wget -c http://soft.vpser.net/lnmp/lnmp1.2-full.tar.gz && tar zxf lnmp1.2-full.tar.gz && cd lnmp1.2-full && ./install.sh lnmp
+yum info mysql #查看 mysql 的版本
+yum info nginx #查看 nginx 的版本
+yum info php   #查看 php 的版本
+
+nginx
+nginx 安装目录 /usr/local/nginx/
+nginx 日志目录 /home/wwwlogs/ (ls /home/wwwlogs/ access.log nginx_error.log)
+nginx 配置文件 /usr/local/nginx/conf/nginx.conf
+
+访问 http://120.24.36.66
+项目目录 ls /home/wwwroot/default
+
+============================================
+ls
+mkdir lnmp
+
+下载并安装 lnmp环境
+wget -c http://soft.vpser.net/lnmp/lnmp1.2-full.tar.gz && tar zxf lnmp1.2-full.tar.gz && cd lnmp1.2-full && ./install.sh lnmp
+
+LNMP 1.2状态管理: lnmp {start|stop|reload|restart|kill|status}
+LNMP 1.2各个程序状态管理: lnmp {nginx|mysql|mariadb|php-fpm|pureftpd} {start|stop|reload|restart|kill|status}
+LNMP 1.1状态管理： /root/lnmp {start|stop|reload|restart|kill|status}
+Nginx状态管理：/etc/init.d/nginx {start|stop|reload|restart}
+MySQL状态管理：/etc/init.d/mysql {start|stop|restart|reload|force-reload|status}
+Memcached状态管理：/etc/init.d/memcached {start|stop|restart}
+PHP-FPM状态管理：/etc/init.d/php-fpm {start|stop|quit|restart|reload|logrotate}
+PureFTPd状态管理： /etc/init.d/pureftpd {start|stop|restart|kill|status}
+ProFTPd状态管理： /etc/init.d/proftpd {start|stop|restart|reload}
+
+如重启LNMP，输入命令：/root/lnmp restart 即可，单独重启mysql：/etc/init.d/mysql restart
+
+
+cp -a yii2 test 
+    #修改 nginx.conf 配置文件
+    find /usr/local/ -name nginx.conf
+    vim /usr/local/nginx/conf/nginx.conf
+    修改
+    root /home/wwwroot/test/frontend/web;
+    yum -y install git
+    cd /home/wwwroot/test
+    git init
+    ssh-keygen
+    vim /root/.ssh/id_rsa.pub
+    esc ctrl+v y 复制公钥 ---> 保存到 github.com
+    git add remote origin git@github.com:pengfen/test.git
+    git status
+    git add .
+    git commit -m "message"
+    git push origin master
+
+---------------------------------------------
+
+    阿里云服务器 安装 yii2
+    yum info php (要求 php 版本 5.5)
+    更新 php
+    cd
+    ls
+    cd ./lnmp
+    cd ./lnmp1.2-full
+    ./upgrade.sh php
+    http://www.php.net/downloads.php #找要更新的版本号
+    输入要更新的版本号
+
+    token 过期
+    创建一个新的token
+    composer config --global github-oauth.github.com token值
+    composer config --global github-oauth.github.com dedeef5aafd16f05d2ca1901a8a92b8fa584b93d
+
+    删除 composer
+    rm -rf ./composer
+    rm -rf /usr/local/bin/composer
+
+    cd
+    ls
+    mkdir composer
+    ls
+    cd ./composer
+    安装目录 /root/composer/composer.phar
+    mv ./composer.phar /usr/local/bin/composer
+
+    composer create-project yiisoft/yii2-app-advanced /home/wwwroot/default/yii2
+
+    如果遇到 your requirements could not be resolved to an installable set of packages
+    删除对应的缓存
+
+
+    ===================================================================
+    linux 环境安装 yii2
+
+    安装composer
+    cd
+    [root@ ~]mkdir composer #创建 composer 目录
+    cd ./composer #进入 composer 目录
+    curl -sS https://getcomposer.org/installer | php #下载composer
+    ll #查看是否为可执行文件
+    mv composer.phar /usr/local/bin/composer #设置为全局变量
+
+    运行如下命令来安装 Composer Asset插件：
+    composer global require "fxp/composer-asset-plugin:1.0.0-beta3"
+
+    安装高级的应用程序模板
+    composer create-project yiisoft/yii2-app-advanced /home/wwwroot/yii2
+
+    如何提示 exception\... 错误
+    find / -name php.ini
+    vi /usr/local/php/etc/php.ini
+    /disable_functions 找到 disable_functions
+    #disable_functions
+    :wq
+    cd /home/wwwroot
+    rm -rf yii2
+    重新安装
+    ls
+    cd ./yii2
+    ./init
+    0 #开发模式
+
+    修改 nginx 配置文件
+    find / -name nginx.conf
+    vim
+    /root
+    /home/wwwroot/yii2/frontend/web
+    进入 php.ini 取消 disable_functions
+    页面访问 http://192.168.1.101
+    出现 vendor\bower/jquery/dist 文件不存在
+
+    vim htdoc/vendor/yiisoft/yii2/base/Application.php
+    // 注释掉
+    //        Yii::setAlias('@bower', $this->_vendorPath . DIRECTORY_SEPARATOR . 'bower');
+    // 替换成
+            Yii::setAlias('@bower', $this->_vendorPath . DIRECTORY_SEPARATOR . 'bower' . DIRECTORY_SEPARATOR . 'bower-asset');
+
+
+    lnmp restart
+    # 如何出现 ERROR MySQL server PID file could not be found
+    service php-fpm restart
+    lnmp restart

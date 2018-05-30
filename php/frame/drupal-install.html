@@ -1,0 +1,77 @@
+drupal 的安装
+
+1) 解压 drupal 压缩包
+
+2) 配置虚拟主机
+
+3) 根据配置访问
+
+4) 修改 drupal安装目录\sites\default\settings.php
+   添加 ini_set('max_execution_time', '300'); 如果出现错误 Maximum execution time of 30 seconds exceeded
+
+获取发送邮件服务的 SMTP 地址
+php.ini --- ;extension=php_smtp.dll (取消注释)
+
+修改配置
+[mail function]
+; For Win32 only
+SMTP = localhost
+smtp_port =  25
+
+Yii::$app->getResponse()->redirect('/index.php?r=admin/download');
+
+
+drupal
+1) drupal 介绍
+2) drupal 主题开发(views panels ...)
+3) drupal 模块开发
+
+drupal 核心模块
+comment 评论模块 用户在普通新闻中可以进行评论 评论需要审核后方可发布
+contact 联系表单模块
+database loggin 使用数据库记录网站各种日志 便于进行故障排查
+menu 菜单管理模块
+path 自定义路径模块
+search 搜索模块 网站提供搜索框 以便用户搜索网站新闻
+statistics 浏览统计模块 主要记录每则新闻的浏览量和评论总量等 用于统计热点新闻
+taxonomy 分类模块 用于对新闻进行分类管理
+upload 附件模块 教务公告中有时需要提供文件下载
+
+常用的第三方模块
+views 用于创建显示内容的多种列表
+panels 用于复杂页面的布局 如网站首页
+CKEditor 为编辑新闻提供 "富文本编辑器"
+ImageField CCK 的图像字段
+FileField CCK 的文件字段
+
+drupal 基本概念包括 节点 内容类型 模块 主题 分类
+
+节点 是一段内容 (a piece of content) 需要一个唯一的 ID 用于标识这个节点
+如 标题节点 内容节点 发布时间节点 发布者节点 所属论坛节点
+
+内容类型 (content type) 就是在抽象层次上对节点的一个归类 不同内容类型用于不同的使用场景
+每一个节点都必须属于某个内容类型 一个内容类型下可以有多个节点
+
+模块 (Module) drupal 的功能单元 drupal安装包中包括 核心模块和核心可选模块
+
+主题 (Theme) 网站的外观 主要包括 页面布局 颜色 图片 字体 按钮 等元素
+
+区块 (Block) 是用一在页面上展示一部分数据的方法
+
+菜单 (Menu) 一系列超链接组成 并以某种方式进行排列
+
+用户 (User) 网站的受众 网站内容的贡献者
+匿名用户 (Anonymous User) 未注册用户或已注册但未通过审核的用户
+论证用户 (Authenticated User) 已注册并通过审核的用户
+
+评论 (Comment) 一种内容 每个评论必须对应于一个节点 不能单独存在
+
+分类 (Taxonomy) 网站中的节点 按其内容属性进行的分类
+
+
+使用 URL 替换工具栏
+域名/admin
+域名/admin/content 内容管理任务列表页面 可以管理节点 评论和分类
+域名/admin/build 站点创建管理任务列表页面 可以管理区块 菜单 主题和模块
+域名/admin/user 用户管理任务列表页面 可以管理网站性能设置 文件系统设置和站点状态
+域名/admin/reports 站点报告管理任务列表页面 可以查看访问记录和站点日志

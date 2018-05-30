@@ -1,0 +1,19 @@
+<h1>文件上传--PHP的上传文件处理</h1>
+<form action="5.php" method='post' enctype='multipart/form-data'>
+	<input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+	<input type="file" name="myfile">
+	
+	<button>上传</button>
+</form>
+
+//判断 文件是否是合法上传的
+if (is_uploaded_file($_FILES['myfile']['tmp_name'])){
+	//把 上传 文件移动到 指定的目录
+	if (move_uploaded_file($_FILES['myfile']['tmp_name'], './uploads/'.uniqid().'.jpg')){
+		echo "上传成功！";
+	}else {
+		echo "文件移动失败！";
+	}
+}else {
+	echo "不是合法上传的文件！";
+}

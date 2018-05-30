@@ -1,0 +1,57 @@
+日志
+
+配置
+'log' => [
+    //'traceLevel' => YII_DEBUG ? 3 : 0, // 常用于测试环境
+    'flushInterval' => 1000, // 配置刷新默认为1000条
+    'targets' => [
+        [
+            'class' => 'yii\log\FileTarget',
+            'levels' => ['error'],
+            'categories' => ['catalog'], // 分类策略
+            'exportInterval' => 1000, // 配置导出消息 默认为1000条
+            'logFile' => '@app/runtime/logs/req.log',
+            'maxFileSize' => 1024 * 20,
+            'maxLogFiles' => 20,
+            'logVars' => [],
+        ]
+        
+    ],
+],
+
+frontend\models中编写  Log 类
+// 操作日志 
+class Log{
+
+	// 记录操作日志
+	public static function log($msg) {
+		$userBase = Yii::$app->session['userInfo']['userBase'];
+		$uid = $userBase['uid'];
+		$login_id = $userBase['login_id'];
+		$name = $userBase['name'];
+		// 当前执行时间:{$time} $time = date("Y-m-d H:i:s", time());
+
+		Yii::error("uid:{$uid}, login_id:{$login_id}, name:{$name}, msg:{$msg}", 'catalog');
+	}
+}
+
+控制器调用
+Log::log('访问当前页 : '.$route);
+
+日志格式改变 时间 IP 输出消息
+2016-11-30 14:29:42 [192.168.18.111] uid:103067, login_id:yx2101, name:yx2101, msg:访问当前页 : home/init-msg
+vendor\yiisoft\yii2\log\Target.php
+getMessagePrefix($message) {
+    return '[$ip]'; // 只需要获取IP [192.168.18.23]
+    return '[$ip][$userID][$sessionID]'; // [192.168.18.23][-][ST-352-Co0NqrFybqWiNNFWfXZn-ssonew18cn]
+}
+
+public function formatMessage($message) {
+    return date('Y-m-d H:i:s', $timestamp) . " {$prefix} $text "; // 2016-11-30 07:40:27 [192.168.18.23] uid:103136, login_id:yx4104, name:yx4104, msg:访问当前页 : customer/refund
+    return date('Y-m-d H:i:s', $timestamp) . " {$prefix}[$level][$category] $text" . (empty($traces) ? '' : "\n    " . implode("\n    ", $traces)); // 2016-11-30 07:41:22 [192.168.18.23][error][catalog] uid:103136, login_id:yx4104, name:yx4104, msg:访问当前页 : customer/new-c
+}
+
+监控日志
+tail -f req.log
+tail -f req.log | grep 15.23 监控某台主机的日志
+tail -f req.log | grep caopeng 监控某人的访问日志

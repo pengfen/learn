@@ -1,0 +1,83 @@
+@bg:blue; // 定义header 背景色
+@height:39px; // 定义header 高度
+@foot-bg:blue; // 定义footer 背景色
+@foot-height:50px; // 定义footer 高度
+@left-width:200px; // 定义左边宽度
+@left-height:500px; // 定义左边高度
+@menu-height:39px; // 菜单高度
+@menu-border:#ccc; // 边框色
+@menu-title-bg: #f4f4f4; // 菜单标题背景色
+@menu-bg: #ff4a00; // 菜单背景色
+@border1: 1px solid @menu-border; // 1px 边框
+@right-width: 1000px;
+@bg-img:url('../Images/bg5.jpg'); // 背景图片
+@title-color:red; // 标题颜色
+@login-width: 440px; // 登录框宽
+@shadow-color: #ff4a00;  // 阴影色
+@btn-bg: #ff4a00; // 按钮背景色
+@btn-color: #fff; // 按钮前景色
+
+//初始化样式
+body,ul,li,p,h1,h2,h3,h4{ padding: 0; margin: 0}
+body{ font-size: 12px;}
+ul,li{list-style: none;}
+a{text-decoration: none;}
+img,input{border: none;outline: none;}
+.bgimg{background:@bg-img;background-size:cover;}
+// 预定义样式
+.fl{float: left;}
+.fr{float: right;}
+.clear{clear: both;}
+.w{margin: 0 auto; width: 1200px;}
+.mt10{margin-top: 10px;}
+.mt20{margin-top: 20px;}
+// 登录界面
+h2{text-align:center; margin:30px 0px; font-size:30px; color:@title-color;}
+#login{width:@login-width; margin: 60px auto; box-shadow: 0px 0px 10px @shadow-color; padding:30px; background: rgba(0, 0, 0, 0.3); border-radius: 20px;
+    li{height: 50px; line-height:50px;}
+    .login-text{width: 80px; font-size:18px; font-weight: bold; color: #fff; display:inline-block;}
+    .login-user, .login-pass, .login-verify{ padding: 10px 28px 10px 8px; border: @border1; box-shadow: 0 0 10px @shadow-color inset;
+    }
+    .login-verify{padding: 10px 8px; margin: 6px 7px;}
+    .verify-img{margin-top: 6px; width: 98px; height: 40px; cursor: pointer;}
+    .error-text{height: 20px; font-weight: bold; color: #f00; margin-left: 10px; overflow: hidden; .anim}
+    .submitbtn{margin-top: 10px; width: 188px; padding: 12px 0; font-size: 16px; font-weight: bold; background: @btn-bg; color: @btn-color; margin-left: 88px; cursor: pointer; box-shadow: 0 0 10px @shadow-color;}
+}
+//文字移动
+.anim{-webkit-animation: margin 2s ease-out; -moz-animation:margin 2s ease-out; -ms-animation:margin 2s ease-out; -o-animation:margin 2s ease-out; animation:margin 2s ease-out;}
+@-webkit-keyframes margin{0%{opacity:0; margin-left: 40px;} 30%{opacity:0.3; margin-left: 30px;} 70%{opacity: 0.7; margin-left: 20px} 100%{opacity:1; margin-left: 10px;}}
+@-moz-keyframes margin{0%{opacity:0; margin-left: 40px;} 30%{opacity:0.3; margin-left: 30px;} 70%{opacity: 0.7; margin-left: 20px} 100%{opacity:1; margin-left: 10px;}}
+@-o-keyframes margin{0%{opacity:0; margin-left: 40px;} 30%{opacity:0.3; margin-left: 30px;} 70%{opacity: 0.7; margin-left: 20px} 100%{opacity:1; margin-left: 10px;}}
+@-ms-keyframes margin{0%{opacity:0; margin-left: 40px;} 30%{opacity:0.3; margin-left: 30px;} 70%{opacity: 0.7; margin-left: 20px} 100%{opacity:1; margin-left: 10px;}}
+// 心形
+.heart{width:60px; height: 80px; position:relative;
+    &::before, &::after{content: ''; width: 100%; height: 100%; background: red; position: absolute;border-radius:80px 80px 0 0; -webkit-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); -moz-transform: rotate(-45deg);}
+    &::after{left: 16px; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); -o-transform: rotate(45deg); -moz-transform: rotate(45deg); z-index:-1;}
+    span{position:absolute; color: #fff; font-size:30px; top:20px;left: 20px;}
+}
+.heart-right{right: 150px;}
+
+
+// 头部使用bootstrap导航 header{background: @bg; height: @height; line-height: @height;}
+.navbar{border-radius:0px;}
+// 左边导航
+#left{ width: @left-width; height: @left-height;padding-left: 10px;padding-top: 10px;float:left;
+	h3{height: @menu-height;line-height: @menu-height;padding-left: 20px; border: @border1;background: @menu-title-bg;
+	}
+	ul{ border: @border1;border-top: none;border-bottom: none;display:none;background: @menu-bg;
+	    &:last-child{border-bottom: @border1;}
+	}
+	ul li{height: @menu-height - 4;line-height: @menu-height - 4;padding-left: 30px; border-bottom: @border1;
+	    &:last-child{border-bottom: none;}
+	}
+}
+
+#right{padding: 20px;width: @right-width;float: right;}
+footer{
+	background: @foot-bg;
+	height: @foot-height;
+	line-height: @foot-height;
+}
+
+// 添加之样式
+#add{height:39px; line-height:39px; background: #3cf; padding-left: 20px; font-size:20px;}

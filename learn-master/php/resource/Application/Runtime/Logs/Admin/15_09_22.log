@@ -1,0 +1,48 @@
+[ 2015-09-22T21:48:16+08:00 ] 127.0.0.1 /resource/index.php/Admin/Project/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000100s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001629s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001118s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001294s ]
+NOTIC: [8] Undefined index: manager D:\files\wamp\www\resource\Application\Admin\Controller\BaseController.class.php 第 18 行.
+
+[ 2015-09-22T21:48:17+08:00 ] 127.0.0.1 /resource/index.php/Admin/Login/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000732s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001076s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001303s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000114s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000286s ]
+NOTIC: [8] Undefined variable: smarty D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\0dfec61edd66f450033aa87c28a760f4.php 第 6 行.
+NOTIC: [8] Undefined variable: smarty D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\0dfec61edd66f450033aa87c28a760f4.php 第 11 行.
+NOTIC: [8] Undefined variable: erroruser D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\0dfec61edd66f450033aa87c28a760f4.php 第 17 行.
+NOTIC: [8] Undefined variable: mess D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\0dfec61edd66f450033aa87c28a760f4.php 第 17 行.
+NOTIC: [8] Undefined variable: errorpass D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\0dfec61edd66f450033aa87c28a760f4.php 第 22 行.
+NOTIC: [8] Undefined variable: smarty D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\0dfec61edd66f450033aa87c28a760f4.php 第 27 行.
+NOTIC: [8] Undefined variable: smarty D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\0dfec61edd66f450033aa87c28a760f4.php 第 27 行.
+NOTIC: [8] Undefined variable: errorverify D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\0dfec61edd66f450033aa87c28a760f4.php 第 29 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.108442s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.108618s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000727s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000880s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001405s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001634s ]
+
+[ 2015-09-22T21:48:19+08:00 ] 127.0.0.1 /resource/index.php/Admin/Login/verify
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000736s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000973s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001147s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001017s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001195s ]
+

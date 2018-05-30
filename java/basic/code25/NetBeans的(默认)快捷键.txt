@@ -1,0 +1,172 @@
+1、完成代码：ctrl+\ //任何地方按下此组合键，均会提示相应的参考字段； 
+2、错误提示：alt + enter //顾名思义，当系统报错时，按下此组合可以查看系统提示； 
+3、自动完成字符串： ctrl+L ctrl+k //后者（Ctrl+L没用过）组合键自动打出字符串，每按一次打出一个新串，串序自下向上； 
+4、右键：修复自动导入 
+5、右键：格式化代码风格 
+6、导入所需包：ctrl+shift+i 
+7、格式化代码：alt+shift+F 
+8、注释/取消注释：ctrl+/，此功能支持多行注释，但首先需选中所要注释行 
+9、psvm+Tab 生成Main方法 
+10、sout + Tab //生成输出语句 
+11、ctrl+enter //增加空白行，光标不移动； 
+12、alt+shift+F //格式，不太懂什么意思，高手可以解释下； 
+13、alt+enter //不太会用； 
+13、Alt+insert //插入代码（包括构造函数，setter和getter方法等）； 
+14、Alt+Shift+O //转到类； 
+15、Ctrl+Tab //在打开的源文件中进行切换； 
+16、Ctrl+O或Ctrlt+单击 //转到源，即按住Ctrl键然后单击某源就可以打开源代码； 
+补充几条： 
+Shift+F6 //运行当前程序 
+Ctrl+Shift+F5: //调试当前程序 
+Ctrl+F //快速查找代码中的字符串 
+Ctrl+Delete //也是一个比较常用的shortcut，大家可以试试； 
+Ctrl+Shift+Right //向右逐个选中 
+Ctrl+Shift+Left //向左逐个选中 
+Ctrl+Shift+UP/DOWN //复制当前行到下一行，光标不动 
+
+
+
+    * 新建项目：Ctrl-Shift-N 
+    * 自动格式化代码：Alt-Shift-F 
+    * 保存文件：Ctrl-S 
+    * 代码补全：Ctrl-" 
+    * 代码自动完成：默认Tab (我个人更喜欢空格键，可以在“选项-Editor”里修改) 
+    * 显示 Javadoc：Alt-F1 
+    * 运行主项目：F6 
+    * 编译主项目：Shift-F11 
+    * 运行文件：Shift-F6 
+    * 新建 JUnit 测试：Ctrl-Shift-U 
+    * 运行测试：Alt-F6 
+    * 设置断点：Ctrl-F8 
+    * 调试主项目：Ctrl-F5 
+    * 调试文件：Ctrl-Shift-F5 
+    * 逐步调试：F7 
+
+    * 代码自动完成：Ctrl-"，这个可以自动完成诸如创建对象的代码 
+    * 代码自动插入：Alt-Insert，这个可以自动插入Getter-Setter方法的代码 
+    * 按照提示操作：Alt+Enter，例如：插入所需要的包或删除未使用的引入包 
+    * 自动修复引入包：Ctrl-Shift-I 
+    * 单独修复引入包：Alt-Shift-I 
+    * 自动粘贴代码：Ctrl-Shift-上/下方向键 
+    * 自动移动代码：Alt-Shift-上/下方向键 
+    * 代码模板实时自动补全：Tab 
+    * 变量重命名：Ctrl-R 
+    * Javadoc弹出框提示：Ctrl-Shift-Space 
+
+
+
+这里所列出的NetBeans快捷键是从NetBeans一份文档中直接copy出来，放在这里方便查阅。(2007.03.30最后更新) 
+
+查找、搜索和替换 
+Ctrl-F3 搜索位于插入点的词 
+F3/Shift-F3 在文件中查找下一个/上一个 
+Ctrl-F/H 在文件中查找/替换 
+Alt-F7 查找使用实例 
+Ctrl-Shift-P 在项目中查找 
+Alt-Shift-U 查找使用实例结果 
+Alt-Shift-H 关闭搜索结果突出显示 
+Alt-Shift-L 跳转列表中的下一个（所有文件） 
+Alt-Shift-K 跳转列表中的上一个（所有文件） 
+Ctrl-R 重新装入窗体 
+Alt-U-U 将选定内容转换为大写 
+Alt-U-L 将选定内容转换为小写 
+Alt-U-R 对选定内容切换大小写 
+
+在源代码中导航 
+Alt-Shift-O 转至类 
+Alt-Shift-E  转至 JUnit 测试 
+Alt-O 转至源代码 
+Alt-G 转至声明 
+Ctrl-B 转至超级实现 
+Alt-K/Alt-L 后退/前进 
+Ctrl-G 转至行 
+Ctrl-F2  切换添加/删除书签 
+F2/Shift-F2  下一个/上一个书签 
+F12/Shift-F12 下一个/上一个使用实例/编译错误 
+Ctrl-Shift-1/2/3 在“项目”/“文件”/“收藏夹”中选择 
+Ctrl-[ 将插入记号移至匹配的方括号 
+Ctrl-^ Ctrl-[（法语/比利时语键盘） 
+
+用Java编码 
+Ctrl-I 覆盖方法 
+Alt-Shift-F/I 修复全部/选定类的导 
+Alt-Shift-W 以 try-catch 块围绕 
+Ctrl-Shift-F 重新设置选定内容的 
+Ctrl-D/Ctrl-T 左移/右移一个制表符 
+Ctrl-Shift-T/D 添加/撤消注释行 ("// 
+Ctrl-L/K 插入下一个/上一个匹 
+Esc/Ctrl-空格键 关闭/打开代码完成 
+Ctrl-M 选择下一个参数 
+Shift-空格键 输入空格，不展开缩写 
+Alt-F1/Shift-F1 显示/搜索 Javadoc 
+Ctrl-Shift-M  提取方法 
+Alt-U-G 将 “get” 放置到标识符前面 
+Alt-U-S 将 “set” 放置到标识符前面 
+Alt-U-I 将 “is” 放置到标识符前面 
+Ctrl-Backspace/Del 删除上一个/当前词 
+Ctrl-E 删除当前行 
+Ctrl-J-S/E 开始/结束录制宏 
+Ctrl-Shift-J  插入国际化字符串 
+Ctrl-数字键盘上的 - 折叠（隐藏）代码块 
+Ctrl-数字键盘上的 + 展开已折叠的代码块 
+Ctrl-Shift-数字键盘上的 - 折叠所有代码块 
+Ctrl-Shift-数字键盘上的 + 展开所有代码块 
+Alt-Enter 显示建议/提示 
+
+打开和切换视图 
+Ctrl-Shift-0 显示“搜索结果”窗口 
+Ctrl-0 显示源代码编辑器 
+Ctrl-1 显示“项目”窗口 
+Ctrl-2 显示“文件”窗口 
+Ctrl-3 显示“收藏夹”窗口 
+Ctrl-4 显示“输出”窗口 
+Ctrl-5 显示“运行环境”窗口 
+Ctrl-6 显示“待做事项”窗口 
+Ctrl-7 显示“导航”窗口 
+Ctrl-Shift-7 显示“属性”对话框 
+Ctrl-Shift-8 显示组件面板 
+Ctrl-8 显示“版本控制”窗口 
+Ctrl-9 显示“VCS 输出”窗口 
+Shift-F4 显示“文档”对话框 
+Alt-向左方向键 移动到左侧窗口 
+Alt-向右方向键 移动到右侧窗口 
+Ctrl-Tab (Ctrl-`) 在打开的文档之间切换 
+Shift-Escape 最大化窗口（切换） 
+Ctrl-F4/Ctrl-W 关闭当前选定的窗口 
+Ctrl-Shift-F4 关闭所有窗口 
+Shift-F10 打开上下文菜单 
+
+编译、测试和运行 
+F9 编译选定的包或文件 
+F11 生成主项目 
+Shift-F11 清理并生成主项目 
+Ctrl-Q 设置请求参数 
+Ctrl-Shift-U 创建 JUnit 测试 
+Ctrl-F6/Alt-F6 为文件/项目运行JUnit测试 
+F6/Shift-F6 运行主项目/文件 
+
+调试 
+F5 开始调试主项目 
+Ctrl-Shift-F5 开始调试当前文件 
+Ctrl-Shift-F6 开始为文件调试测试 (JU 
+Shift-F5/Ctrl-F5 停止/继续调试会话 
+F4 运行到文件中的光标位置 
+F7/F8 步入/越过 
+Ctrl-F7 步出 
+Ctrl-Alt-向上方向键 转至被调用的方法 
+Ctrl-Alt-向下方向键 转至调用方法 
+Ctrl-F9 计算表达式的值 
+Ctrl-F8 切换断点 
+Ctrl-Shift-F8 新建断点 
+Ctrl-Shift-F7 新建监视 
+Ctrl-Shift-5 显示 HTTP 监视器 
+Ctrl-Shift-0 显示“搜索结果”窗口 
+Alt-Shift-1 显示“局部变量”窗口 
+Alt-Shift-2 显示“监视”窗口 
+Alt-Shift-3 显示“调用栈”窗口 
+Alt-Shift-4 显示“类”窗口 
+Alt-Shift-5 显示“断点”窗口 
+Alt-Shift-6 显示“会话”窗口 
+Ctrl-Shift-6 切换到“执行”窗口 
+Alt-Shift-7 切换到“线程”窗口 
+Alt-Shift-8 切换到“源”窗口 

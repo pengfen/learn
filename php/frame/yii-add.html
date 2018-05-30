@@ -1,0 +1,12 @@
+yii 添加数据
+
+$model = new self;
+$model->id = $id;
+$model->name = $name;
+$model->save();
+
+循环添加
+foreach ($menu as $val) {
+	$sql = "insert into table(id, name) values('{$id}', '{$val}')";
+	$res = \Yii::$app->db->createCommand($sql)->execute();
+}

@@ -1,0 +1,84 @@
+
+
+============================ SetUp HDFS=============================
+Configuration
+	hadoop-env.sh
+		export JAVA_HOME=/opt/modules/jdk1.7.0_67
+	core-site.xml
+		<property>		 
+			<name>fs.defaultFS</name>
+			<value>hdfs://hadoop-spark.dragon.org:8020</value>
+		</property>
+		<property>
+			<name>hadoop.tmp.dir</name>
+			<value>/opt/data02/hadoop-2.6.0-cdh5.4.0/data/tmp</value>
+		</property>
+	hdfs-site.xml
+		<property>		 
+			<name>dfs.replication</name>
+			<value>1</value>
+		</property>
+	slaves
+		hadoop-spark.dragon.org	
+Start HDFS
+	NameNode Format
+		bin/hdfs namenode -format		
+	Start NN/DN
+		sbin/hadoop-daemon.sh start namenode
+		sbin/hadoop-daemon.sh start datanode
+	WEB UI
+		http://hadoop-spark.dragon.org:50070
+		
+============================ SetUp Spark=============================
+Configuration
+	spark-env.sh
+		HADOOP_CONF_DIR=/opt/data02/hadoop-2.6.0-cdh5.4.0/etc/hadoop
+		JAVA_HOME=/opt/modules/jdk1.7.0_67
+		SCALA_HOME=/opt/modules/scala-2.10.4
+		#######################################################
+		SPARK_MASTER_IP=hadoop-spark.dragon.org
+		SPARK_MASTER_PORT=7077
+		SPARK_MASTER_WEBUI_PORT=8080
+		SPARK_WORKER_CORES=1
+		SPARK_WORKER_MEMORY=1000m
+		SPARK_WORKER_PORT=7078
+		SPARK_WORKER_WEBUI_PORT=8081
+		SPARK_WORKER_INSTANCES=1
+	slaves
+		hadoop-spark.dragon.org
+	spark-defaults.conf
+		spark.master                     spark://hadoop-spark.dragon.org:7077
+Start Spark
+	Start Master
+		sbin/start-master.sh
+	Start Slaves
+		sbin/start-slaves.sh 
+	WEB UI
+		http://hadoop-spark.dragon.org:8080
+
+============================ Test Spark=============================
+	
+scala> val rdd=sc.textFile("hdfs://hadoop-spark.dragon.org:8020/user/hadoop/data/wc.input")
+
+scala> rdd.cache()
+
+scala> val wordcount=rdd.flatMap(_.split(" ")).map(x=>(x,1)).reduceByKey(_+_)
+
+scala> wordcount.take(10)
+
+scala> val wordsort=wordcount.map(x=>(x._2,x._1)).sortByKey(false).map(x=>(x._2,x._1))
+
+scala> wordsort.take(10)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+

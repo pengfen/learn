@@ -1,0 +1,82 @@
+curl上传文件 (将文件上传接口服务器上)
+
+$url = Yii::$app->params['local_url'].'B102006.php'; // 接口地址
+$data = $this->upload($url, array('text/plain'));
+
+/**
+ * 处理上传文件
+ *
+ * $url 上传接口地址
+ * $allowType 上传文件类型
+*/
+function upload($url, $allowType) {
+	$result = array('code' => 0, 'message' => 'ok'); // 默认返回数据
+    ini_set('upload_max_filesize', '20M');   // 设置上传文件大小
+    ini_set('post_max_size', '20M');   // 设置post请求最大值
+    ini_set('memory_limit', '128M');  // 设置内存存储大小
+
+    $systemId = $this->get_system_id(); // 系统ID
+    $userId = Yii::$app->session['userInfo']['userBase']['uid']; // 用户ID
+    
+    $file = $_FILES['file']; // 上传文件相关信息
+
+    //3. 验证 文件类型
+	if (!empty($allowType)){
+		if (!in_array($file['type'], $allowType)){
+			$return['info'] = "文件类型不合法";
+			return $return;
+		}
+	}
+
+    if ($file['error'] != 0) {  
+        //输出错误原因
+		switch ($file['error']){
+			case 1:  $info = "文件大小超过了php.ini中的限制！"; break;
+			case 2:  $info = "文件大小超过了表单中的限制！"; break;
+			case 3:  $info = "文件只被部分上传!"; break;
+			case 4:  $info = "文件没有上传!"; break;
+			case 6:  $info = "找不到临时目录!"; break;
+			case 7:  $info = "文件写入失败！"; break;
+		}
+		$return['info'] = $info;
+		return $return; 
+    } else {  
+        $filename = $file['name']; // 上传文件名
+        $tmpfile = $file['tmp_name']; // 上传文件临时名
+        $filetype = $file['type']; // 上传文件类型
+        $data = $this->upload_file($url, $filename, $tmpfile, $filetype, $systemId, $userId); // 调用接口
+        return $data;
+    } 
+}
+
+/** 
+ * curl上传文件 
+ *  
+ * @param $url 目标主机地址
+ * @param $filename 上传文件名
+ * @param $path 上传临时目录 
+ * @param $type 上传文件类型 
+ * @param $systemId 系统ID
+ * @param $userId 用户ID
+ */  
+function upload_file($url, $filename, $path, $type, $systemId, $userId){  
+    //php 5.5以上的用法  
+    if (class_exists('\CURLFile')) {  
+        $data = array('systemId' => $systemId, 'userId' => $userId, 'file' => new \CURLFile(realpath($path),$type,$filename));  
+    } else {  
+        $data = array(
+            'file'=>'@'.realpath($path).";type=".$type.";filename=".$filename  
+        );  
+    }  
+
+    $ch = curl_init();  
+    curl_setopt($ch, CURLOPT_URL, $url);  
+    curl_setopt($ch, CURLOPT_POST, true );  
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);  
+    curl_setopt($ch, CURLOPT_HEADER, false);  
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  
+    $return_data = curl_exec($ch);  
+    curl_close($ch); 
+    @unlink($path); // 删除本地服务器上临时文件
+    return json_decode($return_data, true);
+}  

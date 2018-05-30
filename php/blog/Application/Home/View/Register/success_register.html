@@ -1,0 +1,61 @@
+<extend name="Register/register"/>
+<block name="main">
+<div class="panel panel-default">
+					  <div class="panel-body">
+					    <center><h2 style="font-family:'microsoft yahei">完善您的资料</h2></center>
+					  </div>
+					</div>
+	<form action='{:U('Register/edit')}' method='post'  enctype='multipart/form-data' style="padding:10px;">
+		<div class="form-group">
+		    <label for="exampleInputEmail1">用户名</label>
+		    <input type="text" class="form-control" id="" name='username' placeholder="给自己取个名吧！">
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputPassword1">联系方式</label>
+		    <input type="text" name='telphone' class="form-control" id="" placeholder="手机号/QQ号">
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputPassword1">社会角色</label>
+		    <input type="text" class="form-control" name="vocation" id=""  placeholder="学生/工人/农民">
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputPassword1">所在地域</label>
+		    <input type="text" name="department" class="form-control" id="" placeholder="省份/城市/学校/公司">
+		  </div>
+		 
+		  <div class="radio">
+		    <label>
+		      <input type="radio" name='sex' value="2">男
+		    </label>
+		     <label>
+		      <input type="radio" name='sex' value="1">女
+		    </label>
+		    <label>
+		      <input type="radio" name='sex' value="0" checked>保密
+		    </label>
+		  </div>
+		 <!--
+		   <div class="form-group">
+		    <label for="exampleInputFile">上传头像</label>
+		    <input type="file" id="exampleInputFile" name="photo">
+		   
+		  </div>-->
+
+		   <div class="form-group">
+		    <label for="exampleInputFile">出生日期</label>
+		   <INPUT class=date type=text name='birthday'> 
+		   
+		  </div>
+		  <button  class="btn btn-default">提交</button>
+
+		  <SCRIPT type=text/javascript src="__PUBLIC__/Home/Js/cal.js"></SCRIPT>
+		  <SCRIPT type=text/javascript>
+
+			jQuery(document).ready(function () {
+			$('input.date').simpleDatepicker({ startdate: 1950, enddate: 2015 });
+
+		});
+		</SCRIPT>
+		
+	</fomr>
+</block>

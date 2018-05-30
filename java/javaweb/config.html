@@ -1,0 +1,58 @@
+ServletConfig: 封装了 Serlvet 的配置信息, 并且可以获取 ServletContext 对象
+
+    配置 Serlvet 的初始化参数
+
+	<servlet>
+		<servlet-name>helloServlet</servlet-name>
+		<servlet-class>com.atguigu.javaweb.HelloServlet</servlet-class>
+		
+		<!-- 配置 Serlvet 的初始化参数。 且节点必须在 load-on-startup 节点的前面 -->
+		<init-param>
+			<!-- 参数名 -->
+			<param-name>user</param-name>
+			<!-- 参数值 -->
+			<param-value>root</param-value>
+		</init-param>
+		
+		<init-param>
+			<param-name>password</param-name>
+			<param-value>1230</param-value>
+		</init-param>
+		
+		<load-on-startup>-1</load-on-startup>
+		
+	</servlet>
+
+    获取初始化参数: 
+    getInitParameter(String name): 获取指定参数名的初始化参数
+    getInitParameterNames(): 获取参数名组成的 Enumeration 对象.
+
+    public void init(ServletConfig servletConfig) throws ServletException{
+        System.out.println("init");
+
+        String user = servletConfig.getInitParameter("user");
+        System.out.println("user: " + user);
+
+        Enumeration<String> names = servletConfig.getInitParameterNames();
+        while(names.hasMoreElements()) {
+            String name = names.nextElement();
+            System.out.println("name: " + name);
+        }
+    } 
+
+    运行结果
+    init
+    user: root
+    name: password
+    name: user
+    service
+    
+    获取 Serlvet 的配置名称(了解)
+    String servletName = servletConfig.getServletName();
+    System.out.println(servletName);
+
+ServletConfig接口的方法
+getInitParameterNames
+getInitParameter
+getServletName
+getServletContext

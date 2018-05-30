@@ -1,0 +1,163 @@
+获取搜索总对象
+$db = \Yii::$app->xunsearch->getDatabase('se_goods');
+$xs = $db->xs; #搜索项目的总对象
+
+$model = new Se_goods();
+$db = $model->getDb();
+$xs = $db->xs;
+
+$xs = new XS('se_goods'); // 建立 XS 对象
+
+获取相关对象
+$search = $db->getSearch(); #获取搜索对象
+$index = $db->getIndex(); #获取索引对象
+$scws = $db->getScws(); #获取分词对象
+
+==========================================================================
+批量插入
+
+获取数据库数据
+$GoodsTB = Goods::tableName();
+$BrandTB = Brand::tableName();
+$query = new Query;
+$query->select(['g.id','g.name','g.img','g.store_nums','g.if_price','g.up_time','g.grade','g.sale','g.real_market_price','g.spot_goods','g.sell_price','b.name brand_name'])
+    ->from($GoodsTB . 'AS g')
+    ->leftJoin($BrandTB . 'AS b', 'b.id=g.brand_id')
+    ->orderBy('g.id asc');
+$data = $query->all();
+
+$model = new Se_goods();
+$model->deleteAll(); // 清除索引库数据
+$index = $model->getDb()->getIndex(); // 获取索引对象
+$index->openBuffer(); // 开启索引缓冲区
+循环添加数据到索引库
+$index->closeBuffer();
+
+==========================================================================
+更新索引库中某个记录
+
+获取相关数据
+$model = new Se_goods();
+注意 更新某条记录时要更新所有字段
+$model->id = $id; ...
+执行添加
+$model->update();
+
+==========================================================================
+查询
+
+$search = $model->find()->asArray()->all(); // 获取所有数据
+$search = $model->findOne(343); // 查询单条数据
+
+处理分页
+$pageSize = 10; // 默认十条
+if ($page < 1) { $page = 1; }
+$offset = $pageSize * ($page - 1);
+$search = $model->find()->limit($pageSize)->offset($offset)->asArray()->all(); // 处理分页
+
+// 智能提取句子中的词
+$tokenizer = $model->getDb()->getScws(); // 获取分词对象
+$words = $tokenizer->getResult($keyword); // 智能提取句子的词
+if (is_array($words) && count($words) > 1 ) {
+    $condition = ['OR'];
+    foreach ($words as $val) {
+        $condition[] = $val['word'];
+    }
+} else {
+    if (isset($words[0]['word']) && $words[0]['word']) {
+        $condition = $words[0]['word'];
+    } else {
+        return ['is_Error' => true, 'message' => '没有所需商品'];
+        exit;
+    }
+}
+
+$search = $model->findOne(343); #获取id 为 343的单条数据
+$condition = ['id'=>'343'];
+$search = $model->find()->where($condition)->asArray()->all();
+
+// 获取某一区间内容
+$condition = ['BETWEEN', 'sell_price', 100, 2000];
+$search = $model->find()->where($condition)->asArray()->all();
+
+// 获取某一搜索词的所有记录
+$condition = '冰箱';
+$search = $model->find()->where($condition)->asArray()->all();
+
+==========================================================================
+处理多字段
+
+// 使用范围处理多字段
+if ($max_price && $min_price) {
+    $docs = $search->setQuery($keyword)->addRange('spot_goods', 1, 1)->addRange('sell_price', $min_price, $max_price)->setLimit($pageSixe, $offset)->search();
+    $count = $search->setQuery($keyword)->addRange('spot_goods', 1, 1)->addRange('sell_price', $min_price, $max_price)->setLimit($pageSixe, $offset)->count();
+} else {
+    $docs = $search->setQuery($keyword)->addRange('spot_goods', 1, 1)->setLimit($pageSixe, $offset)->search();
+    $count = $search->setQuery($keyword)->addRange('spot_goods', 1, 1)->setLimit($pageSixe, $offset)->count();
+}
+
+使用分面处理多字段
+if ($max_price && $min_price) {
+    $docs = $search->setQuery($keyword)->addRange('sell_price', $min_price, $max_price)->setFacets(array('spot_goods'), true)->setSort('spot_goods')->setLimit($pageSixe, $offset)->search();
+} else {
+    $docs = $search->setQuery($keyword)->setFacets(array('spot_goods'), true)->setSort('spot_goods')->setLimit($pageSixe, $offset)->search(); // 在搜索时加入分面设置
+}
+
+$fid_counts = $search->getFacets('spot_goods'); // 返回数组，以 fid 为键，匹配数量为值
+if (isset($fid_counts[1]) && $fid_counts[1]) {
+    $count = $fid_counts[1];
+} else {
+    return ['is_Error' => true, 'message' => '没有所需商品'];
+    exit;
+}
+
+==========================================================================
+刷新索引库
+
+$model = new Se_goods();
+$index = $model->getDb()->getIndex();
+$bool = $index->flushIndex();
+
+==========================================================================
+刷新日志库
+
+$model = new Se_goods();
+$index = $model->getDb()->getIndex();
+$bool = $index->flushLogging();
+
+==========================================================================
+获取热搜词
+
+$model = new Se_goods();
+$db = $model->getDb();
+$search = $db->getSearch(); // 获取搜索对象
+$words = $search->getHotQuery(); // 获取搜索词
+
+==========================================================================
+获取相关联的词
+
+$model = new Se_goods();
+$db = $model->getDb();
+$search = $db->getSearch(); // 获取搜索对象
+// $search->setQuery('管理');
+// $words = $search->getRelatedQuery(); // 获取前 6 个和默认搜索语句 "管理" 相关搜索词
+$words = $search->getRelatedQuery($relate, 10); // 获取 10 个和 "管理" 相关的搜索词
+
+==========================================================================
+获取相关的建议词
+
+$model = new Se_goods();
+$db = $model->getDb();
+$search = $db->getSearch(); // 获取搜索对象
+$words = $search->getExpandedQuery($expand); // 获取 10 个和搜索相关的词
+
+==========================================================================
+添加自定义词典
+
+$model = new Se_goods();
+$index = $model->getDb()->getIndex(); // 获取索引对象
+$custom = $index->getCustomDict(); // 获取自定义词典内容
+$dict = $custom.$dict."\n"; // 追加内容
+$index->setCustomDict($dict);
+
+==========================================================================

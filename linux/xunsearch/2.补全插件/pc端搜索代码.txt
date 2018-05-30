@@ -1,0 +1,178 @@
+/**
+	 * peng 2016-02-03
+	 * 搜索关联词 （使用迅搜）
+	 */
+	function relate(){
+		$relate = IFilter::act(IReq::get('relate'));
+		if ($relate) {
+			$url = '/v1/search/expandword';
+			$post_string = "expand={$relate}";
+			$res = self::search_url($url, $post_string);
+			echo $res;
+		} else {
+			echo json_encode('调用失败');
+		}
+	}
+
+	/**
+	 * peng 2016-02-18
+	 * 搜索关联词 （使用迅搜）
+	 */
+	function expand(){
+		$expand = IFilter::act(IReq::get('query'), 'string');
+		if ($expand) {
+			$url = '/v1/search/expandword';
+			$post_string = "expand={$expand}";
+			$res = json_decode(self::search_url($url, $post_string), true); // 处理返回的json 数据
+			$complete = '';
+			if ($res['is_Error'] == false) {
+				$complete = $res['data'];
+			}
+			$data = array(
+				'query' => 'Unit',
+				'suggestions' => $complete
+			);
+			echo json_encode($data);
+		} else {
+			echo json_encode('调用失败');
+		}
+	}
+
+	/**
+	 * peng 2016-02-03
+	 * 搜索关键词 （使用迅搜）
+	 */
+	function search(){
+		$keyword = IFilter::act(IReq::get('word'));
+		$brand_name = IFilter::act(IReq::get('brand_name'));
+		$min_price = IFilter::act(IReq::get('min_price'));
+		$max_price = IFilter::act(IReq::get('max_price'));
+		$page = IFilter::act(IReq::get('page'));
+		$order = IFilter::act(IReq::get('order'));
+		$spot_goods = IFilter::act(IReq::get('spot_goods'), 'int');
+		if ($keyword) {
+			$post_string = "word={$keyword}&page={$page}&spot_goods={$spot_goods}";
+			$this->word = $keyword;
+		} elseif($brand_name){
+			$post_string = "brand_name={$brand_name}&page={$page}&spot_goods={$spot_goods}";
+			$this->word = $brand_name;
+		} elseif($min_price && $max_price){
+			$post_string = "min_price={$min_price}&max_price={$max_price}&page={$page}";
+			$this->word = "价格 {$min_price}-{$max_price}";
+		} else {
+			$this->redirect('index', false);
+			exit;
+		}
+		$url = '/v1/search/searchgoods';
+		if ($page == 0) {$page = 1;} // 默认设置为 1
+		$this->content = self::search_content($url, $post_string, $order, $spot_goods, $page);
+		$this->redirect('xunsearch_list', false);
+	}
+
+	/**
+	 * peng 2016-02-03
+	 * 获取搜索内容 （使用迅搜）
+	 * @param $url 搜索地址
+	 * @param $post_string post 请求参数
+	 * @param $order 排序方式
+	 */
+	function search_content($url, $post_string, $order = 'sale', $spot_goods='0', $page=1){
+		$result['search'] = json_decode(self::search_url($url, $post_string), true);
+		$result['brand'] = '';
+		$result['price'] = '';
+		$result['extension'] = '';
+		$result['page'] = $page;
+		if (isset($result['search']['is_Error']) &&  $result['search']['is_Error'] == false) {
+			foreach ($result['search']['data'] as $key=>$val) {
+				$price[$key] = isset($val['sell_price'])?$val['sell_price']:0;
+				$time[$key] = isset($val['up_time'])?$val['up_time']:'';
+				$grade[$key] = $val['grade'];
+				$sale[$key] = $val['sale'];
+				$goods[$key] = $val['id'];
+				$brand[$key] = isset($val['brand_name'])?$val['brand_name']:'';
+			}
+			// 排序
+			if ($order == 'price') { // 按销售价格排序
+				array_multisort($price, SORT_DESC, $result['search']['data']);
+			} elseif ($order == 'cpoint') { // 按评分排序
+				array_multisort($grade, SORT_DESC, $result['search']['data']);
+			} elseif ($order == 'new') { // 按最新上架排序
+				array_multisort($time, SORT_DESC, $result['search']['data']);
+			} else { // 按销量排序
+				array_multisort($sale, SORT_DESC, $result['search']['data']);
+			}
+			$result['brand'] = array_unique($brand);
+			$ids = join(',', $goods);
+			$result['price'] = Goods_Class::getGoodsPrice($ids);
+		}
+
+		// 处理url
+		$url = IUrl::getUri();
+		$name = pathinfo($url, PATHINFO_EXTENSION);
+		if (strpos($name, '?')) {
+			$extens = '';
+			$extension = explode('?', $name);
+			if (isset($extension[1]) && !empty($extension[1])) {
+			    if (strpos($name, 'page')) { // 如果有分页
+					$params = explode('&', $extension[1]);
+					foreach($params as $key=>$val) {
+						$param = explode('=', $val);
+						if (isset($param[0]) && !empty($param[0]) && isset($param[1]) && !empty($param[1])) {
+							if ($param[0] != 'page') {
+								$extens .= $param[0].'/'.$param[1].'/';
+							}
+						}
+					}
+				} else {
+					$extens .= $extension[1].'&';
+				}
+				//$result['page'] = substr(strstr($name, '&page='), 6); // 截取字符串中的数字
+				//$name = strstr($name, '&page', TRUE);
+			}
+			$extens .= 'page';
+			$result['extension'] = $extens;
+//			$extension = explode('?', $name);
+//			$extens = '';
+//			if (isset($extension[1]) && !empty($extension[1])) {
+//				$params = explode('&', $extension[1]);
+//				foreach($params as $key=>$val) {
+//					$param = explode('=', $val);
+//					if (isset($param[0]) && !empty($param[0]) && isset($param[1]) && !empty($param[1])) {
+//						$extens .= $param[0].'/'.$param[1].'/';
+//					}
+//				}
+//			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * peng 2016-02-03
+	 * 调用 api 搜索 （使用迅搜）
+	 * @param $url 搜索地址
+	 * @param $post_string post 请求参数
+	 */
+	function search_url($url, $post_string){
+		$config 	= new Config('site_config');
+		$configInfo = $config->getInfo();
+		if (isset($configInfo['search_url']) && $configInfo['search_url']) {
+			$url = $configInfo['search_url'].$url;
+		} else {
+			IError::show(403, '43');
+			exit;
+		}
+		// $url = 'http://api.jz.life'.$url;
+		// $post_string = array('relate'=>$keyword);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		//curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_string);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$data = curl_exec($ch);
+		curl_close($ch);
+
+		return $data;
+	}

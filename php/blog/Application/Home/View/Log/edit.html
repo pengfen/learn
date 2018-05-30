@@ -1,0 +1,29 @@
+<extend name='Log/add'/>
+<block name='main'>
+<a href='javascript:void(0);' id='logupd'>编辑日志</a>
+<input type="hidden" value="{:U('Log/update')}"/>
+<input type="hidden" name='id' value="{$info.id}"/>
+</block>
+<block name='foot'>
+<script type="text/javascript">
+$('#logupd').click(function(){
+var $title = $(":input[name=title]").val();
+var $html = editor.getContent();
+var $url = $(this).next('input')[0].value;
+var $id = $(":input[name=id]").val();
+//var $cid = $('#log-cid').val();
+//var $auth = $('#log-auth').val();
+$.ajax({
+        url:$url,
+        data:{id:$id,title:$title,content:$html},
+        success:function(data){
+        	$('#tipmess').html(data).slideDown(500).animate({
+                top: '+200px'
+            }, 2000).slideUp(500);
+            //alert(data);
+            //console.log(data);
+        }
+    });
+});
+</script>
+</block>

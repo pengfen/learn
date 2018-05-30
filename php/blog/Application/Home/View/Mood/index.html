@@ -1,0 +1,189 @@
+<extend name='Layout/tpl'/>
+<block name='style'>
+	<style type="text/css">
+		.main{
+		margin-top:235px;
+		}
+		ul li{
+			list-style: none;
+		}
+	</style>
+</block>
+<block name='main'>
+	<div class="main row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<ul class="nav nav-tabs" style="margin:10px;">
+              <li  ><a href="{:U('User/myhome')}">我的动态</a></li>
+              <li role="presentation" class='active'><a href='{:U('Mood/index')}'>说说</a></li>
+              <li role="presentation"><a href="{:U('Log/index')}">日志</a></li>
+              <li role="presentation"><a href="{:U('Album/index')}">相册</a></li>
+              <li role="presentation" ><a href="{:U('Message/index')}">留言板</a></li>
+           	  <li role="presentation"><a href="{:U('Resource/index')}">资料库</a></li>
+            </ul>
+		</div>
+		 <script type="text/javascript">
+                  $(function(){
+                    $('#issue_mood').click(function(){
+                     
+                      $.ajax({
+                        url:$('#addmood').val(),
+                        data:{content:$('#mood_content').val(),uid:{$_SESSION['user']['id']}},
+                        type:'post',
+                        success:function(data){
+                                $('#tipmess').html(data).slideDown(500).animate({
+					    			top: '+200px'
+					    		}, 2000).slideUp(500);
+                                //window.location = window.location.href;	
+                        }
+                       
+                      })
+                    })
+                  })
+              </script>
+		<div class="col-md-12">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="panel panel-default">
+					  <div class="panel-heading">写下现在的心情</div>
+					   <input type="hidden" id='addmood' value='{:U('Mood/addMood')}'>
+					  <div class="panel-body">
+					    <textarea class="form-control" rows="3" id='mood_content'></textarea>
+					    <button class='btn btn-default' style="margin:10px 30px 0 0" id='issue_mood'>发表</button>
+					  </div>
+				</div>
+			</div>
+		
+		</div>
+		<div class="col-md-12">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="panel panel-default">
+					  <div class="panel-heading">全部说说</div>
+					  <div class="panel-body">
+					  <ul>
+					  
+					  <script type="text/javascript">
+						    		$(function(){
+						    			$('.huifu-btn').click(function(){
+						    				//alert();
+						    				$.ajax({
+						    					url:$('#addReview').val(),
+						    					type:'post',
+						    					data:{uid:$(this).next('input').next('input').val(),content:$(this).parent('span').prev('input').val(),pid:$(this).next('input').val(),rid:$(this).next('input').next('input').val()},
+						    					success:function(data){
+						    						alert('回复成功！');
+						    						window.location = window.location.href;	
+						    					}
+						    				})
+						    			})
+
+						    			$('.huifu-btn-c').click(function(){
+						    				$(this).next('input').attr('type','text').attr('placeholder',$(this).prev('input').val());
+						    				$(this).next('input').next('button').css('display','block');
+						    			})
+
+						    			$('.huifu-btn-d').click(function(){
+						    				$.ajax({
+						    					url:$('#addReview').val(),
+						    					type:'post',
+						    					data:{uid:$(this).next().next().val(),rid:$(this).next().val(),content:$(this).prev().val(),pid:$(this).next().next().next().val(),path:$(this).next().next().next().next().val()},
+						    					success:function(data){
+						    						alert('回复成功！');
+						    						window.location = window.location.href;	
+						    					}
+						    				})
+						    			})
+
+
+						    		})
+
+						    	</script>
+						    	 <input type="hidden" id='addReview' value='{:U('Review/addReview')}'>
+					  <volist name='list' id='vo'>
+						  <li>
+						    <table class='table table-bordered '>
+						    	<tr>
+						    		<td rowspan="4" width="60">
+						    			<img src="__ROOT__/Avatar/{$vo.headimg}">
+						    		</td>
+						    		<td>{$vo.username}: {$vo.content}</td>
+						    	</tr>
+						    	<tr><td><small style='color:#999'>发表于 {:date('Y-m-d H:i:s',$vo['addtime'])}</small></td></tr>
+						    	<tr>
+						    		<td>
+						    			<ul>
+							    			<volist name="vo['review']" id='voc'>
+							    			<li>
+							    				<table class="table">
+							    					<tr><td rowspan="2"><img src="__ROOT__/Avatar/{$voc.headimg}"></td><td>{$voc.username}: 	{$voc.content}</td></tr>
+							    					<tr><td>
+							    						{:date('Y-m-d H:i:s',$vo['addtime'])}
+							    						<input type="hidden" class='username' value="回复{$voc.username}">
+							    						 <button class="btn btn-xs btn-default huifu-btn-c" type="button" >回复</button>
+							    						 <input type="hidden" > <button class="btn btn-xs btn-default huifu-btn-d" type="button" style="display:none;float:right">发表</button>
+														 <input type="hidden"  value='{$voc.sender}'>
+									         			<input type="hidden"  value='{$vo.uid}'>
+									         			<input type="hidden"  value='{$voc.id}'>
+									         			<input type="hidden"  value='{$voc.path},{$voc.id}'>
+									         			<ul>
+														<volist name="voc['nr']" id='vod' >
+														<table >
+							    					<tr><td rowspan="2"><img src="__ROOT__/Avatar/{$vod.headimg}"></td><td>{$vod.username}回复{$vod.name}: {$vod.content}</td></tr>
+							    					<tr><td>
+							    						{:date('Y-m-d H:i:s',$vo['addtime'])}
+							    						<input type="hidden" class='username' value="回复给{$vod.sender}">
+							    						<input type="hidden" class='username' value="回复给{$vod.username}">
+							    						 <button class="btn btn-xs btn-default huifu-btn-c" type="button" >回复</button>
+							    						 <input type="hidden" > <button class="btn btn-xs btn-default huifu-btn-d" type="button" style="display:none;float:right">发表</button>
+														 <input type="hidden"  value='{$vod.sender}'>
+									         			<input type="hidden"  value='{$vo.uid}'>
+									         			<input type="hidden"  value='{$voc.id}'>
+									         			<input type="hidden"  value='{$voc.path},{$voc.id}'>
+															
+															</ul>
+
+							    					</td></tr>
+							    					
+							    				</table>
+														</volist>
+														</ul>
+
+							    					</td></tr>
+							    					
+							    				</table>
+							    			</li>
+							    			
+							    		
+							    				
+							    			</volist>
+						    			</ul>
+						    		</td>
+						    	</tr>
+						    	
+						    	<tr>
+						    		<td>
+						    			<div class="col-lg-6">
+									    <div class="input-group">
+									      <input type="text" class="form-control huifu-con" placeholder="我也说一句">
+									      <span class="input-group-btn">
+									        <button class="btn btn-default huifu-btn" type="button" >发表</button>
+									         <input type="hidden" class='pid' value='{$vo.id}'>
+									         <input type="hidden" class='uid' value='{$vo.uid}'>
+									      </span>
+									    </div><!-- /input-group -->
+									  </div><!-- /.col-lg-6 -->
+						    		</td>
+								</tr>
+
+						    </table>
+						    </li>
+						</volist>
+					   </ul>
+					  </div>
+				</div>
+			</div>
+		
+		</div>
+	</div>
+</block>

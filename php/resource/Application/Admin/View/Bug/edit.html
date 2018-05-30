@@ -1,0 +1,16 @@
+<extend name="Bug/add"/>
+<block name="head">
+<form class="form-horizontal" id="upd-bug">
+<input type="hidden" name="id" value="{$info.id}"/>
+</block>
+<block name="image">
+</block>
+<block name="foot">
+<button type="button" id="updbtn" class="btn btn-default">修改bug</button>
+<input type="hidden" value="{:U('Bug/update')}"/>
+</block>
+<block name='tail'>
+<script type="text/javascript">
+	clickForm($('#updbtn'), $('#upd-bug'));
+</script>
+</block>

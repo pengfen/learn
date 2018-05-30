@@ -1,0 +1,96 @@
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+//实现下载图片
+//获取服务器要下载文件的路径
+$filename="./uploads/554993efe7bac.jpg";
+
+//获取文件的文件名
+$basename=pathinfo($filename);
+
+//指定下载文件类型的
+header("Content-Type: image/jpeg"); 
+
+//设置head头信息，告知该文件时下载附件并且制定客户端临时存储名称
+header("Content-Disposition:attachment;filename=".	$basename["basename"]);
+//指定下载文件的描述信息
+//指定文件大小的
+header("Content-Length:".filesize($filename));  
+
+//将内容输出，以便下载。
+readfile($filename);
+
+
+// 下载xls表格
+public function actionDownloaddata()
+{
+    $name = Customer::find()->asArray()->all();
+    header("Content-type:application/vnd.ms-excel");
+    header("Content-Disposition:attachment;filename=demo.xls");
+    $tab="\t"; $br="\n"; // 换成PHP_EOL
+    $head="用户手机".$tab."门店".$tab."地址".$tab."是否中奖".$tab."电话".$br;
+    echo iconv('UTF-8', 'GB2312', $head);
+
+    foreach ($name as $val) {
+        $mobile = $val['mobile'].$tab;
+        echo iconv('UTF-8', 'GB2312', $mobile); // wps 可不转码 office需要转码
+        $shopping = $val['shopping'].$tab;
+        echo iconv('UTF-8', 'GB2312', $shopping);
+        $address = $val['address'].$tab;
+        echo iconv('UTF-8', 'GB2312', $address);
+        if ($val['status'] == '1') {
+            echo iconv('UTF-8', 'GB2312', "中奖".$tab);
+        } else {
+            echo iconv('UTF-8', 'GB2312', "未中奖".$tab);
+        }
+        // echo $val['phone'].$tab.$br;
+        echo str_replace(' ','',$val['phone']).$tab.$br; // 数字不需要转码
+    }
+}
+
+========================================================
+
+实现 txt 文件下载
+
+页面实现 点击链接使用 js 提交表单
+
+<a href="javascript:void(0);" class="down_txt">下载导入模版</a>
+<form action="" method="post" name="downTxt" id="downtxt">
+    <input type="hidden" name="state" value="1">
+</form>
+
+使用 js
+$(function() {
+    $('.down_txt').click(function() {
+        var form = $('#downtxt');
+        form.submit(); // 手动提交
+    });
+});
+
+后面处理下载
+// 导入系统消息 (QQ系统消息)
+public function actionImportMessage() {
+    $postData = Yii::$app->request->post();
+    if ($postData) {
+        //获取服务器要下载文件的路径
+        $filename = Yii::$app->basePath.'/web/other/qq_template.txt';
+
+        //获取文件的文件名
+        $basename=pathinfo($filename);
+
+        //指定下载文件类型的
+        header("Content-Type: text/plain"); 
+
+        //设置head头信息，告知该文件时下载附件并且制定客户端临时存储名称
+        header("Content-Disposition:attachment;filename=".  $basename["basename"]);
+        //指定下载文件的描述信息
+        //指定文件大小的
+        header("Content-Length:".filesize($filename));  
+
+        //将内容输出，以便下载。
+        readfile($filename);
+        exit;
+    }
+
+    return $this->renderPartial('import-message');
+}

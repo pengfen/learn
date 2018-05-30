@@ -1,0 +1,91 @@
+<?php
+/**
+ * Queue.php
+ *
+ * @User    : wangshijin@shangyt.cn
+ * @Date    : 15/10/25 15:19
+ * @Encoding: UTF-8
+ * @Created by PhpStorm.
+ */
+namespace common\components;
+
+use Yii;
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
+
+class Queue
+{
+    /****
+     * ******************************
+     * ***********队列名称************
+     * ******************************
+     */
+
+
+    //订单相关
+    const QUEUE_ORDER_CREATE       = 'hg_order_create';//订单创建
+    const QUEUE_BILL_CREATE       = 'hg_bill_create';//换购订单创建
+
+
+    public static $connection;
+    public static $channel;
+
+    public static function getConnection()
+    {
+
+        return self::$connection = new AMQPStreamConnection(
+            Yii::$app->params['amqp_config']['host'],
+            Yii::$app->params['amqp_config']['port'],
+            Yii::$app->params['amqp_config']['username'],
+            Yii::$app->params['amqp_config']['password']
+        );
+    }
+
+    public static function getChannel()
+    {
+        return self::$channel = self::getConnection()->channel();
+    }
+
+    public static function push($queue, $body)
+    {
+
+        $queue      = self::_getQueueName($queue);
+
+        $connection = self::getConnection();
+
+        $channel    = self::getChannel();
+
+        $channel->queue_declare($queue, false, false, false, false);
+        $channel->basic_publish(new AMQPMessage(json_encode($body)), '', $queue);
+        $channel->close();
+        $connection->close();
+
+        return true;
+    }
+
+    public static function handle($queue, $callback)
+    {
+        $queue   = self::_getQueueName($queue);
+        $channel = self::getChannel();
+        $channel->queue_declare($queue, false, false, false, false);
+        $channel->basic_consume($queue, '', false, true, false, false, $callback);
+
+        while (count($channel->callbacks)) {
+            $channel->wait();
+        }
+    }
+
+    /***
+     *
+     * 根据不同的运行环境获取队列名称
+     *
+     * @param $queue
+     * @return string
+     */
+    private static function _getQueueName($queue)
+    {
+        defined('YII_ENV') or define('YII_ENV', 'dev');
+
+        return strtolower(YII_ENV) . '_' . $queue;
+    }
+}

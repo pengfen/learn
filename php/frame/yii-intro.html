@@ -1,0 +1,48 @@
+安装 yii 环境
+1) 复制 Yii 软件包
+2) 修改 Yii 目录
+3) 配置虚拟主机
+4) 配置 hosts 主机
+5) 安装 Yii-GD 组件 composer require --prefer-dist yiisoft/yii2-imagine
+6) 基于 Yii GD 开发
+
+安装Yii普通模板
+http://www.yiichina.com/download 下载Yii模板
+
+解压并复制到指定的目录
+
+上传代码 (先关注)
+
+配置虚拟主机
+
+测试访问地址 (http://dev.yii.com)
+
+安装Yii高级模板
+http://www.yiichina.com/download 下载Yii模板
+
+解压并复制到指定的目录
+
+执行 init.bat (输入一 开发模式 yes)
+
+上传代码 (先关注)
+
+配置虚拟主机
+
+测试访问地址 (http://dev.yii.com)
+
+---------------------------------------------------------------
+class MenuController extends Controller {
+	public function actionIndex() {}
+}
+页面访问 index.php?r=menu/index
+
+class MenuOptionController extends Controller {
+	public function actionMenuAdd() {}
+}
+页面访问 index.php?r=menu-option/menu-add
+
+列表页中的查询
+列表页使用分页时全使用表单来处理
+列表页不使用分页时全使用ajax来处理
+
+

@@ -1,0 +1,35 @@
+php获取文件mime类型的几种方法
+mime_content_type()函数判断获取mime类型 (已过时)
+php 5.3.0 已经将该函数废弃 如果仍想使用此函数 那么可以对php进行配置启用magic_mime扩展
+mime_content_type返回指定文件的MIME类型
+echo mime_content_type('1.gif'); // image/gif
+echo mime_content_type('1.php'); // text/plain
+
+php Fileinfo 获取文件MIME类型(finfo_open)
+PHP官方推荐使用Fileinfo函数替代mime_content_type函数
+PHP5.3.0 已经默认支持Fileinfo函数(fileinfo support-enabled) 不必进行任何配置即可使用finfo_open()判断获取文件MIME类型
+$finfo = finfo_open(FILEINFO_MIME);
+$mimetype = finfo_file($finfo, $filename);
+finfo_close($finfo);
+
+image_type_to_mime_type()获取图片MIME类型
+需要在php.ini中配置打开php_mbstring.dll(windows需要)和extension=php+exif.dll
+
+php上传文件获取MIME类型
+
+
+================================================================
+
+// 获取文件的mime类型
+
+// 1. 通过上传后$_FILES来获取
+// 2. fileinfo方式  来获取 mime类型
+// 开启 php.ini fileinfo配置
+// 开启finfo
+$finfo = finfo_open(FILEINFO_MIME);
+
+// 获取文件的mime类型
+echo finfo_file($finfo, '../1.ppt');
+
+// 关闭资源
+finfo_close($finfo);

@@ -1,0 +1,13 @@
+forever模块
+后台服务运行 监控运行日志 以及HTTP请求日志
+确保项目的正常安全运行 Node.js的启动命令node 很大程序上无法满足运行需求
+
+npm install forever -g
+forever --help
+forever start -l forever.log -o out -e err.log app.js
+-l 指定forever运行日志
+-o 指定脚本流水日志
+-e 指定脚本运行错误日志
+
+linux 可通过
+netstat -nap | grep node 查看进程

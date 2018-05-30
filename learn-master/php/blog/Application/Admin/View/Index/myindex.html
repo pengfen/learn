@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="__PUBLIC__/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/Assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="__PUBLIC__/Assets/css/ace.min.css" />
+    <link rel="stylesheet" href="__PUBLIC__/Assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="__PUBLIC__/Assets/css/ace-skins.min.css" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="__PUBLIC__/Bootstrap/js/jquery-2.1.4.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="__PUBLIC__/Bootstrap/js/bootstrap.min.js"></script>
+
+    <style>
+      body { padding-top: 0px; }
+    </style>
+  </head>
+  <body >
+    <div class="row container">
+      <div class="col-md-12">
+        <!--页头-->
+          <nav class="navbar navbar-fixed-top" style='background:#227dc5'>
+            <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" style='color:#fff;margin-left:30px;'><span class="glyphicon glyphicon-fire"></span>&nbsp;&nbsp;<b>畅享世界后台管理系统</b></a>
+              </div>
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               
+                
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#" style="color:#fff"><span class='glyphicon glyphicon-envelope'></span></a></li>
+                  <li class="dropdown" style="background:#62a8d1">
+                  <style>
+                  .dropdown li:hover{
+                    background: #ccc;
+                  }
+                  </style>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><b style='color:#fff'>欢迎管理</b> <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Action</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+          </nav>
+  <!--页头结束-->
+      </div>
+
+      <div class="col-md-12">
+      <!--菜单栏-->
+         <div class="col-md-3">
+           <ul id="nav" class="nav nav-list">
+              <foreach name='plist' item='v'>
+            <li class="pnav">
+              <a href="javascript:void(0)" class="dropdown-toggle">
+                <i class="icon-desktop"></i>
+                <span class="menu-text"> {$v.name} </span>
+                <b class="arrow icon-angle-down"></b>
+              </a>
+
+              <ul class="submenu">
+              <foreach name='clist' item='cv'>
+                  <if condition="$cv[pid] eq $v[id]">
+                <li>
+                  <a href="{:U($c)}">
+                    <i class="icon-double-angle-right"></i>
+                    {$cv.action}:{$cv.name}
+                  </a>
+                </li>
+                </if>
+              </foreach>
+              </ul>
+            </li>
+            </foreach>
+          </ul><!-- /.nav-list -->
+        
+
+
+         </div>
+       <!--结束菜单栏--> 
+       <!--操作界面中心栏--> 
+         <div class="col-md-9">
+           
+
+         </div>
+       <!--操作界面中心栏结束--> 
+      </div>
+      <div class="col-md-12">
+          <!--页脚-->
+            <nav class="navbar navbar-default navbar-fixed-bottom" style='background:#227dc5'>
+              <div class="container" style="">
+                ...
+              </div>
+            </nav>
+            <!--页脚结束-->
+      </div>
+    </div>
+  
+  
+       
+  
+  
+
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>fullAvatarEdit头像上传编辑器</title>
+	<script src="__PUBLIC__/Home/Js/scripts/fullAvatarEditor.js"></script>
+	<script src="__PUBLIC__/Home/Js/scripts/swfobject.js"></script>
+	<style>
+		body{
+			font-family: 'Microsoft YaHei';
+		}
+		h1{
+			text-align: center;
+		}
+		#container{
+			width:630px;
+			margin:0 auto;
+		}
+	</style>
+</head>
+<body>
+	<h1>fullAvatarEditor头像上传编辑器</h1>
+	<hr>
+	<div id="container">
+		<div>
+            <p id="uploadimage">
+                本组件需要安装Flash Player后才可使用，请从
+                <a href="http://www.adobe.com/go/getflashplayer">这里</a>
+                下载安装。
+            </p>
+        </div>
+        <button type="button" id="upload">自定义上传按钮</button>
+	</div>
+
+	<script>
+		swfobject.addDomLoadEvent(function () {
+                var swf = new fullAvatarEditor("uploadimage", {
+                        id: 'swf',
+                        upload_url: './Application/Common/Common/upload.php',
+                      // src_url: "./image/default-avatar.jpg",
+                        src_upload:2
+                    }, function (msg) {
+                        switch(msg.code)
+                        {
+                            case 1 ://alert("页面成功加载了组件！"); 
+                            	break;
+                            case 2 :// alert("已成功加载默认指定的图片到编辑面板。");
+                            	break;
+                            case 3 :
+                                if(msg.type == 0)
+                                {
+                                    alert("摄像头已准备就绪且用户已允许使用。");
+                                }
+                                else if(msg.type == 1)
+                                {
+                                    alert("摄像头已准备就绪但用户未允许使用！");
+                                }
+                                else
+                                {
+                                    alert("摄像头被占用！");
+                                }
+                            break;
+                            case 5 : 
+                                if(msg.type == 0)
+                                {
+                                    if(msg.content.sourceUrl)
+                                    {
+                                       // alert("原图片已成功保存至服务器，url为：\n" +　msg.content.sourceUrl);
+                                    }
+                                   // alert("头像已成功保存至服务器，url为：\n" + msg.content.avatarUrls.join("\n"));
+                                }
+                            break;
+                        }
+                    }
+                );
+                document.getElementById("upload").onclick=function(){
+                    swf.call("upload");
+                };
+            });
+
+
+	</script>
+
+	
+</body>
+</html>

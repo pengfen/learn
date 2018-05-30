@@ -1,0 +1,15 @@
+
+08 第八次课：Spark内核分析 06-26 20:30-21:30
+	1、编程模型
+    2、DAG Scheduler
+    3、Task Scheduler
+    4、RDD、SparkContext源码解析
+	
+SparkContext	
+val rdd = sc.textFile("/").flatMap(_.split(" ")).map(_ =>(_,1)).reduceByKey(_ + _)	
+rdd.collect
+
+
+sc.textFile("/").flatMap(_.split(" ")).map(_ =>(_,1)).reduceByKey(_ + _).collect
+
+

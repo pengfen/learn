@@ -1,0 +1,22 @@
+处理日期和时间的相关数据 使用java.util.Date 类 获取当前时间
+Date d = new Date(); // 使用默认的构造方法创建 Date 对象
+System.out.println(d); // 输出 Date 对象
+使用 Date 类的默认无参构造方法创建出的对象就代表当前时间
+
+SimpleDateFormat 来对日期时间进行格式化
+使用 format() 方法将日期转换为指定格式化的文本
+Date d = new Date(); // 创建 Date 对象 表示当前时间
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 创建 SimpleDateFormat 对象 指定目标格式
+String today = sdf.format(d); // 调用 format() 方法 格式化时间 转换为指定格式字符串
+System.out.println(today); // 输出转换后的字符串
+“yyyy-MM-dd HH:mm:ss” 为预定义字符串， yyyy 表示四位年， MM 表示两位月份， dd 表示两位日期， HH 表示小时(使用24小时制)， mm 表示分钟， ss 表示秒，这样就指定了转换的目标格式，最后调用 format() 方法将时间转换为指定的格式的字符串
+使用 parse() 方法将文本转换为日期
+String day = "2014年02月14日 10:30:25"; // 创建日期格式的字符串
+SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss"); // 创建 SimpleDateFormat 对象 指定字符串的日期格式
+Date date = df.parse(day); // 调用 parse() 方法将字符串转换为日期
+System.out.println("当前时间: " + date); // 输出转换后的时间
+“yyyy年MM月dd日 HH:mm:ss” 指定了字符串的日期格式，调用 parse() 方法将文本转换为日期
+
+注意
+调用 SimpleDateFormat 对象的 parse() 方法时可能会出现转换异常 即 ParseException 因此需要进行异常处理
+使用 Date 类时需要导入 java.util 包 使用 SimpleDateFormat 时需要导入 java.text 包

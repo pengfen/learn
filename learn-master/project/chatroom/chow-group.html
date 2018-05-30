@@ -1,0 +1,25 @@
+select count(*) FROM chow_customer WHERE shopping='厦门(城市广场)店' GROUP BY `status`
+对中奖状态进行分组
+
+3
+1
+
+
+// 计算数据库中概率
+$flag = false; // 判断标志 --- 纠正中奖几率
+
+// 厦门四个店每个店 100 奖品
+$prizecount = Customer::find()->where(['shopping'=>$shopping, 'status'=>1])->asArray()->count(); // 获取中奖数
+$noprizecount = Customer::find()->where(['shopping'=>$shopping, 'status'=>0])->asArray()->count(); // 获取非中奖数
+if ($prizecount != 0) {
+    $prob = round(floatval($prizecount / ($prizecount + $noprizecount)), 2) * 100; // 计算数据库概率
+    if ($prob < 24) { // 判断概率是否小于规定概率
+    $flag = true;
+    }
+}
+
+if ($prizecount < 100) {
+    $randName = mt_rand(1, 100); // 随机产生当前概率
+    if ($randName <= 24 || $flag) { // 判断百分之二十四中奖概率
+    }
+}

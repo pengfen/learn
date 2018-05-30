@@ -1,0 +1,884 @@
+集合
+
+集合类概述
+为什么出现集合类
+面向对象语言对事物的体现都是以对象的形式 所以为了方便对多个对象的操作 Java就提供了集合类
+数组和集合类同是容器 有何不同
+数组虽然也可以存储对象 但长度是固定的 集合长度是可变的 数组中可以存储基本数据类型 集合只能存储对象
+集合类的特点
+集合只用于存储对象 集合长度是可变的 集合可以存储不同类型的对象
+
+Collection 接口概述
+Collection接口概述
+Collection 层次结构中的根接口 Collection 表示一组对象 这些对象也称为collection 的元素 一些collection允许有重复的元素 而另一些则不允许 一些collection是有序的 而另一些则是无序的
+
+Collection接口成员方法
+boolean add(E e)
+boolean remove(Object o)
+void clear()
+boolean contains(Object o)
+boolean isEmpty()
+int size()
+
+注意:collectionXxx.java使用了未经检查或不安全的操作.
+注意:要了解详细信息,请使用 -Xlint:unchecked重新编译.
+java编译器认为该程序存在安全隐患
+温馨提示:这不是编译失败,所以先不用理会,等学了泛型你就知道了
+
+
+Collection接口成员方法
+boolean addAll(Collection c)
+boolean removeAll(Collection c)
+boolean containsAll(Collection c)
+boolean retainAll(Collection c)
+
+Collection接口成员方法
+Object[] toArray() 把集合转成数组 可以实现集合的遍历
+Iterator iterator() 迭代器 集合的专用遍历方式
+
+Iterator 接口概述
+Iterator 接口概述
+对collection进行迭代的迭代器
+依赖于集合而存在
+
+Iterator接口成员方法
+boolean hasNext()
+E next()
+
+Iterator 接口的使用和原理讲解
+Iterator 接口的使用讲解
+Iterator 接口的原理讲解
+为什么不定义成一个类 而是一个接口
+看源码是如何实现的
+
+1：迭代器接口使用的时候，使用for循环还是while循环
+2:注意事项:迭代器在使用的时候，有人为了方便，如下使用就会有问题
+	System.out.println(((Student)it.next()).getName()+”---”+((Student)it.next()).getAge());
+
+Collection案例
+存储字符串并遍历
+存储自定义对象并遍历 Student(name,age)
+
+注意事项:迭代器在使用的时候，有人为了方便，如下使用就会有问题
+	System.out.println(((Student)it.next()).getName()+”---”+((Student)it.next()).getAge());
+
+List接口概述
+List接口概述
+有序的collection(也称为序列) 此接口的用户可以对列表中每个元素的插入位置进行精确地控制 用户可以根据元素的整数索引(在列表中的位置) 访问元素 并搜索列表中的元素
+与set不同 列表通常允许重复的元素
+List案例
+存储字符串并遍历
+存储自定义对象并遍历
+
+List接口成员方法
+void add(int index, E element)
+E remove(int index)
+E get(int index)
+E set(int index, E element)
+ListIterator listIterator()
+
+ListIterator接口的成员方法
+boolean hasPrevious()
+E previous()
+
+ConcurrentModificationException 
+现象
+原因
+解决方案
+
+常见数据结构
+栈
+队列
+数组
+链表
+树
+哈希表
+
+面试前要知道的一个知识点：
+	常见的数据结构的优缺点
+
+ArrayList类概述及使用
+ArrayList类概述
+底层数据结构是数组 查询快 增删慢
+线程不安全 效率高
+ArrayList案例
+存储字符串并遍历
+存储自定义对象并遍历
+
+Vector类概述及使用
+Vector类概述
+底层数据结构是数据 查询快 增删慢
+线程安全 效率低
+Vector 类特有功能
+public void addElement(E obj)
+public E elementAt(int index)
+public Enumeration elements()
+Vector案例
+存储字符串并遍历
+存储自定义对象并遍历
+
+LinkedList类概述及使用
+LinkedList类概述
+底层数据结构是链表 查询慢 增删快
+线程不安全 效率高
+LinkedList类特有功能
+public void addFirst(E e)及addLast(E e)
+public getFirst()及getLast()
+public removeFirst()及public E removeLast()
+LinkedList案例
+存储字符串并遍历
+存储自定义对象并遍历
+
+List集合练习
+ArrayList
+去除集合中字符串的重复值(字符串的内容相同)
+去除集体合中自定义对象的重复值(对象的成员变量值都相同)
+LinkedList
+请用LinkedList模拟栈数据结构的集合 并测试
+
+泛型概述及使用
+JDK1.5以后出现的机制
+泛型出现的原因
+泛型出现的好处
+泛型的书写格式
+把前面的集合代码用泛型号改进
+
+1：泛型是一种特殊的类型，它把指定类型的工作推迟到客户端代码声明并实例化类或方法的时候进行。
+   也被称为参数化类型，可以把类型当作参数一样传递过来，在传递过来之前我不明确，但是在使用的时候我就用明确了。
+2：泛型的好处
+A:提高了程序的安全性
+B:将运行期遇到的问题转移到了编译期
+C:省去了类型强转的麻烦
+
+泛型由来
+为什么会有泛型呢
+通过案例引入 
+早期的Object类型可以接收任意的对象类型 但是在实际的使用中 会有类型转换的问题 也就存在这隐患 所以Java提供了泛型号来解决这个安全问题
+
+泛型应用
+泛型类
+把泛型定义在类上
+格式 public class 类名<泛型类型1, ...>
+注意 泛型类型必须是引用类型
+泛型方法
+把泛型定义在方法上
+格式 public <泛型类型> 返回类型 方法名(泛型类型)
+泛型接口
+把泛型定义在接口上
+格式 public interface 接口名<泛型类型1 ...>
+
+泛型高级(通配符)
+泛型通配符<?>
+任意类型 如果没有明确 那么就是Object以及任意的Java类了
+? extends E 向下限定 E及其子类
+? super E 向上限定 E及其父类
+
+class Animal {}
+class Dog extends Animal {}
+class Cat extends Animal {}
+public class CollectionDemo {
+public static void main(String[] args) {
+Collection<?> c1 = new ArrayList<Animal>();
+Collection<?> c2 = new ArrayList<Dog>();
+Collection<?> c3 = new ArrayList<Cat>();
+Collection<?> c4 = new ArrayList<Object>();
+
+Collection<? extends Animal> c5 = new ArrayList<Animal>();
+Collection<? extends Animal> c6 = new ArrayList<Dog>();
+Collection<? extends Animal> c7 = new ArrayList<Cat>();
+// Collection<? extends Animal> c8 = new ArrayList<Object>();
+
+Collection<? super Animal> c9 = new ArrayList<Animal>();
+// Collection<? super Animal> c10 = new ArrayList<Dog>();
+// Collection<? super Animal> c11 = new ArrayList<Cat>();
+Collection<? super Animal> c12 = new ArrayList<Object>();
+
+增强for概述及使用
+增强for概述 简化数组和Collection集合的遍历
+格式 for(元素数据类型 变量:数组或者Collection集合){使用变量即可 该变量就是元素}
+好处 简化遍历
+注意事项 增强for的目标要判断是否为null
+把前面的集合代码的遍历用增强for改进
+
+1:public interface Iterable<T> 实现这个接口允许对象成为 "foreach" 语句的目标。 
+
+静态导入概述及使用
+静态导入概述
+格式 import static 包名 ... 类名.方法名;
+可以直接导入到方法的级别
+注意事项
+方法必须是静态的
+如果有多个同名的静态方法 容易不知道使用谁 这个时候要使用 必须加前缀 由此可见 意义不大 所以一般不用 但是要能看懂
+
+可变参数概述及使用
+可变参数概述 定义方法的时候不知道该定义多少参数
+格式
+修饰符 返回值类型 方法名(数据类型 ... 变量名){}
+注意
+这里的变量其实是一个数组
+如果一个方法有可变参数 并且有多个参数 那么 可变参数肯定是最后一个
+Arrays工具类中的一个方法 public static <T> List<T> asList(T ... a)
+
+List集合练习
+集合的嵌套遍历
+获取10个1-20之间的随机数 要求不能重复
+键盘录入多个数据 以0结束 要求在控制台输出这多个数据中的最大值
+
+Set接口概述
+Set接口概述 一个不包含重复元素的collection
+Set案例
+存储字符串并遍历
+存储自定义对象并遍历
+
+HashSet类概述
+HashSet类概述
+不保证set的迭代顺序
+特别是它不保证该顺序恒久不变
+HashSet如何保证元素唯一性
+底层数据结构是哈希表(元素是链表的数组)
+哈希表依赖于哈希存储
+添加功能底层依赖两个方法 int hashCode()  boolean equals(Object obj)
+
+LinkedHashSet类概述
+LinkedHashSet类概述
+元素有序唯一
+由链表保证元素有序
+由哈希表保证元素唯一
+
+TreeSet类概述
+TreeSet类概述
+使用元素的自然顺序对元素进行排序
+或者根据创建set时提供的Comparator进行排序
+具体取决于使用的构造方法
+TreeSet是如何保证元素的排序和唯一性的
+底层数据结构是红黑树(红黑树是一种自平衡的二叉树)
+
+用TreeSet存储Integer类型数据讲解排序和唯一。
+	20,18,23,22,17,24,19,18,24
+
+Set集合练习
+HashSet集合存储自定义对象并遍历 如果对象的成员变量值相同即为同一个对象
+TreeSet集合存储自定义对象并遍历
+如果对象的成员变量值相同即为同一个对象
+按照年龄进行从大到小进行排序
+编写一个程序 获取10个1至20的随机数 要求随机数不能重复
+键盘录入5个学生信息(姓名 语文成绩 数学成绩 英语成绩) 按照总分从高到低输出到控制台
+
+// 创建集合对象
+HashSet<Integer> hs = new HashSet<Integer>();
+// 创建随机数对象
+Random r = new Random();
+
+while (hs.size() < 10) {
+hs.add(r.nextInt(20) + 1);
+}
+
+System.out.println("hs:" + hs);
+
+Collection集合总结
+Collection
+List ArrayList Vector LinkedList
+Set HashSet TreeSet
+
+Map接口概述
+Map接口概述
+将键映射到值的对象
+一个映射不能包含重复的键
+每个键最多只能映射到一个值
+Map接口和Collection接口的不同
+Map是双列的 Collection是单列的
+Map的键唯一 Collection的子体系Set是唯一的
+Map集合的数据结构值针对键有效 跟值无关 Collection集合的数据结构是针对元素有效
+
+Map接口成员方法
+V put(K key, V value)
+V remove(Object key)
+void clear()
+boolean containsKey(Object key)
+boolean containsValue(Object value)
+boolean isEmpty()
+int size()
+
+Map接口成员方法
+V get(Object key)
+Set<K> keySet()
+Collection<V> values()
+Set<Map.Entry<K, V>> entrySet()
+
+Map集合遍历
+根据键找值
+获取所有键的集合
+遍历键的集合 获取到每一个键
+根据键找值
+根据键值对对象找键和值
+获取所有键值对对象的集合
+遍历键值对对象的集合 获取到每一个键值对对象
+根据键盘值班对对象找键和值
+
+通过存储字符串讲解遍历
+
+HashMap类概述
+HashMap类概述 键是哈希表结构 可以保证键的唯一性
+HashMap案例
+HashMap<String, String>
+HashMap<Integer, String>
+HashMap<String, Student>
+HashMap<Student, String>
+
+LinkedHashMap 类概述
+Map 接口的哈希表和链接列表实现 具有可预知的迭代顺序
+
+TreeMap 类概述
+TreeMap 类概述 键是红黑树结构 可以保证键的排序和唯一性
+TreeMap 案例
+HashMap<String, String>
+HashMap<Student, String>
+
+Map集合案例
+"aababcabcdabcde",获取字符串中每一个字母出现的次数要求结果:a(5)b(4)c(3)d(2)e(1)
+集合的嵌套遍历
+HashMap嵌套HashMap
+HashMap嵌套ArrayList
+ArrayList嵌套HashMap
+
+HashMap集合嵌套ArrayList集合并遍历。
+ 需求：
+ 		假设HashMap集合的元素是ArrayList。有3个。
+ 		每一个ArrayList集合的值是字符串。
+ 		元素我已经完成，请遍历。
+ 结果：
+		 三国演义
+		 	吕布
+		 	周瑜
+		 笑傲江湖
+		 	令狐冲
+		 	林平之
+		 神雕侠侣
+		 	郭靖
+		 	杨过  
+
+ArrayList集合嵌套HashMap集合并遍历。
+  需求：
+  	假设ArrayList集合的元素是HashMap。有3个。
+  	每一个HashMap集合的键和值都是字符串。
+  	元素我已经完成，请遍历。
+  结果：
+	 周瑜---小乔
+	 吕布---貂蝉
+
+	 郭靖---黄蓉
+	 杨过---小龙女
+
+	 令狐冲---任盈盈
+	 林平之---岳灵珊
+
+面试题
+HashMap和Hashtable的区别
+ListSetMap等接口是否都继承子Map接口
+
+Collections类概述和成员方法 针对集合操作的工具类
+Collections成员方法
+public static <T> void sort(List<T> list)
+public static <T> int binarySearch(List<?> list, T key)
+public static <T> T max(Collection<?> coll)
+public static void reverse(List<?> list)
+public static void shuffle(List<?> list)
+
+Collections成员方法的使用
+模拟斗地主洗牌和发牌
+模拟斗地主洗牌和发牌
+对牌进行排序
+并同时使用Map List Set 等集合 可以知道什么时候使用哪种集合
+
+集合总结
+集合
+Collection
+List
+Set
+
+Map
+
+==================================================================
+
+对象数组(掌握)
+    数组既可能存储基本数据类型 也可以存储引用类型 它存储引用类型的时候的数组就叫对象数组
+    案例 用数组存储5个学生对象 并遍历数组
+
+集合(Collection)(掌握)
+    集合的由来
+        Java --- 面向对象 --- 操作很多对象 --- 存储 --- 容器(数组和StringBuffer) --- 数组
+        而数组的长度固定 所以不适合做变化的需求 Java就提供了集合供我们使用
+    集合和数组的区别
+        长度区别
+            数组固定
+            集合可变
+        内容区别
+            数组可以是基本类型 也可以是引用类型
+            集合只能是引用类型
+        元素内容
+            数组只能存储同一种类型
+            集合可以存储不同类型(其实集合一般存储的也是同一种类型)
+
+    集合的继承体系结构
+        由于需求不同 Java就提供了不同的集合类 这多个集合类的数据结构不同 但是它们都是要提供存储和遍历功能的
+        我们把它们的共性不断的向上提取 最终就形成了集合的继承体系结构图
+
+        Collection
+            |--- List
+                  |--- ArrayList
+                  |--- Vector
+                  |--- LinkedList
+            |--- Set
+                  |--- HashSet
+                  |--- TreeSet
+
+    Collection的功能概述(自己补齐)
+        添加功能
+        删除功能
+        判断功能
+        获取功能
+        长度功能
+        交集(了解)
+        把集合转数组(了解)
+
+    Collection集合的遍历
+        把集合转数组(了解)
+        迭代器(集合专用方式)
+
+    迭代器
+        是集合的获取元素的方式
+        是依赖于集合而存在的
+        迭代器的原理和源码
+            为什么定义为了一个接口而不是实现类
+            看了看迭代器的内部类实现
+
+    Collection集合的案例(遍历方式 迭代器)
+        集合的操作步骤
+            创建集合对象
+            创建元素对象
+            把元素添加到集合
+            遍历集合
+
+        存储字符串并遍历
+            import java.util.Collection;
+            import java.util.ArrayList;
+            import java.util.Iterator;
+
+            public class CollectionDemo {
+            	public static void main(String[] args) {
+            		// 创建集合对象
+            		Collection c = new ArrayList();
+
+            		// 创建并添加元素
+            		c.add("welcome");
+            		c.add("java");
+            		c.add("world");
+
+            		// 遍历集合
+            		Iterator it = c.iterator();
+            		while (it.hashNext()) {
+            			String s = (String) it.next();
+            			System.out.println(s);
+            		}
+            	}
+            } 
+
+        存储自定义对象并遍历
+            public class Student {
+            	private String name;
+            	private int age;
+
+            	public Student() {}
+
+            	public Student(String name, int age) {
+            		this.name = name;
+            		this.age = age;
+            	}
+
+            	// getXxx() / setXxx()
+            }
+
+            import java.util.Collection;
+            import java.util.ArrayList;
+            import java.util.Iterator;
+
+            public class StudentDemo {
+            	public static void main(String[] args) {
+            		// 创建集合对象
+            		Collection c = new ArrayList();
+
+            		// 创建学生对象
+            		Student s1 = new Student("apeng1", 18);
+            		Student s2 = new Student("apeng2", 19);
+            		Student s3 = new Student("apeng3", 20);
+            		Student s4 = new Student("apeng4", 21);
+            		Student s5 = new Student("apeng5", 22);
+
+            		// 添加元素
+            		c.add(s1);
+            		c.add(s2);
+            		c.add(s3);
+            		c.add(s4);
+            		c.add(s5);
+
+            		// 遍历集合
+            		Iterator it = c.iterator();
+            		while(it.hasNext()) {
+            			Student s = (Student)it.next();
+            			System.out.println(s.getName() + ' --- ' + s.getAge());
+            		}
+            	}
+            }
+
+集合(List)(掌握)
+    List是Collection的子接口
+        特点 有序(存储顺序和取出顺序一致) 可重复
+
+    List的特有功能 (自己补齐)
+        添加功能
+        删除功能
+        获取功能
+        迭代器功能
+        修改功能
+
+    List集合的特有遍历功能
+        由size()和get()结合
+        代码演示
+            // 创建集合对象
+            List list = new ArrayList();
+
+            // 创建并添加元素
+            list.add("welcome");
+            list.add("java");
+            list.add("world");
+
+            // 遍历集合
+            Iterator it = list.iterator();
+            while (it.hasNext()) {
+            	String s = (String) it.next();
+            	System.out.println(s);
+            }
+            System.out.println("------------------------");
+
+            for (int x = 0; x < list.size(); x ++) {
+            	String s = (String) list.get(x);
+            	System.out.println(s);
+            }
+
+    列表迭代器的特有功能 (了解)
+        可以逆向遍历 但是要先正向遍历 所以无意义 基本不使用
+
+    并发修改异常
+        出现的现象 迭代器遍历集合 集合修改集合元素
+        原因 迭代器是依赖于集合的 而集合的改变迭代器并不知道
+        解决方案
+            迭代器遍历 迭代器修改(ListIterator)  元素添加在刚才迭代的位置
+            集合遍历 集合修改(size()和get())  元素添加在集合的末尾
+
+    常见数据结构
+        栈 先进后出
+        队列 先进先出
+        数组 查询快 增删慢
+        链表 查询慢 增删快
+
+    List的子类特点(面试题)
+        ArrayList
+            底层数据结构是数组 查询快 增删慢
+            线程不安全 效率高
+        Vector
+            底层数据结构是数组 查询快 增删慢
+            线程安全 效率低
+        LinkedList
+            底层数据结构是链表 查询慢 增删快
+            线程不安全 效率高
+
+        到底使用谁呢 看需求
+        分析
+            要安全吗
+                要 Vector(即使要 也不使用这个 后面再说)
+                不要 ArrayList或者LinkedList
+                    查询多 ArrayList
+                    增删多 LinkedList
+
+    List集合的案例(遍历方式 迭代器和普通for)
+        存储字符串并遍历
+        存储自定义对象并遍历
+
+========================================================================
+
+1:List的子类(掌握)
+    (1)List的子类特点
+        ArrayList:
+            底层数据结构是数组，查询快，增删慢
+            线程不安全，效率高
+        Vector:
+            底层数据结构是数组，查询快，增删慢
+            线程安全，效率低
+        LinkedList:
+            底层数据结构是链表，查询慢，增删快
+            线程不安全，效率高
+    (2)ArrayList
+        A:没有特有功能需要学习
+        B:案例
+            a:ArrayList存储字符串并遍历
+            b:ArrayList存储自定义对象并遍历
+    (3)Vector
+        A:有特有功能
+            a:添加
+                public void addElement(E obj)       --  add()
+            b:获取
+                public E elementAt(int index)       --  get()
+                public Enumeration<E> elements()    --  iterator()
+        B:案例
+            a:Vector存储字符串并遍历
+            b:Vector存储自定义对象并遍历
+    (4)LinkedList
+        A:有特有功能 
+            a:添加
+                addFirst()
+                addLast()
+            b:删除
+                removeFirst()
+                removeLast()
+            c:获取
+                getFirst()
+                getLast()
+        B:案例
+            a:LinkedList存储字符串并遍历
+            b:LinkedList存储自定义对象并遍历
+    (5)案例：
+        A:去除集合中的多个字符串的重复元素
+            如果字符串的内容相同，即为重复元素
+        B:去除集合中的多个自定义对象的重复元素
+            如果自定义对象的成员变量值都相同，即为重复元素
+        C:用LinkedList模拟一个栈数据结构的集合类，并测试。
+            你要定义一个集合类，只不过内部可以使用LinkedList来实现。
+
+2:泛型(掌握)
+    (1)泛型概述
+        是一种把明确类型的工作推迟到创建对象或者调用方法的时候才去明确的特殊的类型。
+    (2)格式：
+        <数据类型>
+        注意：该数据类型只能是引用类型。
+    (3)好处：
+        A:把运行时期的问题提前到了编译期间
+        B:避免了强制类型转换
+        C:优化了程序设计，解决了黄色警告线问题，让程序更安全
+    (4)泛型的前世今生
+        A:泛型的由来
+            Object类型作为任意类型的时候，在向下转型的时候，会隐含一个转型问题
+        B:泛型类
+        C:泛型方法
+        D:泛型接口
+        E:泛型高级通配符
+            ?
+            ? extends E
+            ? super E
+    (5)我们在哪里使用呢?
+        一般是在集合中使用。
+    
+3:增强for循环(掌握)
+    (1)是for循环的一种
+    (2)格式：
+        for(元素的数据类型 变量名 : 数组或者Collection集合的对象) {
+            使用该变量即可，该变量其实就是数组或者集合中的元素。
+        }
+    (3)好处：
+        简化了数组和集合的遍历
+    (4)弊端
+        增强for循环的目标不能为null。建议在使用前，先判断是否为null。
+    
+4:静态导入(了解)
+    (1)可以导入到方法级别的导入
+    (2)格式：
+        import static 包名....类名.方法名;
+    (3)注意事项：
+        A:方法必须是静态的
+        B:如果多个类下有同名的方法，就不好区分了，还得加上前缀。
+            所以一般我们并不使用静态导入，但是一定要能够看懂。
+    
+5:可变参数(掌握)
+    (1)如果我们在写方法的时候，参数个数不明确，就应该定义可变参数。
+    (2)格式：
+        修饰符 返回值类型 方法名(数据类型... 变量) {}
+        
+        注意：
+            A:该变量其实是一个数组名
+            B:如果一个方法有多个参数，并且有可变参数，可变参数必须在最后
+    (3)Arrays工具类的一个方法
+        asList()把数组转成集合。
+        注意：这个集合的长度不能改变。
+
+6:练习(掌握)
+    A:集合的嵌套遍历
+    B:产生10个1-20之间的随机数，要求随机数不能重复
+    C:键盘录入多个数据，以0结束，并在控制台输出最大值
+    
+7:要掌握的代码
+    集合存储元素，加入泛型，并可以使用增强for遍历。
+
+==================================================================
+
+1:登录注册案例(理解)
+
+2:Set集合(理解)
+    (1)Set集合的特点
+        无序,唯一
+    (2)HashSet集合(掌握)
+        A:底层数据结构是哈希表(是一个元素为链表的数组)
+        B:哈希表底层依赖两个方法：hashCode()和equals()
+          执行顺序：
+            首先比较哈希值是否相同
+                相同：继续执行equals()方法
+                    返回true：元素重复了，不添加
+                    返回false：直接把元素添加到集合
+                不同：就直接把元素添加到集合
+        C:如何保证元素唯一性的呢?
+            由hashCode()和equals()保证的
+        D:开发的时候，代码非常的简单，自动生成即可。
+        E:HashSet存储字符串并遍历
+        F:HashSet存储自定义对象并遍历(对象的成员变量值相同即为同一个元素)
+    (3)TreeSet集合
+        A:底层数据结构是红黑树(是一个自平衡的二叉树)
+        B:保证元素的排序方式
+            a:自然排序(元素具备比较性)
+                让元素所属的类实现Comparable接口
+            b:比较器排序(集合具备比较性)
+                让集合构造方法接收Comparator的实现类对象
+        C:把我们讲过的代码看一遍即可
+    (4)案例：
+        A:获取无重复的随机数
+        B:键盘录入学生按照总分从高到底输出
+        
+3:Collection集合总结(掌握)
+    Collection
+        |--List 有序,可重复
+            |--ArrayList
+                底层数据结构是数组，查询快，增删慢。
+                线程不安全，效率高
+            |--Vector
+                底层数据结构是数组，查询快，增删慢。
+                线程安全，效率低
+            |--LinkedList
+                底层数据结构是链表，查询慢，增删快。
+                线程不安全，效率高
+        |--Set  无序,唯一
+            |--HashSet
+                底层数据结构是哈希表。
+                如何保证元素唯一性的呢?
+                    依赖两个方法：hashCode()和equals()
+                    开发中自动生成这两个方法即可
+                |--LinkedHashSet
+                    底层数据结构是链表和哈希表
+                    由链表保证元素有序
+                    由哈希表保证元素唯一
+            |--TreeSet
+                底层数据结构是红黑树。
+                如何保证元素排序的呢?
+                    自然排序
+                    比较器排序
+                如何保证元素唯一性的呢?
+                    根据比较的返回值是否是0来决定
+                    
+4:针对Collection集合我们到底使用谁呢?(掌握)
+    唯一吗?
+        是：Set
+            排序吗?
+                是：TreeSet
+                否：HashSet
+        如果你知道是Set，但是不知道是哪个Set，就用HashSet。
+            
+        否：List
+            要安全吗?
+                是：Vector
+                否：ArrayList或者LinkedList
+                    查询多：ArrayList
+                    增删多：LinkedList
+        如果你知道是List，但是不知道是哪个List，就用ArrayList。
+    
+    如果你知道是Collection集合，但是不知道使用谁，就用ArrayList。
+    
+    如果你知道用集合，就用ArrayList。
+    
+5:在集合中常见的数据结构(掌握)
+    ArrayXxx:底层数据结构是数组，查询快，增删慢
+    LinkedXxx:底层数据结构是链表，查询慢，增删快
+    HashXxx:底层数据结构是哈希表。依赖两个方法：hashCode()和equals()
+    TreeXxx:底层数据结构是二叉树。两种方式排序：自然排序和比较器排序
+
+=====================================================================
+
+1:Map(掌握)
+    (1)将键映射到值的对象。一个映射不能包含重复的键；每个键最多只能映射到一个值。 
+    (2)Map和Collection的区别?
+        A:Map 存储的是键值对形式的元素，键唯一，值可以重复。夫妻对
+        B:Collection 存储的是单独出现的元素，子接口Set元素唯一，子接口List元素可重复。光棍
+    (3)Map接口功能概述(自己补齐)
+        A:添加功能
+        B:删除功能
+        C:判断功能
+        D:获取功能
+        E:长度功能
+    (4)Map集合的遍历
+        A:键找值
+            a:获取所有键的集合
+            b:遍历键的集合,得到每一个键
+            c:根据键到集合中去找值
+        
+        B:键值对对象找键和值
+            a:获取所有的键值对对象的集合
+            b:遍历键值对对象的集合，获取每一个键值对对象
+            c:根据键值对对象去获取键和值
+            
+        代码体现：
+            Map<String,String> hm = new HashMap<String,String>();
+            
+            hm.put("it002","hello");
+            hm.put("it003","world");
+            hm.put("it001","java");
+            
+            //方式1 键找值
+            Set<String> set = hm.keySet();
+            for(String key : set) {
+                String value = hm.get(key);
+                System.out.println(key+"---"+value);
+            }
+            
+            //方式2 键值对对象找键和值
+            Set<Map.Entry<String,String>> set2 = hm.entrySet();
+            for(Map.Entry<String,String> me : set2) {
+                String key = me.getKey();
+                String value = me.getValue();
+                System.out.println(key+"---"+value);
+            }
+    (5)HashMap集合的练习
+        A:HashMap<String,String>
+        B:HashMap<Integer,String>
+        C:HashMap<String,Student>
+        D:HashMap<Student,String>
+    (6)TreeMap集合的练习     
+        A:TreeMap<String,String>
+        B:TreeMap<Student,String>
+    (7)案例
+        A:统计一个字符串中每个字符出现的次数
+        B:集合的嵌套遍历
+            a:HashMap嵌套HashMap
+            b:HashMap嵌套ArrayList
+            c:ArrayList嵌套HashMap
+            d:多层嵌套
+            
+2:Collections(理解)   
+    (1)是针对集合进行操作的工具类
+    (2)面试题：Collection和Collections的区别
+        A:Collection 是单列集合的顶层接口，有两个子接口List和Set
+        B:Collections 是针对集合进行操作的工具类，可以对集合进行排序和查找等
+    (3)常见的几个小方法：
+        A:public static <T> void sort(List<T> list)
+        B:public static <T> int binarySearch(List<?> list,T key)
+        C:public static <T> T max(Collection<?> coll)
+        D:public static void reverse(List<?> list)
+        E:public static void shuffle(List<?> list)
+    (4)案例
+        A:ArrayList集合存储自定义对象的排序
+        B:模拟斗地主洗牌和发牌
+        C:模拟斗地主洗牌和发牌并对牌进行排序

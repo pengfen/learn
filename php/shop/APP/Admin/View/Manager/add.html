@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>商城管理系统</title>
+		<link rel="stylesheet" type="text/css" href="{$smarty.const.__ROOT__}/Public/css/admin.css">
+	</head>
+	<body class="bgimg">
+
+		<form action="{$smarty.const.__CONTROLLER__}/insert" method="post">
+		<ul class="exec">
+			<li>
+				<span class='add-text'>用 户 名</span>
+				<input type='text' name='username' placeholder='请输入用户名6-12位' value="" />
+				<span class='error-text'></span>
+			</li>
+			<li>
+				<span class='add-text'>密 码</span>
+				<input type='password' name='password' placeholder='请输入密码6-12位' value="" />
+				<span class='error-text'></span>
+			</li>
+			<li>
+				<span class='add-text'>确认密码</span>
+				<input type='password' name='repass' placeholder='请再次输入密码' value="" />
+				<span class='error-text'></span>
+			</li>
+			<li>
+				<span class='add-text'></span>
+				<input type='submit' class='submitbtn' value="添加管理员" />
+			</li>
+		</ul>
+		</form>
+	</body>
+</html>

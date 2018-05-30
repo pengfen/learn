@@ -1,0 +1,64 @@
+插入单条记录
+db_insert("table")->fields(array('field1' => 'value1', 'field2' => 'value2', 'fieldn' => $valuen))->execute();
+
+插入多条记录
+$values[] = array('field1' => 'val1', 'field2' => 'val2', 'fieldn' => $valn);
+$values[] = array('field1' => 'value1', 'field2' => 'value2', 'fieldn' => $valuen);
+$query = db_insert(‘table')->fields(array('field1', 'field2', 'fieldn'));
+foreach ($values as $record) {
+$query->values($record);
+}
+$query->execute();
+
+更新某条记录
+db_update('imports')
+->condition('name', 'Chico')
+->fields(array('address' => 'Go West St.'))
+->execute();
+//等同于：
+UPDATE {imports} SET address = 'Go West St.' WHERE name = 'Chico';
+
+删除某条记录
+db_delete('imports')
+->condition('name' => 'Zeppo')
+->execute();
+
+合并记录
+db_merge('people')
+->key(array('job' => 'Speaker'))
+->insertFields(array('age' => 31,'name' => 'Meredith'))
+->updateFields(array('name' => 'Tiffany'))
+->execute();
+//如果存在job为Speaker的一条记录，则更新name为Tiffany，如果不存在，就插入一条age为31，name为Meredith，job为Speaker的记录。
+
+对数据库某字段值自动加一或者自增
+db_update('example_table')
+->expression('count', 'count + 1')
+->condition('field1', $some_value)
+->expression('field2', 'field2 + :inc', array(':inc' => 2))
+->execute();
+
+查询数据库某字段为另一别名
+$query = db_select('node', 'n');
+$query->addField('n', 'name', 'label');
+$query->addField('n', 'name', 'value');
+
+直接使用 PHP 开发
+$conn = mysql_connect("localhost", "root", "123456");
+if (!$conn) { die('连接数据库失败 '.mysql_error());}
+$db_selected = mysql_select_db("drupal_db", $conn);
+$sql = "select n.nid, n.title, n.created from node n where n.uid = ".$uid." limit 0,10";
+$result = mysql_query($sql, $conn);
+while ($row = mysql_fetch_object($result)) {
+echo $row->firstName."<br/>";}
+mysql_close($conn);
+
+使用 drupal API 开发
+$resullt = db_query_range('select n.nid, n.title, n.created from {node} n where n.uid = %d', $uid, 0, 10);
+while ($node = db_fetch_object($result)) {
+// 对节点的操作在此进行 可以使用节点操作的相关API}
+
+// 查询 nid 为 1 的记录
+$nid = 1;
+$result = db_query('select title form {node} where nid = %d', $nid);
+select title from drupal_node where nid = 1;

@@ -1,0 +1,24 @@
+日志获取IP
+
+http {
+	include /etc/nginx/mime.types;
+	default_type application/octet-stream;
+
+	log_format main '$remote_addr - $remote_user [$time_local] "$request" '
+	'$status $body_bytes_sent "$http_referer" '
+	'"$http_user_agent" "$http_x_forwarded_for" '
+
+	access_log /var/log/nginx/access.log main:
+
+	sendfile on:
+	#tcp_nopush on:
+}
+
+php 获取IP
+if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])) {
+    $ip = $_SERVER["HTTP_X_FORWARDED_FOR"]; // 返回IP串中第一个
+} else {
+    $ip = $_SERVER["REMOTE_ADDR"]; // 获取远端主机IP
+}
+
+客户端 C  --- 代理 A --- 主机 B forwarded记录IP串 C,A,B

@@ -1,0 +1,67 @@
+#add{
+	height: 39px;
+	line-height: 39px;
+	background: #fafafa;
+}
+#add a{
+	margin-left: 20px;
+}
+
+/* 后台提示信息(成功失败信息) */
+.admin-mess{
+	width:300px;
+	margin:0px auto; 
+	text-align:center;
+	position: relative;
+	font-size: 20px;
+	text-shadow: 0 0 20px #ccc;
+	left: 0;
+	top: -110px;
+	color: red;
+	-webkit-animation: posit 2s ease-out;
+	-moz-animation: posit 2s ease-out;
+	-ms-animation: posit 2s ease-out;
+	-o-animation: posit 2s ease-out;
+	animation:posit 2s ease-out;
+}
+@-webkit-keyframes posit{
+	0%{opacity:0; left: 0; top:-100px;}
+	30%{opacity:0.3; left: 0; top:-80px;}
+	50%{opacity:0.7; left: 0; top:-50px;}
+	70%{opacity:0.7; left: 0; top:-20px;}
+	100%{opacity:1; left: 0; top:-0px;}
+}
+@-moz-keyframes posit{
+	0%{opacity:0; left: 0; top:-100px;}
+	30%{opacity:0.3; left: 0; top:-80px;}
+	50%{opacity:0.7; left: 0; top:-50px;}
+	70%{opacity:0.7; left: 0; top:-20px;}
+	100%{opacity:1; left: 0; top:-0px;}
+}
+@-o-keyframes posit{
+	0%{opacity:0; left: 0; top:-100px;}
+	30%{opacity:0.3; left: 0; top:-80px;}
+	50%{opacity:0.7; left: 0; top:-50px;}
+	70%{opacity:0.7; left: 0; top:-20px;}
+	100%{opacity:1; left: 0; top:-0px;}
+}
+@-ms-keyframes posit{
+	0%{opacity:0; left: 0; top:-100px;}
+	30%{opacity:0.3; left: 0; top:-80px;}
+	50%{opacity:0.7; left: 0; top:-50px;}
+	70%{opacity:0.7; left: 0; top:-20px;}
+	100%{opacity:1; left: 0; top:-0px;}
+}
+#right{
+	padding: 39px 0px 0px;
+	background: #e3e3e3;
+	height: 100%;
+}
+#page div{
+	float: right;
+	margin-right: 100px;
+}
+#page a, #page span{
+	width: 40px;
+	display: inline-block;
+}

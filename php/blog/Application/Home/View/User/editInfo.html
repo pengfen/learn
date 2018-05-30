@@ -1,0 +1,81 @@
+<extend name='Layout/tpl'/>
+<block name='style'>
+	<style>
+		#main{
+			margin-top:280px; 
+		}
+	</style>
+	<script type="text/javascript">
+		$(function(){
+			$('#edit_btn').click(function(){
+				$.ajax({
+					url:$('#edit_url').val(),
+			    		data:{username:$('input[name=username]').val(),department:$('input[name=department]').val(),telphone:$('input[name=telphone]').val(),vocation:$('input[name=vocation]').val(),birthday:$('input[name=birthday]').val(),sex:$('input[name=sex]').val() },
+			    		type:'post',
+			    		success:function(data){
+			    		//$('#edit_btn').html(data).attr('disabled',true);
+			    		$('#tipmess').html(data).slideDown(500).animate({
+			    			top: '+200px'
+			    		}, 2000).slideUp(500);
+			    		//alert(data);
+			    		//location.href = "#";
+			    		}
+			    							
+
+				})
+			})
+		})
+	</script>
+</block>
+<block name='main'>
+	<div id='main'>
+		<div class="panel panel-default">
+		  <div class="panel-heading">资料编辑</div>
+		  <div class="panel-body">
+		  	<div class="row">
+		  		<div class="col-md-8">
+		  			<form>
+			  <div class="form-group">
+			    <label for="exampleInputEmail1">昵称</label>
+			    <input type="text" name='username' value={$user['username']} class="form-control" id="exampleInputEmail1" placeholder="昵称">
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInputEmail1">所在地</label>
+			    <input type="text" name='department' value="<?php echo empty($user['department'])?'未填写':$user['department']?> " class="form-control" id="exampleInputEmail1" placeholder="所在地">
+			  </div>
+			  <div class="form-group">
+		    <label for="exampleInputPassword1">联系方式</label>
+		    <input type="text" name='telphone' value="<?php echo empty($user['telphone'])?'未填写':$user['telphone']?> " class="form-control" id="" placeholder="手机号/QQ号">
+		  </div>
+			  <div class="form-group">
+			    <label for="exampleInputPassword1">职业</label>
+			    <input type="text" name='vocation' value="<?php echo empty($user['vocation'])?'未填写':$user['vocation']?> "  class="form-control" id="exampleInputPassword1" placeholder="您现在的社会角色">
+			  </div>
+			   <div class="form-group">
+			    <label for="exampleInputPassword1">生日</label>
+			    <input type="text" name='birthday' value="<?php echo empty($user['birthday'])?'未填写':$user['birthday']?> " class="form-control" id="exampleInputPassword1" placeholder="月/日/年">
+			    <input type="hidden" value="{:U('User/doedit')}" id='edit_url' >
+			  </div>
+			  <div class="radio">
+		    <label>
+		      <input type="radio" name='sex' value="2" <?php if($user['sex']==2) echo 'checked'?>>男
+		    </label>
+		     <label>
+		      <input type="radio" name='sex' value="1"<?php if($user['sex']==1) echo 'checked'?>>女
+		    </label>
+		    <label>
+		      <input type="radio" name='sex' value="0" <?php if($user['sex']==0) echo 'checked'?>>保密
+		    </label>
+		  </div>
+			  <button type="button" id='edit_btn' class="btn btn-default">确认修改</button>
+			</form>
+		  		</div>
+		  	</div>
+		   
+
+		  </div>
+		</div>
+
+		
+	</div>
+</block>

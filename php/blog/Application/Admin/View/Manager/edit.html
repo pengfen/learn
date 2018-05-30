@@ -1,0 +1,62 @@
+<extend name='Layout/index'/>
+<block name='resource'>
+    <link href="__PUBLIC__/Admin/Css/managerAdd.css" rel='stylesheet'>
+	<script src="__PUBLIC__/Admin/Js/managerAdd.js"></script>
+	<style>
+		#myform{
+			background:#86B97E;
+		}
+		#titles{
+			color:white;
+			margin-left:10px;
+			background:#FFB84C;
+			padding-top:3px;
+		}
+	</style>
+</block>
+<block name='main'>
+	<div class="container containerDiv">
+		<div class="row">
+			<div class='col-md-2'></div>
+			<div class="col-md-8">	
+				<h3 id='titles'>编辑管理员信息</h3>
+				<form action="{:U('Manager/update')}" method="post" id="myform">
+					<div class="form-group">
+						<div class='int'>
+							<lable for='username'>用 &nbsp;户 &nbsp;名：</lable>
+							{$list['username']}
+						</div>
+						<script> var url="{:U('Manager/checkEmail')}" </script>
+						<div class='int'>
+							邮 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;箱：
+							{$list['email']}
+						</div>
+						<div class='int'>
+							职 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位：
+								&nbsp;&nbsp;<select name='rid'>
+									<option value='1' <if condition="($list['rid'] eq 1)"> selected</if>>主管</option>
+									<option value="2" <if condition="($list['rid'] eq 2)"> selected</if>>项目经理</option>
+									<option value="3" <if condition="($list['rid'] eq 3)"> selected</if>>超级管理员</option>
+									<option value="4" <if condition="($list['rid'] eq 4)"> selected</if>>职员</option>
+								</select>
+						</div>
+						<div class='int'>
+							密 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：
+							<input type='password' id='password' name='password' class='required'
+							placeholder='密码6-12位'>
+						</div>
+						<div class='int'>
+							确认密码：
+							<input type='password' id='repassword' name='repassword' class='required' placeholder='两次密码一致'>
+						</div>
+						<div class='sub'>
+							<input type='hidden' value="{$list['id']}" name='id'>
+							<button class='btn btn-primary addButton' id="send">添&nbsp; 加</button>
+						</div>
+					</div>
+				</form>
+		</div>
+		<div class="col-md-2"></div>
+		</div>
+	</div>
+</block>

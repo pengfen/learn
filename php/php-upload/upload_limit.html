@@ -1,0 +1,17 @@
+限制文件大小 MAX_FILE_SIZE
+php.ini中设置 upload_max_filesize
+<h1>文件上传--对文件大小进行限制</h1>
+<form action="3.php" method='post' enctype='multipart/form-data'>
+	<input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+	<input type="file" name="files">
+	
+	<button>上传</button>
+</form>
+
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+var_dump($_FILES); //用来获取上传后的文件信息
+
+//把上传文件 移动到指定位置‘
+copy($_FILES['files']['tmp_name'], './uploads/'.$_FILES['files']['name']);

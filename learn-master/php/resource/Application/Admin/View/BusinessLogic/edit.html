@@ -1,0 +1,20 @@
+<extend name="BusinessLogic/add"/>
+<block name="head">
+<!-- <form class="form-horizontal" action="{:U('Assoc/insert')}" method="post"> -->
+<form class="form-horizontal" id="upd-assoc-page" method="post" action="{:U('BusinessLogic/update')}" enctype="multipart/form-data">
+<input type="hidden" name="id" value="{$info.id}"/>
+<input type="hidden" name="img" value="{$info.image}"/>
+</block>
+<block name="flag">
+    <input type="radio" class="form-control" name='flag' id="tablename" value="0" <if condition="$info.flag eq '0'">checked</if>/> 无导航
+    <input type="radio" class="form-control" name='flag' id="tablename" value="1" <if condition="$info.flag eq '1'">checked</if>/> 有导航
+</block>
+<block name="foot">
+<button type="submit" id="updbtn" class="btn btn-default">修改逻辑</button>
+<!-- <input type="hidden" value="{:U('AssocPage/update')}"/> -->
+</block>
+<block name='tail'>
+<script type="text/javascript">
+	//clickForm($('#updbtn'), $('#upd-assoc-page'));
+</script>
+</block>

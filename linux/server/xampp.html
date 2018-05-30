@@ -1,0 +1,67 @@
+搭建项目
+
+配置虚拟主机 (conf/extra/httpd-vhosts.conf)
+<VirtualHost *:80>
+    DocumentRoot "E:/app/frontend/web"
+    ServerName dev.yii.com
+    <Directory "E:/app/frontend/web">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Order Deny,Allow
+        Allow from all
+    </Directory>   
+</VirtualHost>
+
+修改访问方式 (conf/httpd.conf)
+<Directory />
+    # AllowOverride none
+    # Require all denied
+    Order Deny,Allow 
+    Allow from all
+</Directory>
+
+项目入口放置 .htaccess文件需要配置 AllowOverride All 否则出现500错误
+
+
+配置通过多端口来访问应用 (常用于内部其它人访问)
+---------------------------------------------------------------------
+添加端口 (conf/httpd.conf)
+Listen 80
+Listen 50000
+
+配置虚拟主机时配置对应端口
+<VirtualHost *:50000>
+    DocumentRoot "E:/IACRM/branches/iacrms/frontend/web"
+    ServerName dev.iacrms.com
+    <Directory "E:/IACRM/branches/iacrms/frontend/web">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Order Deny,Allow
+        Allow from all
+    </Directory>   
+</VirtualHost>
+
+页面访问 http://192.168.69.14:50000/admin
+
+---------------------------------------------------------------------
+win10 xampp 不兼容
+
+检查apache 端口是否被占用
+cmd
+netstat -aon | findstr :80
+
+修改注册表参数
+regedit
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\HTTP
+Start 3 --- 0
+
+重启
+
+或者修改 httpd.conf 中的端口
+Listen 80 --- Listen 88
+
+如果443被占用
+修改 extra/httpd-ssl.conf中的端口
+Listen 443 --- Listen 4433
+或修改虚拟机vm中共享虚拟机
+编辑 --- 首选项 --- 禁用共享虚拟机 或修改端口号

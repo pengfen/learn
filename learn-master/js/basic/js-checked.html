@@ -1,0 +1,99 @@
+<div id='Dept' >
+    <div>
+	    <input type='checkbox' value=""/>
+	    <input type="hidden" value=""/>
+    </div>
+     <div>
+	    <input type='checkbox' value=""/>
+	    <input type="hidden" value=""/>
+    </div>
+     <div>
+	    <input type='checkbox' value=""/>
+	    <input type="hidden" value=""/>
+    </div>
+     <div>
+	    <input type='checkbox' value=""/>
+	    <input type="hidden" value=""/>
+    </div>
+</div>
+
+<div id='Team' >
+    <div>
+	    <input type='checkbox' value=""/>
+	    <input type="hidden" value=""/>
+    </div>
+     <div>
+	    <input type='checkbox' value=""/>
+	    <input type="hidden" value=""/>
+    </div>
+     <div>
+	    <input type='checkbox' value=""/>
+	    <input type="hidden" value=""/>
+    </div>
+     <div>
+	    <input type='checkbox' value=""/>
+	    <input type="hidden" value=""/>
+    </div>
+</div>
+
+check_box.click(function(e){ 
+    temp=""; 
+    ids = "";
+    $('#' + flag).find("input:checked").each(function(i){ // 根据ID获取div下的选中框
+		id = $(this).next("input").val();
+		if(i == 0){ 
+		    temp = $(this).val(); 
+		    ids = id;
+		} else { 
+		    temp += "," + $(this).val(); 
+		    ids += "," + id;
+		} 
+	});
+});
+
+// checkbox 取消选择
+js  .checked = false; // 取消选择
+    .checked = true;  // 添加选择
+
+jquery
+    $(this).removeAttr("checked"); // 取消选择
+    $(this).prop('checked', false);
+    $(this).attr('checked', 'true'); // 添加选择 (只支持第一次)
+    $(this).prop('checked', true); // 添加选择
+
+    $(this).attr('disabled',"true"); // 禁用按钮
+    $('#sms_send').removeAttr("disabled"); // 启用按钮
+
+    .disabled = true; // 禁用按钮
+    .disabled = false; // 启用按钮
+
+单击选择框后的文字选择框选中
+显式选择 label的for属性与input的id一致
+<label for='name'>文字内容:</label>
+<input type="text" name="name" value="" id="name">
+隐式选择 label包含input
+<label>文字内容:<input type="text" name="name" value="">
+使用js操作
+$(".pmi_pl span").bind("click",function(){
+    var obj = $(this).prev("input[type=checkbox]");
+    if(obj.attr("checked")==true){ 
+        obj.removeAttr("checked"); 
+    }
+    else { 
+        obj.attr("checked","checked"); 
+    }
+});
+
+=============================================
+针对第一次选中有效 第二次不选中有效 第三次选中无效
+在高版本的jquery引入prop方法
+对于 HTML 元素本身就带有的固有属性 在处理时 使用prop方法
+对于 HTML 元素我们自定义的DOM属性 在处理时 使用attr方法
+
+如果使用 attr
+$('#check').attr('checked') = undefined;
+$('#check').attr('checked') = 'checked';
+
+如果使用 prop
+$('#check').prop('checked') = false;
+$('#check').prop('checked') = true;

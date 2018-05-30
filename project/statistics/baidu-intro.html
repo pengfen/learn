@@ -1,0 +1,48 @@
+百度统计
+1) 添加脚本 (也可以把统计脚本放入到外部文件中)
+2) 添加事件
+3) 渠道区分
+
+修改个人信息
+添加新的测试地址
+自动生成 js 代码
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?85371e4a146d1a84e7800356285ac9b1";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+添加事件跟踪代码 (可以参考 kiehlscp.ibluesocial.com)
+_hmt.push(['_trackEvent', category, action, opt_label, opt_value]);
+category  类型 ( 对应事件跟踪面板模板 )
+action    操作 ( 对应事件跟踪面板操作 )
+opt_label 标签 ( 对应事件跟踪面板标签 )
+opt_value 值   ( 可选 )
+
+html 行内使用
+onclick="_hmt.push(['_trackEvent', 'website', 'PC_Click', 'baidu'])"
+
+JS 代码中使用
+document.getElementById("link").addEventListener("click", function() {
+_hmt.push(['_trackEvent', 'website', 'click', 'baidu', 1]);
+// ...
+});
+
+JQuery 代码中使用
+<a data-track="点击百度链接" href="http://www.baidu.com">baidu</a>
+$("[data-track]").on("click", function() {
+var label = $(this).data("track");
+window._hmt && window._hmt.push(['_trackEvent', label, 'click']);
+});
+
+指定广告跟踪 --- 添加
+目标URL(在其媒体投放广告时所指向的)
+媒介平台
+
+事件 网站数据 (pv uv ...) 可以选择下载等
+
+权限分配 --- 先生成无状态 --- 进入电子邮件 --- 添加权限

@@ -1,0 +1,25 @@
+<extend name="Categorys/add"/>
+<block name='head'>
+<form class="form-horizontal" id="upd-cate">
+<input type='hidden' name='id' value="{$info.id}"/>
+</block>
+    <block name="direct">
+    <foreach name='direct' item='v'>
+    <option value="{$key}" <if condition="$info['rid'] eq $key">selected</if>>{$v}</option>
+    </foreach>
+    </block>
+    <block name="difficult">
+    <foreach name='difficult' item='v'>
+    <option value="{$key}" <if condition="$info['did'] eq $key">selected</if>>{$v}</option>
+    </foreach>
+    </block>
+        <block name='foot'>
+        <button type="button" class="btn btn-default" id='updbtn'>修改分类</button>
+        <input type="hidden" value="{:U('Categorys/Update')}"/>
+        </block>
+
+<block name='tail'>
+<script>
+    clickForm($('#updbtn'), $('#upd-cate'));
+</script>
+</block>

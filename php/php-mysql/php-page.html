@@ -1,0 +1,46 @@
+查询分页数据
+
+通过循环可以获取一个查询的所有数据 在实际应用中 我们并不希望一次性获取数据表中的所有数据 那样性能会非常宾低 因此会使用翻页功能 每页仅显示10多条或者20条数据
+
+通过mysql的limit可以很容易的实现分布 limit m,n 表示从 m 行后取 n行数据 在 PHP 我们需要构造 m 与 n来实现获取某一页的所有数据
+
+假定当前页为 $page 每页显示 $n 条数据 那么m 为当前页前面所有的数据 既$m = ($page - 1) * $n 在知道了翻页原理以后 那么我们很容易通过构造SQL语句在PHP中实现数据翻页
+
+$page = 2;
+$n = 2;
+$m = ($page - 1) * $n;
+$sql = "select * from user limit $m,$n";
+$result = mysql_query($sql);
+
+// 循环获取当前页的数据
+$data = array();
+while ($row = mysql_fetch_assoc($result)) {
+	$data[] = $row;
+}
+
+在上面的例子中 我们使用 $m 与 $n 变量来表示侈量与每页数据条数 但我们推荐使用更有意义的变量名来表示 比中 $pagesize $start $offset 这样更容易理解 有助于团除协作开发
+
+<?php
+//连接数据库
+mysql_connect('127.0.0.1', 'root', '');
+mysql_select_db('blog');
+mysql_query("set names 'utf8'");
+
+// 预设翻页参数
+$page = 2;
+$pagesize = 2;
+
+// 分页查询
+$offset = ($page - 1) * $pagesize;
+$sql = "select * from blog_user limit $offset, $pagesize";
+$result = mysql_query($sql);
+
+// 循环获取当前页的数据
+$data = array();
+while ($row = mysql_fetch_assoc($result)) {
+	$data[] = $row;
+}
+
+print($data);
+
+mysql_close():

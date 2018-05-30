@@ -1,0 +1,381 @@
+MySQL02 数据库 表设计
+==========================================================
+1.  数据表概念
+    ① 数据表是数据库中的基本对象元素，以记录（行）和字段（列）组成的二维结构用于存储数据。
+	② 数据表由表结构和表内容两部分组成，先建立表结构，然后才能输入数据。
+	③ 数据表结构设计主要包括字段名称、字段类型和字段属性的设置。
+    ④ 通常情况下，同一个数据库中可以有多个数据表，但表名必须是唯一的，表中每一条记录描述了一个相关信息的集合，
+	    每一个字段必须为唯一的，每个字段都需要指定数据类型。
+	范式
+2. MySQL数据类型
+	2.1 整数类型
+		  数据列类型			字节数				无符号数的取值范围						有符号数的取值范围			
+		  TINYINT				1 					0 ~ 255										-128 ~ 127
+		  SMALLINT				2					0 ~ 65535									-32768 ~ 32767
+		  MEDIUMINT			3					0 ~ 16777215								-8388608 ~ 8388607
+		  INT						4					0 ~ 4294967295							-2147483648 ~ 2147483647
+		  BIGINT					8					0 ~ 18446744073709551615		-9223372036854775808	~ 9223372036854775807
+	2.2 浮点数类型 和 定点数类型
+		  数据列类型			字节数				负数的取值范围							 										非负数的取值范围
+		  FLOAT					4					-3.402823466E+38 ~ - 1.175494351E-38					        0 和 1.175494351E-38 ~ 3.402823466E+38
+		  DOUBLE				8					-1.797693E+308 ~ -2.225073E-308                                    0 和  2.225073E-308 ~ 1.797693E+308
+		  DECIMAL(M, D)		M+2			同DOUBLE																			同DOUBLE  
+		  或DEC
+	2.3 日期 与 时间 类型
+		  数据列类型			字节数				取值范围							 			 							说明
+		  YEAR						1 					1901~2155		               			   							 “YYYY”格式的年份值	
+		  DATE						4					1000-01-01	~	9999-12-31           						 “YYYY-MM-DD”格式表示的日期值
+		  TIME						3					-838:59:59-838:59:59                 							 “hh:mm:ss”格式表示的时间值	
+		  DATETIME	            8                  1000-01-01 00:00:00~9999-12-31 23:59:59        “YYYY-MM-DD 			hh:mm:ss”格式														
+		  TIMESTAMP			4					19700101000000 ~  20380119111407                “YYYYMMDDhhmmss”格式			
+	2.4 字符串类型
+		  数据列类型								允许的长度 				                   占用的空间				
+		  CHAR										0~255											M								
+		  VARCHAR								0~65535                                     M+1
+		  TINYTEXT								0 ~ 255										M+2
+		  TEXT										0 ~ 65535									M+2
+		  MEDIUMTEXT						0 ~ 167772150							M+3
+		  LONGTEXT							0 ~ 4294967295							M+4
+		  ENUM									65535个值
+		  SET										64个值
+	2.5 二进制类型
+		  数据列类型								取值范围
+		  BINARY(M)							字节数为M， 允许长度为0~M的定长二进制字符串
+		  VARBINARY(M)						允许长度为0~M的变长二进制字符串，字节数为值的长度加1
+		  BIT											M位二进制数据， M最大值为64
+		  TINYBLOB								可变长二进制数据， 最多255个字节
+		  BLOB										可变长二进制数据，最多(2^16-1)个字节
+		  MEDIUMBLOB						可变长二进制数据，最多(2^24-1)个字节
+		  LONGBLOB					 	    可变长二进制数据，最多(2^32-1)个字节
+	2.6 NULL
+		NULL意味着“没有值”或“未知值”
+		可以测试某个值是否为NULL
+		不能对NULL值进行算术计算
+		对NULL值进行算术运算，其结果还是NULL
+		0或NULL都意味着假，其余值都意味着真
+3. MySQL数据类型的选择
+	3.1 整数类型和浮点类型
+		整型;	无小数的数字，数据可能会参与运算  如 id、年龄、时间戳....
+					常用的整型： tinyint   int
+					tinyint 表示 范围小的数， 比如 年纪、标记...
+					int       表示 范围相对较大的数 比如 时间戳、个数.....
+		浮点： 有小数点的数字 用浮点  如 价格、金额、长度......	
+	3.2 浮点和定点
+		浮点 float						：  				
+		定点 （双精度）double：  可以表示的分为更大， 精度更高
+		浮点可以指定长度：  float(6,2); 表示 整数+小数（不算小数点）共6位，其中小数部分2位
+										插入的数据如果小数过多，会保留指定的位数
+										如果长度超过了限制， 会使用 指定位数 的最大数
+										double(6, 2);
+	3.3 CHAR和VARCHAR
+		  CHAR 		定长	char设置的长度就是实际存储长度	用于存储明确长度的数据 比如 手机号、邮编、车牌号、md5密文
+		  VARCHAR	变长	varchar设置的长度仅仅是限制，实际存储长度 是数据长度+1	用于存储不明确长度的数据   如果 地址、姓名、详细信息...
+	3.4 时间和日期
+		并不太常用
+		通常用 时间戳 表示 时间
+	3.5 ENUM和SET
+		ENUM (枚举)  多个选项中选择一个		enum('w','m','n')		如：  性别
+		SET				   多个选项中选择多个		set('a','b','c','d')	
+	3.6 TEXT和BLOB
+		 TEXT 存储 比较长的字符串  比如 一篇文章，一条新闻
+	3.7 常用的数据类型
+		整型： int  tinyint
+		浮点： float double
+		字符串： char  varchar  text   enum
+	
+4. 数据表操作
+	4.1 创建表
+		4.1.1 创建表的语法形式
+			CREATE TABLE 表名 ( 字段名  数据类型  [完整性约束条件]，
+											  字段名  数据类型  [完整性约束条件]，
+											  字段名  数据类型  [完整性约束条件]，
+											  ................
+											)[表引擎][字符集]
+		4.1.2 完整性约束
+			PRIMARY KEY 			标示该属性为该表的主键，可以唯一的标示对应的元组
+			FOREIGN KEY			标示该属性为该表的外键，是与之联系的某表的主键
+			NOT NULL				标示该属性不能为空
+			UNIQUE					标示该属性的值是唯一的
+			AUTO_INCREMENT	标示该属性的值自动增加， 这是MySQL的SQL语句的特色
+			DEFAULT					为该属性设置默认值
+	4.2 查看表结构
+		DESCRIBE 表名;
+		DESC 表名;
+		SHOW CREATE TABLE 表名;
+    4.3 修改表
+		4.3.1 修改表名
+			ALTER TABLE 旧表名 RENAME [TO] 新表名
+		4.3.2 修改字段的数据类型
+			ALTER TABLE 表名 MODIFY 属性名 数据类型 [ 完整性约束]
+		4.3.3 修改字段名
+			ALTER TABLE 表名 CHANGE 旧属性名 新属性名 新数据类型
+		4.3.4 增加字段
+			ALTER TABLE 表名 ADD 属性1 数据类型 [完整性约束条件] [FIRST | AFTER 属性名2];
+		4.3.5 删除字段
+			ALTER TABLE 表名 DROP 属性名
+		4.3.6 修改字段的排列位置
+			ALTER TABLE 表名 MODIFY 属性名1 数据类型 FIRST | AFTER 属性2
+		4.3.7 修改表的默认存储引擎
+			ALTER TABLE 表名 ENGINE=存储引擎
+		4.3.8 删除表的外键约束
+			ALTER TABLE 表名 DROP FOREIGN KEY 外键别名
+		4.3.9 删除主键
+			ALTER TABLE 表名 DROP PRIMARY KEY
+	4.4 删除表
+		4.4.1 删除没有被关联的普通表
+			DROP TABLE 表名
+		4.4.2 删除被其他表关联的父表
+			① 先删除外键约束
+			② 再删除表
+			
+5. 索引
+	5.1 索引简介
+		5.1.1 在MySQL中，主要有四类索引：
+			主键索引（PRIMARY KEY）
+			唯一索引（UNIQUE）
+			常规索引（INDEX）
+			全文索引（FULLTEXT）
+			外键（foreign key）
+		5.1.2 主键索引
+			主键索引是关系数据库中最常见的索引类型，主要作用是确定数据表里一条特定的数据记录的位置。
+			我们可以在字段后添加PRIMARY KEY来对字段设置为主键索引。
+			注意：
+				1.最好为每张表指定一个主键，但不是必须指定。
+				2.一个表只能指定一个主键，而且主键的值不能为空
+				3.主键可以有多个候选索引（例如NOT NULL，AUTO_INCREMENT）
+		5.1.3 唯一索引
+			唯一索引与主键索引一样，都可以防止创建重复的值。
+			但是，不同之处在于，每个数据表中只能有一个主键索引，但可以有多个唯一索引。
+			我们使用关键字UNIQUE对字段定义为唯一索引。
+		5.1.4 普通索引（常规索引）
+			常规索引技术是关系数据查询中最重要的技术，
+			如果要提升数据库的性能，索引优化是首先应该考虑的，因为它能使我们的数据库得到最大性能方面的提升。
+			常规索引也存在缺点：
+				1.多占用磁盘空间
+				2.会减慢插入，删除和修改操作
+				3.需要按照索引列上排序格式执行
+			创建索引我们可以使用INDEX和KEY关键字随表一同创建。
+		5.1.5 全文索引
+			全文索引在MySQL中是一个FULLTEXT类型索引，但FULLTEXT索引只能用于MyISAM表，
+			并且只可以在CHAR、VARCHAR或TEXT类型的列上创建，也允许创建在一个或多个数据列上。
+			但是FULLTEXT是不支持中文全文索引的，所以我们将来会使用效率更高的全文索引引擎Sphinx。
+	5.2 查看索引
+		SHOW INDEXES FROM　表名
+	5.2 创建索引
+		5.2.1 建表时
+			CREATE TABEL 表名（
+				.....
+				.....
+				[UNIQUE | INDEX | KEY]  [别名] [属性名]
+			）
+		5.2.2 在已存在表上创建索引
+			CREATE [UNIQUE | FULLTEXT] INDEX 索引名 ON 表名（属性名）
+		5.2.3 使用ALTER语句
+			ALTER TABLE 表名 ADD [UNIQUE | FULLTEXT] INDEX 索引名 (属性名)
+	5.3 删除索引
+		DROP INDEX 索引名 ON 表名
+
+6. 关于字符集和存储引擎
+	6.1 字符集
+		6.1.1  My.ini中设置
+				[mysql]
+				default-character-set=utf8          对客户端和连接字符集生效
+				character-set-server=utf8            对服务器默认字符集生效
+				如果库不指定字符集，就默认使用服务器字符集，表不指定字符集就使用库的字符集
+		6.1.2 SQL设置字符集
+			① 设置服务器字符集
+				SET CHARSET_SET_SERVER=字符集;
+			② 建表的时候设置表字符集
+			③ ALTER设置
+				ALTER DATABASE 数据库名 CHARSET SET 字符集		设置数据库字符集
+				ALTER TABLE DEFAULT CHARSET=字符集					设置表字符集
+	6.2 存储引擎
+		6.2.1 My.ini中设置默认存储引擎
+			[mysqld]
+			default-storage-engine=MyISAM
+		6.2.2 SQL设置
+			① 创建表设置
+			② ALTER
+
+MySQL03 SQL语句设计
+======================================================
+一 	操作数据表中的数据记录（DML语句）
+		1.	使用INSERT语句向数据表中添加数据
+			格式：
+			INSERT INTO 表名 [(字段名1,字段名2,…字段名n)] VALUES(‘值1’,‘值2’,…,’值n’);
+			或者
+			INSERT INTO 表名 [(字段名1,字段名2,…字段名n)] VALUES(‘值1’,‘值2’，…，‘值n’),VALUES(‘值1’,‘值2’,…,’值n’);
+			
+		2.	使用UPDATE语句更新数据表中已存在的数据
+			格式：
+			UPDATE 表名 SET 字段名=表达式 [,…][WHERE 条件]
+			[ORDER BY 字段][LIMIT 行数]
+
+		3.	使用DELETE语句删除数据表中不需要的数据记录
+			格式：
+			DELETE FROM 表名 [WHERE 条件][ORDER BY 字段][LIMIT 行数]
+			
+二		通过DQL命令查询数据表中的数据
+		1. 格式
+			SELECT [ALL|DISTINCT]{*|table.*|[table.]field1[AS alias1][,[table.]field2[AS alias2][,…]]}FROM 表名
+			 [WHERE子句]
+			[GROUP BY..][HAVING..][ORDER BY..][LIMIT count];
+			
+		2. 选择特定的字段
+			
+		使用AS子句为字段取别名
+		DISTINCT关键字的使用
+		在SELECT语句中使用表达式的列
+		使用WHERE子句按条件检索
+		根据空值（NULL）确定检索条件
+		使用BEETWEEN AND进行范围比较查询
+		使用IN进行范围比对查询
+		使用LIKE进行模糊查询
+		多表查询（连接查询）
+		嵌套查询（子查询）
+		使用ORDER BY对查询结果排序
+		使用LIMIT
+
+sql 语句
+====================================================
+create database s24;
+use s24;
+
+数据类型
+---------------------------------------------------------------
+--整型----
+create table user0(
+	column1 tinyint,
+	column2 int
+)engine=innoDB charset=utf8;
+insert into user0(column1, column2) value(100, 3000);
+insert into user0(column1, column2) value(1000, 3000);
+--添加无符号的字段
+alter table user0 add column3 tinyint unsigned;
+alter table user0 add column4 int unsigned;
+
+insert into user0(column1, column2,column3, column4) value(1000, 3000, 1000, 3000);
+
+--规定字段的长度
+alter table user0 add column5 int(2) unsigned;  --  1  9      11  123
+
+insert  into user0(column5) value(100);
+insert  into user0(column2, column5) value(-1000, -1000);
+
+
+---浮点型
+create table user1(
+	column1 int,
+	column2 float,
+	column3 double
+);
+
+insert into user1(column1, column2, column3) value(3.14, 3.14, 3.14);
+insert into user1(column1, column2, column3) value(3.64, 3.64, 3.64);
+
+alter table user1 add column4 float(2);
+insert into user1(column4) value(456.567);
+
+alter table user1 add column5 float(6, 2);   --  12.34
+insert into user1(column5) value(456.567);
+insert into user1(column5) value(12456.567);
+
+
+---时间日期类型
+create table user2(
+	c1 year,
+	c2 date,
+	c3 time,
+	c4 datetime,
+	c5 timestamp
+)engine=innoDB default charset=utf8;
+
+insert into user2(c1, c2, c3,c4,c5) value('1999', '2010-10-10', '23:23:12', '2008-8-8 08:08:08', '19701212101010');
+
+
+
+---字符串 类型
+--char 和 varchar
+create table user3(
+	c1 char(5),
+	c2 varchar(5)
+)engine=innoDB default charset=utf8;
+insert into user3(c1, c2) value('a', 'a');
+insert into user3(c1, c2) value('abcdefghigklmn', 'abcdefghigklmn');
+
+--新增 text 类型
+alter table user3 add c3 text;
+insert into user3(c3) value('周末了，小艳艳约我去喝酒，喝完酒去看电影，看完电影去.....');
+
+--新增 枚举类型
+alter table user3 add sex enum('woman', 'man', 'mangirl', 'falsewoman');
+alter table user3 add likes set('basketball', 'football', 'baseball', 'bangball');
+
+
+insert into  user3(sex, likes) value('man', 'football');
+insert into  user3(sex, likes) value('boy', 'headball');
+insert into user3(id) value(8);
+
+表修改等操作
+---------------------------------------------------------------
+----创建表
+
+create table user4(
+	id int unsigned not null auto_increment primary key,
+	username varchar(100) unique,
+	address varchar(255) default '上海',
+	info varchar(255),
+	info1 varchar(255) not null,
+	num int ,
+	num1 int not null ,
+	sex enum('w', 'm'),
+	sex1 enum('w', 'm') default 'm'
+)engine=innodb default charset=utf8;
+
+insert into user4(sex) value('m');
+insert into user4(username) value('yanyan');
+insert into user4(username) value('dayanyan');
+insert into user3(id) value(8);
+insert into user4(id) value(5);
+
+--修改表名 alter ... rename
+alter table user4 rename users;
+alter table user5 rename to user4;
+
+-- 修改字段的数据类型 alter ... modify
+alter table user4 modify info1 char(10) not null;
+
+-- 修改字段名 alter ... change
+alter table user4 change info1 descrition text;
+
+-- 增加一条字段 alter ... add
+alter table user4 add addtime int not null;
+alter table user4 add state tinyint default '1' first;
+alter table user4 add phone char(11) after address;
+
+-- 删除字段 alter ... drop
+alter table user4 drop state;
+
+-- 修改字段的排列位置 alter ... modify
+alter table user4 modify sex enum('w', 'm') default 'm' after username;
+
+-- 修改表的存储引擎
+alter table user4 engine = myisam;
+
+-- 删除主键
+alter table user4 drop primary key;
+
+-- 删除表
+drop table user1;
+
+-- 索引
+-- 主键索引
+create table student(
+    schoolid int not null,
+    stuid int not null,
+    name varchar(100),
+    index (schoolid, stuid)
+);
+
+-- 修改字符集
+alter table user4 charset=utf8;

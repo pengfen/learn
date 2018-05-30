@@ -1,0 +1,12 @@
+读取 cookie 文件
+$cookie_file = dirname(__FILE__).'/project_cookie.txt';
+curl_setopt($curl, CURLOPT_COOKIEFILE, $cookie_file);
+
+保存 cookie 数据至文件
+curl_setopt($curl, CURLOPT_COOKIEFILE, $cookie_file);
+
+写入 cookie 数据
+curl_setopt($curl, CURLOPT_COOKIE, "username=apeng;password=apeng;");
+
+通过 Header 头写入 cookie 数据
+curl_setopt($curl, CURLOPT_HTTPHEADER, array("Cookie: username=apeng;password=apeng;"))

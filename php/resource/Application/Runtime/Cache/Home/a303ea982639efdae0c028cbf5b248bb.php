@@ -1,0 +1,1 @@
+<?php if (!defined('THINK_PATH')) exit(); if(is_array($info)): foreach($info as $key=>$v): ?><li><a href="<?php echo U('Index/showlist', array('id'=>$v['id']));?>"><?php echo ($v["catename"]); ?></a></li><?php endforeach; endif; ?>

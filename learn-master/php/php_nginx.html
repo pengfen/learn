@@ -1,0 +1,20 @@
+一键安装
+http://oah.vpser.net/lnmp1.3-full.tar.gz 下载一键安装包
+tar zxf lnmp1.3-full.tar.gz && cd lnmp1.3-full && ./install.sh
+
+安装rabbitmq扩展 (95机器上安装目录 /opt/rabbit)
+https://github.com/alanxz/rabbitmq-c/ 下载 rabbitmq-c-master.zip 包
+unzip rabbitmq-c-master.zip #解压
+cd rabbitmq-c-master #进入解压后的目录
+autoreconf -i && ./configure && make && sudo make install #执行安装
+
+http://pecl.php.net/package/amqp # 下载ampq扩展包
+tar -zxvf amqp-1.6.0.tgz #解压
+cd amqp-1.6.0 #进入解压后的目录
+/usr/local/php/bin/phpize #phpize给php添加扩展 (生成configure文件)
+./configure --with-php-config=/usr/local/php/bin/php-config --with-amqp #检测安装环境
+make && make install #编译并运行
+vim /usr/local/php/etc/php.ini #进入php配置文件
+extension=amqp.so #添加ampq模块
+
+lnmp restart #重启lnmp服务

@@ -1,0 +1,48 @@
+<extend name='Layout/index'/>
+<block name='resource'>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/apeng.css"/>
+</block>
+<block name='main'>
+<div id="add">
+    <if condition="$flag eq 0">
+    <a href="javascript:void(0)">添加后台目录</a>
+    <else />
+    <a href="javascript:void(0)">添加前台目录</a>
+    </if>
+    <input type='hidden' value="{:U('Dir/add', array('flag'=>$flag, 'pid'=>$pid))}"/>
+    <a href="{:U('Dir/index')}">目录列表</a>
+</div>
+<div class='admin-mess'>{$_GET['mess']}</div>
+<div id = 'right' class="col-md-10">
+	<table class="table table-striped">
+	    <thead>
+	    	<tr>
+	    		<th>编号</th>
+	    		<th>功能名</th>
+	    		<th>控制器名</th>
+	    		<th>操作</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    	<foreach name='info' item='v'>
+	    	<tr>
+	    		<td>{$key + 1}</td>
+	    		<td><a href='javascript:void(0);' class="dir">{$v.name}</a><input type='hidden' value="{:U('Dir/detail', array('id'=>$v[id]))}"/></td>
+	    		<td>{$v.controller}</td>
+	    		<td>
+	    			<a class="upd" href="javascript:void(0);">修改</a>
+				  	<input type="hidden" name="" value="{:U('Dir/edit', array('id'=>$v[id]))}"/>
+				  	<a href="{:U('Dir/delete', array('id'=>$v[id]))}">删除</a>
+	    		</td>
+	    	</tr>
+	    	</foreach>
+	    	<tr><td colspan="5" id='page'><if condition="$count neq '0'">共有 {$count} 条记录 {$page}<else />没有数据</if></td></tr>
+	    </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    click($('.dir'));// 加载目录详情
+	click($('#add a'));// 动态加载添加界面模板
+	click($('.upd'));// 动态加载修改界面模板
+</script>
+</block>

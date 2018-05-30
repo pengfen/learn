@@ -1,0 +1,55 @@
+配置 IP
+
+[root@iZ94f2imuwkZ ~]# ifconfig -a # 查看所有的 IP
+eth0      Link encap:Ethernet  HWaddr 00:16:3E:00:2F:9C
+          inet addr:10.44.128.179  Bcast:10.44.135.255  Mask:255.255.248.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:68217 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:120253 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:5309786 (5.0 MiB)  TX bytes:9045393 (8.6 MiB)
+          Interrupt:165
+
+eth1      Link encap:Ethernet  HWaddr 00:16:3E:00:2B:79
+          inet addr:120.24.36.66  Bcast:120.24.39.255  Mask:255.255.252.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1349319 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:974794 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:1236226892 (1.1 GiB)  TX bytes:244720049 (233.3 MiB)
+          Interrupt:164
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:455426 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:455426 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:84317167 (80.4 MiB)  TX bytes:84317167 (80.4 MiB)
+
+[root@iZ94f2imuwkZ ~]# ifconfig # 与 ifconfig -a 差不多
+
+[root@iZ94f2imuwkZ ~]# dhclient (dhcp 服务 获取 IP 用于是桥接)
+[root@iZ94f2imuwkZ ~]# ifconfig -a
+[root@iZ94f2imuwkZ ~]# vi /etc/sysconfig/network-scripts/ifcfg-eth0 # 修改网络配置
+DEVICE=eth0
+ONBOOT=yes # 设置开机启动 yes 开机时启动 no 开机时不启动
+BOOTPROTO=static # 设置 IP 为静态的
+IPADDR=10.44.128.179
+NETMASK=255.255.248.0
+[root@iZ94f2imuwkZ ~]# vi /etc/resolv.conf # 设置网络主机
+options timeout:1 attempts:1 rotate
+nameserver 10.202.72.116
+nameserver 10.202.72.118
+
+[root@iZ94f2imuwkZ ~]# service network restart # 重启网络服务
+
+HWADDR=xx:xx:xx:xx:xx:xx (网卡mac地址，不用改)
+IPADDR=x.x.x.x(ip地址)
+NETMASK=x.x.x.x(子网掩码)
+BROADCAST=x.x.x.x.(广播地址)
+NETWORK=x.x.x.x(网络地址)
+GATEWAY=x.x.x.x(网关地址)
+ONBOOT=yes(开机自启动)
+DNS1=x.x.x.x(域名服务器地址)
+DNS2=x.x.x.x

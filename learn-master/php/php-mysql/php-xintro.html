@@ -1,0 +1,168 @@
+mysql
+
+连接八步
+添加
+修改
+删除
+查询
+php操作相关函数
+
+连接八步
+=============================================================
+在php配置文件中 开启 php_mysql.dll
+连接mysql服务器 $link = mysql_connect("localhost", 'root', '123456');
+判断是否连接成功
+if (!$link) {
+	echo '连接失败 ';
+	echo '错误号 '.mysql_errno();
+	echo '错误信息 '.mysql_error();
+} else {
+	echo '连接成功';
+}
+
+以上二步合成一步 (连接mysql服务器 判断是否连接成功)
+$link = mysql_connect("localhost", 'root', '123456') or die('数据库连接失败! 错误号 '.mysql_errno().' 错误内容 '.mysql_error());
+
+选择数据库
+mysql_select_db(DBNAME, $link);
+
+设置字符集编码
+mysql_set_charset('utf8', $link);
+// mysql_query('set names utf8', $link);
+
+// 定义 sql 语句
+$sql = "select * from table";
+
+// 发送 sql 语句
+$result = mysql_query($sql, $link);
+
+// 处理结果
+$rows = mysql_fetch_assoc($result);
+
+// 释放结果集资源
+mysql_free_result($result);
+
+// 关闭连接
+mysql_close($link);
+
+添加
+=============================================================
+// 定义添加数据sql
+$sql = "insert into student(name, age, grade) values(),()";
+
+// 发送sql语句 到mysql服务器
+$res = mysql_query($sql, $link);
+
+// 处理结果
+if ($res) {
+	echo "共插入了 ".mysql_affected_rows($link)." 行";
+	echo "获取上一次插入的自增id ".mysql_insert_id($link);
+} else {
+	echo "添加失败";
+	echo mysql_errno().' : '.mysql_error();
+}
+
+// 判断是否操作成功
+判断mysql_query返回值 true 或 false
+或者 判断mysql_affect_rows() 是否大于0
+或者 判断mysql_insert_id() 是否大于0
+
+修改
+=============================================================
+// 定义修改数据的sql
+$sql = "update student set name = '', age = 1 where id = 1";
+
+// 发送sql语句 到mysql服务器
+$res = mysql_query($sql, $link);
+
+// 处理结果
+echo "影响行数 ".mysql_affected_rows($link);
+// mysql_affected_rows() 如果sql语句执行失败了 返回-1
+// 判断是否修改成功 判断影响行数是否大于0
+
+// 实际应用 (批处理更新数据时使用)
+$sql = "";
+$num = '';
+if (mysqli_query($conn, $sql)) {
+	$num = mysqli_affected_rows($conn);
+}
+
+if ($num > 0) {
+	echo date('Y-m-d H:i:s', time()).'表 '.strtolower($value).'的关键字为'.$keyword.'更新总条数为'.$num.PHP_EOL;
+}
+
+删除
+=============================================================
+// 设置删除sql
+$sql = 'delete form student where id = 1';
+
+// 发送sql语句
+$res = mysql_query($sql, $link);
+
+// 处理结果
+echo "影响行数 ".mysql_affected_rows($link);
+
+// 判断是否删除成功 使用mysql_affected_rows($link) 判断是否 > 0
+
+查询
+=============================================================
+// 定义查询sql
+$sql = "select * from student";
+
+// 发送sql语句到mysql服务器
+$result = mysql_query($sql, $link);
+
+// 处理结果集
+if ($result && mysql_num_rows($result) > 0) {
+	echo "共查询了 ".mysql_num_rows($result);
+	echo "每行有 ".mysql_num_fields($reult).' 个字段';
+}
+
+// 处理结果集
+if ($result && mysql_num_rows($result) > 0) {
+	echo '返回第一行第二列的数据 '.mysql_result($result, 1, 2);
+	echo '返回第一行第0列的数据 '.mysql_result($result, 1);
+
+	$rows = mysql_fetch_field($result);
+}
+
+php操作相关函数
+=============================================================
+mysql_connect() 连接mysql数据库服务器
+mysql_errno() 错误号
+mysql_error() 错误信息
+mysql_select_db() 选择数据库
+mysql_set_charset(), mysql_query('set names utf8') 设置字符集编码 
+msyql_query() 发送sql语句到mysql服务器
+mysql_num_rows() 取得结果集中行的数目
+mysql_num_fields() 取得结果集中字段的数目
+mysql_fetch_array() 从结果集中取出一个数组(可以是索引也可以是关联)
+mysql_fetch_assoc() 从结果集中取出一个关联数组
+mysql_fetch_row() 从结果集中了出一个索引数组
+mysql_result() 从结果集中取出指定第几行第几列的数据
+mysql_fetch_field() 取出一条字段信息返回数组
+mysql_insert_id() 取得上一个insert操作产生的id
+mysql_free_result() 释放结果集资源
+mysql_close() 释放数据库连接资源
+
+
+
+// 定义 mysql的配置信息 使用常用定义
+define('HOST', 'localhost');			//mysql主机名
+define('USER', 'root');					//mysql的用户名
+define('PASS', '123456');				//mysql的密码
+define('DBNAME', 's24');				//数据库名
+
+
+=====================================================
+项目上测试环境
+
+修改配置文件 config.php 中数据库配置
+
+找运维修改配置文件
+
+找DBA修改访问权限
+
+复制开发库数据至测试库
+
+注意两个库中的表引擎一样，否则数据不能复制

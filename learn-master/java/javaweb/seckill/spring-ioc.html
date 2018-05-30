@@ -1,0 +1,48 @@
+Spring IOC功能理解
+
+对象工厂
+            一致的访问接口
+依赖管理
+
+               SeckillDao
+SeckillService                   SqlSessionFactory
+               SuccessKilledDao  
+                                 DataSource...
+
+为什么用IOC
+对象创建统一托管
+规范的生命期管理
+灵活的依赖注入
+一致的获取对象
+
+spring IOC 注入方式和场景
+XML  Bean实现类来自第三主类库 如DataSource等   需要命名空间配置context aop mvc等
+注解 项目中自身开发使用的类 可直接在代码中使用注解 @Service @Controller等
+Java配置类 需要通过代码控制对象创建逻辑的场景 如自定义修改依赖类库
+
+本项目IOC使用
+XML配置
+package-scan
+Annotation注解
+
+什么是声明式事务
+开启事务
+修改sql1
+修改sql2 --- 解脱事务代码
+修改sql3
+提交/回滚事务
+
+声明式事务使用方式
+ProxyFactoryBean + XML --- 早期使用方式 2.0
+tx:advice + aop命名空间 --- 一次配置永久生效
+注解@Transactional --- 注解控制 (推荐)
+
+事务方法嵌套
+声明式事务独有的概念
+传播行为 --- propagation_required
+
+什么时候回滚事务
+抛出运行期异常(RuntimeException)
+小心不当的try-catch
+
+配置使用声明式配置事务

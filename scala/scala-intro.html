@@ -1,0 +1,195 @@
+scalable 编程语言
+纯正的面向对象语言
+函数式语言
+无缝的 java 互操作
+乐趣
+
+
+Scala Immutable Collections
+函数
+类型和求值策略
+scala 语言基础
+scala 开发环境
+函数式编程思想
+
+
+scala 代码
+
+scala 解释器 (安装 scala  ----  确保 scala/bin 目录位于系统 PATH 中)
+windows 启动 cmd打开命令行窗口  ----  scala
+[root@peng1 scala]# ./bin/scala
+scala> 8 * 5 + 2
+res0: Int = 42 # 解释器显示出结果 未定义系统默认给出变量名
+
+scala> 0.5 * res0
+res1: Double = 21.0
+
+scala> "Hello," + res0
+res2: String = Hello,42
+
+scala> res2.to # 按 Tab 键  系统会自动补全
+to          toBuffer      toDouble       toInt        toList        toMap   toShort    toTraversable
+toArray     toByte        toFloat        toIterable   toLong        toSeq   toStream   toUpperCase
+toBoolean   toCharArray   toIndexedSeq   toIterator   toLowerCase   toSet   toString   toVector
+
+REPL (Read Eval Print Loop 交互式解释器)
+
+scala> val answer = 8 * 5 + 2
+answer: Int = 42
+
+scala> 0.5 * answer
+res3: Double = 21.0
+
+scala> answer = 0 # 以 val 定义的值实际上是一个常量 (无法改变它的内容)
+<console>:12: error: reassignment to val
+       answer = 0
+              ^
+
+scala> var counter = 0
+counter: Int = 0
+
+scala> counter = 1 # var 定义变量 在 scala 中鼓励使用 val 大多数程序并不需要很多 var 变量
+counter: Int = 1
+
+scala> val greeting : String = null # 指定类型
+greeting: String = null
+
+scala> val x, y = 100 # 将 x y 设为 100
+x: Int = 100
+y: Int = 100
+
+scala> var greeting, message : String = null # 都是字符串 并被初始化 null
+greeting: String = null
+message: String = null
+
+
+
+
+
+三种变量修饰符
+val 定义 immutable variable
+var 定义 mutable variable
+lazy val
+可以不显示指定变量的类型 困为 scala 会自动进行类型推导
+
+scala> val x = 10
+x: Int = 10
+
+val x = 10;
+val y:Int = 20;
+x + x
+res0
+res0*res1
+val z=res0+res1+res2
+z=10
+var a=200
+a=200
+val d=20
+val e=30
+lazy val f=d*c
+f*10
+f
+
+val a:Byte = 10
+val b:Short = 20
+val c:Int = 30
+val d:Long = 40
+val e:Float = 50
+val f:Double = 60.98765
+
+val m = true
+val n = false
+
+val q = 'x'
+
+val u:Unit = ()
+val p = ()
+
+def foo() = throw new Exception("error occurred")
+
+构建于 java 的 String 之上
+
+新增了字符串插值 (interpolation) 的特性
+
+val myname = "ChenFang" // creating a String
+s"My name is ${myname}" // String interpolation
+
+
+
+
+
+
+
+
+求值策略
+Scala 里有两种求值策略 (Evaluation Strategy)
+Call By Value - 对函数实参求值 且仅求值一次
+Call By Name - 函数实参每次在函数体内被用到时都会求值
+
+Scala 通常使用 Call By Value
+如果函数形参类型以 => 那么会使用 Call By Name
+def foo(x: Int) = x // Call By Value
+def foo(x: => Int) = x // Call By Name
+
+def test1(x: Int, y: Int) : Int = x * x
+def test2(x: => Int, y: => Int): Int = x * x
+
+
+def bar(x: Int, y: => Int):Int = 1
+def Loop(): Int = loop
+
+bar(1, loop)
+bar(loop, 1) 死循环
+
+
+
+
+柯里化
+柯里化函数 (curried function) 把具有多个参数的函数转换为一条函数链 每个节点上是单一参数
+
+例子 以下两个 add 函数定义是等价的
+def add(x: Int, y: Int) = x + y
+def add(x: Int)(y: Int) = x + y // scala 里柯里化的语法
+
+柯里化的例子
+def curriedAdd(a: Int)(b: Int) = a + b
+curriedAdd(2)(2) // 4
+
+val addOne = curriedAdd(1)
+addOne(2) // 3
+
+递归函数
+递归函数 (Recursive Function) 在函数式编程中是实现循环的一种技术
+
+计算 n!
+def factorial(n: Int): Int =
+if (n <= 0) 1
+else n * factorial(n - 1) 
+
+尾递归函数
+尾递归函数 (Tail Recursive Function) 中所有递归形式的调用都出现在函数的末尾
+
+当编译器检测到一个函数调用是尾递归的时候 它就覆盖当前的活动记录而不是在栈中去创建一个新的
+
+@annotation.tailrec
+def factorial(n: Int, m: Int) Int =
+if (n <= 0) m
+else factorial(n - 1, m * n)
+factorial(5,1)
+
+object sumfunc {
+	def sum(f: Int => Int)(a: Int)(b: Int): Int = {
+
+		@annotation.tailrec
+		def loop(n: Int, acc: Int): Int = {
+		    if (n > b) {
+		        println(s"n=${n}, acc=${acc}")
+		    } else {
+		        println(s"n=${n}, acc=${acc}")
+		        loop(n + 1, acc + f(n))
+		    }
+		}
+		loop(a, 0)
+	}
+	sum(x => x)(1)(5)
+}

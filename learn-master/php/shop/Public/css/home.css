@@ -1,0 +1,373 @@
+/* 初始化样式 */
+body,ul,li,p,h1,h2,h3,h4{
+	padding: 0;
+	margin: 0
+}
+body{
+	font-size: 12px;
+}
+ul,li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+img,input{
+	border: none;
+	outline: none;
+}
+
+/* 预定义样式 */
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.clear{
+	clear: both;
+}
+.w{
+	margin: 0 auto;
+	width: 1200px;
+}
+.mt10{
+	margin-top: 10px;
+}
+.mt20{
+	margin-top: 20px;
+}
+/* 没有数据时显示样式 */
+.no-data{
+	padding:8px;
+	color: red;
+	font-size: 16px;
+	font-weight: bold;
+	display: inline-block;
+}
+/* 分布显示样式 */
+.page{
+	height: 39px;
+	line-height: 39px;
+	margin-right: 12px;
+	color: #f00;
+	font-size: 16px;
+	font-weight: bold;
+}
+.page em{
+	font-style: normal;
+	margin: 0 5px;
+	color: #f90;
+}
+.admin-success{
+	width:300px;
+	margin:0px auto; 
+	text-align:center;
+	position: relative;
+	font-size: 20px;
+	text-shadow: 0 0 20px #f00;
+	left: 0;
+	top: -50px;
+	color: #f90;
+	-webkit-animation:posit 2s ease-out;
+	animation:posit 2s ease-out;
+}
+@-webkit-keyframes posit{
+	0%{opacity:0; left: 0; top:-100px;}
+	30%{opacity:0.3; left: 0; top:-80px;}
+	50%{opacity:0.7; left: 0; top:-50px;}
+	70%{opacity:0.7; left: 0; top:-20px;}
+	100%{opacity:1; left: 0; top:-0px;}
+}
+
+/* 头部样式开始 */
+header{
+	background: #fafafa;
+	height: 35px;
+	line-height: 35px;
+	border: 1px solid #f0f0f0;
+}
+.hdLogin{
+	background: #fff;
+	border: 1px solid #f0f0f0;
+	border-top: none;
+	padding: 0 7px 0 6px;
+	height: 37px;
+	position: relative;
+	z-index: 8;
+}
+.hdLogin a{
+	color: #06c;
+}
+a:hover{
+	color: #ff4a00;
+}
+.hdLogin em{
+	width: 52px;
+	height: 4px;
+	display: inline-block;
+	position: absolute;
+	top: 37px;
+	left: 30px;
+	border: 1px solid #f0f0f0;
+	border-top: none;
+	z-index: 9;
+	background: #fff;
+}
+.hdLogin em i{
+	position: absolute;
+	top: -8px;
+	left: 24px;
+}
+
+.banner{
+	position: relative;
+}
+.banner span{
+	width: 18px;
+	height: 35px;
+	background: #333;
+	color: #fff;
+	text-align: center;
+	padding: 5px 0;
+	position: absolute;
+	top: 0px;
+	left: 96%;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.hdNotice{
+	height: 26px;
+	line-height: 26px;
+	background: #fff7d1;
+	border: 1px solid #e5debc;
+	overflow: hidden;
+	color: 
+}
+.icon-bullhorn{
+	margin: 0 5px;
+}
+.icon-remove{
+	/*width: 20px;
+	height: 26px;
+	line-height: 26px;*/
+	font-size: 16px;
+	padding: 5px 3px;
+	color: #e5debc;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.hdNav .logo{
+	width: 300px;
+	display: inline-block;
+	float: left;
+	margin-right: 50px;
+}
+.search{
+	margin-top: 8px;
+	width:450px; 
+	height:28px;
+	line-height: 28px;
+	display:inline-block;
+	border:2px solid #ff3c3c;
+}
+.search .icon-search{
+	width: 32px;
+	font-size: 20px;
+	color: #fafafa;
+	text-align: center;
+	cursor: text;
+}
+.search input{
+	padding-left: 8px;
+}
+#searchBtn{
+	width: 98px;
+	background: #ff3c3c;
+	color: #fff;
+	float: right;
+	border: none;
+	height: 28px;
+	cursor: pointer;
+	outline: none;
+}
+.keywords{
+	width: 500px;
+	margin-top: 7px;
+}
+.keyword a{
+	height: 24px;
+	line-height: 24px;
+	display: inline-block;
+}
+.hdNavFr{
+	width: 200px;
+	display: inline-block;
+}
+.hdNavFr span{
+	width: 56px;
+	height: 45px;
+	background: #fafafa;
+	color: #999;
+	float: left;
+	border: 1px solid #f0f0f0;
+	line-height: 45px;
+	text-align: center;
+	cursor: pointer;
+	padding: 0 4px 0 4px;
+}
+.hdNavFr span:hover{
+	padding: 0 2px 0 6px;
+	color: #ff4a00;
+}
+
+.all-product{
+	width: 210px;
+	height: 34px;
+	line-height: 34px;
+	background: #ff3c3c;
+	text-align: center;
+	float: left;
+}
+.all-product a{
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+}
+.all-product a i{
+	height: 34px;
+	line-height: 34px;
+	padding: 0 5px 0 0;
+
+}
+.hd-nav{
+	width: 990px;
+	float: right;
+}
+.hd-nav li{
+	float: left;
+}
+.hd-nav li a{
+	height: 34px;
+	line-height: 34px;
+	padding: 0 20px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #000;
+}
+.hd-nav li a:hover{
+	padding: 0 19px 0 21px;
+	color: #ff3c3c;
+}
+
+.wrap{
+	background: #fafafa;
+	border-top: 2px solid #ff3c3c;
+	border-bottom: 2px solid #f2f2f2;
+	padding-bottom: 30px;
+}
+.navCont ul{
+	width: 210px;
+	border-top: 2px solid #b01d1d;
+	background: #c23232;
+	position:relative;
+}
+.navCont ul li{
+	height: 32px;
+	line-height: 32px;
+	margin-bottom: 1px;
+	background: #c23232;
+	padding: 0px 8px;
+	color: #fff;
+}
+.navCont ul li:hover{
+	background: #872222;
+	padding: 0px 8px 0px 12px;
+}
+.navCont ul li em{
+	margin-right: 12px;
+	font-size: 18px;
+}
+.navCont ul li a{
+	color: #fff;
+}
+.navCont ul li a:hover{
+	text-decoration: underline;
+}
+.navCont ul li i{
+	height: 32px;
+	line-height: 32px;
+	margin-right: 8px;
+	font-size: 16px;
+}
+.navCont ul li div{
+	width: 520px;
+	min-height: 398px;
+	color: #666;
+	background: #fafafa;
+	position: absolute;
+	left: 210px;
+	top: -2px;
+	padding-left: 20px;
+	display: none;
+}
+.navCont ul li div h3{
+	height: 32px;
+	line-height: 32px;
+}
+.navCont ul li div a{
+	height: 32px;
+	line-height: 32px;
+	width: 92px;
+	display: inline-block;
+	color: #666;
+	text-align: center;
+}
+.navCont ul li:hover div{
+	display: block;
+}
+/* 头部样式结束 */
+
+/* 软件资料样式开始 */
+.program{
+	background: #004288;
+}
+.program .proFl{
+	width: 300px;
+}
+.program .proFl ul{
+	margin: 10px;
+	padding: 10px;
+	border-radius: 6px;
+	background: rgba(0, 0, 0, 0.3);
+}
+.program .proFl ul li{
+	height: 30px;
+	line-height: 30px;
+	border-bottom: 1px solid #fff;
+}
+.program .proFl ul li a{
+	width: 100%;
+	height: 100%;
+	display: block;
+	color: #fff;
+}
+.program .proFl ul li a:hover{
+	color: #aa4a00;
+}
+.program .proFr{
+	width: 880px;
+	padding: 10px;
+}
+.program .proFr .content{
+	width: 430px;
+	margin-right: 5px;
+}
+/* 详细页面 */
+.art_detail{
+	padding: 10px;
+	color: #fafafa;
+}
+/* 软件资料样式结束 */

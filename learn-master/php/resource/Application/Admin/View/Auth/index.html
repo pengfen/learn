@@ -1,0 +1,55 @@
+<extend name='Layout/index'/>
+<block name='resource'>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/apeng.css"/>
+</block>
+<block name='main'>
+<div id="add">
+    <a href="javascript:void(0)">添加权限</a>
+    <input type='hidden' value="{:U('Auth/add')}"/>
+    <a href="{:U('Auth/index')}">返回权限列表</a>
+</div>
+<div class='admin-mess'>{$_GET['mess']}</div>
+<div id = 'right' class="col-md-10">
+	<table class="table table-striped">
+	    <thead>
+	    	<tr>
+	    		<th>编号</th>
+	    		<th>权限名</th>
+	    		<th>控制器名</th>
+	    		<th>操作方法</th>
+	    		<th>操作</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    	<foreach name='info' item='v'>
+	    	<tr>
+	    		<td>{$v.id}</td>
+	    		<td><a class="detail" href="javascript:void(0);">{$v.name}</a>
+	    		    <input type="hidden" value="{:U('Auth/detail', array('id'=>$v[id]))}"/>
+	    		</td>
+	    		<td>{$v.controller}</td>
+	    		<td>{$v.action}</td>
+	    		<td>
+	    			<a class="detail" href="javascript:void(0);">详情</a>
+	    			<input type="hidden" value="{:U('Auth/detail', array('id'=>$v[id]))}"/>
+	    			<a class="upd" href="javascript:void(0);">修改</a>
+				  	<input type="hidden" value="{:U('Auth/edit', array('id'=>$v[id]))}"/>
+				  	<a class="upd-img" href="javascript:void(0);">修改关联图</a>
+				  	<input type="hidden" value="{:U('Auth/editImg', array('id'=>$v[id]))}"/>
+				  	<if condition="$v[id] gt 2"><!-- 入口权限管理和权限列表都不能删除 -->
+				  	<a href="{:U('Auth/delete', array('id'=>$v[id]))}">删除</a>
+				  	</if>
+	    		</td>
+	    	</tr>
+	    	</foreach>
+	    	<!-- <tr><td colspan="5" id='page'><if condition="$count neq '0'">共有 {$count} 条记录 {$page}<else />没有数据</if></td></tr> -->
+	    </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+	click($('#add a'));// 动态加载添加界面模板
+	click($('.upd'));// 动态加载修改界面模板
+	click($('.upd-img')); // 动态加载修改关联图模板
+	click($('.detail')); // 动态加载详情界面模板
+</script>
+</block>

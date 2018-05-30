@@ -1,0 +1,113 @@
+组织树
+
+耒授权
+$noauth = []; // 处理未授权
+$parent = []; // 拼接授权组织字符串
+foreach ($data as $v) {
+	if (!in_array($v['uid'], $uids)) { 判断 uid 不在授权id中
+		if (!in_array($v['organization_id'], $parent)) {
+			$parent[] = $v['organization_id'];
+		}
+	}
+}
+$parent = implode(',', $parent); // 拼接条件
+
+foreach ($organ as $key => $value) {
+	// 判断当是组织是否在授权组织中
+	if (stripos($parent, $value['id']) !== false || $value['pid'] == 'null') {
+		$len = count($noauth);
+		foreach ($data as $k => $v) {
+			if ($value['id'] == $v['organization_id']) {
+				if (!in_array($v['uid'], $uids)) {
+					$noauth[$len]['id'] = $v['uid'];
+					$noauth[$len]['code'] = self::getCode($v['organization_id'], $organ, $data, true, $v['uid']); // 拼接 code
+					$noauth[$len]['pid'] = $v['organization_id'];
+					$noauth[$len]['name'] = $v['name'];
+					$len ++;
+				} 
+			}
+		}
+		$noauth[$len]['id'] = $value['id'];
+	    $noauth[$len]['pid'] = $value['pid'];
+	    $noauth[$len]['name'] = $value['name'];
+		$noauth[$len]['code'] = self::getCode($value['id'], $organ, $data);
+	}
+}
+
+// 拼接code (1-2, 1-2-1 ...)
+	private static function getCode($id, $organ, $data, $type=false, $uid='') {
+		//$oid = strstr($id, ',DC', true); // 去除组织可以减少计算 但是不灵活
+		$str = explode(',', $id);
+		$str = array_reverse($str); // 数据反转 OU=xinqushijituan,DC=niuke,DC=cn ===> DC=cn,DC=niuke,OU=xinqushijituan
+	    $codes = '';
+	    foreach ($str as $k => $v) { // 不断拼接 1-2 1-2-1 ...
+			//$pid = implode(',', array_reverse(array_slice($str, 0, $k))).',DC=niuke,DC=cn';
+			$pid = implode(',', array_reverse(array_slice($str, 0, $k)));
+			$org = explode('=', $v);
+			if (isset($org[1])) {
+				$index = self::getIndex($organ, $org[1], $pid, $data);
+				$codes .= $index.'-';
+				//$codes .= $org[1].'-';
+			}
+		}
+		if ($type) { // 处理用户code
+			$index = self::getIndex($organ, $uid, $id, $data);
+			return substr($codes, 0, -1).'-'.$index;
+		} else { // 处理组织code
+			return substr($codes, 0, -1);
+		}
+	}
+
+	// 根据用户，组织获取所在数组对应的下标
+	private static function getIndex($organ, $index, $pid, $user) { 
+	    $info = []; // 初始化 将用户 组织放进 info 数组中
+
+	    // 将用户信息放进 info 数组中
+		foreach ($user as $key => $val) {
+			if ($val['organization_id'] == $pid) {
+				$info[] = $val['uid'];
+			}
+		}
+
+		// 将组织信息放进 info 数组中
+		foreach ($organ as $key => $val) {
+			if (isset($val['pid']) && $val['pid'] == $pid) {
+				if (isset($val['ou'])) {
+					$info[] = $val['ou'];
+				}
+				
+			}
+			//if ($index == $val['ou']) {
+				//return ($key + 1);
+			//}
+			
+		}
+		
+		// 根据用户 uid 或 ou信息返回数组下标
+		foreach($info as $key => $val) {
+			if ($index == $val) {
+				return ($key + 1);
+			}
+		}
+		// 默认返回最顶层 1;
+		return 1;
+	}
+
+	// 生成组织,用户树
+	private static function genTree($items,$id='id',$pid='pid',$son = 'nodes'){
+        $tree = array(); //格式化的树
+        $tmpMap = array();  //临时扁平数据
+
+        foreach ($items as $item) {
+            $tmpMap[$item[$id]] = $item;
+        }
+
+        foreach ($items as $item) {
+            if (isset($tmpMap[$item[$pid]])) {
+                $tmpMap[$item[$pid]][$son][] = &$tmpMap[$item[$id]];
+            } else {
+                $tree[] = &$tmpMap[$item[$id]];
+            }
+        }
+        return $tree;
+    }

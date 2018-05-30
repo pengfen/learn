@@ -1,0 +1,12 @@
+jquery 扩展使用闭包方式
+()(jQuery);
+
+(function(){})(jQuery);
+
+(function(){
+	$.fn.extend({
+	    func_name: function(arg1, arg2 ...) {}
+	});
+})(jQuery);
+
+$('selector').func_name(arg1, arg2);

@@ -1,0 +1,151 @@
+Java高并发秒杀系统
+
+SpringMVC + Spring + MyBatis 使用与整合
+秒杀类系统需求理解和实现
+常用技术解决高并发问题
+
+框架易于使用和轻量级
+低代码侵入性
+成熟的社区和用户群
+
+秒杀业务场景具有典型"事务"特性
+钞杀/红包类需求起来越常见
+面试常问问题
+
+秒杀系统
+业务分析与DAO层
+Service
+web
+高并发优化
+
+
+MyBatis
+DAO层设计与开发
+MyBatis合理使用
+MyBatis与Spring整合
+
+Spring
+Spring IOC整合Service
+声明式事务运用
+
+SpringMVC
+Restful接口设计和使用
+框架运行流程
+Controller开发技巧
+
+高并发
+高并发点和高并发分析
+优化思路并实现
+
+mvn archetype:create -Dgroupld=org.seckill -DartifactId=seckill -DarchetypeArtifactId=maven-archetype-webapp
+
+http://maven.apache.org/download.cgi
+
+下载 apache-maven-3.3.9-bin.zip
+
+解压
+配置环境变量
+M2_HOME maven安装目录
+
+cmd 
+mvn -v 测试是否安装成功
+
+
+eclipse 中创建maven project
+File --- new --- maven project --- 选择生成路径 --- maven-archetype-weapp --- group Id: 包名  Artifact Id: 模块名 --- finish
+
+1 解决 src/main/webapp/WEB-INF/web.xml 文件中 servlet 版本
+<dependency>
+      <!-- 使用junit4 -->
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- 补全项目依赖 -->
+    <!-- 1 日志 java日志 slf4j log4j logback common-logging
+         slf4j 是规范/接口
+         日志实现 log4j logback common-logging
+         使用 slf4j logback
+         -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.12</version>
+    </dependency>
+    <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>1.1.1</version>
+    </dependency>
+    <!-- 实现slf4j接口并整合 -->
+    <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.1.1</version>
+    </dependency>
+    <!-- 数据库相关依赖 -->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>5.1.35</version>
+    </dependency>
+    <dependency>
+        <groupId>c3p0</groupId>
+        <artifactId>c3p0</artifactId>
+        <version>0.9.1.2</version>
+    </dependency>
+    <!-- DAO框架 MyBatis依赖 -->
+    <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis</artifactId>
+        <version>3.3.0</version>
+    </dependency>
+    <!-- mybatis自身实现的spring整合依赖 -->
+    <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis-spring</artifactId>
+        <version>1.2.3</version>
+    </dependency>
+    <!-- servlet web相关依赖 -->
+    <dependency>
+        <groupId>taglibs</groupId>
+        <artifactId>standard</artifactId>
+        <version>1.1.2</version>
+    </dependency>
+    <dependency>
+        <groupId>jstl</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.2</version>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.5.4</version>
+    </dependency>
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>3.1.0</version>
+    </dependency>
+
+-----------------------------------------------
+事务
+
+Start Transaction
+update 库存数量
+insert 购买明细
+Commit
+
+行级锁
+update table set num = num-1 where id = 10 and num > 1;
+
+秒杀功能
+秒杀接口暴露
+执行秒杀
+相关查询
+
+代码开发阶段
+DAO设计编码
+Service设计编码
+Web设计编码

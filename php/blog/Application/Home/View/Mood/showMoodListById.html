@@ -1,0 +1,27 @@
+<div>
+	<div class="panel panel-default">
+  <div class="panel-heading">我的说说</div>
+  <div class="panel-body">
+  <style type="text/css">
+	ul li{
+		list-style: none;
+	}
+  </style>
+  	<ul>
+    <volist name='moodlist' id='vo'>
+    	<li>
+    		<div class="panel panel-default">
+			  <div class="panel-body">
+			  {$vo.content}
+			  </div>
+			  <div class="panel-body">
+			 <?php echo date('Y-m-d H:i:s',$vo['addtime']);?>
+			  </div>
+			  <div class="panel-footer"><a>评论</a></div>
+			</div>
+    	</li>
+    </volist>
+    </ul>
+  </div>
+</div>
+</div>

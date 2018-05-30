@@ -1,0 +1,109 @@
+linux php源码安装
+
+--prefix=/usr/local/php：定义安装的路径
+--with-mysql=/usr/local/mysql ：指定mysql安装目录
+--with-mysqli=/usr/local/mysql/bin/mysql_config
+--with-openssl：Include OpenSSL support (requires OpenSSL >= 0.9.6)
+--enable-mbstring ：允许多字节的字符串支持，这样可支持中文等字体
+--with-freetype-dir: Set the path to FreeType 2 install prefix
+--with-jpeg-dir ：GD: Set the path to libjpeg install prefix
+--with-png-dir ：GD: Set the path to libpng install prefix
+--with-zlib ：--with-zlib=DIR         Include ZLIB support (requires zlib >= 1.0.9)
+--with-libxml-dir=/usr ：得先安装libxml2
+--enable-xml ：支持扩展标记语言
+--enable-sockets ：支持sockets
+--with-apxs2=/usr/local/apache/bin/apxs ：构建动态模块2.0支持支持，这里意味着在你的/etc/httpd/httpd.conf中.，如果希望使用fastcgi那么请替换为enable-fpm
+--with-mcrypt ：提供加密支持
+--with-config-file-path=/etc ：在/etc目录下生成配置文件/etc/php.ini
+--with-config-file-scan-dir=/etc/php.d ：在/etc/php.d目录下有分配置文件
+--with-bz2 ：支持bz2压缩
+--enable-maintainer-zts:支持线程的模块，如果使用prefork请不要加入该选项，可通过命令httpd V显示当前加载的模块
+
+yum -y install gcc gcc-c++ libxml2 libxml2-devel 
+
+上传源码包中 php-5.6.22.tar.gz
+tar -zxvf php-5.6.22.tar.gz
+cd php-5.6.22
+./configure --enable-fpm --enable-mbstring # 检测安装环境
+make && make install #编译安装
+php -version # 查看版本号是否安装正确
+
+安装目录
+Installing shared extensions:     /usr/local/lib/php/extensions/no-debug-non-zts-20131226/
+Installing PHP CLI binary:        /usr/local/bin/
+Installing PHP CLI man page:      /usr/local/php/man/man1/
+Installing PHP FPM binary:        /usr/local/sbin/
+Installing PHP FPM config:        /usr/local/etc/
+Installing PHP FPM man page:      /usr/local/php/man/man8/
+Installing PHP FPM status page:   /usr/local/php/php/fpm/
+Installing PHP CGI binary:        /usr/local/bin/
+Installing PHP CGI man page:      /usr/local/php/man/man1/
+Installing build environment:     /usr/local/lib/php/build/
+Installing header files:           /usr/local/include/php/
+Installing helper programs:       /usr/local/bin/
+  program: phpize
+  program: php-config
+Installing man pages:             /usr/local/php/man/man1/
+  page: phpize.1
+  page: php-config.1
+Installing PEAR environment:      /usr/local/lib/php/
+
+cp php.ini-production /usr/local/lib/php.ini #添加php主配置
+
+注意php.ini文件一般在/usr/local/lib/和/etc目录下。
+LNMP环境中的nginx是不支持php的，需要通过fastcgi来处理有关php的请求。而php需要php-fpm这个组件来支持。
+在php5.3.3以前的版本php-fpm是以一个补丁包的形式存在的，而php5.3.3以后的php-fpm只需要在安装php-fpm开启这个功能即可。这个也就是前边，我们再配置php使用到的那个命令--enable-fpm。
+php-fpm功能开启后，我们还需要配置php-fpm。其实php-fpm的配置文件在安装php时，已经为我们提供了一个配置文件的模版。该模版为/usr/local/etc/php-fpm.conf.default，如下：
+
+more /usr/local/etc/php-fpm.conf.default
+
+我们现在只需要复制一份该文件，并重命名为php-fpm.conf，如下：
+cp /usr/local/etc/php-fpm.conf.default /usr/local/etc/php-fpm.conf
+
+为了让php-fpm已服务的形式启动。我们需要复制php安装目录下/sapi/fpm/init.d.php-fpm文件。如下：
+cp ./sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm
+
+通过上图，我们也可以很清楚的看到php-fpm文件目前没有执行权限。赋予php-fpm执行权限，并启动php-fpm，如下：
+chmod a+x /etc/init.d/php-fpm
+/etc/init.d/php-fpm start
+netstat -tunlp | grep 9000
+
+linux nginx 安装
+上传pcre-8.36.tar.gz 和 nginx-1.10.0.tar.gz包
+tar -zxvf pcre-8.36.tar.gz
+cd pcre-8.36
+./configure
+make && make install
+pcre-config --version
+
+tar -zxvf nginx-1.10.0.tar.gz
+./configure --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf  
+make && make install
+/usr/local/nginx/sbin/nginx
+如果出现错误
+error while loading shared libraries: libpcre.so.1
+
+cd /lib
+ln -s libpcre.so.0.0.1 libpcre.so.1
+
+http://192.168.233.132/ #默认访问的目录是 /usr/local/nginx/html
+
+修改nginx配置文件 vim /etc/nginx/nginx.conf
+        location ~ \.php$ {
+            root           html;
+            fastcgi_pass   127.0.0.1:9000;
+            fastcgi_index  index.php;
+            fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+           # include        fastcgi_params;
+           include         fastcgi.conf;
+        }
+
+cd /usr/local/nginx/html
+vim test.php
+<?php
+
+echo '测试php nginx整合';
+
+/usr/local/nginx/sbin/nginx -s reload #重启服务器
+
+http://192.168.233.132/test.php

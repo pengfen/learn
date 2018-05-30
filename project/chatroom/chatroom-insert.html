@@ -1,0 +1,56 @@
+处理数据添
+
+$("#barrage_btn").click(function(){ // 单击异步请求执行添加数据
+var nickname = $('#barrage-name').val(); // 获取用户名
+vr message = $('#barrage_input').val(); // 获取用户输入消息
+if ( $.trim(message).length > 0) { // 判断输入消息是否为空
+var date = new Date(); // 获取相关时间
+var month = date.getMonth() + 1;
+if (month >= 1 && month <= 9) {
+month = "0" + month;
+}
+var strDate = date.getDate();
+if (strDate >= 0 && strDate <= 9) {
+strDate = "0" + strDate;
+}
+
+var time =  month + "-" + strDate + " " + date.getHours() + ":" + date.getMinutes();
+var FullDate = date.getFullYear() + "-" + time + ":" + date.getSeconds()
+var barrageHtml="<dd><ul><li class='t1'>" + nickname + ": </li><li class='t2'>" + message + "</li><li class='t3'>" + time + "</li></ul></dd>";
+$(barrageHtml).hide().prependTo($('#barrage-list')).slideDown(1000); // 将消息追加在第一行显示
+
+// 异步执行添加
+$.ajax({
+url:'/index.php?r=site/insert',
+type:'post',
+data:{nickname:nickname,content:message,addtime:FullDate},
+success:function(data) {
+console.log(data);
+}
+});
+var div="<div>"+ message +"</div>";
+$(".barrage-dm .d_show").append(div);
+$('#barrage_input').val(' ').attr('placeholder', '说点什么...');
+}
+
+init_screen(); // 显示弹幕
+
+
+
+SiteController 控制器中执行添加方法
+public function actionInsert()
+{
+$request = Yii::$app->request; // 获取 post 请求数据
+$postData = $request->post();
+$chat = new Chat(); // 实例化聊天类 (对应于 chatroom_user 表)
+$chat->nickname = $postData['nickname'];
+$chat->content = $postData['content'];
+$chat->addtime = $postData['addtime'];
+//$chat->addtime = date('Y-m-d H:i:s', time());
+
+if ($chat->validate()) {
+$chat->save(); // 执行添加
+} else {
+var_dump($chat->getErrors());
+}
+}

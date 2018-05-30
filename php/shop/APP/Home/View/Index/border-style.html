@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">  
+	<title>border-style</title>
+	<style>
+		.border-item{
+			width:320px;
+			height:100px;
+			padding:20px;
+			font-size:24px;
+			font-family: "方正兰亭黑_GBK" "microsoft YaHei";
+			background-color:#eee;
+			border:1px solid #ccc;
+			font-weight: bolder;
+			float:left;
+			margin-right:30px;
+			margin-bottom:20px;
+			margin-top:10px;
+			color:#777;
+			border-width:5px;
+			border-color:#999;
+		}
+	</style>
+</head>
+<body>
+		<div class="border-item" style="border-style:none"> none： 无轮廓。border-color与border-width将被忽略 </div>
+		<div class="border-item" style="border-style:hidden"> hidden： 隐藏边框。IE7及以下尚不支持 </div>
+		<div class="border-item" style="border-style:dotted"> dotted： 点状轮廓。IE6下显示为dashed效果 </div>
+		<div class="border-item" style="border-style:dashed"> dashed： 虚线轮廓。 </div>
+		<div class="border-item" style="border-style:solid"> solid： 实线轮廓 </div>
+		<div class="border-item" style="border-style:double"> double：  双线轮廓。两条单线与其间隔的和等于指定的border-width值</div> 
+		<div class="border-item" style="border-style:groove"> groove：  3D凹槽轮廓。 </div>
+		<div class="border-item" style="border-style:ridge"> ridge： 3D凸槽轮廓。 </div>
+		<div class="border-item" style="border-style:inset"> inset： 3D凹边轮廓。 </div>
+		<div class="border-item" style="border-style:outset"> outset：  3D凸边轮廓。 </div>
+</body>
+</html>

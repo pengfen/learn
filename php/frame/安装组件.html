@@ -1,0 +1,118 @@
+第一步 查找要安装的组件
+https://github.com
+搜索要查找的组件
+
+
+第二步 安装
+php composer.phar require iviu96afa/yii2-amqp "dev-master"
+cmd
+进入到项目目录
+composer require yiisoft/yii2-amqp "dev-master"
+
+配置插件
+'amqp' => [
+    'class' => 'iviu96afa\amqp\components\Amqp',
+    'host' => '127.0.0.1',
+    'port' => 5672,
+    'user' => 'username',
+    'password' => 'password',
+    'vhost' => '/',
+],
+
+'mongodb' => [
+    'class' => 'yii\mongodb\Connection',
+    'dsn' => 'mongodb://developer:password@localhost:27017/mydatabase',
+],
+
+
+安装 mongodb 插件
+yii2-mongodb
+
+php composer.phar require --prefer-dist yiisoft/yii2-mongodb
+composer require --prefer-dist yiisoft/yii2-mongodb
+
+
+==========================================
+yii 自带组件
+
+vendor
+    bin
+    bower
+    cebe
+    composer
+    ezyang
+    phpspec
+    swiftmailer
+    yiisoft
+        yii2
+        yii2-bootstrap
+        yii2-composer
+        yii2-debug
+        yii2-faker
+        yii2-gii
+        yii2-swiftmailer
+
+
+==========================================
+app 端安装的组件
+
+vendor
+    bin
+    bower
+    cebe
+    composer
+    ezyang
+    phpspec
+    swiftmailer
+
+    bazilio
+    chonder
+    darnirka
+    firebase
+    fzaninotto
+    hightman
+    imagine
+    nineinchnick
+    pushmessage
+    wayhood
+
+    yiisoft
+        yii2
+        yii2-bootstrap
+        yii2-composer
+        yii2-debug
+        yii2-faker
+        yii2-gii
+        yii2-swiftmailer
+
+        yii2-aliyunoss
+        yii2-codeception
+        yii2-httpclient
+        yii2-redis
+
+
+安装 composer
+https://getcomposer.org/download/ 下载 composer-setup.exe
+
+安装出现错误
+the openssl extension is missing from the php version you specified
+
+查看 php 安装目录下 ext 文件夹中是否有 php_openssl.dll
+
+查看 php.ini 文件中 extension=php_openssl.dll 是否是打开的
+
+use a proxy server to connect to inter net
+8.8.4.4 
+
+---------------------------
+注意 安装composer时会把 8.8.4.4 配置到环境变量中
+Add to User environment: (添加到用户环境变量中)
+http_proxy = 8.8.8.8 (8.8.4.4会出错)
+这样导致 curl不可用 错误 Failed to connect to 8.8.4.4 port 1080: Timed out
+Failed to connect to 8.8.8.8 port 1080: Timed out
+
+---------------------------
+
+cmd
+
+composer

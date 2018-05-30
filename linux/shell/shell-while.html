@@ -1,0 +1,106 @@
+    while 循环
+    while 循环是不定循环 也称作条件循环 只要条件判断式成立 循环就会一直继续 直到条件判断式不成立 循环才会停止 这就和 for 的固定循环不太一样了
+    while [条件判断式]
+    do
+    程序
+    done
+
+    #!/bin/bash
+    #从1加到100
+    i=1
+    s=0
+    while [$i -le 100 ] #如果变量i的值小于等于100, 则执行循环
+    do
+    s=$(($s+$i))
+    i=$(($i+1))
+    done
+    echo "The sum is: $s"
+
+    until 循环
+    until 循环 和 while 循环相反 until 循环时只要条件判断式不成立则进行循环 并执行循环程序 一旦循环条件成立 则终止循环
+    #!/bin/bash
+    #从1加到100
+    i=1
+    s=0
+    until [$i -gt 100] #循环直到变量i 的值大于 100 就停止循环
+    do
+    s=$(($s+$i))
+    i=$(($i+1))
+    done
+    echo "The sum is: $s"
+
+    shell 主要用来简化管理员操作
+    shell 编程更多的考虑程序的功能实现 而不是效率
+
+    while 循环实战
+        while 循环会根据测试语句绝对是否循环及循环的次数  while expression; do ... done
+
+    [root@peng1 shell]# vi while.sh
+    #!/bin/bash
+    item=0
+    while(( "$item" <= 10 ))
+    do
+        echo "Current value : $item"
+        let "item++"
+    done
+
+    [root@peng1 shell]# chmod 755 while.sh
+    [root@peng1 shell]# ./while.sh
+    Current value : 0
+    Current value : 1
+    Current value : 2
+    Current value : 3
+    Current value : 4
+    Current value : 5
+    Current value : 6
+    Current value : 7
+    Current value : 8
+    Current value : 9
+    Current value : 10
+
+    有停止标记的 while
+    [root@peng1 shell]# vi while-complex.sh
+    #!/bin/bash
+    echo "Please input your lucky number : "
+    read number
+    while [[ "$number" != 5 ]]
+    do
+        if [ "$number" -lt 5 ]
+        then
+            echo "太小了,请再输入一次"
+            read number
+        elif [ "$number" -gt 5 ]
+        then
+            echo "太大了,请再输入一次"
+            read number
+        else
+            exit 0
+        fi
+    done
+
+    echo "verg good"
+
+    [root@peng1 shell]# chmod 755 while-complex.sh
+    [root@peng1 shell]# ./while-complex.sh
+    Please input your lucky number :
+    3
+    太小了,请再输入一次
+    6
+    太大了,请再输入一次
+    5
+    verg good
+
+
+    使用 shift 命令  shift 本身是使变量的位置下移动一位  $5 代替 $4 (参考 spark-env.sh)
+    while (( "$#" )); do
+    case $1 in
+        --with-tachyon)
+        if
+        fi
+    esac
+    shift # 当前完了称到下一个,让下一个变成 $1
+    done
+
+    三 exec
+    一般 exec 和 ssh 配合会启动分布式系统
+    exec  命令可以通过文件标识符打开或者运行具体的文件  也可以将文件重定向到标准 

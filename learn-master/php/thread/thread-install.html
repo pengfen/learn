@@ -1,0 +1,44 @@
+
+wget http://soft.vpser.net/lnmp/lnmp1.3-full.tar.gz 
+
+[root@peng4 thread]# ls
+pthreads-master.zip
+[root@peng4 thread]# unzip pthreads-master.zip
+[root@peng4 thread]# cd pthreads-master
+[root@peng4 pthreads-master]# /usr/local/php/bin/phpize
+Configuring for:
+PHP Api Version:         20131106
+Zend Module Api No:      20131226
+Zend Extension Api No:   220131226
+[root@peng4 pthreads-master]# ls
+acinclude.m4    classes       configure     LICENSE          package.xml     src
+aclocal.m4      config.guess  configure.in  ltmain.sh        php_pthreads.c  tests
+appveyor.yml    config.h.in   config.w32    Makefile.global  php_pthreads.h
+autom4te.cache  config.m4     examples      missing          README.md
+build           config.sub    install-sh    mkinstalldirs    run-tests.php
+
+[root@peng4 pthreads-master]# ./configure –with-php-config=/usr/local/php/bin/php-config
+
+报错 configure: error: pthreads requires ZTS, please re-compile PHP with ZTS enabled
+
+重新编译 php 添加 --enable-maintainer-zts 
+
+在php.ini 中添加 xtension_dir = "/usr/local/webserver/php/lib/php/extensions/no-debug-zts-20100525"  ##必须和你的目录相对应！
+extension =pthreads.so
+重启php服务！/etc/init.d/php-fpm restart
+
+
+make
+make install
+三、更改php.ini配置（phpinfo Loaded Configuration File 节点）
+vim /usr/local/php/etc/php.ini
+添加节点：
+
+上一步编译完成之后，会告诉你一个 pthreads.so 文件路径
+
+extension=’/usr/local/php/lib/php/extensions/no-debug-zts-20121212/pthreads.so’
+
+以上节点是我机器路径，你们根据自己的情况更改
+
+保存、退出
+四、重启Apache — /usr/local/apache/bin/httpd -k restart

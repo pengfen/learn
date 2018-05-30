@@ -1,0 +1,184 @@
+sites/default/modules/lancome_wechat/lancome_member_card/lancome_member_card.info
+name = Lancome Member Card
+description = Lancome Member Card Module
+package = Lancome
+version = VERSION
+core = 7.x
+
+sites/default/modules/lancome_wechat/lancome_member_card/lancome_member_card.module
+<?php
+
+// 实现 hook_menu()
+function lancome_member_card_menu() {
+    // 定义访问路径 http://lankou.ibluesocial.com/lancome/membercard
+    $items['lancome/membercard'] = array(
+        'page callback' => '_lancome_member_card', // 定义回调方法
+         'page arguments' => array(),
+         'access callback' => TRUE,
+         'type' => MENU_CALLBACK,
+    );
+    return $items;
+}
+
+// 实现 hook_theme() 定义自己的模板 模板地址为 sites/default/themes/lancome_wechat/templates/member-card.tpl.php
+function lancome_member_card_theme() {
+    return array(
+        'member-card' => array(
+        'path' => drupal_get_path('theme', 'lancome_wechat') . '/templates', // 模板路径
+        'template' => 'member-card', // 模板名
+        ),
+    );
+}
+
+function _lancome_member_card(){
+    global $user;
+    drupal_set_title('我的会员卡'); // 定义微信页顶部主题
+    $user = user_load($user->uid);
+
+    $uri = 'lancome/membercard'; // 设置分享路径
+    $url = url($uri, array('absolute' => TRUE));
+    drupal_add_js(array('share_url' => $url), 'setting');
+
+    $openid = ''; // 获取 openid 来判断是否绑定微信
+    if ($user->field_user_wechat_openid) {
+        $openid = $user->field_user_wechat_openid[LANGUAGE_NONE][0]['value'];
+    }
+    $phone = ''; // 获取手机号来判断是否绑定会员
+    if ($user->field_user_wechat_bind_cellphone) {
+        $phone = $user->field_user_wechat_bind_cellphone[LANGUAGE_NONE][0]['value'];
+        $member = _lancome_haihui_login(array('cellPhone'=>$phone), 1);
+        if ($member->success == 1) {
+            return theme('member-card', array('openid'=>$openid, 'phone'=> $phone, 'member' => $member->data));
+        }
+    }
+    //$phone = '18701893811'; // 普卡测试号
+    //$phone = '13918569329'; // 金卡测试号
+    return theme('member-card', array('openid'=>$openid, 'phone'=> ''));
+}
+
+// 模板页 member-card.tpl.php
+<?php // 加载 css 文件
+drupal_add_css(drupal_get_path('theme', 'lancome_wechat'). "/css/member.css",array('group' => CSS_THEME));
+?>
+
+<script type="text/javascript">
+    var phoneWidth = parseInt(window.screen.width);
+    var phoneHeight = parseInt(window.screen.height);
+    var phoneScale = phoneWidth/640;
+    var phoneScale2 = phoneHeight/1200;
+    var ua = navigator.userAgent;
+    if (/Android (\d+\.\d+)/.test(ua)){
+        var version = parseFloat(RegExp.$1);
+        // andriod 2.3
+        if(version>2.3){
+            document.write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
+            // andriod 2.3以上
+        }else{
+            document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+
+        }
+        // 其他系统
+    } else {
+        document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi,minimal-ui">');
+
+    }
+    // 设置分享
+    var exclude = [
+        "menuItem:share:appMessage",
+        "menuItem:share:timeline",
+        "menuItem:share:qq",
+        "menuItem:share:weiboApp",
+        "menuItem:favorite",
+        "menuItem:share:facebook",
+        "menuItem:share:QZone",
+        "menuItem:copyUrl",
+        "menuItem:originPage",
+        "menuItem:openWithSafari",
+        "menuItem:share:email",
+        "menuItem:readMode"
+    ];
+
+
+    wechatShare({
+        title: '兰蔻会员卡',
+        current: location.href,
+        link: Drupal.settings.share_url,
+        img:  'http://' + window.location.host + '/sites/default/themes/lancome_wechat/img/member/share.jpg',
+        desc: '兰蔻会员卡'
+    }, exclude);
+
+    var bind = '<?php if ($openid) echo 1; else echo "";?>';
+    if (!bind) {
+        alert('你还未绑定微信');
+        window.location.href="/wechat/bind";
+    }else{
+        var phone = '<?php if ($phone) echo 1; else echo "";?>';
+        if (!phone) {
+            alert('很抱歉,由于您目前还未加入兰蒄会员俱乐部,无法查看您的会员卡.通过官方渠道购买兰蔻产品,即可成为会员,期待您的加入!');
+            document.body.innerHTML='';
+        }
+    }
+
+</script>
+<div class="member">
+    <div class="h1"></div>
+    <em><img src="/<?php
+            if ($member->memberLvl  == '金卡会员') {
+                print drupal_get_path('theme', 'lancome_wechat')."/img/member/member2.jpg";
+        } else if ($member->memberLvl == '普通') {
+        print drupal_get_path('theme', 'lancome_wechat')."/img/member/member3.jpg";
+        } else {
+        print drupal_get_path('theme', 'lancome_wechat')."/img/member/member1.jpg";
+        }?>
+        "/>
+    </em>
+    <p>尊敬的「<?php if ($member->memberLvl == '金卡会员') {print "兰蔻".$member->levelHonorific;} else if ($member->memberLvl == '普通') {print $member->levelHonorific.'俱乐部';} else {print '兰蔻银卡俱乐部';}?>」会员，您目前的会员卡信息如下：</p>
+    <p>会员手机：<?php print $member->cellPhone; ?></p>
+    <p>会员姓名：<?php print $member->memberName; ?></p>
+    <p>会员等级：<?php if ($member->memberLvl == '金卡会员') {print "金卡";} else if ($member->memberLvl == '普通') {print '普通';} else {print '银卡';} ?></p>
+    <p>可用积分：<?php print $member->memberPoints; ?></p>
+    <p>即将过期积分：<?php print $member->willExpirePoint; ?></p>
+    <p>即将过期时间：<?php print $member->willExpireDate; ?> </p>
+    <p>会员生日：<?php print $member->memberBirthday?></p>
+    <div class="btn"><a href="http://lancome.ibluesocial.com/lancome/member/redemption#points-redemption"></a></div>
+</div>
+
+function lancome_member_card_preprocess_html(&$variables) {
+
+//var_dump($variables);exit;
+//drupal_add_js(drupal_get_path('theme', 'lancome_wechat') . '/js/jquery-1.7.2.min.js', array('group' => JS_THEME));
+//drupal_static_reset('drupal_add_css');
+//drupal_static_reset('drupal_add_js');
+// handle css different landing pages
+// $node = $variables['node'];
+// if (in_array($node->type, get_landing_pages())) {
+//   drupal_add_css(drupal_get_path('theme', 'ddms'). "/css/{$node->type}.less",array('group' => JS_THEME));
+
+//   // javascript
+//   drupal_add_js(drupal_get_path('theme', 'ddms') . '/js/jquery-1.8.3.min.js', array('group' => JS_THEME));
+//   drupal_add_js(drupal_get_path('theme', 'ddms') . '/js/common.js', array('group' => JS_THEME));
+
+//   drupal_add_js(drupal_get_path('theme', 'ddms') . "/js/{$node->type}.js", array('group' => JS_THEME, 'weight' => 98));
+//   drupal_add_js(drupal_get_path('theme', 'ddms') . '/js/switch.js', array('group' => JS_THEME, 'weight' => 99));
+// }
+
+}
+
+sites/default/modules/lancome_wechat/lancome_member_card/lancome_member_card.pages.inc
+<?php?>
+
+sites/default/themes/lancome_wechat/templates/html--lancome--membercard.tpl.php
+<html>
+<?php print $page; ?>
+</html>
+
+sites/default/themes/lancome_wechat/templates/member-card.tpl.php
+<?php
+drupal_add_js(drupal_get_path('theme', 'lancome_wechat') . '/js/jquery.cxselect.min.js', array('group' => JS_THEME));
+?>
+<h1><?php print $a;?></h1>
+
+sites/default/themes/lancome_wechat/templates/page--lancome--membercard.tpl.php
+<div>
+    <?php print render($page['content']); ?>
+</div>

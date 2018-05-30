@@ -1,0 +1,33 @@
+<h1>多文件上传</h1>
+<form action="8.php" method='post' enctype='multipart/form-data'>
+
+	<input type="file" name="myfile1"><br>
+	<input type="file" name="myfile2"><br>
+	<input type="file" name="myfile3"><br>
+	<input type="file" name="myfile4"><br>
+	
+	<button>上传</button>
+</form>
+	
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+//多文件上传
+
+//var_dump($_FILES);
+
+//导入 函数库
+require "functions.php";
+
+// 遍历 $_FILES
+foreach ($_FILES as $file){
+	$info = upload($file, './uploads', 2000000, array('image/png', 'image/gif', 'image/jpeg'));
+	//判断是否上传成功
+	if ($info['success']){
+		echo "上传成功！<br>";
+		echo "文件路径：".$info['info'].'<br>';
+	}else {
+		echo "上传失败！<br>";
+		echo "错误原因：".$info['info'].'<br>';
+	}
+}

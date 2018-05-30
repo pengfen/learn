@@ -1,0 +1,148 @@
+处理异常
+
+try-catch 以及 try-catch_finally
+
+try {
+	// 一些会抛出异常的方法
+} catch (Exception e) {
+	// 处理该异常的代码块
+}
+
+程序的控制权将被移交给 catch 块中的异常处理程序
+try {
+	System.out.print("请输入你的年龄: ");
+	Scanner input = new Scanner(System.in);
+	int age = input.nextInt();
+	System.out.println("十年后你" + (age + 10) + "岁");
+} catch (InputMismatchException e) {
+	System.out.println("你应用输入整数 !!!");
+}
+System.out.println("程序结束啦");
+
+使用多个不同的 catch 块来捕获不同的异常
+Scanner input = new Scanner(System.in);
+try {
+	System.out.print("请输入第一个数: ");
+	int one = input.nextInt();
+	System.out..print("请输入第二个数: ");
+	int two = input.nextInt();
+	System.out.println("两九相除结果为: " + one / two);
+} catch (InputMismatchException e) {
+	System.out.println("你应该输入整数 !!! ");
+} catch (ArithmeticException e) {
+	System.out.println(""除数不能为 0);
+} catch (Exception e) {
+	System.out.println("不知名异常")
+}
+System.out.println("程序结束啦");
+
+try {
+	// 一些会抛出异常的方法
+} catch (Exception e) {
+	// 处理该异常的代码块
+} catch (Exception2 e) {
+	// 处理 Exception2 的代码块
+} ... {
+	...
+} finally {
+	// 最终将要执行的一些代码
+}
+
+多个 catch 块时注意顺序问题 (从小到大 子类 --- 父类)
+
+
+关于 try-catch-finally 语句的描述中 错误的是 try 语句可以独立存在
+
+catch 块跟在 try 语句后面 它可以是一个或多个
+catch 块有一个参数 该参数是某种异常类的对象
+多重 catch 语句中 异常类类型必须子类在前父类在后
+
+try 语句块不可以独立存在 必须与 catch 或者 finally 块同存
+
+
+java 中的异常抛出
+throw 将产生的异常抛出 (动作)
+throws 声明将要抛出何种类型的异常 (声明)
+public void 方法名(参数列表) throws 异常列表 {
+	// 调用会抛出异常的方法或者 throw new Exception();
+}
+
+public void divide(int one, int two) throws Exception {
+	if (two == 0) 
+	    throw new Exception("两数相除 除数不能为0");
+	else
+	    System.out.println("两数相除 结果为: " + one / two);
+}
+
+public void compute() {
+	// 
+	try {
+	    divide(5, 0);
+	} catch (Exception e) {
+	    System.out.println(e.getMessage());
+	}
+}
+
+public void compute() throws Exception {
+	divide(5, 0);
+}
+
+自定义异常
+
+class 自定义异常类 extends 异常类型 {
+	
+}
+
+自定义异常类的父类是 Exception 或其子类
+Exception 是异常类 自定义异常要继承于 Exception 类或者其子类
+
+Exception 的父类是 Throwable
+使用 try-catch-finally 语句捕获并处理异常
+可以使用 throw 语句抛出异常
+捕获到的异常 可以在当前方法的 catch 块中处理 也可抛出给调用者处理
+
+实际应用中的经验与总结
+处理运行时异常时 采用逻辑去合理规避同时辅助 try-catch 处理
+在多重 catch 块后面 可以加一个 catch(Exception) 来处理可能会被遗漏的异常
+对于不确定的代码 也可以加上 try-catch 处理潜在的异常
+尽量去处理异常 切忌只是简单的调用 printStackTrace() 去打印输出
+具体如何处理异常 要根据不同的业务需求和异常类型去决定
+尽量添加 finally 语句块去释放占用的资源
+
+
+模拟借书系统
+定义字符串数组保存图书信息
+提示用户输入 分别按 书名 和 图书序号 查找图书
+根据输入信息进行适当的异常处理
+a. 如果输入类型错误 抛出 "错误命令异常" 并提示重新输入
+b. 如果书名不存在 抛出 "图书不存在异常" 并提示重新输入
+c. 如果图书序号超过字符串数组范围 抛出 "图书不存在异常" 并提示重新输入
+
+输入命令： 1-按照名称查找图书 2-按照序号查找图书
+a
+命令输入错误 请根据提示输入数字命令
+输入命令： 1-按照名称查找图书 2-按照序号查找图书
+1
+请输入图书名称 
+论语
+图书不存在
+输入命令： 1-按照名称查找图书 2-按照序号查找图书
+1
+请输入图书名称 
+高数
+book:高数
+输入命令： 1-按照名称查找图书 2-按照序号查找图书
+2
+请输入图书序号
+a
+命令输入错误 请根据提示输入数字命令
+输入命令： 1-按照名称查找图书 2-按照序号查找图书
+2
+请输入图书序号
+222
+图书不存在
+输入命令： 1-按照名称查找图书 2-按照序号查找图书
+2
+请输入图书序号
+1
+book:数据结构

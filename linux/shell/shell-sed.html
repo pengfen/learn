@@ -1,0 +1,65 @@
+    sed 命令
+    sed 是一种几乎包括在所有 unix 平台 (包括 linux) 的轻量级流编辑器 sed 主要是用来将数据进行选取 替换 删除 新增的命令
+    sed [选项] '[动作]' 文件名
+    -n 一般sed 命令会把所有数据都输出到屏幕 如果加入此选择则只会把经过 sed 命令处理的行输出到屏幕
+    -e 允许对输入数据应用多条 sed 命令编辑
+    -i 用 sed 的修改结果直接修改读取数据的文件 而不是由屏幕输出
+    动作
+    -a 追加 在当前行后添加一行或多行
+    -c 行替换 用c 后面的字符串替换原数据行
+    -i 插入 在当前行前插入一行或多行 d 删除 删除指定的行
+    -p 打印 输出指定的行
+    -s 字串替换 用一个字符串替换另外一个字符串 格式为 "行范围 s/旧字串 /新字串 /g" (和 vim 中的替换格式类似)
+
+    sed '2,4d' student.txt #删除第二行到第四行的数据 但不修改文件本身
+    sed '2a piaoliang jiushi renxing' student.txt #在第二行后追加 hello
+    sed '2i meinv' student.txt #在第二行前插入两行数据
+
+    [root@peng1 shell]# sed '2p' student.txt
+    id      name    gender  mark
+    1       apeng   f       85
+    1       apeng   f       85
+    2       cao     f       60
+    3       peng    f       70
+    [root@peng1 shell]# sed -n '2p' student.txt # 显示第二行
+    1       apeng   f       85
+
+    [root@peng1 shell]# sed '2a piaoliang jiushi renxing' student.txt # 在第二行后添加一句
+    id      name    gender  mark
+    1       apeng   f       85
+    piaoliang jiushi renxing
+    2       cao     f       60
+    3       peng    f       70
+    [root@peng1 shell]# sed '2i piaoliang jiushi renxing' student.txt # 在第二行前添加一句
+    id      name    gender  mark
+    piaoliang jiushi renxing
+    1       apeng   f       85
+    2       cao     f       60
+    3       peng    f       70
+
+    [root@peng1 shell]# sed -e 's/cao//g;s/peng//g' student.txt # 将 cao peng 替换为空
+    id      name    gender  mark
+    1       a       f       85
+    2               f       60
+    3               f       70
+
+
+
+
+    排序命令 sort
+    sort [选项] 文件名
+    -f 忽略大小写
+    -n 以数值型进行排序 默认使用字符串型排序
+    -r 反向排序
+    -t 指定分隔符 默认是分隔符是制表符
+    -k n[,m] 按照指定的字段范围排序 从第n 字段开始 m 字段结束 (默认到行尾)
+    sort /etc/passwd #排序用户信息文件
+    sort -r /etc/passwd #反向排序
+    sort -t ":" -k 3,3 /etc/passwd #指定分隔符是 ":" 用第三字段开头 第三字段结尾排序 就是只用第三字段排序
+    sort -n -t ":" -k 3,3 /etc/passwd
+
+    统计命令 wc
+    wc [选项] 文件名
+    -l 只统计行数
+    -w 只统计单词数
+    -m 只统计字符数

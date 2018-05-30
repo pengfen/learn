@@ -1,0 +1,130 @@
+执行 MySQL 查询
+
+在数据库建立连接以后就可以进行查询 采用 mysql_query 加 sql 语句的形式向数据库发送查询指令
+$res = mysql_query('select * from user limit 1');
+
+对于查询类的语句会返回一个资源句柄(resource) 可以通过该资源获取查询结果集中的数据
+
+$row = mysql_fetch_array($res);
+var_dump($row);
+
+默认的 PHP 使用最近的数据库连接执行查询 但如果存在多个连接的情况 则可以通过参数指令从那个连接中进行查询
+
+$link1 = mysql_connect('127.0.0.1', '', '');
+$link2 = mysql_connect('127.0.0.1', '', '', true); // 开启一个新的连接
+$res = mysql_query('select * from user limit 1', $link1); // 从第一个连接中查询数据
+
+<?php
+// 连接数据库
+$link = mysql_connect('127.0.0.1', '', '') or die("数据库连接失败");
+mysql_select_db('');
+mysql_query("set names 'utf-8'");
+
+// 数据查询
+$res = mysql_query('select * from user limit 1', $link);
+
+
+// 注意 NULL 查询时使用 is NULL
+SELECT DISTINCT  `AgainKewords` FROM `info` WHERE ( (`CatOneName` is NULL) OR (`CatOneName` = '') ) AND ( (`CatTwoName` is NULL) OR (`CatTwoName` = '') );
+
+// 更新数据时使用 is NULL
+update info set CatOneName=1,CatTwoName=2 where Keywords is NULL
+
+mysqli 的使用
+$host = ''; // 服务器地址
+$username = ''; // 用户名
+$password = ''; // 密码
+$database = ''; //数据库名
+
+$conn = mysqli_connect($host,$username,$password,$database) or die("error connecting") ; //连接数据库
+mysqli_query($conn,"set names utf8");    //数据库输出编码
+
+$sql = "SELECT DISTINCT  ex.CustomerKeywords FROM info c INNER JOIN infoexten ex on c.CID = ex.CID  WHERE ( (c.CatOneName is NULL or c.CatOneName='') and (c.CatTwoName is NULL or c.CatTwoName='') )";
+$res = mysqli_query($conn, $sql);
+
+if ($res) {
+	$rows = array();
+	while ($row = mysqli_fetch_assoc($res)) {
+		$rows[] = $row;
+	}
+	foreach ($rows as $k => $v) {
+		$info[$k]['Keywords'] = $v['CustomerKeywords'];
+	}
+} 
+
+
+$sql = "SELECT DISTINCT  `AgainKewords` FROM `info` WHERE ( (`CatOneName` is NULL) OR (`CatOneName` = '') ) AND ( (`CatTwoName` is NULL) OR (`CatTwoName` = '') )";
+$res = mysqli_query($conn, $sql);
+
+if ($res) {
+	$rows = array();
+	while ($row = mysqli_fetch_assoc($res)) {
+		$rows[] = $row;
+	}
+	foreach ($rows as $k => $v) {
+		$info[$k]['Keywords'] = $v['AgainKewords'];
+	}
+} 
+
+// 只查一个字段一个值
+$info = mysqli_query($conn, "select val from info where attr='gather_time' limit 1");
+$row = mysqli_fetch_row($info);
+
+if ($row[0] == '') {
+	// 无值时
+} else {
+	// 有数据时
+}
+
+
+拼接查询条件
+
+// 处理资源类型
+$table = "newsource";
+$where = " and n.SourceType = $sourceType ";
+if ($sourceType == 4) {
+    $table = "grabagesource";
+    $where = '';
+}
+
+// 处理月份
+// $mon = " n.Month != ''";
+if ($month) {
+	$where = $where." and n.Month in ($month) ";
+}
+
+// 处理关键词
+if ($keyword) {
+    $where = $where." and n.CatTwoName = '{$keyword}'";
+}
+
+// $sql = "SELECT a.telphone,n.CID,n.CustomerName,n.CustomerSex,n.CustomerAtt,n.CustomerUrl,n.UsedPhone,n.FromTime,n.Type,n.Channel,n.Page,n.Keywords,n.searchCoName,n.urlfromDisplay,n.pdtypeDisplay,n.SourceType,n.Month FROM ".$table." n left join `zt_allphone` a on n.UsedPhone = a.UsedPhone WHERE ($where and a.telphone != '') limit $num";
+$sql = "SELECT a.telphone,n.* FROM ".$table." n left join `allphone` a on n.UsedPhone = a.UsedPhone WHERE (a.telphone != '' $where) limit $num";
+
+
+-----
+sourceType = 4 month为空
+SELECT a.telphone,n.* FROM grabagesource n left join `allphone` a on n.UsedPhone = a.UsedPhone WHERE (a.telphone != ''  and n.CatTwoName = '无关键词') limit 2
+
+month 有值
+SELECT a.telphone,n.* FROM grabagesource n left join `allphone` a on n.UsedPhone = a.UsedPhone WHERE (a.telphone != ''  and n.Month in (1,2,3)  and n.CatTwoName = '无关键词') limit 2
+
+
+sourceType != 4 month 为空
+SELECT a.telphone,n.* FROM newsource n left join `allphone` a on n.UsedPhone = a.UsedPhone WHERE (a.telphone != ''  and n.SourceType = 3  and n.CatTwoName = '无关键词') limit 2
+
+month 有值
+SELECT a.telphone,n.* FROM newsource n left join `allphone` a on n.UsedPhone = a.UsedPhone WHERE (a.telphone != ''  and n.SourceType = 3  and n.Month in (1,2,3)  and n.CatTwoName = '无关键词') limit 2
+
+获取分组后的总组数
+SELECT COUNT(*) FROM (SELECT count(*) FROM extendfund WHERE ( (CatOneName is NULL or CatOneName='') or (CatTwoName is NULL or CatTwoName='') ) GROUP BY Keywords) as a 
+
+
+delete from zt_allphone where ID in 
+(select * from 
+(select ID from zt_allphone WHERE (telphone = '' or telphone is NULL) group by UsedPhone having count(UsedPhone) > 1) as a)
+and ID NOT in 
+(select * from 
+(select max(ID) from zt_allphone WHERE (telphone = '' or telphone is NULL) group by UsedPhone having count(UsedPhone) > 1) as b);
+
+SELECT UsedPhone from zt_allphone WHERE UsedPhone != '' GROUP BY UsedPhone HAVING COUNT(UsedPhone) >1;

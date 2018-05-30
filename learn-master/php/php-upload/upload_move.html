@@ -1,0 +1,15 @@
+<h1>文件上传--并移动到指定目录</h1>
+<form action="2.php" method='post' enctype='multipart/form-data'>
+	<input type="file" name="files">
+	<button>上传</button>
+</form>
+
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+var_dump($_FILES); //用来获取上传后的文件信息
+// files 信息 name文件名 type文件类型 tmp_name文件上传后临时文件名 error错误信息 size文件大小
+array(1) { ["files"]=> array(5) { ["name"]=> string(17) "554993efe77c4.jpg" ["type"]=> string(10) "image/jpeg" ["tmp_name"]=> string(30) "E:\files\xampp\tmp\php90CB.tmp" ["error"]=> int(0) ["size"]=> int(780831) } }
+
+// 把上传文件 移动到指定位置
+copy($_FILES['files']['tmp_name'], './uploads/'.$_FILES['files']['name']);

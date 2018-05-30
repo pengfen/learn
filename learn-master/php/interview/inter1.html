@@ -1,0 +1,119 @@
+面试题
+
+有一种细菌 经过一分钟分裂为2个 再过一分钟 分裂为4个 这样 将一个细菌放在一个瓶子里面 一个小时后瓶子被细菌充满了 现在假设一开始放入瓶中的为两个细菌 那么到充满瓶子要多长的时间
+
+59 分钟
+
+一只蜗牛从进底爬到井口 每天白天蜗牛要睡觉 晚上才出来活动 一个晚上蜗牛可以向上爬3尺 但是白天睡觉的时候会往下滑2尺 井深10尺 问蜗牛几天可以爬出来
+
+分析 
+    第一天 3尺 实际1尺
+    第二天 4尺 实际2尺
+    ...
+    第七天 9尺 实际7尺
+    第八天 爬出
+
+谈谈你对MVC的认识，介绍几种目前比较流行的MVC框架？
+MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，用一种业务逻辑、数据、界面 显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。MVC被独特的发展起来用于 映射传统的输入、处理和输出功能在一个逻辑的图形化用户界面的结构中。
+Struts
+Struts是Apache软件基金下Jakarta项 目的一部分。Struts框架的主要架构设计和开发者是Craig R.McClanahan。Struts 是Java Web MVC框架中不争的王者。经过长达九年的发展，Struts已经逐渐成长为一个稳定、成熟的框架，并且占有了MVC框架中最大的市场份额。但是 Struts某些技术特性上已经落后于新兴的MVC框架。面对Spring MVC、Webwork2这些设计更精密，扩展性更强的框架，Struts受到了前所未有的挑战。但站在产品开发的角度而言，Struts仍然是最稳妥的选择。
+Struts有一组相互协作的类（组件）、Servlet以 及jsp tag lib组成。基于struts构架的web应用程序基本上符合JSP Model2的设计标准，可以说是MVC设计模式的一种变化类型。根据上面对framework的描述，很容易理解为什么说Struts是一个web framework，而不仅仅是一些标记库的组合。但 Struts 也包含了丰富的标记库和独立于该框架工作的实用程序类。Struts有其自己的控制器（Controller），同时整合了其他的一些技术去实现模型层（Model）和视图层（View）。在模型层，Struts可以很容易的与数据访问技术相结合，包括EJB，JDBC和Object Relation Bridge。在视图层，Struts能够与JSP, Velocity Templates,XSL等等这些表示层组件相结合。[8] 
+Spring
+Spring实际上是Expert One-on-One J2EE Design and Development 一书中所阐述的设计思想的具体实现。在One-on-One 一书中，Rod Johnson倡导J2EE实用主义的设计思想， 并随书提供了一个初步的开发框架实现（interface21 开发包）。而Spring 正是这一思想的更全面和具体的体现。Rod Johnson 在interface21 开发包的基础之上，进行了进一步的改造和扩充，使其发展为一个更加开放、清晰、全面、高效的开发框架。
+Spring是一个开源框架，由Rod Johnson创建并且在他的著作《J2EE设计开发编程指南》里进行了描述。它是为了解决企业应用开发的复杂性而创建的。Spring使使用基本的 JavaBeans来完成以前只可能由EJB完成的事情变得可能了。然而，Spring的用途不仅限于服务器端的开发。从简单性、可测试性和松耦合的角度 而言，任何Java应用都可以从Spring中受益。
+简单来说，Spring是一个轻量的控制反转和面向切面的容
+框架。当然，这个描述有点过于简单。但它的确概括出了Spring是做什么的。[8] 
+ZF
+Zend Framework(简写ZF)是由 Zend 公司支持开发的完全基于 PHP5 的开源PHP开发框架，可用于开发 Web 程序和服务，ZF采用 MVC(Model–View-Controller) 架构模式来分离应用程序中不同的部分方便程序的开发和维护。
+（MVC框架的详细使用及其相关具体操作可以阅读参考资料：[8] 或者扩展阅读第二，三，四条。）
+.NET
+.NET MVC[9] 是微软官方提供的以MVC模式为基础的.NET Web应用程序(Web Application)框架,它由Castle的MonoRail而来(Castle的MonoRail是由java而来),目前最新版本是.N 4.5。
+
+
+html表单中 GET与POST提交方法的区别
+1.get是从服务器上获取数据，post是向服务器传送数据。 
+2.get是把参数数据队列加到提交表单的ACTION属性所指的URL中，值 和表单内各个字段一一对应，在URL中可以看到。post是通过HTTPpost机制，将表单内各个字段与其内容放置在HTML HEADER内一起传送到ACTION属性所指的URL地址。用户看不到这个过程。 
+3.对于get方式，服务器端用Request.QueryString获取变量的值，对于post方式，服务器端用Request.Form获取提交的数据。 
+4.get传送的数据量较小，不能大于2KB。post传送的数据量较大，一般被默认为不受限制。但理论上，IIS4中最大量为80KB，IIS5中为100KB。 
+5.get安全性非常低，post安全性较高。
+
+请简述SESSION与COOKIE的区别
+cookie 和session 的区别：
+1、cookie数据存放在客户的浏览器上，session数据放在服务器上。
+2、cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗
+   考虑到安全应当使用session。
+3、session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能
+   考虑到减轻服务器性能方面，应当使用COOKIE。
+4、单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。
+
+求两个日期的差数 例如 2007-2-5 ~ 2007-3-6 的日期差数
+代码 code/date-difference.php
+
+写出如下程序的输出结果
+<?php
+$test = 'aaaaaa';
+$abc = &$test;
+unset($test); // 销毁$test变量 而并不会销毁$abc变量
+echo $abc; // aaaaaa
+
+在空表 News 中 字段ID为自增主键 批量插入17条记录之后 发现最后三条数据有误 删除此三条记录后重启MySQL数据库 再重新插入三条记录 请问最后一条记录的ID值是多少
+
+create database new18;
+use new18;
+create table News(
+	id int unsigned not null primary key auto_increment,
+	name varchar(255)
+	)engine=myisam default charset=utf8;
+
+insert into News (name) values('peng1'),('peng2'),('peng3'),('peng4'),('peng5'),('peng6'),('peng7'),('peng8'),('peng9'),('peng10'),('peng11'),('peng12'),('peng13'),('peng14'),('peng15'),('peng16'),('peng17');
+
+delete from News where id in (15, 16, 17);
+
+insert into News (name) values('peng18'),('peng19'),('peng20');
+
+select * from News;
+
+至少写出一种验证139开头的11位手机号码的正则表达式
+'/[1][3][9][\d]{7}/';
+$mobile = '13985593461'; // 匹配手机号 array(1) { [0]=> string(10) "1398559346" }
+// $mobile = '13585593461'; // 不匹配 array(0) { }
+$pattern = '/[1][3][9][\d]{7}/';
+preg_match($pattern, $mobile, $m);
+var_dump($m);
+
+请写一个函数 实现以下功能
+字符串 open_door 转换成 OpenDoor make_by_id 转换成 MakeById
+代码 code/covert.php
+
+请写一个函数将1234567890转换成1,234,567,890每3位用逗号隔开的形式
+代码 code/format.php
+
+有A(id, sex, par, c1, c2), B(id, age, c1, c2) 两张表 其中A.id与B.id关联 现在要求写一条SQL语句 将B中age > 50 的记录的c1 c2更新到A表中统一记录中的c1 c2字段中
+
+alter table News add age tinyint unsigned not null;
+
+create table B (
+	id int unsigned not null primary key auto_increment,
+	age tinyint unsigned not null
+	)engine=myisam default charset=utf8;
+insert into B (age) values('11'),('12'),('13'),('14'),('15'),('12'),('13'),('14'),('15'),('12'),('13'),('14'),('15'),('12'),('13'),('14'),('15');
+
+update News n inner join B on n.id = B.id set n.age = B.age where B.age > 13;
+
+请用php写出以下程序 假设网络中有一台服务器 192.168.1.101 开放端口8899进行侦听 请用php的socket相关知识 写出一个简易的client 连接到server 并发送字符串 'hello server' 程序仅对连接的成功和失败进行简易错误判断和处理即可
+
+如何实现每天0点钟重新启动服务器
+0 0 * * * service httpd restart
+
+当前目录下有一个文件为 showme.sh 如何修改文件 将其指定为使用/bin/bash 运行 如何修改其权限为所有用户可读写 所有用户可执行
+
+当前目录下有一个文件为 showme.sh 如何修改其所有人为root
+
+请用php编写程序 读取出www.baidu.com的首页的网页内容(仅html) 并相存入字符串 $str
+file_get_contents('www.baidu.com');
+
+请用php将上题中读取出的网页内容的<title>标签的值解析出来
+$str = file_get_contents('www.baidu.com');
+$pattern = '/<title>.*<\/title>/ism';
+preg_match_all($pattern, $str, $m);
+var_dump($m);

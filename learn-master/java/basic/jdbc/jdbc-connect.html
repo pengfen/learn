@@ -1,0 +1,38 @@
+jdbc测试连接 ---> 源码
+main方法中
+
+
+public static void main(String[] args) {
+	try{
+		String driver = "com.mysql.jdbc.Driver"; //加载mysql驱动
+		String url = "jdbc:mysql://localhost:3306/jdbc";//连接url 协议:主机:端口:数据库名
+		String username = "root";//用户名 (建议特定的数据库用特定的用户名)
+		String password = "123";//密码
+		Class.forName(driver);
+		Connection conn = DriverManager.getConnection(url, username, password);
+		//Class.forName("com.mysql.jdbc.Driver");
+		//Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "123");
+		System.out.println("连接成功");
+	} catch(Exception e){
+		throw new RuntimeException(e);
+	}
+}
+
+
+
+junit中测试
+
+@Test
+public void conn(){
+	try{
+		String driver = "com.mysql.jdbc.Driver"; //包名 com.mysql.jdbc 加类名 Driver
+		String url = "jdbc:mysql://localhost:3306/jdbc"; //jdbc协议名 mysql子协议名(数据库厂商名)
+		String user = "root";
+		String password = "123";
+		Class.forName(driver);
+		Connection conn = DriverManager.getConnection(url, user, password);
+		System.out.print("连接成功");
+	} catch (Exception ex){
+		throw new RuntimeException(ex);
+	}
+}

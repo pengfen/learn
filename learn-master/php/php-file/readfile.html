@@ -1,0 +1,63 @@
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+// 文件的读取
+$filename = "data2.xml";
+
+//打开文件
+$fp = fopen($filename, 'r');
+
+//fread 读取 一下子全部读取
+//echo nl2br(fread($fp, filesize($filename)));
+
+//如果一个文件比较大， 一点一点的读
+while ($content = fread($fp, 1000)){
+	echo $content;
+}
+
+echo "<hr>";
+
+//重置文件指针
+rewind($fp);
+//fgetc()
+while ($content = fgets($fp)){
+	echo $content.'<br>';
+}
+
+echo "<hr>";
+
+//重置文件指针
+rewind($fp);
+//fgetc
+//echo fgetc($fp);
+while ($c = fgetc($fp)){
+	echo $c.'<br>';
+}
+
+
+//关闭文件
+fclose($fp);
+
+==========================
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+// 文件的读取
+$filename = "data2.xml";
+
+$content = file($filename);
+
+//var_dump($content);
+
+
+echo "<hr>";
+
+//
+readfile($filename);
+
+
+echo "<hr>";
+
+//file_put_contents   file_get_contents()
+
+echo file_get_contents($filename);

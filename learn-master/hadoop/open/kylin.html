@@ -1,0 +1,22 @@
+Apache Kylin 是一个开源的分布式分析引擎完全由 eBay Inc. 中国团队开发并贡献至开源社区提供 Hadoop 之上的 SQL 查询接口及多维分析 (MOLAP) 能力以支持超大规模数据能在亚秒内查询巨大的 Hive 表 (十亿百亿的海量数据)
+
+http://kylin.apache.org
+
+搭建集群时要注意 ntp (同步时间)
+
+cd /opt/zookeeper/bin
+ls
+vim sdate
+in {1..3}
+
+
+百度地图
+百亿级海量数据多维指标动态计算耗时
+
+百度地图应用的集群环境
+软件环境
+CDH + Hive + HBase + Kylin 
+
+硬件环境
+Kylin 共四台
+一台 master(100G内存) + 3台 slaves(30G内存)

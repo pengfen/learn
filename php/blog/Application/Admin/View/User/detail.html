@@ -1,0 +1,42 @@
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">用户名</label>
+        <label class="col-sm-2 control-label">{$list.username}</label>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">性别</label>
+        <label class="col-sm-2 control-label"><if condition="$list[sex] eq 0">保密<elseif condition="$list[sex] eq 1"/>男<else/>女</if></label>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">电话</label>
+        <label class="col-sm-2 control-label">{$list.telphone}</label>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">积分</label>
+        <label class="col-sm-2 control-label">{$list.score}</label>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">注册时间</label>
+        <label class="col-sm-2 control-label">{:date('Y-m-d H:i:s', $list[addtime])}</label>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">生日</label>
+        <label class="col-sm-2 control-label">{$list.birthday}</label>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">职业</label>
+        <label class="col-sm-2 control-label">{$list.vocation}</label>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">学历</label>
+        <label class="col-sm-2 control-label">{$list.department}</label>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">状态</label>
+        <label class="col-sm-2 control-label"><if condition='$list[state] eq 0'>禁用<else />启用</if></label>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">生日</label>
+        <label class="col-sm-2 control-label">{$list.birthday}</label>
+    </div>
+</form>

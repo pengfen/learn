@@ -1,0 +1,75 @@
+Hadoop 2.5 编译安装
+
+yum -y install  svn   ncurses-devel  gcc* lzo-devel zlib-devel autoconf    automake    libtool    cmake   openssl–devel
+
+http://ant.apache.org/bindownload.cgi
+
+[root@peng2 ~]# mkdir ant
+[root@peng2 ~]# mv apache-ant-1.9.6-bin.tar.gz ant/
+[root@peng2 ~]# cd ant
+[root@peng2 ant]# tar -zxvf apache-ant-1.9.6-bin.tar.gz
+
+
+http://findbugs.sourceforge.net/downloads.html
+
+[root@peng2 ~]# mkdir findbugs
+[root@peng2 ~]# mv findbugs-3.0.1.tar.gz findbugs
+[root@peng2 ~]# cd findbugs/
+[root@peng2 findbugs]# ls
+findbugs-3.0.1.tar.gz
+[root@peng2 findbugs]# tar -zxvf findbugs-3.0.1.tar.gz
+[root@peng2 findbugs]# ln -sf /root/findbugs/findbugs-3.0.1 /home/findbugs
+[root@peng2 findbugs]# vi /etc/profile
+[root@peng2 findbugs]# source /etc/profile
+
+ 
+安装 maven (是一个软件 --- 特别是 JAVA 软件 --- 项目管理及自动构建工具)
+http://maven.apache.org/download.cgi 下载源码安装
+[root@peng1 ~]# mkdir maven
+[root@peng1 ~]# mv apache-maven-3.3.9-bin.tar.gz maven/
+[root@peng2 ~]# cd maven/
+[root@peng1 maven]# tar -zxvf apache-maven-3.3.9-bin.tar.gz
+[root@peng1 bin]# ln -sf /root/maven/apache-maven-3.3.9 /home/maven
+[root@peng1 bin]# vi /etc/profile
+export MAVEN_HOME=/home/maven
+export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
+
+[root@peng1 bin]# source /etc/profile
+
+mvn 相关命令 
+mvn compile 编译项目
+
+mvn test 编译运行单元测试
+
+mvn package 打包(jar or war)
+
+mvn install 将项目安装到本地仓库
+
+mvn clean 清空项目
+
+mvn eclipse:eclipse 生成eclipse工程
+
+
+
+安装 protocol
+hadoop使用protocol buffer进行通信，需要下载和安装protobhf-2.5.0.tar.gz；由于官网已经无法下载了，
+
+可以到百度云盘下载http://pan.baidu.com/s/1pJlZubT
+[root@peng1 ~]# mkdir protobuf
+[root@peng1 ~]# mv protobuf-2.5.0.tar.gz protobuf
+[root@peng1 ~]# cd protobuf/
+[root@peng1 protobuf]# tar -zxvf protobuf-2.5.0.tar.gz
+[root@peng1 protobuf]# cd protobuf-2.5.0
+[root@peng1 protobuf-2.5.0]# ./configure
+[root@peng1 protobuf-2.5.0]# make && make install
+
+编译安装 hadoop-2.5.1.src
+
+下载  hadoop-2.5.1-src.tat.gz
+源码包下载地址  http://apache.claz.org/hadoop/common/hadoop-2.5.1/
+红色标志  hadoop-2.5.1- src.tar.gz 为源码包
+ 
+[root@peng1 hadoop2.5]# tar -zxvf hadoop-2.5.2-src.tar.gz
+[root@peng1 hadoop2.5]# cd hadoop-2.5.2-src
+[root@peng1 hadoop-2.5.2-src]# mvn package –Pdist,native,docs –DskipTests –Dtar
+[root@peng1 hadoop-2.5.2-src]# mvn install

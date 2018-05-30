@@ -1,0 +1,240 @@
+Java web部分
+
+1、Tomcat的优化经验
+
+     答:去掉对web.xml的监视，把jsp提前编辑成Servlet。
+
+     有富余物理内存的情况，加大tomcat使用的jvm的内存
+
+2、HTTP请求的GET与POST方式的区别
+
+     答:servlet有良好的生存期的定义，包括加载和实例化、初始化、处理请求以及服务结束。这个生存期由javax.servlet.Servlet接口的init,service和destroy方法表达。
+
+3、解释一下什么是servlet;
+
+     答:servlet有良好的生存期的定义，包括加载和实例化、初始化、处理请求以及服务结束。这个生存期由javax.servlet.Servlet接口的init,service和destroy方法表达。
+
+4、说一说Servlet的生命周期? 
+
+     答:servlet有良好的生存期的定义，包括加载和实例化、初始化、处理请求以及服务结束。这个生存期由javax.servlet.Servlet接口的init,service和destroy方法表达。
+
+     Servlet被服务器实例化后，容器运行其init方法，请求到达时运行其service方法，service方法自动派遣运行与请求对应的doXXX方法（doGet，doPost）等，当服务器决定将实例销毁的时候调用其destroy方法。
+
+     web容器加载servlet，生命周期开始。通过调用servlet的init()方法进行servlet的初始化。通过调用service()方法实现，根据请求的不同调用不同的do***()方法。结束服务，web容器调用servlet的destroy()方法。 
+
+5、Servlet的基本架构 
+
+public class ServletName extends HttpServlet { 
+
+public void doPost(HttpServletRequest request, HttpServletResponse response) throws 
+
+ServletException, IOException { 
+
+} 
+
+public void doGet(HttpServletRequest request, HttpServletResponse response) throws 
+
+ServletException, IOException { 
+
+} 
+
+} 
+
+6、SERVLET API中forward() 与redirect()的区别？ 
+
+     答:前者仅是容器中控制权的转向，在客户端浏览器地址栏中不会显示出转向后的地址；后者则是完全的跳转，浏览器将会得到跳转的地址，并重新发送请求链接。这样，从浏览器的地址栏中可以看到跳转后的链接地址。所以，前者更加高效，在前者可以满足需要时，尽量使用forward()方法，并且，这样也有助于隐藏实际的链接。在有些情况下，比如，需要跳转到一个其它服务器上的资源，则必须使用sendRedirect()方法。 
+
+7、什么情况下调用doGet()和doPost()？ 
+
+Jsp页面中的FORM标签里的method属性为get时调用doGet()，为post时调用doPost()。 
+
+8、Request对象的主要方法： 
+
+setAttribute(String name,Object)：设置名字为name的request的参数值 
+
+getAttribute(String name)：返回由name指定的属性值 
+
+getAttributeNames()：返回request对象所有属性的名字集合，结果是一个枚举的实例 
+
+getCookies()：返回客户端的所有Cookie对象，结果是一个Cookie数组 
+
+getCharacterEncoding()：返回请求中的字符编码方式 
+
+getContentLength()：返回请求的Body的长度 
+
+getHeader(String name)：获得HTTP协议定义的文件头信息 
+
+getHeaders(String name)：返回指定名字的request Header的所有值，结果是一个枚举的实例 
+
+getHeaderNames()：返回所以request Header的名字，结果是一个枚举的实例 
+
+getInputStream()：返回请求的输入流，用于获得请求中的数据 
+
+getMethod()：获得客户端向服务器端传送数据的方法 
+
+getParameter(String name)：获得客户端传送给服务器端的有name指定的参数值 
+
+getParameterNames()：获得客户端传送给服务器端的所有参数的名字，结果是一个枚举的实例 
+
+getParametervalues(String name)：获得有name指定的参数的所有值 
+
+getProtocol()：获取客户端向服务器端传送数据所依据的协议名称 
+
+getQueryString()：获得查询字符串 
+
+getRequestURI()：获取发出请求字符串的客户端地址 
+
+getRemoteAddr()：获取客户端的IP地址 
+
+getRemoteHost()：获取客户端的名字 
+
+getSession([Boolean create])：返回和请求相关Session 
+
+getServerName()：获取服务器的名字 
+
+getServletPath()：获取客户端所请求的脚本文件的路径 
+
+getServerPort()：获取服务器的端口号 
+
+removeAttribute(String name)：删除请求中的一个属性 
+
+9、forward 和redirect的区别 
+
+         forward是服务器请求资源，服务器直接访问目标地址的URL，把那个URL的响应内容读取过来，然后把这些内容再发给浏览器，浏览器根本不知道服务器发送的内容是从哪儿来的，所以它的地址栏中还是原来的地址。 redirect就是服务端根据逻辑,发送一个状态码,告诉浏览器重新去请求那个地址，一般来说浏览器会用刚才请求的所有参数重新请求，所以session,request参数都可以获取。
+
+10、request.getAttribute() 和 request.getParameter() 有何区别?
+
+11. jsp有哪些内置对象?作用分别是什么? 分别有什么方法？ 
+
+     答:JSP共有以下9个内置的对象： 
+
+request 用户端请求，此请求会包含来自GET/POST请求的参数 
+
+response 网页传回用户端的回应 
+
+pageContext 网页的属性是在这里管理 
+
+session 与请求有关的会话期 
+
+application servlet 正在执行的内容 
+
+out 用来传送回应的输出 
+
+config servlet的构架部件 
+
+page JSP网页本身 
+
+exception 针对错误网页，未捕捉的例外 
+
+     request表示HttpServletRequest对象。它包含了有关浏览器请求的信息，并且提供了几个用于获取cookie, header, 和session数据的有用的方法。 
+
+    response表示HttpServletResponse对象，并提供了几个用于设置送回 浏览器的响应的方法（如cookies,头信息等） 
+
+    o ut对象是javax.jsp.JspWriter的一个实例，并提供了几个方法使你能用于向浏览器回送输出结果。 
+
+    pageContext表示一个javax.servlet.jsp.PageContext对象。它是用于方便存取各种范围的名字空间、servlet相关的对象的API，并且包装了通用的servlet相关功能的方法。 
+
+   session表示一个请求的javax.servlet.http.HttpSession对象。Session可以存贮用户的状态信息 
+
+   applicaton 表示一个javax.servle.ServletContext对象。这有助于查找有关servlet引擎和servlet环境的信息 
+
+   config表示一个javax.servlet.ServletConfig对象。该对象用于存取servlet实例的初始化参数。 
+
+   page表示从该页面产生的一个servlet实例 
+
+12. jsp有哪些动作?作用分别是什么? 
+
+（这个问题似乎不重要，不明白为何有此题）
+
+答:JSP共有以下6种基本动作 
+
+jsp:include：在页面被请求的时候引入一个文件。 
+
+jsp:useBean：寻找或者实例化一个JavaBean。 
+
+jsp:setProperty：设置JavaBean的属性。 
+
+jsp:getProperty：输出某个JavaBean的属性。 
+
+jsp:forward：把请求转到一个新的页面。 
+
+jsp:plugin：根据浏览器类型为Java插件生成OBJECT或EMBED标记
+
+13、JSP的常用指令 
+
+     isErrorPage(是否能使用Exception对象)，isELIgnored(是否忽略表达式) 
+
+14. JSP中动态INCLUDE与静态INCLUDE的区别？ 
+
+     答：动态INCLUDE用jsp:include动作实现 
+
+     <jsp:include page=included.jsp flush=true />它总是会检查所含文件中的变化，适合用于包含动态页面，并且可以带参数 静态INCLUDE用include伪码实现,定不会检查所含文件的变化，适用于包含静态页面 <%@ include file=included.htm %> 
+
+15、两种跳转方式分别是什么?有什么区别? 
+
+     （下面的回答严重错误，应该是想问forward和sendRedirect 的区别，毕竟出题的人不是专业搞文字艺术的人，可能表达能力并不见得很强，用词不一定精准，加之其自身的技术面也可能存在一些问题，不一定真正将他的意思表达清楚了，严格意思上来讲，一些题目可能根本就无人能答，所以，答题时要掌握主动，只要把自己知道的表达清楚就够了，而不要去推敲原始题目的具体含义是什么，不要一味想着是在答题）
+
+答：有两种，分别为： 
+
+<jsp:include page=included.jsp flush=true> 
+
+<jsp:forward page= nextpage.jsp/> 
+
+     前者页面不会转向include所指的页面，只是显示该页的结果，主页面还是原来的页面。执行完后还会回来，相当于函数调用。并且可以带参数.后者完全转向新页面，不会再回来。相当于go to 语句。
+
+16、页面间对象传递的方法 
+
+request，session，application，cookie等 
+
+17、JSP和Servlet有哪些相同点和不同点，他们之间的联系是什么？ 
+
+     JSP是Servlet技术的扩展，本质上是Servlet的简易方式，更强调应用的外表表达。JSP编译后是"类servlet"。Servlet和JSP最主要的不同点在于，Servlet的应用逻辑是在Java文件中，并且完全从表示层中的HTML里分离开来。而JSP的情况是Java和HTML可以组合成一个扩展名为.jsp的文件。JSP侧重于视图，Servlet主要用于控制逻辑。 
+
+18、MVC的各个部分都有那些技术来实现?如何实现? 
+
+     答:MVC是Model－View－Controller的简写。Model 代表的是应用的业务逻辑（通过JavaBean，EJB组件实现）， View 是应用的表示面（由JSP页面产生），Controller 是提供应用的处理过程控制（一般是一个Servlet），通过这种设计模型把应用逻辑，处理过程和显示逻辑分成不同的组件实现。这些组件可以进行交互和重用。 
+
+19、我们在web应用开发过程中经常遇到输出某种编码的字符，如iso8859-1等，如何输出一个某种编码的字符串？ 
+
+ Public String translate (String str) { 
+
+   String tempStr = ""; 
+
+   try { 
+
+     tempStr = new String(str.getBytes("ISO-8859-1"), "GBK"); 
+
+     tempStr = tempStr.trim(); 
+
+   } 
+
+   catch (Exception e) { 
+
+     System.err.println(e.getMessage()); 
+
+   } 
+
+   return tempStr; 
+
+ } 
+
+20．现在输入n个数字，以逗号，分开；然后可选择升或者降序排序；按提交键就在另一页面显示按什么排序，结果为，提供reset
+
+21. 实际项目开发
+
+22、在eclipse中调试时，怎样查看一个变量的值？
+
+     在要查看的变量前先设置断点，然后选中变量，右键选debug as-->Java Application，打开debug透视图，这时在Variables窗口中可以看到变量当前的值。
+
+     如果是局部变量，也可以在局部变量窗口中查看。
+
+     要知道一个方法被调用的方法调用链，可以在方法栈中查看。
+
+23、你们公司使用的代码配置管理工具是什么？ 
+
+     除了说以前使用cvs，现在新项目使用svn了，还简要说一下使用的过程，如果有可能，还说说仓库的概念和如何使用锁之类的细节。
+
+24、你们的项目总金额多少，多少人开发，总共花了多少个月？
+
+     像巴巴运动网这种规模的项目，可以说是4、5个人、开发了4、5个月，费用则是4、50万。按每人每月两万收入去计算，就差不多了。
+

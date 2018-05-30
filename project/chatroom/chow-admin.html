@@ -1,0 +1,36 @@
+手动跳转 (重定向)
+
+public function actionIndex(){ // 自动跳转到登录页面
+    return Yii::$app->getResponse()->redirect('/index.php?r=admin/login');
+}
+
+后台权限
+public function behaviors() { // 配置访问权限
+    return [
+        'access' => [
+            'class' => AccessControl::className(),
+            'only' => ['logout','download','downloaddata'],
+            'rules' => [
+                [
+                'allow' => true,
+                'roles' => ['@'], // guest 游客 ? 表示 authenticated 登录 @ 表示
+                ],
+            ],
+        ],
+        'verbs' => [
+            'class' => VerbFilter::className(),
+            'actions' => [
+            'logout' => ['post'],
+            ],
+        ],
+    ];
+}
+
+登录后不退出下次打开页面可能会出现直接跳转到首页
+public function actionLogin()
+{
+    if (!\Yii::$app->user->isGuest) {
+        // return $this->goHome(); 如果登录时会自动跳转到首页
+        return Yii::$app->getResponse()->redirect('/index.php?r=admin/download'); // 未退出时进入页面直接跳转到指定页面
+    }
+}

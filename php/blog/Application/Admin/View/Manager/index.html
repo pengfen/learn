@@ -1,0 +1,72 @@
+<extend name='Layout/index'/>
+<block name="resource">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/apeng.css"/>
+	<style>
+		.sub-header{
+			color:#FFB451;
+			font-family: "黑体";
+			background:#eee;
+			border-top:1px solid red;
+		}
+	</style>
+	<title>用户表首页</title>
+</block>	
+<block name="main">
+	<div class='admin-mess'>{$_GET['mess']}</div>
+			<div class='col-md-10' id = 'right'>
+				<h2 class="sub-header"><i>后台用户管理</i></h2>
+				<a href="{:U('Manager/add')}">添加管理员</a>
+				<b><a href="{:U('Manager/index')}" style='color:#87B87F;float:right;margin-right:60px'>查全部</a></b>
+					<div class="table-responsive">
+						<table class='table table-striped'>
+							<thead>
+								<tr>
+									<th>编号</th>
+									<th>姓名</th>
+									<th>邮箱</th>
+									<th>职位</th>
+									<th>添加时间</th>
+									<th>上次登录时间</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody class="managerMain">
+								<volist name='data' id='vo'>
+									<tr>
+										<td>{$vo.id}</td>
+										<td>{$vo.username}</td>
+										<td>{$vo.email}</td>
+										<td>
+											<if condition="($vo['rid'] eq 1)">主管
+											<elseif condition="($vo['rid']  eq 2)"/>经理
+											<elseif condition="($vo['rid']  eq 3)"/>超级管理员
+											<elseif condition="($vo['rid'] eq 4)"/>职员
+											</if>
+										</td>
+										<td>{:date('Y-m-d H:i:s',$vo['regtime'])}</td>
+										<td>{:date('Y-m-d H:i:s',$vo['logtime'])}</td>
+										<td><a href="{:U('Manager/edit?id='.$vo['id'])}">编辑</a> <a href="{:U('Manager/delete?id='.$vo['id'])}">删除</a></td>
+									</tr>
+								</volist>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan='7' style='text-align:center'>
+										{$pagelist}
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+				</div>
+			</div>
+	
+
+	<script>
+			$(".table-striped tr").mouseenter(function(){
+				$(this).css('background-color','#FCD8A7');
+			})
+			$(".table-striped tr").mouseleave(function(){
+				$(this).css('background-color','');
+			})
+	</script>
+</block>

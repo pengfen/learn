@@ -1,0 +1,102 @@
+<div class="panel-heading">好友动态</div>
+	<div class="panel-body">
+	<input type="hidden" id='addReview' value="{:U('Review/addReview')}"/>
+	<ul style="list-style:none; padding:0px;">
+	<if condition="$list neq ''">
+	<volist name='list' id='vo'>
+	<li>
+	    <table class='table table-bordered '>
+	    	<tr>
+	    		<td rowspan="4" width="60">
+	    			<img src="__ROOT__/Avatar/{$vo.headimg}">
+	    		</td>
+	    		<td>{$vo.username} : <if condition="$vo[title] neq ''"> {$vo.title}<else /> {$vo.content}</if></td>
+	    	</tr>
+	    	<tr><td><small style='color:#999'>发表于 {:date('Y-m-d H:i:s',$vo['addtime'])}</small></td></tr>
+	    	<tr>
+	    		<td>
+	    			<ul>
+		    			<volist name="vo['review']" id='voc'>
+		    			<li>
+		    				<table>
+		    					<tr><td rowspan="2"><img src="__ROOT__/Avatar/{$voc.headimg}"></td><td>{$voc.username}: 	{$voc.content}</td></tr>
+		    					<tr><td>
+		    						{:date('Y-m-d H:i:s',$vo['addtime'])}
+		    						<input type="hidden" class='username' value="回复{$voc.username}">
+		    						 <button class="btn btn-xs btn-default huifu-btn-c" type="button" >回复</button>
+		    						 <input type="hidden" > <button class="btn btn-xs btn-default huifu-btn-d" type="button" style="display:none;float:right">发表</button>
+									 <input type="hidden"  value='{$voc.sender}'>
+				         			<input type="hidden"  value='{$vo.uid}'>
+				         			<input type="hidden"  value='{$voc.id}'>
+				         			<input type="hidden"  value='{$voc.path},{$voc.id}'>
+				         			<ul>
+									<volist name="voc['nr']" id='vod' >
+									<table>
+		    					<tr><td rowspan="2"><img src="__ROOT__/Avatar/{$vod.headimg}"></td><td>{$vod.username}: 	{$vod.content}</td></tr>
+		    					<tr><td>
+		    						{:date('Y-m-d H:i:s',$vo['addtime'])}
+		    						<input type="hidden" class='username' value="回复{$vod.username}">
+		    						 <button class="btn btn-xs btn-default huifu-btn-c" type="button" >回复</button>
+		    						 <input type="hidden" > <button class="btn btn-xs btn-default huifu-btn-d" type="button" style="display:none;float:right">发表</button>
+									 <input type="hidden"  value='{$voc.sender}'>
+				         			<input type="hidden"  value='{$vo.uid}'>
+				         			<input type="hidden"  value='{$voc.id}'>
+				         			<input type="hidden"  value='{$voc.path},{$voc.id}'>
+										
+										</ul>
+
+		    					</td></tr>
+		    					
+		    				</table>
+									</volist>
+									</ul>
+
+		    					</td></tr>
+		    					
+		    				</table>
+		    			</li>
+		    			
+		    		
+		    				
+		    			</volist>
+	    			</ul>
+	    		</td>
+	    	</tr>
+	    	
+	    	<tr>
+	    		<td>
+	    			<div class="col-lg-6">
+				    <div class="input-group">
+				      <input type="text" class="form-control huifu-con" placeholder="我也说一句">
+				      <span class="input-group-btn">
+				        <button class="btn btn-default huifu-btn" type="button" >发表</button>
+				         <input type="hidden" class='pid' value='{$vo.id}'>
+				         <input type="hidden" class='uid' value='{$vo.uid}'>
+				      </span>
+				    </div><!-- /input-group -->
+				    <script type="text/javascript">
+				        $('.huifu-btn').click(function(){
+		    				$.ajax({
+		    					url:$('#addReview').val(),
+		    					type:'post',
+		    					data:{uid:$(this).next('input').next('input').val(),content:$(this).parent('span').prev('input').val(),pid:$(this).next('input').val(),rid:$(this).next('input').next('input').val()},
+		    					success:function(data){
+		    						alert('回复成功！');
+		    						//window.location = window.location.href;	
+		    					}
+		    				});
+		    			});
+				    </script>
+				  </div><!-- /.col-lg-6 -->
+	    		</td>
+			</tr>
+
+	    </table>
+	</li>
+	</volist>
+	<else />
+	<li>暂无数据</li>
+	</if>
+	</ul>
+	</div>
+</div>

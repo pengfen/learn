@@ -1,0 +1,66 @@
+<extend name='Layout/index'/>
+<block name='resource'>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/apeng.css"/>
+</block>
+<block name='main'>
+<div id="add">
+    <a href="javascript:void(0)">发布公告</a>
+    <input type='hidden' name="" value="{:U('News/add')}"/>
+</div>
+<div class='admin-mess'>{$_GET['mess']}</div>
+<div id = 'right' class="col-md-10">
+	<table class="table table-striped">
+	    <thead>
+	    	<tr>
+	    		<th>编号</th>
+	    		<th>公告名</th>
+	    		<th>发布时间</th>
+	    		<th>浏览量</th>
+	    		<th>操作</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    	<foreach name='info' item='v'>
+	    	<tr>
+	    		<td>{$v.id}</td>
+	    		<td>{$v.title}</td>
+	    		<td>{:date('Y-m-d H:i:s', $v[addtime])}</td>
+	    		<td>{$v.hot}</td>
+	    		<td>
+	    			<a class="upd" href="javascript:void(0);">修改</a>
+				  	<input type="hidden" name="" value="{:U('News/edit', array('id'=>$v[id]))}"/>
+				  	<a href="{:U('News/delete', array('id'=>$v[id]))}">删除</a>
+	    		</td>
+	    	</tr>
+	    	</foreach>
+	    	<tr><td colspan="5" id='page'><if condition="$count neq '0'">共有 {$count} 条记录 {$page}<else />没有数据</if></td></tr>
+	    </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+	click($('#add a'));// 动态加载添加界面模板
+	click($('.upd'));// 动态加载修改界面模板
+</script>
+</block>
+
+
+<!-- <ul class="list-group col-md-9">
+	  <li class="list-group-item col-md-1">编号</li>
+	  <li class="list-group-item col-md-3">权限名</li>
+	  <li class="list-group-item col-md-2">控制器名</li>
+	  <li class="list-group-item col-md-2">操作方法</li>
+	  <li class="list-group-item col-md-4">操作</li>
+	</ul>
+	<ul class="list-group col-md-9">
+	  <foreach name='info' item='v'>
+	  <li class="list-group-item col-md-1">{$v.id}</li>
+	  <li class="list-group-item col-md-3">{$v.name}</li>
+	  <li class="list-group-item col-md-2">{$v.controller}</li>
+	  <li class="list-group-item col-md-2">{$v.action}</li>
+	  <li class="list-group-item col-md-4">
+	  	<a class="upd" href="javascript:void(0);">修改</a>
+	  	<input type="hidden" name="" value="{:U('Auth/edit', array('id'=>$v[id]))}"/>
+	  	<a href="{:U('Auth/delete', array('id'=>$v[id]))}">删除</a>
+	  </li>
+	  </foreach>
+	</ul> -->

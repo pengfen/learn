@@ -1,0 +1,39 @@
+<?php if (!defined('THINK_PATH')) exit();?>
+<!-- <form class="form-horizontal" action="<?php echo U('Assoc/insert');?>" method="post"> -->
+<form class="form-horizontal" id="add-nav">
+
+    <div class="form-group">
+        <label for="tablename" class="col-sm-2 control-label">导航名</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" name='name' id="tablename" placeholder="请输入页面导航名" value="<?php echo ($info["name"]); ?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="authname" class="col-sm-2 control-label">请选择所属页面</label>
+        <div class="col-sm-8">
+            <select name="bid">
+            
+                <?php if(is_array($data)): foreach($data as $key=>$v): ?><option value="<?php echo ($key); ?>"><?php echo ($v); ?></option><?php endforeach; endif; ?>
+            
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="tablename" class="col-sm-2 control-label">导航路径</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" name='href' id="tablename" placeholder="请输入页面导航名" value="<?php echo nl2br($info['href']);?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-8">
+        
+        <button type="button" class="btn btn-default" id='addbtn'>添加导航</button>
+        <input type="hidden" value="<?php echo U('Nav/insert');?>"/>
+        
+        </div>
+    </div>
+</form>
+
+<script>
+    clickForm($('#addbtn'), $('#add-nav'));
+</script>

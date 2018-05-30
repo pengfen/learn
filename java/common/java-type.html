@@ -1,0 +1,85 @@
+基本数据类型的封装类
+
+如何查看 API
+
+byte     Byte
+char     Character
+int      Integer
+long     Long
+float    Float
+double   Double
+boolean  Boolean
+
+自动装箱和拆箱
+基本数据类型 转换为 封装类型 装箱
+封装类型 转换为 基本类型 拆箱
+// 拆箱示例
+Integer i1 = new Integer(10);
+		int i2 = i1;
+		int i2 = (int) i1; // 如没有拆箱则需要自己转换
+
+// 装箱示例
+int i3 = 9;
+Integer i4 = i3;
+
+参见 common/TestByte.java
+
+包装类主要提供了两大类方法
+将本类型和其他基本类型进行转换的方法
+将字符串和本类型及包装类互相转换的方法
+
+Integer(int value) 创建一个 Integer 对象 表示指定的 int 值
+Integer(String s) 创建一个 Integer 对象 表示 String 参数所指示的 int 值
+
+int i = 2; // 定义 int 类型变量 值为 2
+Integer m = new Integer(5); // 定义 Integer 包装类对象 值为 5
+Integer n = new Integet("8"); // 定义 Integer 包装类对象 值为 8
+
+byte byteValue() 将该 Integer 转为 byte 类型
+double doubleValue() 转为 double 类型
+float floatValue() 转为 float 类型
+int intValue() 转为 int 类型
+long longValue() 转为 long 类型
+static int parseInt(String s) 将字符串转换为 int 类型
+String toString() 转为字符串类型
+static Integet valueOf(String s) 将字符串转换为 Integer 类型
+
+
+基本类型和包装类之间的转换
+基本类型和包装类之间经常需要互相转换 以 Integer 为例
+Integer a = new Integer(3); // 定义 Integer 包装类对象 值为 3
+int b = a + 5; // 将对象和基本类型进行运算
+在 JDK1.5 引入自动装箱和拆箱的机制后，包装类和基本类型之间的转换就更加轻松便利了。
+装箱 把基本类型转换成包装类 使其具有对象的性质 又可分为手动装箱和自动装箱
+int i = 10; // 定义一个 int 基本类型值
+Integer x = new Integer(i); // 手动装箱
+Integer y = i; // 自动装箱
+拆箱 和装箱相反 把包装类对象转换成基本类型的值 又可分为手动拆箱和自动拆箱
+Integer j = new Integer(8); // 定义一个 Integer 包装类对象 值为 8
+int m = j.intValue(); // 手动拆箱为 int 类型
+int n = j; // 自动拆箱为 int 类型
+
+Integer 类型可以自动转化为 int 基本类型
+int 类型对应的包装类是 java.lang.Integer
+long 类型可以自动转化为 Long 类型
+
+基本类型转换为字符串有三种方法
+使用包装类的 toString() 方法
+使用 String 类的 valueOf() 方法
+用一个空字符串加上基本类型 得到的就是基本类型数据对应的字符串
+int c = 10; // 将基本类型转换为字符串
+String str1 = Integer.toString(c);
+String str2 = String.valueOf(c);
+String str3 = c + "";
+
+将字符串转换成基本类型有两种方法
+调用包装类的 parseXxx 静态方法
+调用包装类的 valueOf() 方法转换为基本类型的包装类 会自动拆箱
+String str = "8"; // 将字符串转换为基本类型
+int d = Integer.parseInt(str);
+int e = Integer.valueOf(str);
+
+基本类型是不能调用方法的 而其包装类具有很多方法
+每一个基本数据类型 都对应一个包装类
+包装类都在 java.lang 包中
+包装类提供了在不同类型间进行转换的方法

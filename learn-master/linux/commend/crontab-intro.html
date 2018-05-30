@@ -1,0 +1,163 @@
+    工作中遇到的困难
+    每分钟需要执行一个程序检查系统运行状态
+    每天凌晨需要对过去一天的业务数据进行统计
+    每个星期需要把日志文件备份
+    每个月需要把数据库进行备份
+
+    crontab 是什么
+    crontab 实践
+
+    crontab 是一个用于设置周期性被执行的任务的工具
+    cron 计划任务 是指 cron 服务器
+    cron job 执行一项工作
+    cron tab 计划任务列表
+
+    crontab 实践
+
+    相关工具
+    安装并检查 crontab 服务
+    crontab 的基本组成
+    crontab 的配置文件格式
+    crontab 工具的使用
+    crontab 的日志
+    crontab 常见错误
+
+    相关工具
+    putty 一个免费的易用的 ssh 连接工具
+    http://www.putty.org
+
+    检查 cron 服务
+    检查 crontab 工具是否安装 crontab -l
+    检查 crond 服务是否启动 service crond status 
+    启动 crond 服务 service crond start (有的是service cron start) 或者/etc/rc.d/init.d/crond start
+    安装 cron
+    yum install vixie-cron
+    yum install crontabs
+
+    一个简单的例子
+    每分钟都打印当前时间到一个日志文件中 */1 * * * * date >> /tmp/log.txt
+
+    crontab 的基本组成
+    系统服务 crond 每分钟都会从配置文件刷新定时任务
+    配置文件 文件方式设置定时任务
+    配置工具 crontab 用于调整定时任务
+    *        *        *        *        * command
+    分钟0-59 小时0-23 日期1-31 月份1-12 星期0-7(0或者7 表示星期天)
+
+    crontab 的配置文件格式
+
+    每晚的 21:30 重启 apache 30 21 * * * service httpd restart
+    每月 1 10 22 日的 4:45 重启 apache 45 4 1,10,22 * * service httpd restart
+    每月 1 到 10 日的 4:45 重启 apache 45 4 1-10 * * service httpd restart
+    每隔两分钟重启 apache 服务器 */2 * * * * service httpd restart
+    1-59/2 * * * * service httpd restart
+    晚上 11 点到早上 7 点之间 每隔一小时重启 apache 0 23-7/1 * * * service httpd restart
+    每天 18:00 至 23:00 之间每隔 30 分钟重启 apache 0,30 18-23 * * * service httpd restart   0-59/30 18-23 * * * service httpd restart
+
+    * 表示任何时候都匹配
+    可以用 "A,B,C" 表示A 或者 B 或者 C 时执行命令
+    可以用 "A-B" 表示 A 到 B 之间时执行命令
+    可以用 "*/A" 表示每 A 分钟(小时等) 执行一次命令
+
+    =====================================
+    crontab --help #查看 crontab 帮助命令
+    crontab -e #进入编辑模式
+    crontab -l #列出所有任务
+    crontab -r #删除所有任务
+
+
+
+  * 掌握如何设置定时任务常用命令
+  * 掌握如何定时运行 PHP 程序
+  *
+  * 定时任务服务提供 crontab 命令来设定服务
+  * crontab -e 编辑某个用户的 crontab 服务
+  * crontab -l 列出某个用户的 crontab 服务
+  * crontab -r 删除某个用户的 crontab 服务
+  *
+  * linux 下 sudo crontab -e 进入编辑定时任务
+  * */1 * * * * /usr/bin/php /data/www/12.php 使用php 使用执行某个php 文件
+  * 分 小时 日 月 星期 命令
+  * 0-59 0-23 1-31 1-12 0-6 command
+  * * 代表取值范围内的数字
+  * / 代表每 比如每分钟等
+  * sudo crontab -l
+  * */1 * * * * php /data/www/cron.php 每分钟执行 cron.php
+  * 50 7 * * * /sbin/service sshd start 每天 7:50 开启 ssh 服务
+
+  * 如何设置每分钟插入数据到数据表中
+  * 
+  * cron.php 文件
+  * <?php
+  * $connect = mysql_connect('127.0.0.1', '', '');
+  * mysql_select_db('test', $connect);
+  * $sql = "insert into category('name', 'create_time' values('apeng', ".time()."))";
+  * mysql_query($sql, $connect);
+  * */1 * * * * /usr/bin/php /data/www/app/cron.php 
+
+
+crontab 的安装
+[root@iZ94f2imuwkZ ~]# crontab -e
+-bash: crontab: command not found
+[root@iZ94f2imuwkZ ~]# yum install crontabs
+Loaded plugins: security
+Setting up Install Process
+Resolving Dependencies
+--> Running transaction check
+---> Package crontabs.noarch 0:1.10-33.el6 will be installed
+--> Processing Dependency: /etc/cron.d for package: crontabs-1.10-33.el6.noarch
+--> Running transaction check
+---> Package cronie.x86_64 0:1.4.4-15.el6_7.1 will be installed
+--> Processing Dependency: dailyjobs for package: cronie-1.4.4-15.el6_7.1.x86_64
+--> Processing Dependency: /usr/sbin/sendmail for package: cronie-1.4.4-15.el6_7.1.x86_64
+--> Running transaction check
+---> Package cronie-anacron.x86_64 0:1.4.4-15.el6_7.1 will be installed
+---> Package exim.x86_64 0:4.84.2-2.el6 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=============================================================================================================================================================================================================================================
+ Package                                                      Arch                                                 Version                                                          Repository                                          Size
+=============================================================================================================================================================================================================================================
+Installing:
+ crontabs                                                     noarch                                               1.10-33.el6                                                      base                                                10 k
+Installing for dependencies:
+ cronie                                                       x86_64                                               1.4.4-15.el6_7.1                                                 base                                                74 k
+ cronie-anacron                                               x86_64                                               1.4.4-15.el6_7.1                                                 base                                                31 k
+ exim                                                         x86_64                                               4.84.2-2.el6                                                     epel                                               1.3 M
+
+Transaction Summary
+=============================================================================================================================================================================================================================================
+Install       4 Package(s)
+
+Total download size: 1.4 M
+Installed size: 4.2 M
+Is this ok [y/N]: y
+Downloading Packages:
+(1/4): cronie-1.4.4-15.el6_7.1.x86_64.rpm                                                                                                                                                                             |  74 kB     00:00
+(2/4): cronie-anacron-1.4.4-15.el6_7.1.x86_64.rpm                                                                                                                                                                     |  31 kB     00:00
+(3/4): crontabs-1.10-33.el6.noarch.rpm                                                                                                                                                                                |  10 kB     00:00
+(4/4): exim-4.84.2-2.el6.x86_64.rpm                                                                                                                                                                                   | 1.3 MB     00:01
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                                                        1.0 MB/s | 1.4 MB     00:01
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : exim-4.84.2-2.el6.x86_64                                                                                                                                                                                                  1/4
+  Installing : cronie-1.4.4-15.el6_7.1.x86_64                                                                                                                                                                                            2/4
+  Installing : crontabs-1.10-33.el6.noarch                                                                                                                                                                                               3/4
+  Installing : cronie-anacron-1.4.4-15.el6_7.1.x86_64                                                                                                                                                                                    4/4
+  Verifying  : crontabs-1.10-33.el6.noarch                                                                                                                                                                                               1/4
+  Verifying  : cronie-1.4.4-15.el6_7.1.x86_64                                                                                                                                                                                            2/4
+  Verifying  : cronie-anacron-1.4.4-15.el6_7.1.x86_64                                                                                                                                                                                    3/4
+  Verifying  : exim-4.84.2-2.el6.x86_64                                                                                                                                                                                                  4/4
+
+Installed:
+  crontabs.noarch 0:1.10-33.el6
+
+Dependency Installed:
+  cronie.x86_64 0:1.4.4-15.el6_7.1                                              cronie-anacron.x86_64 0:1.4.4-15.el6_7.1                                              exim.x86_64 0:4.84.2-2.el6
+
+Complete!

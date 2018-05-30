@@ -1,0 +1,232 @@
+-- 权限控制系统 manager role auth
+
+-- 管理员表
+CREATE TABLE IF NOT EXISTS `data_manager` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(30) NOT NULL DEFAULT '' COMMENT '管理名称',
+  `password` char(32) NOT NULL DEFAULT '' COMMENT '管理密码',
+  `regtime` int(10) unsigned DEFAULT 0 COMMENT '注册时间',
+  `logtime` int(10) unsigned DEFAULT 0 COMMENT '登录时间',
+  `email` varchar(30) DEFAULT NULL COMMENT '邮箱',
+  `rid` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+INSERT INTO `data_manager` (`id`, `username`, `password`, `regtime`, `logtime`, `email`, `rid`) VALUES
+(1, 'admin', md5('123456'), unix_timestamp(), 0, 'caopeng8787@163.com', 0),
+(2, 'apeng', 'e10adc3949ba59abbe56e057f20f883e', unix_timestamp(), 0, '411104493@qq.com', 1);
+
+-- 角色表
+CREATE TABLE IF NOT EXISTS `data_role` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL DEFAULT '' COMMENT '角色名',
+  `aids` varchar(128) NOT NULL DEFAULT '' COMMENT '权限ids',
+  `aac` text COMMENT '控制器-操作方法',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+-- 权限表
+CREATE TABLE IF NOT EXISTS `data_auth` (
+  `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL DEFAULT '' COMMENT '权限名',
+  `pid` smallint(6) NOT NULL DEFAULT '0' COMMENT '父id',
+  `controller` varchar(32) NOT NULL DEFAULT '' COMMENT '控制器',
+  `action` varchar(32) NOT NULL DEFAULT '' COMMENT '操作方法',
+  `path` varchar(32) NOT NULL DEFAULT '' COMMENT '全路径',
+  `level` tinyint(4) NOT NULL DEFAULT '0' COMMENT '权限级别',
+  `image` varchar(255) NOT NULL DEFAULT '' COMMENT '权限关联图',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+
+使用mybatis对表data_manager进行增删改查操作
+
+创建对象
+//@Alias( value = "data_manager")
+public class Manager {
+	private String username;
+	private String password;
+	private int regtime;
+	private int logtime;
+	private String email;
+	private int rid;
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public int getRegtime() {
+		return regtime;
+	}
+	public void setRegtime(int regtime) {
+		this.regtime = regtime;
+	}
+	public int getLogtime() {
+		return logtime;
+	}
+	public void setLogtime(int logtime) {
+		this.logtime = logtime;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public int getRid() {
+		return rid;
+	}
+	public void setRid(int rid) {
+		this.rid = rid;
+	}
+	
+	@Override
+	public String toString() {
+		return "Manager [username=" + username + ", password=" + password
+				+ ", regtime=" + regtime + ", logtime=" + logtime + ", email="
+				+ email + ", rid=" + rid + "]";
+	}
+	
+}
+
+添加映射文件
+<!-- 加载映射文件 -->
+<mappers>
+    <mapper resource="sqlmap/User.xml" />
+    <mapper resource="sqlmap/Manager.xml" />
+</mappers>
+
+创建映射文件 sqlmap/Manager.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="manager">
+
+</mapper>
+
+执行查询
+<!-- 根据id查询 -->
+<select id="findManagerById" parameterType="int" resultType="com.peng.mybatis.entity.Manager">
+    SELECT * FROM data_manager WHERE id=#{id};
+</select>
+
+@Test
+public void findManagerByIdTest() throws IOException {
+	
+	String resource = "SqlMapConfig.xml";
+	InputStream inputStream = Resources.getResourceAsStream(resource);
+	SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	Manager manager = sqlSession.selectOne("manager.findManagerById", 1);
+	System.out.println(manager);
+	sqlSession.close();
+}
+
+DEBUG [main] - ==>  Preparing: SELECT * FROM data_manager WHERE id=?; 
+DEBUG [main] - ==> Parameters: 1(Integer)
+DEBUG [main] - <==      Total: 1
+Manager [username=admin, password=*6BB4837EB74329105EE4568DDA7DC67, regtime=1470032737, logtime=0, email=caopeng8787@163.com, rid=0]
+
+执行添加
+<!-- 执行添加 -->
+<insert id="insertManager" parameterType="com.peng.mybatis.entity.Manager">
+    INSERT INTO data_manager(username,password,regtime,logtime,email,rid) value(#{username},#{password},#{regtime},#{logtime},#{email},#{rid})
+</insert>
+
+@Test
+public void insertMangerTest() throws IOException {
+	
+	String resource = "SqlMapConfig.xml";
+	InputStream inputStream = Resources.getResourceAsStream(resource);
+	SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	Manager manager = new Manager();
+	manager.setUsername("caopeng");
+	// 引入commons-codec-1.6.jar包
+	// 使用DigestUtils.md5Hex()生成md5 --- php中md5()方法
+	manager.setPassword(DigestUtils.md5Hex("123456"));
+	// java生成的时间戳13位 php 生成的时间戳10位
+	// System.out.println(new Date().getTime()); // 1470204007829
+	// System.out.println((new Date().getTime()) / 1000); // 1470204007
+	// 时间戳转换为时间字符串
+	// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	// String str = sdf.format(new Date(1470203013073L)); // 13位转成时间字符串
+	// System.out.println(str); // 2016-08-03 13:43:33
+	
+	// str = sdf.format(new Date(1470203013 * 1000L)); // 10位转成时间字符串
+	// System.out.println(str); // 2016-08-03 13:43:33
+	manager.setLogtime((int)((new Date().getTime()) / 1000));
+	manager.setEmail("caopeng@new18.cn");
+	
+	sqlSession.insert("manager.insertManager", manager);
+	System.out.println(manager.getId());
+	sqlSession.close();
+}
+
+DEBUG [main] - ==>  Preparing: INSERT INTO data_manager(username,password,regtime,logtime,email,rid) value(?,?,?,?,?,?) 
+DEBUG [main] - ==> Parameters: caopeng(String), e10adc3949ba59abbe56e057f20f883e(String), 0(Integer), 1470213235(Integer), caopeng@new18.cn(String), 0(Integer)
+DEBUG [main] - <==    Updates: 1
+0
+
+执行删除
+<!-- 执行删除 -->
+<delete id="deleteManager" parameterType="int">
+    DELETE FROM data_manager WHERE id=#{id}
+</delete>
+
+@Test
+public void deleteManagerTest() throws IOException {
+	
+	String resource = "SqlMapConfig.xml";
+	InputStream inputStream = Resources.getResourceAsStream(resource);
+	SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	sqlSession.delete("manager.deleteManager", 4);
+	sqlSession.commit();
+	sqlSession.close();
+}
+
+DEBUG [main] - ==>  Preparing: DELETE FROM data_manager WHERE id=? 
+DEBUG [main] - ==> Parameters: 4(Integer)
+DEBUG [main] - <==    Updates: 1
+
+执行更新
+<!-- 执行更新 -->
+<update id="updateManager" parameterType="com.peng.mybatis.entity.Manager">
+    UPDATE data_manager set username=#{username},password=#{password},regtime=#{regtime},logtime=#{logtime},email=#{email},rid=#{rid} WHERE id=#{id}
+</update>
+
+@Test
+public void updateMangerTest() throws IOException {
+	
+	String resource = "SqlMapConfig.xml";
+	InputStream inputStream = Resources.getResourceAsStream(resource);
+	SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	Manager manager = new Manager();
+	manager.setId(3);
+	manager.setUsername("caopeng8787");
+	manager.setPassword(DigestUtils.md5Hex("654321"));
+	manager.setRegtime((int)((new Date().getTime()) / 1000));
+	
+	sqlSession.insert("manager.updateManager", manager);
+	
+	System.out.println(manager.getId());
+	sqlSession.commit();
+	sqlSession.close();
+}
+
+DEBUG [main] - ==>  Preparing: UPDATE data_manager set username=?,password=?,regtime=?,logtime=?,email=?,rid=? WHERE id=? 
+DEBUG [main] - ==> Parameters: caopeng8787(String), c33367701511b4f6020ec61ded352059(String), 1470214499(Integer), 0(Integer), null, 0(Integer), 3(Integer)
+DEBUG [main] - <==    Updates: 1
+3

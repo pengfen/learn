@@ -1,0 +1,132 @@
+<extend name='Layout/tpl'/>
+<block name='style'>
+	<style type="text/css">
+		.main{
+		margin-top:235px;
+		}
+		ul li{
+			list-style: none;
+		}
+	</style>
+</block>
+<block name='main'>
+	<div class="main row">
+		<div class="col-md-1"></div>
+		<div class="col-md-11">
+			<ul class="nav nav-tabs" style="margin:10px;">
+              <li  ><a href="{:U('User/myhome')}">我的动态</a></li>
+              <li role="presentation"><a href='{:U('Mood/index')}'>说说</a></li>
+              <li role="presentation"><a href="{:U('Log/index')}">日志</a></li>
+              <li role="presentation"><a href="{:U('Album/index')}">相册</a></li>
+              <li role="presentation" class='active'><a href="{:U('Message/index')}">留言板</a></li>
+           
+              <li role="presentation"><a href="{:U('Resource/index')}">资料库</a></li>
+            </ul>
+		</div>
+		<div class="col-md-12">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="panel panel-default">
+				  <div class="panel-heading">发表您的留言</div>
+				  <div class="panel-body">
+				    <textarea class="form-control" rows="3" id='mood_content'></textarea>
+				    <button class='btn btn-default' style="margin:10px 30px 0 0" id='leave_message'>留言</button>
+				 </div>
+				 <input type="hidden" value="{:U('Message/addMessage')}" id='leave'/>
+				 <script type="text/javascript">
+					$(function(){
+						$('#leave_message').click(function(){
+							$.ajax({
+								url:$('#leave').val(),
+								type:'post',
+								data:{content:$('#mood_content').val(),uid:{$_SESSION['uid']}},
+								success:function(data){
+									alert('留言成功');
+								}
+
+							})
+						})
+					})
+				</script>
+
+				 <div class="panel panel-default">
+				  <div class="panel-heading">留言列表</div>
+				  <div class="panel-body">
+				  <ul>
+
+				   <volist name='msglist' id='vo'>
+				   	<li>
+				   	<table class="table table-bordered">
+				   	<tbody>
+				   		<tr><td rowspan ="4" width="100"><div class="col-md-1">
+
+				   			<img src='__ROOT__/Avatar/{$vo.headimg}'/>
+				   		
+				   		</div></td>
+				   		<td>
+				   		<div class="col-md-11">
+				   			<a  href='__ROOT__/index.php/Home/User/myhome/id/{$vo.vid}'>{$vo.username}</a>
+				   		</div></td>
+				   		</tr>
+				   		<tr><td>{$vo.content}</td></tr>
+				   		<tr><td>{:date('Y-m-d H:i:s',$vo['addtime'])}
+						<button type="button" class="btn btn-default btn-xs" id='recall_{$vo.id}'>回复</button>
+				   		</td></tr>
+				   		<tr><td>
+				   		
+							<volist name="vo['clist']" id='voc'>
+								<style type="text/css">
+									table td{padding: 5px;}
+								</style>
+								<table >
+								
+									<tr><td rowspan="2" width='80'><img src='__ROOT__/Avatar/{$voc.headimg}'/></td><td>
+									<a  href='__ROOT__/index.php/Home/User/myhome/id/{$voc.vid}'>{$voc['username']}</a>: {$voc['content']}</td></tr>
+									
+									<tr><td>{:date('Y-m-d H:i:s',$voc['addtime'])}</td></tr>
+								</table>
+							</volist>
+				   			<div style="display:none" id='input_{$vo.id}'>
+				   			<input type="hidden" value="{:U('Message/addChildMessage')}" id='leavechild_{$vo.id}'/>
+				   			<input type="text"  id='mood_content_c{$vo.id}' class="form-control" placeholder="Text input" >
+							<button type="button" class="btn btn-default btn-xs" id='recallchild_{$vo.id}'>发表</button>
+				   			</div>
+				   		</td></tr>
+				   		</tbody>
+				   	</table>
+				   		<script type="text/javascript">
+				   			$(function(){
+				   				$('#recall_{$vo.id}').click(function()
+				   					{
+				   					$('#input_{$vo.id}').css('display','block');
+				   				})
+
+				   				$('#recallchild_{$vo.id}').click(function()
+				   					{
+				   					$('#input_{$vo.id}').css('display','none');
+				   					$.ajax({
+				   						url:$('#leavechild_{$vo.id}').val(),
+				   						type:'post',
+				   						data:{content:$('#mood_content_c{$vo.id}').val(),pid:{$vo['id']},v_id:{$vo['vid']}},
+				   						success:function(data){
+									alert(data);
+								}
+
+				   					})
+				   				})
+				   			})
+				   		</script>
+				   		
+				   	</li>
+				   		
+				   </volist>
+				   </ul>
+				  </div>
+				</div>
+			</div>
+			
+
+
+		</div>
+	</div>
+</block>

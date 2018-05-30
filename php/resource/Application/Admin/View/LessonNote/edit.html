@@ -1,0 +1,24 @@
+<extend name="Develop/add"/>
+<block name="head">
+<!-- <form class="form-horizontal" action="{:U('Assoc/insert')}" method="post"> -->
+<form class="form-horizontal" id="upd-develop">
+<input type="hidden" name="id" value="{$info.id}"/>
+</block>
+<block name="flag">
+    <option value="0" <if condition="$info['flag'] eq '0'">selected</if>>组长</option>
+    <option value="1" <if condition="$info['flag'] eq '1'">selected</if>>产品设计</option>
+    <option value="2" <if condition="$info['flag'] eq '2'">selected</if>>UI 设计</option>
+    <option value="3" <if condition="$info['flag'] eq '3'">selected</if>>前端工程师</option>
+    <option value="4" <if condition="$info['flag'] eq '4'">selected</if>>后端工程师</option>
+    <option value="5" <if condition="$info['flag'] eq '5'">selected</if>>运维工程师</option>
+    <option value="6" <if condition="$info['flag'] eq '6'">selected</if>>测试工程师</option>
+</block>
+<block name="foot">
+<button type="button" id="updbtn" class="btn btn-default">修改开发人员</button>
+<input type="hidden" value="{:U('develop/update')}"/>
+</block>
+<block name='tail'>
+<script type="text/javascript">
+	clickForm($('#updbtn'), $('#upd-develop'));
+</script>
+</block>

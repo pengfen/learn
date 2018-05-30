@@ -1,0 +1,177 @@
+<?php
+/**
+  * 目录 相关操作函数 
+  * @author
+  * @date
+*/
+
+
+/**
+ * 声明函数 统计目录的大小
+ * @param string  $path  目录路径   /paht/base 
+ * @return 返回目录的大小
+*/
+function dirSize($dirPath)
+{
+	//处理 dirPath 目录
+	$dirPath = rtrim($dirPath, '/').'/';
+	$totalSize = 0;      //空 变量  记录目录小
+	//打开目录
+	$dir_handler = opendir($dirPath);
+	//遍历目录
+	while ($basename = readdir($dir_handler)){
+		if ($basename == '.' || $basename == '..'){
+			continue;
+		}
+		$filename = $dirPath.$basename;
+		
+		//如果是文件 计算文件大小
+		if (is_file($filename)){
+			$totalSize += filesize($filename);
+		}
+		//如果是目录
+		if (is_dir($filename)){
+			$totalSize += dirSize($filename);
+		}
+	
+	}
+	closedir($dir_handler);
+	//返回计算的结果
+	return $totalSize;
+}
+
+
+/**
+ * 定义函数  把字节 转换为 KB  MB 或 GB
+ * @Param  int   $size   以字节为单位的大小
+ * @Param  int   $type  转换为以什么为单位的  1（默认 KB）   2(MB)   3(GB)
+ * @trurn 转换后的数值
+*/
+function totalSize($size, $type = 1)
+{
+	$totalSize = 0;
+	switch($type){
+		case 2: $totalSize = $size/1024/1024;  break;   //转换为MB 
+		case 3: $totalSize = $size/1024/1024/1024;  break;   //转换为GB 
+		default: $totalSize = $size/1024;  break;   //转换为KB 
+	}
+	return $totalSize;
+}
+
+
+/**
+ * 可以创建 连续目录的函数
+ * @param string  $path   要创建的目录路径
+*/
+function  createDir($path)
+{
+	//路径中的盘符 取出来
+	preg_match('/^[a-zA-Z]:\//',  $path, $matches);
+	//去掉盘符
+	$path = preg_replace('/^[a-zA-Z]:\//', '', $path);
+	//去掉 路径 后面的
+	$path = rtrim($path, '/');
+	//把字符串 变成数组
+	$pathList = explode('/', $path);
+	
+	$pathdir = "";   			//空字符串
+	//遍历数组
+	foreach ($pathList as $k => $v){
+		//判断有没有盘符
+		if ($k == 0 && !empty($matches)){
+			$pathdir .= $matches[0];
+		}
+		//拼装abc
+		$pathdir .= $v.'/';
+		if (!file_exists($pathdir)){
+			//创建目录
+			@mkdir($pathdir);
+		}
+	}
+}
+
+
+
+/**
+ * 删除 目录的函数
+ * @param string $path 要删除目录的路径
+*/
+function deleteDir($path)
+{
+    //判读 目录的有效性
+	if (!file_exists($path) || !is_dir($path)){
+		exit('目录无效！');
+	}
+	
+	//打开目录 目录
+	$dir_handler = opendir($path);
+	//遍历目录
+	while ($basename = readdir($dir_handler)){
+		if ($basename == '.' || $basename == '..'){
+			continue;
+		}
+		//拼装路径
+	    $filename = rtrim($path, '/').'/'.$basename;
+		//如果是文件
+		if (is_file($filename)){
+			@unlink($filename);
+		}
+		//如果 目录
+		if (is_dir($filename)){
+			deleteDir($filename);
+		}
+	}
+	//关闭资源
+	closedir($dir_handler);
+	//删除path目录
+	@rmdir($path);
+}
+
+
+/**
+ * 复制目录
+ * @param string dirsrc  源目录
+ * @param string dirdst  目标目录
+*/
+function copyDir($dirsrc, $dirdst){
+	//判断函数的有效性
+	if (!file_exists($dirsrc) || !is_dir($dirsrc)){
+		exit('源目录无效！');
+	}
+	if (!file_exists($dirdst) || !is_dir($dirdst)){
+		//创建新目录
+		@mkdir($dirdst);
+	}
+	
+	//打开源 目录
+	$dir_handler = opendir($dirsrc);
+	//遍历
+	while ($file = readdir($dir_handler)){
+		if ($file == '.' || $file == '..'){
+			continue;
+		}
+		//拼装路径
+		$filesrc = rtrim($dirsrc, '/').'/'.$file;
+		$filedst = rtrim($dirdst, '/').'/'.$file;
+		//判断是否是文件
+		if (is_file($filesrc)){
+			copy($filesrc, $filedst);
+		}
+		//如果是目录
+		if (is_dir($filesrc)){
+			copyDir($filesrc, $filedst);
+		}
+
+	}
+	//关闭
+	closedir($dir_handler);
+	
+}
+
+
+//导入 函数库
+require "functions.php"; // 上面的函数
+//统计盘符大小
+echo 'C 盘 的可用空间： '.disk_free_space('C:').'<br>';
+echo 'C 盘 的可用空间： '.totalSize(disk_free_space('C:'), 3).' GB<br>';
+echo 'C 盘 的总·空间： '.totalSize(disk_total_space('C:'), 3).' GB<br>';

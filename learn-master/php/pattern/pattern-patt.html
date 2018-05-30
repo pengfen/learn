@@ -1,0 +1,26 @@
+使用正则表达式进行匹配
+
+使用正则表达式的目的是为了实现比字符串处理函数更加灵活的处理方式 因此跟字符串处理函数一样 其主要用来判断子字符串是否存在 字符串替换 分割字符串 获取模式子串等
+
+PHP 使用 PCRE库函数来进行正则处理 通过设定好模式 然后调用相关的处理函数来取得匹配结果
+
+preg_match 用来执行一个匹配 可以简单的用来判断模式是否匹配成功 或者取得一个匹配结果 他的返回值是匹配成功的次数0 或者1 在匹配到1次以后就会停止搜索
+
+$subject = 'abcdef';
+$pattern = '/def/';
+preg_match($pattern, $subject, $matches);
+print_r($matches);
+
+上面的代码简单的执行了一个匹配 简单的判断def是否能匹配成功 但是正则表达式的强大的地方是进行模式匹配 因此更多的时候 会使用模式
+$subject = 'abcdef';
+$pattern = '/a(.*?)d/';
+preg_match($pattern, $subject, $matches);
+print_r($matches);
+
+通过正则表达式可以匹配一个模式 得到更多的有用的数据
+
+<?php
+$subject = "my email is caopeng8787@163.com";
+$pattern = '/is (.*?)/';
+preg_match($pattern, $subject, $matches);
+print_r($matches);

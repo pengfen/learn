@@ -1,0 +1,46 @@
+Hadoop 安装
+
+[root@peng1 ~]# mkdir /root/hadoop/
+上传 hadoop 工具包到 /root/hadoop/
+
+[root@peng1 ~]# cd /root/hadoop/
+[root@peng1 hadoop]# tar -zxvf hadoop-1...
+[root@peng1 hadoop]# ln -sf /root/hadoop/hadoop-1... /home/hadoop1.2
+[root@peng1 hadoop]# cd /home/hadoop1.2/
+[root@peng1 hadoop1.2]# cd conf
+[root@peng1 conf]# vi hadoop-env.sh
+export JAVA_HOME=/usr/local/java/jdk1.8.0_73
+[root@peng1 conf]# vi core-site.xml
+<configuration>
+    <property>
+        <name>fs.default.name</name>
+        <value>hdfs://peng1:9000</value>
+    </property>
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/opt/hadoop-1.2</value>
+    </property>
+</configuration>
+[root@peng1 conf]# vi hdfs-site.xml
+<configuration>
+    <property>
+         <name>dfs.replication</name>
+         <value>2</value>
+    </property>
+</configuration>
+[root@peng1 conf]# vi mapred-site.xml
+<configuration>
+    <property>
+        <name>mapred.job.tracker</name>
+        <value>peng2:9001</value>
+    </property>
+</configuration>
+[root@peng1 conf]# vi masters
+peng2 #配置 SecondaryNameNode
+[root@peng1 conf]# vi slaves
+peng2
+peng3 #配置 DataNode 节点
+[root@peng1 conf]# vi /etc/hosts
+192.168.129.128 peng1
+192.168.129.129 peng2
+192.168.129.130 peng3

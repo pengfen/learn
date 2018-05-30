@@ -1,0 +1,89 @@
+springmvc 和 mybatis 整合
+
+需求
+使用springmvc和mybatis完成商品列表查询
+整合思路
+springmvc + mybatis 的系统架构
+表现层 springmvc
+业务层 service接口
+持久层 mybatis
+
+spring将各层进行整合 
+通过spring管理持久层的mapper(相当于dao接口)
+通过spring管理业务层service service中可以调用mapper接口
+spring进行事务控制
+通过spring管理表现层Handler Handler中可以调用service接口
+mapper service handler都是javabean
+
+第一步 整合dao层
+mybatis 和 spring 整合 通过spring管理mapper接口 使用mapper的扫描器自动扫描mapper接口在spring中进行注册
+第二步 整理service层
+通过spring管理service接口
+使用配置方式将service接口配置在spring配置文件中
+实现事务控制
+第三步 整合springmvc
+由于springmvc是spring的模块 不需要整合
+
+总结
+springmvc框架
+    DispatcherServlet前端控制器 接收request进行response
+    HandlerMapping处理器映射器 根据url查找Handler(可以通过xml配置方式 注解方式)
+    HandlerAdapter处理器适配器 根据特定规则去执行Handler 编写Handler时需要按照HandlerAdapter的要求去编写
+    Handler处理器(后端控制器) 需要程序员去编写 常用注解开发方式
+    Handler处理器执行后结果是ModelAndView 具体开发时Handler返回方法值类型包括 ModelAndView String(逻辑视图名) void(通过在Handler形参中添加request和response 类似原始servlet开发方式 注意 可以通过指定response响应的结果类型实现json数据输出)
+    View resolver 视图解析器 根据逻辑视图名生成真正的视图(在springmvc中使用View对象表示)
+    View 视图jsp页面 仅是数据展示 没有业务逻辑
+
+    注解开发 使用注解方式的处理器映射器和适配器
+    <!-- 注解映射器 -->
+    <!-- 注解映射器 -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+    <!-- 注解适配器 -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
+    在实际开 使用<mvc:annotation-driven>代替上边处理器映射器和适配器配置
+    
+    @Controller注解必须要加 作用标识类是一个Handler处理器
+    @RequestMapping 注解必须要加 作用
+        对url和handler的方法进行映射
+        可以窄化请求映射 设置Handler的根路径 url就是根路径+子路径请求方式
+        可以限制http请求的方法
+    映射成功后 springmvc框架生成一个handler对象 对象中只包括一个映射成功的method
+
+    注解开发中参数绑定
+        将request请求过来的key/value的数据(理解一个串) 通过转换(参数绑定的一部分) 将key/value串转成形参 将转换后的结果传给形参 (整个参数绑定过程)
+        springmvc所支持参数绑定
+        默认支持很多类型 HttpServletRequest response session model/modelMap(将模型数据填充到request域)
+        支持简单数据类型 整型 字符串 日期 只要保证request请求的参数名和形参名称一致 自动绑定成功 如果request请求的参数名和形参名称不一致 可以使用@RequestParam(指定request请求的参数名) @RequestParam加在形参的前边
+        支持pojo类型 只要保证request请求的参数名称和pojo中的属性名一致 自动将request请求的参数设置到pojo的属性中
+        注意 形参中即有pojo类型以有简单类型 参数绑定互不影响
+        自定义参数绑定 日期类型绑定自定义
+            定义的Converter<源类型,目标类型>接口实现类 比如 Converter<String, Date>表示 将请求的日期数据串转成java中的日期类型 注意 要转换的目标类型一定和接收的pojo中的属性类型一致 将定义的Converter实现类注入到处理适配器中
+            <mvc:annotation-driven converion-service="conversionService"></mvc:annotation-driven>
+            <!-- conversionService -->
+            <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+                <!-- 转换器 -->
+                <property name="converters">
+                	<list>
+                		<bean class="com.peng.mybatis.controller.converter.CustomDateConverter"/>
+                	</list>
+                </property>
+            </bean>
+
+springmvc和struts2区别
+springmvc面向方法开的(更接近service接口的开发方式) struts2面向类开发
+springmvc可以单例开发 struts2只能多例开发
+
+在商品查询和商品修改功能案例驱动下进行学习
+包装类型pojo参数绑定(掌握)
+集合类型的参数绑定 数组 list map
+商品修改添加校验 学习springmvc提供校验validation(使用的是hibernate校验框架)
+数据回显
+统一异常处理(掌握)
+
+json数据交互
+RESTful支持
+上传图片
+
+//页面输出JSONArray的内容  
+PrintWriter out = response.getWriter();  
+out.print(jsonArray);  

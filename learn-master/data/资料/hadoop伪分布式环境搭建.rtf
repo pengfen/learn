@@ -1,0 +1,470 @@
+hadoop1.2.1伪分布式搭建
+
+0.使用host-only方式
+	将Windows上的虚拟网卡改成跟Linux上的网卡在同一网段
+	注意：一定要将widonws上的WMnet1的IP设置和你的虚拟机在同一网段，但是IP不能相同
+1.Linux环境配置（windows下面的防火墙也要关闭）
+	1.1修改主机名
+		vim /etc/sysconfig/network
+	1.2修改IP
+		vim /etc/sysconfig/network-scripts/ifcfg-eth0
+		
+		DEVICE="eth0"
+		BOOTPROTO="static"   ###
+		HWADDR="00:0C:29:BF:45:8B"
+		IPV6INIT="yes"
+		NM_CONTROLLED="yes"
+		ONBOOT="yes"
+		TYPE="Ethernet"
+		UUID="99339c27-0884-46c0-85d5-2612e5c1f149"
+		IPADDR="192.168.1.110"   ### 
+		NETMASK="255.255.255.0"  ###
+		GATEWAY="192.192.1.1"    ###
+	1.3修改主机名和IP的映射关系
+		vim /etc/hosts
+		
+		192.168.1.110 itcast
+	1.4关闭防火墙
+		查看防护墙状态
+		service iptables status
+		
+		关闭
+		service iptables stop
+		
+		查看防火墙开机启动状态
+		chkconfig iptables --list
+		
+		关闭开机启动
+		chkconfig iptables off
+	1.5安装JDK
+		上传JDK
+		添加执行权限
+		chmod u+x jdk-6u45-linux-i586.bin
+		
+		解压
+		./jdk-6u45-linux-i586.bin
+		
+		mkdir /usr/java
+		mv jdk1.6.0_45/ /usr/java/
+		
+		将java添加到环境变量
+		vim /etc/profile
+		在文件的末尾添加如下内容
+		
+		export JAVA_HOME=/usr/java/jdk1.6.0_45
+		export PATH=$PATH:$JAVA_HOME/bin
+
+		刷新配置
+		source /etc/profile
+		
+2.配置hadoop
+	2.1上传hadoop包
+	
+	2.2解压hadoop包
+		首先在根目录创建一个cloud目录
+		mkdir /cloud
+		
+		tar -zxvf hadoop-1.1.2.tar.gz -C /cloud/
+	2.3配置hadoop伪分布式（要修改4个文件）
+		第一个：hadoop-env.sh
+		vim hadoop-env.sh
+			export JAVA_HOME=/usr/java/jdk1.6.0_45
+		
+		第二个：core-site.xml
+		vim core-site.xml
+			
+			<configuration>
+					<!-- 指定HDFS的namenode的通信地址 -->
+					<property>
+							<name>fs.default.name</name>
+							<value>hdfs://itcast:9000</value>
+					</property>
+					<!-- 指定hadoop运行时产生文件的存放目录 -->
+					<property>
+							<name>hadoop.tmp.dir</name>
+							<value>/cloud/hadoop-1.1.2/tmp</value>
+					</property>
+			</configuration>
+			
+		第三个：hdfs-site.xml
+		vim hdfs-site.xml
+			<configuration>
+				<!-- 配置HDFS副本的数量 -->
+				<property>
+						<name>dfs.replication</name>
+						<value>1</value>
+				</property>
+			</configuration>
+			
+		第四个：mapred-site.xml
+		vim mapred-site.xml
+			<configuration>
+					<!-- 指定jobtracker地址 -->
+					<property>
+							<name>mapred.job.tracker</name>
+							<value>itcast:9001</value>
+					</property>
+			</configuration>
+			
+	2.4将hadoop添加到环境变量
+		vim /etc/profile
+		
+		export JAVA_HOME=/usr/java/jdk1.6.0_45
+		export HADOOP_HOME=/cloud/hadoop-1.1.2
+		export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin
+		
+		source /etc/profile
+	
+	2.5格式化HDFS
+		hadoop namenode -format
+	
+	2.6启动hadoop
+		start-all.sh
+	
+	2.7验证集群是否启动成功
+		jps(不包括jps应该有5个)
+		NameNode
+		SecondaryNameNode
+		DataNode
+		JobTracker
+		TaskTracker
+		还可以通过浏览器的方式验证
+		http://192.168.1.110:50070 (hdfs管理界面)
+		http://192.168.1.110:50030 (mr管理界面)
+		
+		在这个文件中添加linux主机名和IP的映射关系
+		C:\Windows\System32\drivers\etc
+		
+3.配置ssh免登陆
+	生成ssh免登陆密钥
+	ssh-keygen -t rsa
+	执行完这个命令后，会生成两个文件id_rsa（私钥）、id_rsa.pub（公钥）
+	将公钥拷贝到要免登陆的机器上
+	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+	 
+  
+hadoop2.2.0伪分布式搭建
+1.准备Linux环境
+	1.0点击VMware快捷方式，右键打开文件所在位置 -> 双击vmnetcfg.exe -> VMnet1 host-only ->修改subnet ip 设置网段：192.168.1.0 子网掩码：255.255.255.0 -> apply -> ok
+		回到windows --> 打开网络和共享中心 -> 更改适配器设置 -> 右键VMnet1 -> 属性 -> 双击IPv4 -> 设置windows的IP：192.168.1.110 子网掩码：255.255.255.0 -> 点击确定
+		在虚拟软件上 --My Computer -> 选中虚拟机 -> 右键 -> settings -> network adapter -> host only -> ok	
+	1.1修改主机名
+		vim /etc/sysconfig/network
+		
+		NETWORKING=yes 
+		HOSTNAME=itcast01    ###
+
+	1.2修改IP
+		两种方式：
+		第一种：通过Linux图形界面进行修改（强烈推荐）
+			进入Linux图形界面 -> 右键点击右上方的两个小电脑 -> 点击Edit connections -> 选中当前网络System eth0 -> 点击edit按钮 -> 选择IPv4 -> method选择为manual -> 点击add按钮 -> 添加IP：192.168.1.119 子网掩码：255.255.255.0 网关：192.168.1.1 -> apply
+	
+		第二种：修改配置文件方式（屌丝程序猿专用）
+			vim /etc/sysconfig/network-scripts/ifcfg-eth0
+			
+			DEVICE="eth0"
+			BOOTPROTO="static"           ###
+			HWADDR="00:0C:29:3C:BF:E7"
+			IPV6INIT="yes"
+			NM_CONTROLLED="yes"
+			ONBOOT="yes"
+			TYPE="Ethernet"
+			UUID="ce22eeca-ecde-4536-8cc2-ef0dc36d4a8c"
+			IPADDR="192.168.1.44"       ###
+			NETMASK="255.255.255.0"      ###
+			GATEWAY="192.168.1.1"        ###
+			
+	1.3修改主机名和IP的映射关系
+		vim /etc/hosts
+			
+		192.168.1.44	itcast01
+	
+	1.4关闭防火墙
+		#查看防火墙状态
+		service iptables status
+		#关闭防火墙
+		service iptables stop
+		#查看防火墙开机启动状态
+		chkconfig iptables --list
+		#关闭防火墙开机启动
+		chkconfig iptables off
+	
+	1.5重启Linux
+		reboot
+	
+2.安装JDK
+	2.1上传
+	
+	2.2解压jdk
+		#创建文件夹
+		mkdir /usr/java
+		#解压
+		tar -zxvf jdk-7u55-linux-i586.tar.gz -C /usr/java/
+		
+	2.3将java添加到环境变量中
+		vim /etc/profile
+		#在文件最后添加
+		export JAVA_HOME=/usr/java/jdk1.7.0_55
+		export PATH=$PATH:$JAVA_HOME/bin
+	
+		#刷新配置
+		source /etc/profile
+3.安装Hadoop
+	3.1上传hadoop安装包
+	
+	3.2解压hadoop安装包
+		mkdir /cloud
+		#解压到/cloud/目录下
+		tar -zxvf hadoop-2.2.0.tar.gz -C /cloud/
+		
+	3.3修改配置文件（5个）
+		第一个：hadoop-env.sh
+		#在27行修改
+		export JAVA_HOME=/usr/java/jdk1.7.0_55
+		
+		第二个：core-site.xml
+		<configuration>
+			<!-- 指定HDFS老大（namenode）的通信地址 -->
+			<property>
+					<name>fs.defaultFS</name>
+					<value>hdfs://itcast01:9000</value>
+			</property>
+			<!-- 指定hadoop运行时产生文件的存储路径 -->
+			<property>
+					<name>hadoop.tmp.dir</name>
+					<value>/cloud/hadoop-2.2.0/tmp</value>
+			</property>
+		</configuration>
+		
+		第三个：hdfs-site.xml
+		<configuration>
+			<!-- 设置hdfs副本数量 -->
+			<property>
+					<name>dfs.replication</name>
+					<value>1</value>
+			</property>
+		</configuration>
+		
+		第四个：mapred-site.xml.template 需要重命名： mv mapred-site.xml.template mapred-site.xml
+		<configuration>
+			<!-- 通知框架MR使用YARN -->
+			<property>
+					<name>mapreduce.framework.name</name>
+					<value>yarn</value>
+			</property>
+		</configuration>
+		
+		第五个：yarn-site.xml
+		<configuration>
+			<!-- reducer取数据的方式是mapreduce_shuffle -->
+			<property>
+				<name>yarn.nodemanager.aux-services</name>
+				<value>mapreduce_shuffle</value>
+			</property>
+		</configuration>
+	
+	3.4将hadoop添加到环境变量
+		vim /etc/profile
+		
+		export JAVA_HOME=/usr/java/jdk1.7.0_55
+		export HADOOP_HOME=/cloud/hadoop-2.2.0
+		export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin
+	
+		source /etc/profile
+	3.5格式化HDFS（namenode）第一次使用时要格式化
+		hadoop namenode -format
+		
+	3.6启动hadoop
+		先启动HDFS
+		sbin/start-dfs.sh
+		
+		再启动YARN
+		sbin/start-yarn.sh
+		
+	3.7验证是否启动成功
+		使用jps命令验证
+		27408 NameNode
+		28218 Jps
+		27643 SecondaryNameNode
+		28066 NodeManager
+		27803 ResourceManager
+		27512 DataNode
+	
+		http://192.168.1.44:50070  (HDFS管理界面)
+		在这个文件中添加linux主机名和IP的映射关系
+		C:\Windows\System32\drivers\etc\hosts
+		192.168.1.119	itcast
+		
+		http://192.168.1.44:8088 （MR管理界面）
+		
+4.配置ssh免登陆
+	生成ssh免登陆密钥
+	cd ~，进入到我的home目录
+	cd .ssh/
+
+	ssh-keygen -t rsa （四个回车）
+	执行完这个命令后，会生成两个文件id_rsa（私钥）、id_rsa.pub（公钥）
+	将公钥拷贝到要免登陆的机器上
+	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+	或
+	ssh-copy-id -i localhost 
+	
+
+
+hadoop2.4.1伪分布式搭建
+1.准备Linux环境
+	1.0点击VMware快捷方式，右键打开文件所在位置 -> 双击vmnetcfg.exe -> VMnet1 host-only ->修改subnet ip 设置网段：192.168.8.0 子网掩码：255.255.255.0 -> apply -> ok
+		回到windows --> 打开网络和共享中心 -> 更改适配器设置 -> 右键VMnet1 -> 属性 -> 双击IPv4 -> 设置windows的IP：192.168.8.100 子网掩码：255.255.255.0 -> 点击确定
+		在虚拟软件上 --My Computer -> 选中虚拟机 -> 右键 -> settings -> network adapter -> host only -> ok	
+	1.1修改主机名
+		vim /etc/sysconfig/network
+		
+		NETWORKING=yes
+		HOSTNAME=itcast01    ###
+ 
+	1.2修改IP
+		两种方式：
+		第一种：通过Linux图形界面进行修改（强烈推荐）
+			进入Linux图形界面 -> 右键点击右上方的两个小电脑 -> 点击Edit connections -> 选中当前网络System eth0 -> 点击edit按钮 -> 选择IPv4 -> method选择为manual -> 点击add按钮 -> 添加IP：192.168.8.118 子网掩码：255.255.255.0 网关：192.168.1.1 -> apply
+	
+		第二种：修改配置文件方式（屌丝程序猿专用）
+			vim /etc/sysconfig/network-scripts/ifcfg-eth0
+			
+			DEVICE="eth0"
+			BOOTPROTO="static"               ###
+			HWADDR="00:0C:29:3C:BF:E7"
+			IPV6INIT="yes"
+			NM_CONTROLLED="yes"
+			ONBOOT="yes"
+			TYPE="Ethernet"
+			UUID="ce22eeca-ecde-4536-8cc2-ef0dc36d4a8c"
+			IPADDR="192.168.8.118"           ###
+			NETMASK="255.255.255.0"          ###
+			GATEWAY="192.168.8.1"            ###
+			
+	1.3修改主机名和IP的映射关系
+		vim /etc/hosts
+			
+		192.168.8.118	itcast01
+	
+	1.4关闭防火墙
+		#查看防火墙状态
+		service iptables status
+		#关闭防火墙
+		service iptables stop
+		#查看防火墙开机启动状态
+		chkconfig iptables --list
+		#关闭防火墙开机启动
+		chkconfig iptables off
+	
+	1.5重启Linux
+		reboot
+
+2.安装JDK
+	2.1上传
+	
+	2.2解压jdk
+		#创建文件夹
+		mkdir /usr/java
+		#解压
+		tar -zxvf jdk-7u55-linux-i586.tar.gz -C /usr/java/
+		
+	2.3将java添加到环境变量中
+		vim /etc/profile
+		#在文件最后添加
+		export JAVA_HOME=/usr/java/jdk1.7.0_55
+		export PATH=$PATH:$JAVA_HOME/bin
+	
+		#刷新配置
+		source /etc/profile
+		
+3.安装hadoop2.4.1
+	注意：hadoop2.x的配置文件$HADOOP_HOME/etc/hadoop
+	伪分布式需要修改5个配置文件
+	3.1配置hadoop
+	第一个：hadoop-env.sh
+		vim hadoop-env.sh
+		#第27行
+		export JAVA_HOME=/usr/java/jdk1.7.0_65
+		
+	第二个：core-site.xml
+		<!-- 制定HDFS的老大（NameNode）的地址 -->
+		<property>
+			<name>fs.defaultFS</name>
+			<value>hdfs://itcast01:9000</value>
+		</property>
+		<!-- 指定hadoop运行时产生文件的存储目录 -->
+		<property>
+			<name>hadoop.tmp.dir</name>
+			<value>/itcast/hadoop-2.4.1/tmp</value>
+        </property>
+		
+	第三个：hdfs-site.xml
+		<!-- 指定HDFS副本的数量 -->
+		<property>
+			<name>dfs.replication</name>
+			<value>1</value>
+        </property>
+		
+	第四个：mapred-site.xml (mv mapred-site.xml.template mapred-site.xml)
+		mv mapred-site.xml.template mapred-site.xml
+		vim mapred-site.xml
+		<!-- 指定mr运行在yarn上 -->
+		<property>
+			<name>mapreduce.framework.name</name>
+			<value>yarn</value>
+        </property>
+		
+	第五个：yarn-site.xml
+		<!-- 指定YARN的老大（ResourceManager）的地址 -->
+		<property>
+			<name>yarn.resourcemanager.hostname</name>
+			<value>itcast01</value>
+        </property>
+		<!-- reducer获取数据的方式 -->
+        <property>
+			<name>yarn.nodemanager.aux-services</name>
+			<value>mapreduce_shuffle</value>
+        </property>
+	
+	3.2将hadoop添加到环境变量
+	
+	vim /etc/proflie
+		export JAVA_HOME=/usr/java/jdk1.7.0_65
+		export HADOOP_HOME=/itcast/hadoop-2.4.1
+		export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+
+	source /etc/profile
+	
+	3.3格式化namenode（是对namenode进行初始化）
+		hdfs namenode -format (hadoop namenode -format)
+		
+	3.4启动hadoop
+		先启动HDFS
+		sbin/start-dfs.sh
+		
+		再启动YARN
+		sbin/start-yarn.sh
+		
+	3.5验证是否启动成功
+		使用jps命令验证
+		27408 NameNode
+		28218 Jps
+		27643 SecondaryNameNode
+		28066 NodeManager
+		27803 ResourceManager
+		27512 DataNode
+	
+		http://192.168.8.118:50070 （HDFS管理界面）
+		http://192.168.8.118:8088 （MR管理界面）
+		
+4.配置ssh免登陆
+	#生成ssh免登陆密钥
+	#进入到我的home目录
+	cd ~/.ssh
+
+	ssh-keygen -t rsa （四个回车）
+	执行完这个命令后，会生成两个文件id_rsa（私钥）、id_rsa.pub（公钥）
+	将公钥拷贝到要免登陆的机器上
+	ssh-copy-id localhost
+	

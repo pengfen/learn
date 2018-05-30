@@ -1,0 +1,37 @@
+1) 找到项目 fork
+git clone https://github.com/pengfen/chatroom.git
+
+用户表
+create table chatroom-customer (
+    id int unsigned not null primary key auto_increment,
+    nickname varchar(50) not null default '' comment '用户昵称',
+    userIP varchar(20) not null default '' comment '用户IP地址',
+    content varchar(255) not null default '' comment '用户内容',
+    addtime datatime not null default '0000-00-00 00:00:00' comment '添加时间',
+    status tinyint(1) unsigned not null default 0 comment '用户状态'
+) engine=innodb default charset=utf8 comment='用户记录表';
+
+2) 修改 web.php 文件
+'cookieValidationKey' => 'chatroom',
+
+3) 修改 db.php 文件
+    'class' => 'yii\db\Connection',
+    'dsn' => 'mysql:host=192.168.2.198;dbname=chatroom',
+    'username' => 'kiehls',
+    'password' => '0412kiehls',
+
+4) 创建页面入口及添加 js 文件  views/layouts/main.php
+['label' => '用户聊天', 'url' => ['/site/chat']]
+<?= Html::jsFile('@web/js/customer.js')?>
+
+5) 编写 js 文件
+
+6) 编写 控制器 
+site/chat
+public function chat() {
+    return $this->render('chat');
+}
+
+7) 编写数据模型 Chat.php
+
+8) 编写页面 viem/site/chat.php

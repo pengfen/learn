@@ -1,0 +1,35 @@
+express 安装
+
+npm install express -g # 安装express模块
+npm install -g express-generator (4.0及以后版本都得使用)
+npm -V # 查看express版本号 
+
+express app
+node app.js
+Cannot find module 'express'
+解决方案
+npm install express或者配置环境
+Cannot find module 'serve-favicon'
+npm install serve-favicon
+Cannot find module 'morgan'
+npm install morgan
+Cannot find module 'cookie-parser'
+npm install cookie-parser
+Cannot find module 'body-parser'
+npm install body-parser
+
+npm uninstall -g express
+npm install -g express@3.0
+express app
+cd app
+node app.js
+Cannot find module 'express'
+npm install express@3.0
+node app.js
+Express server listening on port 3000
+http://127.0.0.1:3000/
+Express
+500 Error: Cannot find module 'jade'
+npm install jade
+
+修改route/js文件后 要重新node app.js页面内容才会修改

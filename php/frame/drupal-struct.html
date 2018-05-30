@@ -1,0 +1,34 @@
+drupal 目录结构
+
+includes   存放Drupal程序头文件。 Drupal的一些函数和变量的定义，均可在此文件夹下的文件中找到。这些文件都是以.inc结尾的。
+misc       Drupal所用的其他文件，如图片， javascript 脚本和 css样式表等。
+modules    Drupal核心模块的存放目录。但是，如果用户添加自定义模块，或安装第三方模块应放在/sites/all/modules/下
+profiles   存放 Drupal安装配置文件。
+scripts    Drupal在 Unix/Linux服务器上运行的脚本文件所在目录。一般是进行任务计划配置的。
+sites      用户自定义及第三方模块、主题、站点配置文件所在目录。themes和 modules目录是后建立的，下载的模块和模板均放置于对应的目录中。
+themes     Drupal自带 theme所在目录。建议用户不要往此目录中放新增 theme。一般情况下，只对 sites目录进行操作。新主题或新的模块等，都会放在这个目录的all或default子目录下。
+
+Dashboard Drag and drop these blocks to the columns below. Changes are automatically saved. More options are available on the configuration page.
+管理员面板页面. 支持任意区块的自定义布局.
+
+内容 (基本页面 文章) 为网站填充内容
+
+/includes 系统的核心函数
+/misc 系统核心用的一些js脚本 图片资源等
+/modules 系统核心模块
+/profiles 安装配置文件 里面包括minimal（最小化安装）standard（标准安装）两种配置，区别是标准安装会在数据库创建2中节点的类型：页面和消息类型，还有tag术语表，最小化安装则所有节点类型都需要自己来创建
+/scripts 命令行脚本 在命令行可以执行的脚本文件，包括安装脚本，数据库备份脚本等
+/themes 系统默认主题
+/sites 所有你自己的东西都要放在这个目录里，包括模块、主题、js脚本库。
+    ./default/settings.php 配置文件，主要是数据库连接配置
+    ./default/files 用户上传的文件和图片缓存 css缓存 js缓存等等
+    ./all/themes 用户的主题和第三方主题
+    ./all/modules 用户自定义模块和第三方模块
+    ./all/libraries 第三方js库 如在线编辑器、语法高亮库
+/index.php drupal系统的入口，负责所有页面的请求，调度到相应的处理程序，打印相应的页面。
+/cron.php 计划任务执行程序，会定期执行一些数据的清理工作。
+/install.php drupal安装程序 如果想重装drupal 清空数据库之后，执行/install.php就会重新安装，如果不清空数据库就会出错。
+/robots.txt 告诉网络爬虫不要获取网站的某些部分
+/update.php drupal的升级
+/xmlrpc.php xmlrpc服务
+.htaccess apache的目录配置文件 url重写配置 将请求映射到index.php

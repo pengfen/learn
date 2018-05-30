@@ -1,0 +1,31 @@
+大数据是什么 ---- 大数据做什么 ---- 处理大数据 ---- HDFS ---- MapReduce ---- Hive ---- HBase ---- Spark
+
+天文数据 (超出人们想像)
+
+大数据处理 (韩信点兵)
+
+Hadoop 体系
+
+批处理计算 实时计算 流式计算
+
+HDFS 分布式文件系统 海量数据存储
+MapReduce 并行的离线计算框架 海量数据分析 实现任务分解和调度
+
+GFS
+GFS master ---- HDFS NN (NameNode)
+GFS chunkserver ---- HDFS DN (DataNode)
+GFS chunk ---- HDFS block
+
+client ---- NN  获取元数据 (文件名 文件位置 文件权限 block标识)
+元数据 文件与 chunk 的唯一标识 文件与 chunk 的对应关系 每个 chunk 副本存放地点
+
+产生操作日志
+心跳检测 master 周期性扫描 DB
+64 字节(元数据大小) ---- 64M (block)
+
+启动时轮询 block 会进入安全模式
+操作日志 ---- 定量 ---- checkpoint
+
+每台主机上网络爬虫抓取的页面数量的汇总
+每天被请求的最多的查询的集合等等
+并行计算 分发数据 容错 负载均衡

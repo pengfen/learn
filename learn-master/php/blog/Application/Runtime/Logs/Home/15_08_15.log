@@ -1,0 +1,908 @@
+[ 2015-08-15T13:08:03+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.040001s ]
+
+[ 2015-08-15T13:08:59+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.027500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.027500s ]
+
+[ 2015-08-15T13:08:59+08:00 ] 127.0.0.1 /blog/index.php/Home/Register/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.002500s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.102502s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.102502s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.010000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.010000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.005000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.007500s ]
+
+[ 2015-08-15T13:08:59+08:00 ] 127.0.0.1 /blog/index.php/Home/Register/verifyImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002500s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002500s ]
+
+[ 2015-08-15T13:09:15+08:00 ] 127.0.0.1 /blog/index.php/Home/Login/dologin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0800s ]
+SQL: SELECT * FROM `blog_user` WHERE `email` = 'apeng1@qq.com' LIMIT 1   [ RunTime:0.0250s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0075s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `blog_user` SET `experience`='115' WHERE `id` = 52 [ RunTime:0.0525s ]
+
+[ 2015-08-15T13:09:16+08:00 ] 127.0.0.1 /blog/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0425s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_visitor` [ RunTime:0.0600s ]
+SQL: SELECT * FROM `blog_visitor` WHERE `uid` = 52 GROUP BY visitor ORDER BY addtime desc LIMIT 9   [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_news` [ RunTime:0.0575s ]
+SQL: SELECT * FROM `blog_news` ORDER BY addtime desc LIMIT 6   [ RunTime:0.0025s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.147502s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.147502s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002500s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005000s ]
+
+[ 2015-08-15T13:09:16+08:00 ] 127.0.0.1 /blog/index.php/Home/Mydong/friend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: uid D:\files\wamp\www\blog\Application\Home\Controller\MydongController.class.php 第 71 行.
+SQL: SHOW COLUMNS FROM `blog_friend` [ RunTime:0.0675s ]
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52  [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `blog_record` [ RunTime:0.0750s ]
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ) ORDER BY addtime desc LIMIT 10' at line 1
+
+[ 2015-08-15T13:09:47+08:00 ] 127.0.0.1 /blog/index.php/Home/Mood/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SHOW COLUMNS FROM `blog_mood` [ RunTime:0.0525s ]
+NOTIC: [8] Undefined index: uid D:\files\wamp\www\blog\Application\Home\Controller\MoodController.class.php 第 12 行.
+SQL: SELECT * FROM `blog_mood` WHERE `uid` = 52 ORDER BY addtime desc  [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() D:\files\wamp\www\blog\Application\Home\Controller\MoodController.class.php 第 80 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\files\wamp\www\blog\Application\Home\Controller\MoodController.class.php 第 53 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\blog\Application\Runtime\Cache\Home\8a1f092113666de7340ec3842232c21f.php 第 7 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.087501s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.090001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002501s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002501s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T13:09:58+08:00 ] 127.0.0.1 /blog/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0075s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_visitor` [ RunTime:0.0075s ]
+SQL: SELECT * FROM `blog_visitor` WHERE `uid` = 52 GROUP BY visitor ORDER BY addtime desc LIMIT 9   [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_news` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_news` ORDER BY addtime desc LIMIT 6   [ RunTime:0.0025s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.037500s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.037500s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T13:09:58+08:00 ] 127.0.0.1 /blog/index.php/Home/Mydong/friend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: uid D:\files\wamp\www\blog\Application\Home\Controller\MydongController.class.php 第 71 行.
+SQL: SHOW COLUMNS FROM `blog_friend` [ RunTime:0.0050s ]
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52  [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `blog_record` [ RunTime:0.0050s ]
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ) ORDER BY addtime desc LIMIT 10' at line 1
+
+[ 2015-08-15T13:10:03+08:00 ] 127.0.0.1 /blog/index.php/Home/Resource/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SHOW COLUMNS FROM `blog_resource` [ RunTime:0.0450s ]
+SQL: select r.id,r.type,r.header,r.main,r.score,r.download,r.addtime,u.username from blog_resource r left join blog_user u on r.uid=u.id order by r.download desc limit 5 [ RunTime:0.0275s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.002500s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\blog\Application\Runtime\Cache\Home\1f500f88dc3c7a30fce9587ab1010eea.php 第 7 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.072501s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.075001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T13:10:05+08:00 ] 127.0.0.1 /blog/index.php/Home/Friend/searchfriend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0075s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` <> '52'  [ RunTime:0.0225s ]
+SQL: SHOW COLUMNS FROM `blog_notice` [ RunTime:0.0300s ]
+SQL: SELECT * FROM `blog_notice` WHERE `flag` = 3 AND `uid` = 52  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_friend` [ RunTime:0.0075s ]
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002500s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.002500s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.125002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.125002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002500s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002500s ]
+
+[ 2015-08-15T13:10:09+08:00 ] 127.0.0.1 /blog/index.php/Home/User/myhome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0075s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_message` [ RunTime:0.0550s ]
+SQL: SELECT * FROM `blog_message` WHERE `uid` = 52 AND `pid` = 0 ORDER BY addtime desc LIMIT 4   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.002500s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.080001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.082501s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002500s ]
+
+[ 2015-08-15T13:10:09+08:00 ] 127.0.0.1 /blog/index.php/Home/Mydong/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SHOW COLUMNS FROM `blog_record` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `blog_record` WHERE `uid` = 52 ORDER BY addtime desc LIMIT 10   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002500s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.002500s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.050000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.050000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T13:10:11+08:00 ] 127.0.0.1 /blog/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_visitor` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_visitor` WHERE `uid` = 52 GROUP BY visitor ORDER BY addtime desc LIMIT 9   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_news` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_news` ORDER BY addtime desc LIMIT 6   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.037501s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.037501s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T13:10:12+08:00 ] 127.0.0.1 /blog/index.php/Home/Mydong/friend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: uid D:\files\wamp\www\blog\Application\Home\Controller\MydongController.class.php 第 71 行.
+SQL: SHOW COLUMNS FROM `blog_friend` [ RunTime:0.0050s ]
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_record` [ RunTime:0.0050s ]
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ) ORDER BY addtime desc LIMIT 10' at line 1
+
+[ 2015-08-15T13:10:26+08:00 ] 127.0.0.1 /blog/index.php/Home/Resource/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `blog_resource` [ RunTime:0.0025s ]
+SQL: select r.id,r.type,r.header,r.main,r.score,r.download,r.addtime,u.username from blog_resource r left join blog_user u on r.uid=u.id order by r.download desc limit 5 [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\blog\Application\Runtime\Cache\Home\1f500f88dc3c7a30fce9587ab1010eea.php 第 7 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002501s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002501s ]
+
+[ 2015-08-15T13:10:29+08:00 ] 127.0.0.1 /blog/index.php/Home/Resource/literature.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.015600s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015600s ]
+SQL: SHOW COLUMNS FROM `blog_resource` [ RunTime:0.0000s ]
+SQL: select r.id,r.type,r.header,r.main,r.score,r.download,r.addtime,u.username from blog_resource r left join blog_user u on r.uid=u.id where r.type='文学' order by r.addtime desc [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015600s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015600s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T13:10:33+08:00 ] 127.0.0.1 /blog/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `blog_visitor` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `blog_visitor` WHERE `uid` = 52 GROUP BY visitor ORDER BY addtime desc LIMIT 9   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_news` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_news` ORDER BY addtime desc LIMIT 6   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.037500s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.040001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002500s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002500s ]
+
+[ 2015-08-15T13:10:33+08:00 ] 127.0.0.1 /blog/index.php/Home/Mydong/friend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+NOTIC: [8] Undefined index: uid D:\files\wamp\www\blog\Application\Home\Controller\MydongController.class.php 第 71 行.
+SQL: SHOW COLUMNS FROM `blog_friend` [ RunTime:0.0050s ]
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_record` [ RunTime:0.0025s ]
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ) ORDER BY addtime desc LIMIT 10' at line 1
+
+[ 2015-08-15T13:10:37+08:00 ] 127.0.0.1 /blog/index.php/Home/Log/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2048] Declaration of Home\Controller\LogController::theme() should be compatible with Think\Controller::theme($theme) D:\files\wamp\www\blog\Application\Home\Controller\LogController.class.php 第 9 行.
+NOTIC: [8] Undefined index: uid D:\files\wamp\www\blog\Application\Home\Controller\LogController.class.php 第 15 行.
+SQL: SHOW COLUMNS FROM `blog_log_cate` [ RunTime:0.1125s ]
+SQL: SELECT * FROM `blog_log_cate` WHERE `uid` = 52  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_log` [ RunTime:0.0550s ]
+SQL: SELECT * FROM `blog_log` WHERE ( cid in (38) and flag=0 )  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 139 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 143 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 151 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 156 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 176 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 191 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.117502s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.117502s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T13:10:42+08:00 ] 127.0.0.1 /blog/index.php/Home/User/myhome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_message` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_message` WHERE `uid` = 52 AND `pid` = 0 ORDER BY addtime desc LIMIT 4   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022500s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022500s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T13:10:42+08:00 ] 127.0.0.1 /blog/index.php/Home/Mydong/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SHOW COLUMNS FROM `blog_record` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `blog_record` WHERE `uid` = 52 ORDER BY addtime desc LIMIT 10   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022500s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022500s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T13:10:44+08:00 ] 127.0.0.1 /blog/index.php/Home/Friend/searchfriend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` <> '52'  [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `blog_notice` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_notice` WHERE `flag` = 3 AND `uid` = 52  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_friend` [ RunTime:0.0025s ]
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.002500s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.002500s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.027500s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.027500s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T13:11:08+08:00 ] 127.0.0.1 /blog/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0375s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_visitor` [ RunTime:0.0075s ]
+SQL: SELECT * FROM `blog_visitor` WHERE `uid` = 52 GROUP BY visitor ORDER BY addtime desc LIMIT 9   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_news` [ RunTime:0.0075s ]
+SQL: SELECT * FROM `blog_news` ORDER BY addtime desc LIMIT 6   [ RunTime:0.0025s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.062501s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.065001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002500s ]
+
+[ 2015-08-15T13:11:08+08:00 ] 127.0.0.1 /blog/index.php/Home/Mydong/friend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: uid D:\files\wamp\www\blog\Application\Home\Controller\MydongController.class.php 第 71 行.
+SQL: SHOW COLUMNS FROM `blog_friend` [ RunTime:0.0050s ]
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_record` [ RunTime:0.0025s ]
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ) ORDER BY addtime desc LIMIT 10' at line 1
+
+[ 2015-08-15T13:11:34+08:00 ] 127.0.0.1 /blog/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.002500s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002501s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002501s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `blog_visitor` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_visitor` WHERE `uid` = 52 GROUP BY visitor ORDER BY addtime desc LIMIT 9   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_news` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `blog_news` ORDER BY addtime desc LIMIT 6   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.030001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.032501s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T13:11:34+08:00 ] 127.0.0.1 /blog/index.php/Home/Mydong/friend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+NOTIC: [8] Undefined index: uid D:\files\wamp\www\blog\Application\Home\Controller\MydongController.class.php 第 71 行.
+SQL: SHOW COLUMNS FROM `blog_friend` [ RunTime:0.0050s ]
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_record` [ RunTime:0.0050s ]
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ) ORDER BY addtime desc LIMIT 10' at line 1
+
+[ 2015-08-15T13:11:38+08:00 ] 127.0.0.1 /blog/index.php/Home/Log/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+NOTIC: [2048] Declaration of Home\Controller\LogController::theme() should be compatible with Think\Controller::theme($theme) D:\files\wamp\www\blog\Application\Home\Controller\LogController.class.php 第 9 行.
+NOTIC: [8] Undefined index: uid D:\files\wamp\www\blog\Application\Home\Controller\LogController.class.php 第 15 行.
+SQL: SHOW COLUMNS FROM `blog_log_cate` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_log_cate` WHERE `uid` = 52  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_log` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_log` WHERE ( cid in (38) and flag=0 )  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 139 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 143 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 151 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 156 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 176 行.
+NOTIC: [8] Undefined variable: flag D:\files\wamp\www\blog\Application\Runtime\Cache\Home\d7fecc3d2825db60804b3ca6dc36e75a.php 第 191 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.035001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.035001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002500s ]
+
+[ 2015-08-15T13:11:40+08:00 ] 127.0.0.1 /blog/index.php/Home/Log/add.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2048] Declaration of Home\Controller\LogController::theme() should be compatible with Think\Controller::theme($theme) D:\files\wamp\www\blog\Application\Home\Controller\LogController.class.php 第 9 行.
+SQL: SHOW COLUMNS FROM `blog_log_cate` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `blog_log_cate` WHERE `uid` = 52  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.015601s ]
+NOTIC: [8] Use of undefined constant GROUP_NAME - assumed 'GROUP_NAME' D:\files\wamp\www\blog\Application\Runtime\Cache\Home\54d6c08644885ee84d247f6b63b9d3eb.php 第 17 行.
+NOTIC: [8] Undefined variable: info D:\files\wamp\www\blog\Application\Runtime\Cache\Home\54d6c08644885ee84d247f6b63b9d3eb.php 第 27 行.
+NOTIC: [8] Undefined variable: info D:\files\wamp\www\blog\Application\Runtime\Cache\Home\54d6c08644885ee84d247f6b63b9d3eb.php 第 29 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031201s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031201s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T19:03:27+08:00 ] 127.0.0.1 /blog/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_visitor` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_visitor` WHERE `uid` = 52 GROUP BY visitor ORDER BY addtime desc LIMIT 9   [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_news` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_news` ORDER BY addtime desc LIMIT 6   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032501s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.032501s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002500s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002500s ]
+
+[ 2015-08-15T19:03:28+08:00 ] 127.0.0.1 /blog/index.php/Home/Mydong/friend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: uid D:\files\wamp\www\blog\Application\Home\Controller\MydongController.class.php 第 71 行.
+SQL: SHOW COLUMNS FROM `blog_friend` [ RunTime:0.0025s ]
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52  [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `blog_record` [ RunTime:0.0025s ]
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ) ORDER BY addtime desc LIMIT 10' at line 1
+
+[ 2015-08-15T19:03:37+08:00 ] 127.0.0.1 /blog/index.php/Home/Mood/addMood.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `blog_mood` [ RunTime:0.0050s ]
+SQL: INSERT INTO `blog_mood` (`content`,`uid`,`addtime`) VALUES ('说点什dddddddddddddddddddddddd么吧','52','1439636617') [ RunTime:0.0575s ]
+SQL: SHOW COLUMNS FROM `blog_record` [ RunTime:0.0050s ]
+SQL: INSERT INTO `blog_record` (`uid`,`addtime`) VALUES ('52','1439636617') [ RunTime:0.0275s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T19:03:42+08:00 ] 127.0.0.1 /blog/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0075s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_visitor` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_visitor` WHERE `uid` = 52 GROUP BY visitor ORDER BY addtime desc LIMIT 9   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_news` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_news` ORDER BY addtime desc LIMIT 6   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.027500s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.027500s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T19:03:42+08:00 ] 127.0.0.1 /blog/index.php/Home/Mydong/friend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+NOTIC: [8] Undefined index: uid D:\files\wamp\www\blog\Application\Home\Controller\MydongController.class.php 第 71 行.
+SQL: SHOW COLUMNS FROM `blog_friend` [ RunTime:0.0050s ]
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_record` [ RunTime:0.0050s ]
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ) ORDER BY addtime desc LIMIT 10' at line 1
+
+[ 2015-08-15T19:03:56+08:00 ] 127.0.0.1 /blog/index.php/Home/Resource/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `blog_resource` [ RunTime:0.0025s ]
+SQL: select r.id,r.type,r.header,r.main,r.score,r.download,r.addtime,u.username from blog_resource r left join blog_user u on r.uid=u.id order by r.download desc limit 5 [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\blog\Application\Runtime\Cache\Home\1f500f88dc3c7a30fce9587ab1010eea.php 第 7 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.025000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002500s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002500s ]
+
+[ 2015-08-15T19:03:58+08:00 ] 127.0.0.1 /blog/index.php/Home/Friend/searchfriend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` <> '52'  [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `blog_notice` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `blog_notice` WHERE `flag` = 3 AND `uid` = 52  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_friend` [ RunTime:0.0050s ]
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.030001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.030001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T19:03:59+08:00 ] 127.0.0.1 /blog/index.php/Home/User/myhome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_message` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_message` WHERE `uid` = 52 AND `pid` = 0 ORDER BY addtime desc LIMIT 4   [ RunTime:0.0025s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022500s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022500s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T19:03:59+08:00 ] 127.0.0.1 /blog/index.php/Home/Mydong/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `blog_record` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_record` WHERE `uid` = 52 ORDER BY addtime desc LIMIT 10   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `blog_mood` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `blog_mood` WHERE `uid` = 52 ORDER BY addtime desc LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: info D:\files\wamp\www\blog\Application\Home\Controller\MydongController.class.php 第 56 行.
+NOTIC: [2] array_merge(): Argument #2 is not an array D:\files\wamp\www\blog\Application\Home\Controller\MydongController.class.php 第 123 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: username D:\files\wamp\www\blog\Application\Runtime\Cache\Home\6fcc33eadbb72cc334effaf83fb52dae.php 第 12 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\files\wamp\www\blog\Application\Runtime\Cache\Home\6fcc33eadbb72cc334effaf83fb52dae.php 第 12 行.
+NOTIC: [8] Undefined index: title D:\files\wamp\www\blog\Application\Runtime\Cache\Home\6fcc33eadbb72cc334effaf83fb52dae.php 第 12 行.
+NOTIC: [8] Undefined index: review D:\files\wamp\www\blog\Application\Runtime\Cache\Home\6fcc33eadbb72cc334effaf83fb52dae.php 第 18 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T19:04:01+08:00 ] 127.0.0.1 /blog/index.php/Home/Friend/searchfriend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` <> '52'  [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `blog_notice` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_notice` WHERE `flag` = 3 AND `uid` = 52  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_friend` [ RunTime:0.0025s ]
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.027500s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.027500s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002500s ]
+
+[ 2015-08-15T19:04:02+08:00 ] 127.0.0.1 /blog/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `blog_head_img` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_head_img` WHERE `uid` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_visitor` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_visitor` WHERE `uid` = 52 GROUP BY visitor ORDER BY addtime desc LIMIT 9   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_user` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_user` WHERE `id` = 52 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_news` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `blog_news` ORDER BY addtime desc LIMIT 6   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022500s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022500s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-08-15T19:04:02+08:00 ] 127.0.0.1 /blog/index.php/Home/Mydong/friend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: uid D:\files\wamp\www\blog\Application\Home\Controller\MydongController.class.php 第 71 行.
+SQL: SHOW COLUMNS FROM `blog_friend` [ RunTime:0.0025s ]
+SQL: SELECT `fidlist` FROM `blog_friend` WHERE `uid` = 52  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `blog_record` [ RunTime:0.0050s ]
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ) ORDER BY addtime desc LIMIT 10' at line 1
+

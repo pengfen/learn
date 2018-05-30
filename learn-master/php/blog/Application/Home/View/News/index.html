@@ -1,0 +1,38 @@
+<extend name='Layout/tpl'/>
+<block name='style'>
+	<style type="text/css">
+		#main{
+		margin-top:285px;
+		}
+		ul li{
+			list-style: none;
+		}
+	</style>
+</block>
+<block name='main'>
+	<div id='main' class="row">
+		<div class="col-md-9">
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">
+			    	标题: {$news.title}
+			    </h3>
+			  </div>
+			  <div class="panel-body">
+			    <p>{$news.content}</p>
+			  </div>
+			  <div class="panel-footer">发布时间:{:date('Y-m-d H:i:s',$news['addtime'])} 已被浏览{$news.hot}次</div>
+			</div>
+		</div>
+		<div class="list-group col-md-3">
+		  <a  class="list-group-item " style="background:#fc3">
+		    <b>热门新闻</b>
+		  </a>
+		  <volist name='newslist' id='vo'>
+		  	<a href="__ROOT__/index.php/Home/News/index/newsid/{$vo.id}.html" class="list-group-item">{$vo.title} </a>
+		  </volist>
+		  
+		 
+		</div>
+	</div>
+</block>

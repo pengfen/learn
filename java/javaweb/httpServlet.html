@@ -1,0 +1,54 @@
+2. HttpServlet:
+
+1). 是一个 Servlet, 继承自 GenericServlet. 针对于 HTTP 协议所定制. 
+
+2). 在 service() 方法中直接把 ServletReuqest 和  ServletResponse 转为 HttpServletRequest 和 HttpServletResponse.
+并调用了重载的 service(HttpServletRequest, HttpServletResponse)
+
+在 service(HttpServletRequest, HttpServletResponse) 获取了请求方式: request.getMethod(). 根据请求方式有创建了
+doXxx() 方法(xxx 为具体的请求方式, 比如 doGet, doPost)
+
+@Override
+ public void service(ServletRequest req, ServletResponse res)
+    throws ServletException, IOException {
+
+    HttpServletRequest  request;
+    HttpServletResponse response;
+    
+    try {
+        request = (HttpServletRequest) req;
+        response = (HttpServletResponse) res;
+    } catch (ClassCastException e) {
+        throw new ServletException("non-HTTP request or response");
+    }
+    service(request, response);
+}
+
+public void service(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException {
+	//1. 获取请求方式.
+	String method = request.getMethod();
+	
+	//2. 根据请求方式再调用对应的处理方法
+	if("GET".equalsIgnoreCase(method)){
+		doGet(request, response);
+	}else if("POST".equalsIgnoreCase(method)){
+		doPost(request, response);
+	}
+}
+
+public void doPost(HttpServletRequest request, HttpServletResponse response) 
+		throws ServletException, IOException{
+	// TODO Auto-generated method stub
+	
+}
+
+public void doGet(HttpServletRequest request, HttpServletResponse response) 
+		throws ServletException, IOException {
+	// TODO Auto-generated method stub
+	
+}
+
+3). 实际开发中, 直接继承 HttpServlet, 并根据请求方式复写 doXxx() 方法即可. 
+
+4). 好处: 直接由针对性的覆盖 doXxx() 方法; 直接使用 HttpServletRequest 和  HttpServletResponse, 不再需要强转. 

@@ -1,0 +1,250 @@
+JDK5新特性
+JDK6新特性(很少见所以不讲)
+JDK7新特性
+JDK8新特性(我给出资料，自己看一下)
+
+JDK5新特性
+自动装箱和拆箱
+泛型
+增强for循环
+静态导入
+可变参数
+枚举
+
+枚举概述
+是指将变量的值一一列出来,变量的值只限于列举出来的值的范围内。举例：一周只有7天，一年只有12个月等。
+回想单例设计模式：单例类是一个类只有一个实例
+那么多例类就是一个类有多个实例，但不是无限个数的实例，而是有限个数的实例。这才能是枚举类。
+
+通过自己定义一个枚举类来演示案例
+第一版
+第二版
+第三版
+发现自己定义一个枚举类，比较麻烦，所以，java就提供了枚举类供我们使用。
+格式是：只有枚举项的枚举类
+public enum 枚举类名 {
+			枚举项1，枚举项2，枚举项3…;
+}
+
+/*
+ * 多例类
+ */
+//第一版
+//public class Direction {
+//public static final Direction FRONT = new Direction();
+//public static final Direction BEHIND = new Direction();
+//public static final Direction LEFT = new Direction();
+//public static final Direction RIGHT = new Direction();
+//
+//private Direction() {
+//}
+//}
+
+//第二版
+//public class Direction {
+//public static final Direction FRONT = new Direction("前");
+//public static final Direction BEHIND = new Direction("后");
+//public static final Direction LEFT = new Direction("左");
+//public static final Direction RIGHT = new Direction("右");
+//
+//// 加入一个成员变量
+//private String name;
+//
+//private Direction(String name) {
+//this.name = name;
+//}
+//
+//public String getName() {
+//return name;
+//}
+// }
+
+//第三版
+//这是一个枚举类，写起来比较麻烦，为了简化代码，JDK5以后就出现了枚举类来简化
+public abstract class Direction {
+public static final Direction FRONT = new Direction("前") {
+public void show() {
+System.out.println("我是前面");
+}
+};
+public static final Direction BEHIND = new Direction("后") {
+public void show() {
+System.out.println("我是后面");
+}
+};;
+public static final Direction LEFT = new Direction("左") {
+public void show() {
+System.out.println("我是左面");
+}
+};;
+public static final Direction RIGHT = new Direction("右") {
+public void show() {
+System.out.println("我是右面");
+}
+};;
+
+// 加入一个成员变量
+private String name;
+
+private Direction(String name) {
+this.name = name;
+}
+
+public String getName() {
+return name;
+}
+
+// 加入一个抽象方法
+public abstract void show();
+}
+
+
+
+// 第二版测试
+Direction d = Direction.FRONT;
+System.out.println(d.getName());
+
+// 第三版测试
+Direction d2 = Direction.FRONT;
+System.out.println(d2.getName());
+d2.show();
+
+注意事项
+定义枚举类要用关键字enum
+所有枚举类都是Enum的子类
+枚举类的第一行上必须是枚举项，最后一个枚举项后的分号是可以省略的，但是如果枚举类有其他的东西，这个分号就不能省略。建议不要省略
+枚举类可以有构造器，但必须是private的，它默认的也是private的。枚举项的用法比较特殊：枚举(“”);
+枚举类也可以有抽象方法，但是枚举项必须重写该方法
+枚举在switch语句中的使用
+
+//第一版
+//这就是枚举类
+//public enum Direction {
+//// 枚举项
+//FRONT, BEHIND, LEFT, RIGHT;
+// }
+
+//第二版
+//public enum Direction {
+//// 枚举项
+//FRONT("前"), BEHIND("后"), LEFT("左"), RIGHT("右");
+//
+//private String name;
+//
+//// 默认是private的
+//private Direction() {
+//}
+//
+//private Direction(String name) {
+//this.name = name;
+//}
+//
+//public String getName() {
+//return name;
+//}
+// }
+
+//第三版
+public enum Direction {
+// 枚举项
+FRONT("前") {
+@Override
+public void show() {
+System.out.println("前");
+}
+},
+BEHIND("后") {
+@Override
+public void show() {
+System.out.println("后");
+}
+},
+LEFT("左") {
+@Override
+public void show() {
+System.out.println("左");
+}
+},
+RIGHT("右") {
+@Override
+public void show() {
+System.out.println("右");
+}
+};
+
+private String name;
+
+// 默认是private的
+private Direction() {
+}
+
+private Direction(String name) {
+this.name = name;
+}
+
+public String getName() {
+return name;
+}
+
+public abstract void show();
+}
+
+
+
+Direction d = Direction.FRONT;
+System.out.println(d.getName());
+d.show();
+
+枚举类中的几个常见方法
+int compareTo(E o)
+String name()
+int ordinal()
+String toString()
+<T> T valueOf(Class<T> type,String name)
+values() 
+此方法虽然在JDK文档中查找不到，但每个枚举类都具有该方法，它遍历枚举类的所有枚举值非常方便
+
+JDK新特性
+二进制字面量
+数字字面量可以出现下划线
+switch 语句可以用字符串
+泛型简化
+异常的多个catch合并
+try-with-resources 语句
+
+JDK7开始，终于可以用二进制来表示整数（byte,short,int和long）。使用二进制字面量的好处是，可以使代码更容易被理解。语法非常简单，只要在二进制数值前面加 0b或者0B
+举例：
+int x = ob110110
+
+数字字面量可以出现下划线
+为了增强对数值的阅读性，如我们经常把数据用逗号分隔一样。JDK7提供了_对数据分隔。
+举例：
+int x = 100_1000;
+注意事项：
+不能出现在进制标识和数值之间
+不能出现在数值开头和结尾
+不能出现在小数点旁边
+
+int a = 0b100_100;
+int b = 0b_100_100;
+int c = 0b100_100_;
+float d = 12.34_56f;
+float e = 12._34_56f;
+
+switch语句可以用字符串
+在switch语句中已经演示过了 还可以继续演示一次
+
+泛型简化
+在集合中讲解泛型的时候已经演示过了，还可以在演示一下
+
+异常的多个catch合并
+在异常的时候，已经讲演示了，还可以在演示一下
+
+格式：
+try(必须是java.lang.AutoCloseable的子类对象){…}
+好处：
+资源自动释放，不需要close()了
+把需要关闭资源的部分都定义在这里就ok了
+主要是流体系的对象是这个接口的子类(看JDK7的API)
+
+还可以通过反编译工具看看源码

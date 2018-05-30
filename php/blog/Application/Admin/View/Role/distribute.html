@@ -1,0 +1,66 @@
+<style type="text/css">
+	ul,li{
+		list-style: none;
+	}
+	.main-header{
+		padding-left: 20px; 
+	}
+	#distribute{
+		padding: 20px;
+	}
+</style>
+<div class="main-header">正在为角色 <span style='color:red;'>{$name}</span> 分配权限</div>
+<form id='distribute' action="{:U('Role/updDist')}" method="post">
+<input type='hidden' name='id' value="{$id}"/>
+<div class="distribute">
+	<ul>
+	<foreach name='pinfo' item='pv'>
+	    <li class="prole">
+	        <input type='checkbox' name='authname[]' value="{$pv.id}" <if condition="in_array($pv[id], $aids)"> checked="checked" </if> /> {$pv.name}
+	        <ul>
+	        <foreach name='sinfo' item='sv'>
+	        <if condition="$sv[pid] eq $pv[id]">
+	            <li class="srole">
+	                <input type="checkbox" name="authname[]" value="{$sv.id}" <if condition="in_array($sv[id], $aids)">checked="checked"</if> /> {$sv.name}
+	                <ul>
+	                <foreach name='tinfo' item='tv'>
+	                    <if condition="$tv[pid] eq $sv[id]">
+	                    <li class="trole" style="display:inline-block;">
+	                    <input type='checkbox' name="authname[]" value="{$tv.id}" <if condition="in_array($tv[id], $aids)">checked="checked"</if>/> {$tv.name}
+	                    </li>
+	                    </if>
+	                </foreach>
+	                </ul>
+	            </li>
+	        </if>
+	        </foreach>
+	        </ul>
+	    </li>
+	</foreach>
+	</ul>
+</div>
+<script type="text/javascript">
+    $('.prole :checkbox').click(function(){
+    	// $(this).parent() 获取当前元素的父元素 --> li
+    	// $(this).parent().find('input') 获取当前父元素下所有的input子元素
+    	// 长度属性 length --> $(this).parent().find('input').length;
+    	// $(this)[0] --> 转为js 对象 checked js对象的属性
+    	// alert($(this)[0].checked);
+    	if ($(this)[0].checked == false) {
+    		$(this).parent().find('input').attr('checked', false);
+    	} else {
+    		$(this).parent().find('input').attr('checked', true);
+    	}
+    	// $(this).parent().find('input').each(function(){
+    	// 	if($(this).attr('checked')){
+    	// 		$(this).attr('checked', false);
+    	// 	} else {
+    	// 		$(this).attr('checked', true);
+    	// 	}
+    	// });
+    });
+</script>
+<div class="clear"></div>
+<input type='submit' class="submitbtn disbtn" value="分配权限" />
+</form>
+	    

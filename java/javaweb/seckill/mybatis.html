@@ -1,0 +1,48 @@
+MyBatis特点
+
+参数 + SQL = Entity/List
+
+SQL 写在哪
+XML提供SQL
+注解提供SQL
+
+如何实现DAO接口
+Mapper自动实现DAO接口
+API编程方式实现DAO接口
+
+http://www.mybatis.org/mybatis-3/zh/ mybatis文档
+
+
+-----------------------------------------------
+spring整合mybatis
+
+整合目标
+更少的编码
+更少的配置
+足够的灵活性
+
+更少的编码
+只写接口 不写实现
+
+接口能说明很多事儿
+
+更少的配置 --- 别名
+org.seckill.entity.Seckill --- Seckill
+package scan --- Seckill,Killed...
+配置扫描 (自动扫描配置文件)
+<mapper resource="mapper/SeckillDao.xml"/> 
+....
+
+更少的配置 --- dao实现
+<bean id="ClubDao" class="...ClubDao"/>
+<bean id="KilledDao" class="...SuccessKilledDao"/>
+自动实现DAO接口 自动注入spring容器
+
+足够的灵活性
+自己定制SQL
+自由传参
+结果集自动赋值
+XML提供SQL
+DAO接口Mapper
+
+docs.spring.io/spring/docs/4.1.7.RELEASE/spring-framework-reference

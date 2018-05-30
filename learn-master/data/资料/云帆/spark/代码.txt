@@ -1,0 +1,5 @@
+
+sc.textFile("hdfs://hadoop-spark.dragon.org:8020/user/hadoop/spark/wc.input").flatMap(_.split(" ")).map((_,1)).reduceByKey(_ + _).collect
+
+sc.textFile("hdfs://hadoop-spark.dragon.org:8020/user/hadoop/spark/wc.input").flatMap(line => line.split(" ")).map(word => (word,1)).reduceByKey((a,b) => a + b).collect
+

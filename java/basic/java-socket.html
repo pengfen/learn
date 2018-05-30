@@ -1,0 +1,614 @@
+网络编程概述
+网络编程三要素
+UDP编程
+TCP编程
+
+网络编程概述
+计算机网络
+是指将地理位置不同的具有独立功能的多台计算机及其外部设备 通过通信线路连接起来 在网络操作系统 网络管理软件及网络通信协议的管理和协调下 实现资源共享和信息传递的计算机系统
+网络编程
+就是用来实现网络互连的不同计算机上运行的程序间可以进行数据交换
+
+A:有人说，20世纪最伟大的发明不是计算机，而是计算机网络。
+还有人说，如果你买了计算机而没有联网，就等于买了电话机而没有接电话线一样。
+
+网络模型
+计算机网络之间以何种规则进行通信 就是网络模型研究问题
+网络模型一般是指 OSI(Open System Interconnection 开放系统互连) 参考模型
+TCP/IP参考模型
+
+网络模型7层概述：
+1.物理层：主要定义物理设备标准，如网线的接口类型、光纤的接口类型、各种传输介质的传输速率等。它的主要作用是传输比特流（就是由1、0转化为电流强弱来进行传输,到达目的地后在转化为1、0，也就是我们常说的数模转换与模数转换）。这一层的数据叫做比特。 
+2. 数据链路层：主要将从物理层接收的数据进行MAC地址（网卡的地址）的封装与解封装。常把这一层的数据叫做帧。在这一层工作的设备是交换机，数据通过交换机来传输。 
+3. 网络层：主要将从下层接收到的数据进行IP地址（例192.168.0.1)的封装与解封装。在这一层工作的设备是路由器，常把这一层的数据叫做数据包。 
+4. 传输层：定义了一些传输数据的协议和端口号（WWW端口80等），如：TCP（传输控制协议，传输效率低，可靠性强，用于传输可靠性要求高，数据量大的数据），UDP（用户数据报协议，与TCP特性恰恰相反，用于传输可靠性要求不高，数据量小的数据，如QQ聊天数据就是通过这种方式传输的）。 主要是将从下层接收的数据进行分段和传输，到达目的地址后再进行重组。常常把这一层数据叫做段。 
+5.会话层：通过传输层（端口号：传输端口与接收端口）建立数据传输的通路。主要在你的系统之间发起会话或者接受会话请求（设备之间需要互相认识可以是IP也可以是MAC或者是主机名） 
+6.表示层：主要是进行对接收的数据进行解释、加密与解密、压缩与解压缩等（也就是把计算机能够识别的东西转换成人能够能识别的东西（如图片、声音等）。 
+7.应用层： 主要是一些终端的应用，比如说FTP（各种文件下载），WEB（IE浏览），QQ之类的（可以把它理解成我们在电脑屏幕上可以看到的东西．就是终端应用）。
+
+网络通信三要素
+IP地址 InetAddress 网络中设备的标识 不易记忆 可用主机名
+端口号 用于标识进程的逻辑地址 不同进程的标识
+传输协议 通讯的规则 常见协议 TCP UDP
+
+A:网络模型说完了,我们要进行通讯,需要哪些要素呢?
+比如说:我要跟你说话.
+第一个条件:我要先找到你 (IP)
+第二个条件:你得有接收数据的地方  耳朵 (端口)
+第三个条件:我跟你说话,你能接收到,咱按什么方式接收啊,我说英文你懂吗,说韩文你懂吗,不懂是吧,所以我还是说中文把.(协议)
+
+IP地址
+要想让网络中的计算机能够互相通信 必须为每台计算机指定一个标识号 通过这个标识号来指定要接受数据的计算机和识别发送的计算机 在TCP/IP协议中 这个标识号就是IP地址
+那么 我们如果获取和操作IP地址呢 为了方便我们对IP地址的获取和操作 java提供了一个类InetAddress供我们使用
+
+A:所谓IP地址就是给每个连接在Internet上的主机分配的一个32bit地址。按照TCP/IP规定，IP地址用二进制来表示，每个IP地址长32bit，比特换算成字节，就是4个字节。例如一个采用二进制形式的IP地址是“00001010000000000000000000000001”，这么长的地址，人们处理起来也太费劲了。为了方便人们的使用，IP地址经常被写成十进制的形式，中间使用符号“.”分开不同的字节。于是，上面的IP地址可以表示为“10.0.0.1”。IP地址的这种表示法叫做“点分十进制表示法”，这显然比1和0容易记忆得多。
+
+B:IP地址的组成
+IP地址 = 网络号码+主机地址
+
+A类IP地址:第一段号码为网络号码，剩下的三段号码为本地计算机的号码
+B类IP地址:前二段号码为网络号码，剩下的二段号码为本地计算机的号码
+C类IP地址:前三段号码为网络号码，剩下的一段号码为本地计算机的号码
+
+特殊地址:
+127.0.0.1 回环地址,可用于测试本机的网络是否有问题. ping 127.0.0.1   
+
+DOS命令 ipconfig:查看本机IP地址
+
+xxx.xxx.xxx.0 网络地址
+xxx.xxx.xxx.255 广播地址
+
+A类	1.0.0.1---127.255.255.254	(1)10.X.X.X是私有地址(私有地址就是在互联网上不使用，而被用在局域网络中的地址)							(2)127.X.X.X是保留地址，用做循环测试用的。
+B类	128.0.0.1---191.255.255.254	172.16.0.0---172.31.255.255是私有地址。169.254.X.X是保留地址。
+C类	192.0.0.1---223.255.255.254	192.168.X.X是私有地址
+D类	224.0.0.1---239.255.255.254 	
+E类	240.0.0.1---247.255.255.254
+
+InetAddress类的使用
+没有构造方法 那么如何使类提供的功能呢
+要掌握的功能 获取任意主机 getByName
+主机名 getHostName
+主机IP地址 getHostAddress
+
+端口号
+物理端口 网卡口
+逻辑端口 我们指的就是逻辑端口
+A 每个网络程序都会至少有一个逻辑端口
+B 用于标识进程的逻辑地址 不同进程的标识
+C 有效端口 0-65535 其中0-1024系统使用或保留端口
+
+协议UDP和TCP
+UDP 将数据源和目的封装成数据包中 不需要建立连接 每个数据的的大小在限制在64K 因无连接 是不可靠协议 不需要建立连接 速度快
+TCP 建立连接 形成传输数据的通道 在连接中进行大数据量传输 通过三次握手完成连接 是可靠协议 必须建立连接 效率会稍低
+
+总结:
+udp:
+面向无连接。
+不可靠。
+速度快。
+将数据封包传输，数据包最大64k。
+举例：
+聊天留言，在线视频，视频会议，发短信，邮局包裹。
+
+tcp:
+面向连接。
+安全可靠
+效率稍低。
+通过三次握手确保连接的建立。
+举例：
+下载，打电话，QQ聊天(你在线吗,在线,就回应下,就开始聊天了)
+ 
+
+Socket
+Socket套接字
+网络上具有唯一标识的IP地址和端口号组合在一起才能构成唯一能识别的标识符套接字
+Socket原理机制
+通信的两端都有Socket
+网络通信其实就是Socket间的通信
+数据在两个Socket间通过IO传输
+
+UDP传输
+DatagramSocket与DatagramPacket
+建立发送端 接收端
+建立数据包
+调用Socket的发送接收方法
+关闭Socket
+发送端与接收端是两个独立的运行程序
+
+UDP传输 --- 发送端思路
+建立UDP的socket服务
+将要发送的数据封装成数据包
+通过UDP的socket服务 将数据包发送出
+关闭资源
+
+UDP传输 --- 发送端代码
+public static void main(String[] args) throws IOException{
+	// 建立UDP服务 发送端并没有指定端口 会自动分配一个端口
+	DatagramSocket ds = new DatagramSocket();
+	// 定义数据内容 并将数据封装成数据包
+	byte[] bys = "hello, UDP 我来了".getBytes();
+	// 发送必须明确 主机所有它有地址和端口
+	DatagramPacket dp = new DatagramPacket(bys, bys.length, InetAddress.getByName("liuyi"), 10000);
+	// 通过UDP的socket服务中的功能完成数据包的发送
+	ds.send(dp);
+	// 关闭资源
+	ds.close();
+}
+
+UDP传输 --- 接收端思路
+建立UDP的socket服务
+通过receive方法接收数据
+将收到的数据存储到数据包对象中
+通过数据包对象的功能来完成对接收到数据进行解析
+可以对资源进行关闭
+
+UDP传输 --- 接收端代码
+public static void main(String[] args) throws IOException {
+	// 定义Socket服务 并监听一个端口 明确哪些是应用程序是可以处理的
+	DatagramSocket ds = new DatagramSocket(10000);
+	// 预先定义好一个数据包 用于存储接收到的数据
+	byte[] by = new byte[1024];
+	DatagramPacket dp = new DatagramPacket(by, by.length);
+	// 使用 cocket服务的receive 方法将接爱到的数据存储到数据包中
+	ds.receive(dp);
+	// 通过数据包对象的方法获取其中的数据内容 包括地址 端口 数据主体
+	String ip = dp.getAddress().getHostAddress();
+	int port = dp.getPort();
+	byte[] by2 = dp.getData();
+	String text = new String(by2, 0, dp.getLength());
+	System.out.println(ip + "..." + port + "..." + text);
+	// 关闭资源
+	ds.close();
+}
+
+A:有两个主方法,用几个控制台
+B:先开启那个方法?
+	谁先开都行.因为udp的特点是面向无连接.
+	如果你先开启了发送,那么,它收不到数据而已.
+ 
+	为了演示的方便,先开启接收端.
+	看到了吗.为什么?等待接收是吧,那句话导致的:ds.receive(dp);该方法是个阻塞是方法.没数据就等着.
+C:把代码用DOS窗口演示
+
+UDP案例
+从键盘录入数据进行发送 如果输入的是886 那么客户端就结束输入数据
+这个时候完全可以把发送端代码发给大家了 我把接收端代码开启 大家就可以实现聊天了 但是 大家都要年我们的屏幕 即使我把接收端发给大家也是一样的 如何改进呢 使用广播地址即可
+最后 把刚才发送和接收程序分别用线程进行封装 完成一个UDP的聊天程序
+
+A:这个时候，就需要和io结合起来使用了。还得注意一个问题，这个时候接收端，要一直开启，否则接收一句就关闭了。所以，用死循环，并且，服务不关闭。代码如下：
+
+class SendDemo2
+{
+	public static void main(String[] args) throws Exception
+	{
+		DatagramSocket ds = new DatagramSocket();
+ 
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		String line = null;
+ 
+		while((line=br.readLine())!=null)
+		{
+			if("886".equals(line))
+			{
+				break;
+			}
+			byte[] by = line.getBytes();
+			DatagramPacket dp = new DatagramPacket(by,by.length,InetAddress.getByName(“192.168.1.255"),10000);
+			ds.send(dp);
+		}
+ 
+		ds.close();
+	}
+}
+
+class ReceiveDemo2
+{
+	public static void main(String[] args) throws Exception
+	{
+		DatagramSocket ds = new DatagramSocket(10000);  //如果10000端口已经被使用了,这个服务起不来
+ 
+		//我这边是循序接收的啊.无限循环
+		while(true)
+		{
+			byte[] by = new byte[1024];
+			DatagramPacket dp = new DatagramPacket(by,by.length);
+ 
+			
+			ds.receive(dp);
+ 
+			//通过数据包对象的方法获取其中的数据内容,包括地址,端口,数据主体
+			String ip = dp.getAddress().getHostAddress();
+			int port = dp.getPort();
+ 
+			byte[] by2 = dp.getData();
+			String text = new String(by2,0,dp.getLength());
+ 
+			System.out.println(ip+"..."+port+"..."+text);
+	
+		}
+		
+		//关闭资源
+		//ds.close();
+	}
+}
+
+B:用线程封装后的代码如下：
+public class SendThread implements Runnable {
+
+	private DatagramSocket ds;
+
+	public SendThread(DatagramSocket ds) {
+		this.ds = ds;
+	}
+
+	@Override
+	public void run() {
+		// 创建UDP发送端的服务
+		try {
+			// 把键盘录入数据用高效缓冲流封装
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					System.in));
+
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				if ("886".equals(line)) {
+					break;
+				}
+				byte[] bys = line.getBytes();
+				// 数据包
+				DatagramPacket dp = new DatagramPacket(bys, bys.length,
+						InetAddress.getByName("192.168.1.255"), 12345);
+				// 发送数据
+				ds.send(dp);
+			}
+
+			// 关闭资源
+			ds.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+
+public class ReceiveThread implements Runnable {
+
+	private DatagramSocket ds;
+
+	public ReceiveThread(DatagramSocket ds) {
+		this.ds = ds;
+	}
+
+	@Override
+	public void run() {
+		try {
+			// 为了循环多次接受
+			while (true) {
+				// 创建字节数组作为数据包的缓冲区
+				byte[] bys = new byte[1024];
+				DatagramPacket dp = new DatagramPacket(bys, bys.length);
+				// 读取数据包数据
+				ds.receive(dp);
+
+				// 解析数据包
+				String ip = dp.getAddress().getHostAddress();
+				int port = dp.getPort();
+
+				String text = new String(dp.getData(), 0, dp.getLength());
+				System.out.println(ip + "***" + port + "***" + text);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+
+public class ChatDemo {
+	public static void main(String[] args) throws IOException {
+		DatagramSocket sds = new DatagramSocket();
+		DatagramSocket rds = new DatagramSocket(12345);
+
+		SendThread st = new SendThread(sds);
+		ReceiveThread rt = new ReceiveThread(rds);
+
+		Thread t1 = new Thread(st);
+		Thread t2 = new Thread(rt);
+
+		t1.start();
+		t2.start();
+	}
+
+}
+
+TCP传输
+Socket和ServerSocket
+建立客户端和服务器端
+建立连接后 通过Socket中的IO流进行数据的传输
+关闭socket
+同样 客户端与服务器端是两个独立的应用程序
+
+TCP传输 --- 客户端思路
+建立客户端的Socket服务 并明确要连接的服务器
+如果连接建立成功 就表明 已经建立了数据传输的通道 就可以在该通道通过IO进行数据的读取和写入 该通道称为Socket流 Socket流中即有读取流 也有写入流
+通过Socket对象的方法 可以获取这两个流
+通过流的对象可以对数据进行传输
+如果传输数据完毕 关闭资源
+
+TCP传输 --- 客户端代码
+public static void main(String[] args) throws Exception {
+	// 建立客户端socket服务 并去进行目的地址连接
+	Socket s = new Socket("192.168.1.100", 11111);
+	// 这个步骤只要一执行 就已经连出去了 就已经开始三次握手了
+	// 通过socket对象的方法获取输出流对象
+	OutputStream out = s.getOutputStream();
+	// 将数据写入流中
+	out.write("hello, TCP welcome".getBytes());
+	// 关闭资源
+	// out用关吗 它是有s建立的 s关闭了 它就关闭了 所以不用单独关
+	s.close();
+}
+
+TCP传输 --- 服务器端思路
+建立服务器端的socket服务 需要一个端口
+服务端没有直接流的操作 而是通过accept方法获取客户端对象 在通过获取到的客户端对象的流和客户端进行通信
+通过客户端的获取流对象的方法 读取数据或者写入数据
+如果服务完成 需要关闭客户端 然后关闭服务器 但是 一般会关闭客户端 不会关闭服务器 因为服务端是一直提供服务的
+
+TCP传输 --- 服务器端代码
+public static void main(String[] args) throws Exception {
+	// 建立服务端对象 监听一个端口
+	ServerSocket ss = new ServerSocket(11111);
+	Socket s = ss.accept();
+	String ip = s.getInetAddress().getHostAddress();
+	System.out.println(ip + "...connected");
+	// 获取socket的读取流 读取客户端发送过来的数据
+	InputStream is = s.getInputStream();
+	// 就是读取数据的基本操作
+	byte[] bys = new byte[1024];
+	int len = is.read(bys);
+	String str = new String(bys, 0, len);
+	System.out.println(str);
+	// 关闭资源
+	s.close();
+	ss.close();
+}	
+
+A:客户端和服务器都写好后，先开启谁呢？
+开启服务器端。因为服务器如果不开启，客户端就不知道和谁进行连接啊。
+
+TCP传输案例
+服务器给客户端反馈
+客户端键盘录入 服务器输出到控制台
+客户端键盘录入 服务器输出文件
+客户端文本文件 服务器输出到控制台
+客户端文本文件 服务器输出文本文件
+上传图片案例
+服务器的代码用线程进行封装 这样可以模拟一个同时接收多人上传文件的服务器 (用循环也可以但是效率低 是单线程的程序)
+
+A:代码如下
+	客户端追加代码：
+		//获取服务端的东西
+		InputStream is = s.getInputStream();
+		byte[] by = new byte[1024];
+		int len = is.read(by);
+ 
+		String text = new String(by,0,len);
+		System.out.println("server:"+text);
+
+	服务器端追加代码：
+		//给客户端回馈数据
+		OutputStream out = s.getOutputStream();
+		out.write("哥们已收到".getBytes());
+
+B:代码如下
+
+	public static void main(String[] args) throws Exception {
+		// 建立客户端Socket服务,并去进行目的地址连接
+		Socket s = new Socket("192.168.1.100", 11111);
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+				s.getOutputStream()));
+
+		BufferedReader brServer = new BufferedReader(new InputStreamReader(
+				s.getInputStream()));
+
+		String line = null;
+		while ((line = br.readLine()) != null) {
+			if ("over".equals(line)) {
+				break;
+			}
+			bw.write(line);
+			bw.flush();
+
+			String serverText = brServer.readLine();
+			System.out.println(serverText);
+		}
+
+		// out用关吗,它是有s建立的,s关闭了,它就关闭了,所以不用单独关
+		s.close();
+	}
+
+	public static void main(String[] args) throws Exception {
+		// 1:建立服务端对象,监听一个端口
+		ServerSocket ss = new ServerSocket(11111);
+		// 2:通过accept方法获取客户端对象
+		Socket s = ss.accept();
+		String ip = s.getInetAddress().getHostAddress();
+		System.out.println(ip + "...connected");
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(
+				s.getInputStream()));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+				s.getOutputStream()));
+
+		String line = null;
+		while ((line = br.readLine()) != null) {
+			// 打印一下,看到底传递过来了什么数据
+			System.out.println(line);
+			bw.write(line.toUpperCase());
+		}
+
+		// 5:关闭资源
+		s.close();
+		ss.close();
+	}
+
+	这个时候，出现问题了，我们需要考虑什么原因产生的。
+	1：首先要分析数据是否传递出去，以及数据是否接受到。
+		没发出去,因为out有缓冲区,必须刷新一下.两端都要刷。
+	2：还不行,其实是读取到了,但是问题在于readLine读取数据的时候,会根据换行来判断,
+	   到此为止,它不知道你读取到结尾了.修改后的代码如下:
+		客户端
+		bw.write(line + "\r\n");
+		bw.flush();
+		
+		服务器：
+		bw.write(line.toUpperCase() + "\r\n");
+		bw.flush();
+
+	服务器和客户端都会关闭，因为他是面向连接的。
+
+	到此为止，发现我们的数据需要刷新和换行，所以采用PrintWwriter改进。
+
+定义结束标记：
+因为while((line=br.readLine())!=null)   readLine()是阻塞式的,它还在等着读,对吧.
+但是,你客户端流一结束,就相当于给服务端写了一个结束标记.这样的话,服务端就结束了.
+那么,大家,我们稍微总结下.
+TCP传输容易出现,客户端和服务端都等待的情况,因为客户端和服务端有阻塞式方法存在,比如read,readLine方法.所以,必须要定义结束标记.
+read要定义-1结束标记,readLine需要定义回车结束标记,和-1结束标记.
+因为readLine底层调用了read.
+
+C:代码如下
+	public class UploadClient {
+		public static void main(String[] args) throws IOException {
+			Socket s = new Socket("192.168.1.100", 12321);
+
+		BufferedReader br = new BufferedReader(new FileReader("java.txt"));
+		PrintWriter pw = new PrintWriter(s.getOutputStream(), true);
+
+		String line = null;
+		while ((line = br.readLine()) != null) {
+			pw.println(line);
+		}
+		// 第一种解决方案 假如数据里面有一行是over就悲剧了
+		// pw.println("over");
+		// 第二种解决方案
+		// s.shutdownOutput();
+
+		// 接收服务器返回
+		BufferedReader brIn = new BufferedReader(new InputStreamReader(
+				s.getInputStream()));
+		String str = brIn.readLine();
+		System.out.println("server:" + str);
+
+		br.close();
+		s.close();
+		}
+	}
+
+	public static void main(String[] args) throws IOException {
+		ServerSocket ss = new ServerSocket(12321);
+		Socket s = ss.accept();
+		String ip = s.getInetAddress().getHostAddress();
+		System.out.println(ip + "...connected");
+		BufferedReader br = new BufferedReader(new InputStreamReader(
+				s.getInputStream()));
+		PrintWriter pw = new PrintWriter(new FileWriter("server.txt"), true);
+		String line = null;
+		while ((line = br.readLine()) != null) {
+			// if ("over".equals(line)) {
+			// break;
+			// }
+			pw.println(line);
+		}
+
+		PrintWriter out = new PrintWriter(s.getOutputStream(), true);
+		out.println("上传成功");
+
+		pw.close();
+		s.close();
+		ss.close();
+
+	}
+
+D:代码如下
+
+客户端不改。
+把服务器进行封装。
+public class UserThread implements Runnable {
+	private Socket s;
+
+	public UserThread(Socket s) {
+		this.s = s;
+	}
+
+	@Override
+	public void run() {
+		//同一个客户端可以发多个文件的，避免产生覆盖，对每个文件进行重写命名
+		// int count = 0;
+		String ip = s.getInetAddress().getHostAddress();
+		try {
+			System.out.println(ip + "...connected");
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					s.getInputStream()));
+
+			// 为了文件不覆盖
+			File dir = new File("c:\\txt");
+			if (!dir.exists()) {
+				dir.mkdir();
+			}
+			// File file = new File(dir, ip + "(" + (count++) + ")" + ".txt");
+			// // 但是同一台机子上可以继续传
+			// while (file.exists()) {
+			// file = new File(dir, ip + "(" + (count++) + ")" + ".txt");
+			// }
+			File file = new File(dir, ip + ".txt");
+
+			PrintWriter pw = new PrintWriter(new FileWriter(file), true);
+
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				pw.println(line);
+			}
+
+			PrintWriter out = new PrintWriter(s.getOutputStream(), true);
+			out.println("上传成功");
+
+			pw.close();
+			s.close();
+		} catch (Exception e) {
+			throw new RuntimeException(ip + "...");
+		}
+	}
+
+}
+
+测试代码：
+	public static void main(String[] args) throws Exception
+	{
+		ServerSocket ss = new ServerSocket(10011);
+		while(true)
+		{
+			Socket s = ss.accept();
+			//将客户端封装成线程
+			new Thread(new UserThread(s)).start();
+		}
+		//ss不能关闭,等待着
+	}
+
+其实,服务器最底层使用的就是三项基本技术:
+Socket,ServerSocket
+多线程
+IO
+
+
+TCP传输容易出现的问题
+客户端连接上服务端 两端都在等待 没有任何数据传输
+通过例程分析 因为read方法或者readLine方法是阻塞式
+解决办法
+自定义结束标记
+使用shutdownInput shutdownOutput方法

@@ -1,0 +1,79 @@
+Hadoop 2.0 产生背景
+
+Hadoop 1 中 HDFS 和 MapReduce 在高可用 扩展性等方面存在问题
+HDFS 存在的问题
+NameNode 单点故障 难以应用于在线场景
+NameNode 压力过大 且内存受限 影响系统扩展性
+MapReduce 存在的问题
+JobTracker 访问压力大 影响系统扩展性
+难以支持除 MapReduce 之外的计算框架 比如 spark storm 等
+
+
+Hadoop 2.x 由 HDFS MapReduce 和 YARN 三个分支构成
+HDFS NNFederation HA
+MapReduce 运行在 YARN 上的 MR
+YARN 资源管理系统
+
+HDFS 2
+解决HDFS 1.0 中单点故障和内存受限问题
+解决单点故障
+HDFS HA 通过主备 NameNode 解决
+如果主 NameNode 发生故障 则切换到备 NameNode 上
+
+解决内存受限问题
+HDFS Federation
+水平扩展 支持多个 NameNode
+每个 NameNode 分管一部分目录
+所有 NameNode 共享所有 DataNode 存储资
+
+2.x 仅是架构上发生了变化 使用方式不变
+对 HDFS 使用者透明
+HDFS 1.x 中的命令和 API 仍可以使用
+
+HDFS 2.0 HA
+主备 NameNode
+解决单点故障
+主 NameNode 对外提供服务 备 NameNode 同步主 NameNode 元数据 以待切换
+所有 DataNode 同时向两个 NameNode 汇报数据块信息
+两种切换选择
+手动切换 通过命令实现主备之间的切换 可以用 HDFS 升级等场合
+自动切换 基于 Zookeeper 实现
+基于 Zookeeper 自动切换方案
+Zookeeper Failover Controller 监控 NameNode 健康状态
+并向 Zookeeper 注册 NameNode
+NameNode 挂掉后 ZKFC 为 NameNode 竞争锁 获得 ZKFC 锁的 NameNode 变为 active
+
+
+HDFS 2.x Federation
+通过多个 namenode/namespace 把元数据的存储和管理分散到多个节点中 使用 namenode/namespace 可以通过增加机器来进行水平扩展
+能把单个 namenode 的负载分散到多个节点中 在 HDFS 数据规模较大的时候不会也降低 HDFS 的性能 可以通过多个 namespace 来隔离不同类型的应用 把不同类型应用的 HDFS 元数据的存储和管理分派到不同的 namenode 中
+
+
+YARN
+YARN YetAnother Resource Negotiator
+Hadoop 2.0 将 MRV1 中 JobTracker 的资源管理和任务调度两个功能分开 分别由 ResourceManager 和 ApplicationMaster 进程实现
+ResourceManager 负责整个集群的资源管理和调度
+ApplicationMaster 负责应用程序相关的事务 比如任务调度 任务监控和容错等
+YARN 的引入 使得多个计算框架可运行在一个集群中
+每个应用程序对应一个 ApplicationMaster
+目前多个计算框架可以运行在 YARN 上 比如 MapReduce Spark Storm 等
+
+MapReduce On YARN (MRV2)
+将 MapReduce 作业直接运行在 YARN 上 而不是由 JobTracker 和 TaskTracker 构建的 MRv1 系统中
+基本功能模块
+YARN 负责资源管理和调度
+MRAppMaster 负责任务切分 任务高度 任务监控和容错等
+MapTask/ReduceTask 任务驱动引擎 与 MRv1 一致
+每个 MapReduce 作业对应一个 MRAppMaster
+MRAppMaster 任务调度
+YARN 将资源分配给 MRAppMaster
+MRAppMaster 进一步将资源分配给内部的任务
+MRAppMaster 容错
+失败后 由 YARN 重新启动
+任务失败后 MRAppMaster 重新申请资源
+
+       NN  DN  ZK  ZKFC  JN  RM   DM
+node1  1       1   1         1    
+node2  1   1   1   1     1        1
+node3      1   1         1        1
+node4      1             1        1

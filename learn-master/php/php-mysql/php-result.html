@@ -1,0 +1,39 @@
+取得数据查询结果
+
+PHP 操作数据库跟 MySQL 客户端上操作极为相似 先进行连接 然后执行sql语句 再然后获取我们想要的结果集
+
+PHP 有多个函数可以获取数据集中的一行数据 最常用的是 mysql_fetch_array
+可以通过设定参数来更改行数据的下标 默认的会包含数字索引的下标以及字段名的关联索引下标
+
+$sql = "select * from user limit 1";
+$result = mysql_query($sql);
+$row = mysql_fetch_array($result);
+
+可以通过设定参数 MYSQL_NUM 只获取数字索引数组 等同于 mysql_fetch_row 函数 如果设定参数为 MYSQL_ASSOC 则只获取关联索引数组 等同于 mysql_fetch_assoc 函数
+
+$row = mysql_fetch_row($result);
+$row = mysql_fetch_array($result, MYSQL_NUM); // 这两个方法获取的数据是一样的
+
+$row = mysql_fetch_assoc($result);
+$row = mysql_fetch_array($result, MYSQL_ASSOC);
+
+如果要获取数据集中的所有数据 我们通过循环来遍历整个结果集
+$data = array();
+while($row = mysql_fetch_array($result)) {
+	$data[] = $row;
+}
+
+<?php
+// 连接数据库
+mysql_connect('127.0.0.1', '', '');
+mysql_select_db('');
+mysql_query("set names 'utf8'");
+// 数据预处理 防止查询不到数据
+mysql_query("insert into user(name, age, class) values('王二', 19, '高三五班')");
+// 进行数据查询
+$sql = "select * from user limit 1";
+$result =  mysql_query($sql);
+
+$row = mysql_fetch_row($result);
+
+print_r($row);

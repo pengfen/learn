@@ -1,0 +1,194 @@
+根据条件查询原始数组
+
+public static function  getOrganizationTree($where=false)
+{
+    if($where === false)
+        $organizationName = self::find()->select(self::$OIFields)->distinct()->from(self::OITB)->orderBy('sort')->asArray()->all();
+    else
+        $organizationName = self::find()->select(self::$OIFields)->distinct()->from(self::OITB)->where($where)->orderBy('sort')->asArray()->all();
+    return self::structureTree($organizationName, 'organization_id', 'parent');
+}
+
+array(97) {
+  [0]=>
+  array(4) {
+    ["organization_id"]=>
+    string(23) "OU=niuke,DC=niuke,DC=cn"
+    ["parent"]=>
+    string(4) "null"
+    ["display_name"]=>
+    string(6) "牛客"
+    ["ou"]=>
+    string(5) "niuke"
+  }
+  [1]=>
+  array(4) {
+    ["organization_id"]=>
+    string(42) "OU=总裁办公室,OU=niuke,DC=niuke,DC=cn"
+    ["parent"]=>
+    string(23) "OU=niuke,DC=niuke,DC=cn"
+    ["display_name"]=>
+    string(15) "总裁办公室"
+    ["ou"]=>
+    string(15) "总裁办公室"
+  }
+  [2]=>
+  array(4) {
+    ["organization_id"]=>
+    string(49) "OU=财务组,OU=财务部,OU=niuke,DC=niuke,DC=cn"
+    ["parent"]=>
+    string(36) "OU=财务部,OU=niuke,DC=niuke,DC=cn"
+    ["display_name"]=>
+    string(9) "财务组"
+    ["ou"]=>
+    string(9) "财务组"
+  }
+  [3]=>
+  array(4) {
+    ["organization_id"]=>
+    string(52) "OU=品牌部,OU=品牌中心,OU=niuke,DC=niuke,DC=cn"
+    ["parent"]=>
+    string(39) "OU=品牌中心,OU=niuke,DC=niuke,DC=cn"
+    ["display_name"]=>
+    string(9) "品牌部"
+    ["ou"]=>
+    string(9) "品牌部"
+  }
+  [4]=>
+  array(4) {
+    ["organization_id"]=>
+    string(52) "OU=客服部,OU=服务中心,OU=niuke,DC=niuke,DC=cn"
+    ["parent"]=>
+    string(39) "OU=服务中心,OU=niuke,DC=niuke,DC=cn"
+    ["display_name"]=>
+    string(9) "客服部"
+    ["ou"]=>
+    string(9) "客服部"
+  }
+
+生成树形结构
+public static function structureTree($items,$id='id',$pid='pid',$son = 'children'){
+    $tree = array(); //格式化的树
+    $tmpMap = array();  //临时扁平数据
+
+    foreach ($items as $item) {
+        $tmpMap[$item[$id]] = $item;
+    }
+
+    foreach ($items as $item) {
+        if (isset($tmpMap[$item[$pid]])) {
+            $tmpMap[$item[$pid]][$son][] = &$tmpMap[$item[$id]];
+        } else {
+            $tree[] = &$tmpMap[$item[$id]];
+        }
+    }
+    return $tree;
+}
+
+array(1) {
+  [0]=>
+  &array(5) {
+    ["organization_id"]=>
+    string(23) "OU=niuke,DC=niuke,DC=cn"
+    ["parent"]=>
+    string(4) "null"
+    ["display_name"]=>
+    string(6) "牛客"
+    ["ou"]=>
+    string(5) "niuke"
+    ["children"]=>
+    array(11) {
+      [0]=>
+      &array(5) {
+        ["organization_id"]=>
+        string(42) "OU=总裁办公室,OU=niuke,DC=niuke,DC=cn"
+        ["parent"]=>
+        string(23) "OU=niuke,DC=niuke,DC=cn"
+        ["display_name"]=>
+        string(15) "总裁办公室"
+        ["ou"]=>
+        string(15) "总裁办公室"
+        ["children"]=>
+        array(3) {
+          [0]=>
+          &array(4) {
+            ["organization_id"]=>
+            string(55) "OU=助理室,OU=总裁办公室,OU=niuke,DC=niuke,DC=cn"
+            ["parent"]=>
+            string(42) "OU=总裁办公室,OU=niuke,DC=niuke,DC=cn"
+            ["display_name"]=>
+            string(9) "助理室"
+            ["ou"]=>
+            string(9) "助理室"
+          }
+          [1]=>
+          &array(4) {
+            ["organization_id"]=>
+            string(55) "OU=合规部,OU=总裁办公室,OU=niuke,DC=niuke,DC=cn"
+            ["parent"]=>
+            string(42) "OU=总裁办公室,OU=niuke,DC=niuke,DC=cn"
+            ["display_name"]=>
+            string(9) "合规部"
+            ["ou"]=>
+            string(9) "合规部"
+          }
+          [2]=>
+          &array(4) {
+            ["organization_id"]=>
+            string(55) "OU=风控部,OU=总裁办公室,OU=niuke,DC=niuke,DC=cn"
+            ["parent"]=>
+            string(42) "OU=总裁办公室,OU=niuke,DC=niuke,DC=cn"
+            ["display_name"]=>
+            string(9) "风控部"
+            ["ou"]=>
+            string(9) "风控部"
+          }
+        }
+      }
+
+添加deep变量 (页面根据deep变量进行添加---)
+public static function organizationDeepTree($items, $deep=0)
+{
+    foreach($items as $row) {
+        $data[] = [ "id"=>$row['organization_id'], "name"=>empty($row['display_name']) ? $row['ou'] : $row['display_name'], "pid"=>$row['parent'],'deep'=>$deep];
+        if ($row['children'])
+            $data = array_merge($data, self::organizationDeepTree($row['children'], $deep+1));
+    }
+    return $data;
+}
+
+    array(3) {
+  [0]=>
+  array(4) {
+    ["id"]=>
+    string(55) "OU=助理室,OU=总裁办公室,OU=niuke,DC=niuke,DC=cn"
+    ["name"]=>
+    string(9) "助理室"
+    ["pid"]=>
+    string(42) "OU=总裁办公室,OU=niuke,DC=niuke,DC=cn"
+    ["deep"]=>
+    int(2)
+  }
+  [1]=>
+  array(4) {
+    ["id"]=>
+    string(55) "OU=合规部,OU=总裁办公室,OU=niuke,DC=niuke,DC=cn"
+    ["name"]=>
+    string(9) "合规部"
+    ["pid"]=>
+    string(42) "OU=总裁办公室,OU=niuke,DC=niuke,DC=cn"
+    ["deep"]=>
+    int(2)
+  }
+  [2]=>
+  array(4) {
+    ["id"]=>
+    string(55) "OU=风控部,OU=总裁办公室,OU=niuke,DC=niuke,DC=cn"
+    ["name"]=>
+    string(9) "风控部"
+    ["pid"]=>
+    string(42) "OU=总裁办公室,OU=niuke,DC=niuke,DC=cn"
+    ["deep"]=>
+    int(2)
+  }
+}

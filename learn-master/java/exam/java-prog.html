@@ -1,0 +1,1924 @@
+算法与编程
+
+1.判断身份证：要么是15位，要么是18位，最后一位可以为字母，并写程序提出其中的年月日。
+
+答：我们可以用正则表达式来定义复杂的字符串格式，(\d{17}[0-9a-zA-Z]|\d{14}[0-9a-zA-Z])可以用来判断是否为合法的15位或18位身份证号码。
+
+因为15位和18位的身份证号码都是从7位到第12位为身份证为日期类型。这样我们可以设计出更精确的正则模式，使身份证号的日期合法，这样我们的正则模式可以进一步将日期部分的正则修改为[12][0-9]{3}[01][0-9][123][0-9]，当然可以更精确的设置日期。
+
+在jdk的java.util.Regex包中有实现正则的类,Pattern和Matcher。以下是实现代码：
+
+ 
+
+import java.util.regex.Matcher;
+
+import java.util.regex.Pattern;
+
+ 
+
+public class RegexTest {
+
+ 
+
+      /**
+
+       * @param args
+
+       */
+
+      public static void main(String[] args) {
+
+            
+
+            // 测试是否为合法的身份证号码
+
+            String[] strs = { "130681198712092019", "13068119871209201x",
+
+                        "13068119871209201", "123456789012345", "12345678901234x",
+
+                        "1234567890123" };
+
+            Pattern p1 = Pattern.compile("(\\d{17}[0-9a-zA-Z]|\\d{14}[0-9a-zA-Z])");
+
+            for (int i = 0; i < strs.length; i++) {
+
+                  Matcher matcher = p1.matcher(strs[i]);
+
+                  System.out.println(strs[i] + ":" + matcher.matches());
+
+            }
+
+ 
+
+            Pattern p2 = Pattern.compile("\\d{6}(\\d{8}).*"); // 用于提取出生日字符串
+
+            Pattern p3 = Pattern.compile("(\\d{4})(\\d{2})(\\d{2})");// 用于将生日字符串进行分解为年月日
+
+            for (int i = 0; i < strs.length; i++) {
+
+                  Matcher matcher = p2.matcher(strs[i]);
+
+                  boolean b = matcher.find();
+
+                  if (b) {
+
+                        String s = matcher.group(1);
+
+                        Matcher matcher2 = p3.matcher(s);
+
+                        if (matcher2.find()) {
+
+                              System.out.println("生日为" + matcher2.group(1) + "年"
+
+                                                 + matcher2.group(2) + "月"
+
+                                            + matcher2.group(3) + "日");
+
+                        }
+
+                  }
+
+            }
+
+      }
+
+}
+
+ 
+
+2、编写一个程序，将a.txt文件中的单词与b.txt文件中的单词交替合并到c.txt文件中，a.txt文件中的单词用回车符分隔，b.txt文件中用回车或空格进行分隔。
+
+ 
+
+答：
+
+package cn.itcast;
+
+import java.io.File;
+
+import java.io.FileReader;
+
+import java.io.FileWriter;
+
+ 
+
+public class MainClass{
+
+      public static void main(String[] args) throws Exception{
+
+            FileManager a = new FileManager("a.txt",new char[]{'\n'});
+
+            FileManager b = new FileManager("b.txt",new char[]{'\n',' '});          
+
+            FileWriter c = new FileWriter("c.txt");
+
+            String aWord = null;
+
+            String bWord = null;
+
+            while((aWord = a.nextWord()) !=null ){
+
+                  c.write(aWord + "\n");
+
+                  bWord = b.nextWord();
+
+                  if(bWord != null)
+
+                        c.write(bWord + "\n");
+
+            }
+
+            
+
+            while((bWord = b.nextWord()) != null){
+
+                  c.write(bWord + "\n");
+
+            }     
+
+            c.close();
+
+      }
+
+      
+
+}
+
+ 
+
+class FileManager{
+
+ 
+
+      String[] words = null;
+
+      int pos = 0;
+
+      public FileManager(String filename,char[] seperators) throws Exception{
+
+            File f = new File(filename);
+
+            FileReader reader = new FileReader(f);
+
+            char[] buf = new char[(int)f.length()];
+
+            int len = reader.read(buf);
+
+            String results = new String(buf,0,len);
+
+            String regex = null;
+
+            if(seperators.length >1 ){
+
+                  regex = "" + seperators[0] + "|" + seperators[1];
+
+            }else{
+
+                  regex = "" + seperators[0];
+
+            }
+
+            words = results.split(regex);
+
+      }
+
+      
+
+      public String nextWord(){
+
+            if(pos == words.length)
+
+                  return null;
+
+            return words[pos++];
+
+      }
+
+ 
+
+}
+
+ 
+
+3、编写一个程序，将d:\java目录下的所有.java文件复制到d:\jad目录下，并将原来文件的扩展名从.java改为.jad。
+
+ 
+
+（大家正在做上面这道题，网上迟到的朋友也请做做这道题，找工作必须能编写这些简单问题的代码！）
+
+答：listFiles方法接受一个FileFilter对象，这个FileFilter对象就是过虑的策略对象，不同的人提供不同的FileFilter实现，即提供了不同的过滤策略。
+
+import java.io.File;
+
+import java.io.FileInputStream;
+
+import java.io.FileOutputStream;
+
+import java.io.FilenameFilter;
+
+import java.io.IOException;
+
+import java.io.InputStream;
+
+import java.io.OutputStream;
+
+ 
+
+public class Jad2Java {
+
+ 
+
+      public static void main(String[] args) throws Exception {
+
+            File srcDir = new File("java");
+
+            if(!(srcDir.exists() && srcDir.isDirectory()))
+
+                        throw new Exception("目录不存在");
+
+            File[] files = srcDir.listFiles(
+
+                  new FilenameFilter(){
+
+ 
+
+                              public boolean accept(File dir, String name) {
+
+                                    return name.endsWith(".java");
+
+                              }
+
+                              
+
+                        }
+
+            );
+
+            
+
+            System.out.println(files.length);
+
+            File destDir = new File("jad");
+
+            if(!destDir.exists()) destDir.mkdir();
+
+            for(File f :files){
+
+                  FileInputStream  fis = new FileInputStream(f);
+
+                  String destFileName = f.getName().replaceAll("\\.java$", ".jad");
+
+                 FileOutputStream fos = new FileOutputStream(new File(destDir,destFileName));
+
+                  copy(fis,fos);
+
+                  fis.close();
+
+                  fos.close();
+
+            }
+
+      }
+
+      
+
+      private static void copy(InputStream ips,OutputStream ops) throws Exception{
+
+            int len = 0;
+
+            byte[] buf = new byte[1024];
+
+            while((len = ips.read(buf)) != -1){
+
+                  ops.write(buf,0,len);
+
+            }
+
+ 
+
+      }
+
+}
+
+ 
+
+由本题总结的思想及策略模式的解析：
+
+1.
+
+class jad2java{
+
+      1. 得到某个目录下的所有的java文件集合
+
+            1.1 得到目录 File srcDir = new File("d:\\java");
+
+            1.2 得到目录下的所有java文件：File[] files = srcDir.listFiles(new MyFileFilter());
+
+            1.3 只想得到.java的文件： class MyFileFilter implememyts FileFilter{
+
+                  public boolean accept(File pathname){
+
+                        return pathname.getName().endsWith(".java")
+
+                  }
+
+            }
+
+            
+
+      2.将每个文件复制到另外一个目录，并改扩展名
+
+            2.1 得到目标目录，如果目标目录不存在，则创建之
+
+            2.2 根据源文件名得到目标文件名，注意要用正则表达式，注意.的转义。
+
+            2.3 根据表示目录的File和目标文件名的字符串，得到表示目标文件的File。
+
+                  //要在硬盘中准确地创建出一个文件，需要知道文件名和文件的目录。 
+
+            2.4 将源文件的流拷贝成目标文件流，拷贝方法独立成为一个方法，方法的参数采用抽象流的形式。
+
+                  //方法接受的参数类型尽量面向父类，越抽象越好，这样适应面更宽广。  
+
+}
+
+ 
+
+分析listFiles方法内部的策略模式实现原理
+
+File[] listFiles(FileFilter filter){
+
+      File[] files = listFiles();
+
+      //Arraylist acceptedFilesList = new ArrayList();
+
+      File[] acceptedFiles = new File[files.length];
+
+      int pos = 0;
+
+      for(File file: files){
+
+            boolean accepted = filter.accept(file);
+
+            if(accepted){
+
+                  //acceptedFilesList.add(file);
+
+                  acceptedFiles[pos++] = file;
+
+            }           
+
+      }
+
+      
+
+      Arrays.copyOf(acceptedFiles,pos);
+
+      //return (File[])accpetedFilesList.toArray();
+
+      
+
+}
+
+ 
+
+4、编写一个截取字符串的函数，输入为一个字符串和字节数，输出为按字节截取的字符串，但要保证汉字不被截取半个，如“我ABC”，4，应该截取“我AB”，输入“我ABC汉DEF”，6，应该输出“我ABC”，而不是“我ABC+汉的半个”。
+
+ 
+
+答：首先要了解中文字符有多种编码及各种编码的特征。
+
+    假设n为要截取的字节数。
+
+      public static void main(String[] args) throws Exception{
+
+            String str = "我a爱中华abc我爱传智def';
+
+            String str = "我ABC汉";
+
+            int num = trimGBK(str.getBytes("GBK"),5);
+
+            System.out.println(str.substring(0,num) );
+
+      }
+
+      
+
+      public static int  trimGBK(byte[] buf,int n){
+
+            int num = 0;
+
+            boolean bChineseFirstHalf = false;
+
+            for(int i=0;i<n;i++)
+
+            {
+
+                  if(buf[i]<0 && !bChineseFirstHalf){
+
+                        bChineseFirstHalf = true;
+
+                  }else{
+
+                        num++;
+
+                        bChineseFirstHalf = false;                      
+
+                  }
+
+            }
+
+            return num;
+
+      }
+
+ 
+
+5、有一个字符串，其中包含中文字符、英文字符和数字字符，请统计和打印出各个字符的个数。
+
+ 
+
+答：哈哈，其实包含中文字符、英文字符、数字字符原来是出题者放的烟雾弹。
+
+String content = “中国aadf的111萨bbb菲的zz萨菲”;
+
+HashMap map = new HashMap();
+
+for(int i=0;i<content.length;i++)
+
+{
+
+      char c = content.charAt(i);
+
+      Integer num = map.get(c);
+
+      if(num == null)
+
+            num = 1;
+
+      else
+
+            num = num + 1;
+
+      map.put(c,num);
+
+} 
+
+for(Map.EntrySet entry : map)
+
+{
+
+      system.out.println(entry.getkey() + “:” + entry.getValue());
+
+}
+
+估计是当初面试的那个学员表述不清楚，问题很可能是：
+
+如果一串字符如"aaaabbc中国1512"要分别统计英文字符的数量，中文字符的数量，和数字字符的数量，假设字符中没有中文字符、英文字符、数字字符之外的其他特殊字符。
+
+int engishCount;
+
+int chineseCount;
+
+int digitCount;
+
+for(int i=0;i<str.length;i++)
+
+{
+
+      char ch = str.charAt(i);
+
+      if(ch>=’0’ && ch<=’9’)
+
+      {
+
+            digitCount++
+
+      }
+
+      else if((ch>=’a’ && ch<=’z’) || (ch>=’A’ && ch<=’Z’))
+
+      {
+
+            engishCount++;
+
+      }
+
+      else
+
+      {
+
+            chineseCount++;
+
+      }
+
+}
+
+System.out.println(……………);
+
+ 
+
+6、说明生活中遇到的二叉树，用java实现二叉树
+
+ 
+
+这是组合设计模式。
+
+我有很多个(假设10万个)数据要保存起来，以后还需要从保存的这些数据中检索是否存在某个数据，（我想说出二叉树的好处，该怎么说呢？那就是说别人的缺点），假如存在数组中，那么，碰巧要找的数字位于99999那个地方，那查找的速度将很慢，因为要从第1个依次往后取，取出来后进行比较。平衡二叉树（构建平衡二叉树需要先排序，我们这里就不作考虑了）可以很好地解决这个问题，但二叉树的遍历（前序，中序，后序）效率要比数组低很多，原理如下图：
+
+
+
+代码如下：
+
+package com.huawei.interview;
+
+ 
+
+public class Node {
+
+      public int value;
+
+      public Node left;
+
+      public Node right;
+
+      
+
+      public void store(int value)
+
+      {
+
+            if(value<this.value)
+
+            {
+
+                  if(left == null)
+
+                  {
+
+                        left = new Node();
+
+                        left.value=value;
+
+                  }
+
+                  else
+
+                  {
+
+                        left.store(value);
+
+                  }
+
+            }
+
+            else if(value>this.value)
+
+            {
+
+                  if(right == null)
+
+                  {
+
+                        right = new Node();
+
+                        right.value=value;
+
+                  }
+
+                  else
+
+                  {
+
+                        right.store(value);
+
+                  }                 
+
+            }
+
+      }
+
+      
+
+      public boolean find(int value)
+
+      {     
+
+            System.out.println("happen " + this.value);
+
+            if(value == this.value)
+
+            {
+
+                  return true;
+
+            }
+
+            else if(value>this.value)
+
+            {
+
+                  if(right == null) return false;
+
+                  return right.find(value);
+
+            }else
+
+            {
+
+                  if(left == null) return false;
+
+                  return left.find(value);
+
+            }
+
+ 
+
+      }
+
+      
+
+      public  void preList()
+
+      {
+
+            System.out.print(this.value + ",");
+
+            if(left!=null) left.preList();
+
+            if(right!=null) right.preList();
+
+      }
+
+      
+
+      public void middleList()
+
+      {
+
+            if(left!=null) left.preList();
+
+            System.out.print(this.value + ",");
+
+            if(right!=null) right.preList();          
+
+      }
+
+      public void afterList()
+
+      {
+
+            if(left!=null) left.preList();
+
+            if(right!=null) right.preList();
+
+            System.out.print(this.value + ",");       
+
+      }     
+
+      public static void main(String [] args)
+
+      {
+
+            int [] data = new int[20];
+
+            for(int i=0;i<data.length;i++)
+
+            {
+
+                  data[i] = (int)(Math.random()*100) + 1;
+
+                  System.out.print(data[i] + ",");
+
+            }
+
+            System.out.println();
+
+            
+
+            Node root = new Node();
+
+            root.value = data[0];
+
+            for(int i=1;i<data.length;i++)
+
+            {
+
+                  root.store(data[i]);
+
+            }
+
+            
+
+            root.find(data[19]);
+
+            
+
+            root.preList();
+
+            System.out.println();
+
+            root.middleList();
+
+            System.out.println();         
+
+            root.afterList();
+
+      }
+
+}
+
+-----------------又一次临场写的代码---------------------------
+
+import java.util.Arrays;
+
+import java.util.Iterator;
+
+ 
+
+public class Node {
+
+      private Node left;
+
+      private Node right;
+
+      private int value;
+
+      //private int num;
+
+      
+
+      public Node(int value){
+
+            this.value = value;
+
+      }
+
+      public void add(int value){
+
+            
+
+            if(value > this.value)
+
+            {
+
+                  if(right != null)
+
+                        right.add(value);
+
+                  else
+
+                  {
+
+                        Node node = new Node(value);                    
+
+                        right = node;
+
+                  }
+
+            }
+
+            else{
+
+                  if(left != null)
+
+                        left.add(value);
+
+                  else
+
+                  {
+
+                        Node node = new Node(value);                    
+
+                        left = node;
+
+                  }                 
+
+            }
+
+      }
+
+      
+
+      public boolean find(int value){
+
+            if(value == this.value) return true;
+
+            else if(value > this.value){
+
+                  if(right == null) return false;
+
+                  else return right.find(value);
+
+            }else{
+
+                  if(left == null) return false;
+
+                  else return left.find(value);             
+
+            }
+
+ 
+
+      }
+
+      
+
+      public void display(){
+
+            System.out.println(value);
+
+            if(left != null) left.display();
+
+            if(right != null) right.display();
+
+            
+
+      }
+
+      
+
+      /*public Iterator iterator(){
+
+            
+
+      }*/
+
+      
+
+      public static void main(String[] args){
+
+            int[] values = new int[8];
+
+            for(int i=0;i<8;i++){
+
+                  int num = (int)(Math.random() * 15);
+
+                  //System.out.println(num);
+
+                  //if(Arrays.binarySearch(values, num)<0)
+
+                  if(!contains(values,num))
+
+                        values[i] = num;
+
+                  else
+
+                        i--;
+
+            }
+
+            
+
+            System.out.println(Arrays.toString(values));
+
+            
+
+            Node root  = new Node(values[0]);
+
+            for(int i=1;i<values.length;i++){
+
+                  root.add(values[i]);
+
+            }
+
+            
+
+            System.out.println(root.find(13));
+
+            
+
+            root.display();
+
+            
+
+      }
+
+      
+
+      public static boolean contains(int [] arr, int value){
+
+            int i = 0;
+
+            for(;i<arr.length;i++){
+
+                  if(arr[i] == value) return true;
+
+                  
+
+            }
+
+            return false;
+
+      }
+
+      
+
+}
+
+ 
+
+7、从类似如下的文本文件中读取出所有的姓名，并打印出重复的姓名和重复的次数，并按重复次数排序：
+
+ 
+
+1,张三,28
+
+2,李四,35
+
+3,张三,28
+
+4,王五,35
+
+5,张三,28
+
+6,李四,35
+
+7,赵六,28
+
+8,田七,35
+
+ 
+
+程序代码如下（答题要博得用人单位的喜欢，包名用该公司，面试前就提前查好该公司的网址，如果查不到，现场问也是可以的。还要加上实现思路的注释）：
+
+package com.huawei.interview;
+
+import java.io.BufferedReader;
+
+import java.io.IOException;
+
+import java.io.InputStream;
+
+import java.io.InputStreamReader;
+
+import java.util.Comparator;
+
+import java.util.HashMap;
+
+import java.util.Iterator;
+
+import java.util.Map;
+
+import java.util.TreeSet;
+
+public class GetNameTest {
+
+ 
+
+      /**
+
+       * @param args
+
+       */
+
+      public static void main(String[] args) {
+
+            // TODO Auto-generated method stub
+
+            //InputStream ips = GetNameTest.class.getResourceAsStream("/com/huawei/interview/info.txt");
+
+            //用上一行注释的代码和下一行的代码都可以，因为info.txt与GetNameTest类在同一包下面，所以，可以用下面的相对路径形式
+
+            
+
+            Map results = new HashMap();
+
+            InputStream ips = GetNameTest.class.getResourceAsStream("info.txt");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(ips));
+
+            String line = null;
+
+            try {
+
+                  while((line=in.readLine())!=null)
+
+                  {
+
+                        dealLine(line,results);
+
+                  }
+
+                  sortResults(results);
+
+            } catch (IOException e) {
+
+                  // TODO Auto-generated catch block
+
+                  e.printStackTrace();
+
+            }
+
+      }
+
+      
+
+      static class User
+
+      {
+
+            public  String name;
+
+            public Integer value;
+
+            public User(String name,Integer value)
+
+            {
+
+                  this.name = name;
+
+                  this.value = value;
+
+            }
+
+ 
+
+            @Override
+
+            public boolean equals(Object obj) {
+
+                  // TODO Auto-generated method stub
+
+                        
+
+                  //下面的代码没有执行，说明往treeset中增加数据时，不会使用到equals方法。
+
+                  boolean result = super.equals(obj);
+
+                  System.out.println(result);
+
+                  return result;
+
+            }
+
+      }
+
+      
+
+      private static void sortResults(Map results) {
+
+            // TODO Auto-generated method stub
+
+            TreeSet sortedResults = new TreeSet(
+
+                        new Comparator(){
+
+                              public int compare(Object o1, Object o2) {
+
+                                    // TODO Auto-generated method stub
+
+                                    User user1 = (User)o1;
+
+                                    User user2 = (User)o2;
+
+                                    /*如果compareTo返回结果0，则认为两个对象相等，新的对象不会增加到集合中去
+
+                                     * 所以，不能直接用下面的代码，否则，那些个数相同的其他姓名就打印不出来。
+
+                                     * */
+
+                                    
+
+                                    //return user1.value-user2.value;
+
+                                    //return user1.value<user2.value?-1:user1.value==user2.value?0:1;
+
+                                    if(user1.value<user2.value)
+
+                                    {
+
+                                          return -1;
+
+                                    }else if(user1.value>user2.value)
+
+                                    {
+
+                                          return 1;
+
+                                    }else
+
+                                    {
+
+                                          return user1.name.compareTo(user2.name);
+
+                                    }
+
+                              }
+
+                              
+
+                        }
+
+            );
+
+            Iterator iterator = results.keySet().iterator();
+
+            while(iterator.hasNext())
+
+            {
+
+                  String name = (String)iterator.next();
+
+                  Integer value = (Integer)results.get(name);
+
+                  if(value > 1)
+
+                  {                       
+
+                        sortedResults.add(new User(name,value));                    
+
+                  }
+
+            }
+
+            
+
+            printResults(sortedResults);
+
+      }
+
+      private static void printResults(TreeSet sortedResults) 
+
+      {
+
+            Iterator iterator  = sortedResults.iterator();
+
+            while(iterator.hasNext())
+
+            {
+
+                  User user = (User)iterator.next();
+
+                  System.out.println(user.name + ":" + user.value);
+
+            }     
+
+      }
+
+      public static void dealLine(String line,Map map)
+
+      {
+
+            if(!"".equals(line.trim()))
+
+            {
+
+                  String [] results = line.split(",");
+
+                  if(results.length == 3)
+
+                  {
+
+                        String name = results[1];
+
+                        Integer value = (Integer)map.get(name);
+
+                        if(value == null) value = 0;
+
+                        map.put(name,value + 1);
+
+                  }
+
+            }
+
+      }
+
+}
+
+ 
+
+8、写一个Singleton出来。
+
+ 
+
+第一种：饱汉模式
+
+public class SingleTon {
+
+      private SingleTon(){
+
+            }
+
+      //实例化放在静态代码块里可提高程序的执行效率，但也可能更占用空间      
+
+      private final static SingleTon instance = new SingleTon();
+
+      public static SingleTon getInstance(){
+
+            return instance;
+
+      }
+
+}
+
+第二种：饥汉模式
+
+public class SingleTon {
+
+      private SingleTon(){}
+
+      
+
+      private static instance = null;//new SingleTon();
+
+      
+
+      public static synchronized SingleTon getInstance(){
+
+            if(instance == null)
+
+                  instance = new SingleTon();
+
+            return instance;
+
+      }
+
+}
+
+ 
+
+第三种：用枚举
+
+      public enum SingleTon{
+
+            ONE;
+
+      
+
+      }
+
+ 
+
+第三：更实际的应用（在什么情况用单例）
+
+public class SequenceGenerator{
+
+      //下面是该类自身的业务功能代码
+
+      private int count = 0;
+
+ 
+
+      public synchronized int getSequence(){
+
+            ++count;
+
+      }
+
+      
+
+      //下面是把该类变成单例的代码
+
+      private SequenceGenerator(){}
+
+      private final static instance = new SequenceGenerator();
+
+      public static SingleTon getInstance(){
+
+            return instance;
+
+      }     
+
+      
+
+}
+
+ 
+
+第四：
+
+      public class MemoryDao
+
+      {
+
+    private HashMap map = new HashMap();
+
+    
+
+      public void add(Student stu1){ 
+
+            map.put(SequenceGenerator.getInstance().getSequence(),stu1);
+
+    }
+
+   
+
+   //把MemoryDao变成单例 
+
+  }
+
+ 
+
+Singleton模式主要作用是保证在Java应用程序中，一个类Class只有一个实例存在。 
+
+一般Singleton模式通常有几种种形式: 
+
+第一种形式: 定义一个类，它的构造函数为private的，它有一个static的private的该类变量，在类初始化时实例话，通过一个public的getInstance方法获取对它的引用,继而调用其中的方法。 
+
+public class Singleton { 
+
+private Singleton(){} 
+
+　　    //在自己内部定义自己一个实例，是不是很奇怪？ 
+
+　　    //注意这是private 只供内部调用 
+
+　　    private static Singleton instance = new Singleton(); 
+
+　　    //这里提供了一个供外部访问本class的静态方法，可以直接访问　　 
+
+　　    public static Singleton getInstance() { 
+
+　　　　    return instance; 　　 
+
+　　    } 
+
+   } 
+
+   第二种形式: 
+
+public class Singleton { 
+
+　　private static Singleton instance = null; 
+
+　　public static synchronized Singleton getInstance() { 
+
+　　//这个方法比上面有所改进，不用每次都进行生成对象，只是第一次　　　　 
+
+　　//使用时生成实例，提高了效率！ 
+
+　　if (instance==null) 
+
+　　　　instance＝new Singleton(); 
+
+         return instance; 　　
+
+  } 
+
+} 
+
+其他形式: 
+
+定义一个类，它的构造函数为private的，所有方法为static的。 
+
+一般认为第一种形式要更加安全些 
+
+ 
+
+9、递归算法题1
+
+ 
+
+一个整数，大于0，不用循环和本地变量，按照n，2n，4n，8n的顺序递增，当值大于5000时，把值按照指定顺序输出来。
+例：n=1237
+则输出为：
+1237，
+2474，
+4948，
+9896，
+9896，
+4948，
+2474，
+1237，
+
+提示：写程序时，先致谢按递增方式的代码，写好递增的以后，再增加考虑递减部分。
+
+      public static void doubleNum(int n)
+
+      {
+
+            System.out.println(n);
+
+            if(n<=5000)
+
+                  doubleNum(n*2);
+
+            System.out.println(n);        
+
+      }
+
+ 
+  
+  
+  
+ 
+ 
+ Gaibaota(N) = Gaibaota(N-1) + n
+ 
+ 
+  
+ 
+ 
+  
+  
+  
+ 
+ 
+  
+ 
+ 
+ 
+
+
+
+
+
+
+ 
+
+10、递归算法题2
+
+ 
+
+第1个人10，第2个比第1个人大2岁，依次递推，请用递归方式计算出第8个人多大？
+
+package cn.itcast;
+
+ 
+
+import java.util.Date;
+
+ 
+
+public class A1 {
+
+ 
+
+      public static void main(String [] args)
+
+      {
+
+            System.out.println(computeAge(8));
+
+      }
+
+      
+
+      public static int computeAge(int n)
+
+      {
+
+            if(n==1) return 10;
+
+            return computeAge(n-1) + 2;
+
+      }
+
+}
+
+      public static void toBinary(int n,StringBuffer result)
+
+      {
+
+ 
+
+            if(n/2 != 0)
+
+                  toBinary(n/2,result);
+
+            result.append(n%2);           
+
+      }
+
+ 
+
+11、排序都有哪几种方法？请列举。用JAVA实现一个快速排序。 
+
+ 
+
+ 本人只研究过冒泡排序、选择排序和快速排序，下面是快速排序的代码：
+
+public class QuickSort {
+/**
+* 快速排序
+* @param strDate
+* @param left
+* @param right
+*/
+public void quickSort(String[] strDate,int left,int right){
+String middle,tempDate;
+int i,j;
+i=left;
+j=right;
+middle=strDate[(i+j)/2];
+do{
+while(strDate[i].compareTo(middle)<0&& i<right)
+i++; //找出左边比中间值大的数
+while(strDate[j].compareTo(middle)>0&& j>left)
+j--; //找出右边比中间值小的数
+if(i<=j){ //将左边大的数和右边小的数进行替换 
+tempDate=strDate[i];
+strDate[i]=strDate[j];
+strDate[j]=tempDate;
+i++;
+j--;
+}
+}while(i<=j); //当两者交错时停止
+
+if(i<right){
+quickSort(strDate,i,right);//从
+}
+if(j>left){
+quickSort(strDate,left,j);
+}
+}
+/**
+  * @param args
+  */
+public static void main(String[] args){
+String[] strVoid=new String[]{"11","66","22","0","55","22","0","32"};
+QuickSort sort=new QuickSort();
+sort.quickSort(strVoid,0,strVoid.length-1);
+for(int i=0;i<strVoid.length;i++){
+System.out.println(strVoid[i]+" ");
+}
+}
+
+
+}
+
+ 
+
+12、有数组a[n]，用java代码将数组元素顺序颠倒
+
+ 
+
+//用下面的也可以
+
+//for(int i=0,int j=a.length-1;i<j;i++,j--) 是否等效于 for(int i=0;i<a.length/2;i++)呢？
+
+ 
+
+import java.util.Arrays;
+
+ 
+
+public class SwapDemo{
+
+ 
+
+      public static void main(String[] args){
+
+            int [] a = new int[]{
+
+                                    (int)(Math.random() * 1000),
+
+                                    (int)(Math.random() * 1000),
+
+                                    (int)(Math.random() * 1000),
+
+                                    (int)(Math.random() * 1000),                                
+
+                                    (int)(Math.random() * 1000)                                                                                                         
+
+            };    
+
+            
+
+            System.out.println(a);
+
+            System.out.println(Arrays.toString(a));
+
+            swap(a);
+
+            System.out.println(Arrays.toString(a));         
+
+      }
+
+      
+
+      public static void swap(int a[]){
+
+            int len = a.length;
+
+            for(int i=0;i<len/2;i++){
+
+                  int tmp = a[i];
+
+                  a[i] = a[len-1-i];
+
+                  a[len-1-i] = tmp;
+
+            }
+
+      }
+
+}
+
+ 
+
+13．金额转换，阿拉伯数字的金额转换成中国传统的形式如：（￥1011）－>（一千零一拾一元整）输出。
+
+ 
+
+去零的代码：
+
+        return sb.reverse().toString().replaceAll("零[拾佰仟]","零").replaceAll("零+万","万").replaceAll("零+元","元").replaceAll("零+","零");
+
+ 
+
+public class RenMingBi {
+
+ 
+
+      /**
+
+       * @param args add by zxx ,Nov 29, 2008
+
+       */
+
+      private static final char[] data = new char[]{
+
+                  '零','壹','贰','叁','肆','伍','陆','柒','捌','玖'
+
+            }; 
+
+      private static final char[] units = new char[]{
+
+            '元','拾','佰','仟','万','拾','佰','仟','亿'
+
+      };
+
+      public static void main(String[] args) {
+
+            // TODO Auto-generated method stub
+
+            System.out.println(
+
+                        convert(135689123));
+
+      }
+
+ 
+
+      public static String convert(int money)
+
+      {
+
+            StringBuffer sbf = new StringBuffer();
+
+            int unit = 0;
+
+            while(money!=0)
+
+            {
+
+                  sbf.insert(0,units[unit++]);
+
+                  int number = money%10;
+
+                  sbf.insert(0, data[number]);
+
+                  money /= 10;
+
+            }
+
+ 
+
+            return sbf.toString();
+
+      }
+
+}
+
+ 
+
+14. 判断第二个日期比第一个日期大
+
+ 
+
+   如何用脚本判断用户输入的的字符串是下面的时间格式2004-11-21 必须要保证用户的输入是此格式，并且是时间，比如说月份不大于12等等，另外我需要用户输入两个，并且后一个要比前一个晚，只允许用JAVASCRIPT，请详细帮助作答，, 
+
+//这里可用正则表达式判断提前判断一下格式，然后按下提取各时间字段内容
+
+<script type="text/javascript">
+
+  window.onload = function()
+
+  {
+
+   //这么写是为了实现js代码与html代码的分离，当我修改js时，不能影响html代码。
+
+   document.getElementById("frm1").onsubmit = 
+
+         function(){
+
+               var d1 = this.d1.value;
+
+               var d2 = this.d2.value;
+
+               if(!verifyDate (d1)) {alert("第一个日期格式不对");return false;}
+
+               if(!verifyDate (d2)) {alert("第二个日期格式不对");return false;}
+
+               if(!compareDate(d1,d2)) {alert("第二个日期比第一日期小");return false;}        
+
+         };
+
+   }
+
+   
+
+   function compareDate(d1,d2)
+
+   {
+
+         var arrayD1 = d1.split("-");
+
+         var date1 = new Date(arrayD1[0],arrayD1[1],arrayD1[2]);
+
+         var arrayD2 = d2.split("-");
+
+         var date2 = new Date(arrayD2[0],arrayD2[1],arrayD2[2]);     
+
+         if(date1 > date2) return false;           
+
+         return true;
+
+   } 
+
+   
+
+   function verifyDate(d)
+
+   {
+
+         var datePattern = /^\d{4}-(0?[1-9]|1[0-2])-(0?[1-9]|[1-2]\d|3[0-1])$/;
+
+         return datePattern.test(d);
+
+   }
+
+</script>
+
+ 
+
+<form id="frm1" action="xxx.html">
+
+<input type="text" name="d1" />
+
+<input type="text" name="d2" />
+
+<input type="submit"/>
+
+</form>
+
+ 
+
+15. 用table显示n条记录，每3行换一次颜色，即1，2，3用红色字体，4，5，6用绿色字体，7，8，9用红颜色字体。
+
+ 
+
+<body>
+
+<table id="tbl">
+
+  <tr><td>1</td></tr>
+
+  <tr><td>2</td></tr>
+
+  <tr><td>3</td></tr>
+
+  <tr><td>4</td></tr>
+
+  <tr><td>5</td></tr>
+
+  <tr><td>6</td></tr>
+
+  <tr><td>7</td></tr>
+
+  <tr><td>8</td></tr>
+
+  <tr><td>9</td></tr>
+
+  <tr><td>10</td></tr>
+
+</table>
+
+</body>
+
+<script type="text/javascript">
+
+  window.onload=function()
+
+   {
+
+         var tbl = document.getElementById("tbl");
+
+         rows = tbl.getElementsByTagName("tr");
+
+         for(i=0;i<rows.length;i++)
+
+         {
+
+               var j = parseInt(i/3);
+
+               if(j%2==0) rows[i].style.backgroundColor="#f00";
+
+               else  rows[i].style.backgroundColor="#0f0";
+
+         }
+
+   }
+
+</script>
+
+ 
+
+16、HTML 的 form 提交之前如何验证数值文本框的内容全部为数字? 否则的话提示用户并终止提交? 
+
+ 
+
+<form onsubmit=’return chkForm(this)’>
+
+<input type="text" name="d1"/>
+
+<input type="submit"/>
+
+</form>
+
+<script type=”text/javascript” /> 
+
+function chkForm(this)
+
+      { 
+
+            var value = thist.d1.value;
+
+            var len = value.length;
+
+            for(var i=0;i<len;i++)
+
+            {
+
+                  if(value.charAt(i)>"9" || value.charAt(i)<"0")
+
+                  {
+
+                        alert("含有非数字字符");
+
+                        return false;
+
+                  }
+
+            }
+
+            return true;
+
+      }
+
+</script>
+
+ 
+
+17、请写出用于校验HTML文本框中输入的内容全部为数字的javascript代码
+
+ 
+
+<input type="text" id="d1" onblur=" chkNumber (this)"/>
+
+<script type=”text/javascript” /> 
+
+function chkNumber(eleText)
+
+      { 
+
+            var value = eleText.value;
+
+            var len = value.length;
+
+            for(var i=0;i<len;i++)
+
+            {
+
+                  if(value.charAt(i)>"9" || value.charAt(i)<"0")
+
+                  {
+
+                        alert("含有非数字字符");
+
+                        eleText.focus();
+
+                        break; 
+
+                  }
+
+            }
+
+      }
+
+</script>
+
+除了写完代码，还应该在网页上写出实验步骤和在代码中加入实现思路，让面试官一看就明白你的意图和检查你的结果。
+
+ 
+
+18、说说你用过那些ajax技术和框架，说说它们的区别
+
+ 
+
+答:去掉对web.xml的监视，把jsp提前编辑成Servlet。
+
+有富余物理内存的情况，加大tomcat使用的jvm的内存
+

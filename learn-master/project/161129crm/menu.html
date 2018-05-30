@@ -1,0 +1,135 @@
+<!-- 修改菜单相关代码 -->
+<div class="menu_wrapper">
+<p><span>菜单名称：</span><input type="text" class="menu_name" name="menu_name"></p>
+<p><span>上级菜单：</span>
+    <select name="menu_parent" class="menu_parent">
+        <option value="0">请选择父级菜单</option>
+        <?php
+        if ($parent) {
+            foreach ($parent as $val) {
+                ?>
+                <option value="<?=$val['id']?>"><?=$val['name']?></option>
+            <?php } 
+        }
+        ?>
+    </select>
+</p>
+<p><span>菜单路径：</span><input type="text" name="menu_route" class="menu_route" value="" class="input_wh"></p>
+<p><span>菜单排序：</span><input type="text" name="menu_order" class="menu_order" value="" class="input_wh"></p>
+<p>
+    <span>菜单状态：</span>
+    <input type="radio" name="radio" value="1"><label>显示</label>
+    <input type="radio" name="radio" value="0"><label>隐藏</label>
+</p>
+<p><b>方法名称</b><b>路径</b></p>
+<ul class="menu_ul clear">
+    <!--
+    <li>
+        <input type="checkbox" name="check">
+        <em>权限1</em>
+        <span>/admin/menu/update</span>
+        <a href="javascript:;" class="ico_pen"></a>
+        <a href="javascript:;" class="ico_del"></a>
+    </li>
+    -->
+</ul>
+<p class="add_p">
+    <input type="text" name="way_name" value="" class="way_name" placeholder="方法名称">
+    <input type="text" name="way_path" value="" class="way_path" placeholder="方法路径">
+    <a href="javascript:;" class="way_add">添加</a>
+</p>
+</div>
+
+// 修改菜单 (使用js对象获取相关数据)
+$('input[name="edit_menu"]').click(function() {
+    var id = $('input[name="id"]').val(); // 获取菜单ID
+    var name = $('input[name="menu_name"]').val(); // 获取菜单名
+    if (!name) {
+        layer.msg('菜单名不能为空');
+        return false;
+    }
+    var parent = $('select[name="menu_parent"]').val(); // 获取父级菜单ID
+    var route = $('input[name="menu_route"]').val(); // 获取路由
+    if (!route) {
+        layer.msg('路由不能为空');
+        return false;
+    }
+    var display = $('input[name="radio"]:checked').val(); // 获取选中的状态值 (0 隐藏 1 显示)
+    var order = $('input[name="menu_order"]').val(); // 获取菜单排序
+
+    var data = {}; // 定义js对象 (存放菜单相关数据)
+    data.id = id;
+    data.name = name;
+    data.parent = parent;
+    data.route = route;
+    data.display = display;
+    data.order = order;
+
+    var method_arr = []; // 方法数组 (存放方法)
+
+    // 获取修改方法的数据
+    $('input[name="method_name"]').each(function(i) {
+        var method = {}; // 定义js对象 (存放方法相关数据)
+        var id = $(this).parent().nextAll('input[name="method_id"]').val(); // 获取方法Id
+        var name = $(this).val(); // 获取方法名
+        var route = $(this).parent().next('span').children().val(); // 获取方法路由
+        method.id = id;
+        method.name = name;
+        method.route = route;
+        method_arr.push(method); // 向方法数组中添加方法对象
+    });
+    data.method = method_arr; // 将方法数据赋值给对象方法属性
+
+    $.post('/index.php?r=menu/index', {'data' : data, 'state' : 6}, // 异步请求处理修改菜单数据
+        function(data) {
+            if (data == 1) {
+                layer.msg('修改成功');
+                setTimeout(jumurl,1000);
+            } else {
+                layer.msg(data);
+            }
+        });
+});
+
+
+// 方法处理 (显示方法 修改方法---追加input输入框 删除方法)
+function method(menu_id, data) {
+    $('.menu_ul li').remove(); // 清空以前加载的数据 也可以使用.html('') 清空 然后添加数据使用.html(li)
+    for (var i = 0; i < data.length; i ++) {
+        var li = "<li><em style='width: 100px; display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap'>" + data[i].name + "</em><span style='width: 100px; display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap'>" + data[i].route + "</span><a href='javascript:;' class='ico_pen'></a><a href='javascript:;' class='ico_del'></a><input type='hidden' name='method_id' value='" + data[i].id + "'></li>";
+        $('.menu_ul').append(li);
+    }
+
+    // 方法修改 (将以前的数据换成输入框)
+    $('.ico_pen').one('click', function() { // 只允许单击一次
+        // 获取要修改的方法名
+        var name = $(this).siblings('em').text();
+        $(this).siblings('em').text(''); // 清空以前的文本内容
+        $(this).siblings('em').append("<input type='text' class='impinput1' name='method_name' value=" + name + ">");
+        // 获取要修改的路由名
+        var route = $(this).prev('span').text();
+        $(this).prev('span').text('')
+        $(this).prev('span').append("<input type='text' class='impinput' name='method_route' value=" + route + ">");
+    });
+
+    // 方法删除
+    $('.ico_del').click(function() {
+        // 获取方法 ID
+        var id = $(this).next('input').val();
+        $.post('/index.php?r=menu/index', {'id' : id, 'state' : 9}, 
+            function(data) {
+                if (data == 1) {
+                    layer.msg('删除成功');
+                    // 刷新数据
+                    $.post('/index.php?r=menu/index', {'id' : menu_id, 'state' : 7}, 
+                    function(data) {
+                        if (data) {
+                            method(menu_id, data); // 处理方法
+                        }
+                    }, 'json');
+                } else {
+                    layer.msg(data);
+                }
+            });
+    })      
+}

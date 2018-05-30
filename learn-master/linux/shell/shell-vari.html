@@ -1,0 +1,138 @@
+    shell 变量的缺点
+    弱类型
+    默认字符串型
+
+    declare 声明变量类型
+    [root@localhost ~]# declare [+/-] [选项] 变量名
+    - 给变量设定类型属性
+    + 取消变量的类型属性
+    -a 将变量声明为数组型
+    -i 将变量声明为整数型 (integer)
+    -x 将变量声明为环境变量
+    -r 将变量声明为只读变量
+    -p 显示指定变量的被声明的类型
+
+    声明数组变量
+    [root@peng1 shell]# movie[0]=zp # 定义数组
+    [root@peng1 shell]# movie[1]=tp
+    [root@peng1 shell]# declare -a movie[2]=live
+    [root@peng1 shell]# echo ${movie} # 查看数组信息
+    zp
+    [root@peng1 shell]# echo ${movie[2]}
+    live
+    [root@peng1 shell]# echo ${movie[*]}
+    zp tp live
+
+
+    declare -x test=123 # 和export 作用相似 但其实是 declare 命令的作用
+    [root@peng1 shell]# declare -x test=123
+    [root@peng1 shell]# echo ${test}
+    123
+    [root@peng1 shell]# export test2=123
+    [root@peng1 shell]# echo ${test2}
+    123
+
+
+    声明变量只读属性
+    [root@localhost ~]# declare -r test # 给 test 赋予只读属性 但是请注意只读属性会让变量不能修改不能删除 甚至不能取消只读属性
+
+    查询变量的属性
+    declare -p # 查询所有变量的属性
+    declare -p 变量名 # 查询指定变量的属性
+
+    数值运算的方法
+    [root@localhost ~]# aa=11
+    [root@localhost ~]# bb=22 #给变量aa 和 bb 赋值
+    [root@localhost ~]# declare -i cc=$aa + $bb
+
+    expr 或 let 数值运算工具
+    [root@localhost ~]# aa=11
+    [root@localhost ~]# bb=22 #给变量aa 和变量 bb 赋值
+    [root@localhost ~]# dd=$(expr $aa + $bb) #dd 的值是aa 和 bb 的和 注意 "+" 号左右两侧必须有空格
+
+    "$((运算式))" 或 "$[运算式]"
+    [root@localhost ~]# aa=11
+    [root@localhost ~]# bb=22
+    [root@localhost ~]# ff=$(($aa + $bb))
+    [root@localhost ~]# gg=$[$aa + $bb]
+
+    运算符
+    优先级  运算符    说明
+      13    - +       单目负 单目正
+      12    ! ~       逻辑非 按位取反或补码
+      11    * / %     乘 除 取模
+      10    + -       加 减
+      9     << >>     按位左移 按位右移
+      8     <= >= < > 小于或等于 大于或等于 小于 大于
+      7     == !=     等于 不等于
+      6     &         按位与
+      5     ^         按位异或
+      4     |         按位或
+      3     &&        逻辑与
+      2     ||        逻辑或
+      1     = += -= *=
+            /= %= &=  赋值 运算且赋值
+            ^= |= <<=
+            >>=
+
+    [root@localhost ~]# aa=$(( (11+3) * 3/2 )) #虽然乘和除的优先级高于加 但是通过小括号可以调整运算优先级
+    [root@localhost ~]# bb=$(( 14 % 3 )) #14 不能被 3 整除 余数是 2
+    [root@localhost ~]# cc=$(( 1 && 0 )) #逻辑与运算只有想与的两面边都是 1 与的结果才是 1 否则与的结果是 0
+
+    变量测试
+    格式复杂 用法简单
+
+    变量转换方式   变是y 没有设置   变量 y 为空值   变量 y 设置值
+    x=${y-新值}    x=新值           x为空           x=$y
+    x=${y:-新值}   x=新值           x=新值          x=$y
+    x=${y+新值}    x为空            x=新值          x=新值
+    x=${y:+新值}   x为空            x为空           x=新值
+    x=${y=新值}    x=新值 y=新值    x为空 y值不变   x=$y y值不变
+    x=${y:=新值}   x=新值 y=新值    x=新值 y=新值   x=$y y值不变
+    x=${y?新值}    新值输出到标准   x为空           x=$y
+                   错误输出(就是屏幕)
+    x=${y:?新值}   新值输出到标准   新值输出到标准  x=$y
+                   错误输出         错误输出
+
+    测试 x=${y-新值}
+    [root@localhost ~]# unset y #删除变量 y
+    [root@localhost ~]# x=${y-2} #进行测试
+    [root@localhost ~]# echo $x #因为变是 y 不存在 所以 x = new 
+
+
+    Shell 中变量及引用的实战
+    变量可以分为三种类型
+    a) 本地变量 只有当前 Shell 生命周期内有效
+    b) 环境变量 在用户登录后到注销前对于所有的编辑器 脚本 进程等都有效
+    c) 位置参数 主要适用于向 Shell 脚本传递参数  例如./spark-shell --master spark://master:7077
+
+    ${variablename} 会具体提取出变量的内容 当然可以把 {} 去掉  例如 $HADOOP_CONF_DIR 来提取出 Hadoop 配置文件具体所有的路径的值
+
+    变量赋值的时候 "=" 两侧不能有空格  变量名称后如果有空格则会被认为要执行 command 如果要打印变量的内容 可以通过 echo $variable 来打印  例如 echo $usage
+
+    在 Shell 脚本中编写关于变量的基本使用
+    #!/bin/bash
+    a = 100
+    let "a += 10" # 把 a的值加上 10
+    echo "a = $a"
+
+    环境变量
+    使用 export 关键字来把变量编程球状变量  例如
+    export JAVA_HOME=/usr/local/java/jdk1.8.0_73
+    export SCALA_HOME=/home/scala
+    export HADOOP_HOME=/home/hadoop
+    export HADOOP_CONF_DIR=/home/hadoop/etc/hadoop 
+
+    可以通过使用 "env" 命令来查看系统中的环境变量的内容
+
+    系统中核心的配置文件
+    大家常见的一些系统配置文件 .bashrc   bash_profile (.profile)   bash_logout  修改了系统文件后一般要通过 source 命令使其立即生效
+
+    位置参数  主要用于从命令行向 Shell 脚本传递参数
+    具体而言  $0 代表脚本的名称  $1 代表传入 shell 的第一个参数  $2 代表传入 shell 的第二个参数  如果要代表全部参数则需要使用 $* 或者 $@
+    $# 代表传脚本中的参数的数量
+    $$ 脚本运行的进程号
+    $? 代表命令退出状态  0 表示没有错误  非 0 表示有错误
+
+    命令替换  将命令的输出作为值赋值给某个变量
+    例如 export SPARK_HOME="$(cd "'dirname "$0"'"/..; pwd)" 实际上会使用 pwd 获得的值来取代 dirname 并且如果使用 $() 则会对其进行实际求值  对我们例子来说 pwd 的值为 "/home/spark/bin"  $0 代表当前文件名称 "spark-shell"

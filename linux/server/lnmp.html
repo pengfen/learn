@@ -1,0 +1,85 @@
+ali 上搭建环境
+
+[root@iZ94f2imuwkZ ~]# mkdir lnmp
+[root@iZ94f2imuwkZ ~]# cd lnmp/
+[root@iZ94f2imuwkZ lnmp]# wget -c http://soft.vpser.net/lnmp/lnmp1.2-full.tar.gz && tar zxf lnmp1.2-full.tar.gz && cd lnmp1.2-full && ./install.sh lnmp
+
+yum info mysql #查看 mysql 的版本
+yum info nginx #查看 nginx 的版本
+yum info php   #查看 php 的版本
+
+nginx
+nginx 安装目录 /usr/local/nginx/
+nginx 日志目录 /home/wwwlogs/ (ls /home/wwwlogs/ access.log nginx_error.log)
+nginx 配置文件 /usr/local/nginx/conf/nginx.conf
+
+访问 http://120.24.36.66
+项目目录 ls /home/wwwroot/default
+
+============================================
+LNMP 1.2状态管理: lnmp {start|stop|reload|restart|kill|status}
+LNMP 1.2各个程序状态管理: lnmp {nginx|mysql|mariadb|php-fpm|pureftpd} {start|stop|reload|restart|kill|status}
+LNMP 1.1状态管理： /root/lnmp {start|stop|reload|restart|kill|status}
+Nginx状态管理：/etc/init.d/nginx {start|stop|reload|restart}
+MySQL状态管理：/etc/init.d/mysql {start|stop|restart|reload|force-reload|status}
+Memcached状态管理：/etc/init.d/memcached {start|stop|restart}
+PHP-FPM状态管理：/etc/init.d/php-fpm {start|stop|quit|restart|reload|logrotate}
+PureFTPd状态管理： /etc/init.d/pureftpd {start|stop|restart|kill|status}
+ProFTPd状态管理： /etc/init.d/proftpd {start|stop|restart|reload}
+
+如重启LNMP，输入命令：/root/lnmp restart 即可，单独重启mysql：/etc/init.d/mysql restart
+
+
+安装第二个项目 blog
+============================================
+上传项目 blog
+[root@iZ94f2imuwkZ ~]# cp -a blog/ /home/wwwroot/
+[root@iZ94f2imuwkZ ~]# cd /home/wwwroot/
+# 修改 nginx.conf 配置文件
+find /usr/local/ -name nginx.conf
+vim /usr/local/nginx/conf/nginx.conf
+root /home/wwwroot/default; ---- root /home/wwwroot/blog;
+
+修改 mysql
+mysql -uroot -p
+create database blog;
+use blog;
+set names utf8;
+source /home/wwwroot/blog/blog.sql
+
+修改项目配置文件
+cd /home/wwwroot/blog/Application/Home/Conf
+vi config.php
+
+
+安装lnmp1.3
+------------------------------------------------------------------------------
+下载lnmp1.3
+http://lnmp.org/ 或是
+https://yunpan.cn/cM645qt8uUVbr  访问密码 8744 
+使用xftp上传到xshell目录
+解压tar -zxvf lnmp1.3
+cd lnmp1.3-full
+[root@peng2 lnmp]# cd  lnmp1.3-full
+[root@peng2 lnmp1.3-full]# ./install.sh
+mysql password 123456
+
+测试 192.168.179.128
+
+上传 yii-advanced 包到 /home/webroot目录中
+tar -zxvf yii-advanced...
+mv advanced resource
+cd resource
+./init
+1
+yes
+
+# 修改 nginx.conf 配置文件
+find /usr/local/ -name nginx.conf
+vim /usr/local/nginx/conf/nginx.conf
+root /home/wwwroot/default; ---- root /home/wwwroot/resource/frontend/web;
+
+http://192.168.179.128/
+
+
+

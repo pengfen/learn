@@ -1,0 +1,65 @@
+public function index(){
+		$tables = array('Source', 'Customerinfo', 'Newsource', 'Grabagesource', 'Shareaccount', 'Jlrecovery', 'Againinfo'); // 定义表数组
+		foreach ($tables as $key => $value) { // 循环对每张表进行操作
+			$map['CatOneName'] = '';
+		    $map['CatTwoName'] = '';
+		    if ($value == 'Customerinfo') { // 处理带有扩展表
+		    	$data = M($value)->table('zt_customerinfo c')
+		    	    ->join('zt_customerinfoexten ex on c.CID = ex.CID')
+					->where("c.CatTwoName='' and c.CatOneName=''")
+					->field('c.CatTwoName,c.CatOneName,ex.CustomerKeywords')
+					->distinct(true)
+					->select();
+
+				foreach ($data as $k => $v) {
+					$info[$k]['CatOneName'] = $v['CatOneName'];
+		    		$info[$k]['CatTwoName'] = $v['CatTwoName'];
+		    		$info[$k]['Keywords'] = $v['CustomerKeywords'];
+		    	}
+		    } elseif ($value == 'Againinfo') { // 处理字段与普通不一致的
+		    	$data = M($value)->field('CatOneName,CatTwoName,AgainKewords')->distinct(true)->where($map)->select();
+		    	foreach ($data as $k => $v) {
+		    		$info[$k]['CatOneName'] = $v['CatOneName'];
+		    		$info[$k]['CatTwoName'] = $v['CatTwoName'];
+		    		$info[$k]['Keywords'] = $v['AgainKewords'];
+		    	}
+		    } else {
+		    	$info = M($value)->field('CatOneName,CatTwoName,Keywords')->distinct(true)->where($map)->select();
+		    }
+		    
+		    if ($info) {
+		    	foreach ($info as $k => $v) { // 循环调用第三方接口修改数据
+		            if ($v['Keywords'] == 'NULL') {$keyword = '';} else {$keyword = $v['Keywords'];}
+		    		$data = array('key' => $keyword); // x-www-form-urlencoded 方式的数据
+			    	$url = C('KEYWORDS_API_URL'); // 调用第三方接口
+		            $ch = curl_init();
+		            curl_setopt($ch, CURLOPT_URL, $url);
+		            curl_setopt($ch, CURLOPT_POST, true);
+		            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+		            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+		            $res = curl_exec($ch);
+		            $error = curl_error($ch);
+		            curl_close($ch);
+		            $res = json_decode($res,true);
+		            if ($value == 'Customerinfo') {
+		            	$map['CustomerKeywords'] = $keyword;
+		    			$cid = M('Customerinfoexten')->field('CID')->where($map)->select();
+		    			$ids = '';
+		    			foreach ($cid as $k => $v) {
+		    				$ids = $v['CID'].',';
+		    			}
+		    			$ids = substr($ids, 0, -1);
+		    			$where['CID'] = array('in', $ids);
+		    		} elseif ($value == 'Againinfo') { 
+		    			$where['AgainKewords'] =  $keyword;
+		    		} else {
+		    			$where['Keywords'] =  $keyword;
+		    		}
+		    		M($value)->where($where)->save(array("CatOneName"=>$res[0]['CatOneName'], "CatTwoName" => $res[0]['CatTwoName']));
+		    	}
+		    } else {
+		    	echo $value.'数据更新完成';
+		    }
+		}
+	}

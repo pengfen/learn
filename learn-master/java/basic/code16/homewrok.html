@@ -1,0 +1,103 @@
+1:集合的由来?
+	存储多个对象，可以使用数组，数组的长度固定，不适应变化的需求，所以Java就提供了集合。
+2:集合和数组的区别?
+	数组：长度固定，可以存储基本类型和引用类型，同一种数据类型
+	集合：长度可变，只能存储引用类型，可以存储多种引用类型(一般我们仅仅存储一种)
+3:Collection集合的功能概述?
+	添加
+	删除
+	判断
+	获取
+	长度
+4:Collection集合存储字符串并遍历?(迭代器)
+	Collection c = new ArrayList();
+	
+	c.add("hello");
+	c.add("world");
+	c.add("java");
+	
+	Iterator it = c.iterator();
+	while(it.hasNext()) {
+		String s = (String) it.next();
+		System.out.println(s);
+	}
+	
+5:Collection集合存储自定义对象并遍历?(迭代器)
+	Student.java
+	StudentDemo.java
+	
+6:List集合的特有功能?
+	添加功能
+	获取功能
+	删除功能
+	修改功能
+
+7:List集合存储字符串并遍历?(迭代器和普通for)
+	
+	List list = new ArrayList();
+	
+	list.add("hello");
+	list.add("java");
+	list.add("world");
+	
+	Iterator it = list.iterator();
+	while(it.hasNext()) {
+		String s = (String) it.next();
+		System.out.println(s);
+	}
+	
+	for(int x=0; x<list.size(); x++) {
+		String s = (String) list.get(x);
+		System.out.println(s);
+	}
+8:List集合存储自定义对象并遍历?(迭代器和普通for)
+
+9:并发修改异常出现的原因?解决方案?
+	迭代器遍历集合的时候，通过集合去修改了集合的元素。而迭代器是依赖于集合的，它并不知道集合改变了，所以报错。
+	
+	A:迭代器遍历，迭代器修改集合
+	B:集合遍历，集合修改集合
+
+10:常见的数据结构的特点?
+	栈：先进后出
+	队列：先进先出
+	数组：查询快，增删慢
+	链表：查询慢，增删块
+11:List集合的子类特点
+	ArrayList:
+		底层数据结构是数组，查询快，增删慢
+		线程不安全，效率高
+	Vector:
+		底层数据结构是数组，查询快，增删慢
+		线程安全，效率低
+	LinkedList:
+		底层数据结构是链表，查询慢，增删快
+		线程不安全，效率高
+12:List的三个儿子你准备使用谁?请说明理由。
+
+
+==========================================================
+
+1:List的子类特点
+2:ArrayList练习
+	A:ArrayList存储字符串并遍历
+	B:ArrayList存储自定义对象并遍历
+3:LinkedList练习
+	A:LinkedList存储字符串并遍历
+	B:LinkedList存储自定义对象并遍历
+4:泛型是什么?格式是?好处是?
+5:增强for的格式是?好处是?弊端是?
+6:静态导入的格式是?注意事项是?
+7:可变参数的作用是?格式是?注意事项是?
+8:用下列集合完成代码
+	Collection
+	List
+	ArrayList
+	Vector
+	LinkedList
+	
+	存储字符串并遍历
+	存储自定义对象并遍历
+	
+	要求加入泛型，并有增强for遍历。
+	代码我会检查的。

@@ -1,0 +1,13 @@
+yii2 中使用js 默认加载 jquery包是在footer中
+
+1 手动在header中加载 jquery包
+
+2 使用 registerJs 加载(html文件未尾使用编辑js代码)
+<?php
+if (isset($message) && $message) {
+    $this->registerJs("
+    $(function () {
+    layer.msg('{$message}');
+    })", \yii\web\View::POS_END);
+}
+?>

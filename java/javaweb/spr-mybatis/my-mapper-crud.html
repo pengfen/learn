@@ -1,0 +1,207 @@
+Mapper接口
+public interface UserMapper {
+	public User findUserById(int id);
+	public List<User> findUserByName(String name);
+	public void insertUser(User user);
+	public void deleteUser(int id);
+	public void updateUser(User user);
+}
+
+mapper.xml文件
+<!-- namespace命名空间 作用就是对sql进行了分类化管理 理解sql隔离 -->
+<!-- 注意 使用mapper代理方法开发 namespace有特殊重要的作用 -->
+<mapper namespace="com.peng.mybatis.mapper.UserMapper">
+    <!-- 目的 为DAO接口方法提供sql语句配置 -->
+    
+    <!-- 在映射文件中配置很多sql语句 -->
+    <!-- 需求 通过id查询用户表的记录 -->
+    <!-- 通过select执行数据库查询 -->
+    <!-- id:标识映射文件中的sql 将sql语句封装到mappedStatement对象中 所以将id称为statement的id -->
+    <!-- parameterType:指定输入参数的类型 这里指定int类型 -->
+    <!-- #{}表示一个占位符号 -->
+    <!-- #{id}:其中的id表示接入输入的参数 参数名称就是id 如果输入参数是简单类型 #{}中的参数名可以任意 可以value或其它名称 -->
+    <!-- resultType:指定sql输出结果所映射的java对象类型 select指定resultType表示将单条记录映射成的java对象 -->
+    <select id="findUserById" parameterType="int" resultType="com.peng.mybatis.entity.User">
+        SELECT * FROM USER WHERE id=#{id}
+    </select>
+    
+    <!-- 根据用户名称模糊查询用户信息 可能返回多条 -->
+    <!-- resultType 指定就是单条记录所映射的 java 对象类型 -->
+    <!-- ${} 表示拼接sql串 将接收到的参数的内容不加任何修饰拼接在sql中 使用${}拼接sql 引起sql注入 -->
+    <!-- ${value}接收输入参数的内容 如果传入类型是简单类型 ${}中只能使用value -->
+    <!-- SELECT * FROM USER WHERE username LIKE #{username} -->
+    <select id="findUserByName" parameterType="java.lang.String" resultType="com.peng.mybatis.entity.User">
+        SELECT * FROM USER WHERE username LIKE '%${value}%'
+    </select>
+    
+    <!-- 添加用户  parameterType 指定输入参数类型是pojo(包括用户信息) -->
+    <!-- #{}中指定pojo的属性名 接收到pojo对象的属性值 mybatis通过OGNL获取对象的属性值 -->
+    <insert id="insertUser" parameterType="com.peng.mybatis.entity.User">
+        <!-- 将插入数据的主键返回 返回到user对象中 -->
+        <!-- SELECT LAST_INSERT_ID() 得到刚insert进行记录的主键值 只适用与自增主键 -->
+        <!-- keyProperty 将查询到主键值设置到parameterType指定的对象的哪个属性 -->
+        <!-- order SELECT LAST_INSERT_ID() 执行顺序 相对于insert语句来说它的执行顺序 -->
+        <!-- resultType 指定SELECT LAST_INSERT_ID()的结果类型 -->
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into user(username,birthday,sex,address) value(#{username},#{birthday},#{sex},#{address})
+        
+        <!-- 使用mysql的uuid()生成主键 -->
+        <!-- 执行过程 首先通过uuid()得到主键 将主键设置到user对象的id属性中 其次在insert执行时 从user对象中取出id属性值 
+        <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+            SELECT uuid()
+        </selectKey>
+        insert into user(id,username,birthday,sex,address) value(#{id},#{username},#{birthday},#{sex},#{address})-->
+    </insert>
+    
+    <!-- 根据id删除用户 需要输入id值 -->
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        delete from user where id=#{id}
+    </delete>
+    
+    <!-- 根据id更新用户 -->
+    <!-- 分析 需要传入用户的id 需要传入用户的更新信息 -->
+    <!-- parameterType指定user对象 包括id和更新信息 注意id必须存在 -->
+    <!-- #{id} 从输入user对象中获取id属性值 -->
+    <update id="updateUser" parameterType="com.peng.mybatis.entity.User">
+        update user set username=#{username},birthday=#{birthday},sex=#{sex},address=#{address} where id=#{id}
+    </update>
+    
+</mapper>
+
+加载xml映射文件
+<!-- 加载映射文件 -->
+<mappers>
+    <mapper resource="sqlmap/User.xml" />
+    <mapper resource="sqlmap/Manager.xml" />
+    <mapper resource="mapper/UserMapper.xml" />
+</mappers>
+
+编写测试
+如果不加载UserMapper.xml文件 会报错
+Type interface com.peng.mybatis.mapper.UserMapper is not known to the MapperRegistry.
+
+public class UserMapperTest {
+   private SqlSessionFactory sqlSessionFactory;
+	
+	// 此方法是在执行testFindUserById之前执行
+	@Before
+	public void setUp() throws Exception {
+		// 创建 sqlSessionFactory
+		// mybatis配置文件
+		String resource = "SqlMapConfig.xml";
+		// 得到配置文件流
+		InputStream inputStream = Resources.getResourceAsStream(resource);
+		// 创建会话工厂 传入mybatis的配置文件信息
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+	}
+}
+
+查询
+// 一定要在SqlMapConfig.xml中加载UserMapper.xml
+@Test
+public void testFindUserById() {
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	
+	// 创建UserMapper对象 mybatis自动生成mapper代理对象
+	UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+	
+	// 调用userMapper的方法
+	User user = userMapper.findUserById(1);
+	System.out.println(user);
+	sqlSession.close();
+}
+
+DEBUG [main] - ==>  Preparing: SELECT * FROM USER WHERE id=? 
+DEBUG [main] - ==> Parameters: 1(Integer)
+DEBUG [main] - <==      Total: 1
+User [id=1, username=peng1, sex=男, birthday=Wed Jul 12 00:00:00 CST 2000, address=江西九江]
+
+@Test
+public void testFindUserByName() {
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+	
+	// 创建UserMapper对象 mybatis自动生成mapper代理对象
+	UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+	
+	// 调用userMapper的方法
+	List<User> list = userMapper.findUserByName("peng");
+	System.out.println(list);
+	sqlSession.close();
+}
+
+DEBUG [main] - ==>  Preparing: SELECT * FROM USER WHERE username LIKE '%peng%' 
+DEBUG [main] - ==> Parameters: 
+DEBUG [main] - <==      Total: 5
+[User [id=1, username=peng1, sex=男, birthday=Wed Jul 12 00:00:00 CST 2000, address=江西九江], User [id=2, username=peng1, sex=男, birthday=Wed Jul 12 00:00:00 CST 2000, address=北京], User [id=3, username=peng2, sex=男, birthday=Tue Jul 12 00:00:00 CST 2005, address=上海], User [id=4, username=peng3, sex=女, birthday=Mon Jul 12 00:00:00 CST 2004, address=深圳], User [id=5, username=peng4, sex=男, birthday=Sat Jul 12 00:00:00 CST 2003, address=广州]
+
+添加
+@Test
+public void testInsertUser() {
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	
+	// 创建UserMapper对象 mybatis自动生成mapper代理对象
+	UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+	
+	// 插入用户对象
+	User user = new User();
+	user.setUsername("曹朋测试");
+	user.setBirthday(new Date());
+	user.setSex("女");
+	user.setAddress("河南");
+	
+	userMapper.insertUser(user);
+	System.out.println(user.getId());
+	sqlSession.close();
+}
+
+DEBUG [main] - ==>  Preparing: insert into user(username,birthday,sex,address) value(?,?,?,?) 
+DEBUG [main] - ==> Parameters: 曹朋测试(String), 2016-08-04 18:36:01.894(Timestamp), 女(String), 河南(String)
+DEBUG [main] - <==    Updates: 1
+DEBUG [main] - ==>  Preparing: SELECT LAST_INSERT_ID() 
+DEBUG [main] - ==> Parameters: 
+DEBUG [main] - <==      Total: 1
+11
+
+删除
+@Test
+public void testDeleteUser() {
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+	
+	// 创建UserMapper对象 mybatis自动生成mapper代理对象
+	UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+	
+	userMapper.deleteUser(11);
+	sqlSession.close();
+}
+
+DEBUG [main] - ==>  Preparing: delete from user where id=? 
+DEBUG [main] - ==> Parameters: 11(Integer)
+DEBUG [main] - <==    Updates: 1
+
+更新
+@Test
+public void testUpdateUser() {
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	
+	// 创建UserMapper对象 mybatis自动生成mapper代理对象
+	UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+	
+	// 插入用户对象
+	User user = new User();
+	user.setId(10);
+	user.setUsername("曹朋测试");
+	user.setBirthday(new Date());
+	user.setSex("女");
+	user.setAddress("河南");
+	
+	userMapper.updateUser(user);
+	System.out.println(user.getId());
+	sqlSession.close();
+}
+
+DEBUG [main] - ==>  Preparing: update user set username=?,birthday=?,sex=?,address=? where id=? 
+DEBUG [main] - ==> Parameters: 曹朋测试(String), 2016-08-04 18:51:59.643(Timestamp), 女(String), 河南(String), 10(Integer)
+DEBUG [main] - <==    Updates: 1
+10

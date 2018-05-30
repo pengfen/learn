@@ -1,0 +1,162 @@
+mybatis的基础知识
+
+mybatis 和 springmvc通过订单商品案例驱动
+
+对原生态jdbc程序(单独使用jdbc开发) 问题总结
+mybatis框架原理
+mybatis入门程序 用户的增 删 改 查
+mybatis开发dao两种方法
+    原始dao开发方法(程序需要编写dao接口和dao实现类) (掌握)
+    mybatis的mapper接口(相当于dao接口)代码开发方法 (掌握)
+mybatis配置文件SqlMapConfig.xml
+mybatis核心 mybatis输入映射(掌握) mybatis输出映射(掌握)
+mybatis的动态sql (掌握)
+
+高级知识
+订单商品数据模型分析
+高级结果集映射(一对一 一对多 多对多)
+mybatis延迟加载
+mybatis查询缓存(一级缓存 二级缓存)
+mybatis和spring进行整合(掌握)
+mybatis逆向工程
+
+对原生态jdbc程序中问题总结
+环境
+
+创建数据库
+sql_table.sql 记录表结构
+sql_data.sql 记录测试数据 在实际企业开发中 最后提供一个初始化数据脚本
+
+create table user (
+    id int unsigned not null primary key auto_increment,
+    username varchar(32) not null comment "用户名称",
+    birthday date comment '生日',
+    sex char(1) comment '性别',
+    address varchar(255) comment '地址' 
+)engine=myisam DEFAULT charset=utf8;
+
+jdbc程序
+使用jdbc查询mysql数据库中用户表的记录
+创建java工程 加入jar包
+数据库驱动包 (mysql5.1)
+
+问题总结
+数据库连接 使用时就创建 不使用立即释放 对数据库进行频繁连接开启和关闭 造成数据库资源浪费 影响数据库性能
+设想 使用数据库连接池管理数据库连接
+
+将sql语句硬编码到java代码中 如果sql语句修改 需要重新编译java代码 不利于系统维护
+设想 将sql语句配置在xml配置文件中 即使sql变化 不需要对java代码进行重新编译
+
+向preparedStatement中设置参数 对占位符号位置和设置参数值 硬编码在java代码中 不利于系统维护
+设想 将sql语句及占位符号和参数全部配置在xml中
+
+从resultSet中遍历结果集数据时 存在硬编码 将获取表的字段进行硬编码 不利于系统维护
+设想 将查询的结果集 自动映射成java对象
+
+
+mybatis 是什么
+mybatis是一个持久层的框架 是apache下的顶级项目
+mybatis托管到goolecode下 再后来托管到github下(https://github.com/mybatis/mybatis-3)
+mybatis让程序将主要精力放在sql上 通过mybatis提供的映射方式 自由灵活生成(半自动化, 大部分需要程序员编写sql) 满足需要sql语句
+mybatis可以将向preparedStatement中的输入参数自动进行输入映射 将查询结果集灵活映射成java对象(输出映射)
+
+mybatis框架
+SqlMapConfig.xml (是mybatis的全局配置文件) 配置了数据源 事务等mybatis运行环境 配置映射文件 (配置sql语句)
+mapper.xml(映射文件)
+
+SqlSessionFactory (会话工厂) 作用 创建SqlSession
+SqlSession (会话) 作用 操作数据库 (发出sql增 删 改 查)
+Executor (执行器) 作用 SqlSession 内部通过执行器操作数据库
+mapped statement(底层封装对象) 作用 对操作数据库存储封装 包括sql语句 输入参数 输出结果类型
+
+入门程序
+需求
+根据用户id(主键)查询用户信息
+根据用户名称模糊查询用户信息
+添加用户
+删除用户
+更新用户
+
+log4j.properties
+# Global logging configuration
+#在开发环境下日志级别要设置成DEBUG 生产环境设置成info或error
+log4j.rootLogger=DEBUG, stdout
+# Console output...
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
+
+SqlMapConfig.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+    
+<configuration>
+    <!-- 和spring整合后environments配置将去掉 -->
+    <environments default="development">
+        <environment id="development">
+            <!-- 使用jdbc事务管理 事务控制由mybatis -->
+            <transactionManager type="JDBC" />
+            <!-- 数据库连接池 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf-8"/>
+                <property name="username" value="root"/>
+                <property name="password" value=""/>
+            </dataSource>
+        </environment>
+    </environments>
+</configuration>
+
+根据用户id (主键) 查询用户信息 (参见 my-select.html)
+
+根据用户名称模糊查询用户信息 (参见 my-select.html)
+映射文件
+
+添加用户 (参见 my-insert.html)
+映射文件
+在User.xml中配置添加用户的statement
+
+mysql 自增主键 执行insert提交之前自动生成一个自增主键 
+通过mysql函数获取到刚插入记录的自增主键 LAST_INSERT_ID()
+
+是insert之后调用此函数
+
+非自增主键返回(使用uuid())
+使用mysql的uuid()函数生成主键 需要修改表中id字段类型为string 长度设置成35位
+执行思路
+先通过uuid()查询到主键 将主键输入到sql语句中 执行uuid()语句顺序相对于insert语句之前执行
+
+通过oracle的序列生成主键
+SELECT 序列名.nextval()
+
+删除用户 (参见 my-delete.html)
+
+更新用户 (参见 my-update.html)
+
+
+总结
+parameterType 在映射文件中通过parameterType指定输入参数的类型
+resultType 在映射文件中通过resultType指定输出结果的类型
+
+#{} 表示一个占位符号 #{}接收输入参数 类型可以是简单类型 pojo hashmap  如果接收简单类型 #{}中可以写成value或其它名称
+#{}接收pojo对象值 通过OGNL读取对象中的属性值 通过属性.属性.属性 的方式获取对象属性值
+
+${} 表示一个拼接符号 会引用sql注入 所以不建议使用${}
+${}接收输入参数 类型可以是简单类型 pojo hashmap
+如果接收简单类型 ${}中只能写成value
+${}接收pojo对象值 通过OGNL读取对象中的属性值 通过属性.属性.属性 的方式获取对象属性值
+
+selectOne表示查询出一条记录进行映射 如果使用selectOne可以实现使用selectList也可以实现(list中只有一个对象)
+selectList表示查询出一个列表(多条记录)进行映射 如果使用selectList查询多条记录 不能使用selectOne(否则会出现错误 Expected one result (or null) to be returned by selectOne(), but found:4)
+
+
+mybatis和hibernate本质区别和应用场景
+hibernate 是一个标准ORM框架(对象关系映射) 入门门褴较高的确 不需要程序写sql sql语句自动生成 对sql语句进行优化 修改比较困难的
+应用场景 适用与需要变化不多的中小型项目 比如 后台管理系统 erp orm oa ...
+
+mybatis 专注是sql本身 需要程序员自己编写sql语句 sql修改 优化比较方便 mybatis是一个不完全的ORM框架 虽然程序员自己写sql mybatis也可以实现映射(输入映射 输出映射)
+应用场景 适用与需求变化较多的项目 比如 互联网项目
+
+企业进行技术选型 以低成本 高回报作为技术选型的原则 根据项目组的技术力量进行选择

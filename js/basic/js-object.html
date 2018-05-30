@@ -1,0 +1,16 @@
+// 定义对象
+var options = {11:"市场一部",12:"市场二部",13:"市场三部",14:"市场四部",15:'市场五部',16:'市场六部',17:'市场七部',18:'市场八部'};
+
+// 调用函数
+$('slector').func_name(options, ...);
+
+(function(){
+	$.fn.extend({
+	    func_name: function(options, ...) {
+	        $.each(options, function(i, n){
+	            // i 对象属性名
+	            // n 对象属性值
+	        });
+	    }
+	});
+})(jQuery);

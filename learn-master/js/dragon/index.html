@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<title>端午粽情</title>
+    	<meta charset='utf-8'>
+    	<style type="text/css">
+            /* 动画样式定义 */
+            @keyframes rock {
+                0% { transform:rotate(0deg)}
+                10% { transform:rotate(3deg)}
+                20% { transform:rotate(-3deg)}
+                30% { transform:rotate(2deg)}
+                40% { transform:rotate(-2deg)}
+                50% { transform:rotate(1deg)}
+                60% { transform:rotate(-1deg)}
+                70% { transform:rotate(0deg)}
+                100% { transform:rotate(0deg)}
+            }
+
+    	    * {
+    	    	padding: 0; margin: 0;
+    	    }
+    	    body {
+    	    	background: #000;
+    	    	min-width: 1200px;
+    	    	min-height: 600px;
+    	    	-webkit-font-smoothing: antialiased;
+    	    	font-family: "WenQuanYi Micro Hei", SimSun, sans-serif;
+    	    }
+
+            .main {
+                width: 1200px;
+                height: 600px;
+                background: #000 url(img/bg.jpg);
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-top: -300px;
+                margin-left: -600px;
+                overflow: hidden;
+            }
+
+            /* 粽子盒子 放粽子相关元件 */
+            .c_zongzi_box {
+                width: 312px;
+                height: 305px;
+                position: absolute;
+                left: 700px;
+                top: 184px;
+            }
+
+            .c_zongzi_box_rock {
+                -webkit-animation: rock 2s infinite;
+            }
+
+            /* 粽子元件 */
+            .c_zongzi {
+                width: 312px;
+                height: 305px;
+                background: url(img/zz.png);
+                transition: all 1s;
+            }
+
+            .c_zongzi_out {
+                opacity: 1;
+                transform: scale(.5);
+            }
+
+            /* 绳子元件 */
+            .c_shengzi_1 {
+                width: 218px;
+                height: 180px;
+                background: url(img/line_1.png);
+                position: absolute;
+                left: 10px;
+                top: 120px;
+            }
+
+            .c_shengzi_2{
+                width: 219px;
+                height: 159px;
+                background: url(img/line_2.png);
+                position: absolute;
+                left: 10px;
+                top: 158px;
+            }
+
+            .c_shengzi_3{
+                width: 264px;
+                height: 117px;
+                background: url(img/line_3.png);
+                position: absolute;
+                left: 10px;
+                top: 220px;
+            }
+            .c_shengzi_4{
+                width: 288px;
+                height: 56px;
+                background: url(img/line_4.png);
+                position: absolute;
+                left: 10px;
+                top: 290px;
+            }
+
+            /* 粽子肉元件 */
+            .c_zongzirou {
+                width: 288px;
+                height: 206px;
+                background: url(img/zzr_1.png);
+                background-size: 288px 206px; 
+                position: absolute;
+                left: 50px;
+                top: 50px;
+                z-index: 110;
+                opacity: 0;
+                transform-origin: top center;
+                transition: all 1s;
+                transform: scale(.8);
+            }
+
+            /* 粽子肉出现 */
+            .c_zongzirou_in {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            /* 粽子肉的视角 (旋转) */
+            .c_zongzirou_view_2 {
+                transition: all 0;
+                background-image: url(img/zzr_2.png);
+            }
+
+            .c_zongzirou_view_3 {
+                transition: all 0;
+                background-image: url(img/zzr_3.png);
+            }
+
+            .c_zongzirou_view_4 {
+                transition: all 0;
+                background-image: url(img/zzr_4.png);
+            }
+
+            .c_zongzirou_view_1 {
+                transition: all 0;
+                background-image: url(img/zzr_1.png);
+                transform: rotateY(100deg);
+            }
+
+            /* 左叶元件 */
+            .c_zuoye {
+                width: 114px;
+                height: 266px;
+                background: url(img/leaf_left.png);
+                position: absolute;
+                left: 0px;
+                top: -35px;
+                z-index: 1;
+                opacity: 0;
+                transition: all 1s;
+                transform-origin: left bottom;
+            }
+
+            /* 左叶出现 */
+            .c_zuoye_in {
+                opacity: 1;
+                transform: rotate(-5deg);
+            }
+
+            /* 左叶隐藏 */
+            .c_zuoye_out {
+                opacity: 0;
+                transform: rotate(-15deg);
+            }
+
+            /* 右叶元件 */
+            .c_youye {
+                width: 318px;
+                height: 338px;
+                background: url(img/leaf_right.png);
+                position: absolute;
+                left: 80px;
+                top: -60px;
+                z-index: 111;
+                opacity: 0;
+                transition: all 1s;
+                transform-origin: left bottom;
+                transform: scale(.8);
+            }
+
+            .c_youye_in {
+                opacity: 1;
+                transform: rotate(5deg) scale(.8);
+            }
+
+            .c_youye_out {
+                opacity: 0;
+                transform: rotate(15deg) scale(.8);
+            }
+
+            /* 底叶元件 */
+            .c_diye {
+                width: 618px;
+                height: 468px;
+                background: url(img/leaf_expand.png);
+                position: absolute;
+                left: -150px;
+                top: -45px;
+                z-index: 99;
+                opacity: 0;
+                transition: all 1s;
+            }
+
+            .c_diye_in {
+                opacity: 1;
+            }
+
+            /* 文字 吉祥 样式*/
+            .c_t_1 {
+                width: 180px;
+                height: 100px;
+                background: url(img/t_jixiang.png);
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-top: -50px;
+                margin-left: -70px;
+                z-index: 200;
+                transform-origin: center center;
+                transform: scale(.8);
+                opacity: 0;
+                transition: all 1s;
+            }
+
+            /* 文字 如意 样式 */
+            .c_t_2 {
+                width: 180px;
+                height: 100px;
+                background: url(img/t_ruyi.png);
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-left: -70px;
+                margin-top: -50px;
+                z-index: 200;
+                transform-origin: center center;
+                transform: scale(.8);
+                opacity: 0;
+                transition: all 1s;
+            }
+
+            .c_t_in {
+                opacity: 1;
+            }
+
+            /* 祝福语文字 */
+            .text {
+                position: absolute;
+                width: 400px;
+                height: 370px;
+                left: 180px;
+                top: 140px;
+                font-size: 14px;
+                line-height: 20px;
+                color: #333;
+            }
+
+            .text .caption {
+                width: 400px;
+                height: 240px;
+                background: url(img/caption.png) no-repeat;
+                margin-left: 40px;
+                opacity: 0;
+                transition: all 1s;
+            }
+
+            .text .to {
+                width: 400px;
+                margin-top: 10px;
+                margin-left: 40px;
+                opacity: 0;
+                transition: all 1s 0.5s;
+            }
+
+            .text .msg {
+                width: 400px;
+                margin-top: 10px;
+                margin-left: 40px;
+                opacity: 0;
+                transition: all 1s 1s;
+            }
+
+            .text .from {
+                width: 400px;
+                margin-top: 10px;
+                margin-left: 40px;
+                text-align: right;
+                opacity: 0;
+                transition: all 1s 1.5s;
+            }
+
+            .text_in .caption,
+            .text_in .to,
+            .text_in .msg,
+            .text_in .from {
+                opacity: 1;
+                margin-left: 0px;
+            }
+
+            /* 文字的视角 */
+            .c_t_view_1 {
+                transform: scale(.8) rotateY(30deg) translate(-50px, 0) rotate(8deg);
+            }
+
+            .c_t_view_2 {
+                transform: scale(.7) rotateY(70deg) translate(283px, -15) rotate(-8deg);
+            }
+
+            .c_t_view_3 {
+                transform: scale(.75) rotateY(49deg) translate(-94px, 0) rotate(15deg);
+            }
+
+            .c_t_view_4 {
+                transform: scale(.75) rotateY(47deg) translate(118px, 0) rotate(-15deg);
+            }
+
+            .c_t_view_5 {
+                transform: scale(.8) rotateY(30deg) translate(-196px, 0) rotate(24deg);
+            }
+
+            .c_t_view_6 {
+                transform: scale(.8) rotateY(30deg) translate(58px, 0) rotate(-5deg);
+            }
+
+            .c_t_view_0 {
+                z-index: 0;
+                display: none;
+            }
+    	</style>
+    </head>
+    <body>
+    	<div class="main">
+    		
+    		<div class="c_zongzi_box c_zongzi_box_rock">
+                <div class="c_zongzi"></div>
+                <div class="c_shengzi_1"></div> 
+
+                <div class="c_zongzirou"></div>
+                <div class="c_zuoye"></div>
+                <div class="c_youye"></div>
+                <div class="c_diye"></div>
+
+                <div class="c_t_1"></div>
+                <div class="c_t_2"></div>
+            </div>
+
+            <div class="text">
+                <div class="caption"></div>
+                <div class="to">慕课网的小伙伴们</div>
+                <div class="msg">在端午节来临之际 小慕给大家送来心意了 祝大家好运 吉祥 如意 快乐每一天羡慕课网永远和你相伴</div>
+                <div class="from">小慕</div>
+            </div>
+            
+    	</div>
+    </body>
+</html>

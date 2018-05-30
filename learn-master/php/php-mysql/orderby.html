@@ -1,0 +1,13 @@
+查询总记录数
+SELECT COUNT(*) AS tp_count FROM `zt_newsource` WHERE ( SourceType = '1' ) LIMIT 1
+SELECT COUNT(*) AS tp_count FROM `newsource` WHERE (( CatOneName = '' or CatOneName is null) or (CatTwoName = '' or CatTwoName is null)
+
+查询某一字段的分类
+SELECT `Type` FROM `zt_newsource` WHERE ( SourceType = '1' ) GROUP BY Type
+SELECT `Channel` FROM `zt_newsource` WHERE ( SourceType = '1' ) GROUP BY Channel
+SELECT `Page` FROM `zt_newsource` WHERE ( SourceType = '1' ) GROUP BY Page
+SELECT `CatOneName` FROM `zt_newsource` WHERE ( SourceType = '1' ) GROUP BY CatOneName
+SELECT `CatTwoName` FROM `zt_newsource` WHERE ( SourceType = '1' ) GROUP BY CatTwoName
+
+查询二个字段 (二字段会出现积)
+SELECT Type,Channel FROM `zt_newsource` WHERE ( SourceType = '1' ) GROUP BY Type,Channel

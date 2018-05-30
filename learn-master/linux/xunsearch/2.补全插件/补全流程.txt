@@ -1,0 +1,89 @@
+引入自动补全插件
+<script type="text/javascript" src="{theme:javascript/jquery.autocomplete.min.js}"></script>、
+
+
+ajax 异步请求
+$(function () {
+    var expand = $('#searchInput').val();
+    $('#searchInput').autocomplete({
+        serviceUrl: '{url:/site/expand/}' + expand,
+        onSelect: function (suggestion) {
+            // 回车或选择时页面跳转
+            window.location.href = '{url:/site/search/word}' + suggestion.value;
+        }
+    });
+});
+
+注意插件会自动将url 转换为
+expand.html?query=expand
+
+site/expand 控制方法处理
+function expand(){
+    //query 是插件自动添加的
+	$expand = IFilter::act(IReq::get('query'), 'string');
+	if ($expand) {
+		$url = '/v1/search/expandword';
+		$post_string = "expand={$expand}";
+		$res = json_decode(self::search_url($url, $post_string), true); // 处理返回的json数据
+		$complete = '';
+		if ($res['is_Error'] == false) {
+			$complete = $res['data'];
+		}
+		$data = array(
+			'query' => 'Unit',
+			'suggestions' => $complete
+		);
+		echo json_encode($data);
+	} else {
+		echo json_encode('调用失败');
+	}
+} 
+
+
+
+手动显示下棋数据
+$(function(){
+    // 输入框实时输入内容时绑定事件
+    $('#searchInput').bind('input propertychange', function() {
+        var relate = $('#searchInput').val();
+        var url = "{url:/site/relate}";
+        var search = function(){
+            $.ajax({
+                url:url,
+                dataType:'json',
+                data:{relate:relate},
+                success:function(data){
+                    if (data.is_Error == false) {
+                        var word = data.data;
+                        console.log(data.data);
+                        var getWord = new Array;
+                        for (var i = 0; i < word.length; i++) {
+                            getWord.push('<li>'+word[i]+'</li>');
+                        }
+                        $('#wordList').html(getWord.join(""));
+                        // 选择内容时单击事件
+                        $('#wordList li').click(function(){
+                            $('#searchInput').val($(this).text());
+                        });
+                    }
+                }
+            });
+        }
+        setTimeout(search,500);
+    });
+});
+
+
+// 
+var word = ['asaaa','adfss','asffs','bbssss','ccccsss','dddsss'];
+$('#searchInptu').change(function(){
+    var value = $(this).val();
+    var getWord = new Array;
+    var sHtml;
+    for(var i=0;i<word.length;i++){
+        if(word[i].substr(0,value.length)==value){
+            getWord.push('<li>'+word[i]+'</li>');
+        }
+    }
+    $('#wordList').html(getWord.join(""));
+});

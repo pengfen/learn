@@ -1,0 +1,45 @@
+关键帧动画
+在页面中，想让元素"动起来"可以通过切换图片的方式，也是常说的逐帧动画。常规的手段就是通过定时器不断的切换图片，配合时间，从而产生连续播放而成动画。以前只能通利用JS器定时器或者flash达到这个逐帧播放的效果，现在可以通过CSS3的关键帧动画，或者更为先进的“骨骼动画”来实现，效果也是极好的。
+
+CSS3的Animation有八个属性
+
+animation-name ：动画名
+animation-duration：时间
+animation-delay：延时
+animation-iteration-count：次数
+animation-direction：方向
+animation-play-state：控制
+animation-fill-mode：状态
+animation-timing-function：关键帧变化
+8个属性中，其中1-7都有相关介绍，但是animation-timing-function是控制时间的属性，在取值中除了常用到的 三次贝塞尔曲线 以外，还有个很高级的 steps() 函数，steps函数也就是整个圣诞主题的关键知识点。steps要配合精灵图使用，简单来说就是用来切换多个精灵图的，形成帧动画，类似setTimeout的处理感觉
+
+动画原理：
+
+假如，现在有一组由三张图合成的雪碧图，每张图大小是91*71
+
+如果实现3张图帧动画效果，代码如下
+
+animation:bird-slow 400ms steps(3) infinite;
+@keyframes bird-slow {
+    0% {background-position-x: -0px}
+    100% {background-position-x: -273px}
+}
+通过定义一个类，类中定义的动画的一些关键数据，比如动画名，时间，次数，切换的位置
+
+通过keyframes定义动画具体执行参数与时间段
+
+steps(3)的意思就是：keyframes设置的0%-100%的段中，background-position的的x坐标会变化3次
+
+steps会平分这些段落值，其变化值就是
+
+background-position-x: -0px
+background-position-x: -91px
+background-position-x: -182px
+为什么没有-273px，这个是steps的具体一个算法，具体可以参考我的博客 深入理解CSS3 Animation 帧动画
+
+右边代码给出了animation的2种写法，可以具体观察下，一种是快捷写法，一种是全写，注意浏览器的兼容性需要加前缀
+
+任务
+右边代码区域，有一张精灵图由3张图组成，每一个图的大小是91px，现在通过关键帧制作3帧动画，需要写出对应的keyframes的规则， 主要要兼容一些浏览器的前缀
+
+代码参考 code/christ-keyword.html

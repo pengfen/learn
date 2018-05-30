@@ -1,0 +1,6 @@
+Xapian是一个用C++编写的全文检索程序，他的作用类似于Java的lucene。尽管在Java世界lucene已经是标准的全文检索程序，在C/C++世界中虽然有lucene的一个版本clucene，但是在业界却是一个饱受争议的使用(毕竟是通过修改Java的代码改编而来的)，但Xapian则是原生支持C/C++的，并且他能够支持php、python等语言的动态绑定。 [1] 
+Xapian的api和检索原理和lucene在很多方面都很相似，但是也有一些地方存在不同，具体请看Xapian自己的文档
+Xapian除了提供原生的C++编程接口之外，还提供了Perl，PHP，Python和Ruby编程接口和相应的类库，所以你可以直接从自己喜欢的脚本编程语言当中使用Xapian进行全文检索了。
+授权协议： GPL
+开发语言： C/C++
+操作系统： 跨平台

@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)https://www.shiyanlou.com/courses/410/labs/1308/document -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Lei Shi">
+    <meta http-equiv="Cache-Control" content="o-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+	
+		
+        <title>Yii2 权限控制 - 实验楼</title>
+		
+	
+
+    
+    <meta content="实验楼是国内领先的IT技术实训平台，创新的实验驱动教学模式，以就业为导向，为IT相关专业的在校学生及从业者提供编程、运维、测试、云计算、大数据、数据库等全面的IT技术动手实践环境，提供Linux、Python、Java、C语言、Ruby、Android、IOS开发等热门课程。" name="description">
+    <meta content="实验楼,IT培训,IT教育,编程,在线编程,Linux,Linux教程,Linux操作系统,Python,Python教程,Python基础教程,Java,Java编程,C语言,大数据,Node.js,Hadoop,PHP,Docker" name="keywords">
+    
+    <meta content="实验楼,琛石科技" name="author">
+
+	<link rel="shortcut icon" href="https://static.shiyanlou.com/favicon.ico">
+	<link rel="stylesheet" href="./Yii2 权限控制 - 实验楼_files/font-awesome.min.css">
+	<link rel="stylesheet" href="./Yii2 权限控制 - 实验楼_files/bootstrap-tour.min.css">
+	<link rel="stylesheet" href="./Yii2 权限控制 - 实验楼_files/styles1471243581.css">
+
+	<style>
+		@font-face {
+			font-family: "lantingxihei";
+			src: url("https://static.shiyanlou.com/fonts/FZLTCXHJW.TTF");
+		}
+
+		.userimg {
+			display: inline-block;
+			height: 36px;
+			border-radius: 50%;
+		}
+		.username {
+			display: inline-block;
+			max-width: 100px;
+			font-size: 14px;
+			color: #FFFFFF;
+			white-space: pre;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+        /* modal 模态框*/
+        #invite-user .modal-body {
+            overflow: hidden;
+        }
+		#invite-user .modal-body .form-label {
+			margin-bottom: 16px;
+			font-size:14px;
+		}
+		#invite-user .modal-body .form-invite {
+			width: 80%;
+			padding: 6px 12px;
+			background-color: #eeeeee;
+			border: 1px solid #cccccc;
+			border-radius: 5px;
+			float: left;
+			margin-right: 10px;
+		}
+		#invite-user .modal-body .msg-modal-style {
+			background-color: #7dd383;
+			margin-top: 10px;
+			padding: 6px 0;
+			text-align: center;
+			width: 100%;
+		}
+		#invite-user .modal-body .modal-flash {
+			position: absolute;
+			top: 53px;
+			right: 74px;
+			z-index: 999;
+		}
+		/* end modal */
+
+        .en-footer {
+            padding: 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+	
+<link rel="stylesheet" href="./Yii2 权限控制 - 实验楼_files/tomorrow-night-eighties.css">
+<style>
+    #editor {
+        width: 0;
+		height: 0;
+		margin: 0;
+		padding: 0;
+		border: none;
+    }
+    #preview {
+        padding: 20px;
+        background: #fff;
+        border: solid 1px #eee;
+    }
+	#preview p,
+	#preview li,
+	#preview span,
+	#preview div,
+	#preview blockquote,
+	#preview blockquote	p {
+		font-size: 15px;
+        font-weight: 100;
+	}
+	#preview blockquote p {
+		line-height: 1.6em;
+	}
+    .mobile-alert {
+        display: none;
+        margin-top: 10px;
+        font-size: 16px;
+        text-align: center;
+    }
+    .breadcrumb {
+        border-bottom: solid 1px #eee;
+    }
+    @media (max-width: 768px) {
+        .mobile-alert {
+            display: block;
+        }
+        #preview p,
+        #preview li,
+        #preview span,
+        #preview div,
+        #preview blockquote,
+        #preview blockquote	p {
+            font-weight: 500;
+        }
+    }
+    .start-lab {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+        box-shadow: 0 2px 4px 2px #eee;
+        background: #274a59;
+        z-index: 100;
+    }
+    .start-lab span {
+        position: relative;
+        top: 4px;
+        color: #fff;
+        font-size: 16px;
+    }
+    .start-lab .btn {
+        margin-left: 10px;
+        padding: 6px 50px;
+        background: #0c9;
+        font-size: 18px;
+        border-color: #0c9;
+    }
+    @media (max-width: 768px) {
+        .start-lab .btn {
+            margin-top: 10px;
+        }
+    }
+</style>
+
+
+	
+    
+<style id="ace_editor.css">.ace_editor {position: relative;overflow: hidden;font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;direction: ltr;text-align: left;}.ace_scroller {position: absolute;overflow: hidden;top: 0;bottom: 0;background-color: inherit;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;cursor: text;}.ace_content {position: absolute;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;min-width: 100%;}.ace_dragging .ace_scroller:before{position: absolute;top: 0;left: 0;right: 0;bottom: 0;content: '';background: rgba(250, 250, 250, 0.01);z-index: 1000;}.ace_dragging.ace_dark .ace_scroller:before{background: rgba(0, 0, 0, 0.01);}.ace_selecting, .ace_selecting * {cursor: text !important;}.ace_gutter {position: absolute;overflow : hidden;width: auto;top: 0;bottom: 0;left: 0;cursor: default;z-index: 4;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;}.ace_gutter-active-line {position: absolute;left: 0;right: 0;}.ace_scroller.ace_scroll-left {box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;}.ace_gutter-cell {padding-left: 19px;padding-right: 6px;background-repeat: no-repeat;}.ace_gutter-cell.ace_error {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: 2px center;}.ace_gutter-cell.ace_warning {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");background-position: 2px center;}.ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");background-position: 2px center;}.ace_dark .ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEUAAAChoaGAgIAqKiq+vr6tra1ZWVmUlJSbm5s8PDxubm56enrdgzg3AAAAAXRSTlMAQObYZgAAAClJREFUeNpjYMAPdsMYHegyJZFQBlsUlMFVCWUYKkAZMxZAGdxlDMQBAG+TBP4B6RyJAAAAAElFTkSuQmCC");}.ace_scrollbar {position: absolute;right: 0;bottom: 0;z-index: 6;}.ace_scrollbar-inner {position: absolute;cursor: text;left: 0;top: 0;}.ace_scrollbar-v{overflow-x: hidden;overflow-y: scroll;top: 0;}.ace_scrollbar-h {overflow-x: scroll;overflow-y: hidden;left: 0;}.ace_print-margin {position: absolute;height: 100%;}.ace_text-input {position: absolute;z-index: 0;width: 0.5em;height: 1em;opacity: 0;background: transparent;-moz-appearance: none;appearance: none;border: none;resize: none;outline: none;overflow: hidden;font: inherit;padding: 0 1px;margin: 0 -1px;text-indent: -1em;-ms-user-select: text;-moz-user-select: text;-webkit-user-select: text;user-select: text;white-space: pre!important;}.ace_text-input.ace_composition {background: inherit;color: inherit;z-index: 1000;opacity: 1;text-indent: 0;}.ace_layer {z-index: 1;position: absolute;overflow: hidden;word-wrap: normal;white-space: pre;height: 100%;width: 100%;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;pointer-events: none;}.ace_gutter-layer {position: relative;width: auto;text-align: right;pointer-events: auto;}.ace_text-layer {font: inherit !important;}.ace_cjk {display: inline-block;text-align: center;}.ace_cursor-layer {z-index: 4;}.ace_cursor {z-index: 4;position: absolute;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;border-left: 2px solid;transform: translatez(0);}.ace_slim-cursors .ace_cursor {border-left-width: 1px;}.ace_overwrite-cursors .ace_cursor {border-left-width: 0;border-bottom: 1px solid;}.ace_hidden-cursors .ace_cursor {opacity: 0.2;}.ace_smooth-blinking .ace_cursor {-webkit-transition: opacity 0.18s;transition: opacity 0.18s;}.ace_editor.ace_multiselect .ace_cursor {border-left-width: 1px;}.ace_marker-layer .ace_step, .ace_marker-layer .ace_stack {position: absolute;z-index: 3;}.ace_marker-layer .ace_selection {position: absolute;z-index: 5;}.ace_marker-layer .ace_bracket {position: absolute;z-index: 6;}.ace_marker-layer .ace_active-line {position: absolute;z-index: 2;}.ace_marker-layer .ace_selected-word {position: absolute;z-index: 4;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}.ace_line .ace_fold {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;display: inline-block;height: 11px;margin-top: -2px;vertical-align: middle;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACJJREFUeNpi+P//fxgTAwPDBxDxD078RSX+YeEyDFMCIMAAI3INmXiwf2YAAAAASUVORK5CYII=");background-repeat: no-repeat, repeat-x;background-position: center center, top left;color: transparent;border: 1px solid black;border-radius: 2px;cursor: pointer;pointer-events: auto;}.ace_dark .ace_fold {}.ace_fold:hover{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpi+P//fz4TAwPDZxDxD5X4i5fLMEwJgAADAEPVDbjNw87ZAAAAAElFTkSuQmCC");}.ace_tooltip {background-color: #FFF;background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.1));background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));border: 1px solid gray;border-radius: 1px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);color: black;max-width: 100%;padding: 3px 4px;position: fixed;z-index: 999999;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;cursor: default;white-space: pre;word-wrap: break-word;line-height: normal;font-style: normal;font-weight: normal;letter-spacing: normal;pointer-events: none;}.ace_folding-enabled > .ace_gutter-cell {padding-right: 13px;}.ace_fold-widget {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;margin: 0 -12px 0 1px;display: none;width: 11px;vertical-align: top;background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42mWKsQ0AMAzC8ixLlrzQjzmBiEjp0A6WwBCSPgKAXoLkqSot7nN3yMwR7pZ32NzpKkVoDBUxKAAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: center;border-radius: 3px;border: 1px solid transparent;cursor: pointer;}.ace_folding-enabled .ace_fold-widget {display: inline-block;   }.ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42m3HwQkAMAhD0YzsRchFKI7sAikeWkrxwScEB0nh5e7KTPWimZki4tYfVbX+MNl4pyZXejUO1QAAAABJRU5ErkJggg==");}.ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAOUlEQVR42jXKwQkAMAgDwKwqKD4EwQ26sSOkVWjgIIHAzPiCgaqiqnJHZnKICBERHN194O5b9vbLuAVRL+l0YWnZAAAAAElFTkSuQmCCXA==");}.ace_fold-widget:hover {border: 1px solid rgba(0, 0, 0, 0.3);background-color: rgba(255, 255, 255, 0.2);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);}.ace_fold-widget:active {border: 1px solid rgba(0, 0, 0, 0.4);background-color: rgba(0, 0, 0, 0.05);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);}.ace_dark .ace_fold-widget {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2P4//8/AzoGEQ7oGCaLLAhWiSwB146BAQCSTPYocqT0AAAAAElFTkSuQmCC");}.ace_dark .ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQIW2P4//8/AxQ7wNjIAjDMgC4AxjCVKBirIAAF0kz2rlhxpAAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACAcVaiAAAAHElEQVQIW2P4//+/AxAzgDADlOOAznHAKgPWAwARji8UIDTfQQAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget:hover {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);background-color: rgba(255, 255, 255, 0.1);}.ace_dark .ace_fold-widget:active {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);}.ace_fold-widget.ace_invalid {background-color: #FFB4B4;border-color: #DE5555;}.ace_fade-fold-widgets .ace_fold-widget {-webkit-transition: opacity 0.4s ease 0.05s;transition: opacity 0.4s ease 0.05s;opacity: 0;}.ace_fade-fold-widgets:hover .ace_fold-widget {-webkit-transition: opacity 0.05s ease 0.05s;transition: opacity 0.05s ease 0.05s;opacity:1;}.ace_underline {text-decoration: underline;}.ace_bold {font-weight: bold;}.ace_nobold .ace_bold {font-weight: normal;}.ace_italic {font-style: italic;}.ace_error-marker {background-color: rgba(255, 0, 0,0.2);position: absolute;z-index: 9;}.ace_highlight-marker {background-color: rgba(255, 255, 0,0.2);position: absolute;z-index: 8;}.ace_br1 {border-top-left-radius    : 3px;}.ace_br2 {border-top-right-radius   : 3px;}.ace_br3 {border-top-left-radius    : 3px; border-top-right-radius:    3px;}.ace_br4 {border-bottom-right-radius: 3px;}.ace_br5 {border-top-left-radius    : 3px; border-bottom-right-radius: 3px;}.ace_br6 {border-top-right-radius   : 3px; border-bottom-right-radius: 3px;}.ace_br7 {border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px;}.ace_br8 {border-bottom-left-radius : 3px;}.ace_br9 {border-top-left-radius    : 3px; border-bottom-left-radius:  3px;}.ace_br10{border-top-right-radius   : 3px; border-bottom-left-radius:  3px;}.ace_br11{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-left-radius:  3px;}.ace_br12{border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br13{border-top-left-radius    : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br14{border-top-right-radius   : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br15{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;}
+/*# sourceURL=ace/css/ace_editor.css */</style><style id="ace-tm">.ace-tm .ace_gutter {background: #f0f0f0;color: #333;}.ace-tm .ace_print-margin {width: 1px;background: #e8e8e8;}.ace-tm .ace_fold {background-color: #6B72E6;}.ace-tm {background-color: #FFFFFF;color: black;}.ace-tm .ace_cursor {color: black;}.ace-tm .ace_invisible {color: rgb(191, 191, 191);}.ace-tm .ace_storage,.ace-tm .ace_keyword {color: blue;}.ace-tm .ace_constant {color: rgb(197, 6, 11);}.ace-tm .ace_constant.ace_buildin {color: rgb(88, 72, 246);}.ace-tm .ace_constant.ace_language {color: rgb(88, 92, 246);}.ace-tm .ace_constant.ace_library {color: rgb(6, 150, 14);}.ace-tm .ace_invalid {background-color: rgba(255, 0, 0, 0.1);color: red;}.ace-tm .ace_support.ace_function {color: rgb(60, 76, 114);}.ace-tm .ace_support.ace_constant {color: rgb(6, 150, 14);}.ace-tm .ace_support.ace_type,.ace-tm .ace_support.ace_class {color: rgb(109, 121, 222);}.ace-tm .ace_keyword.ace_operator {color: rgb(104, 118, 135);}.ace-tm .ace_string {color: rgb(3, 106, 7);}.ace-tm .ace_comment {color: rgb(76, 136, 107);}.ace-tm .ace_comment.ace_doc {color: rgb(0, 102, 255);}.ace-tm .ace_comment.ace_doc.ace_tag {color: rgb(128, 159, 191);}.ace-tm .ace_constant.ace_numeric {color: rgb(0, 0, 205);}.ace-tm .ace_variable {color: rgb(49, 132, 149);}.ace-tm .ace_xml-pe {color: rgb(104, 104, 91);}.ace-tm .ace_entity.ace_name.ace_function {color: #0000A2;}.ace-tm .ace_heading {color: rgb(12, 7, 255);}.ace-tm .ace_list {color:rgb(185, 6, 144);}.ace-tm .ace_meta.ace_tag {color:rgb(0, 22, 142);}.ace-tm .ace_string.ace_regex {color: rgb(255, 0, 0)}.ace-tm .ace_marker-layer .ace_selection {background: rgb(181, 213, 255);}.ace-tm.ace_multiselect .ace_selection.ace_start {box-shadow: 0 0 3px 0px white;}.ace-tm .ace_marker-layer .ace_step {background: rgb(252, 255, 0);}.ace-tm .ace_marker-layer .ace_stack {background: rgb(164, 229, 101);}.ace-tm .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid rgb(192, 192, 192);}.ace-tm .ace_marker-layer .ace_active-line {background: rgba(0, 0, 0, 0.07);}.ace-tm .ace_gutter-active-line {background-color : #dcdcdc;}.ace-tm .ace_marker-layer .ace_selected-word {background: rgb(250, 250, 255);border: 1px solid rgb(200, 200, 250);}.ace-tm .ace_indent-guide {background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;}
+/*# sourceURL=ace/css/ace-tm */</style><style>    .error_widget_wrapper {        background: inherit;        color: inherit;        border:none    }    .error_widget {        border-top: solid 2px;        border-bottom: solid 2px;        margin: 5px 0;        padding: 10px 40px;        white-space: pre-wrap;    }    .error_widget.ace_error, .error_widget_arrow.ace_error{        border-color: #ff5a5a    }    .error_widget.ace_warning, .error_widget_arrow.ace_warning{        border-color: #F1D817    }    .error_widget.ace_info, .error_widget_arrow.ace_info{        border-color: #5a5a5a    }    .error_widget.ace_ok, .error_widget_arrow.ace_ok{        border-color: #5aaa5a    }    .error_widget_arrow {        position: absolute;        border: solid 5px;        border-top-color: transparent!important;        border-right-color: transparent!important;        border-left-color: transparent!important;        top: -5px;    }</style></head>
+
+<body>
+	
+        
+        
+            
+<nav class="navbar navbar-default navbar-fixed-top header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-collapse" aria-expanded="false">
+                <span class="sr-only">实验楼</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.shiyanlou.com/">
+                <img src="./Yii2 权限控制 - 实验楼_files/logo_03.png">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="header-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown active">
+                    <a href="https://www.shiyanlou.com/courses/" class="dropdown-toggle hidden-xs">
+                        课程
+                        <span class="caret"></span>
+                    </a>
+                    <a href="https://www.shiyanlou.com/courses/410/labs/1308/document#" class="dropdown-toggle visible-xs-block" data-toggle="dropdown">
+                        课程
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="" href="https://www.shiyanlou.com/courses/">全部课程</a></li>
+                        <li><a class="" href="https://www.shiyanlou.com/paths/">学习路径</a></li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="https://www.shiyanlou.com/questions/">问答</a>
+                </li>
+                <li class=" bootcamp new-nav">
+                    <a href="https://www.shiyanlou.com/bootcamp/">训练营</a>
+                </li>
+                <li class=" new-nav">
+                    <a href="https://www.shiyanlou.com/vip">会员</a>
+                </li>
+                
+					
+					<li class=""><a href="https://www.shiyanlou.com/user/240711">我的课程</a></li>
+					
+                
+            </ul>
+
+            
+            <ul class="nav navbar-nav navbar-right user">
+                
+                <li><a class="btn btn-primary" id="header-continue-lab" href="https://www.shiyanlou.com/courses/running">继续实验</a></li>
+                
+                <li class="dropdown">
+                    <a href="https://www.shiyanlou.com/user/240711" class="dropdown-toggle hidden-xs">
+                        <img class="header-avatar" src="./Yii2 权限控制 - 实验楼_files/gravatarSWACREAFHSXD.jpg" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-template="&lt;div class=&quot;tooltip&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-arrow&quot; style=&quot;border-bottom-color:#f66e6e;&quot;&gt;&lt;/div&gt;&lt;div class=&quot;tooltip-inner&quot; style=&quot;background:#f66e6e;&quot;&gt;&lt;/div&gt;&lt;/div&gt;" data-original-title="新消息">
+                        
+                        <span class="header-msg-count" style="display:none;"></span>
+                        <span class="header-username hidden-sm">LOU3018993846</span>
+                        <span class="caret"></span>
+                    </a>
+					<a href="https://www.shiyanlou.com/courses/410/labs/1308/document#" class="dropdown-toggle visible-xs-block" data-toggle="dropdown">
+                        <img class="header-avatar" src="./Yii2 权限控制 - 实验楼_files/gravatarSWACREAFHSXD.jpg">
+                        
+                        <span class="header-msg-count" style="display:none;"></span>
+                        <span class="header-username">LOU3018993846</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.shiyanlou.com/user/240711">主页</a></li>
+                        <li><a href="https://www.shiyanlou.com/user/friends">好友</a></li>
+                        <li><a href="https://www.shiyanlou.com/user/message">
+                            <span class="position-relative"><span class="header-msg-mark" style="display:none;"></span>消息</span>
+                        </a></li>
+                        <li><a href="https://www.shiyanlou.com/profile">设置</a></li>
+                        <li rolw="separator" class="divider"></li>
+                        <li><a href="https://www.shiyanlou.com/logout">退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+            
+
+            <form class="navbar-form navbar-right" action="https://www.shiyanlou.com/search" method="get" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="search" autocomplete="off" placeholder="搜索 课程/问答">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+
+<div id="website-msg">
+    <div class="container">
+        <span class="msg-text">
+            <img src="./Yii2 权限控制 - 实验楼_files/activate-user-icon.png">
+            验证邮箱可获得3个实验豆，享受更多实验楼的服务
+        </span>
+        <a href="https://www.shiyanlou.com/user/account"><span class="btn btn-mine">立即验证</span></a>
+    </div>
+</div>
+<div id="msg-data" data-current-user="240711"></div>
+<style>
+    .layout-margin-top {
+        margin-top: 110px;
+    }
+    .layout-no-margin-top {
+        margin-top: 100px;
+    }
+</style>
+
+
+
+        
+	
+
+
+
+	
+	
+
+	
+
+
+<div class="container layout layout-margin-top">
+    
+<ol class="breadcrumb">
+    <li><a href="https://www.shiyanlou.com/courses/">全部课程</a></li>
+    <li>
+        <a href="https://www.shiyanlou.com/courses/410">Yii 2系列教程</a>
+    </li>
+    <li class="active">
+        Yii2 权限控制
+    </li>
+</ol>
+
+    <div class="row">
+        <div class="col-md-9 layout-body">
+            
+<div class="mobile-alert alert alert-danger">在线实验，请到PC端体验</div>
+<div id="preview" class="markdown-body"><p>上一篇文章所实现的功能还比较简单，可以发一条状态，但是不知道你注意到没有，如果是没有注册的用户也可以使用我们的应用(类似小微博)来发状态，这是不符合情理的。正确的做法是在用户没有注册，登录之前，我们甚至都不应该给没有注册的用户看到我们创建状态的页面，即是<code>http://localhost:8999/status/create</code>就不应该让游客看到，更不用说编辑和删除一条状态<code>(status)</code>了。</p>
+<h2 id="-">权限控制</h2>
+<p>什么是权限控制？个人觉得在一个Web应用当中，有以下几种常见的角色和权限控制：</p>
+<pre><code class="hljs markdown"><span class="hljs-bullet">1. </span>游客，也就是没有注册的用户，一般这个权限是最小的，对于一些需要登录访问的页面没有访问权限
+
+
+<span class="hljs-bullet">2. </span>用户，这里的用户特指注册用户，注册过后的用户一般可以使用整个web应用的主要功能，比如我们这里的发表一条状态(status)
+
+<span class="hljs-bullet">3. </span>作者，这个不知道确切应该使用什么名词来描述，作者是在用户注册之后的一个权限判断，比如A发表的status状态，B君不能进行编辑，删除等，反之亦然。
+
+<span class="hljs-bullet">4. </span>管理员，这里的管理员通常会是应用的开发者(所有者，或者应该这么说)，几乎可以说是对站点的所有权限都有
+</code></pre><p>Yii2自带的权限控制默认只支持两个角色：</p>
+<ol>
+<li><p>guest(游客，没有登录的，用<code>?</code>表示)</p>
+</li>
+<li><p>authenticated (登录了的，用<code>@</code>表示)</p>
+</li>
+</ol>
+<p>在这里我们需要实现的是对这两种不同的角色指定不同的访问权限，就是为他们分配不同的可以访问的控制器或者方法。</p>
+<p>目前我们如果直接点击导航栏的Status，我们还是可以在没有登录的情况之下进行发表状态<code>(status)</code>，所以我们需要改一下我们的代码和逻辑，Yii2在这方面的控制做得非常好，其实实现这个我们只需要修改一下<code>StatusController.php</code>里面的<code>behaviors()</code>方法而已，在这里面加入一段<code>access</code>设置：</p>
+<pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">behaviors</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            <span class="hljs-string">'verbs'</span> =&gt; [
+                <span class="hljs-string">'class'</span> =&gt; VerbFilter::className(),
+                <span class="hljs-string">'actions'</span> =&gt; [
+                    <span class="hljs-string">'delete'</span> =&gt; [<span class="hljs-string">'post'</span>],
+                ],
+            ],
+            <span class="hljs-string">'access'</span> =&gt; [
+                <span class="hljs-string">'class'</span> =&gt; AccessControl::className(),
+                <span class="hljs-string">'only'</span> =&gt; [<span class="hljs-string">'index'</span>,<span class="hljs-string">'create'</span>,<span class="hljs-string">'update'</span>,<span class="hljs-string">'view'</span>],
+                <span class="hljs-string">'rules'</span> =&gt; [
+                    <span class="hljs-comment">// allow authenticated users</span>
+                    [
+                        <span class="hljs-string">'allow'</span> =&gt; <span class="hljs-keyword">true</span>,
+                        <span class="hljs-string">'roles'</span> =&gt; [<span class="hljs-string">'@'</span>],
+                    ],
+                    <span class="hljs-comment">// everything else is denied</span>
+                ],
+            ],
+        ];
+    }
+</code></pre><p>加上access这一段之后，我们再次点击Status，Yii2就会将未登录的我重定向到登录页面。</p>
+<p>而且，这个时候，一旦你登入进去，Yii会默认自动跳转到上一个url，也就是我们刚刚点击的<code>status/index</code>。</p>
+<h2 id="-">添加映射关系</h2>
+<p>用户一旦登录进来之后，我们就可以通过下面这行代码来获取用户的id了：</p>
+<pre><code class="hljs php">Yii::$app-&gt;user-&gt;getId();
+</code></pre><p>一旦用户的id获取到，我们可以做的事就很多了。这里我们先来将一条状态和用户联系起来，也就是添加用户与说说的映射关系。要实现这个目标我们需要先修改我们的数据表(体验一下当初设计数据表考虑不周全的情况)：</p>
+<pre><code class="hljs sql">./yii migrate/<span class="hljs-keyword">create</span> extend_status_table_for_created_by
+Yii <span class="hljs-keyword">Migration</span> Tool (based <span class="hljs-keyword">on</span> Yii v2<span class="hljs-number">.0</span><span class="hljs-number">.6</span>)
+
+<span class="hljs-keyword">Create</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">migration</span> <span class="hljs-string">'/Users/jellybool/Desktop/helloYii/migrations/m150806_034325_extend_status_table_for_created_by.php'</span>? (yes|<span class="hljs-keyword">no</span>) [<span class="hljs-keyword">no</span>]:yes
+
+<span class="hljs-keyword">New</span> <span class="hljs-keyword">migration</span> created successfully.
+</code></pre><p>打开对应的<code>migration</code>文件，编辑<code>up()</code>和<code>down()</code>方法，如果你想加入数据库的事务管理功能，你可以使用<code>safeUp()</code>和<code>safeDown()</code>方法</p>
+<pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">up</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">$this</span>-&gt;addColumn(<span class="hljs-string">'{{%status}}'</span>,<span class="hljs-string">'created_by'</span>,Schema::TYPE_INTEGER.<span class="hljs-string">' NOT NULL'</span>);
+        <span class="hljs-keyword">$this</span>-&gt;addForeignKey(<span class="hljs-string">'fk_status_created_by'</span>, <span class="hljs-string">'{{%status}}'</span>, <span class="hljs-string">'created_by'</span>, <span class="hljs-string">'{{%user}}'</span>, <span class="hljs-string">'id'</span>, <span class="hljs-string">'CASCADE'</span>, <span class="hljs-string">'CASCADE'</span>);
+    }
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">down</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">$this</span>-&gt;dropForeignKey(<span class="hljs-string">'fk_status_created_by'</span>,<span class="hljs-string">'{{%status}}'</span>);
+    <span class="hljs-keyword">$this</span>-&gt;dropColumn(<span class="hljs-string">'{{%status}}'</span>,<span class="hljs-string">'created_by'</span>);
+}
+</code></pre><p>我们需要为<code>status</code>表添加一个<code>created_by</code>字段，并且将它跟<code>user</code>表的<code>id</code>设为外键关系。</p>
+<blockquote>
+<p>如果你在status表里面有一条数据记录，你需要先删除这一条记录，不然可能会报错。</p>
+</blockquote>
+<p>执行<code>migrate/up</code>:</p>
+<pre><code class="hljs perl">./yii migrate/up
+Yii Migration Tool (based on Yii v2.<span class="hljs-number">0</span>.<span class="hljs-number">6</span>)
+
+Total <span class="hljs-number">1</span> new migration to be applied:
+    m150806_034325_extend_status_table_for_created_by
+
+Apply the above migration? (yes|<span class="hljs-keyword">no</span>) [<span class="hljs-keyword">no</span>]:yes
+*** applying m150806_034325_extend_status_table_for_created_by
+    &gt; add column created_by integer NOT NULL to table {{%status}} ... done (<span class="hljs-keyword">time</span>: <span class="hljs-number">0</span>.<span class="hljs-number">032</span><span class="hljs-keyword">s</span>)
+    &gt; add foreign key fk_status_created_by: {{%status}} (created_by) references {{%user}} (id) ... done (<span class="hljs-keyword">time</span>: <span class="hljs-number">0</span>.<span class="hljs-number">014</span><span class="hljs-keyword">s</span>)
+*** applied m150806_034325_extend_status_table_for_created_by (<span class="hljs-keyword">time</span>: <span class="hljs-number">0</span>.<span class="hljs-number">05</span>9s)
+</code></pre><p>数据表的外键设置好之后，我们就可以来声明<code>Status</code>和<code>User</code>的关系了，不过在开始之前需要修改一下<code>User.php</code>里面的内容：</p>
+<pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">dektrium</span>\<span class="hljs-title">user</span>\<span class="hljs-title">models</span>\<span class="hljs-title">User</span> <span class="hljs-title">as</span> <span class="hljs-title">BaseUser</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseUser</span> </span>{
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">register</span><span class="hljs-params">()</span>
+    </span>{
+
+    }
+}
+</span></code></pre><p>直接将原来的User模型的代码都删掉，只需要我们上面的代码就可以了，因为我们使用了Yii2-User，
+这里就是使用<code>dektrium\user\models\User</code>这个模型，然后修改一下我们的<code>config/web.php</code>，再我们之前的user中加入几行代码：</p>
+<pre><code class="hljs php"> <span class="hljs-string">'modules'</span> =&gt; [
+        <span class="hljs-string">'user'</span> =&gt; [
+            <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'dektrium\user\Module'</span>,
+            <span class="hljs-string">'confirmWithin'</span> =&gt; <span class="hljs-number">21600</span>,
+            <span class="hljs-comment">// add the following 3 lines</span>
+            <span class="hljs-string">'modelMap'</span> =&gt; [
+                <span class="hljs-string">'User'</span> =&gt; <span class="hljs-string">'app\models\User'</span>,
+            ],
+
+            <span class="hljs-string">'cost'</span> =&gt; <span class="hljs-number">12</span>,
+            <span class="hljs-string">'admins'</span> =&gt; [<span class="hljs-string">'admin'</span>]
+        ],
+    ],
+</code></pre><p>这样之后，我们的User和Status的对应关系就会建立起来。</p>
+<p>然后我们在Status.php写上以下的说明：</p>
+<pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getUser</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;hasOne(User::className(), [<span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'created_by'</span>]);
+    }
+</code></pre><p>这里声明的映射关系为<code>hasOne</code>，也就是说，一条状态<code>status(说说)</code>对应一个用户(User)，我们通过<code>['id' =&gt; 'created_by']</code>来指定外键映射。</p>
+<p>有了Status和User的对应关系之后，我们需要在用户发表状态的时候将用户的id保存到<code>Status</code>的<code>created_by</code>这一个字段中，所以我们需要在<code>StatusController</code>中的<code>actionCreate</code>方法中加上一行代码：</p>
+<pre><code class="hljs php"><span class="hljs-keyword">if</span> ($model-&gt;load(Yii::$app-&gt;request-&gt;post())) {
+    $model-&gt;created_by = Yii::$app-&gt;user-&gt;getId();<span class="hljs-comment">//add this line</span>
+    $model-&gt;created_at = time();
+    $model-&gt;updated_at = time();
+    <span class="hljs-keyword">if</span> ($model-&gt;save()) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;redirect([<span class="hljs-string">'view'</span>, <span class="hljs-string">'id'</span> =&gt; $model-&gt;id]);
+    }
+}
+</code></pre><p>这里需要确认的是，你需要保证<code>create</code>方法只能是登录进来的用户才能访问触发。</p>
+<p>为了更好地展示一条状态<code>stutas</code>的信息，我们修改一下展示状态的视图文件：<code>status/view.php</code> :</p>
+<pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?</span>= DetailView::widget([
+        <span class="hljs-string">'model'</span> =&gt; $model,
+        <span class="hljs-string">'attributes'</span> =&gt; [
+            <span class="hljs-string">'id'</span>,
+            <span class="hljs-string">'user.email'</span>, <span class="hljs-comment">// add this line</span>
+            <span class="hljs-string">'message:ntext'</span>,
+            <span class="hljs-string">'created_by'</span>, <span class="hljs-comment">// add this line</span>
+            <span class="hljs-string">'permissions'</span>,
+            <span class="hljs-string">'created_at'</span>,
+            <span class="hljs-string">'updated_at'</span>,
+        ],
+    ]) <span class="hljs-meta">?&gt;</span></span>
+</code></pre><p>上面的<code>user.email</code>中的<code>user</code>其实是触发<code>Status::getUser()</code>这个方法。</p>
+<p>这样一刷新之后，我们就可以看到创建这条状态的用户<code>id</code>和<code>email</code>了。</p>
+<h2 id="-rbac">探寻RBAC</h2>
+<p>上面的一些列设置和代码更改，已经实现了一小部分的用户控制：登录的用户才能发表status。然而这还不能满足我们在日常使用的需求，比如我们现在怎么确定一个用户能不能对某条状态进行修改和删除？或者说，管理员的角色在哪里体现呢？现在貌似都是平等的角色，相同的权限，对于登录的用户来说。</p>
+<p>鉴于官方文档或者很多关于Yii2 RBAC的资料都是基于<code>Yii2 Advanced Template</code>，而我们一开始使用的是<code>Yii2 Basic Template</code>，并且我们也引入Yii2-User，所以这里我们尝试来自己实现一点点的用户权限控制。</p>
+<p>首先我们需要在User中定义一些跟<code>角色(role)</code>相关的规定，比如根据不同的用户角色来赋予不同的常量：</p>
+<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseUser</span> </span>{
+    <span class="hljs-keyword">const</span> ROLE_USER = <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">const</span> ROLE_MODERATOR = <span class="hljs-number">20</span>;
+    <span class="hljs-keyword">const</span> ROLE_ADMIN = <span class="hljs-number">30</span>;
+
+}
+</code></pre><p>上面的代码写在User模型里面，这里定义了三种角色，<code>ROLE_USER</code>，<code>ROLE_MODERATOR</code>，<code>ROLE_ADMIN</code>，<code>USER</code>可以发表状态，<code>MODERATOR</code>可以修改但是不可以删除，<code>ADMIN</code>可以修改和删除。</p>
+<p>然后在<code>helloYii/</code>目录之下创建一个<code>components/</code>目录，里面新建一个<code>AccessRule.php</code>文件：</p>
+<pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">components</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>\<span class="hljs-title">User</span>;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AccessRule</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">filters</span>\<span class="hljs-title">AccessRule</span> </span>{
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@inheritdoc</span>
+     */</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">matchRole</span><span class="hljs-params">($user)</span>
+    </span>{
+        <span class="hljs-keyword">if</span> (count(<span class="hljs-keyword">$this</span>-&gt;roles) === <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        }
+        <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">$this</span>-&gt;roles <span class="hljs-keyword">as</span> $role) {
+            <span class="hljs-keyword">if</span> ($role === <span class="hljs-string">'?'</span>) {
+                <span class="hljs-keyword">if</span> ($user-&gt;getIsGuest()) {
+                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+                }
+            } <span class="hljs-keyword">elseif</span> ($role === User::ROLE_USER) {
+                <span class="hljs-keyword">if</span> (!$user-&gt;getIsGuest()) {
+                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+                }
+                <span class="hljs-comment">// Check if the user is logged in, and the roles match</span>
+            } <span class="hljs-keyword">elseif</span> (!$user-&gt;getIsGuest() &amp;&amp; $role === $user-&gt;identity-&gt;role) {
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+            }
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    }
+}
+</span></code></pre><p>这里就直接借用Yii2自带的<code>\yii\filters\AccessRule</code>来控制权限规则。但是由于Yii2-User在创建user数据表的时候并没有<code>role</code>这个字段，所以我们需要手动添加，你可以直接在mysql敲命令行，或者也可以通过数据库管理工具来添加。</p>
+<p>最后更新一下我们的<code>StatusController.php</code>文件，这里的<code>behaviors()</code>方法会做出一些调整：</p>
+<pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">controllers</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Yii</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>\<span class="hljs-title">Status</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>\<span class="hljs-title">StatusSearch</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">web</span>\<span class="hljs-title">Controller</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">web</span>\<span class="hljs-title">NotFoundHttpException</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">filters</span>\<span class="hljs-title">VerbFilter</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">filters</span>\<span class="hljs-title">AccessControl</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">app</span>\<span class="hljs-title">components</span>\<span class="hljs-title">AccessRule</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>\<span class="hljs-title">User</span>;
+
+<span class="hljs-comment">/**
+ * StatusController implements the CRUD actions for Status model.
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StatusController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">behaviors</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            <span class="hljs-string">'verbs'</span> =&gt; [
+                <span class="hljs-string">'class'</span> =&gt; VerbFilter::className(),
+                <span class="hljs-string">'actions'</span> =&gt; [
+                    <span class="hljs-string">'delete'</span> =&gt; [<span class="hljs-string">'post'</span>],
+                ],
+            ],
+            <span class="hljs-string">'access'</span> =&gt; [
+                <span class="hljs-string">'class'</span> =&gt; AccessControl::className(),
+                <span class="hljs-comment">// We will override the default rule config with the new AccessRule class</span>
+                <span class="hljs-string">'ruleConfig'</span> =&gt; [
+                    <span class="hljs-string">'class'</span> =&gt; AccessRule::className(),
+                ],
+                <span class="hljs-string">'only'</span> =&gt; [<span class="hljs-string">'index'</span>,<span class="hljs-string">'create'</span>, <span class="hljs-string">'update'</span>, <span class="hljs-string">'delete'</span>],
+                <span class="hljs-string">'rules'</span> =&gt; [
+                    [
+                        <span class="hljs-string">'actions'</span> =&gt; [<span class="hljs-string">'index'</span>,<span class="hljs-string">'create'</span>],
+                        <span class="hljs-string">'allow'</span> =&gt; <span class="hljs-keyword">true</span>,
+                        <span class="hljs-comment">// Allow users, moderators and admins to create</span>
+                        <span class="hljs-string">'roles'</span> =&gt; [
+                            User::ROLE_USER,
+                            User::ROLE_MODERATOR,
+                            User::ROLE_ADMIN
+                        ],
+                    ],
+                    [
+                        <span class="hljs-string">'actions'</span> =&gt; [<span class="hljs-string">'update'</span>],
+                        <span class="hljs-string">'allow'</span> =&gt; <span class="hljs-keyword">true</span>,
+                        <span class="hljs-comment">// Allow moderators and admins to update</span>
+                        <span class="hljs-string">'roles'</span> =&gt; [
+                            User::ROLE_MODERATOR,
+                            User::ROLE_ADMIN
+                        ],
+                    ],
+                    [
+                        <span class="hljs-string">'actions'</span> =&gt; [<span class="hljs-string">'delete'</span>],
+                        <span class="hljs-string">'allow'</span> =&gt; <span class="hljs-keyword">true</span>,
+                        <span class="hljs-comment">// Allow admins to delete</span>
+                        <span class="hljs-string">'roles'</span> =&gt; [
+                            User::ROLE_ADMIN
+                        ],
+                    ],
+                ],
+            ],
+        ];
+    }
+</span></code></pre><p>我们上面根据不同等级的用户赋予不同的访问权限，这时候，如果你先<code>logout</code>出来，再登录回去，你还是可以看到这些<code>status</code>，但是一旦你点击
+<strong>delete(删除按钮)</strong>，你将会看到一个报错的页面：</p>
+<p>我们手动创建的role是成功，但是我们怎么给一个注册的用户默认的权限呢，我们这里就是想实现在新用户注册的时候赋予用户ROLE_USER的角色和权限。由于Yii2-User是在<code>vendor\dektrium\yii2-user\models\RegistrationForm.php</code>这个文件里面进行创建新的用户的，我门这里只要修改一个小地方，找到<code>register()</code>方法：</p>
+<pre><code class="hljs php">  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">register</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">$this</span>-&gt;validate()) {
+            $user = <span class="hljs-keyword">$this</span>-&gt;module-&gt;manager-&gt;createUser([
+                <span class="hljs-string">'email'</span>    =&gt; <span class="hljs-keyword">$this</span>-&gt;email,
+                <span class="hljs-string">'username'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;username,
+                <span class="hljs-string">'password'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;password,
+                <span class="hljs-string">'role'</span>=&gt;<span class="hljs-number">10</span>, <span class="hljs-comment">// add this line User::ROLE_USER;                </span>
+            ]);
+
+            <span class="hljs-keyword">return</span> $user-&gt;register();
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    }
+</code></pre><p>添加<code>'role'=&gt;10</code>就可以了。</p>
+<p>如果你想证明一下我们的权限是否正确，你可以手动修改数据库中的role字段的数值，然后在进行修改和删除等操作，看看是否可以正确运行。</p>
+<p>权限控制其实可以说是Yii2的一大特色和亮点，在这里可能并没有说得很清晰，只是简单地实现了一些规则，有机会借助<code>Yii2 Advanced Template</code>来实现一下。</p>
+<h2 id="-">下一节</h2>
+<p>下一节尝试集成一个编辑器和做一下url的美化，内容应该会比较简单</p>
+</div>
+<textarea id="editor">
+上一篇文章所实现的功能还比较简单，可以发一条状态，但是不知道你注意到没有，如果是没有注册的用户也可以使用我们的应用(类似小微博)来发状态，这是不符合情理的。正确的做法是在用户没有注册，登录之前，我们甚至都不应该给没有注册的用户看到我们创建状态的页面，即是`http://localhost:8999/status/create`就不应该让游客看到，更不用说编辑和删除一条状态`(status)`了。
+
+
+## 权限控制
+
+什么是权限控制？个人觉得在一个Web应用当中，有以下几种常见的角色和权限控制：
+
+```
+1. 游客，也就是没有注册的用户，一般这个权限是最小的，对于一些需要登录访问的页面没有访问权限
+
+
+2. 用户，这里的用户特指注册用户，注册过后的用户一般可以使用整个web应用的主要功能，比如我们这里的发表一条状态(status)
+
+3. 作者，这个不知道确切应该使用什么名词来描述，作者是在用户注册之后的一个权限判断，比如A发表的status状态，B君不能进行编辑，删除等，反之亦然。
+
+4. 管理员，这里的管理员通常会是应用的开发者(所有者，或者应该这么说)，几乎可以说是对站点的所有权限都有
+
+```
+
+
+Yii2自带的权限控制默认只支持两个角色：
+
+1. guest(游客，没有登录的，用`?`表示)
+
+2. authenticated (登录了的，用`@`表示)
+
+在这里我们需要实现的是对这两种不同的角色指定不同的访问权限，就是为他们分配不同的可以访问的控制器或者方法。
+
+目前我们如果直接点击导航栏的Status，我们还是可以在没有登录的情况之下进行发表状态`(status)`，所以我们需要改一下我们的代码和逻辑，Yii2在这方面的控制做得非常好，其实实现这个我们只需要修改一下`StatusController.php`里面的`behaviors()`方法而已，在这里面加入一段`access`设置：
+
+
+```
+public function behaviors()
+    {
+        return [
+            'verbs' =&gt; [
+                'class' =&gt; VerbFilter::className(),
+                'actions' =&gt; [
+                    'delete' =&gt; ['post'],
+                ],
+            ],
+            'access' =&gt; [
+                'class' =&gt; AccessControl::className(),
+                'only' =&gt; ['index','create','update','view'],
+                'rules' =&gt; [
+                    // allow authenticated users
+                    [
+                        'allow' =&gt; true,
+                        'roles' =&gt; ['@'],
+                    ],
+                    // everything else is denied
+                ],
+            ],
+        ];
+    }
+
+```
+
+加上access这一段之后，我们再次点击Status，Yii2就会将未登录的我重定向到登录页面。
+
+而且，这个时候，一旦你登入进去，Yii会默认自动跳转到上一个url，也就是我们刚刚点击的`status/index`。
+
+
+## 添加映射关系
+
+用户一旦登录进来之后，我们就可以通过下面这行代码来获取用户的id了：
+
+```
+Yii::$app-&gt;user-&gt;getId();
+
+```
+
+一旦用户的id获取到，我们可以做的事就很多了。这里我们先来将一条状态和用户联系起来，也就是添加用户与说说的映射关系。要实现这个目标我们需要先修改我们的数据表(体验一下当初设计数据表考虑不周全的情况)：
+
+```
+./yii migrate/create extend_status_table_for_created_by
+Yii Migration Tool (based on Yii v2.0.6)
+
+Create new migration '/Users/jellybool/Desktop/helloYii/migrations/m150806_034325_extend_status_table_for_created_by.php'? (yes|no) [no]:yes
+
+New migration created successfully.
+
+```
+打开对应的`migration`文件，编辑`up()`和`down()`方法，如果你想加入数据库的事务管理功能，你可以使用`safeUp()`和`safeDown()`方法
+
+```
+public function up()
+    {
+        $this-&gt;addColumn('{{%status}}','created_by',Schema::TYPE_INTEGER.' NOT NULL');
+        $this-&gt;addForeignKey('fk_status_created_by', '{{%status}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
+    }
+
+public function down()
+{
+    $this-&gt;dropForeignKey('fk_status_created_by','{{%status}}');
+    $this-&gt;dropColumn('{{%status}}','created_by');
+}
+
+```
+
+
+我们需要为`status`表添加一个`created_by`字段，并且将它跟`user`表的`id`设为外键关系。
+
+&gt; 如果你在status表里面有一条数据记录，你需要先删除这一条记录，不然可能会报错。
+
+
+执行`migrate/up`:
+
+```
+./yii migrate/up
+Yii Migration Tool (based on Yii v2.0.6)
+
+Total 1 new migration to be applied:
+    m150806_034325_extend_status_table_for_created_by
+
+Apply the above migration? (yes|no) [no]:yes
+*** applying m150806_034325_extend_status_table_for_created_by
+    &gt; add column created_by integer NOT NULL to table {{%status}} ... done (time: 0.032s)
+    &gt; add foreign key fk_status_created_by: {{%status}} (created_by) references {{%user}} (id) ... done (time: 0.014s)
+*** applied m150806_034325_extend_status_table_for_created_by (time: 0.059s)
+
+```
+
+数据表的外键设置好之后，我们就可以来声明`Status`和`User`的关系了，不过在开始之前需要修改一下`User.php`里面的内容：
+
+```
+&lt;?php
+namespace app\models;
+
+use dektrium\user\models\User as BaseUser;
+
+class User extends BaseUser {
+
+    public function register()
+    {
+        
+    }
+}
+
+```
+
+直接将原来的User模型的代码都删掉，只需要我们上面的代码就可以了，因为我们使用了Yii2-User，
+这里就是使用`dektrium\user\models\User`这个模型，然后修改一下我们的`config/web.php`，再我们之前的user中加入几行代码：
+
+```
+ 'modules' =&gt; [
+        'user' =&gt; [
+            'class' =&gt; 'dektrium\user\Module',
+            'confirmWithin' =&gt; 21600,
+            // add the following 3 lines
+            'modelMap' =&gt; [
+                'User' =&gt; 'app\models\User',
+            ],
+
+            'cost' =&gt; 12,
+            'admins' =&gt; ['admin']
+        ],
+    ],
+
+```
+这样之后，我们的User和Status的对应关系就会建立起来。
+
+
+然后我们在Status.php写上以下的说明：
+
+```
+public function getUser()
+    {
+        return $this-&gt;hasOne(User::className(), ['id' =&gt; 'created_by']);
+    }
+
+```
+
+这里声明的映射关系为`hasOne`，也就是说，一条状态`status(说说)`对应一个用户(User)，我们通过`['id' =&gt; 'created_by']`来指定外键映射。
+
+有了Status和User的对应关系之后，我们需要在用户发表状态的时候将用户的id保存到`Status`的`created_by`这一个字段中，所以我们需要在`StatusController`中的`actionCreate`方法中加上一行代码：
+
+```
+if ($model-&gt;load(Yii::$app-&gt;request-&gt;post())) {
+    $model-&gt;created_by = Yii::$app-&gt;user-&gt;getId();//add this line
+    $model-&gt;created_at = time();
+    $model-&gt;updated_at = time();
+    if ($model-&gt;save()) {
+        return $this-&gt;redirect(['view', 'id' =&gt; $model-&gt;id]);
+    }
+}
+
+```
+这里需要确认的是，你需要保证`create`方法只能是登录进来的用户才能访问触发。
+ 
+为了更好地展示一条状态`stutas`的信息，我们修改一下展示状态的视图文件：`status/view.php` :
+
+```
+&lt;?= DetailView::widget([
+        'model' =&gt; $model,
+        'attributes' =&gt; [
+            'id',
+            'user.email', // add this line
+            'message:ntext',
+            'created_by', // add this line
+            'permissions',
+            'created_at',
+            'updated_at',
+        ],
+    ]) ?&gt;
+
+```
+上面的`user.email`中的`user`其实是触发`Status::getUser()`这个方法。
+
+这样一刷新之后，我们就可以看到创建这条状态的用户`id`和`email`了。
+
+## 探寻RBAC
+
+上面的一些列设置和代码更改，已经实现了一小部分的用户控制：登录的用户才能发表status。然而这还不能满足我们在日常使用的需求，比如我们现在怎么确定一个用户能不能对某条状态进行修改和删除？或者说，管理员的角色在哪里体现呢？现在貌似都是平等的角色，相同的权限，对于登录的用户来说。
+
+鉴于官方文档或者很多关于Yii2 RBAC的资料都是基于`Yii2 Advanced Template`，而我们一开始使用的是`Yii2 Basic Template`，并且我们也引入Yii2-User，所以这里我们尝试来自己实现一点点的用户权限控制。
+
+首先我们需要在User中定义一些跟`角色(role)`相关的规定，比如根据不同的用户角色来赋予不同的常量：
+
+```
+class User extends BaseUser {
+    const ROLE_USER = 10;
+    const ROLE_MODERATOR = 20;
+    const ROLE_ADMIN = 30;
+
+}
+
+```
+上面的代码写在User模型里面，这里定义了三种角色，`ROLE_USER`，`ROLE_MODERATOR`，`ROLE_ADMIN`，`USER`可以发表状态，`MODERATOR`可以修改但是不可以删除，`ADMIN`可以修改和删除。
+
+然后在`helloYii/`目录之下创建一个`components/`目录，里面新建一个`AccessRule.php`文件：
+
+```
+&lt;?php
+
+namespace app\components;
+
+use app\models\User;
+class AccessRule extends \yii\filters\AccessRule {
+
+    /**
+     * @inheritdoc
+     */
+    protected function matchRole($user)
+    {
+        if (count($this-&gt;roles) === 0) {
+            return true;
+        }
+        foreach ($this-&gt;roles as $role) {
+            if ($role === '?') {
+                if ($user-&gt;getIsGuest()) {
+                    return true;
+                }
+            } elseif ($role === User::ROLE_USER) {
+                if (!$user-&gt;getIsGuest()) {
+                    return true;
+                }
+                // Check if the user is logged in, and the roles match
+            } elseif (!$user-&gt;getIsGuest() &amp;&amp; $role === $user-&gt;identity-&gt;role) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+```
+
+这里就直接借用Yii2自带的`\yii\filters\AccessRule`来控制权限规则。但是由于Yii2-User在创建user数据表的时候并没有`role`这个字段，所以我们需要手动添加，你可以直接在mysql敲命令行，或者也可以通过数据库管理工具来添加。
+
+最后更新一下我们的`StatusController.php`文件，这里的`behaviors()`方法会做出一些调整：
+
+```
+&lt;?php
+
+namespace app\controllers;
+
+use Yii;
+use app\models\Status;
+use app\models\StatusSearch;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use app\components\AccessRule;
+use app\models\User;
+
+/**
+ * StatusController implements the CRUD actions for Status model.
+ */
+class StatusController extends Controller
+{
+    public function behaviors()
+    {
+        return [
+            'verbs' =&gt; [
+                'class' =&gt; VerbFilter::className(),
+                'actions' =&gt; [
+                    'delete' =&gt; ['post'],
+                ],
+            ],
+            'access' =&gt; [
+                'class' =&gt; AccessControl::className(),
+                // We will override the default rule config with the new AccessRule class
+                'ruleConfig' =&gt; [
+                    'class' =&gt; AccessRule::className(),
+                ],
+                'only' =&gt; ['index','create', 'update', 'delete'],
+                'rules' =&gt; [
+                    [
+                        'actions' =&gt; ['index','create'],
+                        'allow' =&gt; true,
+                        // Allow users, moderators and admins to create
+                        'roles' =&gt; [
+                            User::ROLE_USER,
+                            User::ROLE_MODERATOR,
+                            User::ROLE_ADMIN
+                        ],
+                    ],
+                    [
+                        'actions' =&gt; ['update'],
+                        'allow' =&gt; true,
+                        // Allow moderators and admins to update
+                        'roles' =&gt; [
+                            User::ROLE_MODERATOR,
+                            User::ROLE_ADMIN
+                        ],
+                    ],
+                    [
+                        'actions' =&gt; ['delete'],
+                        'allow' =&gt; true,
+                        // Allow admins to delete
+                        'roles' =&gt; [
+                            User::ROLE_ADMIN
+                        ],
+                    ],
+                ],
+            ],
+        ];
+    }
+
+```
+
+我们上面根据不同等级的用户赋予不同的访问权限，这时候，如果你先`logout`出来，再登录回去，你还是可以看到这些`status`，但是一旦你点击
+**delete(删除按钮)**，你将会看到一个报错的页面：
+
+
+
+我们手动创建的role是成功，但是我们怎么给一个注册的用户默认的权限呢，我们这里就是想实现在新用户注册的时候赋予用户ROLE_USER的角色和权限。由于Yii2-User是在`vendor\dektrium\yii2-user\models\RegistrationForm.php`这个文件里面进行创建新的用户的，我门这里只要修改一个小地方，找到`register()`方法：
+
+```
+  public function register()
+    {
+        if ($this-&gt;validate()) {
+            $user = $this-&gt;module-&gt;manager-&gt;createUser([
+                'email'    =&gt; $this-&gt;email,
+                'username' =&gt; $this-&gt;username,
+                'password' =&gt; $this-&gt;password,
+                'role'=&gt;10, // add this line User::ROLE_USER;                
+            ]);
+ 
+            return $user-&gt;register();
+        }
+ 
+        return false;
+    }
+
+```
+
+添加`'role'=&gt;10`就可以了。
+
+
+如果你想证明一下我们的权限是否正确，你可以手动修改数据库中的role字段的数值，然后在进行修改和删除等操作，看看是否可以正确运行。
+
+权限控制其实可以说是Yii2的一大特色和亮点，在这里可能并没有说得很清晰，只是简单地实现了一些规则，有机会借助`Yii2 Advanced Template`来实现一下。
+
+## 下一节
+
+下一节尝试集成一个编辑器和做一下url的美化，内容应该会比较简单
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</textarea>
+<div class="start-lab">
+    <span>动手实践才能有更大收获，做实验，学IT！</span>
+    
+
+    
+
+     
+        
+    
+
+    
+    <button type="button" class="btn btn-success   lab-item-start-newlab" data-mobile-url="/courses/document/1308" data-url="/courses/start/1308" data-next="/courses/running">开始实验</button>
+</div>
+
+        </div>
+        <div class="col-md-3 layout-side">
+            
+    <div class="side-image side-image-pc">
+        <img src="./Yii2 权限控制 - 实验楼_files/1444890954904.png">
+    </div>
+    
+
+    
+        
+    
+
+
+    
+        
+<div class="sidebox mooc-teacher">
+    <div class="sidebox-header mooc-header">
+        <h4 class="sidebox-title">课程教师</h4>
+    </div>
+    <div class="sidebox-body mooc-content">
+        <a href="https://www.shiyanlou.com/user/7682" target="_blank">
+            <img src="./Yii2 权限控制 - 实验楼_files/gravatar57aeee35c98205091e18d1140e9f38cf.png">
+        </a>
+        <div class="mooc-info">
+            <div class="name"><strong>JellyBool</strong> </div>
+            
+            <div class="courses">共发布过<strong>8</strong>门课程</div>
+        </div>
+        <div class="mooc-extra-info">
+            <div class="word long-paragraph">
+                
+            </div>
+        </div>
+    </div>
+    <div class="sidebox-footer mooc-footer">
+        <a href="https://www.shiyanlou.com/teacher/7682" target="_blank">查看老师的所有课程 &gt;</a>
+    </div>
+</div>
+
+    
+    <div class="side-image">
+    <a href="https://www.shiyanlou.com/vip" target="_blank">
+        <img src="./Yii2 权限控制 - 实验楼_files/vip_ad2.png">
+    </a>
+</div>
+    
+    
+    
+    
+
+        </div>
+    </div>
+</div>
+
+
+	<div class="modal fade" id="invite-user" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">邀请好友，双方都可获赠实验豆！</h4>
+				</div>
+				<div class="modal-body">
+                    
+					<div class="form-label">
+                        分享专属链接给好友，或粘贴到QQ群/微博/论坛，好友注册后，您和好友将分别获赠3个实验豆！
+                    </div>
+					<input type="text" id="bstext" class="form-invite" value="https://www.shiyanlou.com/register?inviter=NTY0MzE5MjUzMzg2">              
+                    
+					<div id="msg-modal"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+    
+        
+        
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 clearfix footer-col">
+                <img src="./Yii2 权限控制 - 实验楼_files/logo_03.png">
+                <div class="footer-slogan">动手做实验，轻松学IT。</div>
+                <div class="col-xs-2">
+                    <div class="social-item footer-weixin-item">
+                        <i class="fa fa-weixin"></i>
+                        <div class="footer-weixin">
+                            <img src="./Yii2 权限控制 - 实验楼_files/footer-weixin.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="social-item footer-qq-item" data-original-title="" title="">
+                        <i class="fa fa-qq"></i>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="social-item footer-weibo-item">
+                        <a href="http://weibo.com/shiyanlou2013" target="_blank">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">公司</div>
+                <a href="https://www.shiyanlou.com/aboutus" target="_blank">关于我们</a><br>
+                <a href="https://www.shiyanlou.com/contact" target="_blank">联系我们</a><br>
+                <a href="http://www.simplecloud.cn/jobs.html" target="_blank">加入我们</a><br>
+                <a href="https://blog.shiyanlou.com/" target="_blank">技术博客</a><br>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">合作</div>
+                <a href="https://www.shiyanlou.com/contribute" target="_blank">我要投稿</a><br>
+                <a href="https://www.shiyanlou.com/labs" target="_blank">教师合作</a><br>
+                <a href="https://www.shiyanlou.com/edu/" target="_blank">高校合作</a><br>
+                <a href="https://www.shiyanlou.com/friends" target="_blank">友情链接</a>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">服务</div>
+                <a href="https://www.shiyanlou.com/bootcamp/" target="_blank">实战训练营</a><br>
+                <a href="https://www.shiyanlou.com/vip" target="_blank">会员服务</a><br>
+                <a href="https://www.shiyanlou.com/courses/reports" target="_blank">实验报告</a><br>
+                <a href="https://www.shiyanlou.com/questions/?tag=%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98" target="_blank">常见问题</a><br>
+                <a href="https://www.shiyanlou.com/privacy" target="_blank">隐私条款</a>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">学习路径</div>
+                <a href="https://www.shiyanlou.com/paths/python" target="_blank">Python学习路径</a><br>
+                <a href="https://www.shiyanlou.com/paths/linuxdev" target="_blank">Linux学习路径</a><br>
+                <a href="https://www.shiyanlou.com/paths/bigdata" target="_blank">大数据学习路径</a><br>
+                <a href="https://www.shiyanlou.com/paths/java" target="_blank">Java学习路径</a><br>
+                <a href="https://www.shiyanlou.com/paths/php" target="_blank">PHP学习路径</a><br>
+                <a href="https://www.shiyanlou.com/paths/" ,="" target="_blank">全部</a>
+            </div>
+        </div>
+    </div>
+    <div class="text-center copyright">
+        <span>Copyright @2013-2016 实验楼在线教育</span>
+        <span class="ver-line"> | </span>
+        <a href="http://www.miibeian.gov.cn/" target="_blank">蜀ICP备13019762号</a>
+        <script charset="utf-8" src="./Yii2 权限控制 - 实验楼_files/v.js"></script><script src="./Yii2 权限控制 - 实验楼_files/hm.js"></script><script type="text/javascript">
+            var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+            document.write(unescape("%3Cspan id='cnzz_stat_icon_5902315'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D5902315' type='text/javascript'%3E%3C/script%3E"));
+        </script><span id="cnzz_stat_icon_5902315"><a href="http://www.cnzz.com/stat/website.php?web_id=5902315" target="_blank" title="站长统计">站长统计</a></span><script src="./Yii2 权限控制 - 实验楼_files/stat.php" type="text/javascript"></script><script src="./Yii2 权限控制 - 实验楼_files/core.php" charset="utf-8" type="text/javascript"></script>
+        <script>
+            var _hmt = _hmt || [];
+            (function() {
+             var hm = document.createElement("script");
+             hm.src = "//hm.baidu.com/hm.js?6eb47a3aeda6ea31fa53985fdfdc78e8";
+             var s = document.getElementsByTagName("script")[0];
+             s.parentNode.insertBefore(hm, s);
+             })();
+        </script>
+    </div>
+</div>
+
+        
+    
+	
+
+	<div class="modal fade" id="flash-message" tabindex="-1" role="dialog">
+		<div class="modal-dialog" rolw="document">
+		</div>
+	</div>
+	<div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">注意</h4>
+				</div>
+				<div class="modal-body">
+				</div>
+				<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary confirm" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    
+<div class="modal fade" id="start-newlab">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>开始新实验</h3>
+			</div>
+			<div class="modal-body">
+                <p>一个实验正在进行，是否停止它，开始新实验？</p>
+			</div>
+			<div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                <a class="btn btn-primary start-newlab-confirm">确定</a>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="start-evaluation-course">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>开始评估课实验</h3>
+			</div>
+			<div class="modal-body">
+                <div>
+                    <p>为了让评估结果更加准确，请注意以下操作：</p>
+                    <ul>
+                        <li>完成实验后点击「停止实验」按钮</li>
+                        <li>将代码提交到代码库</li>
+                        <li>尽可能详尽的撰写实验报告</li>
+                        <li>尽可能在实验操作的关键步骤截图</li>
+                        <li>尽可能减少无用操作</li>
+                        <li>尽可能高效的利用内存/CPU资源</li>
+                    </ul>
+                    <p>评估课还在不断完善中，我们真挚希望你能通过我们提供的这个平台，找到更好的发展机会。</p>
+                </div>
+                <br>
+                <div class="start-newlab"></div>
+			</div>
+			<div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                <a class="btn btn-primary start-confirm">确定</a>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="vip-startlab-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>开始实验</h3>
+			</div>
+			<div class="modal-body">
+                <div class="start-newlab"></div>
+                <br>
+                <div class="text-center vip-vm">
+                    <a class="btn btn-default btn-lg newvm">创建新环境</a>
+					
+                </div>
+                <br>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+
+	
+		
+			
+		
+	
+
+    
+    <div class="modal fade" id="lottery-modal">
+        <div class="modal-dialog" style="text-align:center;">
+            <a style="display:block; background:#fff;" href="https://www.shiyanlou.com/lottery/Z0BxroDOR4Cmwn2iaha_qQ" target="_blank">
+                <img src="./Yii2 权限控制 - 实验楼_files/lottery-title.png">
+            </a>
+        </div>
+    </div>
+    
+
+    <div id="base-data" data-flash="false" data-csrf-token="/questions/form" data-is-login="true" data-jwt-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzaGl5YW5sb3U6d2ViOmFwcCIsInVuYW1lIjoiTE9VMzAxODk5Mzg0NiIsInVpZCI6IjI0MDcxMSIsImV4cCI6MTQ3MTQyMTYwNywiaWF0IjoxNDcxMzM1MjA3fQ.dS-XDKFvsyNN-Zr46oGSbVxtizmdOrLrqSG7xc3eHD0" data-socket-url="wss://comet.shiyanlou.com" data-msg-user="" data-msg-system=""></div>
+
+    <script>
+    var pathLevel = window.location.pathname.split('/').length - 1;
+    var pathPrefix = new Array(pathLevel).join('../');
+    </script>
+
+    <script src="./Yii2 权限控制 - 实验楼_files/lib.js"></script>
+    <script src="./Yii2 权限控制 - 实验楼_files/jquery.min.js"></script>
+    <script src="./Yii2 权限控制 - 实验楼_files/ace.js"></script>
+    <script src="./Yii2 权限控制 - 实验楼_files/aliyun-oss-sdk-4.3.0.min.js"></script>
+    <script src="./Yii2 权限控制 - 实验楼_files/highlight.min.js"></script>
+    <script src="./Yii2 权限控制 - 实验楼_files/jspdf.min.js"></script>
+    <script src="./Yii2 权限控制 - 实验楼_files/plupload.full.min.js"></script>
+    <script src="./Yii2 权限控制 - 实验楼_files/ZeroClipboard.min.js"></script>
+
+    
+<div id="jinja-data" data-start-newlab-url="/courses/clear"></div>
+<script src="./Yii2 权限控制 - 实验楼_files/labDoc.js"></script><div class="loading-modal" style="display: none; position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; z-index: 1600; background: rgba(0, 0, 0, 0.498039);"><i class="fa fa-spinner fa-pulse" style="margin-top: 373.6px; color: rgb(255, 255, 255); font-size: 35px;"></i></div>
+
+    <script>
+    var bdata = $('#base-data').data();
+    var jdata = $('#jinja-data').data();
+
+    var socket = null;
+    if (bdata.isLogin) {
+        socket = window.io(bdata.socketUrl, {'query': 'token='+bdata.jwtToken});
+        socket.on('disconnect', function() {
+            socket.disconnect();
+        });
+
+        socket.on('event:user:logout', function() {
+          socket.emit('disconnection', "");
+          socket.disconnect();
+        });
+
+        socket.on('event:msg:new', function(data) {
+            $('.header-msg-count').show();
+            $('.header-msg-mark').show();
+            $('.header-avatar').tooltip('show');
+        });
+
+        socket.on('event:msg:all_read', function(data) {
+            $('.header-msg-count').hide();
+            $('.header-msg-mark').hide();
+        });
+
+        socket.on('event:lab:stoped', function() {
+            window.location.href = jdata.courseDetails;
+        });
+
+        if (/labs/.test(window.location.href)) {
+            socket.on('event:vm:retry_create', function() {
+                loading.show($('#display'));
+                loading.showMsg(true);
+                clearInterval(autoReconnect);
+                connect(localStorage.currentVmId)
+                loading.hide();
+            });
+        }
+    }
+    </script>
+
+
+</body></html>

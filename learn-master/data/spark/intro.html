@@ -1,0 +1,361 @@
+Apache Spark is a fast and general engine for large scale data processing
+
+引擎
+快速的 DAG Memory
+通用的 一栈式的大数据处理解决方案
+数据处理/数据分析
+大数据集
+
+MapReduce 与 Spark
+快
+Run programs up to 100x faster than 
+编程简单
+Write applications quickly in Java Scala or Python
+运行和数据处理
+runs everywhere
+
+09 年开始
+10 年开源
+13 年加入 apache 发展开始特别快
+现在峰会越来越多
+
+MapReduce                                      Spark
+数据存储结构 磁盘 hdfs 文件系统的 split        使用内存构建弹性分布式数据集 RDD, 对数据进行运算和 cache
+编程范式 Map + Reduce                          DAG(有向无环图) Transformation + action
+计算中间数据落磁盘 io及序列化 反序列代代价大   计算中间数据在内存中维护 存取速度是磁盘的多个数量级
+Task 以进程的方式维护 任务启动就有数秒         Task 以纯种的方式维护 对小数据集的读取能达到亚秒级的延迟
+
+MapReduce 与 Spark 相比 有哪些异同点
+基本原理上
+MapReduce 基于磁盘的大数据批量处理系统
+Spark 基于 RDD (弹性分布式数据集) 数据处理 显式的将 RDD 数据存储到磁盘和内存中
+模型上
+MapReduce 可以处理超大规模的数据 适合日志分析挖掘等 较少的迭代的长任务需求 结合了数据的分布式的计算
+Spark 适合数据的挖掘 机器学习等多轮迭代式计算任务
+容错性上
+数据容错性 节点容错性
+Spark Linage 
+
+spark 大数据处理技术
+
+spark 需要技术点
+Java SE 基础 Scala 语言
+Hadoop 2.x 有所认识 有一定的基础 基本东西
+英语的要求
+
+spark 下载
+http://spark.apache.org/downloads.html
+
+下载页需要选择spark 版本 还要选择 hadoop 版本
+http://www.apache.org/dyn/closer.lua/spark/spark-1.6.0/spark-1.6.0-bin-hadoop2.6.tgz
+
+spark 的编译
+sbt 编译
+maven 编译
+打包编译 make-distribution.sh
+
+sudo mkdir data
+sudo chown -R hadoop:hadoop data
+cp spark-1.3.0-src.zip /opt/data
+cd /opt/data
+unzip spark-
+
+maven 编译
+jdk
+maven
+echo $JAVA_HOME
+java -version
+echo $MAVEN_HOME
+mvn -version
+cd spark
+http://spark.apache.org/docs/1.6.0/building-spark.html
+
+解压
+tar -zxvf spark-1.
+
+mvn 编译
+mvn clean package
+-DskipTests -Phadoop-2.4 \
+-Dhadoop.version=2.6.0 -Pyarn \
+-Phive-0.13.1 -Phive-thriftserver
+
+make-distribution 编译
+./make-distribution.sh --tgz -Pyarn -Phadoop-2.4 -Dhadoop.version=2.6.0-cdh5.4.0  -Phive-0.13.1 -Phive-thriftserver
+
+http://archive.cloudera.com/cdh5/cdh/5/
+sudo vi /etc/resolv.conf
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+
+cd .m2
+vi settings.xml
+<mirror>
+    <id>nexux-osc</id>
+    <mirrorOf>*</mirrorOf>
+    <name>Nexus osc</name>
+    <url>http://maven.oschina.net/content/groups/public/</url>
+</mirror>
+
+# 注释 129行 ... 然后自己手写
+VERSION=1.3.0 # 配置 spark 的版本
+SPARK_HADOOP_VERSION=2.6.0-cdh5.4.0 # 配置 hadoop 版本
+SPARK_HIVE=1 # 1 表示需要将 hive 的打包进去 非 1 数字表示不打包 hive
+
+源码托管
+https://github.com/apache/spark
+
+sudo mkdir data
+sudo chown -R hadoop:hadoop data
+cp spark-src data
+unzip spark-src
+
+maven 编译
+
+spark 本地模式
+http://spark.apache.org/docs/latest/quick-start.html
+tar -zxvf spark -c /opt/data
+-c 解压到指定目录
+
+local standalone yarn mesos spark运行环境
+运行要求是已安装 scala
+./bin/spark
+hadoop-spark.dragon.org:4040
+scala> val textFile = sc.textFile("README.md");
+> textFile.count()
+> textFile.
+> textFile.take(10) # 获取前十条
+
+http://spark.apache.org/docs/latest/spark-standalone.html
+spark 1.x 环境搭建步骤
+安装 JDK (建议 JDK 7 以上)
+安装 Scala (2.10.4)
+安装 Hadoop 2.x (至少 HDFS)
+安装 Spark Standalone
+
+安装 hadoop 单机版
+
+
+[root@peng1 ~]# mkdir spark
+[root@peng1 ~]# mv spark-1.6.0.tgz spark
+[root@peng1 ~]# cd spark/
+[root@peng1 spark]# ls
+spark-1.6.0.tgz
+[root@peng1 spark]# tar -zxvf spark-1.6.0.tgz
+
+[root@peng1 spark]# ln -sf /root/spark/spark-1.6.0 /home/spark
+[root@peng1 spark]# cd /home/spark/conf/
+
+[root@peng1 conf]# cp -a spark-env.sh.template spark-env.sh
+[root@peng1 conf]# vi spark-env.sh
+
+export JAVA_HOME=/usr/local/java/jdk1.8.0_73
+export SCALA_HOME=/home/scala
+export SPARK_MASTER_IP=peng1
+export SPARK_WORKER_MEMORY=1g
+export SPARK_EXECUTOR_MEMORY=1g
+export SPARK_DRIVER_MEMORY=1G
+export HADOOP_CONF_DIR=/home/hadoop/etc/hadoop
+
+[root@peng1 conf]# cp -a slaves.template slaves
+[root@peng1 conf]# vi slaves
+peng2
+peng3
+peng4
+
+[root@peng1 conf]# cp -a spark-defaults.conf.template spark-defaults.conf
+[root@peng1 conf]# vi spark-defaults.conf
+spark.executor.extraJavaOptions  -XX:+PrintGCDetails -Dkey=value -Dnumbers="one two three"
+spark.eventLog.enabled           true
+spark.eventLog.dir               hdfs://peng1:9000/historyserverforSpark
+spark.yarn.historyServer.address peng1:18080
+spark.history.fs.logDirectory    hdfs://peng1:9000/historyserverforSpark
+
+
+[root@peng1 spark]# vi /etc/profile
+export SCALA_HOME=/home/scala
+export PATH=$PATH:$SCALA_HOME/bin
+
+export SPARK_HOME=/home/spark
+export PATH=$PATH:$SPARK_HOME/bin
+export PATH=$PATH:$SPARK_HOME/sbin
+
+
+[root@peng1 spark]# scp /etc/profile root@peng2:/etc/
+profile                                       100% 2282     2.2KB/s   00:00
+[root@peng1 spark]# scp /etc/profile root@peng3:/etc/
+profile                                       100% 2282     2.2KB/s   00:00
+[root@peng1 spark]# scp /etc/profile root@peng4:/etc/
+profile                                       100% 2282     2.2KB/s   00:00
+
+[root@peng1 spark]# scp -r /root/spark/spark-1.6.0-bin-hadoop2.6 root@peng2:/root/spark/  
+[root@peng1 spark]# scp -r /root/spark/spark-1.6.0-bin-hadoop2.6 root@peng3:/root/spark/  
+[root@peng1 spark]# scp -r /root/spark/spark-1.6.0-bin-hadoop2.6 root@peng4:/root/spark/  
+[root@peng1 spark]# scp -r /root/scala/scala-2.11.8 root@peng2:/root/scala/
+[root@peng1 spark]# scp -r /root/scala/scala-2.11.8 root@peng3:/root/scala/
+[root@peng1 spark]# scp -r /root/scala/scala-2.11.8 root@peng4:/root/scala/
+
+[root@peng2 spark]# ln -sf /root/spark/spark-1.6.0/ /home/spark
+
+[root@peng1 spark]# jps
+27008 QuorumPeerMain
+26533 ResourceManager
+15270 MainGenericRunner
+26220 NameNode
+26397 SecondaryNameNode
+17038 Master
+17102 Jps
+
+[root@peng2 scala]# jps
+25728 QuorumPeerMain
+26352 Jps
+26305 Worker
+25378 DataNode
+25475 NodeManager
+
+[root@peng3 scala]# jps
+26626 Jps
+26563 Worker
+3492 QuorumPeerMain
+2573 DataNode
+2670 NodeManager
+
+[root@peng4 scala]# jps
+2839 DataNode
+2936 NodeManager
+29352 Jps
+29289 Worker
+
+[root@peng1 spark]# ./sbin/start-all.sh
+http://peng1:8080/
+
+[root@peng1 spark]# hadoop dfs -mkdir /historyserverforSpark
+[root@peng1 spark]# ./sbin/start-history-server.sh
+http://peng1:18080
+
+集群时注释 hdfs 不然会去读 hdfs 上的文件
+spark-shell
+http://spark.apache.org/docs/latest/quick-start.html
+单机版启动四个进程
+./bin/dameade.sh start namenode datanode master slaves
+scala> val rdd-sc.textFile("hdfs://peng1:9000/usr/input/")
+rdd.count()
+./bin/hadoop dfs -text hdfs://peng1:9000/usr/inp
+flatMap 将一行数据压出
+rdd.flatMap(line = line.split(" ")).map(word => (word, 1)).reduceByKey((a,b) => a + b).collect
+
+合成一行
+sc.textFile().flatMap()...
+sc.textFile().flatMap(_.split(" ")).map((_, 1)).reduceByKey(_ + _).collect
+
+在 spark 中 一个应用程序中包含多个 Job 任务
+在 MapReduce 中 一个 Job 任务就是一个应用
+
+rdd.flatMap.map.reduceByKey.sortByKey(true).collect
+...map(x => (x._2, x._1)).sortByKey().map(x => x._2,x._1).collect
+
+Spark RDD 弹性分布式数据集
+RDD resilient distributed dataset
+分区 partitioned split 分片
+计算 compute (每个分区进行计算) 
+依赖 Wide Dependencies   narrow dependencies
+窄依赖 narrow dependencies 
+子 RDD 的每个分区依赖于常数个父分区 (即与数据规模无关)
+输入输出一对一的算子 且结果 RDD 的分区结构不变 主要是 map flatMap
+输入输出一对一 但结果表明 RDD 的分区结构发生了变化 如 union coalesce
+从输入中选择部分元素的算子 如 filter clistinct subtract sample
+
+宽依赖 wide dependencies
+子 RDD 的每个分区依赖于所有父 RDD 分区
+对单个 RDD 基于 key 进行重组和 reduce 如 groupByKey reduceByKey
+对两个 RDD 基于 key 进行 join 和重组 如 join
+val listRdd = sc.parallelize(List("hadoop", "spark", "spark", "yarn"))
+listRdd.flatMap...
+
+rdd.cache
+
+spark core RDD
+RDD spark 核心
+a list of partitions
+一群分区的集合 比如说 64M 一片 类似于 Hadoop 中的 split
+
+A function for computing each split
+在每个分区上都有一个函数去迭代 / 执行 / 计算
+
+A list of dependencies on other RDDs
+一系列的依赖 RDD a 转换为 RDD b  RDD b 转换为 RDD c   那么 RDD c 就依赖于 RDD b   RDD b 就依赖于 RDD a
+
+Optionally, a Partitioner for key-value RDDs (e.g. to say that the RDD is hash-partitioned)
+对于 key-value 的 RDD 可指定一个 partitioner 告诉它如词分片 常用的有 hash range
+
+Optionally, a list of prefered location(s) to compute each split on (e.g. block locations for an HDFS file)
+要运行的计算 / 执行最好在哪 (几)个机器上运行 数据本地性
+为什么会有那几个
+比如 hadoop 默认有三个位置 或者 spark cache 到内存是可能通过 storegelevel 设置了多个副本 所以一个 partition 可能返回多个最佳位置
+
+编写输入文件
+
+val wordcount = rdd.flatMap().map.reduceByKey()
+wordcount.collect
+
+val wordsort = wordcount.sortByKey(true)
+wordsort.collect
+
+17 application 概念以及如何提交应用 spark-submit
+http://spark.apache.org/docs/latest/submitting-applications.html
+
+18 安装 IDEA 安装 scala 插件以及导入 spark 源码
+linux 环境安装 IDEA
+
+
+创建 scala project 查官网
+
+./sbin/hadoop-daemon.sh start namenode
+./sbin/hadoop-daemon.sh start datanode
+
+conf = ...
+.setMaster("local") 运行本地模式
+sc.stop();
+
+打包测试
+sbin/start-master.sh 
+./sbin/start-slaves.sh
+
+打成 jar 包
+./bin/spark-submit XXX.jar 
+
+21 spark RDD 创建的两种方式之一
+
+RDD 创建
+外部数据源 HDFS sc.textFile
+集合 sc.parallelize(List(1,2,3,4))
+val data = Array(1,2,3,4,5)
+val distData = sc.parallelize(data)
+distData.collect
+
+RDD 分区 partition
+sc.textFile("", 4) 手动的指定四个分区
+
+RDD Transformation
+从一个 RDD 变为另外一个 RDD
+wordcount
+text ---> RDD[String] ---> RDD[(String,Int)] ---> RDD[(String,Int)]
+          wordRDD          kvRDD                  resultRDD
+一行一行的数据
+
+lazy 懶加载 
+
+lineage 生命周期 转换
+
+RDD action
+触发计算 进行的数据处理
+collect
+count
+
+RDD cache
+cache 方法是执行
+
+dataFile.flatMap(line => line.split(" ")).map(word => (word,1))
+
+dataFile.filter(_.contain("spark"))
+dataFile.saveAsTextFile("hdfs://...ourput/")
+./bin/spark-shell

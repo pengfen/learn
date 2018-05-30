@@ -1,0 +1,613 @@
+[ 2015-08-19T15:00:06+08:00 ] 127.0.0.1 /resource/Admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\b595b808c2ebeeeb0478ffc30bb4e87a.php 第 5 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.147009s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Undefined index: manager D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\b595b808c2ebeeeb0478ffc30bb4e87a.php 第 40 行.
+NOTIC: [8] Undefined index: manager D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\b595b808c2ebeeeb0478ffc30bb4e87a.php 第 43 行.
+SQL: SHOW COLUMNS FROM `resource_auth` [ RunTime:0.0250s ]
+NOTIC: [8] Undefined index: manager D:\files\wamp\www\resource\Application\Admin\Widget\NavWidget.class.php 第 16 行.
+SQL: SELECT * FROM `resource_auth` WHERE `level` = 0  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `resource_auth` WHERE `level` = 1  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.280016s ]
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.026001s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.116007s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.141008s ]
+NOTIC: [2] Division by zero D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\b595b808c2ebeeeb0478ffc30bb4e87a.php 第 150 行.
+NOTIC: [8] Undefined variable: link D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\b595b808c2ebeeeb0478ffc30bb4e87a.php 第 169 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.029001s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.116007s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.143008s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:00:07+08:00 ] 127.0.0.1 /resource/index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:00:07+08:00 ] 127.0.0.1 /resource/index.php/Admin/Index/breadcrumb.html?controller=Index&action=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+ERR: 非法操作:breadcrumb
+
+[ 2015-08-19T15:02:30+08:00 ] 127.0.0.1 /resource/index.php/Admin/Dir/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `resource_dir` [ RunTime:0.0120s ]
+NOTIC: [2048] Declaration of Admin\Controller\PageController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') D:\files\wamp\www\resource\Application\Admin\Controller\PageController.class.php 第 57 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `resource_dir` WHERE `flag` = '0' LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: count D:\files\wamp\www\resource\Application\Admin\Controller\PageController.class.php 第 36 行.
+SQL: SELECT * FROM `resource_dir` WHERE `flag` = '0' LIMIT 0,8   [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.006000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: manager D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 41 行.
+NOTIC: [8] Undefined index: manager D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 44 行.
+SQL: SHOW COLUMNS FROM `resource_auth` [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: manager D:\files\wamp\www\resource\Application\Admin\Widget\NavWidget.class.php 第 16 行.
+SQL: SELECT * FROM `resource_auth` WHERE `level` = 0  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `resource_auth` WHERE `level` = 1  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.020001s ]
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012001s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.007000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.018001s ]
+NOTIC: [2] Division by zero D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 151 行.
+NOTIC: [8] Undefined variable: link D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 170 行.
+NOTIC: [8] Undefined index: mess D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 240 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 254 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 258 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 259 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 254 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 258 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 259 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 254 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 258 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 259 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 254 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 258 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 259 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 254 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 258 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 259 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 254 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 258 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 259 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 254 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 258 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 259 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022002s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.007000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.028002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:02:30+08:00 ] 127.0.0.1 /resource/index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:02:30+08:00 ] 127.0.0.1 /resource/index.php/Admin/Index/breadcrumb.html?controller=Dir&action=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+ERR: 非法操作:breadcrumb
+
+[ 2015-08-19T15:02:34+08:00 ] 127.0.0.1 /resource/index.php/Admin/Project/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `resource_project` [ RunTime:0.0360s ]
+SQL: SELECT * FROM `resource_project`  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: title D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 5 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.007000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: manager D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 41 行.
+NOTIC: [8] Undefined index: manager D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 44 行.
+SQL: SHOW COLUMNS FROM `resource_auth` [ RunTime:0.0030s ]
+NOTIC: [8] Undefined index: manager D:\files\wamp\www\resource\Application\Admin\Widget\NavWidget.class.php 第 16 行.
+SQL: SELECT * FROM `resource_auth` WHERE `level` = 0  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `resource_auth` WHERE `level` = 1  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.021001s ]
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.007001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.017001s ]
+NOTIC: [2] Division by zero D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 151 行.
+NOTIC: [8] Undefined variable: link D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 170 行.
+NOTIC: [8] Undefined index: mess D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 238 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 255 行.
+NOTIC: [8] Use of undefined constant starttime - assumed 'starttime' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 257 行.
+NOTIC: [8] Undefined index: starttime D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 257 行.
+NOTIC: [8] Use of undefined constant endtime - assumed 'endtime' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 258 行.
+NOTIC: [8] Undefined index: endtime D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 258 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 261 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 262 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 264 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 267 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 255 行.
+NOTIC: [8] Use of undefined constant starttime - assumed 'starttime' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 257 行.
+NOTIC: [8] Undefined index: starttime D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 257 行.
+NOTIC: [8] Use of undefined constant endtime - assumed 'endtime' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 258 行.
+NOTIC: [8] Undefined index: endtime D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 258 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 261 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 262 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 264 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 267 行.
+NOTIC: [8] Undefined variable: count D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c9b29f46aaf66743c1e179410e6dbdf8.php 第 270 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.007001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.025002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:02:34+08:00 ] 127.0.0.1 /resource/index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-08-19T15:02:34+08:00 ] 127.0.0.1 /resource/index.php/Admin/Index/breadcrumb.html?controller=Project&action=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+ERR: 非法操作:breadcrumb
+
+[ 2015-08-19T15:02:38+08:00 ] 127.0.0.1 /resource/index.php/Admin/Dir/index/pid/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `resource_dir` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `resource_dir` WHERE `flag` = 0 AND `pid` = 1  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.006001s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: manager D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 41 行.
+NOTIC: [8] Undefined index: manager D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 44 行.
+SQL: SHOW COLUMNS FROM `resource_auth` [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: manager D:\files\wamp\www\resource\Application\Admin\Widget\NavWidget.class.php 第 16 行.
+SQL: SELECT * FROM `resource_auth` WHERE `level` = 0  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `resource_auth` WHERE `level` = 1  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.020002s ]
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant pid - assumed 'pid' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\5f62cf3ecb66a47dcb1a9b7512abfb3d.php 第 10 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011001s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.007000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.018001s ]
+NOTIC: [2] Division by zero D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 151 行.
+NOTIC: [8] Undefined variable: link D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 170 行.
+NOTIC: [8] Undefined index: mess D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 240 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 254 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 258 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 259 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 254 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 258 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 259 行.
+NOTIC: [8] Undefined variable: count D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 262 行.
+NOTIC: [8] Undefined variable: count D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 262 行.
+NOTIC: [8] Undefined variable: page D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\be57ac6dc75b7ed5425f6403ef792d48.php 第 262 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017001s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.007000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.023001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:02:38+08:00 ] 127.0.0.1 /resource/index.php/Admin/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2015-08-19T15:02:38+08:00 ] 127.0.0.1 /resource/index.php/Admin/Index/breadcrumb.html?controller=Dir&action=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 非法操作:breadcrumb
+
+[ 2015-08-19T15:02:40+08:00 ] 127.0.0.1 /resource/index.php/Admin/Dir/detail/id/8.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `resource_dir` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `resource_dir` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `resource_project` [ RunTime:0.0020s ]
+SQL: SELECT `name` FROM `resource_project` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant controller - assumed 'controller' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c24dbb463e3bee7f194cee678e34c026.php 第 8 行.
+NOTIC: [8] Use of undefined constant controller - assumed 'controller' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c24dbb463e3bee7f194cee678e34c026.php 第 8 行.
+NOTIC: [8] Use of undefined constant controller - assumed 'controller' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c24dbb463e3bee7f194cee678e34c026.php 第 8 行.
+NOTIC: [8] Undefined variable: assoc D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c24dbb463e3bee7f194cee678e34c026.php 第 14 行.
+NOTIC: [8] Undefined index: note D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\c24dbb463e3bee7f194cee678e34c026.php 第 20 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-08-19T15:02:43+08:00 ] 127.0.0.1 /resource/index.php/Admin/Logic/detail/controller/IndexController/action/index+%E5%90%8E%E5%8F%B0%E9%A6%96%E9%A1%B5/pid/1/name/%E7%95%85%E4%BA%AB%E4%B8%96%E7%95%8C.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: ac D:\files\wamp\www\resource\Application\Admin\Controller\LogicController.class.php 第 85 行.
+SQL: SHOW COLUMNS FROM `resource_logic` [ RunTime:0.0510s ]
+SQL: SELECT * FROM `resource_logic` WHERE `ac` = 'Index-index' AND `pid` = 1 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant ac - assumed 'ac' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\656f1ee3f7e1b7e7324a6e20c517a87f.php 第 3 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\656f1ee3f7e1b7e7324a6e20c517a87f.php 第 5 行.
+NOTIC: [8] Use of undefined constant note - assumed 'note' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\656f1ee3f7e1b7e7324a6e20c517a87f.php 第 11 行.
+NOTIC: [8] Use of undefined constant note - assumed 'note' D:\files\wamp\www\resource\Application\Runtime\Cache\Admin\656f1ee3f7e1b7e7324a6e20c517a87f.php 第 12 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+

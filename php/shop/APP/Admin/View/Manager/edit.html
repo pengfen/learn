@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>商城管理系统</title>
+		<link rel="stylesheet" type="text/css" href="{$smarty.const.__ROOT__}/Public/css/admin.css">
+	</head>
+	<body class="bgimg">
+
+		<form action="{$smarty.const.__CONTROLLER__}/upd/id/{$info['id']}" method="post">
+		<input type='hidden' name='id' value="{$info['id']}"/>
+		<ul class="exec">
+			<li>
+				<span class='add-text'>用 户 名</span>
+				<input type='text' name='username' placeholder='请输入用户名6-12位' value="{$info['username']}" />
+				<span class='error-text'></span>
+			</li>
+			<li>
+				<span class='add-text'>旧 密 码</span>
+				<input type='password' name='oldpass' placeholder='请输入旧密码6-12位' />
+				<span class='error-text'></span>
+			</li>
+			<li>
+				<span class='add-text'>新密码</span>
+				<input type='password' name='pass' placeholder='请输入新密码6-12位' />
+				<span class='error-text'></span>
+			</li>
+			<li>
+				<span class='add-text'>确认密码</span>
+				<input type='password' name='repass' placeholder='请输入确认密码6-12位'  />
+				<span class='error-text'></span>
+			</li>
+			<li>
+				<span class='add-text'></span>
+				<input type='submit' class='submitbtn' value="修改资料" />
+			</li>
+		</ul>
+		</form>
+	</body>
+</html>

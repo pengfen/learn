@@ -1,0 +1,83 @@
+控制层
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import service.UserService;
+
+import javax.annotation.Resource;
+
+@Controller
+public class UserController {
+    @Resource(name = "userService")
+    private UserService userService;
+
+    @RequestMapping("/getUser")
+    public String getUser(Model model) {
+        System.out.println(userService.selectAll().size());
+        model.addAttribute("user", userService.selectAll());
+        return "listUser";
+    }
+}
+
+服务层
+public interface UserService {
+    public List<User> selectAll();
+}
+
+import org.springframework.stereotype.Service;
+import service.UserService;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+/**
+ * Created by Roger on 2015/9/17.
+ */
+@Service("userService")
+public class UserServiceImpl implements UserService {
+    @Resource(name = "userMapper")
+    private UserMapper userMapper;
+
+    public List<User> selectAll() {
+        return userMapper.selectAll();
+    }
+}
+
+DAO层 --- 操作数据层
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository("userMapper")
+public interface UserMapper {
+    @Select("select * from user")
+    @Results(value = {@Result(id = true, property = "id", column = "id"),
+                @Result(property = "name", column = "name")})
+    public List<User> selectAll();
+}
+
+实例层 --- 对应数据表
+public class User {
+    private int id;
+    private String name;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}

@@ -1,0 +1,95 @@
+    多分支 case 条件语句
+
+    case 表达式用于多分支选择语句  
+    case 语句和 if ... elif ... else 语句一样都是多分支条件语句 
+    不过和 if 多分支条件语名不同的是 case 语句只能判断一种条件关系 而 if 语句可以判断多种条件关系
+    会根据表达式的值来选择要执行的语句 
+    如果遇到匹配的值 就执行该值后面的语句 直到遇到 ";;" 为止  你可以使用 *) 来区配所有未匹配到具体值的内容
+
+
+    case $变量名 in
+    "值1")
+    如果变量的值等于值1 则执行程序1
+    ;;
+    "值2")
+    如果变量的值等于值2 则执行程序2
+    ;;
+    ... 省略其他分支 ...
+    *)
+    如果变量的值都不是以上的值 则执行此程序
+    ;;
+    esac
+
+
+
+case2.sh --- code/case2.sh
+------------------------------------------------------
+    # 判断用户输入
+    [root@peng1 shell]# vi case2.sh
+    #!/bin/bash
+    read -p "Please choose yes/no : " -t 30 cho
+    case $cho in
+    "yes")
+        echo "Your choose is yes!" ;;
+    "no")
+        echo "Your choose is no!" ;;
+    *)
+        echo "Your choose is error!" ;;
+    esac
+
+    [root@peng1 shell]# chmod 755 case2.sh
+    [root@peng1 shell]# ./case2.sh
+    Please choose yes/no : no
+    Your choose is no!
+
+    [root@iZ94f2imuwkZ shall]# chmod 755 case2.sh
+    [root@iZ94f2imuwkZ shall]# ./case2.sh 
+    Please choose yes/no : yes
+    Your choose is yes!
+    [root@iZ94f2imuwkZ shall]# ./case2.sh 
+    Please choose yes/no : no
+    Your choose is no!
+    [root@iZ94f2imuwkZ shall]# ./case2.sh 
+    Please choose yes/no : you
+    Your choose is error!
+
+
+
+
+case.sh --- code/case.sh
+----------------------------------------------------
+    # 判断输入的值
+    [root@peng1 shell]# vi case.sh
+    #!/bin/bash
+    echo "Please input your number (1-9) : "
+    read number
+
+    case "$number" in
+    1)
+        echo "number : 1" ;;
+    2)
+        echo "number : 2" ;;
+    *)
+        echo "other number : $number"
+    esac
+
+    You have new mail in /var/spool/mail/root
+    [root@peng1 shell]# chmod 755 case.sh
+    [root@peng1 shell]# ./case.sh
+    Please input your number (1-9) :
+    1
+    number : 1
+
+    [root@iZ94f2imuwkZ shall]# chmod 755 case.sh 
+    [root@iZ94f2imuwkZ shall]# ./case.sh 
+    Please input your number (1-9) : 
+    1
+    number : 1
+    [root@iZ94f2imuwkZ shall]# ./case.sh 
+    Please input your number (1-9) : 
+    2
+    number : 2
+    [root@iZ94f2imuwkZ shall]# ./case.sh 
+    Please input your number (1-9) : 
+    10
+    other number

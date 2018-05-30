@@ -1,0 +1,165 @@
+<extend name='Layout/tpl'/>
+<block name='style'>
+<style type="text/css">
+	.main{
+	margin-top:235px;
+	}
+</style>
+<script type="text/javascript">
+	$(function(){
+		$('#userinfo').click(function(){
+			$.ajax({
+				url:$('#userinfo_url').val(),
+				type:'post',
+				data:{uid:{$user['id']}},
+				success:function(data){
+					$('#show_div').html(data);
+					$('this').addClass('active').css('font-size','28px');
+
+
+				}
+			})
+		})
+
+		$('#mood').click(function(){
+			$.ajax({
+				url:$('#mood_url').val(),
+				type:'post',
+				data:{uid:{$user['id']}},
+				success:function(data){
+					$('#show_div').html(data);
+					//$('this').addClass('active').css('font-size','28px');
+
+
+				}
+			})
+		})
+
+	})
+</script>
+</block>
+<block name='main'>
+	<div class="main row">
+		<div class="col-md-12">
+			<ul class="nav nav-tabs">
+              <li  ><a href="{:U('User/myhome')}">我的动态</a></li>
+              <li role="presentation"><a href='{:U('Mood/index')}'>说说</a></li>
+              <input id='mood_url' type='hidden' value="{:U('Mood/showMoodListById')}">
+              <li role="presentation"><a href="{:U('Log/index')}">日志</a></li>
+              <li role="presentation"><a href="{:U('Album/index')}">相册</a></li>
+              <li role="presentation"><a href="{:U('Message/index')}">留言板</a></li>
+              <li  id='userinfo'><a>个人档</a></li>
+              <input id='userinfo_url' type='hidden' value="{:U('User/info')}">
+              <li role="presentation"><a href="{:U('Resource/index')}">资料库</a></li>
+            </ul>
+		</div>
+		<div class="col-md-12">
+		<div class="col-md-3" style="padding:10px 0 0 0;">
+			<div class="panel panel-default">
+			  <!-- Default panel contents -->
+			  <div class="panel-heading">欢迎光临我的空间</div>
+			  <div class="panel-body">
+			    <p>
+			    	<img src="__ROOT__/Avatar/{$head_img}">
+			    </p>
+			  </div>
+
+			  <!-- List group -->
+			  <ul class="list-group">
+			 	<li class="list-group-item">昵称 {$user['username']}</li>
+			    <li class="list-group-item">现居 {$user['department']}</li>
+			    
+			    <li class="list-group-item">性别 
+			    	<?php 
+			    		if($user['sex']==0){echo "保密";}
+			    		if($user['sex']==1){echo "女";}
+			    		if($user['sex']==2){echo "男";}
+			    	?>
+			    </li>
+			    
+			  </ul>
+
+
+			</div>
+			<div class="panel panel-default">
+			  <!-- Default panel contents -->
+			  <div class="panel-heading">留言板</div>
+			  <div class="panel-body">
+			    <p>
+			    	<textarea class="form-control" rows="3" id='mood_content'>说点什么吧</textarea>
+			    	<input type="hidden" value="{:U('Message/addMessage')}" id='leave'/>
+			    </p>
+			  </div>
+			   <div class="panel-footer"><button class="btn btn-default" id='leave_message' type="button">发表</button></div>
+				<script type="text/javascript">
+					$(function(){
+						$('#leave_message').click(function(){
+							$.ajax({
+								url:$('#leave').val(),
+								type:'post',
+								data:{content:$('#mood_content').val(),uid:{$user['id']}},
+								success:function(data){
+									alert('留言成功');
+								}
+
+							})
+						})
+					})
+				</script>
+
+
+			  
+			</div>
+			<div class="panel panel-default">
+			  <!-- Default panel contents -->
+			  <div class="panel-heading">好友留言</div>
+			  <div class="panel-body">
+			  <style type="text/css">
+					ul li{
+						list-style:none;
+						margin:0px;
+						padding:0px;
+					}
+					#message{
+						border-bottom: 1px solid #ccc;
+						margin-left:-30px;
+						padding: 5px 0 0 0;
+					}
+			  </style>
+			   <ul>
+			   	<volist name='msglist' id='vo'>
+			   		<li>
+						<div id='message'>
+							<div>
+								<div><a>{$vo.vname}：</a>{$vo.content}</div>
+							</div>
+							<div>{:date('Y-m-d H:i:s',$vo['addtime'])}</div>
+						</div>
+					</li>
+			   	</volist>
+			   	<li><a href="{:U('Message/index')}">查看更多</a></li>
+			   </ul>
+			  </div>
+			   
+
+
+
+			  
+			</div>
+		</div>
+		<div class="col-md-8" style="padding-top:10px;" id="mydong">
+			
+		</div>
+		<script type="text/javascript">
+		    $url = "{:U('Mydong/index')}";
+            $.ajax({
+              url:$url,
+              success:function(data){
+                $('#mydong').html(data);
+              }
+            });
+		</script>
+			
+		</div>
+	</div>
+</block>

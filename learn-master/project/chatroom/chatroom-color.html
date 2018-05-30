@@ -1,0 +1,11 @@
+设置颜色值
+
+自己输入的文字使用红色
+var div = "<div style='color:#ff0000' >" + message + "</div>";
+$(".barrage-dm .d_show").append(div);
+init_screen(nickname); // 执行弹幕
+
+别人输入的文字使用黄色
+var div="<div style='color:#ffff00;'>" + data[0]['content'] + "</div>";
+$(".barrage-dm .d_show").append(div);
+init_screen(data[0]['nickname']);

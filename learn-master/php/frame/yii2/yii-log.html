@@ -1,0 +1,44 @@
+使用代码生成日志
+
+use yii\log\FileTarget;
+
+$time = microtime(true);
+
+$log = new FileTarget();
+
+$log->logFile = Yii::$app->getRuntimePath() . '/logs/my.log'; //文件名自定义
+
+// 1 error 2 warning 
+$log->messages[] = ['测试写日志', 2, '', $time];
+
+$log->export();
+
+my.log
+2016-08-16 09:12:57 [127.0.0.1][-][-][error][] 测试写日志
+
+-----------------------------
+使用配置文件配置日志
+'log' => [
+    //'traceLevel' => YII_DEBUG ? 3 : 0, // 常用于测试环境
+    'flushInterval' => 1, // 配置刷新默认为1000条
+    'targets' => [
+        [
+            'class' => 'yii\log\FileTarget',
+            'levels' => ['info', 'error', 'trace', 'warning'], // 配置等级
+            'logFile' => '@app/runtime/logs/app.log', // 配置导出文件
+        ],
+        [
+            'class' => 'yii\log\FileTarget',
+            'levels' => ['error'],
+            'categories' => ['catalog'], // 分类策略
+            'exportInterval' => 1, // 配置导出消息 默认为1000条
+            'logFile' => '@app/runtime/logs/req.log',
+            'maxFileSize' => 1024 * 2,
+            'maxLogFiles' => 20,
+            'logVars' => [],
+        ],
+    ],
+
+\Yii::error('测试自定义', 'catalog');
+
+2016-08-16 11:04:23 [127.0.0.1][-][-][error][catalog] 测试自定义

@@ -1,0 +1,67 @@
+添加用户
+
+<!-- 添加用户  parameterType 指定输入参数类型是pojo(包括用户信息) -->
+<!-- #{}中指定pojo的属性名 接收到pojo对象的属性值 mybatis通过OGNL获取对象的属性值 -->
+<insert id="insertUser" parameterType="com.peng.mybatis.entity.User">
+    <!-- 将插入数据的主键返回 返回到user对象中 -->
+    <!-- SELECT LAST_INSERT_ID() 得到刚insert进行记录的主键值 只适用与自增主键 -->
+    <!-- keyProperty 将查询到主键值设置到parameterType指定的对象的哪个属性 -->
+    <!-- order SELECT LAST_INSERT_ID() 执行顺序 相对于insert语句来说它的执行顺序 -->
+    <!-- resultType 指定SELECT LAST_INSERT_ID()的结果类型 -->
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+        SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user(username,birthday,sex,address) value(#{username},#{birthday},#{sex},#{address})
+    
+    <!-- 使用mysql的uuid()生成主键 -->
+    <!-- 执行过程 首先通过uuid()得到主键 将主键设置到user对象的id属性中 其次在insert执行时 从user对象中取出id属性值 
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+        SELECT uuid()
+    </selectKey>
+    insert into user(id,username,birthday,sex,address) value(#{id},#{username},#{birthday},#{sex},#{address})-->
+</insert>
+
+测试代码
+// 根据用户名称模糊查询用户列表
+@Test
+public void insertUserTest() throws IOException {
+	// mybatis配置文件
+	String resource = "SqlMapConfig.xml";
+	// 得到配置文件流
+	InputStream inputStream = Resources.getResourceAsStream(resource);
+	
+	// 创建会话工厂 传入mybatis的配置文件信息
+	SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+	
+	// 通过工厂得到SqlSession
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	
+	// 插入用户对象
+	User user = new User();
+	user.setUsername("曹朋");
+	user.setBirthday(new Date());
+	user.setSex("1");
+	user.setAddress("上海松江");
+	
+	// list中的user和映射文件中的resultType所指定的类型一致
+	sqlSession.insert("test.insertUser", user);
+	
+	System.out.println(user.getId());
+	
+	// 提交事务
+	sqlSession.commit();
+	// 关闭会话
+	sqlSession.close();
+	
+	// 释放资源
+    sqlSession.close();
+}
+
+测试内容
+DEBUG [main] - ==>  Preparing: insert into user(username,birthday,sex,address) value(?,?,?,?) 
+DEBUG [main] - ==> Parameters: 曹朋(String), 2016-08-03 11:39:35.968(Timestamp), 1(String), 上海松江(String)
+DEBUG [main] - <==    Updates: 1
+DEBUG [main] - ==>  Preparing: SELECT LAST_INSERT_ID() 
+DEBUG [main] - ==> Parameters: 
+DEBUG [main] - <==      Total: 1
+7

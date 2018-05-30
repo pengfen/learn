@@ -1,0 +1,15 @@
+PHP 支持哪些数据库
+
+PHP 通过安装相应的扩展来实现数据库操作 现代应用程序的设计离不开数据库的应用 当前主流的数据库有 MsSQL MySQL Sybass Db2 Oracle PostgreSQL Access 等 
+这些数据库 PHP 都能够安装扩展来支持 一般情况下常说的LAMP 架构指的是 Linux Apache MySQL PHP 
+因此 MySQL 数据库在 PHP 中的应用非常广泛 我们会在本章中简单的了解 MySQL 的操作方法
+
+<?php
+if (function_exists('mysql_connect')) {
+	echo 'MySQL扩展已经安装';
+}
+
+注意 使用 mysqli 时 相关函数也使用 mysqli
+mysql_query --- mysqli_query
+mysql_fetch_row --- mysqli_fetch_row
+...

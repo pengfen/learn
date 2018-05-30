@@ -1,0 +1,45 @@
+菜单列表编辑菜单中添加方法 q020001_all
+
+	/**
+	 * 代码流程
+	 * 入参 方法路由 auth(q020001_all)
+	 * 出参 true / false
+	 * 根据路由获取方法ID 如果没有直接返回 false
+	 * 获取当前用户权限组ID
+	 * 根据方法ID和权限组ID查询是否有数据 有返回true 没有返回 false
+	*/
+	public static function auth($route) {
+		$flag = false; // 初始化返回标志
+		// 根据获取方法ID
+		$method = Method::find()->select('id')->where(['route' => $route])->asArray()->one();
+		$method = $method['id'];
+		// 获取当前用户下所有的方法
+		$uid = Yii::$app->session['userInfo']['userBase']['uid'];
+
+		if ($uid && $method) {
+			$info = self::getUserMethod($uid);
+			if ($info) {
+				foreach ($info as $key => $value) {
+					if ($method == $value['function_id']) {
+						$flag = true;
+					}
+				}
+			}
+		}
+		return $flag;
+	}
+
+	// 获取当前 uid 所拥有的方法
+	public static function getUserMethod($uid) {
+		// 通过用户权限组 id 获取用户拥有的方法 id
+        $group = UserPermissionGroup::find()->select('rule_group_id')->where(['uid' => $uid])->asArray()->all();
+
+        // 根据权限组ID 和方法ID 查询是否有数据
+        $user_method_id = Permission::find()->select('function_id')->distinct()->where(['in', 'rule_group_id', array_column($group, 'rule_group_id')])->asArray()->all();
+
+        return $user_method_id;
+	}
+
+	// 调用权限
+	if (Auth::auth($prefix.'_order')) { // 有权限显示对应按钮
+	}

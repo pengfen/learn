@@ -1,0 +1,103 @@
+PHP文件的上传与下载
+============================================================
+1. 文件上传
+	1.1 客户端上传设置
+		① form 必须用 post
+		② 给form 指定属性  enctype='multipart/form-data'
+		③ <input type='file' name="">
+		④ 表单中可以对上传文件的大小进行限制  (可选)
+			<input type='hidden' name="MAX_FILE_SIZE" value="">
+			必须写到 input:file 的前面
+	1.2 在服务器端通过PHP处理上传
+		1.2.1 PHP配置文件中与文件上传有关的选项
+			指令名							默认值			功能描述
+			file_uploads					ON				是否开启文件上传
+			upload_max_filesize		2M				限制PHP处理上传文件大小的最大值，此值必须小于post_max_size
+			post_max_size				8M				限制通过POST方法可以接受信息的最大值，也就是整个POST请求的提交值。此值必须大于upload_max_filesize
+			upload_tmp_dir			NULL			上传文件存放的临时路径，可以是绝对路径。默认NULL则使用系统的临时目录。
+		1.2.2 $_FILES多维数组
+			[input的name]=>array(
+				'name' 			=> 		 原文件的名字，
+				'type'   			=>  		 文件mime类型
+				'tmp_name'  =>		 临时文件的路径
+				'error'			=>  		 错误号 0表示上传成功
+				'size'				=>		 文件的大小
+			)
+			error错误号：
+				0				表示上传成功
+				1				超过了 php.ini 中 upload_max_filesize 的限制
+				2				超过了 HTML 表单 中隐藏域设置的 限制
+				3				文件只有部分被上传
+				4				文件没有上传
+				6				找不到临时目录
+				7				文件写入失败
+		1.2.3 常见数据格式（MIME）
+			文件类型				MIME类型
+			图片文件				image/gif，image/jpg，image/jpeg，image/png，image/x-png
+			纯文本和HTML		text/txt，text/plain，text/html
+			二进制文件			application/octet-stream
+			音频格式				audio/basic
+			视频格式				video/mpeg
+		1.2.4 PHP文件上传处理函数
+			is_uploaded_file()
+			move_uploaded_file()
+			
+2. 多文件上传
+	使用不同的表单元素
+		<input type="file" name="file_a">
+		<input type="file" name="file_b">
+		<input type="file" name="file_b">
+	使用数组格式的表单元素
+		<input type="file" name="file[]">
+		<input type="file" name="file[]">
+		<input type="file" name="file[]">
+	HTML5指定inputd的属性
+		<input type="file" name="file[]" multiple>
+
+3. 文件下载
+	 //获取服务器要下载文件的路径
+	$filename="./upload/aa.png";
+
+	//获取文件的文件名
+	$basename=pathinfo($filename);
+
+	//指定下载文件类型的
+	header("Content-Type: image/png"); 
+
+	//设置head头信息，告知该文件时下载附件并且制定客户端临时存储名称
+	header("Content-Disposition:attachment;filename=".	$basename["basename"]);
+	//指定下载文件的描述信息
+	//指定文件大小的
+	header("Content-Length:".filesize($filename));  
+
+	//将内容输出，以便下载。
+	readfile($filename);
+
+
+
+
+
+
+
+
+
+
+	php获取文件mime类型有以下几种方法：
+1、mime_content_type()函数判断获取mime类型
+mime_content_type返回指定文件的MIME类型，
+用法：echomime_content_type('php.gif') .
+"\n";echomime_content_type('test.php');输出：image/giftext/plain但是php 5.3.0已经将该函数废弃。如果仍想使用此函数，那么可以对php进行配置启用magic_mime扩展。
+
+2、php Fileinfo 获取文件MIME类型(finfo_open)
+PHP官方推荐mime_content_type()的替代函数是Fileinfo函数。PHP
+5.3.0+已经默认支持Fileinfo函数(fileinfo
+support-enabled)，不必进行任何配置即可使用finfo_open()判断获取文件MIME类型。
+用法：$finfo = finfo_open(FILEINFO_MIME);
+$mimetype = finfo_file($finfo, $filename);
+finfo_close($finfo);
+
+3、image_type_to_mime_type()获取图片MIME类型
+注意：需要在php.ini中配置打开php_mbstring.dll(Windows需要)和extension=php_exif.dll。
+
+
+4、php上传文件获取MIME类型

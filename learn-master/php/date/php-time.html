@@ -1,0 +1,46 @@
+获取零点时间
+
+$time = mktime(0,0,0,date('m'),date('d'),date('Y'))
+
+$time = strtotime(date('Y-m-d', time()).' 00:00:00');
+
+转换为时间
+date('Y-m-d H:i:s', $time);
+
+
+比较时间 注意本地需要添加 date_default_timezone_set('PRC'); 
+
+// 根据时间比较
+$currtime = time();
+$mintime = date('Y-m-d', $currtime).' 06:00:00';
+$maxtime = date('Y-m-d', $currtime).' 19:00:00';
+$currtime = date('Y-m-d H:i:s', $currtime);
+
+// 根据时间戳比较
+$currtime = time();
+$mintime = strtotime(date('Y-m-d', $currtime).' 06:00:00');
+$maxtime = strtotime(date('Y-m-d', $currtime).' 19:00:00');
+
+if ($currtime > $mintime && $currtime < $maxtime) {
+    echo '请在早上 06:00 之前,晚上 19:00 以后执行此脚本';
+    echo PHP_EOL;
+    exit;
+}
+
+// 时间比较
+$fromtime = strtotime("2016-06-20 17:41:00");
+$totime = strtotime("2016-06-20 17:46:00");
+echo $totime - $fromtime; // 300 = 5 * 60
+
+判断是否大于五分钟
+if (($totime - $fromtime) > 300) {
+	// 处理大于五分钟的情况
+} else {
+	// 处理小于等于五分钟的情况
+}
+
+
+// 判断时间
+if (date('H', time()) < 12) { echo '上午好';}
+else { echo '下午好'; }
+echo date('H', time()); 01 - 24; 00 - 12 上午 12 - 23 下午

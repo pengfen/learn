@@ -1,0 +1,35 @@
+<div style="margin-bottom:10px;">
+    <input type="hidden" id='addReview' value="{:U('Review/addReview')}"/>
+	<h3>{$info.title}</h3>
+	<p>发表于 {:date('Y-m-d H:i:s', $info[addtime])} | 阅读({$info.views})</p>
+	<div id="log-content">{$info.content}</div>
+	<if condition="$username neq ''">
+	原创 : {$username}
+	</if>
+</div>
+<!-- <if condition="$flag eq 1">
+<div class="col-lg-6">
+    <div class="input-group">
+        <input type="text" class="form-control huifu-con" placeholder="我也说一句">
+        <span class="input-group-btn">
+            <button class="btn btn-default huifu-btn" type="button" >发表</button>
+            <input type="hidden" class='pid' value='{$info.id}'>
+            <input type="hidden" class='uid' value='{$vid}'>
+        </span>
+    </div>
+</div>
+</if> -->
+<script>
+    $('#log-content').html($('#log-content').text());
+    $('.huifu-btn').click(function(){
+		$.ajax({
+			url:$('#addReview').val(),
+			type:'post',
+			data:{uid:$(this).next('input').next('input').val(),content:$(this).parent('span').prev('input').val(),pid:$(this).next('input').val(),rid:$(this).next('input').next('input').val(),cateid:1},
+			success:function(data){
+				alert('评论成功！');
+				//window.location = window.location.href;	
+			}
+		});
+	});
+</script>

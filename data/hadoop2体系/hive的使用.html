@@ -1,0 +1,242 @@
+create table t_person (
+id int,
+name string,
+like array<string>,
+tedian map<string,string>
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+COLLECTION ITEMS TERMINATED BY '_'
+MAP KEYS TERMINATED BY ':';
+
+1,zhangsan,sports_books_tv,sex:男_color:red
+
+# 导入本地的数据必须加 local 
+load data local inpath /root/hivesql/data into table t_person
+
+create table dept_count(
+dname string,
+num int
+);
+
+insert into table dept_count select dept_name, count(1) from t_emp group by dept_name;
+
+
+hive> create table dept_count(
+    > dname string,
+    > num int
+    > );
+OK
+Time taken: 0.879 seconds
+
+
+hive> insert into table dept_count select dept_name, count(1) from t_emp group by dept_name;
+Query ID = root_20160319103131_2b377d54-952c-462f-9582-8fb4f3e2add7
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1458314605588_0002, Tracking URL = http://peng1:8088/proxy/application_1458314605588_0002/
+Kill Command = /home/hadoop/bin/hadoop job  -kill job_1458314605588_0002
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2016-03-19 10:31:41,903 Stage-1 map = 0%,  reduce = 0%
+2016-03-19 10:31:51,647 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2.94 sec
+2016-03-19 10:32:01,223 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 4.61 sec
+MapReduce Total cumulative CPU time: 4 seconds 610 msec
+Ended Job = job_1458314605588_0002
+Loading data to table default.dept_count
+Table default.dept_count stats: [numFiles=1, numRows=1, totalSize=12, rawDataSize=11]
+MapReduce Jobs Launched:
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 4.61 sec   HDFS Read: 7402 HDFS Write: 86 SUCCESS
+Total MapReduce CPU Time Spent: 4 seconds 610 msec
+OK
+Time taken: 32.471 seconds
+
+drop table dept_count; # 删除表
+
+# 按名字进行分区
+create table dept_count (
+num int) partitioned by (dname string);
+
+insert into table dept_count partition (dname='销售部') select count(1) from t_emp where dept_name='销售部' group by dept_name;
+
+insert into table t_emp values (5, 'welcome', 40, 'hadoop');
+
+export table t_emp to '/usr/input/emp'; #导入到 hdfs://...
+
+create table t_stu (
+userid int,
+name string,
+age int,
+sex int, classid int
+) 
+row format delimited fields terminated by ','
+stored as textfile;
+
+create table t_class (
+cid int,
+name string,
+teacher string
+)
+row format delimited fields terminated by ','
+stored as textfile;
+
+vi student
+1,zs,32,2,2
+2,li,23,1,2
+3,ww,21,1,1
+
+load data local inpath '/root/student' into table t_stu;
+
+vi class
+1,hadoop,xiao
+2,java,gao
+
+load data local inpath '/root/class' into table t_class;
+
+select s.*,c.name from t_stu s join t_class c on s.classid=c.cid;
+
+
+HQL 脚本有三方式执行
+hive -e 'hql'
+hive -f 'hql.file'
+hive jdbc 代码执行脚本
+
+[root@peng1 hive]# vi ./conf/hive-site.xml
+/bind.host
+<name>hive.server2.thrift.bind.host</name>
+<value>peng1</value>
+
+[root@peng1 hive]# ./bin/hive --service hiveserver2 # 启动 hive 服务
+
+# 重新使用一个客户端登录 peng1 (192.168.129.128)
+[root@peng1 ~]# netstat -nplt | grep 1000
+tcp        0      0 192.168.129.128:10000       0.0.0.0:*                   LISTEN      1686/java
+
+[root@peng1 ~]# cd /home/hive/
+[root@peng1 hive]# ./bin/beeline
+Beeline version 1.1.1 by Apache Hive
+
+beeline> !connect jdbc:hive2://peng1:10000
+scan complete in 24ms
+Connecting to jdbc:hive2://peng1:10000
+Enter username for jdbc:hive2://peng1:10000: root
+Enter password for jdbc:hive2://peng1:10000:
+
+0: jdbc:hive2://peng1:10000> show tables;
++-------------+--+
+|  tab_name   |
++-------------+--+
+| dept_count  |
+| t_emp       |
++-------------+--+
+2 rows selected (1.577 seconds)
+
+如果出现 Error: For input string: "5000L" 停止服务修改 hive-site.xml
+/5000L
+5000L --- 5000 (去掉 L)
+
+
+启动 eclipse 编写 hive 客户端程序
+File --- NEW --- java Project --- hive
+导入 jar 包
+项目名 --- 右击 --- propert --- Java Build Path --- Add External JARs ---
+hive --- lib (所有 jar)
+hadoop --- share --- hadoop --- common 下三个jar
+... --- hadoop --- common --- lib 下二个 (slf4j-api-....jar, slf4j-log4j12-....jar)
+
+查找每个页面访问的次数
+
+查看 tomcat 的访问日志
+cd /home/tomcat
+cd logs/
+head -n20 localhost_access_log....
+
+https://cwiki.apache.org/confluence/display/Hive/GettingStarted
+CREATE TABLE apachelog (
+  host STRING,
+  identity STRING,
+  user STRING,
+  time STRING,
+  request STRING,
+  status STRING,
+  size STRING,
+  referer STRING,
+  agent STRING)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
+WITH SERDEPROPERTIES (
+  "input.regex" = "([^ ]*) ([^ ]*) ([^ ]*) (-|\\[^\\]*\\]) ([^ \"]*|\"[^\"]*\") (-|[0-9]*) (-|[0-9]*)(?: ([^ \"]*|\".*\") ([^ \"]*|\".*\"))?"
+)
+STORED AS TEXTFILE;
+
+create table t_log(
+    host string,
+    identity string,
+    user string,
+    time string,
+    request string,
+    status string,
+    size string
+) row format
+serde 'org.apache.hadoop.hive.contrib.serde2.RegexSerDe'
+with serdeproperties
+("input.regex" = "([^ ]*) ([^ ]*) ([^ ]*) (-|\\([[^\\]]*\\])) (\"[^\"]*\") (-|[0-9]*) (-|[0-9]*)")
+stored as textfile;
+load data local inpath '/home/tomcat/logs/localhost_access_log...' into table t_log;
+select * from t_log limit 1;
+
+hive> add jar /home/hive/lib/hive-contrib-1.1.1.jar;
+Added [/home/hive/lib/hive-contrib-1.1.1.jar] to class path
+Added resources: [/home/hive/lib/hive-contrib-1.1.1.jar]
+
+add jar /home/hive/lib/hive-contrib-1.1.1.jar;
+select * from t_log where request like '%GET / HTTP/1.0';
+
+hive 有两种函数 UDF UDAF
+UDF 输入数据为一条数据 输出数据也为一条数据
+UDAF 输入数据为多条数据 Count 聚合函数 Avg,min
+
+用户日常轨迹分析
+
+数据来源 ---- 移动通信基站
+
+呼叫数据 每一次呼叫产生一条呼叫记录
+         区分主叫/被叫 记录对方号码
+短信数据 每一条短信产生一条短信记录
+         区分发送/接收 记录对方号码
+位置更新/开关机 每次开机和关机都产生一条记录
+                手机将会周期性和基站进行通信
+上网记录 区分 3G/2G
+         终端 IP/URL
+其它 位置切换
+     漫游数据
+
+记录每个用户的移动轨迹
+通过用户移动轨迹识别客户身份
+分析目标地点的用户量和用户类型 为户外广告选址和促销提供决策支持
+分析土地利用情况 为政府的土地分配和使用作决策支撑
+
+项目需求
+每天从移动基站获取 1000 万用户 30 G 以上的数据
+数据分为位置数据和上网数据
+统计每天，每个用户在0点-9点 9点-17点 17点至24点 三个时间段 停留时间最长的三个地理位置
+
+位置数据
+IMSI    IMEI GDRTYPE LOC     TIME
+000000  001  1       A 基站  2015-09-09 09:00:00
+        001  2       B 基站  2015-09-09 09:45:00
+
+上网数据
+IMSI    IMEI  URL            LOC    TIME
+000000  001   www.baidu.com  A 基站 2015-09-09 09:15:00
+        001   www.bjsxt.com  B 基站 2015-09-09 09:30:00
+备注
+用户在任何时间的停留位置都取决于之前一次位置更新的基站位置
+时间间隔超过60分的判定为关机
+
+

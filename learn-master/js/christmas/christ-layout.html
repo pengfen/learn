@@ -1,0 +1,30 @@
+布局结构
+本节正式进入圣诞主题实现阶段的学习与代码的编写。首先回顾下视频的内容：整个效果都表述了一个主题，小男孩与小女孩在圣诞节的见面场景并呈现在三个主题场景且在每个主题页面中会有不同的效果。
+
+从大的方向上看三个主题场景都是独立的，因此在布局的实现上可以用单独的一个元素抽象出来去做每个场景容器，这里就会有3个大的容器元素。所以结构就应该长这下面的样子：
+
+<section class="container">
+    <!-- 第一幅画面 -->
+    <section class="page-a bg-adaptive">
+    </section>
+    <!-- 第二幅画面 -->
+    <section class="page-b bg-adaptive">
+    </section>
+    <!-- 第三幅画面 -->
+    <section class="page-c bg-adaptive">
+    </section>
+</section>
+在所有的场景最外层会包装一层container的主元素，用来做尺寸与定位处理，让所有的子元素都相对与.container元素定位
+
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+通过类名page-a、page-b、page-c用来区分不同的场景页面，通过设置层级z-index关系来切换可视页面。bg-adaptive主要抽出背景图自适应代码
+
+.bg-adaptive {
+    background-size: 100% 100%;
+}
+最后，可以通过js动态修改.container元素的大小，从而控制整个主题效果的大小与位置。具体布局效果，可以参考右边代码区域，通过层级控制页面的切换
