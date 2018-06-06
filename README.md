@@ -11,6 +11,8 @@ ssh-keygen.exe 生成公钥私钥
 将公钥复制到 github ---> setting ---> ssh keys ---> add ssh keys;
 
 ------------------------------------------------
+源文件下载 (https://pan.baidu.com/s/1mjAxu1UPR-31oi6P_xvFQA) 
+项目转移 (https://github.com/pengfen/learn17)
 
 linux      linux 命令以及 linux 环境下安装等
 
@@ -52,7 +54,7 @@ java
 basic      java 基础
 jdbc       java database connection
 
-[php](https://github.com/pengfen/php-learn)
+[php](https://github.com/pengfen/php-learn) php资料整理
 ===================================
 ext        php 扩展
 frame      php框架包

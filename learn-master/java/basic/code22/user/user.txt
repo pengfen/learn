@@ -1,2 +1,0 @@
-liuyi=liuyi
-admin=admin

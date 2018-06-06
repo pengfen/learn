@@ -1,3 +1,0 @@
-进入到项目目录
-
-php ./yii search/
